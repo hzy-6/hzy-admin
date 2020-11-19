@@ -1,0 +1,118 @@
+﻿@{
+    ViewData["HzyAdminUIPath"] = "/admin/hzyAdminUI/";
+    ViewData["Title"] = "首 页";
+}
+@section Styles{
+}
+@section Scripts{
+    <script type="text/javascript">
+        hzyAdminUI.init();
+        //初始化多标签页框架
+        hzyBootStrapTabs.init("#hzyAdminTabs", [{
+            id: '0b7f8e2c-9faa-4496-9068-80b87ba1b64e',
+            title: '首页',
+            href: '/Admin/Home/Main/',
+            active: true,
+            isClose: false
+        }], function (obj) {
+            hzyAdminUI.menu.active(obj.id);
+        }, function () {
+            hzyAdmin.loading.start();
+        }, function () {
+            hzyAdmin.loading.stop();
+        });
+    </script>
+}
+<div class="hzy-container" id="hzy-container">
+    <partial name="_Navbar" />
+    <main>
+        <partial name="_Aside" />
+        <section class="hzy-main-right" id="hzyAdminTabs"></section>
+    </main>
+</div>
+
+<!--皮肤模态框-->
+<div class="modal fade" id="examplePositionSidebar" aria-hidden="true" aria-labelledby="examplePositionSidebar"
+     role="dialog" tabindex="-1">
+    <div class="modal-dialog modal-sidebar modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title">皮肤设置</h3>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">顶部颜色：</label>
+                        <div class="row">
+                            <ul class="list-unstyled list-inline" style="text-align: left;">
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-white"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-white')"></div>
+                                </li>
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-blue"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-blue')"></div>
+                                </li>
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-dark"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-dark')"></div>
+                                </li>
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-primary"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-primary')"></div>
+                                </li>
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-cyan"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-cyan')"></div>
+                                </li>
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-green"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-green')"></div>
+                                </li>
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-indigo"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-indigo')"></div>
+                                </li>
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-grey"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-grey')"></div>
+                                </li>
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-pink"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-pink')"></div>
+                                </li>
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-purple"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-purple')"></div>
+                                </li>
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-red"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-red')"></div>
+                                </li>
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-teal"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-teal')"></div>
+                                </li>
+                                <li class="pr-5 pl-5 inline-block">
+                                    <div class="index-skin hzy-header-skin-orange"
+                                         onclick="hzyAdminUI.header.setSkin('hzy-header-skin-orange')"></div>
+                                </li>
+                            </ul>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">左侧菜单颜色：</label>
+                        <div class="row">
+                            <div class="col-sm-12 hzy-skin hzy-skin-default"
+                                 onclick="hzyAdminUI.menu.setSkin(hzyAdminUI.menu.mSkin.default)"></div>
+                            <div class="col-sm-12 hzy-skin hzy-skin-white"
+                                 onclick="hzyAdminUI.menu.setSkin(hzyAdminUI.menu.mSkin.white)"></div>
+                        </div>
+
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

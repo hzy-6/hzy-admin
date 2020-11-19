@@ -1,0 +1,360 @@
+﻿@section Styles{
+
+}
+@section Scripts{
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: function () {
+                return {
+                    time: null,
+                    options: [{
+                        value: 'zhinan',
+                        label: '指南',
+                        children: [{
+                            value: 'shejiyuanze',
+                            label: '设计原则',
+                            children: [{
+                                value: 'yizhi',
+                                label: '一致'
+                            }, {
+                                value: 'fankui',
+                                label: '反馈'
+                            }, {
+                                value: 'xiaolv',
+                                label: '效率'
+                            }, {
+                                value: 'kekong',
+                                label: '可控'
+                            }]
+                        }, {
+                            value: 'daohang',
+                            label: '导航',
+                            children: [{
+                                value: 'cexiangdaohang',
+                                label: '侧向导航'
+                            }, {
+                                value: 'dingbudaohang',
+                                label: '顶部导航'
+                            }]
+                        }]
+                    }, {
+                        value: 'zujian',
+                        label: '组件',
+                        children: [{
+                            value: 'basic',
+                            label: 'Basic',
+                            children: [{
+                                value: 'layout',
+                                label: 'Layout 布局'
+                            }, {
+                                value: 'color',
+                                label: 'Color 色彩'
+                            }, {
+                                value: 'typography',
+                                label: 'Typography 字体'
+                            }, {
+                                value: 'icon',
+                                label: 'Icon 图标'
+                            }, {
+                                value: 'button',
+                                label: 'Button 按钮'
+                            }]
+                        }, {
+                            value: 'form',
+                            label: 'Form',
+                            children: [{
+                                value: 'radio',
+                                label: 'Radio 单选框'
+                            }, {
+                                value: 'checkbox',
+                                label: 'Checkbox 多选框'
+                            }, {
+                                value: 'input',
+                                label: 'Input 输入框'
+                            }, {
+                                value: 'input-number',
+                                label: 'InputNumber 计数器'
+                            }, {
+                                value: 'select',
+                                label: 'Select 选择器'
+                            }, {
+                                value: 'cascader',
+                                label: 'Cascader 级联选择器'
+                            }, {
+                                value: 'switch',
+                                label: 'Switch 开关'
+                            }, {
+                                value: 'slider',
+                                label: 'Slider 滑块'
+                            }, {
+                                value: 'time-picker',
+                                label: 'TimePicker 时间选择器'
+                            }, {
+                                value: 'date-picker',
+                                label: 'DatePicker 日期选择器'
+                            }, {
+                                value: 'datetime-picker',
+                                label: 'DateTimePicker 日期时间选择器'
+                            }, {
+                                value: 'upload',
+                                label: 'Upload 上传'
+                            }, {
+                                value: 'rate',
+                                label: 'Rate 评分'
+                            }, {
+                                value: 'form',
+                                label: 'Form 表单'
+                            }]
+                        }, {
+                            value: 'data',
+                            label: 'Data',
+                            children: [{
+                                value: 'table',
+                                label: 'Table 表格'
+                            }, {
+                                value: 'tag',
+                                label: 'Tag 标签'
+                            }, {
+                                value: 'progress',
+                                label: 'Progress 进度条'
+                            }, {
+                                value: 'tree',
+                                label: 'Tree 树形控件'
+                            }, {
+                                value: 'pagination',
+                                label: 'Pagination 分页'
+                            }, {
+                                value: 'badge',
+                                label: 'Badge 标记'
+                            }]
+                        }, {
+                            value: 'notice',
+                            label: 'Notice',
+                            children: [{
+                                value: 'alert',
+                                label: 'Alert 警告'
+                            }, {
+                                value: 'loading',
+                                label: 'Loading 加载'
+                            }, {
+                                value: 'message',
+                                label: 'Message 消息提示'
+                            }, {
+                                value: 'message-box',
+                                label: 'MessageBox 弹框'
+                            }, {
+                                value: 'notification',
+                                label: 'Notification 通知'
+                            }]
+                        }, {
+                            value: 'navigation',
+                            label: 'Navigation',
+                            children: [{
+                                value: 'menu',
+                                label: 'NavMenu 导航菜单'
+                            }, {
+                                value: 'tabs',
+                                label: 'Tabs 标签页'
+                            }, {
+                                value: 'breadcrumb',
+                                label: 'Breadcrumb 面包屑'
+                            }, {
+                                value: 'dropdown',
+                                label: 'Dropdown 下拉菜单'
+                            }, {
+                                value: 'steps',
+                                label: 'Steps 步骤条'
+                            }]
+                        }, {
+                            value: 'others',
+                            label: 'Others',
+                            children: [{
+                                value: 'dialog',
+                                label: 'Dialog 对话框'
+                            }, {
+                                value: 'tooltip',
+                                label: 'Tooltip 文字提示'
+                            }, {
+                                value: 'popover',
+                                label: 'Popover 弹出框'
+                            }, {
+                                value: 'card',
+                                label: 'Card 卡片'
+                            }, {
+                                value: 'carousel',
+                                label: 'Carousel 走马灯'
+                            }, {
+                                value: 'collapse',
+                                label: 'Collapse 折叠面板'
+                            }]
+                        }]
+                    }, {
+                        value: 'ziyuan',
+                        label: '资源',
+                        children: [{
+                            value: 'axure',
+                            label: 'Axure Components'
+                        }, {
+                            value: 'sketch',
+                            label: 'Sketch Templates'
+                        }, {
+                            value: 'jiaohu',
+                            label: '组件交互文档'
+                        }]
+                    }],
+                    drawer: false,
+                    direction: 'rtl',
+                    value:'',
+                }
+            },
+            created: function () {
+
+            },
+            mounted: function () {
+
+            },
+            methods: {
+                handleChange: function (value) {
+                    console.log(value);
+                },
+                handleClose: function (done) {
+                    this.$confirm('确认关闭？')
+                        .then(_ => {
+                            done();
+                        })
+                        .catch(_ => { });
+                },
+                openBaidu: function () {
+                    //这是一个在页面内部打开一个标签页的例子
+                    top.hzyBootStrapTabs.addTab('baidu_id', '大家好我是百度', 'https://www.baidu.com');
+                },
+                openBaiduMap: function () {
+                    var path = "https://www.baidu.com/link?url=UKeA9WyYe_6Tv7SMOhwYWoLbLAMPNXeMX36hwOB2L1m&wd=&eqid=bea9a4e90002a0f1000000025ea7c756";
+                    top.hzyBootStrapTabs.addTab('baidumap_id', '我是一个百度地图', path);
+                },
+                openCCT: function () {
+                    var path = "/Admin/CCT/Index";
+                    var id = "4ce21a81-1cae-44d2-b29e-07058ff04b3e";//这里的 id 必须与 左侧菜单id 对应上 ，如果没有对应 则 开启新的标签页面!
+                    top.hzyBootStrapTabs.addTab(id, '代码创建', path);
+                }
+            }
+        });
+    </script>
+}
+<div class="m-20" id="app">
+    <div class="container-fluid">
+
+        <el-row :gutter="20">
+            <el-col :span="12">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>日历</span>
+                        <el-link target="_blank" type="success" style="float: right; padding: 3px 0" href="https://element.eleme.cn/#/zh-CN/component/layout">更多组件</el-link>
+                    </div>
+                    <el-calendar v-model="time"></el-calendar>
+                </el-card>
+            </el-col>
+            <el-col :span="12">
+                <el-card class="box-card">
+                    <div slot="header" class="clearfix">
+                        <span>按钮</span>
+                        <el-link target="_blank" type="success" style="float: right; padding: 3px 0" href="https://element.eleme.cn/#/zh-CN/component/layout">更多组件</el-link>
+                    </div>
+                    <el-row class="mb-20">
+                        <el-col :span="24">
+                            <el-button type="primary" @@click="openCCT" style="width:100%">打开创建代码页面</el-button>
+                        </el-col>
+                    </el-row>
+                    <el-row class="mb-20">
+                        <el-col :span="24">
+                            <el-button type="primary" @@click="openBaidu" style="width:100%">打开一个百度</el-button>
+                        </el-col>
+                    </el-row>
+                    <el-row class="mb-20">
+                        <el-col :span="24">
+                            <el-button type="primary" @@click="openBaiduMap" style="width:100%">打开一个百度地图</el-button>
+                        </el-col>
+                    </el-row>
+
+                    <el-row class="mb-20">
+                        <el-button>默认按钮</el-button>
+                        <el-button type="primary">主要按钮</el-button>
+                        <el-button type="success">成功按钮</el-button>
+                        <el-button type="info">信息按钮</el-button>
+                        <el-button type="warning">警告按钮</el-button>
+                        <el-button type="danger">危险按钮</el-button>
+                    </el-row>
+
+                    <el-row class="mb-20">
+                        <el-button plain>朴素按钮</el-button>
+                        <el-button type="primary" plain>主要按钮</el-button>
+                        <el-button type="success" plain>成功按钮</el-button>
+                        <el-button type="info" plain>信息按钮</el-button>
+                        <el-button type="warning" plain>警告按钮</el-button>
+                        <el-button type="danger" plain>危险按钮</el-button>
+                    </el-row>
+
+                    <el-row class="mb-20">
+                        <el-button round>圆角按钮</el-button>
+                        <el-button type="primary" round>主要按钮</el-button>
+                        <el-button type="success" round>成功按钮</el-button>
+                        <el-button type="info" round>信息按钮</el-button>
+                        <el-button type="warning" round>警告按钮</el-button>
+                        <el-button type="danger" round>危险按钮</el-button>
+                    </el-row>
+
+                    <el-row class="mb-20">
+                        <el-button icon="el-icon-search" circle></el-button>
+                        <el-button type="primary" icon="el-icon-edit" circle></el-button>
+                        <el-button type="success" icon="el-icon-check" circle></el-button>
+                        <el-button type="info" icon="el-icon-message" circle></el-button>
+                        <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+                        <el-button type="danger" icon="el-icon-delete" circle></el-button>
+                    </el-row>
+                    <el-row class="mb-20">
+                        <el-col :span="12">
+                            <span class="demonstration">默认 click 触发子菜单</span>
+                            <el-cascader v-model="value"
+                                         :options="options"
+                                         @@change="handleChange"></el-cascader>
+                        </el-col>
+                        <el-col :span="12">
+                            <span class="demonstration">hover 触发子菜单</span>
+                            <el-cascader v-model="value"
+                                         :options="options"
+                                         :props="{ expandTrigger: 'hover' }"
+                                         @@change="handleChange"></el-cascader>
+                        </el-col>
+                    </el-row>
+                    <el-row class="mb-20">
+                        <el-col :span="23">
+                            <el-radio-group v-model="direction">
+                                <el-radio label="ltr">从左往右开</el-radio>
+                                <el-radio label="rtl">从右往左开</el-radio>
+                                <el-radio label="ttb">从上往下开</el-radio>
+                                <el-radio label="btt">从下往上开</el-radio>
+                            </el-radio-group>
+
+                            <el-button @@click="drawer = true" type="primary" style="margin-left: 16px;">
+                                点我打开
+                            </el-button>
+
+                            <el-drawer title="我是标题"
+                                       :visible.sync="drawer"
+                                       :direction="direction"
+                                       :before-close="handleClose">
+                                <span>来啦老弟？</span>
+                            </el-drawer>
+
+                        </el-col>
+                    </el-row>
+                </el-card>
+
+            </el-col>
+        </el-row>
+
+
+    </div>
+
+</div>

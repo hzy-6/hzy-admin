@@ -1,0 +1,50 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>HZY.Repository.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.Models\HZY.Models.csproj" />
+    <ProjectReference Include="..\HZY.Toolkit\HZY.Toolkit.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="Core\temp\FreeSqlSelectExtensions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FreeSqlSelectExtensions.cs</LastGenOutput>
+    </None>
+    <None Update="Core\temp\FreeSqlSelectHzyTupleExtensions.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>FreeSqlSelectHzyTupleExtensions.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Core\temp\FreeSqlSelectExtensions.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FreeSqlSelectExtensions.tt</DependentUpon>
+    </Compile>
+    <Compile Update="Core\temp\FreeSqlSelectHzyTupleExtensions.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>FreeSqlSelectHzyTupleExtensions.tt</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Attributes" />
+  </ItemGroup>
+
+</Project>

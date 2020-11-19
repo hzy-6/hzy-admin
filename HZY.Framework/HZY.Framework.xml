@@ -1,0 +1,396 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Framework</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Framework.Attributes.AdminAuthorizationAttribute">
+            <summary>
+            控制器 接口 描述
+            </summary>
+        </member>
+        <member name="F:HZY.Framework.Attributes.AdminAuthorizationAttribute.MenuId">
+            <summary>
+            菜单 Id
+            </summary>
+        </member>
+        <member name="F:HZY.Framework.Attributes.AdminAuthorizationAttribute.FunctionName">
+            <summary>
+            功能名称
+            </summary>
+        </member>
+        <member name="F:HZY.Framework.Attributes.AdminAuthorizationAttribute.AuthCheck">
+            <summary>
+            授权检查 默认检查
+            </summary>
+        </member>
+        <member name="T:HZY.Framework.Controllers.AdminBaseController`1">
+            <summary>
+            控制器服务
+            </summary>
+            <typeparam name="TDefaultService">默认服务类型</typeparam>
+        </member>
+        <member name="F:HZY.Framework.Controllers.AdminBaseController`1.DefaultService">
+            <summary>
+            默认服务
+            </summary>
+        </member>
+        <member name="T:HZY.Framework.Controllers.AdminBaseController">
+            <summary>
+            控制器服务
+            </summary>
+        </member>
+        <member name="M:HZY.Framework.Controllers.ApiBaseController.Result(HZY.Framework.Model.ApiResult.ApiResultCodeEnum,System.String,System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="apiResultCodeEnum"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.ApiBaseController.Result(System.Int32,System.String,System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.ApiBaseController.ResultOk(System.String)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.ApiBaseController.ResultOk(System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.ApiBaseController.ResultOk(System.String,System.Object)">
+            <summary>
+            返回消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.ApiBaseController.ResultWarn(System.String)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.ApiBaseController.ResultWarn(System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.ApiBaseController.ResultWarn(System.String,System.Object)">
+            <summary>
+            返回消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.FrameworkBaseController.Result(HZY.Framework.Model.ApiResult.ApiResultCodeEnum,System.String,System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="apiResultCodeEnum"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.FrameworkBaseController.Result(System.Int32,System.String,System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.FrameworkBaseController.ResultOk(System.String)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.FrameworkBaseController.ResultOk(System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.FrameworkBaseController.ResultOk(System.String,System.Object)">
+            <summary>
+            返回消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.FrameworkBaseController.ResultWarn(System.String)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.FrameworkBaseController.ResultWarn(System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Controllers.FrameworkBaseController.ResultWarn(System.String,System.Object)">
+            <summary>
+            返回消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Framework.Filter.ExceptionFilter">
+            <summary>
+            异常过滤器
+            </summary>
+        </member>
+        <member name="T:HZY.Framework.HzyFrameworkExtensions">
+            <summary>
+            HZY.Framework 扩展
+            </summary>
+        </member>
+        <member name="T:HZY.Framework.MessageBox">
+            <summary>
+            警告消息
+            </summary>
+        </member>
+        <member name="M:HZY.Framework.MessageBox.GetApiResult">
+            <summary>
+            获取 ApiResult
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.MessageBox.Show(System.String)">
+            <summary>
+            输出消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:HZY.Framework.MessageBox.Show(System.String,System.Object)">
+            <summary>
+            输出消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:HZY.Framework.MessageBox.Show(HZY.Framework.Model.ApiResult)">
+            <summary>
+            支持传入 ApiResult 对象
+            </summary>
+            <param name="apiResult"></param>
+        </member>
+        <member name="T:HZY.Framework.Middleware.TakeUpTimeMiddleware">
+            <summary>
+            统计耗时 并记录日志中 中间件
+            </summary>
+        </member>
+        <member name="M:HZY.Framework.Middleware.TakeUpTimeMiddleware.IsApi(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            判断请求类型 是否 是 api
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Framework.Model.ApiResult">
+            <summary>
+            Api 消息返回类
+            </summary>
+        </member>
+        <member name="T:HZY.Framework.Model.ApiResult.ApiResultCodeEnum">
+            <summary>
+            消息返回码
+            </summary>
+        </member>
+        <member name="F:HZY.Framework.Model.ApiResult.ApiResultCodeEnum.NotFount">
+            <summary>
+            接口不存在
+            </summary>
+        </member>
+        <member name="F:HZY.Framework.Model.ApiResult.ApiResultCodeEnum.Error">
+            <summary>
+            程序错误
+            </summary>
+        </member>
+        <member name="F:HZY.Framework.Model.ApiResult.ApiResultCodeEnum.UnAuth">
+            <summary>
+            未授权
+            </summary>
+        </member>
+        <member name="F:HZY.Framework.Model.ApiResult.ApiResultCodeEnum.Warn">
+            <summary>
+            警告
+            </summary>
+        </member>
+        <member name="F:HZY.Framework.Model.ApiResult.ApiResultCodeEnum.Ok">
+            <summary>
+            成功
+            </summary>
+        </member>
+        <member name="M:HZY.Framework.Model.ApiResult.ResultMessage(HZY.Framework.Model.ApiResult.ApiResultCodeEnum,System.String)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="apiResultCodeEnum"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Model.ApiResult.ResultData(HZY.Framework.Model.ApiResult.ApiResultCodeEnum,System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="apiResultCodeEnum"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Model.ApiResult.Result(HZY.Framework.Model.ApiResult.ApiResultCodeEnum,System.String,System.Object)">
+            <summary>
+            可返回消息和数据
+            </summary>
+            <param name="apiResultCodeEnum"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Model.ApiResult.ResultMessage(System.Int32,System.String)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Model.ApiResult.ResultData(System.Int32,System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="code"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Model.ApiResult.Result(System.Int32,System.String,System.Object)">
+            <summary>
+            可返回消息和数据
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Model.ApiResult.OkMessage(System.String)">
+            <summary>
+            成功 可返回消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Model.ApiResult.OkData(System.Object)">
+            <summary>
+            成功 可返回数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Model.ApiResult.Ok(System.String,System.Object)">
+            <summary>
+            成功 可返回 消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Model.ApiResult.WarnMessage(System.String)">
+            <summary>
+            警告 可返回消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Model.ApiResult.WarnData(System.Object)">
+            <summary>
+            警告 可返回数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Model.ApiResult.Warn(System.String,System.Object)">
+            <summary>
+            警告 可返回 消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Services.AdminBaseService`1.ExportExcelByPagingViewModel(HZY.Repository.Core.Models.PagingViewModel,System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            导出 Excel
+            </summary>
+            <param name="pagingViewModel"></param>
+            <param name="byName">别名</param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Services.AdminBaseService`1.HandleUploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String,System.String[])">
+            <summary>
+            上传文件 辅助函数
+            </summary>
+            <param name="formFile"></param>
+            <param name="webRootPath"></param>
+            <param name="folder"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Services.AdminBaseService`1.HandleUploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String[])">
+            <summary>
+            上传文件
+            </summary>
+            <param name="iFormFile"></param>
+            <param name="webRootPath"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Framework.Services.AdminBaseService`1.HandleUploadImageFile(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String)">
+            <summary>
+            上传图片
+            </summary>
+            <param name="iFormFile"></param>
+            <param name="webRootPath"></param>
+            <param name="folder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Framework.Services.FrameworkBaseService`1">
+            <summary>
+            服务层 基类
+            </summary>
+            <typeparam name="TRepository">默认仓储 类型</typeparam>
+        </member>
+        <member name="F:HZY.Framework.Services.FrameworkBaseService`1.Repository">
+            <summary>
+            默认 仓储
+            </summary>
+        </member>
+    </members>
+</doc>

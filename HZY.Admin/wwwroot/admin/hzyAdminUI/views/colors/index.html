@@ -1,0 +1,972 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HzyAdminUI</title>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Safari浏览器添加到主屏幕（IOS） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <!--[if lt IE 9]>
+                      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+                      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+                    <![endif]-->
+    <link href="../../css/web-icons-master/css/web-icons.css" rel="stylesheet" />
+    <!--样式-->
+    <link href="../../css/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/core.css" rel="stylesheet" />
+    <link href="../../css/site.css" rel="stylesheet" />
+    <style type="text/css">
+        .color-primaries {
+            padding: 20px 0;
+            margin-bottom: 0
+        }
+
+        .color-primaries>div {
+            display: inline-block;
+            width: 120px;
+            height: 120px;
+            margin-right: 40px;
+            margin-bottom: 20px;
+            line-height: 120px;
+            color: #fff;
+            text-align: center;
+            border-radius: 100%
+        }
+
+        .color-primaries>.bg-blue-grey-200 {
+            color: #868a8d
+        }
+
+        .color-palette {
+            margin-bottom: 25px
+        }
+
+        .color-palette h5 {
+            margin-bottom: 27px
+        }
+
+        .color-palette .list-group {
+            color: #fff
+        }
+
+        .color-palette .list-group-item {
+            padding: 15px 20px;
+            border: none
+        }
+
+        .color-palette .list-group-item span+span {
+            text-transform: uppercase
+        }
+
+        .color-box {
+            width: 100%;
+            height: 50px;
+            padding-top: 5px;
+            padding-left: 10px;
+            margin-bottom: 20px;
+            color: #fff
+        }
+
+        .text-color-box {
+            width: 100%;
+            height: 200px;
+            margin-bottom: 15px
+        }
+
+        .example-alpha {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 20px;
+            line-height: 50px;
+            color: #fff;
+            text-align: center
+        }
+
+        .example-divider {
+            background-color: rgba(38, 50, 56, .1) !important
+        }
+
+        .example-border {
+            max-width: 300px;
+            height: 120px;
+            margin-bottom: 20px;
+            border: 1px solid #e4eaec
+        }
+
+        .example-border>div {
+            float: left;
+            width: 50%;
+            height: 100%;
+            padding-top: 15px;
+            padding-left: 15px
+        }
+
+        .opacity-example span {
+            display: inline-block;
+            width: 55px;
+            white-space: nowrap
+        }
+
+        .opacity-four {
+            color: rgba(55, 71, 79, .4) !important
+        }
+
+        .opacity-six {
+            color: rgba(55, 71, 79, .6) !important
+        }
+
+        .opacity-eight {
+            color: rgba(55, 71, 79, .8) !important
+        }
+
+        .blue-grey-700 i,
+        .opacity-eight i,
+        .opacity-four i,
+        .opacity-six i {
+            margin-right: 5px
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="page">
+        <div class="page-header">
+            <h1 class="page-title">配色方案</h1>
+        </div>
+        <div class="page-content">
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">样式</h3>
+                </div>
+                <div class="panel-body container-fluid">
+
+                    <div class="example-wrap">
+                        <h4 class="example-title">基础配色方案</h4>
+                        <div class="example color-primaries">
+                            <div class="bg-blue-grey-200">#e4eaec</div>
+                            <div class="bg-blue-grey-600">#526069</div>
+                            <div class="bg-blue-600">#3e8ef7</div>
+                            <div class="bg-cyan-600">#0bb2d4</div>
+                            <div class="bg-teal-600">#17b3a3</div>
+                            <div class="bg-orange-600">#eb6709</div>
+                            <div class="bg-red-600">#ff4c52</div>
+                            <div class="bg-purple-600">#9463f7</div>
+                        </div>
+                    </div>
+
+
+                    <div class="example-wrap">
+                        <h4 class="example-title mb-20">色卡</h4>
+                        <div class="row row-lg color-palette">
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">red</h5>
+                                <ul class="list-group">
+                                    <li class="bg-red-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#e62020</span>
+                                    </li>
+                                    <li class="bg-red-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#f2353c</span>
+                                    </li>
+                                    <li class="bg-red-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#ff4c52</span>
+                                    </li>
+                                    <li class="bg-red-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#ff666b</span>
+                                    </li>
+
+                                    <li class="bg-red-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#ff8589</span>
+                                    </li>
+
+                                    <li class="bg-red-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#ffbfc1</span>
+                                    </li>
+
+                                    <li class="bg-red-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#ffbfc1</span>
+                                    </li>
+
+                                    <li class="bg-red-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#ffdbdc</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">pink</h5>
+                                <ul class="list-group">
+                                    <li class="bg-pink-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#e6155e</span>
+                                    </li>
+                                    <li class="bg-pink-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#eb2f71</span>
+                                    </li>
+                                    <li class="bg-pink-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#f74584</span>
+                                    </li>
+                                    <li class="bg-pink-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#ff5e97</span>
+                                    </li>
+
+                                    <li class="bg-pink-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#ff7daa</span>
+                                    </li>
+
+                                    <li class="bg-pink-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#ff9ec0</span>
+                                    </li>
+
+                                    <li class="bg-pink-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#ffbad2</span>
+                                    </li>
+
+                                    <li class="bg-pink-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#ffd9e6</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">purple</h5>
+                                <ul class="list-group">
+                                    <li class="bg-purple-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#7231f5</span>
+                                    </li>
+                                    <li class="bg-purple-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#8349f5</span>
+                                    </li>
+                                    <li class="bg-purple-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#9463f7</span>
+                                    </li>
+                                    <li class="bg-purple-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#a57afa</span>
+                                    </li>
+
+                                    <li class="bg-purple-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#b693fa</span>
+                                    </li>
+
+                                    <li class="bg-purple-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#c8aefc</span>
+                                    </li>
+
+                                    <li class="bg-purple-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#d9c7fc</span>
+                                    </li>
+
+                                    <li class="bg-purple-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#eae1fc</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">indigo</h5>
+                                <ul class="list-group">
+                                    <li class="bg-indigo-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#364ff5</span>
+                                    </li>
+                                    <li class="bg-indigo-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#4d64fa</span>
+                                    </li>
+                                    <li class="bg-indigo-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#667afa</span>
+                                    </li>
+                                    <li class="bg-indigo-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#7d8efa</span>
+                                    </li>
+
+                                    <li class="bg-indigo-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#96a3fa</span>
+                                    </li>
+
+                                    <li class="bg-indigo-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#afb9fa</span>
+                                    </li>
+
+                                    <li class="bg-indigo-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#c7cffc</span>
+                                    </li>
+
+                                    <li class="bg-indigo-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#e1e4fc</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">blue</h5>
+                                <ul class="list-group">
+                                    <li class="bg-blue-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#0b69e3</span>
+                                    </li>
+                                    <li class="bg-blue-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#247cf0</span>
+                                    </li>
+                                    <li class="bg-blue-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#3e8ef7</span>
+                                    </li>
+                                    <li class="bg-blue-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#589ffc</span>
+                                    </li>
+
+                                    <li class="bg-blue-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#79b2fc</span>
+                                    </li>
+
+                                    <li class="bg-blue-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#99c5ff</span>
+                                    </li>
+
+                                    <li class="bg-blue-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#b8d7ff</span>
+                                    </li>
+
+                                    <li class="bg-blue-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#d9e9ff</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">cyan</h5>
+                                <ul class="list-group">
+                                    <li class="bg-cyan-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#007d96</span>
+                                    </li>
+                                    <li class="bg-cyan-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#0099b8</span>
+                                    </li>
+                                    <li class="bg-cyan-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#0bb2d4</span>
+                                    </li>
+                                    <li class="bg-cyan-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#28c0de</span>
+                                    </li>
+
+                                    <li class="bg-cyan-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#54cbe3</span>
+                                    </li>
+
+                                    <li class="bg-cyan-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#77d9ed</span>
+                                    </li>
+
+                                    <li class="bg-cyan-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#9de6f5</span>
+                                    </li>
+
+                                    <li class="bg-cyan-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#c2f5ff</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">teal</h5>
+                                <ul class="list-group">
+                                    <li class="bg-teal-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#008577</span>
+                                    </li>
+                                    <li class="bg-teal-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#089e8f</span>
+                                    </li>
+                                    <li class="bg-teal-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#17b3a3</span>
+                                    </li>
+                                    <li class="bg-teal-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#28c7b7</span>
+                                    </li>
+
+                                    <li class="bg-teal-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#45d6c8</span>
+                                    </li>
+
+                                    <li class="bg-teal-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#6be3d7</span>
+                                    </li>
+
+                                    <li class="bg-teal-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#92f0e6</span>
+                                    </li>
+
+                                    <li class="bg-teal-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#c3f7f2</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">green</h5>
+                                <ul class="list-group">
+                                    <li class="bg-green-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#008c4d</span>
+                                    </li>
+                                    <li class="bg-green-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#05a85c</span>
+                                    </li>
+                                    <li class="bg-green-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#11c26d</span>
+                                    </li>
+                                    <li class="bg-green-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#28d17c</span>
+                                    </li>
+
+                                    <li class="bg-green-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#49de94</span>
+                                    </li>
+
+                                    <li class="bg-green-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#72e8ab</span>
+                                    </li>
+
+                                    <li class="bg-green-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#99f2c2</span>
+                                    </li>
+
+                                    <li class="bg-green-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#c2fadc</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">light-green</h5>
+                                <ul class="list-group">
+                                    <li class="bg-light-green-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#4a7800</span>
+                                    </li>
+                                    <li class="bg-light-green-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#5a9101</span>
+                                    </li>
+                                    <li class="bg-light-green-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#6da611</span>
+                                    </li>
+                                    <li class="bg-light-green-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#7eb524</span>
+                                    </li>
+
+                                    <li class="bg-light-green-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#94cc39</span>
+                                    </li>
+
+                                    <li class="bg-light-green-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#add966</span>
+                                    </li>
+
+                                    <li class="bg-light-green-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#c3e887</span>
+                                    </li>
+
+                                    <li class="bg-light-green-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#dcf7b0</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">yellow</h5>
+                                <ul class="list-group">
+                                    <li class="bg-yellow-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#faa700</span>
+                                    </li>
+                                    <li class="bg-yellow-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#fcb900</span>
+                                    </li>
+                                    <li class="bg-yellow-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#ffcd17</span>
+                                    </li>
+                                    <li class="bg-yellow-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#ffdc2e</span>
+                                    </li>
+
+                                    <li class="bg-yellow-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#ffe54f</span>
+                                    </li>
+
+                                    <li class="bg-yellow-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#ffed78</span>
+                                    </li>
+
+                                    <li class="bg-yellow-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#fff39c</span>
+                                    </li>
+
+                                    <li class="bg-yellow-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#fff6b5</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">orange</h5>
+                                <ul class="list-group">
+                                    <li class="bg-orange-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#b53f00</span>
+                                    </li>
+                                    <li class="bg-orange-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#de4e00</span>
+                                    </li>
+                                    <li class="bg-orange-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#eb6709</span>
+                                    </li>
+                                    <li class="bg-orange-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#f57d1b</span>
+                                    </li>
+
+                                    <li class="bg-orange-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#fa983c</span>
+                                    </li>
+
+                                    <li class="bg-orange-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#fab06b</span>
+                                    </li>
+
+                                    <li class="bg-orange-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#ffc894</span>
+                                    </li>
+
+                                    <li class="bg-orange-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#ffe1c4</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">brown</h5>
+                                <ul class="list-group">
+                                    <li class="bg-brown-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#6b534c</span>
+                                    </li>
+                                    <li class="bg-brown-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#82675f</span>
+                                    </li>
+                                    <li class="bg-brown-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#997b71</span>
+                                    </li>
+                                    <li class="bg-brown-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#ab8c82</span>
+                                    </li>
+
+                                    <li class="bg-brown-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#bda299</span>
+                                    </li>
+
+                                    <li class="bg-brown-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#cfb8b0</span>
+                                    </li>
+
+                                    <li class="bg-brown-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#e0cdc5</span>
+                                    </li>
+
+                                    <li class="bg-brown-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#f5e2da</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">grey</h5>
+                                <ul class="list-group">
+                                    <li class="bg-grey-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#424242</span>
+                                    </li>
+                                    <li class="bg-grey-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#616161</span>
+                                    </li>
+                                    <li class="bg-grey-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#757575</span>
+                                    </li>
+                                    <li class="bg-grey-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#9e9e9e</span>
+                                    </li>
+
+                                    <li class="bg-grey-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#bdbdbd</span>
+                                    </li>
+
+                                    <li class="bg-grey-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#e0e0e0</span>
+                                    </li>
+
+                                    <li class="bg-grey-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#eeeeee</span>
+                                    </li>
+
+                                    <li class="bg-grey-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#fafafa</span>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 col-lg-3">
+                                <h5 class="text-uppercase">blue-grey</h5>
+                                <ul class="list-group">
+                                    <li class="bg-blue-grey-800 list-group-item">
+                                        <span>800</span> /
+                                        <span>#263238</span>
+                                    </li>
+                                    <li class="bg-blue-grey-700 list-group-item">
+                                        <span>700</span> /
+                                        <span>#37474f</span>
+                                    </li>
+                                    <li class="bg-blue-grey-600 list-group-item">
+                                        <span>600</span> /
+                                        <span>#526069</span>
+                                    </li>
+                                    <li class="bg-blue-grey-500 list-group-item">
+                                        <span>500</span> /
+                                        <span>#76838f</span>
+                                    </li>
+
+                                    <li class="bg-blue-grey-400 blue-grey-700 list-group-item">
+                                        <span>400</span> /
+                                        <span>#a3afb7</span>
+                                    </li>
+
+                                    <li class="bg-blue-grey-300 blue-grey-700 list-group-item">
+                                        <span>300</span> /
+                                        <span>#ccd5db</span>
+                                    </li>
+
+                                    <li class="bg-blue-grey-200 blue-grey-700 list-group-item">
+                                        <span>200</span> /
+                                        <span>#e4eaec</span>
+                                    </li>
+
+                                    <li class="bg-blue-grey-100 blue-grey-700 list-group-item">
+                                        <span>100</span> /
+                                        <span>#f3f7f9</span>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="color-application">
+                        <h3 class="mb-20">配色应用</h3>
+                        <div class="row row-lg">
+                            <div class="col-lg-6">
+
+                                <div class="example-wrap">
+                                    <h4 class="example-title">色卡</h4>
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="example-wrap mt-20">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p>激活颜色</p>
+                                                        <span>#247cf0</span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="bg-blue-700 color-box">700</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p>基础颜色</p>
+                                                        <span>#3e8ef7</span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="bg-blue-600 color-box">600</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p>鼠标悬停颜色</p>
+                                                        <span>#589ffc</span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="bg-blue-500 color-box">500</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p>背景颜色</p>
+                                                        <span>#d9e9ff</span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="bg-blue-100 color-box blue-grey-700">100</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="example-wrap mt-20">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p>激活颜色</p>
+                                                        <span>#f2353c</span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="bg-red-700 color-box">700</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p>基础颜色</p>
+                                                        <span>#ff4c52</span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="bg-red-600 color-box">600</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p>鼠标悬停颜色</p>
+                                                        <span>#ff666b</span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="bg-red-500 color-box">500</div>
+                                                    </div>
+                                                </div>
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p>背景颜色</p>
+                                                        <span>#ffdbdc</span>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <div class="bg-red-100 color-box blue-grey-700">100</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+
+                                <div class="example-wrap">
+                                    <h4 class="example-title">文本配色</h4>
+                                    <div class="row mb-20">
+                                        <div class="col-md-3">
+                                            <div class="example">
+                                                <div class="bg-blue-grey-700 text-color-box"></div>
+                                                <p>标题颜色</p>
+                                                <span>#37474f</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="example">
+                                                <div class="bg-blue-grey-600 text-color-box"></div>
+                                                <p>副标题颜色</p>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="example">
+                                                <div class="bg-blue-grey-500 text-color-box"></div>
+                                                <p>文本颜色</p>
+                                                <span>#76838f</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="example">
+                                                <div class="bg-blue-grey-400 text-color-box"></div>
+                                                <p>提示颜色</p>
+                                                <span>#a3afb7</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+
+                                <div class="example-wrap m-lg-0">
+                                    <h4 class="example-title">图标和分割线使用 Alpha</h4>
+                                    <div class="row">
+                                        <div class="col-xl-6">
+                                            <div class="example">
+                                                <div class="bg-blue-grey-700 example-alpha">暗灰色</div>
+                                                <div class="row opacity-example">
+                                                    <div class="col-md-6">
+                                                        <p>
+                                                            <span>普通</span>
+                                                            <span class="opacity-four">
+                                                                <i class="icon wb-image"
+                                                                    aria-hidden="true"></i>40%</span>
+                                                        </p>
+                                                        <p>
+                                                            <span>鼠标悬停</span>
+                                                            <span class="opacity-six">
+                                                                <i class="icon wb-image"
+                                                                    aria-hidden="true"></i>60%</span>
+                                                        </p>
+                                                        <p>
+                                                            <span>激活</span>
+                                                            <span class="blue-grey-700">
+                                                                <i class="icon wb-image"
+                                                                    aria-hidden="true"></i>100%</span>
+                                                        </p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p>
+                                                            <span>普通</span>
+                                                            <span class="opacity-six">
+                                                                <i class="icon wb-image"
+                                                                    aria-hidden="true"></i>60%</span>
+                                                        </p>
+                                                        <p>
+                                                            <span>鼠标悬停</span>
+                                                            <span class="opacity-eight">
+                                                                <i class="icon wb-image"
+                                                                    aria-hidden="true"></i>80%</span>
+                                                        </p>
+                                                        <p>
+                                                            <span>激活</span>
+                                                            <span class="blue-grey-700">
+                                                                <i class="icon wb-image"
+                                                                    aria-hidden="true"></i>100%</span>
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-xl-6">
+                                            <div class="example">
+                                                <div class="bg-blue-grey-800 example-alpha">灰色</div>
+                                                <div class="example-alpha example-divider blue-grey-600">分隔线 10%</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="col-lg-6">
+
+                                <div class="example-wrap">
+                                    <h4 class="example-title">边框颜色</h4>
+                                    <div class="example-border">
+                                        <div class="bg-blue-grey-200"></div>
+                                        <div>
+                                            <p>边框颜色</p>
+                                            <span>#e4eaec</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--脚本-->
+    <script src="../../libs/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../../libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,89 @@
+﻿@inject AppConfiguration AppConfiguration
+@{
+    ViewData["Title"] = "登 录";
+}
+
+@section Styles{
+    <style type="text/css">
+        #hzy-login {
+            background: #f0f2f5 url('/admin/hzyAdminUI/images/login-bg.svg') no-repeat 50%;
+        }
+    </style>
+}
+@section Scripts{
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#hzy-login",
+            data: {
+                UserName: "admin",
+                UserPassword: "123456",
+                LoginCode: ""
+            },
+            mounted: function () {
+
+            },
+            methods: {
+                check: function () {
+                    hzyAdmin.httpPost('/Admin/Login/Check', {
+                        UserName: this.UserName,
+                        UserPassword: this.UserPassword,
+                        LoginCode: this.LoginCode
+                    }, function (r) {
+                        if (r.code !== 1) return;
+                        hzyAdmin.setCookie(hzyAdmin.getTokenKey(), r.data.token);
+                        window.location = '/';
+                    });
+                }
+            }
+        });
+    </script>
+}
+
+<div id="hzy-login">
+    <!-- <div class="login-modal">
+    </div> -->
+    <div class="container-fluid">
+        <div class="row">
+            <div class="login-panel shadow-lg">
+                <h1 class="text-center">@AppConfiguration.AppTitle</h1>
+                <h3 class="text-center text-warning">不支持 ie 推荐使用谷歌浏览器</h3>
+
+                <div class="container-fluid">
+
+                    <div class="pt-50">
+
+                        <div class="form-group form-material">
+                            <label class="col-form-label">账户名</label>
+                            <input type="text" class="form-control" placeholder="请输入 账户名" v-model="UserName">
+                        </div>
+
+                        <div class="form-group form-material">
+                            <label class="col-form-label">密码</label>
+                            <input type="password" class="form-control" placeholder="请输入密码" v-model="UserPassword">
+                        </div>
+
+                        @*<div class="form-group form-material">
+                                <label class="col-form-label" for="inputAddons">验证码</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="loginCode" placeholder="请输入验证码">
+                                    <div class="input-group-append">
+                                        <img class="yzm" src="http://www.suiyu.org.cn/Admin/Login/yzm"
+                                             onclick="$(this).attr('src','http://www.suiyu.org.cn/Admin/Login/yzm'+'/'+new Date().getTime());"
+                                             width="100" style="height: 29px; border-bottom: 1px solid #e4eaec;">
+                                    </div>
+                                </div>
+                            </div>*@
+
+
+                        <a class="btn btn-block btn-primary btn-lg mt-60" href="javascript:;" @@click="check">登录</a>
+
+
+                    </div>
+
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+</div>

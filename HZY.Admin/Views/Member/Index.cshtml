@@ -1,0 +1,201 @@
+﻿@section Styles{
+
+}
+
+@section Scripts{
+    <input type="hidden" value='@Html.Raw(ViewData["power"])' id="hidden_power"/>
+    <input type="hidden" value='@ViewData["isFindBack"]' id="hidden_isFindBack"/>
+    <script type="text/javascript">
+        var power = JSON.parse(document.getElementById('hidden_power').value);
+        var isFindBack = document.getElementById('hidden_isFindBack').value;
+        var app = new Vue({
+        el: "#app",
+        data: function () {
+            return {
+                power: power,
+                prefix: "/Admin/Member",
+                search: {
+                    state: false,
+                    vm: {
+                        name: null
+                    }
+                },
+                table: {
+                    columns: [],
+                    data: [],
+                    page: 1,
+                    rows: 15,
+                    totalCount: 0,
+                    selecteds: [] //选中的行
+                }
+            }
+        },
+        computed:{
+            search_field_len: function () {
+                return Object.keys(this.search.vm).length > 3;
+            }
+        },
+        created: function () {
+            this.findList();
+        },
+        mounted: function () {
+            console.log(this.power);
+        },
+        methods: {
+            //获取列表
+            findList: function () {
+                var _this = this;
+                var path = _this.prefix + "/FindList/" + _this.table.page + "/" + _this.table.rows;
+
+                hzyAdmin.httpPost(path, _this.search.vm, function (r) {
+                    if (r.code !== 1) return;
+                    _this.table.data = r.data.result;
+                    _this.table.totalCount = r.data.pageCount;
+                    _this.table.columns = r.data.columns;
+                });
+            },
+            //检索
+            searchEvent: function () {
+                this.table.page = 1;
+                this.findList();
+            },
+            //重置
+            reset: function () {
+                this.table.page = 1;
+                for (var item in this.search.vm) this.search.vm[item] = null;
+                this.findList();
+            },
+            //删除
+            remove: function (id) {
+                var _this = this;
+                var ids = [];
+                if (id) {
+                    ids.push(id);
+                } else {
+                    var selecteds = this.table.selecteds;
+                    if (selecteds.length === 0) return top.hzyAdmin.alert("请勾选要删除得数据!", "错误");
+                    for (var i = 0; i < selecteds.length; i++) {
+                        ids.push(selecteds[i].id);
+                    }
+                }
+                if (confirm("确定要删除吗?")) {
+                    //请求接口删除
+                    var path = _this.prefix + "/DeleteList";
+
+                    hzyAdmin.httpPost(path, ids, function (r) {
+                        top.hzyAdmin.alert("删除成功!", "成功");
+                        _this.findList();
+                    });
+                }
+            },
+            openForm: function (id) {
+                var _this = this;
+                var path = _this.prefix + "/Info/" + (id ? id : '');
+
+                hzyAdmin.openPage(id ? '编辑' : '新建', path, function () {
+                    _this.findList(); //刷新列表
+                }, 1200, 1000);
+
+            },
+            //双击表格行
+            row_dblclick: function (row, column, event) {
+                if (isFindBack === '1') {
+                    window.localStorage.setItem('findBack', JSON.stringify(row));
+                    setTimeout(function () {
+                        hzyAdmin.layer.close(hzyAdmin.layer.getFrameIndex(window.name));
+                    }, 100);
+                }
+            }
+        }
+    });
+</script>
+
+}
+
+<div class="m-20" id="app">
+    <div class="container-fluid">
+        <div class="card mb-20">
+            <div class="card-body">
+                <div class="row">
+
+                    <div class="col-sm-3">
+                        <h4 class="example-title">会员名称</h4>
+                        <input type="text" class="form-control" v-model="search.vm.name" placeholder="会员名称">
+                    </div>
+
+                    <!--以下被隐藏-->
+                    <!-- <div class="col-sm-3" v-show="search.state">
+                        <h4 class="example-title">角色名称</h4>
+                        <input type="text" class="form-control" v-model="search.vm.name" placeholder="角色名称">
+                    </div> -->
+                    <!--检索操作-->
+                    <div class="col-sm-4 text-center pt-35">
+                        <button type="button" class="btn btn-primary" @@click="searchEvent">检索</button>&nbsp;
+                        <button type="button" class="btn btn-secondary" @@click="reset">重置</button>&nbsp;
+                        <button type="button" class="btn btn-link" @@click="search.state=!search.state"
+                                v-if="search_field_len">
+                            {{search.state?'收起':'展开'}}&nbsp;
+                            <i class="fas fa-chevron-up" v-if="search.state"></i>
+                            <i class="fas fa-chevron-down" v-else></i>
+                        </button>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="card m-0">
+            <div class="card-body pl-0 pr-0">
+                <div class="row ml-10 mr-10 mb-20">
+                    <div class="col-sm-12">
+                        <button class="btn btn-primary" @@click="openForm()" v-if="power.Insert">新建</button>
+                        <button class="btn btn-danger" @@click="remove()" v-if="power.Delete">删除</button>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12">
+                        <el-table :data="table.data" @@selection-change="(array)=>{table.selecteds=array;}"
+                                  @@row-dblclick="row_dblclick" row-key="id" size="medium" :header-cell-style="{background:'#fafafa'}">
+                            <el-table-column type="index" width="50" fixed></el-table-column>
+                            <el-table-column type="selection" width="50" fixed></el-table-column>
+                            <!--根据查询接口自动加载头部信息 start-->
+                            <template v-for="(item,index) in table.columns" v-if="item.show">
+                                <!--处理头像-->
+                                <el-table-column :prop="item.fieldName"
+                                                 :label="item.title"
+                                                 :key="index"
+                                                 :width="item.width"
+                                                 v-if="item.fieldName=='photo'">
+                                    <template slot-scope="scope">
+                                        <img :src="scope.row.photo" class="rounded" height="50" width="50"/>
+                                    </template>
+                                </el-table-column>
+                                <el-table-column
+                                    :prop="item.fieldName"
+                                    :label="item.title"
+                                    :key="index"
+                                    v-else>
+                                </el-table-column>
+                            </template>
+                            <!--根据查询接口自动加载头部信息 end-->
+                            <el-table-column fixed="right" label="操作" width="100" v-if="power.Update || power.Delete">
+                                <template slot-scope="scope">
+                                    <el-link type="primary" @@click="openForm(scope.row.id)" v-if="power.Update">
+                                        编辑
+                                    </el-link>
+                                    <el-link type="danger" @@click="remove(scope.row.id)" v-if="power.Delete">
+                                        删除
+                                    </el-link>
+                                </template>
+                            </el-table-column>
+                        </el-table>
+                        <el-pagination @@size-change="(val)=>{table.rows=val;findList();}"
+                                       @@current-change="(val)=>{table.page=val;findList();}" :current-page="table.page"
+                                       :page-sizes="[10, 15, 20, 50, 100, 200, 300, 400, 1000]" :page-size="table.rows"
+                                       layout="total, sizes, prev, pager, next, jumper" :total="table.totalCount" class="mt-10 ml-10">
+                        </el-pagination>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

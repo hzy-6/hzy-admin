@@ -1,0 +1,6 @@
+// Icons
+// -------------------------
+<% if (iconsStyles) { %><% for (var glyphIdx = 0; glyphIdx < glyphs.length; glyphIdx++) { %>.<%= prefix %><%= glyphs[glyphIdx] %>:before {
+	content: <%= varPrefix %>-<%= glyphs[glyphIdx] %>;
+}
+<% } } %>

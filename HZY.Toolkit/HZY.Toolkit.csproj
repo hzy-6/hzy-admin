@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="SharpZipLib" Version="1.2.0" />
+
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.2" />
+
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.7.1" />
+
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,287 @@
+﻿<!DOCTYPE HTML>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Safari浏览器添加到主屏幕（IOS） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <title>HzyAdmin</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <!--菜单-->
+    <link href="libs/metismenu-master/metisMenu.min.css" rel="stylesheet" />
+    <!--web icons 图标库-->
+    <link href="css/web-icons-master/css/web-icons.css" rel="stylesheet" />
+    <!--样式-->
+    <link href="css/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/core.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet" />
+    <!--选项卡-->
+    <link href="libs/hzyBootStrapTabs/index.css" rel="stylesheet" />
+    <!--主页面-->
+    <link href="css/hzyAdminUI.css" rel="stylesheet" />
+</head>
+
+<body>
+
+    <div class="hzy-container" id="hzy-container">
+        <header class="hzy-header-skin-blue">
+            <div class="hzy-header-left">
+                <ul>
+                    <!--fas fa-indent-->
+                    <li class="hzy-headerhover" onclick="hzyAdminUI.menu.toggle();"><a href="javascript:void(0)"><i
+                                class="fas fa-outdent"></i></a></li>
+                    <li class="hzy-headerhover hzy-logo"><a>HzyAdmin</a></li>
+                </ul>
+            </div>
+            <div class="hzy-header-right d-none d-lg-block">
+                <ul>
+                    <li class="hzy-headerhover" onclick="hzyBootStrapTabs.loadCurrentPage()"><a href="javascript:;"><i
+                                class="fas fa-redo"></i></a></li>
+                    <li class="hzy-headerhover" onclick="$('#examplePositionSidebar').modal()"><a href="javascript:;"><i
+                                class="fas fa-layer-group"></i></a></li>
+                    <!--fa fa-compress-->
+                    <li class="hzy-headerhover"><a href="javascript:;" onclick="hzyAdminUI.fullScreen.handleFullScreen(this)"><i class="fas fa-expand"></i></a></li>
+                    <li class="hzy-headerhover"><a href="login.html"><span>登录人：&nbsp;管理员</span><i
+                                class="fas fa-sign-out-alt"></i></a></li>
+                </ul>
+            </div>
+            <div class="hzy-header-right d-lg-none">
+                <ul>
+                    <li class="hzy-headerhover"><a href="javascript:void(0)"><i class="fas fa-sign-out-alt"></i></a>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <main>
+            <!--menu 菜单-->
+            <nav class="hzy-menu sidebar-nav sidebar-nav-max">
+                <ul class="metismenu" id="hzyAdminMenu">
+                    <li class="mm-active">
+                        <a class="has-arrow" href='javascript:;' aria-expanded="true">
+                            <i class="fas fa-tachometer-alt"></i><span>控制台</span>
+                        </a>
+                        <ul class="mm-collapse mm-show">
+                            <li hzy-id="home" hzy-title="首页" hzy-href="views/home.html">
+                                <a href="javascript:;">
+                                    <i class=""></i><span>首页</span>
+                                </a>
+                            </li>
+                            <li hzy-id="user" hzy-title="用户管理" hzy-href="views/userinfo.html">
+                                <a href="javascript:;">
+                                    <i class=""></i><span>用户管理</span>
+                                </a>
+                            </li>
+                            <li hzy-id="baidu" hzy-title="百度一下" hzy-href="https://www.baidu.com">
+                                <a href="javascript:;">
+                                    <i class=""></i><span>百度一下</span>
+                                </a>
+                            </li>
+                            <li hzy-id="vue" hzy-title="Vue.js" hzy-href="https://cn.vuejs.org">
+                                <a href="javascript:;">
+                                    <i class=""></i><span>Vue.js</span>
+                                </a>
+                            </li>
+                            <li hzy-id="hzy" hzy-title="作者开源地址" hzy-href="https://gitee.com/hzy6">
+                                <a href="javascript:;">
+                                    <i class=""></i><span>作者开源地址</span>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:;" aria-expanded="false">
+                            <i class="fas fa-fw fa-desktop"></i><span>按钮/表单/表格</span>
+                        </a>
+                        <ul class="mm-collapse">
+                            <li hzy-id="按钮" hzy-title="按钮" hzy-href="views/buttons/index.html">
+                                <a href="javascript:;"><i class=""></i><span>按钮</span></a>
+                            </li>
+                            <li hzy-id="表格" hzy-title="表格" hzy-href="views/tables/index.html">
+                                <a href="javascript:;"><i class=""></i><span>表格</span></a>
+                            </li>
+                            <li hzy-id="基本表单" hzy-title="基本表单" hzy-href="views/forms/index.html">
+                                <a href="javascript:;"><i class=""></i><span>基本表单</span></a>
+                            </li>
+                            <li hzy-id="质感表单" hzy-title="质感表单" hzy-href="views/forms/index1.html">
+                                <a href="javascript:;"><i class=""></i><span>质感表单</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:;" aria-expanded="false">
+                            <i class="fas fa-database"></i><span>基础页面</span>
+                        </a>
+                        <ul class="mm-collapse">
+                            <li hzy-id="模态框" hzy-title="模态框" hzy-href="views/modals/index.html">
+                                <a href="javascript:;"><i class=""></i><span>模态框</span></a>
+                            </li>
+                            <li hzy-id="面板" hzy-title="面板" hzy-href="views/panel/index.html">
+                                <a href="javascript:;"><i class=""></i><span>面板</span></a>
+                            </li>
+                            <li hzy-id="选项卡" hzy-title="选项卡" hzy-href="views/tabs-accordions/index.html">
+                                <a href="javascript:;"><i class=""></i><span>选项卡</span></a>
+                            </li>
+                            <li hzy-id="矢量图标" hzy-title="矢量图标" hzy-href="views/icons/index.html">
+                                <a href="javascript:;"><i class=""></i><span>矢量图标</span></a>
+                            </li>
+                            <li hzy-id="两栏式布局" hzy-title="两栏式布局" hzy-href="views/two-columns/index.html">
+                                <a href="javascript:;"><i class=""></i><span>两栏式布局</span></a>
+                            </li>
+                            <li hzy-id="步骤" hzy-title="步骤" hzy-href="views/step/index.html">
+                                <a href="javascript:;"><i class=""></i><span>步骤</span></a>
+                            </li>
+                            <li hzy-id="颜色搭配" hzy-title="颜色搭配" hzy-href="views/colors/index.html">
+                                <a href="javascript:;"><i class=""></i><span>颜色搭配</span></a>
+                            </li>
+                            <li hzy-id="辅助类" hzy-title="辅助类" hzy-href="views/utilities/index.html">
+                                <a href="javascript:;"><i class=""></i><span>辅助类</span></a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a class="has-arrow" href="javascript:;" aria-expanded="false">
+                            <i class="fas fa-bars"></i><span>多级菜单示例</span>
+                        </a>
+                        <ul class="mm-collapse">
+                            <li><a href="javascript:;">item 1.1</a></li>
+                            <li><a href="javascript:;">item 1.2</a></li>
+                            <li>
+                                <a class="has-arrow" href="javascript:;" aria-expanded="false">Menu 1.3</a>
+                                <ul class="mm-collapse">
+                                    <li><a href="javascript:;">item 1.3.1</a></li>
+                                    <li><a href="javascript:;">item 1.3.2</a></li>
+                                    <li><a href="javascript:;">item 1.3.3</a></li>
+                                    <li><a href="javascript:;">item 1.3.4</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="javascript:;">item 1.4</a></li>
+                            <li>
+                                <a class="has-arrow" href="javascript:;" aria-expanded="false">Menu 1.5</a>
+                                <ul class="mm-collapse">
+                                    <li><a href="javascript:;">item 1.5.1</a></li>
+                                    <li><a href="javascript:;">item 1.5.2</a></li>
+                                    <li><a href="javascript:;">item 1.5.3</a></li>
+                                    <li><a href="javascript:;">item 1.5.4</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </nav>
+            <section class="hzy-main-right" id="hzyAdminTabs"></section>
+        </main>
+    </div>
+
+    <!--皮肤模态框-->
+    <div class="modal fade" id="examplePositionSidebar" aria-hidden="true" aria-labelledby="examplePositionSidebar" role="dialog" tabindex="-1">
+        <div class="modal-dialog modal-sidebar modal-sm">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="modal-title">皮肤设置</h3>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">顶部颜色：</label>
+                            <div class="row">
+                                <ul class="list-unstyled list-inline" style="text-align: left;">
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-white" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-white')"></div>
+                                    </li>
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-blue" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-blue')"></div>
+                                    </li>
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-dark" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-dark')"></div>
+                                    </li>
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-primary" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-primary')"></div>
+                                    </li>
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-cyan" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-cyan')"></div>
+                                    </li>
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-green" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-green')"></div>
+                                    </li>
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-indigo" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-indigo')"></div>
+                                    </li>
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-grey" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-grey')"></div>
+                                    </li>
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-pink" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-pink')"></div>
+                                    </li>
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-purple" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-purple')"></div>
+                                    </li>
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-red" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-red')"></div>
+                                    </li>
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-teal" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-teal')"></div>
+                                    </li>
+                                    <li class="pr-5 pl-5 inline-block">
+                                        <div class="index-skin hzy-header-skin-orange" onclick="hzyAdminUI.header.setSkin('hzy-header-skin-orange')"></div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">左侧菜单颜色：</label>
+                            <div class="row">
+                                <div class="col-sm-12 hzy-skin hzy-skin-default" onclick="hzyAdminUI.menu.setSkin(hzyAdminUI.menu.mSkin.default)"></div>
+                                <div class="col-sm-12 hzy-skin hzy-skin-white" onclick="hzyAdminUI.menu.setSkin(hzyAdminUI.menu.mSkin.white)"></div>
+                            </div>
+
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--脚本-->
+    <script src="libs/jquery/jquery-3.2.1.min.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <!--metisMenu 菜单-->
+    <script src="libs/metismenu-master/metisMenu.min.js"></script>
+    <!--选项卡-->
+    <script src="libs/hzyBootStrapTabs/index.js"></script>
+    <!--主页面-->
+    <script src="js/hzyAdminUI.js"></script>
+    <script type="text/javascript">
+        hzyAdminUI.init();
+        //初始化多标签页框架
+        hzyBootStrapTabs.init("#hzyAdminTabs", [{
+            id: 'home',
+            title: '首页',
+            href: 'views/home.html',
+            active: true,
+            isClose: false
+        }], function(obj) {
+            hzyAdminUI.menu.active(obj.id);
+        });
+    </script>
+</body>
+
+</html>

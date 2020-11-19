@@ -1,0 +1,128 @@
+﻿@model Guid
+@section Styles{
+    <style type="text/css">
+        html,
+        body {
+            background: #ffffff;
+        }
+    </style>
+}
+@section Scripts{
+    <input type="hidden" value='@Html.Raw(ViewData["power"])' id="hidden_power" />
+    <input type="hidden" value='@Model' id="hidden_id" />
+    <script type="text/javascript">
+        var power = JSON.parse(document.getElementById('hidden_power').value);
+        var id = document.getElementById('hidden_id').value;
+        var app = new Vue({
+            el: "#app",
+            data: function () {
+                return {
+                    power: power,
+                    prefix: "/Admin/SysUser",
+                    form: {
+                        saveState: false,
+                        vm: {
+                            model: {},
+                            roleIds: [],
+                            roleAllList: []
+                        }
+                    }
+                }
+            },
+            computed:{
+                formKey:function (){
+                    return id ? id : '';
+                }
+            },
+            created: function () {
+                this.loadForm();
+            },
+            mounted: function () {
+
+            },
+            methods: {
+                loadForm: function () {
+                    var _this = this;
+                    var path = _this.prefix + "/FindForm/" + this.formKey;
+
+                    hzyAdmin.httpGet(path, {}, function (r) {
+                        if (r.code !== 1) return;
+                        _this.form.vm = r.data;
+                    });
+                },
+                closeWindow: function (delay = 0) {
+                    setTimeout(function () {
+                        hzyAdmin.layer.close(hzyAdmin.layer.getFrameIndex(window.name));
+                    }, delay);
+                },
+                save: function () {
+                    var _this = this;
+                    var path = _this.prefix + "/SaveForm";
+
+                    //验证
+                    if (!this.form.vm.model.name) return hzyAdmin.alert('用户名不能为空!', '警告');
+
+                    this.form.saveState = true;
+                    hzyAdmin.httpPost(path, this.form.vm, function (r) {
+                        _this.form.saveState = false;
+                        if (r.code === 1) {
+                            hzyAdmin.alert('保存成功', '成功');
+                            //关闭当前窗口
+                            _this.closeWindow();
+                        }
+                    });
+                }
+            }
+        });
+    </script>
+}
+<div class="m-20 hzyAdminForm" id="app">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-6">
+                <h4 class="example-title">用户名称</h4>
+                <input type="text" class="form-control" placeholder="请输入 用户名称" v-model="form.vm.model.name"
+                       autocomplete="off" />
+            </div>
+            <div class="col-sm-6">
+                <h4 class="example-title">登录名称</h4>
+                <input type="text" class="form-control" placeholder="请输入 登录名称" v-model="form.vm.model.loginName"
+                       autocomplete="off" />
+            </div>
+            <div class="col-sm-6">
+                <h4 class="example-title">密码</h4>
+                <input type="password" class="form-control" placeholder="请输入 密码" v-model="form.vm.model.password"
+                       autocomplete="off" />
+            </div>
+            <div class="col-sm-6">
+                <h4 class="example-title">邮件</h4>
+                <input type="email" class="form-control" placeholder="请输入 邮件" v-model="form.vm.model.email"
+                       autocomplete="off" />
+            </div>
+            <div class='col-sm-12'>
+                <h4 class='example-title'>角色</h4>
+                <el-checkbox-group v-model="form.vm.roleIds">
+                    <div class="row">
+                        <div class="col-sm-4" v-for="(item,index) in form.vm.roleAllList">
+                            <el-checkbox :key="index" :label="item.id">
+                                {{item.name}}
+                            </el-checkbox>
+                        </div>
+                    </div>
+                </el-checkbox-group>
+            </div>
+        </div>
+        <div class="hzyAdminForm-footer">
+            <div class="row">
+                <div class="col-sm-6"></div>
+                <div class="col-sm-6 text-right">
+                    <button class="btn btn-primary" @@click="save" v-bind:disabled="form.saveState"
+                            v-if="power.Save">
+                        保存
+                    </button>
+                    <button class="btn btn-danger" @@click="closeWindow()">关闭</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

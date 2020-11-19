@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>HZY.Admin.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.0" />
+    <PackageReference Include="AutoMapper" Version="10.1.1" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.9.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="5.5.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="5.1.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="5.5.1" />
+    <PackageReference Include="UEditor.Core" Version="1.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.Framework\HZY.Framework.csproj" />
+    <ProjectReference Include="..\HZY.Repository\HZY.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+    <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
+    <_ContentIncludedByDefault Remove="wwwroot\js\site.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\admin\js\signalr\chat.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\admin\js\signalr\dist\browser\signalr.js" />
+    <_ContentIncludedByDefault Remove="wwwroot\admin\js\signalr\dist\browser\signalr.min.js" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Object\Vo\MemberVo.cs" />
+    <Compile Remove="Object\Vo\SysUserFormVo.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot\code_generation\codes" />
+    <Folder Include="wwwroot\code_generation\zip" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\upload\files\20201119\time_114754_old_name_8路串口继电器说明书-钰翌(1).pdf" />
+    <Content Remove="wwwroot\upload\files\20201119\time_114722_old_name_111801设计打靶固件.hex" />
+  </ItemGroup>
+
+</Project>

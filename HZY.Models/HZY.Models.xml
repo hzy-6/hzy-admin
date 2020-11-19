@@ -1,0 +1,239 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Models</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Models.Core.BaseModel">
+            <summary>
+            基础模型
+            包含属性 Id、UpdateTime、CreateTime
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Core.BaseModel.UpdateTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Core.BaseModel.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Core.GuidKeyBaseModel">
+            <summary>
+            Guid Key
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Core.GuidKeyBaseModel.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Core.LongKeyBaseModel">
+            <summary>
+            Int Key
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Core.LongKeyBaseModel.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Core.StringKeyBaseModel">
+            <summary>
+            String Key
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Core.StringKeyBaseModel.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Framework.SysFunction">
+            <summary>
+            功能
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysFunction.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysFunction.Name">
+            <summary>
+            功能名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysFunction.ByName">
+            <summary>
+            功能标识
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysFunction.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Framework.SysMenu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysMenu.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysMenu.Name">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysMenu.Url">
+            <summary>
+            菜单地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysMenu.Icon">
+            <summary>
+            菜单图标
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysMenu.ParentId">
+            <summary>
+            父级Id
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysMenu.IsShow">
+            <summary>
+            是否显示菜单
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysMenu.IsClose">
+            <summary>
+            是否可关闭
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Framework.SysMenuFunction">
+            <summary>
+            菜单与功能绑定
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Framework.SysRole">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysRole.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysRole.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysRole.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysRole.IsDelete">
+            <summary>
+            能否删除
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Framework.SysRoleMenuFunction">
+            <summary>
+            角色菜单功能绑定
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Framework.SysUser">
+            <summary>
+            系统账号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysUser.Name">
+            <summary>
+            账户名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysUser.LoginName">
+            <summary>
+            登录账号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysUser.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysUser.Email">
+            <summary>
+            账户邮件地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Framework.SysUser.IsDelete">
+            <summary>
+            能否删除
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Framework.SysUserRole">
+            <summary>
+            用户与角色绑定
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Member">
+            <summary>
+            member
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Member.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Member.Name">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Member.Phone">
+            <summary>
+            电话号码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Member.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Member.Birthday">
+            <summary>
+            生日
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Member.Photo">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Member.Introduce">
+            <summary>
+            简介
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Member.FilePath">
+            <summary>
+            文件
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Member.UserId">
+            <summary>
+            账户Id
+            </summary>
+        </member>
+    </members>
+</doc>
