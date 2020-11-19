@@ -3,7 +3,7 @@
 
 
 #### 介绍
-基于.Net Core 3.1 开发的 通用后台管理系统！通配权限。
+基于.Net5.0 开发的 通用后台管理系统！通配权限。
 
  **有兴趣看看 Vue 版本单页程序基于 : https://gitee.com/hzy6/HZY.AdminSpa** 
 
@@ -11,16 +11,14 @@
 
 
 #### 软件架构
-开发环境：vs2019 、 NetCore 3.1.100
+开发环境：vs2019 、 .Net5.0
 
 ###  **_交流群: 534584927_** 
 
 
 前端：BootStrap 4、Layer(只是弹层 没用到 layui)、Jquery、Vue 、Element UI
 
-后端：NetCore 3.1.100 一定要安装等于或者大于该版本的SDK
-
-数据库脚本位置：根目录/HzyAdminRazor.sql
+数据库脚本位置：根目录/doc/HZY.Admin.sql
 
 
 #### 部分界面截图
