@@ -31,9 +31,10 @@
     string GetAliasByName(string name)
     {
         var modelInfos = EntityCache.GetModelInfos(Model.TableName);
-        var xmlName = modelInfos.Find(w => w.Name == name)?.Remark;
-        if (string.IsNullOrWhiteSpace(xmlName)) return "请设置检索框";
-        return xmlName;
+        var xmlName = string.Empty;
+        if (modelInfos == null) return xmlName;
+        xmlName = modelInfos.Find(w => w.Name == name)?.Remark;
+        return string.IsNullOrWhiteSpace(xmlName) ? "请设置检索框" : xmlName;
     }
 
 }

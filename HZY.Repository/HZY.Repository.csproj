@@ -23,6 +23,9 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>FreeSqlSelectHzyTupleExtensions.cs</LastGenOutput>
     </None>
+    <None Update="HZY.Repository.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
   <ItemGroup>

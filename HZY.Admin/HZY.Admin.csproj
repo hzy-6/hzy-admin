@@ -2,6 +2,7 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>5e63be8a-b3f3-4b85-b80a-17316ba0ed22</UserSecretsId>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -46,6 +47,12 @@
   <ItemGroup>
     <Content Remove="wwwroot\upload\files\20201119\time_114754_old_name_8路串口继电器说明书-钰翌(1).pdf" />
     <Content Remove="wwwroot\upload\files\20201119\time_114722_old_name_111801设计打靶固件.hex" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="HZY.Admin.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
 
 </Project>

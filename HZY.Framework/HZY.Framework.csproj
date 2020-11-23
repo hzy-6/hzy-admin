@@ -19,4 +19,10 @@
     <ProjectReference Include="..\HZY.Repository\HZY.Repository.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="HZY.Framework.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

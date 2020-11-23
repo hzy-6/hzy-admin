@@ -97,7 +97,16 @@
             @foreach (var item in tableInfos)
             {
                 var name = item.ColName.ToLower();
-                var title = entityInfos.Find(w => w.Name.ToLower() == name)?.Remark ?? name;
+                var title = name;
+                if (entityInfos != null)
+                {
+                    title = entityInfos.Find(w => w.Name.ToLower() == name)?.Remark;
+                    if (string.IsNullOrWhiteSpace(title))
+                    {
+                        title = name;
+                    }
+                }
+
                 <div class="col-sm-12">
                     <h4 class="example-title">@(title)</h4>
                     <input type="text" class="form-control" placeholder="请输入 @(title)" v-model="form.vm.model.@(name)" autocomplete="off"/>

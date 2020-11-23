@@ -19,7 +19,11 @@ namespace HZY.Repository.Core.Provider
 
         public static Dictionary<string, List<EntityInfo>> All() => Container;
 
-        public static List<EntityInfo> GetModelInfos(string tableName) => Container[tableName];
+        public static List<EntityInfo> GetModelInfos(string tableName)
+        {
+            return Container.ContainsKey(tableName) ? Container[tableName] : default;
+        }
+
 
         public static void Set(Type t)
         {
