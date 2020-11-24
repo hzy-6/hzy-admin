@@ -262,7 +262,7 @@ namespace HZY.Admin.Services.Framework
 
             if (type == "HZY.Admin.Index.cshtml" || type == "HZY.Admin.Info.cshtml")
             {
-                path += $"Views";
+                path += $"/Views";
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 path += $"/{tableName}";
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);

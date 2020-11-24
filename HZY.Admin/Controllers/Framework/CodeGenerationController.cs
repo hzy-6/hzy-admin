@@ -73,7 +73,7 @@ namespace HZY.Admin.Controllers.Framework
                 appTableInfos = this.DefaultService.FindAppTableInfosByTableName(tableName);
             }
 
-            return this.ResultOk(new {code, appTableInfos});
+            return this.ResultOk(new { code, appTableInfos });
         }
 
         /// <summary>
@@ -102,12 +102,36 @@ namespace HZY.Admin.Controllers.Framework
 
             if (!success) LogUtil.Write("无法下载,代码创建失败!");
 
-            var path = $"{this._webRootPath}{this.DefaultService.GetCodesRootPath()}/{type}";
-            var zipPath = $"{this._webRootPath}{this.DefaultService.GetZipRootPath()}/{type}.zip";
+            var path = string.Empty;
+            var zipPath = string.Empty;
+
             if (isViews)
             {
                 path = $"{this._webRootPath}{this.DefaultService.GetCodesRootPath()}/Views";
-                zipPath = $"{this._webRootPath}{this.DefaultService.GetZipRootPath()}/Views.zip";
+                zipPath = $"{this._webRootPath}{this.DefaultService.GetZipRootPath()}";
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (!Directory.Exists(zipPath))
+                {
+                    Directory.CreateDirectory(zipPath);
+                }
+                zipPath += "/Views.zip";
+            }
+            else
+            {
+                path = $"{this._webRootPath}{this.DefaultService.GetCodesRootPath()}/{type}";
+                zipPath = $"{this._webRootPath}{this.DefaultService.GetZipRootPath()}";
+                if (!Directory.Exists(path))
+                {
+                    Directory.CreateDirectory(path);
+                }
+                if (!Directory.Exists(zipPath))
+                {
+                    Directory.CreateDirectory(zipPath);
+                }
+                zipPath += $"/{type}.zip";
             }
 
             //开始压缩

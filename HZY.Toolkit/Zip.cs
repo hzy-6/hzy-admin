@@ -14,7 +14,7 @@ namespace HZY.Toolkit
         {
             var len = strFile.Length;
             var strLen = strFile[len - 1];
-            if (strFile[strLen] != Path.DirectorySeparatorChar)
+            if (strFile[strFile.Length - 1] != Path.DirectorySeparatorChar)
             {
                 strFile += Path.DirectorySeparatorChar;
             }

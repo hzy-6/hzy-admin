@@ -171,9 +171,9 @@
                     </div> -->
                     <!--检索操作-->
                     <div class="col-sm-3 text-center pt-35">
-                        <button type="button" class="btn btn-primary" @@click="searchEvent">检索</button>&nbsp;
-                        <button type="button" class="btn btn-secondary" @@click="reset">重置</button>&nbsp;
-                        <button type="button" class="btn btn-link" @@click="search.state=!search.state" v-if="search_field_len">
+                        <button type="button" class="btn btn-primary" @("@@")click="searchEvent">检索</button>&nbsp;
+                        <button type="button" class="btn btn-secondary" @("@@")click="reset">重置</button>&nbsp;
+                        <button type="button" class="btn btn-link" @("@@")click="search.state=!search.state" v-if="search_field_len">
                             {{search.state?'收起':'展开'}}&nbsp;
                             <i class="fas fa-chevron-up" v-if="search.state"></i>
                             <i class="fas fa-chevron-down" v-else></i>
@@ -187,14 +187,18 @@
             <div class="card-body pl-0 pr-0">
                 <div class="row ml-10 mr-10 mb-20">
                     <div class="col-sm-12">
-                        <button class="btn btn-primary" @@click="openForm()" v-if="power.Insert">新建</button>
-                        <button class="btn btn-danger" @@click="remove()" v-if="power.Delete">删除</button>
+                        <button class="btn btn-primary" @("@@")click="openForm()" v-if="power.Insert">新建</button>
+                        <button class="btn btn-danger" @("@@")click="remove()" v-if="power.Delete">删除</button>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <el-table :data="table.data" @@selection-change="(array)=>{table.selecteds=array;}"
-                                  @@row-dblclick="row_dblclick" row-key="id" size="medium" :header-cell-style="{background:'#fafafa'}">
+                        <el-table :data="table.data" 
+                                  @("@@")selection-change="(array)=>{table.selecteds=array;}"
+                                  @("@@")row-dblclick="row_dblclick" 
+                                  row-key="id" 
+                                  size="medium" 
+                                  :header-cell-style="{background:'#fafafa'}">
                             <el-table-column type="index" width="50" fixed></el-table-column>
                             <el-table-column type="selection" width="50" fixed></el-table-column>
                             <!--根据查询接口自动加载头部信息 start-->
@@ -204,19 +208,23 @@
                             <!--根据查询接口自动加载头部信息 end-->
                             <el-table-column fixed="right" label="操作" width="100" v-if="power.Update || power.Delete">
                                 <template slot-scope="scope">
-                                    <el-link type="primary" @@click="openForm(scope.row.id)" v-if="power.Update">
+                                    <el-link type="primary" @("@@")click="openForm(scope.row.id)" v-if="power.Update">
                                         编辑
                                     </el-link>
-                                    <el-link type="danger" @@click="remove(scope.row.id)" v-if="power.Delete">
+                                    <el-link type="danger" @("@@")click="remove(scope.row.id)" v-if="power.Delete">
                                         删除
                                     </el-link>
                                 </template>
                             </el-table-column>
                         </el-table>
-                        <el-pagination @@size-change="(val)=>{table.rows=val;findList();}"
-                                       @@current-change="(val)=>{table.page=val;findList();}" :current-page="table.page"
-                                       :page-sizes="[10, 15, 20, 50, 100, 200, 300, 400, 1000]" :page-size="table.rows"
-                                       layout="total, sizes, prev, pager, next, jumper" :total="table.totalCount" class="mt-10 ml-10">
+                        <el-pagination @("@@")size-change="(val)=>{table.rows=val;findList();}"
+                                       @("@@")current-change="(val)=>{table.page=val;findList();}" 
+                                       :current-page="table.page"
+                                       :page-sizes="[10, 15, 20, 50, 100, 200, 300, 400, 1000]" 
+                                       :page-size="table.rows"
+                                       layout="total, sizes, prev, pager, next, jumper" 
+                                       :total="table.totalCount" 
+                                       class="mt-10 ml-10">
                         </el-pagination>
                     </div>
                 </div>
