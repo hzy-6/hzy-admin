@@ -374,5 +374,10 @@
             
             </summary>
         </member>
+        <member name="T:HZY.Repository.TestRepository">
+            <summary>
+            仓储 TestRepository
+            </summary>
+        </member>
     </members>
 </doc>

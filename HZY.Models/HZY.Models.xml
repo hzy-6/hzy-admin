@@ -235,5 +235,15 @@
             账户Id
             </summary>
         </member>
+        <member name="T:HZY.Models.Test">
+            <summary>
+            Test
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Test.Name">
+            <summary>
+            请设置 Name 的显示名称 => 备注: Name
+            </summary>
+        </member>
     </members>
 </doc>

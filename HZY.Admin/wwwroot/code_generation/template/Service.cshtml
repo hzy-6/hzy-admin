@@ -31,23 +31,25 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HZY.Framework;
 using HZY.Framework.Services;
 using HZY.Models.Framework;
+using HZY.Models;
+using HZY.Repository;
 using HZY.Repository.Core.Models;
 using HZY.Repository.Core.Provider;
 using HZY.Repository.Framework;
 using HZY.Toolkit;
-using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace HZY.Admin.Services
 {
     /// <summary>
     /// 服务 @(className)Service
     /// </summary>
-    public class SysRoleService : AdminBaseService<@($"{className}Repository")>
+    public class @(className)Service : AdminBaseService<@($"{className}Repository")>
     {
-        public SysRoleService(@(className)Repository repository) 
+        public @(className)Service(@(className)Repository repository) 
             : base(repository)
         {
 
@@ -65,15 +67,15 @@ namespace HZY.Admin.Services
             var query = this.Repository.Select
                     @if (!string.IsNullOrWhiteSpace(searchKeyWord))
                     {
-                    <pre>.WhereIf(!string.IsNullOrWhiteSpace(search?.@(searchKeyWord), w => w.@(searchKeyWord).Contains(search.@(searchKeyWord))</pre>
+                        <pre>.WhereIf(!string.IsNullOrWhiteSpace(search?.@(searchKeyWord)), w => w.@(searchKeyWord).Contains(search.@(searchKeyWord)))</pre>
                     }
                     .OrderByDescending(w => w.CreateTime)
                     .Select(w => new
                     {
                         w.Id,
-                        @(string.Join(',', tableInfos.Select(w => w.ColName)))
+                        @(string.Join(',', tableInfos.Select(w => "w." + w.ColName)))@(tableInfos.Count==1?",":"")
                         UpdateTime = w.UpdateTime.ToString("yyyy-MM-dd"),
-                        CreateTime = w.CreateTime.ToString("yyyy-MM-dd"),
+                        CreateTime = w.CreateTime.ToString("yyyy-MM-dd")
                     })
                 ;
 
@@ -110,7 +112,7 @@ namespace HZY.Admin.Services
         /// </summary>
         /// <param name="form">form</param>
         /// <returns></returns>
-        public async Task<@("className")> SaveFormAsync(@className form)
+        public async Task<@(className)> SaveFormAsync(@className form)
         {
             return await this.Repository.InsertOrUpdateAsync(form);
         }

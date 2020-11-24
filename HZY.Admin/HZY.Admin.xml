@@ -944,5 +944,40 @@
             <param name="search"></param>
             <returns></returns>
         </member>
+        <member name="T:HZY.Admin.Services.TestService">
+            <summary>
+            服务 TestService
+            </summary>
+        </member>
+        <member name="M:HZY.Admin.Services.TestService.FindListAsync(System.Int32,System.Int32,HZY.Models.Test)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="page">page</param>
+            <param name="rows">rows</param>
+            <param name="search">search</param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Admin.Services.TestService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
+            <summary>
+            根据id数组删除
+            </summary>
+            <param name="ids">ids</param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Admin.Services.TestService.FindFormAsync(System.Guid)">
+            <summary>
+            查询表单数据
+            </summary>
+            <param name="id">id</param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Admin.Services.TestService.SaveFormAsync(HZY.Models.Test)">
+            <summary>
+            保存数据
+            </summary>
+            <param name="form">form</param>
+            <returns></returns>
+        </member>
     </members>
 </doc>
