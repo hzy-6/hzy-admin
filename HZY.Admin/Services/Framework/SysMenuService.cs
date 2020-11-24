@@ -51,9 +51,9 @@ namespace HZY.Admin.Services.Framework
         public async Task<PagingViewModel> FindListAsync(int page, int rows, SysMenu search)
         {
             var query = (from sysMenu in this.Repository.Orm.SysMenu
-                         from sysMenuParent in this.Repository.Orm.SysMenu.Where(w => w.Id == sysMenu.ParentId)
-                             .DefaultIfEmpty()
-                         select new { t1 = sysMenu, t2 = sysMenuParent }
+                        from sysMenuParent in this.Repository.Orm.SysMenu.Where(w => w.Id == sysMenu.ParentId)
+                            .DefaultIfEmpty()
+                        select new {t1 = sysMenu, t2 = sysMenuParent}
                     )
                     .WhereIf(search?.ParentId == Guid.Empty || search?.ParentId == null,
                         w => w.t1.ParentId == null || w.t1.ParentId == Guid.Empty)
@@ -179,7 +179,7 @@ namespace HZY.Admin.Services.Framework
                             .DefaultIfEmpty()
                         from sysMenu in this.Repository.Orm.SysMenu.Where(w => w.Id == sysRoleMenuFunction.MenuId)
                             .DefaultIfEmpty()
-                        select new { t1 = sysRoleMenuFunction, t2 = sysFunction, t3 = sysMenu }
+                        select new {t1 = sysRoleMenuFunction, t2 = sysFunction, t3 = sysMenu}
                     )
                     .Where(w => this._accountInfo.RoleIds.Contains(w.t1.RoleId))
                     .Where(w => w.t2.ByName == "Have" && w.t3.IsShow == 1)
@@ -226,14 +226,14 @@ namespace HZY.Admin.Services.Framework
                 : sysMenuList.Where(w => w.ParentId == id).ToList();
 
             return menus.Select(item => new Dictionary<string, object>
-            {
-                ["id"] = item.Id,
-                ["name"] = item.Name,
-                ["path"] = item.Url,
-                ["icon"] = item.Icon,
-                ["isClose"] = item.IsClose,
-                ["children"] = this.CreateMenus(item.Id.ToGuid(), sysMenuList)
-            })
+                {
+                    ["id"] = item.Id,
+                    ["name"] = item.Name,
+                    ["path"] = item.Url,
+                    ["icon"] = item.Icon,
+                    ["isClose"] = item.IsClose,
+                    ["children"] = this.CreateMenus(item.Id.ToGuid(), sysMenuList)
+                })
                 .ToList();
         }
 

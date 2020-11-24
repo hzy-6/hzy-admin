@@ -6,7 +6,6 @@ using System.Data.Common;
 using System.Linq;
 using System.Linq.Expressions;
 using System.Reflection;
-using System.Threading.Tasks;
 using HZY.Repository.Core.Impl;
 using HZY.Repository.Core.Interface;
 using Microsoft.Data.SqlClient;
@@ -59,7 +58,7 @@ namespace HZY.Repository.Core.Provider
             var type = typeof(T);
             if (type.IsValueType || typeof(T) == typeof(string))
                 return default;
-            return (T)Activator.CreateInstance(type);
+            return (T) Activator.CreateInstance(type);
         }
 
         /// <summary>
@@ -247,23 +246,24 @@ namespace HZY.Repository.Core.Provider
         /// <param name="sql"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public static DataTable ExcuteDataTable(this DatabaseFacade databaseFacade, string sql, params object[] parameters)
+        public static DataTable ExcuteDataTable(this DatabaseFacade databaseFacade, string sql,
+            params object[] parameters)
         {
             var dataTable = new DataTable();
-            using (var dbConnection = (SqlConnection)databaseFacade.GetDbConnection())
+            using var dbConnection = (SqlConnection) databaseFacade.GetDbConnection();
+            using var adapter = new SqlDataAdapter(sql, dbConnection);
+            if (parameters != null && parameters.Length > 0)
             {
-                using var adapter = new SqlDataAdapter(sql, dbConnection);
-                if (parameters != null && parameters.Length > 0)
-                {
-                    adapter.SelectCommand.Parameters.AddRange(parameters);
-                }
-                var dataSet = new DataSet();
-                adapter.Fill(dataSet);
-                if (dataSet.Tables.Count > 0)
-                {
-                    dataTable = dataSet.Tables[0];
-                }
+                adapter.SelectCommand.Parameters.AddRange(parameters);
             }
+
+            var dataSet = new DataSet();
+            adapter.Fill(dataSet);
+            if (dataSet.Tables.Count > 0)
+            {
+                dataTable = dataSet.Tables[0];
+            }
+
             return dataTable;
         }
 
@@ -285,13 +285,15 @@ namespace HZY.Repository.Core.Provider
         /// <param name="sql"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public static DbDataReader ExcuteReader(this DatabaseFacade databaseFacade, string sql, params object[] parameters)
+        public static DbDataReader ExcuteReader(this DatabaseFacade databaseFacade, string sql,
+            params object[] parameters)
         {
-            var dbConnection = (SqlConnection)databaseFacade.GetDbConnection();
+            var dbConnection = (SqlConnection) databaseFacade.GetDbConnection();
 
             dbConnection.ConnectionString = databaseFacade.GetConnectionString();
 
-            var cmd = new SqlCommand(sql, dbConnection);
+            var cmd = dbConnection.CreateCommand();
+            cmd.CommandText = sql;
 
             if (dbConnection.State == ConnectionState.Closed)
             {
@@ -313,7 +315,8 @@ namespace HZY.Repository.Core.Provider
         /// <param name="databaseFacade"></param>
         /// <param name="sql"></param>
         /// <returns></returns>
-        public static IEnumerable<Dictionary<string, object>> ExcuteListDictionary(this DatabaseFacade databaseFacade, string sql)
+        public static IEnumerable<Dictionary<string, object>> ExcuteListDictionary(this DatabaseFacade databaseFacade,
+            string sql)
         {
             return databaseFacade.ExcuteListDictionary(sql, null);
         }
@@ -325,43 +328,67 @@ namespace HZY.Repository.Core.Provider
         /// <param name="sql"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        public static IEnumerable<Dictionary<string, object>> ExcuteListDictionary(this DatabaseFacade databaseFacade, string sql, params object[] parameters)
+        public static IEnumerable<Dictionary<string, object>> ExcuteListDictionary(this DatabaseFacade databaseFacade,
+            string sql, params object[] parameters)
         {
-            List<Dictionary<string, object>> result = null;
-
             using var dataReader = databaseFacade.ExcuteReader(sql, parameters);
 
-            if (dataReader.HasRows)
+            if (!dataReader.HasRows) return default;
+
+            var result = new List<Dictionary<string, object>>();
+
+            var fields = new List<string>(dataReader.FieldCount);
+            for (var i = 0; i < dataReader.FieldCount; i++)
             {
-                result = new List<Dictionary<string, object>>();
+                fields.Add(dataReader.GetName(i));
+            }
 
-                var fields = new List<string>(dataReader.FieldCount);
-                for (int i = 0; i < dataReader.FieldCount; i++)
+            while (dataReader.Read())
+            {
+                var dictionary = new Dictionary<string, object>();
+                foreach (var item in fields)
                 {
-                    fields.Add(dataReader.GetName(i));
+                    dictionary[item] = (dataReader[item] == DBNull.Value) ? null : dataReader[item];
                 }
 
-                while (dataReader.Read())
-                {
-                    var dictionary = new Dictionary<string, object>();
-                    foreach (var item in fields)
-                    {
-                        dictionary[item] = (dataReader[item] == DBNull.Value) ? null : dataReader[item];
-                    }
-
-                    result.Add(dictionary);
-                }
+                result.Add(dictionary);
             }
 
             return result;
         }
 
+        /// <summary>
+        /// 执行 sql 返回 第一行第一列值
+        /// </summary>
+        /// <param name="databaseFacade"></param>
+        /// <param name="sql"></param>
+        /// <param name="parameters"></param>
+        /// <typeparam name="TResult"></typeparam>
+        /// <returns></returns>
+        public static TResult ExecuteScalar<TResult>(this DatabaseFacade databaseFacade, string sql,
+            params object[] parameters)
+        {
+            var dbConnection = (SqlConnection) databaseFacade.GetDbConnection();
+
+            dbConnection.ConnectionString = databaseFacade.GetConnectionString();
+
+            var cmd = dbConnection.CreateCommand();
+            cmd.CommandText = sql;
+
+            if (dbConnection.State == ConnectionState.Closed)
+            {
+                dbConnection.Open();
+            }
+
+            if (parameters != null && parameters.Length > 0)
+            {
+                //添加参数
+                cmd.Parameters.AddRange(parameters);
+            }
+
+            return (TResult) cmd.ExecuteScalar();
+        }
+
         #endregion
-
-
-
-
-
-
     }
 }
