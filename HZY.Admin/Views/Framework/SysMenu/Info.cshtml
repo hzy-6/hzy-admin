@@ -2,86 +2,86 @@
 
 @section Styles{
     <style type="text/css">
-    html,
-    body {
-        background: #ffffff;
-    }
-</style>
+        html,
+        body {
+            background: #ffffff;
+        }
+    </style>
 }
 
 @section Scripts{
-    <input type="hidden" value='@Html.Raw(ViewData["power"])' id="hidden_power"/>
-    <input type="hidden" value='@(Model)' id="hidden_id"/>
-    <input type="hidden" value='@ViewData["pId"]' id="hidden_pId"/>
+    <input type="hidden" value='@Html.Raw(ViewData["power"])' id="hidden_power" />
+    <input type="hidden" value='@(Model)' id="hidden_id" />
+    <input type="hidden" value='@ViewData["pId"]' id="hidden_pId" />
     <script type="text/javascript">
-    var power = JSON.parse(document.getElementById('hidden_power').value);
-    var id = document.getElementById('hidden_id').value;
-    var pId = document.getElementById('hidden_pId').value;
-    var app = new Vue({
-        el: "#app",
-        data: function () {
-            return {
-                power: power,
-                prefix: "/Admin/SysMenu",
-                form: {
-                    saveState: false,
-                    pId: pId,
-                    vm: {
-                        model: {},
-                        functionAllList: [],
-                        functionIds: []
+        var power = JSON.parse(document.getElementById('hidden_power').value);
+        var id = document.getElementById('hidden_id').value;
+        var pId = document.getElementById('hidden_pId').value;
+        var app = new Vue({
+            el: "#app",
+            data: function () {
+                return {
+                    power: power,
+                    prefix: "/Admin/SysMenu",
+                    form: {
+                        saveState: false,
+                        pId: pId,
+                        vm: {
+                            model: {},
+                            functionAllList: [],
+                            functionIds: []
+                        }
                     }
                 }
-            }
-        },
-        computed:{
-            formKey:function (){
-                return id ? id : '';
-            }
-        },
-        created: function () {
-            this.loadForm();
-        },
-        mounted: function () {
-
-        },
-        methods: {
-            loadForm: function () {
-                var _this = this;
-                var path = _this.prefix + "/FindForm/" + this.formKey;
-
-                hzyAdmin.httpGet(path, {}, function (r) {
-                    if (r.code !== 1) return;
-                    _this.form.vm = r.data;
-                    //给pid赋值
-                    _this.form.vm.model.parentId = _this.form.pId;
-                });
             },
-            closeWindow: function (delay = 0) {
-                setTimeout(function () {
-                    hzyAdmin.layer.close(hzyAdmin.layer.getFrameIndex(window.name));
-                }, delay);
+            computed: {
+                formKey: function () {
+                    return id ? id : '';
+                }
             },
-            save: function () {
-                var _this = this;
-                var path = _this.prefix + "/SaveForm";
+            created: function () {
+                this.loadForm();
+            },
+            mounted: function () {
 
-                //验证
-                if (!this.form.vm.model.name) return hzyAdmin.alert('菜单名不能为空!', '警告');
+            },
+            methods: {
+                loadForm: function () {
+                    var _this = this;
+                    var path = _this.prefix + "/FindForm/" + this.formKey;
 
-                this.form.saveState = true;
-                hzyAdmin.httpPost(path, this.form.vm, function (r) {
-                    _this.form.saveState = false;
-                    if (r.code === 1) {
-                        hzyAdmin.alert('保存成功', '成功');
-                        //关闭当前窗口
-                        _this.closeWindow();
-                    }
-                });
+                    hzyAdmin.httpGet(path, {}, function (r) {
+                        if (r.code !== 1) return;
+                        _this.form.vm = r.data;
+                        //给pid赋值
+                        _this.form.vm.model.parentId = _this.form.pId ? _this.form.pId : null;
+                    });
+                },
+                closeWindow: function (delay = 0) {
+                    setTimeout(function () {
+                        hzyAdmin.layer.close(hzyAdmin.layer.getFrameIndex(window.name));
+                    }, delay);
+                },
+                save: function () {
+                    var _this = this;
+                    var path = _this.prefix + "/SaveForm";
+
+                    //验证
+                    if (!this.form.vm.model.name) return hzyAdmin.alert('菜单名不能为空!', '警告');
+
+                    this.form.saveState = true;
+                    hzyAdmin.httpPost(path, this.form.vm, function (r) {
+                        _this.form.saveState = false;
+                        if (r.code === 1) {
+                            hzyAdmin.alert('保存成功', '成功');
+                            //关闭当前窗口
+                            _this.closeWindow();
+                        }
+                    });
+                }
             }
-        }
-    });
-</script>
+        });
+    </script>
 }
 
 <div class="m-20 hzyAdminForm" id="app">
@@ -97,22 +97,22 @@
             <div class="col-sm-6">
                 <h4 class="example-title">编号</h4>
                 <input type="number" class="form-control" placeholder="请输入 编号" v-model="form.vm.model.number"
-                       autocomplete="off"/>
+                       autocomplete="off" />
             </div>
             <div class="col-sm-6">
                 <h4 class="example-title">菜单名称</h4>
                 <input type="text" class="form-control" placeholder="请输入 菜单名称" v-model="form.vm.model.name"
-                       autocomplete="off"/>
+                       autocomplete="off" />
             </div>
             <div class="col-sm-6">
                 <h4 class="example-title">菜单地址</h4>
                 <input type="text" class="form-control" placeholder="请输入 菜单地址" v-model="form.vm.model.url"
-                       autocomplete="off"/>
+                       autocomplete="off" />
             </div>
             <div class="col-sm-6">
                 <h4 class="example-title">图标</h4>
                 <input type="text" class="form-control" placeholder="请输入 图标" v-model="form.vm.model.icon"
-                       autocomplete="off"/>
+                       autocomplete="off" />
             </div>
             <div class="col-sm-6">
                 <h4 class="example-title">是否显示</h4>
