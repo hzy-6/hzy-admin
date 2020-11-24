@@ -250,7 +250,12 @@ namespace HZY.Repository.Core.Provider
             params object[] parameters)
         {
             var dataTable = new DataTable();
-            using var dbConnection = (SqlConnection) databaseFacade.GetDbConnection();
+            using var dbConnection = new SqlConnection(databaseFacade.GetConnectionString());
+            if (dbConnection.State == ConnectionState.Closed)
+            {
+                dbConnection.Open();
+            }
+
             using var adapter = new SqlDataAdapter(sql, dbConnection);
             if (parameters != null && parameters.Length > 0)
             {
@@ -264,6 +269,7 @@ namespace HZY.Repository.Core.Provider
                 dataTable = dataSet.Tables[0];
             }
 
+            dbConnection.Close();
             return dataTable;
         }
 
@@ -288,10 +294,7 @@ namespace HZY.Repository.Core.Provider
         public static DbDataReader ExcuteReader(this DatabaseFacade databaseFacade, string sql,
             params object[] parameters)
         {
-            var dbConnection = (SqlConnection) databaseFacade.GetDbConnection();
-
-            dbConnection.ConnectionString = databaseFacade.GetConnectionString();
-
+            var dbConnection = new SqlConnection(databaseFacade.GetConnectionString());
             var cmd = dbConnection.CreateCommand();
             cmd.CommandText = sql;
 
@@ -368,9 +371,7 @@ namespace HZY.Repository.Core.Provider
         public static TResult ExecuteScalar<TResult>(this DatabaseFacade databaseFacade, string sql,
             params object[] parameters)
         {
-            var dbConnection = (SqlConnection) databaseFacade.GetDbConnection();
-
-            dbConnection.ConnectionString = databaseFacade.GetConnectionString();
+            var dbConnection = new SqlConnection(databaseFacade.GetConnectionString());
 
             var cmd = dbConnection.CreateCommand();
             cmd.CommandText = sql;

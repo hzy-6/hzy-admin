@@ -184,6 +184,14 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
+        <member name="M:HZY.Repository.Core.Provider.AppRepository`1.CreateColumnHeads(HZY.Repository.Core.Models.PagingViewModel,System.Collections.Generic.List{System.String},System.Collections.Generic.List{HZY.Repository.Core.Models.TableViewColumnHead})">
+            <summary>
+            创建列头
+            </summary>
+            <param name="pagingViewModel"></param>
+            <param name="fieldNames"></param>
+            <param name="columnHeads"></param>
+        </member>
         <member name="M:HZY.Repository.Core.Provider.AppRepository`1.AsPagingViewModelAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.Repository.Core.Models.TableViewColumnHead})">
             <summary>
             查询转换为分页视图模型
@@ -193,6 +201,18 @@
             <param name="rows"></param>
             <param name="columnHeads"></param>
             <typeparam name="TModel"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.Core.Provider.AppRepository`1.AsPagingViewModelAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.Repository.Core.Models.TableViewColumnHead},System.Object[])">
+            <summary>
+            查询转换为分页视图模型 支持 Sql 字符串
+            </summary>
+            <param name="sql"></param>
+            <param name="page"></param>
+            <param name="rows"></param>
+            <param name="orderBy"></param>
+            <param name="columnHeads"></param>
+            <param name="parameters"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Repository.Core.Provider.BaseDbContext`1.SavingChangesEvent">
@@ -406,6 +426,16 @@
             <param name="databaseFacade"></param>
             <param name="sql"></param>
             <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.ExecuteScalar``1(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
+            <summary>
+            执行 sql 返回 第一行第一列值
+            </summary>
+            <param name="databaseFacade"></param>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <typeparam name="TResult"></typeparam>
             <returns></returns>
         </member>
         <member name="T:HZY.Repository.Framework.AppTableInfoRepository">

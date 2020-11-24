@@ -103,8 +103,6 @@ order by a.id,a.colorder
                 throw new Exception("未实现!");
             }
 
-            //var dt = this.Orm.Database.ExcuteDataTable("select * from member");
-
             return await this.Orm.AppTableInfo.FromSqlRaw(sqlString).ToListAsync();
         }
     }

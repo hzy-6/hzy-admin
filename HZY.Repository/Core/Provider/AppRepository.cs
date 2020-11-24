@@ -44,8 +44,6 @@ namespace HZY.Repository.Core.Provider
         {
             var entityInfos = EntityCache.GetModelInfos(typeof(T).Name);
 
-            #region 组合 列头
-
             foreach (var item in fieldNames)
             {
                 var title = entityInfos.Find(w => w.Name == item)?.Remark ?? item;
@@ -64,8 +62,6 @@ namespace HZY.Repository.Core.Provider
                 columnHead.Title = item.Title;
                 columnHead.Width = item.Width;
             }
-
-            #endregion
         }
 
         /// <summary>
@@ -120,12 +116,14 @@ namespace HZY.Repository.Core.Provider
         /// <param name="sql"></param>
         /// <param name="page"></param>
         /// <param name="rows"></param>
+        /// <param name="orderBy"></param>
         /// <param name="columnHeads"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
         public virtual async Task<PagingViewModel> AsPagingViewModelAsync(string sql,
             int page,
             int rows,
+            string orderBy = "1",
             List<TableViewColumnHead> columnHeads = default,
             params object[] parameters)
         {
@@ -135,7 +133,8 @@ namespace HZY.Repository.Core.Provider
             pagingViewModel.PageCount = (pagingViewModel.Counts / rows);
             var offSet = rows * (page - 1);
             var data = this.Orm.Database.ExcuteDataTable(
-                $"SELECT * FROM ({sql}) TAB OFFSET {offSet} ROWS FETCH NEXT {rows} ROWS ONLY", parameters);
+                $"SELECT * FROM ({sql}) TAB ORDER BY {orderBy} OFFSET {offSet} ROWS FETCH NEXT {rows} ROWS ONLY",
+                parameters);
 
             var fieldNames = (from DataColumn dc in data.Columns select dc.ColumnName).ToList();
 
