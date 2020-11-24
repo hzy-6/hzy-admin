@@ -73,7 +73,7 @@ namespace HZY.Admin.Services
                     .Select(w => new
                     {
                         w.Id,
-                        @(string.Join(',', tableInfos.Select(w => "w." + w.ColName)))@(tableInfos.Count==1?",":"")
+                        @(string.Join(',', tableInfos.Select(w => "w." + w.ColName)))@(",")
                         UpdateTime = w.UpdateTime.ToString("yyyy-MM-dd"),
                         CreateTime = w.CreateTime.ToString("yyyy-MM-dd")
                     })
