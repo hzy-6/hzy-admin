@@ -26,15 +26,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
-    <_ContentIncludedByDefault Remove="Views\Home\Privacy.cshtml" />
-    <_ContentIncludedByDefault Remove="wwwroot\js\site.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\admin\js\signalr\chat.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\admin\js\signalr\dist\browser\signalr.js" />
-    <_ContentIncludedByDefault Remove="wwwroot\admin\js\signalr\dist\browser\signalr.min.js" />
-  </ItemGroup>
-
-  <ItemGroup>
     <Compile Remove="Object\Vo\MemberVo.cs" />
     <Compile Remove="Object\Vo\SysUserFormVo.cs" />
   </ItemGroup>
@@ -42,11 +33,6 @@
   <ItemGroup>
     <Folder Include="wwwroot\code_generation\codes" />
     <Folder Include="wwwroot\code_generation\zip" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Content Remove="wwwroot\upload\files\20201119\time_114754_old_name_8路串口继电器说明书-钰翌(1).pdf" />
-    <Content Remove="wwwroot\upload\files\20201119\time_114722_old_name_111801设计打靶固件.hex" />
   </ItemGroup>
 
   <ItemGroup>
