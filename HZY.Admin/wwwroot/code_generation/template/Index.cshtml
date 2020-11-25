@@ -193,17 +193,21 @@
                 </div>
                 <div class="row">
                     <div class="col-sm-12">
-                        <el-table :data="table.data" 
+                        <el-table :data="table.data"
                                   @("@@")selection-change="(array)=>{table.selecteds=array;}"
-                                  @("@@")row-dblclick="row_dblclick" 
-                                  row-key="id" 
-                                  size="medium" 
+                                  @("@@")row-dblclick="row_dblclick"
+                                  row-key="id"
+                                  size="medium"
                                   :header-cell-style="{background:'#fafafa'}">
                             <el-table-column type="index" width="50" fixed></el-table-column>
                             <el-table-column type="selection" width="50" fixed></el-table-column>
                             <!--根据查询接口自动加载头部信息 start-->
-                            <el-table-column v-for="(item,index) in table.columns" :prop="item.fieldName"
-                                             :label="item.title" :key="index" v-if="item.show">
+                            <el-table-column v-for="(item,index) in table.columns"
+                                             :prop="item.fieldName"
+                                             :label="item.title"
+                                             :key="index"
+                                             :width="item.width"
+                                             v-if="item.show">
                             </el-table-column>
                             <!--根据查询接口自动加载头部信息 end-->
                             <el-table-column fixed="right" label="操作" width="100" v-if="power.Update || power.Delete">
