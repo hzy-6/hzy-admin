@@ -7,10 +7,12 @@
  *
  * *******************************************************
  */
+
 using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using HZY.Models;
 using HZY.Models.Core;
 using HZY.Models.Framework;
 using HZY.Repository.Core.Interface;
@@ -48,11 +50,8 @@ namespace HZY.Repository.Core.Provider
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            #region 扫描表 并 缓存 属性信息
-
+            //扫描表 并 缓存 属性 xml 信息
             EntityCache.Set(modelBuilder.Model.GetEntityTypes().Select(item => item.ClrType).ToList());
-
-            #endregion
         }
 
         /// <summary>
