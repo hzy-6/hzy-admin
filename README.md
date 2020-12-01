@@ -3,7 +3,7 @@
 
 
 #### 介绍
-基于.Net5.0 开发的 通用后台管理系统！通配权限。
+后台通配权限管理系统！基于.Net5、Entity Framework Core 5
 
  **有兴趣看看 Vue 版本单页程序基于 : https://gitee.com/hzy6/HZY.AdminSpa** 
 
