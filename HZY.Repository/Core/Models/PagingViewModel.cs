@@ -20,7 +20,7 @@ namespace HZY.Repository.Core.Models
         /// <summary>
         /// 总数
         /// </summary>
-        public int Counts { get; set; }
+        public int Count { get; set; }
 
         /// <summary>
         /// 总页数

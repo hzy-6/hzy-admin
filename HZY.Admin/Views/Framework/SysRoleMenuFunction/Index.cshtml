@@ -52,7 +52,7 @@
                     hzyAdmin.httpPost(path, _this.search.vm, function (r) {
                         if (r.code !== 1) return;
                         _this.table.data = r.data.result;
-                        _this.table.totalCount = r.data.pageCount;
+                        _this.table.totalCount = r.data.count;
                         _this.table.columns = r.data.columns;
                         //选择第一个角色加载他的权限列表
                         if (_this.table.data.length > 0) {

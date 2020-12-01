@@ -47,7 +47,7 @@ namespace HZY.Admin.Controllers
         /// <param name="rows"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        [HttpPost("FindList/{rows}/{page}")]
+        [HttpPost("FindList/{page}/{rows}")]
         public async Task<ApiResult> FindListAsync([FromRoute] int page, [FromRoute] int rows, [FromBody] Member search)
         {
             return this.ResultOk(await this.DefaultService.FindListAsync(page, rows, search));

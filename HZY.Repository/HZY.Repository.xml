@@ -133,7 +133,7 @@
             转换后数据
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.PagingViewModel.Counts">
+        <member name="P:HZY.Repository.Core.Models.PagingViewModel.Count">
             <summary>
             总数
             </summary>
@@ -253,6 +253,72 @@
             <summary>
             提交
             </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Repository.Core.Provider.DatabaseFacadeExtensions">
+            <summary>
+            DatabaseFacade 扩展
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExcuteDataTable(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)">
+            <summary>
+            执行 sql 返回 DataTable
+            </summary>
+            <param name="databaseFacade"></param>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExcuteDataTable(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
+            <summary>
+            执行 sql 返回 DataTable
+            </summary>
+            <param name="databaseFacade"></param>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExcuteReader(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)">
+            <summary>
+            执行 sql 返回 SqlDataReader
+            </summary>
+            <param name="databaseFacade"></param>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExcuteReader(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
+            <summary>
+            执行 sql 返回 SqlDataReader
+            </summary>
+            <param name="databaseFacade"></param>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExcuteListDictionary(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)">
+            <summary>
+            执行 sql 返回 List[Dictionary[string,object]]
+            </summary>
+            <param name="databaseFacade"></param>
+            <param name="sql"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExcuteListDictionary(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
+            <summary>
+            执行 sql 返回 List[Dictionary[string,object]]
+            </summary>
+            <param name="databaseFacade"></param>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExecuteScalar``1(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
+            <summary>
+            执行 sql 返回 第一行第一列值
+            </summary>
+            <param name="databaseFacade"></param>
+            <param name="sql"></param>
+            <param name="parameters"></param>
+            <typeparam name="TResult"></typeparam>
             <returns></returns>
         </member>
         <member name="T:HZY.Repository.Core.Provider.EntityCache">
@@ -375,67 +441,6 @@
             <param name="page"></param>
             <param name="rows"></param>
             <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.ExcuteDataTable(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)">
-            <summary>
-            执行 sql 返回 DataTable
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.ExcuteDataTable(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
-            <summary>
-            执行 sql 返回 DataTable
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <param name="parameters"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.ExcuteReader(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)">
-            <summary>
-            执行 sql 返回 SqlDataReader
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.ExcuteReader(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
-            <summary>
-            执行 sql 返回 SqlDataReader
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <param name="parameters"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.ExcuteListDictionary(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)">
-            <summary>
-            执行 sql 返回 List[Dictionary[string,object]]
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.ExcuteListDictionary(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
-            <summary>
-            执行 sql 返回 List[Dictionary[string,object]]
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <param name="parameters"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.ExecuteScalar``1(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
-            <summary>
-            执行 sql 返回 第一行第一列值
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <param name="parameters"></param>
-            <typeparam name="TResult"></typeparam>
             <returns></returns>
         </member>
         <member name="T:HZY.Repository.Framework.AppTableInfoRepository">
