@@ -79,7 +79,7 @@ namespace HZY.Repository.Core.Provider
         {
             var pagingViewModel = new PagingViewModel {Page = page, Rows = rows, Counts = await query.CountAsync()};
             pagingViewModel.PageCount = (pagingViewModel.Counts / rows);
-            var data = await query.ToListAsync();
+            var data = await query.Page(page, rows).ToListAsync();
 
             var propertyInfos = typeof(TModel).GetProperties();
             var fieldNames = propertyInfos.Select(item => item.Name).ToList();
