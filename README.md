@@ -31,6 +31,7 @@
 ![操作日志](https://images.gitee.com/uploads/images/2020/0811/200826_91d63164_1242080.png "屏幕截图.png")
 ![换肤](https://images.gitee.com/uploads/images/2020/0401/105141_f38425ce_1242080.png "屏幕截图.png")
 ![角色功能](https://images.gitee.com/uploads/images/2020/0401/105211_b390503f_1242080.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2020/1201/183418_626fb029_1242080.png "屏幕截图.png")
 
 
 #### 使用说明
