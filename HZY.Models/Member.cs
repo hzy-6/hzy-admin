@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using HZY.Models.Core;
 
 namespace HZY.Models
@@ -51,6 +52,7 @@ namespace HZY.Models
         /// <summary>
         /// 账户Id
         /// </summary>
+        [Required(ErrorMessage = "请选择账户信息!")]
         public Guid? UserId { get; set; }
     }
 }

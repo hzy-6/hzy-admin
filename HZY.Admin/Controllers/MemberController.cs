@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using HZY.Admin.Core;
 using HZY.Admin.Services;
 using HZY.Framework.Attributes;
 using HZY.Framework.Controllers;
@@ -82,6 +83,7 @@ namespace HZY.Admin.Controllers
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
+        [AdminCheckModel]
         [Transactional]
         [HttpPost("SaveForm")]
         public async Task<ApiResult> SaveFormAsync([FromForm] Member form)

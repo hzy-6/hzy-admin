@@ -9,6 +9,7 @@ using HZY.Toolkit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -47,6 +48,10 @@ namespace HZY.Admin
             //razor 解决中文被编码
             services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));
 
+            #region 取消默认验证Api 接收参数模型 的 验证特性 如有 [ApiController]
+            services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
+            #endregion
+            
             #region HttpContext
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
