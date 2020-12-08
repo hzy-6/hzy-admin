@@ -9,6 +9,8 @@
 
  **vue单页预览地址 ：http://hzyadmin.milaizhijie.com:1520** 
 
+ **代码生成器： :heart: https://gitee.com/hzy6/hzy-code-generation** 
+
 
 #### 软件架构
 开发环境：vs2019 、 .Net5.0
