@@ -21,7 +21,6 @@ https://gitee.com/hzy6/hzy-code-generation
 
 
 #### 部分界面截图
-![代码创建](https://images.gitee.com/uploads/images/2020/1119/230952_1f87b534_1242080.png "屏幕截图.png")
 ![登录](https://images.gitee.com/uploads/images/2020/0314/224558_f569321d_1242080.png "屏幕截图.png")
 ![主页](https://images.gitee.com/uploads/images/2020/0811/200450_a13eb19f_1242080.png "屏幕截图.png")
 ![用户管理](https://images.gitee.com/uploads/images/2020/0811/200618_0fc77246_1242080.png "屏幕截图.png")
