@@ -9,7 +9,7 @@
 
  **vue单页预览地址 ：http://hzyadmin.milaizhijie.com:1520** 
 
- **代码生成器： :heart: https://gitee.com/hzy6/hzy-code-generation** 
+ ** :heart: 代码生成器：https://gitee.com/hzy6/hzy-code-generation** 
 
 
 #### 软件架构
