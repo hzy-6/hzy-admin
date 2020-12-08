@@ -5,10 +5,6 @@
 #### 介绍  :yellow_heart: 
 后台通配权限管理系统！基于.Net5、Entity Framework Core 5
 
- **有兴趣看看 Vue 版本单页程序基于 : https://gitee.com/hzy6/HZY.AdminSpa** 
-
- **vue单页预览地址 ：http://hzyadmin.milaizhijie.com:1520** 
-
 ### 代码生成器  :blue_heart: 
 https://gitee.com/hzy6/hzy-code-generation
 
