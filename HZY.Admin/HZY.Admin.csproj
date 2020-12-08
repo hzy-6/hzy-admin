@@ -31,11 +31,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\code_generation\codes" />
-    <Folder Include="wwwroot\code_generation\zip" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="HZY.Admin.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>

@@ -40,89 +40,6 @@
             查询
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.Id">
-            <summary>
-            Id
-            </summary>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.TabName">
-            <summary>
-            表名称
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.TabNameRemark">
-            <summary>
-            表备注
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.ColOrder">
-            <summary>
-            列序号
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.ColName">
-            <summary>
-            列名
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.ColIsIdentity">
-            <summary>
-            是否自增 1 是 0 否
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.ColIsKey">
-            <summary>
-            是否主键 1 是 0 否
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.ColType">
-            <summary>
-            类型
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.ColLength">
-            <summary>
-            暂用字节数
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.ColMaxLength">
-            <summary>
-            允许占用最大字长度
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.ColScale">
-            <summary>
-            小数位数
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.ColIsNull">
-            <summary>
-            列能否为 Null
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.ColDefaultValue">
-            <summary>
-            列默认值
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:HZY.Repository.Core.Models.AppTableInfo.ColRemark">
-            <summary>
-            列备注
-            </summary>
-            <value></value>
-        </member>
         <member name="P:HZY.Repository.Core.Models.PagingViewModel.Columns">
             <summary>
             列信息
@@ -441,18 +358,6 @@
             <param name="page"></param>
             <param name="rows"></param>
             <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="T:HZY.Repository.Framework.AppTableInfoRepository">
-            <summary>
-            表信息 仓储
-            </summary>
-        </member>
-        <member name="M:HZY.Repository.Framework.AppTableInfoRepository.FindAppTableInfosAsync">
-            <summary>
-            查询所有表信息
-            目前只支持 SqlServer 此函数
-            </summary>
             <returns></returns>
         </member>
         <member name="T:HZY.Repository.Framework.SysUserRepository">

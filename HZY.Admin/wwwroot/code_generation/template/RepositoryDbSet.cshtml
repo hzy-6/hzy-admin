@@ -1,9 +1,0 @@
-﻿@model List<string>
-@{
-    var ignores = new string[] {"SysFunction", "SysMenu", "SysMenuFunction","SysRole","SysRoleMenuFunction","SysUser","SysUserRole"};
-    var tableNames = Model.Where(w => !ignores.Contains(w)).ToList();
-}
-@foreach (var item in tableNames)
-{
-<pre>public DbSet<@(item)> @(item) { get; set; }</pre>
-}

@@ -35,9 +35,6 @@ namespace HZY.Repository.Core.Provider
 
         #region DbSet
 
-        public DbSet<AppTableInfo> AppTableInfo { get; set; }
-
-        //system
         public DbSet<SysFunction> SysFunction { get; set; }
         public DbSet<SysMenu> SysMenu { get; set; }
         public DbSet<SysMenuFunction> SysMenuFunction { get; set; }
@@ -67,14 +64,14 @@ namespace HZY.Repository.Core.Provider
             //Update
             var updateEntries = entityEntries
                 .Where(w => w.Entity is BaseModel && w.State == EntityState.Modified)
-                .Select(item => (BaseModel) item.Entity)
+                .Select(item => (BaseModel)item.Entity)
                 .ToList();
             updateEntries.ForEach(w => w.UpdateTime = DateTime.Now);
 
             //Insert
             var insertEntries = entityEntries
                 .Where(w => w.Entity is BaseModel && w.State == EntityState.Added)
-                .Select(item => (BaseModel) item.Entity)
+                .Select(item => (BaseModel)item.Entity)
                 .ToList();
             foreach (var entity in insertEntries)
             {

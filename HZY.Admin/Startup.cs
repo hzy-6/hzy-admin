@@ -45,9 +45,6 @@ namespace HZY.Admin
                 .AddRazorRuntimeCompilation()
                 ;
 
-            //razor 解决中文被编码
-            services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));
-
             #region 取消默认验证Api 接收参数模型 的 验证特性 如有 [ApiController]
             services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
             #endregion
@@ -90,42 +87,6 @@ namespace HZY.Admin
 
             #endregion
 
-            #region Swagger 注册Swagger生成器，定义一个和多个Swagger 文档
-
-            /*
-                     services.AddSwaggerGen(options =>
-                     {
-                         options.SwaggerDoc("hzyAdmin", new OpenApiInfo {Title = "hzyAdmin"});
-         
-                         //为 Swagger JSON and UI设置xml文档注释路径
-                         var xmlPath = Path.Combine(System.AppContext.BaseDirectory, "HZY.Admin.xml");
-                         var xmlPath1 = Path.Combine(System.AppContext.BaseDirectory, "HZY.Models.xml");
-                         options.IncludeXmlComments(xmlPath, true);
-                         options.IncludeXmlComments(xmlPath1, true);
-         
-                         #region Jwt token 配置
-         
-                         //option.OperationFilter<AppService.SwaggerParameterFilter>(); // 给每个接口配置授权码传入参数文本框
-                         //
-                         // options.OperationFilter<AddResponseHeadersFilter>();
-                         // options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
-                         // //很重要！这里配置安全校验，和之前的版本不一样
-                         // options.OperationFilter<SecurityRequirementsOperationFilter>();
-                         // //开启 oauth2 安全描述
-                         // options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
-                         // {
-                         //     Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）\"",
-                         //     In = ParameterLocation.Header,
-                         //     Name = "Authorization",
-                         //     Type = SecuritySchemeType.ApiKey,
-                         //     //Scheme = "basic",
-                         // });
-         
-                         #endregion
-                     });
-          */
-
-            #endregion
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -157,26 +118,6 @@ namespace HZY.Admin
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
 
-            #region Swagger
-
-/*
-            //启用中间件服务生成Swagger作为JSON终结点
-            app.UseSwagger();
-            //启用中间件服务对swagger-ui，指定Swagger JSON终结点
-            app.UseSwaggerUI(option =>
-            {
-                option.SwaggerEndpoint($"hzyAdmin/swagger.json", "hzyAdmin");
-                option.RoutePrefix = "swagger";
-            });
-*/
-
-            #endregion
-
-            // #region 中间件 TakeUpTimeMiddleware
-            //
-            // app.UseMiddleware<TakeUpTimeMiddleware>();
-            //
-            // #endregion
         }
     }
 }
