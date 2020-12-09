@@ -6,7 +6,7 @@
 后台通配权限管理系统！基于.Net5、Entity Framework Core 5
 
 ### 代码生成器  :blue_heart: 
-https://gitee.com/hzy6/hzy-code-generation
+https://gitee.com/hzy6/hzy-admin-code-generation
 
 
 #### 软件架构
