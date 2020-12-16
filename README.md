@@ -61,5 +61,4 @@ https://gitee.com/hzy6/hzy-admin-code-generation
 6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
 
 #### 捐赠 兄弟们就当打发要饭的吧！
-|  ![输入图片说明](https://images.gitee.com/uploads/images/2020/0302/162422_94ee4116_1242080.jpeg "微信图片_20200302162149.jpg")   |  ![输入图片说明](https://images.gitee.com/uploads/images/2020/0302/162431_7e7da4ea_1242080.jpeg "微信图片_20200302162144.jpg")   |
-| --- | --- |
+![输入图片说明](https://images.gitee.com/uploads/images/2020/1216/105734_96c2122c_1242080.png "未标题-1.png")
