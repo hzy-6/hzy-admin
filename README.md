@@ -60,5 +60,5 @@ https://gitee.com/hzy6/hzy-admin-code-generation
 5. 码云官方提供的使用手册 [https://gitee.com/help](https://gitee.com/help)
 6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
 
-#### 捐赠 兄弟们就当打发要饭的吧！
+####  :heart: 捐赠 兄弟们就当打发要饭的吧！
 ![输入图片说明](https://images.gitee.com/uploads/images/2020/1216/105734_96c2122c_1242080.png "未标题-1.png")
