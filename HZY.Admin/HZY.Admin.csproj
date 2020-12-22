@@ -21,6 +21,8 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\HZY.Admin.Objects\HZY.Admin.Objects.csproj" />
+    <ProjectReference Include="..\HZY.Admin.Services\HZY.Admin.Services.csproj" />
     <ProjectReference Include="..\HZY.Framework\HZY.Framework.csproj" />
     <ProjectReference Include="..\HZY.Repository\HZY.Repository.csproj" />
   </ItemGroup>
