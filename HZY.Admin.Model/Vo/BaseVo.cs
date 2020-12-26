@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HZY.Admin.Objects.Vo
+namespace HZY.Admin.Model.Vo
 {
     public class BaseVo<TModel, TKey>
     {

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace HZY.Admin.Objects.Dto
+namespace HZY.Admin.Model.Dto
 {
     public class SysRoleMenuFunctionDto
     {

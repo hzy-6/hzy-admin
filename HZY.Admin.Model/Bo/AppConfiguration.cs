@@ -3,7 +3,7 @@ using HZY.Toolkit;
 using HZY.Toolkit.Attributes;
 using Microsoft.Extensions.Configuration;
 
-namespace HZY.Admin.Objects.Bo
+namespace HZY.Admin.Model.Bo
 {
     /// <summary>
     /// 程序配置信息映射类 appsettings.json

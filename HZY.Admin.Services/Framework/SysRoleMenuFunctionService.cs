@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HZY.Admin.Objects.Dto;
+using HZY.Admin.Model.Dto;
 using HZY.Framework.Services;
-using HZY.Models.Framework;
+using HZY.Entity.Framework;
 using HZY.Repository.Framework;
 using Microsoft.EntityFrameworkCore;
 

@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using HZY.Models.Framework;
+using HZY.Entity.Framework;
 
-namespace HZY.Admin.Objects.Bo
+namespace HZY.Admin.Model.Bo
 {
     /// <summary>
     /// 账户 业务对象

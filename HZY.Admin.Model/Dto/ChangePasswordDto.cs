@@ -1,4 +1,4 @@
-﻿namespace HZY.Admin.Objects.Dto
+﻿namespace HZY.Admin.Model.Dto
 {
     public class ChangePasswordDto
     {

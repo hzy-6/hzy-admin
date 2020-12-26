@@ -1,11 +1,11 @@
-﻿using HZY.Models.Core;
+﻿using HZY.Entity.Core;
 
-namespace HZY.Models.Framework
+namespace HZY.Entity.Framework
 {
     /// <summary>
-    /// 角色
+    /// 功能
     /// </summary>
-    public class SysRole : GuidKeyBaseModel
+    public class SysFunction : GuidKeyBaseModel
     {
         /// <summary>
         /// 编号
@@ -13,18 +13,18 @@ namespace HZY.Models.Framework
         public int? Number { get; set; }
 
         /// <summary>
-        /// 角色名称
+        /// 功能名称
         /// </summary>
         public string Name { get; set; }
+
+        /// <summary>
+        /// 功能标识
+        /// </summary>
+        public string ByName { get; set; }
 
         /// <summary>
         /// 备注
         /// </summary>
         public string Remark { get; set; }
-
-        /// <summary>
-        /// 能否删除
-        /// </summary>
-        public int IsDelete { get; set; } = 1;
     }
 }

@@ -1,4 +1,4 @@
-﻿using HZY.Models;
+﻿using HZY.Entity;
 using HZY.Repository.Core;
 using HZY.Repository.Core.Provider;
 

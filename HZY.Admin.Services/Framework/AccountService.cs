@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Linq;
-using HZY.Admin.Objects.Bo;
+using HZY.Admin.Model.Bo;
 using HZY.Framework.Services;
 using HZY.Repository.Framework;
 using HZY.Toolkit;

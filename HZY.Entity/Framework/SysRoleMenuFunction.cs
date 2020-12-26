@@ -1,7 +1,7 @@
 ﻿using System;
-using HZY.Models.Core;
+using HZY.Entity.Core;
 
-namespace HZY.Models.Framework
+namespace HZY.Entity.Framework
 {
     /// <summary>
     /// 角色菜单功能绑定

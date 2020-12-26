@@ -1,13 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using HZY.Admin.Objects.Bo;
-using HZY.Admin.Objects.Dto;
+using HZY.Admin.Model.Bo;
+using HZY.Admin.Model.Dto;
 using HZY.Admin.Services.Framework;
 using HZY.Framework.Attributes;
 using HZY.Framework.Controllers;
 using HZY.Framework.Model;
-using HZY.Models.Framework;
+using HZY.Entity.Framework;
 using HZY.Repository.Attributes;
 using HZY.Toolkit;
 using Microsoft.AspNetCore.Mvc;

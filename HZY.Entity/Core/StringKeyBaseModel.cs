@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace HZY.Models.Core
+namespace HZY.Entity.Core
 {
     /// <summary>
     /// String Key

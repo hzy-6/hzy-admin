@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using HZY.Models.Framework;
+using HZY.Entity.Framework;
 
-namespace HZY.Admin.Objects.Dto
+namespace HZY.Admin.Model.Dto
 {
     public class SysMenuFormDto
     {

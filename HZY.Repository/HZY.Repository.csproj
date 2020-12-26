@@ -10,7 +10,7 @@
   </PropertyGroup>
   
   <ItemGroup>
-    <ProjectReference Include="..\HZY.Models\HZY.Models.csproj" />
+    <ProjectReference Include="..\HZY.Entity\HZY.Entity.csproj" />
     <ProjectReference Include="..\HZY.Toolkit\HZY.Toolkit.csproj" />
   </ItemGroup>
 
