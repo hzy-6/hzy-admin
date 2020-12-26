@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HZY.Admin.Controllers.Framework
 {
-    [AdminAuthorization(MenuId = "38d864ff-f6e7-43af-8c5c-8bbcf9fa586d")]
+    [ControllerDescriptor("38d864ff-f6e7-43af-8c5c-8bbcf9fa586d")]
     public class SysFunctionController : AdminBaseController<SysFunctionService>
     {
         public SysFunctionController(SysFunctionService defaultService) : base(defaultService)

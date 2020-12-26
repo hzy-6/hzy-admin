@@ -311,9 +311,9 @@ namespace HZY.Admin.Services.Framework
         /// <param name="findBack"></param>
         /// <param name="isCheck"></param>
         /// <returns></returns>
-        public async Task<Dictionary<string, object>> GetFindBackPower(string findBack, bool isCheck = true)
+        public async Task<Dictionary<string, bool>> GetFindBackPower(string findBack, bool isCheck = true)
         {
-            var res = new Dictionary<string, object>();
+            var res = new Dictionary<string, bool>();
             var sysFunctionList = await this._sysFunctionRepository.Select.OrderBy(w => w.Number).ToListAsync();
 
             if (isCheck)
@@ -351,7 +351,7 @@ namespace HZY.Admin.Services.Framework
         /// </summary>
         /// <param name="menuId"></param>
         /// <returns></returns>
-        public async Task<Dictionary<string, object>> GetPowerStateByMenuId(Guid menuId)
+        public async Task<Dictionary<string, bool>> GetPowerStateByMenuId(Guid menuId)
         {
             var sysMenu = await this.Repository.FindByIdAsync(menuId);
             var sysFunctionList = await this._sysFunctionRepository.Select.OrderBy(w => w.Number).ToListAsync();
@@ -360,7 +360,7 @@ namespace HZY.Admin.Services.Framework
                 .Where(w => this._accountInfo.RoleIds.Contains(w.RoleId))
                 .ToListAsync();
 
-            var power = new Dictionary<string, object>();
+            var power = new Dictionary<string, bool>();
 
             if (this._accountInfo.IsSuperManage)
             {

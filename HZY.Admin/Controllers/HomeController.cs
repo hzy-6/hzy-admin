@@ -7,7 +7,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HZY.Admin.Controllers
 {
-    [AdminAuthorization]
+    [ControllerDescriptor]
     public class HomeController : AdminBaseController<SysMenuService>
     {
         private readonly AccountService _accountService;

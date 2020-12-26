@@ -13,7 +13,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HZY.Admin.Controllers
 {
-    [AdminAuthorization(MenuId = "38d864ff-f6e7-43af-8c5c-8bbcf9fa586d")]
+    [ControllerDescriptor("38d864ff-f6e7-43af-8c5c-8bbcf9fa586d")]
     public class MemberController : AdminBaseController<MemberService>
     {
         public MemberController(MemberService defaultService) : base(defaultService)
@@ -24,6 +24,7 @@ namespace HZY.Admin.Controllers
         /// 列表页
         /// </summary>
         /// <returns></returns>
+        [ActionDescriptor("Have")]
         [HttpGet(nameof(Index))]
         public IActionResult Index()
         {
@@ -35,6 +36,7 @@ namespace HZY.Admin.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [ActionDescriptor("Have")]
         [HttpGet("Info/{id?}")]
         public IActionResult Info(Guid id)
         {
@@ -48,6 +50,7 @@ namespace HZY.Admin.Controllers
         /// <param name="rows"></param>
         /// <param name="search"></param>
         /// <returns></returns>
+        [ActionDescriptor("Have")]
         [HttpPost("FindList/{page}/{rows}")]
         public async Task<ApiResult> FindListAsync([FromRoute] int page, [FromRoute] int rows, [FromBody] Member search)
         {
@@ -59,6 +62,7 @@ namespace HZY.Admin.Controllers
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
+        [ActionDescriptor("Delete")]
         [Transactional]
         [HttpPost("DeleteList")]
         public async Task<ApiResult> DeleteListAsync([FromBody] List<Guid> ids)
@@ -72,6 +76,7 @@ namespace HZY.Admin.Controllers
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [ActionDescriptor("Have")]
         [HttpGet("FindForm/{id?}")]
         public async Task<ApiResult> FindFormAsync([FromRoute] Guid id)
         {
@@ -83,6 +88,7 @@ namespace HZY.Admin.Controllers
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
+        [ActionDescriptor("Save")]
         [AdminCheckModel]
         [Transactional]
         [HttpPost("SaveForm")]
@@ -96,6 +102,7 @@ namespace HZY.Admin.Controllers
         /// </summary>
         /// <param name="search"></param>
         /// <returns></returns>
+        [ActionDescriptor("GetExcel")]
         [HttpPost("ExportExcel")]
         public async Task<FileContentResult> ExportExcelAsync([FromBody] Member search)
             => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),

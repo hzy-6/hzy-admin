@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HZY.Admin.Controllers.Framework
 {
-    [AdminAuthorization(MenuId = "38d864ff-f6e7-43af-8c5c-8bbcf9fa586d")]
+    [ControllerDescriptor("38d864ff-f6e7-43af-8c5c-8bbcf9fa586d")]
     public class SysMenuController : AdminBaseController<SysMenuService>
     {
         private readonly AccountInfo _accountInfo;
@@ -96,7 +96,7 @@ namespace HZY.Admin.Controllers.Framework
         {
             return this.ResultOk(await this.DefaultService.SaveFormAsync(form));
         }
-        
+
         /// <summary>
         /// 导出Excel
         /// </summary>
@@ -121,7 +121,7 @@ namespace HZY.Admin.Controllers.Framework
             {
                 userName = this._accountInfo.UserName,
                 list = this.DefaultService.CreateMenus(Guid.Empty, allList),
-                allList = allList,
+                allList,
                 powerState = await this.DefaultService.GetPowerState(allList)
             });
         }

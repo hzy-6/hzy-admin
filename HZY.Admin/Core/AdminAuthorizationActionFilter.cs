@@ -33,13 +33,13 @@ namespace HZY.Admin.Core
         /// <param name="context"></param>
         public virtual void OnActionExecuting(ActionExecutingContext context)
         {
-            var controller = (Controller) context.Controller;
+            var controller = (Controller)context.Controller;
 
             //获取 class 上面所有的 自定义 特性
             var customAttributes = controller.GetType().GetCustomAttributes();
-            //处理 控制器 class 上面 带有 AdminApiDescribeAttribute 标记
-            var adminApiDescribeAttribute = (AdminAuthorizationAttribute) customAttributes
-                .FirstOrDefault(w => w is AdminAuthorizationAttribute);
+            //处理 控制器 class 上面 带有 ControllerDescriptorAttribute 标记
+            var adminApiDescribeAttribute = (ControllerDescriptorAttribute)customAttributes
+                .FirstOrDefault(w => w is ControllerDescriptorAttribute);
 
             if (adminApiDescribeAttribute == null) return;
 
@@ -48,15 +48,12 @@ namespace HZY.Admin.Core
             //var areaName = routeValues["area"];
             var controllerName = routeValues["controller"];
             var actionName = routeValues["action"];
-
-            var menuId = adminApiDescribeAttribute.MenuId.ToGuid();
-            var functionName = adminApiDescribeAttribute.FunctionName;
+            const string unAuthMessage = "未授权,请先登录授权!";
 
             #region 检查是否登录 授权
 
             if (this._accountService.GetAccountInfo() == null)
             {
-                const string unAuthMessage = "未授权,请先登录授权!";
                 if (httpContext.IsJsonRequest())
                 {
                     var data = ApiResult.ResultMessage(ApiResult.ApiResultCodeEnum.UnAuth, unAuthMessage);
@@ -80,6 +77,10 @@ namespace HZY.Admin.Core
 
             #endregion
 
+            var menuId = adminApiDescribeAttribute.GetMenuId().ToGuid();
+            var actionDescriptorAttribute = (ActionDescriptorAttribute)context.ActionDescriptor.EndpointMetadata
+                .FirstOrDefault(w => w is ActionDescriptorAttribute);
+
             #region 检查页面权限信息
 
             if (httpContext.IsHtmlRequest())
@@ -87,7 +88,7 @@ namespace HZY.Admin.Core
                 //判断是否 查找带回
                 var isFindBack = httpContext.Request.Query.ContainsKey("findBack");
                 var findBack = httpContext.Request.Query["findBack"];
-                Dictionary<string, object> power;
+                Dictionary<string, bool> power;
                 if (menuId == Guid.Empty)
                 {
                     power = this._sysMenuService.GetFindBackPower(findBack, false).Result;
@@ -119,10 +120,24 @@ namespace HZY.Admin.Core
                 controller.ViewData["power"] = JsonConvert.SerializeObject(power);
                 controller.ViewData["isFindBack"] = isFindBack ? 1 : 0;
             }
+            else
+            {
+                if (actionDescriptorAttribute != null && menuId != Guid.Empty)
+                {
+                    var functionName = actionDescriptorAttribute.GetFunctionName();
+                    //收集用户权限 未授权让他重新登录
+                    var power = this._sysMenuService.GetPowerStateByMenuId(menuId).Result;
+                    if (power.ContainsKey(functionName) && !power[functionName])
+                    {
+                        var data = ApiResult.ResultMessage(ApiResult.ApiResultCodeEnum.UnAuth, unAuthMessage);
+                        context.Result = new JsonResult(data);
+                    }
+                }
+            }
 
             #endregion
 
-            LogUtil.Write("OnActionExecuting");
+            //LogUtil.Write("OnActionExecuting");
         }
 
         /// <summary>

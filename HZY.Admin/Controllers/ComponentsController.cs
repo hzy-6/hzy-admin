@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace HZY.Admin.Controllers
 {
-    [AdminAuthorization]
+    [ControllerDescriptor]
     public class ComponentsController : AdminBaseController<SysMenuService>
     {
         public ComponentsController(SysMenuService defaultService) : base(defaultService)

@@ -4,25 +4,42 @@
         <name>HZY.Framework</name>
     </assembly>
     <members>
-        <member name="T:HZY.Framework.Attributes.AdminAuthorizationAttribute">
+        <member name="T:HZY.Framework.Attributes.ActionDescriptorAttribute">
             <summary>
-            控制器 接口 描述
+            action 功能模块描述
             </summary>
         </member>
-        <member name="F:HZY.Framework.Attributes.AdminAuthorizationAttribute.MenuId">
-            <summary>
-            菜单 Id
-            </summary>
-        </member>
-        <member name="F:HZY.Framework.Attributes.AdminAuthorizationAttribute.FunctionName">
+        <member name="F:HZY.Framework.Attributes.ActionDescriptorAttribute._functionName">
             <summary>
             功能名称
             </summary>
         </member>
-        <member name="F:HZY.Framework.Attributes.AdminAuthorizationAttribute.AuthCheck">
+        <member name="M:HZY.Framework.Attributes.ActionDescriptorAttribute.GetFunctionName">
+            <summary>
+            获取功能名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Framework.Attributes.ControllerDescriptorAttribute">
+            <summary>
+            控制器 接口 描述
+            </summary>
+        </member>
+        <member name="F:HZY.Framework.Attributes.ControllerDescriptorAttribute._menuId">
+            <summary>
+            菜单 Id
+            </summary>
+        </member>
+        <member name="F:HZY.Framework.Attributes.ControllerDescriptorAttribute.AuthCheck">
             <summary>
             授权检查 默认检查
             </summary>
+        </member>
+        <member name="M:HZY.Framework.Attributes.ControllerDescriptorAttribute.GetMenuId">
+            <summary>
+            获取菜单 Id
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:HZY.Framework.Controllers.AdminBaseController`1">
             <summary>
