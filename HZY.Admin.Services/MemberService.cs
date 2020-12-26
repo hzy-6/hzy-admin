@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HZY.Framework.Services;
-using HZY.Entity;
+using HZY.Repository.Entity;
 using HZY.Repository;
 using HZY.Repository.Core.Models;
 using HZY.Repository.Core.Provider;

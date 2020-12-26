@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
 
-namespace HZY.Entity.Core
+namespace HZY.Repository.Entity.Core
 {
     /// <summary>
     /// Guid Key

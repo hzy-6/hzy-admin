@@ -1,4 +1,4 @@
-﻿using HZY.Entity;
+﻿using HZY.Repository.Entity;
 using HZY.Repository.Core.Interface;
 using HZY.Repository.Core.Provider;
 using Microsoft.EntityFrameworkCore;

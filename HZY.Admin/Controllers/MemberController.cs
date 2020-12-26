@@ -6,7 +6,7 @@ using HZY.Admin.Services;
 using HZY.Framework.Attributes;
 using HZY.Framework.Controllers;
 using HZY.Framework.Model;
-using HZY.Entity;
+using HZY.Repository.Entity;
 using HZY.Repository.Attributes;
 using HZY.Toolkit;
 using Microsoft.AspNetCore.Mvc;

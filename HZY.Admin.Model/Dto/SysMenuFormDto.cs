@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using HZY.Entity.Framework;
+using HZY.Repository.Entity.Framework;
 
 namespace HZY.Admin.Model.Dto
 {

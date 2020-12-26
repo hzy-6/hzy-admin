@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace HZY.Entity.Core
+namespace HZY.Repository.Entity.Core
 {
     /// <summary>
     /// 基础模型

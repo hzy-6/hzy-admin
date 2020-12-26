@@ -1,6 +1,6 @@
-﻿using HZY.Entity.Core;
+﻿using HZY.Repository.Entity.Core;
 
-namespace HZY.Entity.Framework
+namespace HZY.Repository.Entity.Framework
 {
     /// <summary>
     /// 角色

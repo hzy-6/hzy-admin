@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HZY.Admin.Model.Dto;
 using HZY.Framework.Services;
-using HZY.Entity.Framework;
+using HZY.Repository.Entity.Framework;
 using HZY.Repository.Framework;
 using Microsoft.EntityFrameworkCore;
 

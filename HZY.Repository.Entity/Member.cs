@@ -1,8 +1,8 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using HZY.Entity.Core;
+using HZY.Repository.Entity.Core;
 
-namespace HZY.Entity
+namespace HZY.Repository.Entity
 {
     /// <summary>
     /// member

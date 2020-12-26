@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using HZY.Admin.Model.Dto;
 using HZY.Framework;
 using HZY.Framework.Services;
-using HZY.Entity.Framework;
+using HZY.Repository.Entity.Framework;
 using HZY.Repository.Core.Models;
 using HZY.Repository.Core.Provider;
 using HZY.Repository.Framework;

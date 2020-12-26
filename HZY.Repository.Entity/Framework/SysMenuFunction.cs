@@ -1,7 +1,7 @@
 ﻿using System;
-using HZY.Entity.Core;
+using HZY.Repository.Entity.Core;
 
-namespace HZY.Entity.Framework
+namespace HZY.Repository.Entity.Framework
 {
     /// <summary>
     /// 菜单与功能绑定
