@@ -16,6 +16,12 @@ namespace HZY.Repository.Core
         public DbSet<Member> Member { get; set; }
 
         #endregion
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            //这句话不要删除
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }
