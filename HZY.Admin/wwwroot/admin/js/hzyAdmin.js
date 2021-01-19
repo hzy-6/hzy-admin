@@ -7,7 +7,6 @@
  *
  * *******************************************************
  */
-var qs = Qs;
 
 var hzyAdmin = {
     layer: null,
@@ -159,8 +158,7 @@ var hzyAdmin = {
         var _this = this;
         if (loading) _this.loading.start();
 
-        if (data) url += `?${qs.stringify(data)}`;
-
+        config["params"] = data;
         var promise = new Promise((resolve, reject) => {
             axios.get(url, config)
                 .then(response => {
