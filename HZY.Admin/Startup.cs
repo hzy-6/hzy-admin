@@ -13,7 +13,6 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using UEditor.Core;
 
 namespace HZY.Admin
 {
@@ -60,17 +59,6 @@ namespace HZY.Admin
             services.RegisterRepository(Configuration["AppConfiguration:ConnectionString"]);
             services.ScanAppServices();
             services.AddTransient<TakeUpTimeMiddleware>();
-
-            #endregion
-
-            #region UEditor
-
-            //UEditor  编辑器 服务端 注入  configFileRelativePath: "wwwroot/admin/libs/nUeditor/net/config.json", isCacheConfig: false, basePath: "C:/basepath"
-            services.AddUEditorService(
-                configFileRelativePath: _webHostEnvironment.WebRootPath + "/admin/libs/neditor/net/config.json",
-                isCacheConfig: false,
-                basePath: _webHostEnvironment.WebRootPath + "/admin/libs/neditor/net/"
-            );
 
             #endregion
 
