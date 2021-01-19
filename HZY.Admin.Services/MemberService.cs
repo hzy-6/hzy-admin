@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HZY.Admin.Services.Framework;
 using HZY.Framework.Services;
 using HZY.Repository.Entity;
 using HZY.Repository;
@@ -21,13 +22,15 @@ namespace HZY.Admin.Services
     {
         private readonly string _webRootPath;
         private readonly SysUserRepository _sysUserRepository;
+        private readonly UploadService _uploadService;
 
         public MemberService(MemberRepository repository,
             SysUserRepository sysUserRepository,
-            IWebHostEnvironment webHostEnvironment)
+            IWebHostEnvironment webHostEnvironment, UploadService uploadService)
             : base(repository)
         {
             _sysUserRepository = sysUserRepository;
+            _uploadService = uploadService;
             _webRootPath = webHostEnvironment.WebRootPath;
         }
 
@@ -112,12 +115,12 @@ namespace HZY.Admin.Services
 
             if (photo != null)
             {
-                form.Photo = this.HandleUploadImageFile(photo, _webRootPath);
+                form.Photo = this._uploadService.HandleUploadImageFile(photo, _webRootPath);
             }
 
             if (files.Count > 0)
             {
-                var path = files.Select(item => this.HandleUploadFile(item, _webRootPath)).ToList();
+                var path = files.Select(item => this._uploadService.HandleUploadFile(item, _webRootPath)).ToList();
 
                 if (path.Count > 0) form.FilePath = string.Join(",", path);
             }

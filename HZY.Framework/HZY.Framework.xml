@@ -370,34 +370,6 @@
             <param name="byName">别名</param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Framework.Services.AdminBaseService`1.HandleUploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String,System.String[])">
-            <summary>
-            上传文件 辅助函数
-            </summary>
-            <param name="formFile"></param>
-            <param name="webRootPath"></param>
-            <param name="folder"></param>
-            <param name="format"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Framework.Services.AdminBaseService`1.HandleUploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String[])">
-            <summary>
-            上传文件
-            </summary>
-            <param name="iFormFile"></param>
-            <param name="webRootPath"></param>
-            <param name="format"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Framework.Services.AdminBaseService`1.HandleUploadImageFile(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String)">
-            <summary>
-            上传图片
-            </summary>
-            <param name="iFormFile"></param>
-            <param name="webRootPath"></param>
-            <param name="folder"></param>
-            <returns></returns>
-        </member>
         <member name="T:HZY.Framework.Services.FrameworkBaseService`1">
             <summary>
             服务层 基类

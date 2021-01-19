@@ -33,6 +33,11 @@ namespace HZY.Admin.Core
         /// <param name="context"></param>
         public virtual void OnActionExecuting(ActionExecutingContext context)
         {
+            if (!(context.Controller is Controller))
+            {
+                return;
+            }
+
             var controller = (Controller)context.Controller;
 
             //获取 class 上面所有的 自定义 特性

@@ -10,11 +10,8 @@
 @section Scripts{
     <input type="hidden" value='@Html.Raw(ViewData["power"])' id="hidden_power" />
     <input type="hidden" value='@Model' id="hidden_id" />
-    <!-- 配置文件 -->
-    <script src="~/admin/libs/neditor/neditor.config.js"></script>
-    <!-- 编辑器源码文件 -->
-    <script src="~/admin/libs/neditor/neditor.all.min.js"></script>
-    <script src="~/admin/libs/neditor/i18n/zh-cn/zh-cn.js"></script>
+    <!--引入 wangEditor js-->
+    <script src="~/admin/libs/wangEditor.min.js"></script>
     <script type="text/javascript">
         var power = JSON.parse(document.getElementById('hidden_power').value);
         var id = document.getElementById('hidden_id').value;
@@ -33,26 +30,21 @@
                         Photo: null,
                         Files: [],
                         FilesName: [],
-                        editor: {}
-                    }
+                    },
+                    editor: null
                 }
             },
-            computed:{
-                formKey:function (){
+            computed: {
+                formKey: function () {
                     return id ? id : '';
                 }
             },
             created: function () {
-                var _this = this;
-                //编辑器 配置
-                this.form.editor = UE.getEditor('introduce');
-                this.form.editor.addListener('blur', function (e) {
-                    _this.form.vm.model.introduce = _this.form.editor.getContent();
-                });
-                this.loadForm();
+               
             },
             mounted: function () {
-
+                this.initEditor();
+                this.loadForm();
             },
             methods: {
                 loadForm: function () {
@@ -64,12 +56,11 @@
                         _this.form.vm = r.data;
                         //处理文件
                         if (_this.form.vm.model.filePath) _this.form.FilesName = _this.form.vm.model.filePath.split(',');
-                        //处理编辑器值
-                        setTimeout(function () {
-                            _this.form.editor.setContent(_this.form.vm.model.introduce ?
-                                _this.form.vm.model.introduce.replace(/'/g, '\'') :
-                                "");
-                        }, 200);
+
+                        let introduce = _this.form.vm.model.introduce ? _this.form.vm.model.introduce.replace(/'/g, '\'') : "";
+                        console.log(_this.editor, introduce);
+                        _this.editor.txt.html(introduce) // 重新设置编辑器内容
+
                     });
                 },
                 closeWindow: function (delay = 0) {
@@ -108,8 +99,33 @@
                         }
                     });
                 },
+                /**
+                    * 初始化 富文本编辑器
+                    */
+                initEditor: function () {
+                    let t = this;
+                    let E = window.wangEditor;
+                    this.editor = new E('#editor');
+                    // 设置编辑区域高度为 500px
+                    this.editor.config.height = 350;
+                    // 配置 onchange 回调函数
+                    this.editor.config.onchange = function (newHtml) {
+                        //console.log('change 之后最新的 html', newHtml)
+                        t.form.vm.model.introduce = newHtml;
+                    }
+                    // 配置触发 onchange 的时间频率，默认为 200ms
+                    this.editor.config.onchangeTimeout = 300 // 修改为 500ms
+
+                    // 配置 server 接口地址
+                    this.editor.config.uploadImgServer = "/Upload/Images";
+                    this.editor.config.uploadFileName = "editorFileImages";
+                    this.editor.config.uploadImgTimeout = 60 * 1000;
+
+                    //创建
+                    this.editor.create();
+                },
                 photoChange: function (e) {
-                    var files = e.target.files;
+                    let files = e.target.files;
                     if (files.length > 0) {
                         this.form.vm.model.photo = hzyAdmin.getObjectUrl(files[0]); //显示
                         this.form.Photo = files[0];
@@ -227,8 +243,7 @@
             </div>
             <div class="col-sm-12">
                 <h4 class="example-title">简介</h4>
-                <script id="introduce" name="introduce" style="width:100%;height:300px" type="text/plain">
-                </script>
+                <div id="editor"></div>
             </div>
 
         </div>

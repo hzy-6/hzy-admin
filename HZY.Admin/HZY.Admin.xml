@@ -281,6 +281,17 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:HZY.Admin.Controllers.Framework.UploadController">
+            <summary>
+            上传文件控制器
+            </summary>
+        </member>
+        <member name="M:HZY.Admin.Controllers.Framework.UploadController.Images">
+            <summary>
+            上传图片
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Admin.Controllers.MemberController.Index">
             <summary>
             列表页
