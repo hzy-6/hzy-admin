@@ -2,7 +2,7 @@
 
 
 
-#### :yellow_heart: 介绍 
+#### :yellow_heart:介绍 
 后台通配权限管理系统！基于.Net5、Entity Framework Core 5
 
 ### :blue_heart: 代码生成器 
