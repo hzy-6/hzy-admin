@@ -44,7 +44,7 @@ namespace HZY.Admin.Services.Framework
         {
             var query = this.Repository.Select
                     .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), w => w.Name.Contains(search.Name))
-                    .WhereIf(!string.IsNullOrWhiteSpace(search?.LoginName), w => w.Name.Contains(search.LoginName))
+                    .WhereIf(!string.IsNullOrWhiteSpace(search?.LoginName), w => w.LoginName.Contains(search.LoginName))
                     .OrderByDescending(w => w.CreateTime)
                     .Select(w => new
                     {
