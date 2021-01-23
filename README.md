@@ -8,6 +8,9 @@
 ### :blue_heart: 代码生成器 
 https://gitee.com/hzy6/hzy-admin-code-generation
 
+### 后台模板
+https://gitee.com/hzy6/hzy-admin-ui
+
 ###  :cherries: 前后端分离版
 https://gitee.com/hzy6/HzyAdminSpa
 
