@@ -63,11 +63,11 @@ namespace HZY.Redis.Service
         {
             var database = redisService.Database;
 
-            var keyExists = await database.KeyExistsAsync(key);
-            if (keyExists)
-            {
-                await database.KeyDeleteAsync(key);
-            }
+            // var keyExists = await database.KeyExistsAsync(key);
+            // if (keyExists)
+            // {
+            //     await database.KeyDeleteAsync(key);
+            // }
 
             var redisPackage = new RedisPackage<T>(data, cacheTime);
 
