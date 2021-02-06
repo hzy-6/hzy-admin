@@ -3,10 +3,10 @@
 
 
 ### :yellow_heart: 介绍 
-后台通配权限管理系统！基于.Net5、Entity Framework Core 5
+后台通配权限管理系统！基于.Net5、FreeSql
 
 ### :blue_heart: 代码生成器 
-https://gitee.com/hzy6/hzy-admin-code-generation
+https://gitee.com/hzy6/hzy-admin-code-generation(FreeSql版本暂时还不支持)
 
 ### 后台模板
 https://gitee.com/hzy6/hzy-admin-ui
