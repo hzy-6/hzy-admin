@@ -7,10 +7,8 @@ using HZY.Framework;
 using HZY.Framework.Services;
 using HZY.Repository.Entity.Framework;
 using HZY.Repository.Core.Models;
-using HZY.Repository.Core.Provider;
 using HZY.Repository.Framework;
 using HZY.Toolkit;
-using Microsoft.EntityFrameworkCore;
 
 namespace HZY.Admin.Services.Framework
 {
@@ -37,33 +35,39 @@ namespace HZY.Admin.Services.Framework
         /// 获取列表数据
         /// </summary>
         /// <param name="page"></param>
-        /// <param name="rows"></param>
+        /// <param name="size"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        public async Task<PagingViewModel> FindListAsync(int page, int rows, SysUser search)
+        public async Task<PagingViewModel> FindListAsync(int page, int size, SysUser search)
         {
-            var query = this.Repository.Select
+            var query = await this.Repository.Select
                     .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), w => w.Name.Contains(search.Name))
-                    .WhereIf(!string.IsNullOrWhiteSpace(search?.LoginName), w => w.Name.Contains(search.LoginName))
+                    .WhereIf(!string.IsNullOrWhiteSpace(search?.LoginName), w => w.LoginName.Contains(search.LoginName))
                     .OrderByDescending(w => w.CreateTime)
-                    .Select(w => new
+                    .Count(out var total)
+                    .Page(page, size)
+                    .ToListAsync(w => new
                     {
                         w.Id,
                         w.Name,
                         w.LoginName,
-                        当前角色 = string.Join(",",
-                            from userRole in this.Repository.Orm.SysUserRole
-                            join role in this.Repository.Orm.SysRole on userRole.RoleId equals role.Id
-                            where userRole.UserId == w.Id
-                            select role.Name
-                        ),
+                        // 所属角色 = string.Join(",", this.Repository.Orm
+                        //     .Select<SysUserRole, SysRole>()
+                        //     .LeftJoin(t => t.t1.RoleId == t.t2.Id)
+                        //     .Where(t => t.t1.UserId == w.Id)
+                        //     .ToList(t => t.t2.Name)),
+                        所属角色 = string.Join(",", this.Repository.Orm
+                            .Select<SysUserRole, SysRole>()
+                            .LeftJoin((a, b) => a.RoleId == b.Id)
+                            .Where((a, b) => a.UserId == w.Id)
+                            .ToList((a, b) => b.Name)),
                         w.Email,
                         UpdateTime = w.UpdateTime.ToString("yyyy-MM-dd"),
                         CreateTime = w.CreateTime.ToString("yyyy-MM-dd")
                     })
                 ;
 
-            return await this.Repository.AsPagingViewModelAsync(query, page, rows);
+            return await this.Repository.AsPagingViewModelAsync(query, page, size, total);
         }
 
         /// <summary>
@@ -75,7 +79,7 @@ namespace HZY.Admin.Services.Framework
         {
             foreach (var item in ids)
             {
-                var userModel = await this.Repository.FindByIdAsync(item);
+                var userModel = await this.Repository.FindAsync(item);
                 if (userModel.IsDelete == 2)
                     MessageBox.Show("该信息不能删除！");
                 await this._sysUserRoleRepository.DeleteAsync(w => w.UserId == item);
@@ -92,7 +96,7 @@ namespace HZY.Admin.Services.Framework
         {
             var res = new Dictionary<string, object>();
 
-            var model = (await this.Repository.FindByIdAsync(id)).NullSafe();
+            var model = (await this.Repository.FindAsync(id)).NullSafe();
             var roleIds = await this._sysUserRoleRepository.Select
                 .Where(w => w.UserId == id)
                 .Select(w => w.RoleId)
@@ -202,10 +206,10 @@ namespace HZY.Admin.Services.Framework
         {
             if (string.IsNullOrEmpty(oldPassword)) MessageBox.Show("旧密码不能为空！");
             if (string.IsNullOrEmpty(newPassword)) MessageBox.Show("新密码不能为空！");
-            var sysUser = await this.Repository.FindByIdAsync(this._accountService.GetAccountInfo().UserId);
+            var sysUser = await this.Repository.FindAsync(this._accountService.GetAccountInfo().UserId);
             if (sysUser.Password != oldPassword) MessageBox.Show("旧密码不正确！");
             sysUser.Password = newPassword;
-            return await this.Repository.UpdateByIdAsync(sysUser);
+            return await this.Repository.UpdateAsync(sysUser);
         }
     }
 }

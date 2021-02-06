@@ -6,7 +6,6 @@ using HZY.Admin.Model.Dto;
 using HZY.Framework.Services;
 using HZY.Repository.Entity.Framework;
 using HZY.Repository.Framework;
-using Microsoft.EntityFrameworkCore;
 
 namespace HZY.Admin.Services.Framework
 {

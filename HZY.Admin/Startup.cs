@@ -1,10 +1,8 @@
-using System.Text.Encodings.Web;
 using System.Text.Json;
-using System.Text.Unicode;
 using HZY.Admin.Core;
 using HZY.Framework.Filter;
 using HZY.Framework.Middleware;
-using HZY.Repository.Core.Provider;
+using HZY.Repository.Core;
 using HZY.Toolkit;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -18,12 +16,9 @@ namespace HZY.Admin
 {
     public class Startup
     {
-        private readonly IWebHostEnvironment _webHostEnvironment;
-
-        public Startup(IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
+        public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
-            _webHostEnvironment = webHostEnvironment;
         }
 
         private IConfiguration Configuration { get; }
@@ -45,9 +40,11 @@ namespace HZY.Admin
                 ;
 
             #region 取消默认验证Api 接收参数模型 的 验证特性 如有 [ApiController]
+
             services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
+
             #endregion
-            
+
             #region HttpContext
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
@@ -74,7 +71,6 @@ namespace HZY.Admin
             });
 
             #endregion
-
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -105,7 +101,6 @@ namespace HZY.Admin
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
         }
     }
 }

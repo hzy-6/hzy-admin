@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using HZY.Framework.Services;
 using HZY.Repository.Entity.Framework;
 using HZY.Repository.Core.Models;
-using HZY.Repository.Core.Provider;
 using HZY.Repository.Framework;
 using HZY.Toolkit;
-using Microsoft.EntityFrameworkCore;
 
 namespace HZY.Admin.Services.Framework
 {
@@ -25,15 +22,17 @@ namespace HZY.Admin.Services.Framework
         /// 获取列表数据
         /// </summary>
         /// <param name="page"></param>
-        /// <param name="rows"></param>
+        /// <param name="size"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        public async Task<PagingViewModel> FindListAsync(int page, int rows, SysFunction search)
+        public async Task<PagingViewModel> FindListAsync(int page, int size, SysFunction search)
         {
-            var query = this.Repository.Select
+            var query = await this.Repository.Select
                     .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.Name.Contains(search.Name))
-                    .OrderBy(w=>w.Number)
-                    .Select(w => new
+                    .OrderBy(w => w.Number)
+                    .Count(out var total)
+                    .Page(page, size)
+                    .ToListAsync(w => new
                     {
                         w.Id,
                         w.Number,
@@ -44,7 +43,7 @@ namespace HZY.Admin.Services.Framework
                     })
                 ;
 
-            return await this.Repository.AsPagingViewModelAsync(query, page, rows);
+            return await this.Repository.AsPagingViewModelAsync(query, page, size, total);
         }
 
         /// <summary>
@@ -52,9 +51,9 @@ namespace HZY.Admin.Services.Framework
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
-        public async Task DeleteListAsync(List<Guid> ids)
+        public async Task DeleteListAsync(IEnumerable<Guid> ids)
         {
-            await this.Repository.DeleteByIdsAsync(ids);
+            await this.Repository.DeleteAsync(ids);
         }
 
         /// <summary>
@@ -65,7 +64,7 @@ namespace HZY.Admin.Services.Framework
         public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
         {
             var res = new Dictionary<string, object>();
-            var model = await this.Repository.FindByIdAsync(id);
+            var model = await this.Repository.FindAsync(id);
             model = model.NullSafe();
 
             if (model.Id == Guid.Empty)
@@ -87,7 +86,7 @@ namespace HZY.Admin.Services.Framework
         {
             return await this.Repository.InsertOrUpdateAsync(form);
         }
-        
+
         /// <summary>
         /// 导出Excel
         /// </summary>
@@ -98,6 +97,5 @@ namespace HZY.Admin.Services.Framework
             var tableViewModel = await this.FindListAsync(1, 999999, search);
             return this.ExportExcelByPagingViewModel(tableViewModel);
         }
-        
     }
 }

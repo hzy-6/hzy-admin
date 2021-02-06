@@ -72,7 +72,7 @@ namespace HZY.Admin.Services.Framework
         /// <returns></returns>
         private AccountInfo FindAccountInfoByUserId(Guid id)
         {
-            var sysUser = this.Repository.FindById(id);
+            var sysUser = this.Repository.Find(id);
             if (sysUser == null) return default;
             var sysUserRoles = this._sysUserRoleRepository.Select
                     .Where(w => w.UserId == sysUser.Id)

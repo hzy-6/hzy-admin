@@ -6,10 +6,8 @@ using HZY.Framework;
 using HZY.Framework.Services;
 using HZY.Repository.Entity.Framework;
 using HZY.Repository.Core.Models;
-using HZY.Repository.Core.Provider;
 using HZY.Repository.Framework;
 using HZY.Toolkit;
-using Microsoft.EntityFrameworkCore;
 
 namespace HZY.Admin.Services.Framework
 {
@@ -30,29 +28,28 @@ namespace HZY.Admin.Services.Framework
         /// 获取列表数据
         /// </summary>
         /// <param name="page"></param>
-        /// <param name="rows"></param>
+        /// <param name="size"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        public async Task<PagingViewModel> FindListAsync(int page, int rows, SysRole search)
+        public async Task<PagingViewModel> FindListAsync(int page, int size, SysRole search)
         {
-            var query = this.Repository.Select
+            var query = await this.Repository.Select
                     .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.Name.Contains(search.Name))
                     .OrderByDescending(w => w.CreateTime)
-                    .Select(w => new
+                    .Count(out var total)
+                    .Page(page, size)
+                    .ToListAsync(w => new
                     {
                         w.Id,
                         w.Number,
                         w.Name,
-                        w.IsDelete,
+                        IsDelete = w.IsDelete == 1 ? "是" : "否",
                         UpdateTime = w.UpdateTime.ToString("yyyy-MM-dd"),
                         CreateTime = w.CreateTime.ToString("yyyy-MM-dd"),
                     })
                 ;
 
-            return await this.Repository.AsPagingViewModelAsync(query, page, rows, new List<TableViewColumnHead>()
-            {
-                new TableViewColumnHead("Name", "角色名称 test", 200)
-            });
+            return await this.Repository.AsPagingViewModelAsync(query, page, size, total);
         }
 
         /// <summary>
@@ -64,7 +61,7 @@ namespace HZY.Admin.Services.Framework
         {
             foreach (var item in ids)
             {
-                var role = await this.Repository.FindByIdAsync(item);
+                var role = await this.Repository.FindAsync(item);
                 if (role.IsDelete == 2)
                     MessageBox.Show("该信息不能删除!");
                 await this.Repository.DeleteAsync(role);
@@ -80,7 +77,7 @@ namespace HZY.Admin.Services.Framework
         public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
         {
             var res = new Dictionary<string, object>();
-            var model = await this.Repository.FindByIdAsync(id);
+            var model = await this.Repository.FindAsync(id);
             model = model.NullSafe();
 
             if (id == Guid.Empty)

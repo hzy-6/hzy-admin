@@ -1,6 +1,5 @@
 ﻿using HZY.Repository.Entity.Framework;
 using HZY.Repository.Core;
-using HZY.Repository.Core.Provider;
 
 namespace HZY.Repository.Framework
 {
@@ -9,7 +8,7 @@ namespace HZY.Repository.Framework
     /// </summary>
     public class SysUserRepository : AppRepository<SysUser>
     {
-        public SysUserRepository(AppDbContext context) : base(context)
+        public SysUserRepository(IFreeSql freeSql) : base(freeSql)
         {
         }
     }

@@ -15,36 +15,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <None Update="Core\temp\FreeSqlSelectExtensions.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FreeSqlSelectExtensions.cs</LastGenOutput>
-    </None>
-    <None Update="Core\temp\FreeSqlSelectHzyTupleExtensions.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>FreeSqlSelectHzyTupleExtensions.cs</LastGenOutput>
-    </None>
-    <None Update="HZY.Repository.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Compile Update="Core\temp\FreeSqlSelectExtensions.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FreeSqlSelectExtensions.tt</DependentUpon>
-    </Compile>
-    <Compile Update="Core\temp\FreeSqlSelectHzyTupleExtensions.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>FreeSqlSelectHzyTupleExtensions.tt</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.0" />
     <PackageReference Include="NPOI" Version="2.5.1" />
+    <!--    <PackageReference Include="FreeSql" Version="2.3.0-preview20210123" />-->
+    <!--    <PackageReference Include="FreeSql.Provider.SqlServer" Version="2.3.0-preview20210123" />-->
+    <!--    <PackageReference Include="FreeSql.Repository" Version="2.3.0-preview20210123" />-->
+    <!--    <PackageReference Include="FreeSql.Extensions.Linq" Version="2.3.0-preview20210123" />-->
+    <PackageReference Include="FreeSql" Version="2.0.105" />
+    <PackageReference Include="FreeSql.Provider.SqlServer" Version="2.0.105" />
+    <PackageReference Include="FreeSql.Repository" Version="2.0.105" />
+    <PackageReference Include="FreeSql.Extensions.Linq" Version="2.0.105" />
   </ItemGroup>
 
   <ItemGroup>

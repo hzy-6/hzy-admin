@@ -50,8 +50,8 @@
 
                     hzyAdmin.httpPost(path, _this.search.vm, function (r) {
                         if (r.code !== 1) return;
-                        _this.table.data = r.data.result;
-                        _this.table.totalCount = r.data.count;
+                        _this.table.data = r.data.dataSource;
+                        _this.table.totalCount = r.data.total;
                         _this.table.columns = r.data.columns;
                     });
                 },

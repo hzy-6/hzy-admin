@@ -7,7 +7,7 @@ using HZY.Framework.Services;
 using HZY.Repository.Entity;
 using HZY.Repository;
 using HZY.Repository.Core.Models;
-using HZY.Repository.Core.Provider;
+using HZY.Repository.Entity.Framework;
 using HZY.Repository.Framework;
 using HZY.Toolkit;
 using Microsoft.AspNetCore.Hosting;
@@ -38,19 +38,18 @@ namespace HZY.Admin.Services
         /// 获取列表数据
         /// </summary>
         /// <param name="page"></param>
-        /// <param name="rows"></param>
+        /// <param name="size"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        public async Task<PagingViewModel> FindListAsync(int page, int rows, Member search)
+        public async Task<PagingViewModel> FindListAsync(int page, int size, Member search)
         {
-            var query = (
-                        from member in this.Repository.Orm.Member
-                        from user in this.Repository.Orm.SysUser.Where(w => w.Id == member.UserId).DefaultIfEmpty()
-                        select new {t1 = member, t2 = user}
-                    )
+            var query = await this.Repository.Orm.Select<Member, SysUser>()
+                    .LeftJoin(w => w.t1.UserId == w.t2.Id)
                     .WhereIf(!string.IsNullOrWhiteSpace(search.Name), w => w.t1.Name.Contains(search.Name))
                     .OrderBy(w => w.t1.Number)
-                    .Select(w => new
+                    .Count(out var total)
+                    .Page(page, size)
+                    .ToListAsync(w => new
                     {
                         w.t1.Id,
                         w.t1.Number,
@@ -67,7 +66,7 @@ namespace HZY.Admin.Services
                     })
                 ;
 
-            return await this.Repository.AsPagingViewModelAsync(query, page, rows);
+            return await this.Repository.AsPagingViewModelAsync(query, page, size, total);
         }
 
         /// <summary>
@@ -77,7 +76,7 @@ namespace HZY.Admin.Services
         /// <returns></returns>
         public async Task DeleteListAsync(List<Guid> ids)
         {
-            await this.Repository.DeleteByIdsAsync(ids);
+            await this.Repository.DeleteAsync(ids);
         }
 
         /// <summary>
@@ -88,9 +87,9 @@ namespace HZY.Admin.Services
         public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
         {
             var res = new Dictionary<string, object>();
-            var model = await this.Repository.FindByIdAsync(id);
+            var model = await this.Repository.FindAsync(id);
             model = model.NullSafe();
-            var sysUser = await _sysUserRepository.FindByIdAsync(model.UserId);
+            var sysUser = await _sysUserRepository.FindAsync(model.UserId.ToGuid());
             sysUser = sysUser.NullSafe();
             res[nameof(model)] = model;
             res[nameof(sysUser)] = sysUser;

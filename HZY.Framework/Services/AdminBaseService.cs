@@ -31,7 +31,7 @@ namespace HZY.Framework.Services
             var workbook = new HSSFWorkbook();
             var sheet = workbook.CreateSheet();
             //数据
-            var data = pagingViewModel.Result;
+            var data = pagingViewModel.DataSource;
             var cols = pagingViewModel.Columns.Where(w => w.Show).ToList();
             //填充表头
             var dataRow = sheet.CreateRow(0);

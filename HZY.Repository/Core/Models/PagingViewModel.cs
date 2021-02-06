@@ -15,22 +15,22 @@ namespace HZY.Repository.Core.Models
         /// <summary>
         /// 转换后数据
         /// </summary>
-        public List<Dictionary<string, object>> Result { get; set; } = new List<Dictionary<string, object>>();
+        public List<Dictionary<string, object>> DataSource { get; set; } = new List<Dictionary<string, object>>();
 
         /// <summary>
         /// 总数
         /// </summary>
-        public int Count { get; set; }
+        public long Total { get; set; }
 
         /// <summary>
         /// 总页数
         /// </summary>
-        public int PageCount { get; set; }
+        public long PageCount { get; set; }
 
         /// <summary>
         /// 一页显示多少条
         /// </summary>
-        public int Rows { get; set; }
+        public int Size { get; set; }
 
         /// <summary>
         /// 页码
