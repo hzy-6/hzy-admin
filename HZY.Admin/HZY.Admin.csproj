@@ -28,11 +28,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Remove="Object\Vo\MemberVo.cs" />
-    <Compile Remove="Object\Vo\SysUserFormVo.cs" />
-  </ItemGroup>
-
-  <ItemGroup>
     <None Update="HZY.Admin.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
