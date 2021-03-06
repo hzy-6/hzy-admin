@@ -40,7 +40,7 @@ namespace HZY.Admin.Services.Framework
             var menuId = form.MenuId;
             var functionIds = form.FunctionIds;
 
-            await this.Repository.DeleteAsync(w => w.RoleId == roleId & w.MenuId == menuId);
+            await this.Repository.DeleteAsync(w => w.RoleId == roleId && w.MenuId == menuId);
 
             foreach (var item in functionIds)
             {
