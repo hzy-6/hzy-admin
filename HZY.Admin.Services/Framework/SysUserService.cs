@@ -131,21 +131,22 @@ namespace HZY.Admin.Services.Framework
             await this.Repository.InsertOrUpdateAsync(form.Model);
 
             //变更用户角色
-            if (roleIds.Count <= 0) return model;
-
-            var sysUserRoles = await this._sysUserRoleRepository.Select
-                .Where(w => w.UserId == model.Id)
-                .ToListAsync();
-
-            await this._sysUserRoleRepository.DeleteAsync(w => w.UserId == model.Id);
-            foreach (var item in roleIds)
+            if (form.RoleIds.Count > 0)
             {
-                var sysUserRole = sysUserRoles.FirstOrDefault(w => w.RoleId == item).NullSafe();
+                var sysUserRoles = await this._sysUserRoleRepository.Select
+                    .Where(w => w.UserId == model.Id)
+                    .ToListAsync();
 
-                sysUserRole.Id = sysUserRole.Id == Guid.Empty ? Guid.NewGuid() : sysUserRole.Id;
-                sysUserRole.RoleId = item;
-                sysUserRole.UserId = model.Id;
-                await this._sysUserRoleRepository.InsertAsync(sysUserRole);
+                await this._sysUserRoleRepository.DeleteAsync(w => w.UserId == model.Id);
+                foreach (var item in form.RoleIds)
+                {
+                    var sysUserRole = sysUserRoles.FirstOrDefault(w => w.RoleId == item).NullSafe();
+
+                    sysUserRole.Id = Guid.NewGuid();
+                    sysUserRole.RoleId = item;
+                    sysUserRole.UserId = model.Id;
+                    await this._sysUserRoleRepository.InsertAsync(sysUserRole);
+                }
             }
 
             return model;
