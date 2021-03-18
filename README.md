@@ -15,8 +15,11 @@ https://gitee.com/hzy6/hzy-admin-ui
 https://gitee.com/hzy6/HzyAdminSpa
 
 ### Java 后台框架
-https://gitee.com/hzy6/hzy-admin-thymeleaf
-https://gitee.com/hzy6/hzy-admin-spa
+
+1. https://gitee.com/hzy6/hzy-admin-thymeleaf
+
+2. https://gitee.com/hzy6/hzy-admin-spa
+
 
 #### 软件架构
 开发环境：vs2019 、 .Net5.0
