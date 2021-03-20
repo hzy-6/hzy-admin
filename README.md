@@ -33,16 +33,10 @@ https://gitee.com/hzy6/HzyAdminSpa
 
 
 #### 部分界面截图
-![登录](https://images.gitee.com/uploads/images/2020/0314/224558_f569321d_1242080.png "屏幕截图.png")
-![主页](https://images.gitee.com/uploads/images/2020/0811/200450_a13eb19f_1242080.png "屏幕截图.png")
-![用户管理](https://images.gitee.com/uploads/images/2020/0811/200618_0fc77246_1242080.png "屏幕截图.png")
-![组件展示页](https://images.gitee.com/uploads/images/2020/0402/230647_c5ad87dc_1242080.png "屏幕截图.png")
-![会员管理](https://images.gitee.com/uploads/images/2020/0401/104952_b7ce1127_1242080.png "屏幕截图.png")
-![操作日志](https://images.gitee.com/uploads/images/2020/0811/200826_91d63164_1242080.png "屏幕截图.png")
-![换肤](https://images.gitee.com/uploads/images/2020/0401/105141_f38425ce_1242080.png "屏幕截图.png")
-![角色功能](https://images.gitee.com/uploads/images/2020/0401/105211_b390503f_1242080.png "屏幕截图.png")
-![输入图片说明](https://images.gitee.com/uploads/images/2020/1201/183418_626fb029_1242080.png "屏幕截图.png")
-
+![登录](https://images.gitee.com/uploads/images/2021/0320/151018_b51ad931_1242080.png "屏幕截图.png")
+![主页](https://images.gitee.com/uploads/images/2021/0320/151041_4daa85aa_1242080.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0320/151202_438941c7_1242080.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0320/151337_c5a9e1d4_1242080.png "屏幕截图.png")
 
 #### 使用说明
 
