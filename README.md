@@ -36,6 +36,7 @@ https://gitee.com/hzy6/HzyAdminSpa
 ![登录](https://images.gitee.com/uploads/images/2021/0320/151018_b51ad931_1242080.png "屏幕截图.png")
 ![主页](https://images.gitee.com/uploads/images/2021/0320/151041_4daa85aa_1242080.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0320/151202_438941c7_1242080.png "屏幕截图.png")
+![输入图片说明](https://images.gitee.com/uploads/images/2021/0320/151808_c26e1112_1242080.png "屏幕截图.png")
 ![输入图片说明](https://images.gitee.com/uploads/images/2021/0320/151337_c5a9e1d4_1242080.png "屏幕截图.png")
 
 #### 使用说明
