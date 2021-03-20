@@ -6,7 +6,7 @@ namespace HZY.Admin.Model.Dto
 {
     public class SysMenuFormDto
     {
-        public SysMenu Model { get; set; }
+        public SysMenu Form { get; set; }
         public List<Guid> FunctionIds { get; set; }
     }
 }

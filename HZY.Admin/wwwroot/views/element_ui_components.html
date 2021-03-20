@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta name="keywords" content="hzyadmin,hzy,HZY,HZY.AdminRazor,hzyadminspa,HZY.AdminSpa">
+    <meta charset="UTF-8">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Safari浏览器添加到主屏幕（IOS） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <!--element-ui-->
+    <link href="/libs/element-ui/lib/theme-chalk/index.css" rel="stylesheet">
+    <!--hzy-admin-ui-public-->
+    <link href="/styles/hzy-admin-ui.css" rel="stylesheet">
+    <!--hzy-admin-ui-tools-->
+    <link href="/styles/hzy-admin-ui-tools.css" rel="stylesheet">
+    <style>
+        body {
+            background-color: #f0f2f5 !important;
+        }
+        
+        iframe {
+            width: 100%;
+            height: calc(100vh - 35px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app" v-cloak class="p-15">
+        <el-card shadow="never" :body-style="{ padding: '0px' }">
+            <iframe src="https://element.eleme.cn/#/zh-CN/component/icon" frameborder="0"></iframe>
+        </el-card>
+    </div>
+
+    <!-- jquery-3.2.1.min.js -->
+    <script src="/libs/jquery/jquery-3.2.1.min.js"></script>
+    <!-- layer -->
+    <script src="/libs/layer/layer.js"></script>
+    <!--vue-->
+    <script src="/libs/vue.js"></script>
+    <!--moment-->
+    <script src="/libs/moment.min.js"></script>
+    <!--element-ui-->
+    <script src="/libs/element-ui/lib/index.js"></script>
+    <!--axios-->
+    <script src="/libs/axios.min.js"></script>
+    <!--tools-->
+    <script src="/scripts/tools.js"></script>
+    <!--httpClient-->
+    <script src="/scripts/httpClient.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: function() {
+                return {}
+            },
+            created() {},
+            mounted: function() {
+
+            },
+            methods: {},
+        });
+    </script>
+
+</body>
+
+</html>

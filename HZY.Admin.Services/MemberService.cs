@@ -87,11 +87,11 @@ namespace HZY.Admin.Services
         public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
         {
             var res = new Dictionary<string, object>();
-            var model = await this.Repository.FindAsync(id);
-            model = model.NullSafe();
-            var sysUser = await _sysUserRepository.FindAsync(model.UserId.ToGuid());
+            var form = await this.Repository.FindAsync(id);
+            form = form.NullSafe();
+            var sysUser = await _sysUserRepository.FindAsync(form.UserId.ToGuid());
             sysUser = sysUser.NullSafe();
-            res[nameof(model)] = model;
+            res[nameof(form)] = form;
             res[nameof(sysUser)] = sysUser;
             return res;
         }
@@ -114,12 +114,12 @@ namespace HZY.Admin.Services
 
             if (photo != null)
             {
-                form.Photo = this._uploadService.HandleUploadImageFile(photo, _webRootPath);
+                form.Photo = this._uploadService.HandleUploadImageFile(photo);
             }
 
             if (files.Count > 0)
             {
-                var path = files.Select(item => this._uploadService.HandleUploadFile(item, _webRootPath)).ToList();
+                var path = files.Select(item => this._uploadService.HandleUploadFile(item)).ToList();
 
                 if (path.Count > 0) form.FilePath = string.Join(",", path);
             }

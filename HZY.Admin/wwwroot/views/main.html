@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?90d9b1016c84f436fc9b4b318f5a0ff9";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <meta name="keywords" content="hzyadmin,hzy,HZY,HZY.AdminRazor,hzyadminspa,HZY.AdminSpa">
+    <meta charset="UTF-8">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Safari浏览器添加到主屏幕（IOS） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <!--[if lt IE 9]>
+        <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <title>HzyAdminUI</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!--nprogress-->
+    <link href="/libs/nprogress/nprogress.css" rel="stylesheet">
+    <!--element-ui-->
+    <link href="/libs/element-ui/lib/theme-chalk/index.css" rel="stylesheet">
+    <!--hzy-admin-ui-public-->
+    <link href="/styles/hzy-admin-ui.css" rel="stylesheet">
+    <!--hzy-admin-ui-tools-->
+    <link href="/styles/hzy-admin-ui-tools.css" rel="stylesheet">
+    <!--hzy-admin-ui-layout-->
+    <link href="/styles/hzy-admin-ui-layout.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="app" v-cloak class="hzy-admin-box">
+        <el-container>
+            <!--移动设备菜单模式-->
+            <el-drawer title="我是标题" :visible.sync="isCollapse" :with-header="false" size="200px" direction="ltr" v-if="isMobile">
+                <div style="height: 100%;" :style="{backgroundColor:menuTheme.backgroundColor}">
+                    <div class="hzy-admin-logo">
+                        HzyAdminUI
+                    </div>
+                    <el-menu :default-active="activeMenuKey" @select="handleMenuSelect" :background-color="menuTheme.backgroundColor" :text-color="menuTheme.textColor" :active-text-color="menuTheme.activeTextColor">
+                        <el-menu-item index="1">
+                            <i class="el-icon-menu"></i>
+                            <span slot="title">首页</span>
+                        </el-menu-item>
+                        <el-menu-item index="2">
+                            <i class="el-icon-menu"></i>
+                            <span slot="title">ElementUI 组件库</span>
+                        </el-menu-item>
+                        <el-submenu index="3">
+                            <template slot="title">
+                                <i class="el-icon-location"></i>
+                                <span>G2 图表</span>
+                            </template>
+                            <el-menu-item index="4">Chart 基础</el-menu-item>
+                            <el-menu-item index="5">更多图形库</el-menu-item>
+                        </el-submenu>
+                        <el-submenu index="6">
+                            <template slot="title">
+                                <i class="el-icon-location"></i>
+                                <span>列表</span>
+                            </template>
+                            <el-menu-item index="7">基础表格</el-menu-item>
+                            <el-menu-item index="8">标准列表</el-menu-item>
+                        </el-submenu>
+                        <el-menu-item index="9">
+                            <i class="el-icon-menu"></i>
+                            <span slot="title">按钮Button</span>
+                        </el-menu-item>
+                        <el-menu-item index="10">
+                            <i class="el-icon-document"></i>
+                            <span slot="title">wangEditor编辑器</span>
+                        </el-menu-item>
+                    </el-menu>
+                </div>
+            </el-drawer>
+            <!--pc 端 菜单-->
+            <el-aside :width="leftWidth" :style="{backgroundColor:menuTheme.backgroundColor}" v-else>
+                <div class="hzy-admin-logo">
+                    HzyAdminUI
+                </div>
+                <el-menu :default-active="activeMenuKey" @select="handleMenuSelect" :collapse="isCollapse" :background-color="menuTheme.backgroundColor" :text-color="menuTheme.textColor" :active-text-color="menuTheme.activeTextColor">
+                    <el-menu-item index="1">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">首页</span>
+                    </el-menu-item>
+                    <el-menu-item index="2">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">ElementUI 组件库</span>
+                    </el-menu-item>
+                    <el-submenu index="3">
+                        <template slot="title">
+                            <i class="el-icon-location"></i>
+                            <span>G2 图表</span>
+                        </template>
+                        <el-menu-item index="4">Chart 基础</el-menu-item>
+                        <el-menu-item index="5">更多图形库</el-menu-item>
+                    </el-submenu>
+                    <el-submenu index="6">
+                        <template slot="title">
+                            <i class="el-icon-location"></i>
+                            <span>列表</span>
+                        </template>
+                        <el-menu-item index="7">基础表格</el-menu-item>
+                        <el-menu-item index="8">标准列表</el-menu-item>
+                    </el-submenu>
+                    <el-menu-item index="9">
+                        <i class="el-icon-menu"></i>
+                        <span slot="title">按钮Button</span>
+                    </el-menu-item>
+                    <el-menu-item index="10">
+                        <i class="el-icon-document"></i>
+                        <span slot="title">wangEditor编辑器</span>
+                    </el-menu-item>
+                </el-menu>
+            </el-aside>
+            <el-container>
+                <el-header :class="headerTheme">
+                    <div class="hzy-admin-header-btn" @click="isCollapse=!isCollapse">
+                        <i class="el-icon-s-fold" v-if="!isCollapse"></i>
+                        <i class="el-icon-s-unfold" v-else></i>
+                    </div>
+                    <div style="flex: 1 1 0%"></div>
+                    <div class="hzy-admin-header-btn" @click="reload">
+                        <i class="el-icon-refresh-right"></i>
+                    </div>
+                    <div class="hzy-admin-header-btn" @click="onSettings">
+                        <i class="el-icon-setting"></i>
+                    </div>
+                    <div class="hzy-admin-header-btn" @click="onFullScreen">
+                        <i class="el-icon-full-screen"></i>
+                    </div>
+                    <div class="hzy-admin-header-btn">
+                        <el-dropdown>
+                            <span class="el-dropdown-link">
+                                <i class="el-icon-user"></i>&nbsp;&nbsp; HZY
+                            </span>
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item>
+                                    <div @click="logout">
+                                        <i class="el-icon-switch-button"></i>&nbsp;&nbsp;退出登录
+                                    </div>
+                                </el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+                    </div>
+                </el-header>
+                <el-main>
+                    <el-tabs v-model="activeTabKey" type="border-card" closable @tab-remove="removeTab" @tab-click="tabChange">
+                        <el-tab-pane v-for="(item, index) in views" :key="item.key" :name="item.key">
+                            <template slot="label">
+                                <span>
+                                    <el-dropdown>
+                                        <i class="el-icon-more pr-10"></i>
+                                        <el-dropdown-menu slot="dropdown">
+                                            <el-dropdown-item>
+                                                <div @click="tabCloseCurrent">关闭当前</div>
+                                            </el-dropdown-item>
+                                            <el-dropdown-item>
+                                                <div @click="tabCloseOther">关闭其他</div>
+                                            </el-dropdown-item>
+                                            <el-dropdown-item>
+                                                <div @click="tabCloseAll">关闭全部</div>
+                                            </el-dropdown-item>
+                                        </el-dropdown-menu>
+                                    </el-dropdown>
+                                    {{item.title}}
+                                </span>
+                            </template>
+
+                            <iframe frameborder="0" scrolling="auto" :src="item.url" :name="item.key"></iframe>
+                        </el-tab-pane>
+                    </el-tabs>
+                </el-main>
+            </el-container>
+        </el-container>
+        <!--主题设置-->
+        <el-drawer title="我是标题" :visible.sync="setting.state" :with-header="false" :direction="setting.direction" size="300px" class="hzy-admin-settings">
+            <el-divider>主题颜色</el-divider>
+            <div class="hzy-admin-skin-list mb-5 text-center">
+                <div class="hzy-admin-skin-item" v-for="(item, index) in headerThemes" :key="index" :style="{ background: item.color }" @click="onHeaderTheme(item.className)">
+                </div>
+            </div>
+            <el-divider>菜单颜色</el-divider>
+            <div class="mt-5 text-center">
+                <el-radio-group v-model="menuThemeType">
+                    <el-radio label="dark">暗色</el-radio>
+                    <el-radio label="light">亮色</el-radio>
+                </el-radio-group>
+            </div>
+        </el-drawer>
+    </div>
+
+    <!-- jquery-3.2.1.min.js -->
+    <script src="/libs/jquery/jquery-3.2.1.min.js"></script>
+    <!-- layer -->
+    <script src="/libs/layer/layer.js"></script>
+    <!--nprogress-->
+    <script src="/libs/nprogress/nprogress.js"></script>
+    <!--vue-->
+    <script src="/libs/vue.js"></script>
+    <!--moment-->
+    <script src="/libs/moment.min.js"></script>
+    <!--element-ui-->
+    <script src="/libs/element-ui/lib/index.js"></script>
+    <!--axios-->
+    <script src="/libs/axios.min.js"></script>
+    <!--tools-->
+    <script src="/scripts/tools.js"></script>
+    <!--httpClient-->
+    <script src="/scripts/httpClient.js"></script>
+    <script type="text/javascript">
+        window.HZYADMINUI = new Vue({
+            el: "#app",
+            data: function() {
+                return {
+                    isCollapse: false,
+                    leftWidth: '200px',
+                    menuThemeType: 'dark', //light
+                    menuTheme: {
+                        backgroundColor: "#001529",
+                        textColor: "hsla(0, 0%, 100%, .65)",
+                        activeTextColor: "#1890ff"
+                    },
+                    routers: [],
+                    views: [],
+                    activeMenuKey: '',
+                    activeTabKey: '',
+                    //全屏
+                    fullscreen: false,
+                    //settings
+                    setting: {
+                        state: false,
+                        direction: 'rtl'
+                    },
+                    headerTheme: 'hzy-admin-header-light',
+                    headerThemes: [{
+                        className: "hzy-admin-header-light",
+                        color: "#ffffff"
+                    }, {
+                        className: "hzy-admin-header-dark",
+                        color: "#001529"
+                    }, {
+                        className: "hzy-admin-header-blue",
+                        color: "#1890ff"
+                    }, {
+                        className: "hzy-admin-header-red",
+                        color: "#f5222d"
+                    }, {
+                        className: "hzy-admin-header-orange",
+                        color: "#fa541c"
+                    }, {
+                        className: "hzy-admin-header-yellow",
+                        color: "#faad14"
+                    }, {
+                        className: "hzy-admin-header-cyan",
+                        color: "#13c2c2"
+                    }, {
+                        className: "hzy-admin-header-green",
+                        color: "#52c41a"
+                    }, {
+                        className: "hzy-admin-header-dark-blue",
+                        color: "#2f54eb"
+                    }, {
+                        className: "hzy-admin-header-violet",
+                        color: "#722ed1"
+                    }, ],
+                    //
+                    screenWidth: 0,
+                    screenHeight: 0,
+                    isMobile: false,
+                    mobileMenu: {
+                        state: false
+                    }
+                }
+            },
+            watch: {
+                isCollapse(value) {
+                    if (value) {
+                        this.leftWidth = '65px';
+                    } else {
+                        this.leftWidth = '200px';
+                    }
+                },
+                views(value) {
+                    var view = value.find(w => w.active);
+                    if (view) {
+                        this.activeMenuKey = view.key;
+                        this.activeTabKey = view.key;
+                    }
+                },
+                //主题类型切换
+                menuThemeType(value) {
+                    this.changeMenuTheme(value);
+                }
+            },
+            computed: {},
+            created: function() {
+                let menuThemeValue = tools.getMenuTheme();
+                if (menuThemeValue) {
+                    this.menuThemeType = menuThemeValue;
+                }
+                let headerThemeValue = tools.getHeaderTheme();
+                if (headerThemeValue) {
+                    this.headerTheme = headerThemeValue;
+                }
+
+                this.calcScreen();
+                this.loadRouters();
+            },
+            mounted: function() {
+
+            },
+            methods: {
+                loadRouters: function() {
+                    let t = this;
+                    http.get('/data/routers.json', {}).then(res => {
+                        t.routers = res.data;
+                        //第一次 把 首页加入到 视图中
+                        t.views.push(t.routers.find(w => w.active));
+                    });
+                },
+                //iframe 加载动画
+                loadIframe: function(name) {
+                    let t = this;
+                    tools.loadingStart();
+
+                    setTimeout(() => {
+                        let iframe = document.getElementsByName(name)[0];
+                        if (!iframe) {
+                            tools.loadingStop();
+                        }
+
+                        // 处理兼容行问题
+                        if (Object.prototype.hasOwnProperty.call(iframe, "attachEvent")) {
+                            iframe.attachEvent("onload", function() {
+                                // iframe加载完毕以后执行操作
+                                tools.loadingStop();
+                            });
+                        } else {
+                            iframe.onload = function() {
+                                // iframe加载完毕以后执行操作
+                                tools.loadingStop();
+                            };
+                        }
+                    }, 10);
+
+                },
+                //处理菜单选中事件
+                handleMenuSelect(key, keys) {
+                    this.openView(key);
+                },
+                //打开视图
+                openView: function(key) {
+                    var router = this.routers.find(w => w.key == key);
+                    this.addView(router);
+                },
+                //添加视图
+                addView: function(obj) {
+                    // obj = {
+                    //     key,
+                    //     title,
+                    //     url,
+                    //     close,
+                    //     active
+                    // }
+                    let key = obj.key;
+                    let title = obj.title;
+                    let url = obj.url;
+                    let close = obj.close;
+                    let active = obj.active;
+
+                    for (let index = 0; index < this.views.length; index++) {
+                        const element = this.views[index];
+                        element.active = false;
+                    }
+                    active = true;
+                    //检查 key 是否在路由 中存在
+                    if (this.routers.find(w => w.key == key)) {
+                        //存在 则改变菜单选中key
+                        this.activeMenuKey = key;
+                    }
+                    this.activeTabKey = key;
+                    //
+                    var view = this.views.find(w => w.key == key);
+                    if (view) {
+                        view.active = active;
+                        return;
+                    }
+                    this.views.push({
+                        key,
+                        title,
+                        url,
+                        close,
+                        active
+                    });
+                    this.loadIframe(key);
+                },
+                // 全屏事件
+                onFullScreen: function() {
+                    let element = document.documentElement;
+                    if (this.fullscreen) {
+                        if (document.exitFullscreen) {
+                            document.exitFullscreen();
+                        } else if (document.webkitCancelFullScreen) {
+                            document.webkitCancelFullScreen();
+                        } else if (document.mozCancelFullScreen) {
+                            document.mozCancelFullScreen();
+                        } else if (document.msExitFullscreen) {
+                            document.msExitFullscreen();
+                        }
+                    } else {
+                        if (element.requestFullscreen) {
+                            element.requestFullscreen();
+                        } else if (element.webkitRequestFullScreen) {
+                            element.webkitRequestFullScreen();
+                        } else if (element.mozRequestFullScreen) {
+                            element.mozRequestFullScreen();
+                        } else if (element.msRequestFullscreen) {
+                            // IE11
+                            element.msRequestFullscreen();
+                        }
+                    }
+                    this.fullscreen = !this.fullscreen;
+                },
+                //实时计算监听 宽高
+                calcScreen: function() {
+                    this.screenWidth = window.innerWidth;
+                    this.screenHeight = window.innerHeight;
+                    this.isMobile = this.screenWidth < 992;
+                    window.onresize = () => {
+                        return (() => {
+                            this.screenWidth = window.innerWidth;
+                            this.screenHeight = window.innerHeight;
+                            this.isMobile = this.screenWidth < 992;
+                        })();
+                    };
+                },
+                //刷新
+                reload: function() {
+                    let view = this.views.find(w => w.key == this.activeMenuKey);
+                    let iframe = document.getElementsByName(view.key)[0];
+                    if (iframe) {
+                        iframe.removeAttribute('src');
+                        iframe.setAttribute('src', view.url);
+                        this.loadIframe(view.key);
+                    }
+                },
+                //打开设置窗口
+                onSettings: function() {
+                    this.setting.state = !this.setting.state;
+                },
+                //退出登录
+                logout: function() {
+                    window.location = "/views/login.html";
+                },
+                //选项卡选中改变事件
+                tabChange: function(o) {
+                    this.activeMenuKey = o.name;
+                    this.activeTabKey = o.name;
+                },
+                //关闭指定标签
+                removeTab(targetName) {
+                    if (this.views.length == 1) {
+                        return tools.message('最后一个标签无法关闭!', '错误');
+                    }
+                    let tabs = this.views;
+                    let activeName = this.activeTabKey;
+                    if (activeName === targetName) {
+                        this.tabCloseCurrent();
+                    } else {
+                        this.activeTabKey = activeName;
+                        this.views = tabs.filter(tab => tab.key !== targetName);
+                    }
+                },
+                //关闭当前
+                tabCloseCurrent: function() {
+                    if (this.views.length == 1) {
+                        return tools.message('最后一个标签无法关闭!', '错误');
+                    }
+                    let index = this.views.findIndex(w => w.key == this.activeMenuKey);
+                    let oldTab = this.views[index];
+                    if (oldTab.close) {
+                        this.views.splice(index, 1);
+                    }
+                    let tab = this.views[index - 1];
+                    if (!tab) return;
+                    tools.loadingStop();
+                    this.addView(tab);
+                },
+                //关闭其他
+                tabCloseOther: function() {
+                    if (this.views.length == 1) {
+                        return tools.message('最后一个标签无法关闭!', '错误');
+                    }
+                    let list = [];
+                    for (let i = 0; i < this.views.length; i++) {
+                        let item = this.views[i];
+                        if (!item.close || item.key == this.activeTabKey) {
+                            list.push(item);
+                        }
+                    }
+
+                    this.views = list;
+                },
+                //关闭所有
+                tabCloseAll: function() {
+                    if (this.views.length == 1) {
+                        return tools.message('最后一个标签无法关闭!', '错误');
+                    }
+                    let tab = this.views.find(w => !w.close);
+
+                    this.views = [];
+                    this.views.push(tab);
+
+                    this.addView(tab);
+                },
+                //切换菜单主题
+                changeMenuTheme(type) {
+                    if (type == 'dark') {
+                        this.menuTheme.backgroundColor = '#001529';
+                        this.menuTheme.textColor = 'hsla(0, 0%, 100%, .65)';
+                        this.menuTheme.activeTextColor = '#1890ff';
+                    } else {
+                        this.menuTheme.backgroundColor = '';
+                        this.menuTheme.textColor = '';
+                        this.menuTheme.activeTextColor = '';
+                    }
+                    tools.setMenuTheme(type);
+                },
+                //头部主题设置
+                onHeaderTheme: function(value) {
+                    this.headerTheme = value;
+                    tools.setHeaderTheme(value);
+                },
+            },
+        });
+    </script>
+
+</body>
+
+</html>

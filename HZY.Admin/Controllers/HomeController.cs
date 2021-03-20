@@ -3,6 +3,7 @@ using System.Threading.Tasks;
 using HZY.Admin.Services.Framework;
 using HZY.Framework.Attributes;
 using HZY.Framework.Controllers;
+using HZY.Framework.Model;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HZY.Admin.Controllers
@@ -44,5 +45,19 @@ namespace HZY.Admin.Controllers
             //return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
             return Content("程序异常，请查看错误日志!");
         }
+
+
+        /// <summary>
+        /// 获取 路由
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet("Routers.json")]
+        public async Task<ApiResult> GetRouters()
+        {
+            var allList = await this.DefaultService.GetMenuByRoleIdAsync();
+            return this.ResultOk(this.DefaultService.CreateRouters(allList));
+        }
+
+
     }
 }

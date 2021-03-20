@@ -35,7 +35,7 @@ namespace HZY.Admin.Services.Framework
         {
             var query = await this.Repository.Select
                     .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.Name.Contains(search.Name))
-                    .OrderByDescending(w => w.CreateTime)
+                    .OrderBy(w => w.Number)
                     .Count(out var total)
                     .Page(page, size)
                     .ToListAsync(w => new
@@ -77,16 +77,16 @@ namespace HZY.Admin.Services.Framework
         public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
         {
             var res = new Dictionary<string, object>();
-            var model = await this.Repository.FindAsync(id);
-            model = model.NullSafe();
+            var form = await this.Repository.FindAsync(id);
+            form = form.NullSafe();
 
             if (id == Guid.Empty)
             {
                 var maxNum = await this.Repository.Select.MaxAsync(w => w.Number);
-                model.Number = maxNum + 1;
+                form.Number = maxNum + 1;
             }
 
-            res[nameof(model)] = model;
+            res[nameof(form)] = form;
             return res;
         }
 

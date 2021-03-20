@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <script>
+        var _hmt = _hmt || [];
+        (function() {
+            var hm = document.createElement("script");
+            hm.src = "https://hm.baidu.com/hm.js?90d9b1016c84f436fc9b4b318f5a0ff9";
+            var s = document.getElementsByTagName("script")[0];
+            s.parentNode.insertBefore(hm, s);
+        })();
+    </script>
+    <meta name="keywords" content="hzyadmin,hzy,HZY,HZY.AdminRazor,hzyadminspa,HZY.AdminSpa">
+    <meta charset="UTF-8">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Safari浏览器添加到主屏幕（IOS） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <!--[if lt IE 9]>
+        <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+        <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <title>HzyAdminUI</title>
+    <link rel="shortcut icon" href="/favicon.ico">
+    <!--element-ui-->
+    <link href="/libs/element-ui/lib/theme-chalk/index.css" rel="stylesheet">
+    <!--hzy-admin-ui-public-->
+    <link href="/styles/hzy-admin-ui.css" rel="stylesheet">
+    <!--hzy-admin-ui-tools-->
+    <link href="/styles/hzy-admin-ui-tools.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f0f2f5 !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app" v-cloak class="p-15">
+        <el-card shadow="hover">
+            <el-row>
+                <el-button>默认按钮</el-button>
+                <el-button type="primary">主要按钮</el-button>
+                <el-button type="success">成功按钮</el-button>
+                <el-button type="info">信息按钮</el-button>
+                <el-button type="warning">警告按钮</el-button>
+                <el-button type="danger">危险按钮</el-button>
+            </el-row>
+
+            <el-row>
+                <el-button plain>朴素按钮</el-button>
+                <el-button type="primary" plain>主要按钮</el-button>
+                <el-button type="success" plain>成功按钮</el-button>
+                <el-button type="info" plain>信息按钮</el-button>
+                <el-button type="warning" plain>警告按钮</el-button>
+                <el-button type="danger" plain>危险按钮</el-button>
+            </el-row>
+
+            <el-row>
+                <el-button round>圆角按钮</el-button>
+                <el-button type="primary" round>主要按钮</el-button>
+                <el-button type="success" round>成功按钮</el-button>
+                <el-button type="info" round>信息按钮</el-button>
+                <el-button type="warning" round>警告按钮</el-button>
+                <el-button type="danger" round>危险按钮</el-button>
+            </el-row>
+
+            <el-row>
+                <el-button icon="el-icon-search" circle></el-button>
+                <el-button type="primary" icon="el-icon-edit" circle></el-button>
+                <el-button type="success" icon="el-icon-check" circle></el-button>
+                <el-button type="info" icon="el-icon-message" circle></el-button>
+                <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+                <el-button type="danger" icon="el-icon-delete" circle></el-button>
+            </el-row>
+        </el-card>
+
+        <el-card shadow="hover" class="mt-20">
+            <el-row>
+                <el-button disabled>默认按钮</el-button>
+                <el-button type="primary" disabled>主要按钮</el-button>
+                <el-button type="success" disabled>成功按钮</el-button>
+                <el-button type="info" disabled>信息按钮</el-button>
+                <el-button type="warning" disabled>警告按钮</el-button>
+                <el-button type="danger" disabled>危险按钮</el-button>
+            </el-row>
+
+            <el-row>
+                <el-button plain disabled>朴素按钮</el-button>
+                <el-button type="primary" plain disabled>主要按钮</el-button>
+                <el-button type="success" plain disabled>成功按钮</el-button>
+                <el-button type="info" plain disabled>信息按钮</el-button>
+                <el-button type="warning" plain disabled>警告按钮</el-button>
+                <el-button type="danger" plain disabled>危险按钮</el-button>
+            </el-row>
+        </el-card>
+
+    </div>
+
+    <!-- jquery-3.2.1.min.js -->
+    <script src="/libs/jquery/jquery-3.2.1.min.js"></script>
+    <!-- layer -->
+    <script src="/libs/layer/layer.js"></script>
+    <!--vue-->
+    <script src="/libs/vue.js"></script>
+    <!--moment-->
+    <script src="/libs/moment.min.js"></script>
+    <!--element-ui-->
+    <script src="/libs/element-ui/lib/index.js"></script>
+    <!--axios-->
+    <script src="/libs/axios.min.js"></script>
+    <!--tools-->
+    <script src="/scripts/tools.js"></script>
+    <!--httpClient-->
+    <script src="/scripts/httpClient.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: function() {
+                return {}
+            },
+            created() {},
+            mounted: function() {
+
+            },
+            methods: {},
+        });
+    </script>
+
+</body>
+
+</html>

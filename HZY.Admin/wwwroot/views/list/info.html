@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta name="keywords" content="hzyadmin,hzy,HZY,HZY.AdminRazor,hzyadminspa,HZY.AdminSpa">
+    <meta charset="UTF-8">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Safari浏览器添加到主屏幕（IOS） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <!--element-ui-->
+    <link href="/libs/element-ui/lib/theme-chalk/index.css" rel="stylesheet">
+    <!--hzy-admin-ui-public-->
+    <link href="/styles/hzy-admin-ui.css" rel="stylesheet">
+    <!--hzy-admin-ui-tools-->
+    <link href="/styles/hzy-admin-ui-tools.css" rel="stylesheet">
+</head>
+
+<body>
+
+    <div id="app" v-cloak class="p-15 pb-100">
+        <el-row :gutter="15">
+            <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                <h4>用户名:</h4>
+                <el-input v-model="value" placeholder="请输入" />
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                <h4>年龄:</h4>
+                <el-input v-model="value" placeholder="请输入" />
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                <h4>地址:</h4>
+                <el-input v-model="value" placeholder="请输入" />
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                <h4>用户名:</h4>
+                <el-input v-model="value" placeholder="请输入" />
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                <h4>年龄:</h4>
+                <el-input v-model="value" placeholder="请输入" />
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                <h4>地址:</h4>
+                <el-input v-model="value" placeholder="请输入" />
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                <h4>用户名:</h4>
+                <el-input v-model="value" placeholder="请输入" />
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                <h4>年龄:</h4>
+                <el-input v-model="value" placeholder="请输入" />
+            </el-col>
+            <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                <h4>地址:</h4>
+                <el-input v-model="value" placeholder="请输入" />
+            </el-col>
+        </el-row>
+        <div class="hzy-admin-window-footer">
+            <div style="flex: 1 1 0%"></div>
+            <div class="p-10">
+                <el-button type="primary" @click="save">提交</el-button>
+                <el-button type="danger" @click="closeWindow">取消</el-button>
+            </div>
+        </div>
+    </div>
+
+    <!-- jquery-3.2.1.min.js -->
+    <script src="/libs/jquery/jquery-3.2.1.min.js"></script>
+    <!-- layer -->
+    <script src="/libs/layer/layer.js"></script>
+    <!--vue-->
+    <script src="/libs/vue.js"></script>
+    <!--moment-->
+    <script src="/libs/moment.min.js"></script>
+    <!--element-ui-->
+    <script src="/libs/element-ui/lib/index.js"></script>
+    <!--axios-->
+    <script src="/libs/axios.min.js"></script>
+    <!--tools-->
+    <script src="/scripts/tools.js"></script>
+    <!--httpClient-->
+    <script src="/scripts/httpClient.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: function() {
+                return {
+                    value: ''
+                }
+            },
+            created() {},
+            mounted: function() {
+
+            },
+            methods: {
+                closeWindow: function(delay = 0) {
+                    tools.getLayer().close(tools.getLayer().getFrameIndex(window.name));
+                },
+                save() {
+                    tools.loadingStart();
+                    setTimeout(function() {
+                        tools.message("提交成功!", "成功");
+                        tools.loadingStop();
+                    }, 1000);
+                },
+            },
+        });
+    </script>
+
+</body>
+
+</html>

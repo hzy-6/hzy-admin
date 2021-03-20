@@ -1,0 +1,218 @@
+html,
+body {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+
+}
+
+.hzy-admin-logo {
+    text-align: center;
+    font-size: 16px;
+    font-weight: bold;
+    color: #fff;
+    background: #000c17;
+    height: 50px;
+    line-height: 50px;
+    // border-bottom: 1px solid #f0f2f5;
+}
+
+.hzy-admin-box {
+    width: 100%;
+    height: 100%;
+
+    .el-container {
+        width: 100%;
+        height: 100%;
+    }
+
+    //头部样式
+    .el-header {
+        height: 50px !important;
+        line-height: 50px;
+        // box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04);
+        padding: 0;
+        border-bottom: 1px solid #f0f2f5;
+        display: flex;
+        align-items: center;
+        height: 48px;
+        line-height: 48px;
+        color: #fff;
+        font-size: 16px;
+
+        i,
+        span,
+        div {
+            color: #fff;
+            font-size: 16px;
+        }
+
+        .hzy-admin-header-btn {
+            padding: 0 10px;
+            cursor: pointer;
+        }
+
+        .hzy-admin-header-btn:hover {
+            background: rgba(243, 246, 248, 0.5);
+        }
+
+        //选项卡
+        .hzy-admin-tabs {
+            height: 40px;
+        }
+
+    }
+
+    //头部 亮色
+    .hzy-admin-header-light {
+        background: #ffffff;
+        color: rgba(0, 0, 0, 0.85) !important;
+
+        .hzy-header-btn:hover {
+            background: rgba(0, 0, 0, 0.025);
+        }
+
+        i,
+        span,
+        div {
+            color: rgba(0, 0, 0, 0.85) !important;
+            font-size: 16px;
+        }
+
+    }
+
+    //头部 暗色
+    .hzy-admin-header-dark {
+        height: 100%;
+        background: #000c17;
+
+    }
+
+    //头部 蓝色
+    .hzy-admin-header-blue {
+        background: #1890ff !important;
+    }
+
+
+    //头部 红色
+    .hzy-admin-header-red {
+        background: #f5222d !important;
+    }
+
+
+    //头部 橙色
+    .hzy-admin-header-orange {
+        background: #fa541c !important;
+    }
+
+
+    //头部 黄色
+    .hzy-admin-header-yellow {
+        background: #faad14 !important;
+    }
+
+
+    //头部 青色
+    .hzy-admin-header-cyan {
+        background: #13c2c2 !important;
+    }
+
+
+    //头部 绿色
+    .hzy-admin-header-green {
+        background: #52c41a !important;
+    }
+
+
+    //头部 深蓝色
+    .hzy-admin-header-dark-blue {
+        background: #2f54eb !important;
+    }
+
+
+    //头部 紫色
+    .hzy-admin-header-violet {
+        background: #722ed1 !important;
+    }
+
+    //left 左侧菜单
+    .el-aside {
+        overflow: hidden;
+        overflow-y: auto;
+    }
+
+    .el-menu {
+        width: 100%;
+    }
+
+    .el-main {
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+
+        .el-tabs.el-tabs--border-card {
+            border: 0;
+            -webkit-box-shadow: none !important;
+            box-shadow: none !important;
+
+            .el-tabs__header {
+                background-color: #ffffff;
+                border-bottom: 0px solid #E4E7ED;
+                height: 40px;
+
+                .el-tabs__item {
+                    border: 0;
+                    margin-top: 0;
+                }
+
+                .el-tabs__item.is-active {
+                    background-color: #f0f2f5 !important;
+                    color: #1890ff;
+
+                    span {
+                        color: #1890ff;
+                    }
+                }
+            }
+
+            .el-tabs__content {
+                padding: 0 !important;
+            }
+
+        }
+
+        iframe {
+            width: 100%;
+            height: calc(100vh - 90px);
+        }
+
+
+    }
+
+
+    //app settings
+    .hzy-admin-settings {
+        .el-drawer__body {
+            padding: 20px;
+        }
+
+        .hzy-admin-skin-list {
+            width: 100%;
+            display: inline-block;
+
+            .hzy-admin-skin-item {
+                width: 40px;
+                height: 40px;
+                float: left;
+                margin: 8px;
+                cursor: pointer;
+                border-radius: 10px;
+                border: 1px solid #f5222d;
+            }
+
+        }
+    }
+
+}

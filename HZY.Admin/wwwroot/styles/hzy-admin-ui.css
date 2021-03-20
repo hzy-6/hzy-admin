@@ -1,0 +1,74 @@
+html,
+body {
+    overflow: hidden;
+    overflow-y: auto;
+    background: #ffffff;
+    padding: 0;
+    margin: 0;
+/*    font-family: "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "微软雅黑", Arial, sans-serif;*/
+    font-family: -apple-system, BlinkMacSystemFont, segoe ui, Roboto, helvetica neue, Arial, noto sans, sans-serif, apple color emoji, segoe ui emoji, segoe ui symbol, noto color emoji;
+    height: 100%;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.65);
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    height: 6px;
+}
+
+::-webkit-scrollbar-track {
+    width: 6px;
+    background: rgba(16, 31, 28, 0.1);
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(16, 31, 28, 0.5);
+    background-clip: padding-box;
+    min-height: 28px;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+    ::-webkit-scrollbar-thumb:hover {
+        background-color: #101f1c;
+    }
+
+[v-cloak] {
+    display: none !important;
+}
+
+.hzy-admin-bg {
+    background-color: #f0f2f5 !important;
+}
+
+.hzy-admin-window-footer {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    border-top: 1px solid #e8e8e8;
+    background: #ffffff;
+    display: flex;
+    z-index: 999;
+}
+
+.el-button {
+    border-radius: 2px !important;
+    padding: 0 15px !important;
+    height: 32px !important;
+}
+
+.el-input__inner {
+    border-radius: 2px !important;
+}
+
+.el-button--primary {
+    background-color: #1890ff !important;
+    border-color: #1890ff !important;
+}

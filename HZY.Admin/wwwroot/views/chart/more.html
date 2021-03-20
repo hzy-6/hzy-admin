@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta name="keywords" content="hzyadmin,hzy,HZY,HZY.AdminRazor,hzyadminspa,HZY.AdminSpa">
+    <meta charset="UTF-8">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Safari浏览器添加到主屏幕（IOS） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <link href="/libs/ant-design-vue/dist/antd.min.css" rel="stylesheet">
+    <link href="/styles/hzy-admin-ui.css" rel="stylesheet">
+    <link href="/styles/hzy-admin-ui-tools.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f0f2f5 !important;
+        }
+
+        iframe {
+            width: 100%;
+            height: calc(100vh - 35px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app" v-cloak class="p-15">
+        <a-card :bordered="false">
+            <iframe src="https://antv.gitee.io/zh/" frameborder="0"></iframe>
+        </a-card>
+    </div>
+
+    <!--vue-->
+    <script src="/libs/vue.js"></script>
+    <!--moment-->
+    <script src="/libs/moment.min.js"></script>
+    <!--ant-design-vue-->
+    <script src="/libs/ant-design-vue/dist/antd.min.js"></script>
+    <!--axios-->
+    <script src="/libs/axios.min.js"></script>
+    <!--tools-->
+    <script src="/scripts/tools.js"></script>
+    <!--httpClient-->
+    <script src="/scripts/httpClient.js"></script>
+    <script type="text/javascript">
+        var app = new Vue({
+            el: "#app",
+            data: function () {
+                return {}
+            },
+            created() { },
+            mounted: function () {
+
+            },
+            methods: {},
+        });
+    </script>
+
+</body>
+
+</html>

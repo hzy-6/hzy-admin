@@ -1,0 +1,150 @@
+html,
+body {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+}
+.hzy-admin-logo {
+  text-align: center;
+  font-size: 16px;
+  font-weight: bold;
+  color: #fff;
+  background: #000c17;
+  height: 50px;
+  line-height: 50px;
+}
+.hzy-admin-box {
+  width: 100%;
+  height: 100%;
+}
+.hzy-admin-box .el-container {
+  width: 100%;
+  height: 100%;
+}
+.hzy-admin-box .el-header {
+  height: 50px !important;
+  line-height: 50px;
+  padding: 0;
+  border-bottom: 1px solid #f0f2f5;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  line-height: 48px;
+  color: #fff;
+  font-size: 16px;
+}
+.hzy-admin-box .el-header i,
+.hzy-admin-box .el-header span,
+.hzy-admin-box .el-header div {
+  color: #fff;
+  font-size: 16px;
+}
+.hzy-admin-box .el-header .hzy-admin-header-btn {
+  padding: 0 10px;
+  cursor: pointer;
+}
+.hzy-admin-box .el-header .hzy-admin-header-btn:hover {
+  background: rgba(243, 246, 248, 0.5);
+}
+.hzy-admin-box .el-header .hzy-admin-tabs {
+  height: 40px;
+}
+.hzy-admin-box .hzy-admin-header-light {
+  background: #ffffff;
+  color: rgba(0, 0, 0, 0.85) !important;
+}
+.hzy-admin-box .hzy-admin-header-light .hzy-header-btn:hover {
+  background: rgba(0, 0, 0, 0.025);
+}
+.hzy-admin-box .hzy-admin-header-light i,
+.hzy-admin-box .hzy-admin-header-light span,
+.hzy-admin-box .hzy-admin-header-light div {
+  color: rgba(0, 0, 0, 0.85) !important;
+  font-size: 16px;
+}
+.hzy-admin-box .hzy-admin-header-dark {
+  height: 100%;
+  background: #000c17;
+}
+.hzy-admin-box .hzy-admin-header-blue {
+  background: #1890ff !important;
+}
+.hzy-admin-box .hzy-admin-header-red {
+  background: #f5222d !important;
+}
+.hzy-admin-box .hzy-admin-header-orange {
+  background: #fa541c !important;
+}
+.hzy-admin-box .hzy-admin-header-yellow {
+  background: #faad14 !important;
+}
+.hzy-admin-box .hzy-admin-header-cyan {
+  background: #13c2c2 !important;
+}
+.hzy-admin-box .hzy-admin-header-green {
+  background: #52c41a !important;
+}
+.hzy-admin-box .hzy-admin-header-dark-blue {
+  background: #2f54eb !important;
+}
+.hzy-admin-box .hzy-admin-header-violet {
+  background: #722ed1 !important;
+}
+.hzy-admin-box .el-aside {
+  overflow: hidden;
+  overflow-y: auto;
+}
+.hzy-admin-box .el-menu {
+  width: 100%;
+}
+.hzy-admin-box .el-main {
+  padding: 0;
+  margin: 0;
+  overflow: hidden;
+}
+.hzy-admin-box .el-main .el-tabs.el-tabs--border-card {
+  border: 0;
+  -webkit-box-shadow: none !important;
+  box-shadow: none !important;
+}
+.hzy-admin-box .el-main .el-tabs.el-tabs--border-card .el-tabs__header {
+  background-color: #ffffff;
+  border-bottom: 0px solid #E4E7ED;
+  height: 40px;
+}
+.hzy-admin-box .el-main .el-tabs.el-tabs--border-card .el-tabs__header .el-tabs__item {
+  border: 0;
+  margin-top: 0;
+}
+.hzy-admin-box .el-main .el-tabs.el-tabs--border-card .el-tabs__header .el-tabs__item.is-active {
+  background-color: #f0f2f5 !important;
+  color: #1890ff;
+}
+.hzy-admin-box .el-main .el-tabs.el-tabs--border-card .el-tabs__header .el-tabs__item.is-active span {
+  color: #1890ff;
+}
+.hzy-admin-box .el-main .el-tabs.el-tabs--border-card .el-tabs__content {
+  padding: 0 !important;
+}
+.hzy-admin-box .el-main iframe {
+  width: 100%;
+  height: calc(100vh - 90px);
+}
+.hzy-admin-box .hzy-admin-settings .el-drawer__body {
+  padding: 20px;
+}
+.hzy-admin-box .hzy-admin-settings .hzy-admin-skin-list {
+  width: 100%;
+  display: inline-block;
+}
+.hzy-admin-box .hzy-admin-settings .hzy-admin-skin-list .hzy-admin-skin-item {
+  width: 40px;
+  height: 40px;
+  float: left;
+  margin: 8px;
+  cursor: pointer;
+  border-radius: 10px;
+  border: 1px solid #f5222d;
+}

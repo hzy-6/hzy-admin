@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="ch">
+
+<head>
+    <meta name="keywords" content="hzyadmin,hzy,HZY,HZY.AdminRazor,hzyadminspa,HZY.AdminSpa">
+    <meta charset="UTF-8">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport" content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Safari浏览器添加到主屏幕（IOS） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <!--element-ui-->
+    <link href="/libs/element-ui/lib/theme-chalk/index.css" rel="stylesheet">
+    <!--hzy-admin-ui-public-->
+    <link href="/styles/hzy-admin-ui.css" rel="stylesheet">
+    <!--hzy-admin-ui-tools-->
+    <link href="/styles/hzy-admin-ui-tools.css" rel="stylesheet">
+    <style>
+        body {
+            background: #f0f2f5 !important;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="app" v-cloak class="p-15">
+        <el-alert title="图表" type="success">
+            <p>
+                <a href="javascript:void(0);" onclick="tools.openView('5')">查看 AntV G2 更多示例</a>
+            </p>
+        </el-alert>
+        <el-row :gutter="20" class="pt-15">
+            <el-col :span="12">
+                <el-card shadow="hover">
+                    <div id="container1"></div>
+                </el-card>
+            </el-col>
+            <el-col :span="12">
+                <el-card shadow="hover">
+                    <div id="container2"></div>
+                </el-card>
+            </el-col>
+        </el-row>
+    </div>
+
+    <!-- jquery-3.2.1.min.js -->
+    <script src="/libs/jquery/jquery-3.2.1.min.js"></script>
+    <!-- layer -->
+    <script src="/libs/layer/layer.js"></script>
+    <!--vue-->
+    <script src="/libs/vue.js"></script>
+    <!--moment-->
+    <script src="/libs/moment.min.js"></script>
+    <!--element-ui-->
+    <script src="/libs/element-ui/lib/index.js"></script>
+    <!--axios-->
+    <script src="/libs/axios.min.js"></script>
+    <!--tools-->
+    <script src="/scripts/tools.js"></script>
+    <!--httpClient-->
+    <script src="/scripts/httpClient.js"></script>
+    <script src="/libs/g2.min.js"></script>
+    <script type="text/javascript">
+        const data1 = [{
+            year: '1951 年',
+            sales: 38
+        }, {
+            year: '1952 年',
+            sales: 52
+        }, {
+            year: '1956 年',
+            sales: 61
+        }, {
+            year: '1957 年',
+            sales: 145
+        }, {
+            year: '1958 年',
+            sales: 48
+        }, {
+            year: '1959 年',
+            sales: 38
+        }, {
+            year: '1960 年',
+            sales: 38
+        }, {
+            year: '1962 年',
+            sales: 38
+        }, ];
+
+        const data2 = [{
+            item: '事例一',
+            count: 40,
+            percent: 0.4
+        }, {
+            item: '事例二',
+            count: 21,
+            percent: 0.21
+        }, {
+            item: '事例三',
+            count: 17,
+            percent: 0.17
+        }, {
+            item: '事例四',
+            count: 13,
+            percent: 0.13
+        }, {
+            item: '事例五',
+            count: 9,
+            percent: 0.09
+        }, ];
+
+        let app = new Vue({
+            el: "#app",
+            data: function() {
+                return {
+                    data1,
+                    chart1: null,
+                    data2,
+                    chart2: null
+                };
+            },
+            created() {
+
+            },
+            mounted() {
+                this.initChart1();
+                this.initChart2();
+            },
+            methods: {
+                //图表一
+                initChart1: function() {
+                    this.chart1 = new G2.Chart({
+                        container: 'container1',
+                        autoFit: true,
+                        height: 500,
+                    });
+
+                    this.chart1.data(this.data1);
+                    this.chart1.scale('sales', {
+                        nice: true,
+                    });
+
+                    this.chart1.tooltip({
+                        showMarkers: false
+                    });
+                    this.chart1.interaction('active-region');
+
+                    this.chart1.interval().position('year*sales');
+
+                    this.chart1.render();
+                },
+                //图表二
+                initChart2: function() {
+                    this.chart2 = new G2.Chart({
+                        container: 'container2',
+                        autoFit: true,
+                        height: 500,
+                    });
+
+                    this.chart2.data(this.data2);
+
+                    this.chart2.coordinate('theta', {
+                        radius: 0.85
+                    });
+
+                    this.chart2.scale('percent', {
+                        formatter: (val) => {
+                            val = val * 100 + '%';
+                            return val;
+                        },
+                    });
+                    this.chart2.tooltip({
+                        showTitle: false,
+                        showMarkers: false,
+                    });
+                    this.chart2.axis(false); // 关闭坐标轴
+                    const interval = this.chart2
+                        .interval()
+                        .adjust('stack')
+                        .position('percent')
+                        .color('item')
+                        .label('percent', {
+                            offset: -40,
+                            style: {
+                                textAlign: 'center',
+                                shadowBlur: 2,
+                                shadowColor: 'rgba(0, 0, 0, .45)',
+                                fill: '#fff',
+                            },
+                        })
+                        .tooltip('item*percent', (item, percent) => {
+                            percent = percent * 100 + '%';
+                            return {
+                                name: item,
+                                value: percent,
+                            };
+                        })
+                        .style({
+                            lineWidth: 1,
+                            stroke: '#fff',
+                        });
+                    this.chart2.interaction('element-single-selected');
+                    this.chart2.render();
+
+                    // 默认选择
+                    interval.elements[0].setState('selected', true);
+                }
+            },
+
+        });
+    </script>
+
+
+
+</body>
+
+</html>

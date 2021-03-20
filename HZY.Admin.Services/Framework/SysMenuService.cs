@@ -97,7 +97,7 @@ namespace HZY.Admin.Services.Framework
         {
             var res = new Dictionary<string, object>();
 
-            var model = await this.Repository.FindAsync(id);
+            var form = await this.Repository.FindAsync(id);
             var functionAllList = await this._sysFunctionRepository.Select
                 .OrderBy(w => w.Number)
                 .ToListAsync();
@@ -106,7 +106,7 @@ namespace HZY.Admin.Services.Framework
                 .Select(w => w.FunctionId)
                 .ToListAsync();
 
-            res[nameof(model)] = model.NullSafe();
+            res[nameof(form)] = form.NullSafe();
             res[nameof(functionAllList)] = functionAllList;
             res[nameof(functionIds)] = functionIds;
             return res;
@@ -119,7 +119,7 @@ namespace HZY.Admin.Services.Framework
         /// <returns></returns>
         public async Task<SysMenu> SaveFormAsync(SysMenuFormDto form)
         {
-            var model = form.Model;
+            var model = form.Form;
             var functionIds = form.FunctionIds;
 
             model = await this.Repository.InsertOrUpdateAsync(model);
@@ -173,7 +173,7 @@ namespace HZY.Admin.Services.Framework
                     .LeftJoin(w => w.t1.FunctionId == w.t2.Id)
                     .LeftJoin(w => w.t1.MenuId == w.t3.Id)
                     .Where(w => this._accountInfo.RoleIds.Contains(w.t1.RoleId))
-                    .Where(w => w.t2.ByName == "Have" && w.t3.IsShow == 1)
+                    .Where(w => w.t2.ByName == AppConst.Function_Have && w.t3.IsShow == 1)
                     .ToListAsync(w => w.t3)
                 ;
 
@@ -228,6 +228,33 @@ namespace HZY.Admin.Services.Framework
         }
 
         /// <summary>
+        /// 创建路由
+        /// </summary>
+        /// <param name="id"></param>
+        /// <param name="sysMenuList"></param>
+        /// <returns></returns>
+        public List<Dictionary<string, object>> CreateRouters(List<SysMenu> sysMenuList)
+        {
+            //        {
+            //            "key": "1",
+            //             "title": "首页",
+            //             "url": "/views/home.html",
+            //             "close": false,
+            //             "active": true
+            //          }
+
+            return sysMenuList.Where(w => !string.IsNullOrWhiteSpace(w.Url)).Select(item => new Dictionary<string, object>
+            {
+                ["key"] = item.Id,
+                ["title"] = item.Name,
+                ["url"] = item.Url,
+                ["close"] = item.IsClose == 1,
+                ["active"] = item.IsClose != 1
+            }).ToList();
+        }
+
+
+        /// <summary>
         /// 获取拥有的菜单对象的权限
         /// </summary>
         /// <param name="sysMenuList"></param>
@@ -254,7 +281,7 @@ namespace HZY.Admin.Services.Framework
 
                         var isPower = sysMenuFunctionList
                             .Any(w => w.MenuId == item.Id && w.FunctionId == sysFunction.Id);
-                        if (sysFunction.ByName == "Have" || item.ParentId == this._appConfiguration.SysMenuId)
+                        if (sysFunction.ByName == AppConst.Function_Have || item.ParentId == this._appConfiguration.SysMenuId)
                             isPower = true;
                         power.Add(sysFunction.ByName, isPower);
                     }
@@ -312,7 +339,7 @@ namespace HZY.Admin.Services.Framework
                 {
                     if (string.IsNullOrWhiteSpace(item.ByName)) continue;
 
-                    if (item.ByName == "Have" || item.ByName == "Search" ||
+                    if (item.ByName == AppConst.Function_Have || item.ByName == AppConst.Function_Search ||
                         findBack.Contains(item.ByName.ToLower()))
                     {
                         res[item.ByName] = true;
@@ -359,7 +386,7 @@ namespace HZY.Admin.Services.Framework
                     if (string.IsNullOrWhiteSpace(item.ByName)) continue;
 
                     var isPower = sysMenuFunctionList.Any(w => w.MenuId == menuId && w.FunctionId == item.Id);
-                    if (item.ByName == "Have" || sysMenu.ParentId == this._appConfiguration.SysMenuId)
+                    if (item.ByName == AppConst.Function_Have || sysMenu.ParentId == this._appConfiguration.SysMenuId)
                         isPower = true;
                     power.Add(item.ByName, isPower);
                 }

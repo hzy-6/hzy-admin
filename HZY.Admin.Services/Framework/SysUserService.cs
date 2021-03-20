@@ -51,16 +51,16 @@ namespace HZY.Admin.Services.Framework
                         w.Id,
                         w.Name,
                         w.LoginName,
-                        // 所属角色 = string.Join(",", this.Repository.Orm
-                        //     .Select<SysUserRole, SysRole>()
-                        //     .LeftJoin(t => t.t1.RoleId == t.t2.Id)
-                        //     .Where(t => t.t1.UserId == w.Id)
-                        //     .ToList(t => t.t2.Name)),
                         所属角色 = string.Join(",", this.Repository.Orm
-                            .Select<SysUserRole, SysRole>()
-                            .LeftJoin((a, b) => a.RoleId == b.Id)
-                            .Where((a, b) => a.UserId == w.Id)
-                            .ToList((a, b) => b.Name)),
+                             .Select<SysUserRole, SysRole>()
+                             .LeftJoin(t => t.t1.RoleId == t.t2.Id)
+                             .Where(t => t.t1.UserId == w.Id)
+                             .ToList(t => t.t2.Name)),
+                        //所属角色 = string.Join(",", this.Repository.Orm
+                        //    .Select<SysUserRole, SysRole>()
+                        //    .LeftJoin((a, b) => a.RoleId == b.Id)
+                        //    .Where((a, b) => a.UserId == w.Id)
+                        //    .ToList((a, b) => b.Name)),
                         w.Email,
                         UpdateTime = w.UpdateTime.ToString("yyyy-MM-dd"),
                         CreateTime = w.CreateTime.ToString("yyyy-MM-dd")
@@ -96,16 +96,16 @@ namespace HZY.Admin.Services.Framework
         {
             var res = new Dictionary<string, object>();
 
-            var model = (await this.Repository.FindAsync(id)).NullSafe();
+            var form = (await this.Repository.FindAsync(id)).NullSafe();
             var roleIds = await this._sysUserRoleRepository.Select
                 .Where(w => w.UserId == id)
                 .Select(w => w.RoleId)
                 .ToListAsync();
-            var roleAllList = await this._sysRoleRepository.Select.ToListAsync();
+            var allRoleList = await this._sysRoleRepository.Select.ToListAsync();
 
-            res[nameof(model)] = model;
+            res[nameof(form)] = form;
             res[nameof(roleIds)] = roleIds;
-            res[nameof(roleAllList)] = roleAllList;
+            res[nameof(allRoleList)] = allRoleList;
             return res;
         }
 
@@ -116,7 +116,7 @@ namespace HZY.Admin.Services.Framework
         /// <returns></returns>
         public async Task<SysUser> SaveFormAsync(SysUserFormDto form)
         {
-            var model = form.Model;
+            var model = form.Form;
             var roleIds = form.RoleIds;
 
             if (string.IsNullOrWhiteSpace(model.Password))
@@ -128,7 +128,7 @@ namespace HZY.Admin.Services.Framework
                     string.IsNullOrWhiteSpace(model.Password) ? "123" : model.Password; //Tools.MD5Encrypt("123");
             }
 
-            await this.Repository.InsertOrUpdateAsync(form.Model);
+            await this.Repository.InsertOrUpdateAsync(form.Form);
 
             //变更用户角色
             if (form.RoleIds.Count > 0)

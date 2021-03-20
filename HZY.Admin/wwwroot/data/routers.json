@@ -1,0 +1,53 @@
+{
+    "code":1,
+    "message":"ok",
+    "data":[{
+        "key": "1",
+        "title": "首页",
+        "url": "/views/home.html",
+        "close": false,
+        "active": true
+    }, {
+        "key": "2",
+        "title": "ElementUI 组件库",
+        "url": "/views/element_ui_components.html",
+        "close": true,
+        "active": false
+    }, {
+        "key": "4",
+        "title": "Chart 基础",
+        "url": "/views/chart/base.html",
+        "close": true,
+        "active": false
+    }, {
+        "key": "5",
+        "title": "更多图形库",
+        "url": "/views/chart/more.html",
+        "close": true,
+        "active": false
+    }, {
+        "key": "7",
+        "title": "基础表格",
+        "url": "/views/table/base.html",
+        "close": true,
+        "active": false
+    }, {
+        "key": "8",
+        "title": "标准列表",
+        "url": "/views/list/index.html",
+        "close": true,
+        "active": false
+    }, {
+        "key": "9",
+        "title": "按钮Button",
+        "url": "/views/button.html",
+        "close": true,
+        "active": false
+    }, {
+        "key": "10",
+        "title": "wangEditor编辑器",
+        "url": "/views/editor.html",
+        "close": true,
+        "active": false
+    }]
+}

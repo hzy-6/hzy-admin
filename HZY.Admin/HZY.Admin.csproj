@@ -33,4 +33,8 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="wwwroot\admin\" />
+  </ItemGroup>
+
 </Project>

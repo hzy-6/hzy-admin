@@ -1,5 +1,4 @@
 ﻿@model Guid
-
 @section Styles{
     <style type="text/css">
         html,
@@ -8,7 +7,6 @@
         }
     </style>
 }
-
 @section Scripts{
     <input type="hidden" value='@Html.Raw(ViewData["power"])' id="hidden_power" />
     <input type="hidden" value='@(Model)' id="hidden_id" />
@@ -23,15 +21,14 @@
                 return {
                     power: power,
                     prefix: "/Admin/SysMenu",
-                    form: {
-                        saveState: false,
-                        pId: pId,
-                        vm: {
-                            model: {},
-                            functionAllList: [],
-                            functionIds: []
-                        }
-                    }
+                    pId: pId,
+                    vm: {
+                        id: "",
+                        form: {},
+                        functionAllList: [],
+                        functionIds: []
+                    },
+                    loading: false,
                 }
             },
             computed: {
@@ -40,43 +37,33 @@
                 }
             },
             created: function () {
-                this.loadForm();
+                this.findForm();
             },
             mounted: function () {
 
             },
             methods: {
-                loadForm: function () {
-                    var _this = this;
-                    var path = _this.prefix + "/FindForm/" + this.formKey;
-
-                    hzyAdmin.httpGet(path, {}, function (r) {
-                        if (r.code !== 1) return;
-                        _this.form.vm = r.data;
+                closeWindow: function () {
+                    tools.getLayer().close(tools.getLayer().getFrameIndex(window.name));
+                },
+                findForm() {
+                    http.get(`${this.prefix}/findForm/${this.formKey}`, {}).then((res) => {
+                        if (res.code != 1) return;
+                        this.vm = res.data;
                         //给pid赋值
-                        _this.form.vm.model.parentId = _this.form.pId ? _this.form.pId : null;
+                        this.vm.form.parentId = this.pId ? this.pId : null;
                     });
                 },
-                closeWindow: function (delay = 0) {
-                    setTimeout(function () {
-                        hzyAdmin.layer.close(hzyAdmin.layer.getFrameIndex(window.name));
-                    }, delay);
-                },
-                save: function () {
-                    var _this = this;
-                    var path = _this.prefix + "/SaveForm";
-
+                saveForm() {
                     //验证
-                    if (!this.form.vm.model.name) return hzyAdmin.alert('菜单名不能为空!', '警告');
+                    if (!this.vm.form.name) return tools.message('用户名不能为空!', '警告');
 
-                    this.form.saveState = true;
-                    hzyAdmin.httpPost(path, this.form.vm, function (r) {
-                        _this.form.saveState = false;
-                        if (r.code === 1) {
-                            hzyAdmin.alert('保存成功', '成功');
-                            //关闭当前窗口
-                            _this.closeWindow();
-                        }
+                    this.loading = true;
+                    http.post(`${this.prefix}/saveForm`, this.vm).then((res) => {
+                        this.loading = false;
+                        if (res.code != 1) return;
+                        tools.message("操作成功!", "成功");
+                        this.closeWindow();
                     });
                 }
             }
@@ -84,68 +71,64 @@
     </script>
 }
 
-<div class="m-20 hzyAdminForm" id="app">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-12 bg-red-500 text-white pl-20 pt-20 pr-20">
-                <span>方便开发时 需要的 菜单ID&nbsp; : &nbsp;</span>{{form.vm.model.id}}
+<div id="app" v-cloak class="pl-20 pr-20 pb-100">
+    <div class="pt-20">
+        <el-alert title="提示：" type="success">
+            <div>
+                <span>方便开发时 需要的 菜单ID&nbsp; : &nbsp;</span>{{vm.form.id}}
             </div>
-            <a class="col-sm-12 bg-red-500 text-white pl-20 pt-20 pr-20" target="_blank" href="https://fontawesome.com">图标查找地址：https://fontawesome.com</a>
-            <a class="col-sm-12 bg-red-500 text-white pl-20 pt-20 pr-20 pb-20" target="_blank" href="http://www.fontawesome.com.cn/">图标查找地址：http://www.fontawesome.com.cn 注意：第一个 fa 要改为 fas 有的图标可能不支持</a>
-        </div>
-        <div class="row">
-            <div class="col-sm-6">
-                <h4 class="example-title">编号</h4>
-                <input type="number" class="form-control" placeholder="请输入 编号" v-model="form.vm.model.number"
-                       autocomplete="off" />
+            <div>
+                <a target="_blank" href="https://element.eleme.cn/#/zh-CN/component/icon">图标查找地址： https://element.eleme.cn/#/zh-CN/component/icon</a>
             </div>
-            <div class="col-sm-6">
-                <h4 class="example-title">菜单名称</h4>
-                <input type="text" class="form-control" placeholder="请输入 菜单名称" v-model="form.vm.model.name"
-                       autocomplete="off" />
+            <div>
+                <a target="_blank" href="https://fontawesome.com">图标查找地址：https://fontawesome.com</a>
             </div>
-            <div class="col-sm-6">
-                <h4 class="example-title">菜单地址</h4>
-                <input type="text" class="form-control" placeholder="请输入 菜单地址" v-model="form.vm.model.url"
-                       autocomplete="off" />
-            </div>
-            <div class="col-sm-6">
-                <h4 class="example-title">图标</h4>
-                <input type="text" class="form-control" placeholder="请输入 图标" v-model="form.vm.model.icon"
-                       autocomplete="off" />
-            </div>
-            <div class="col-sm-6">
-                <h4 class="example-title">是否显示</h4>
-                <el-radio v-model="form.vm.model.isShow" :label="1">是</el-radio>
-                <el-radio v-model="form.vm.model.isShow" :label="2">否</el-radio>
-            </div>
-            <div class="col-sm-6">
-                <h4 class="example-title">选项卡能否关闭</h4>
-                <el-radio v-model="form.vm.model.isClose" :label="1">是</el-radio>
-                <el-radio v-model="form.vm.model.isClose" :label="2">否</el-radio>
-            </div>
-            <div class='col-sm-12'>
-                <h4 class="example-title">拥有功能</h4>
-
-                <el-checkbox-group v-model="form.vm.functionIds">
-                    <el-checkbox v-for="(item,index) in form.vm.functionAllList" :key="index" :label="item.id">
-                        {{item.name}}
-                    </el-checkbox>
-                </el-checkbox-group>
-
-            </div>
-        </div>
-        <div class="hzyAdminForm-footer">
-            <div class="row">
-                <div class="col-sm-6"></div>
-                <div class="col-sm-6 text-right">
-                    <button class="btn btn-primary" @@click="save" v-bind:disabled="form.saveState"
-                            v-if="power.Save">
-                        保存
-                    </button>
-                    <button class="btn btn-danger" @@click="closeWindow()">关闭</button>
-                </div>
-            </div>
+            <div>
+                <a target="_blank" href="http://www.fontawesome.com.cn/">图标查找地址：http://www.fontawesome.com.cn 注意：第一个 fa 要改为 fas 有的图标可能不支持</a>
+            </div>           
+        </el-alert>        
+    </div>
+    <el-row :gutter="15">
+        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+            <h4>编号:</h4>
+            <el-input v-model="vm.form.number" placeholder="请输入" />
+        </el-col>
+        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+            <h4>菜单名称:</h4>
+            <el-input v-model="vm.form.name" placeholder="请输入" />
+        </el-col>
+        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+            <h4>菜单地址:</h4>
+            <el-input v-model="vm.form.url" placeholder="请输入" />
+        </el-col>
+        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+            <h4>图标:</h4>
+            <el-input v-model="vm.form.icon" placeholder="请输入" />
+        </el-col>
+        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+            <h4>是否显示:</h4>
+            <el-radio v-model="vm.form.isShow" :label="1">是</el-radio>
+            <el-radio v-model="vm.form.isShow" :label="2">否</el-radio>
+        </el-col>
+        <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+            <h4>选项卡能否关闭:</h4>
+            <el-radio v-model="vm.form.isClose" :label="1">是</el-radio>
+            <el-radio v-model="vm.form.isClose" :label="2">否</el-radio>
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+            <h4>拥有功能:</h4>
+            <el-checkbox-group v-model="vm.functionIds">
+                <el-checkbox v-for="(item,index) in vm.functionAllList" :key="index" :label="item.id">
+                    {{item.name}}
+                </el-checkbox>
+            </el-checkbox-group>
+        </el-col>
+    </el-row>
+    <div class="hzy-admin-window-footer">
+        <div style="flex: 1 1 0%"></div>
+        <div class="p-10">
+            <el-button type="primary" @@click="saveForm" :loading="loading">提交</el-button>
+            <el-button type="danger" @@click="closeWindow">关闭</el-button>
         </div>
     </div>
 </div>

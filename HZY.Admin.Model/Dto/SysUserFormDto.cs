@@ -9,7 +9,7 @@ namespace HZY.Admin.Model.Dto
     /// </summary>
     public class SysUserFormDto
     {
-        public SysUser Model { get; set; }
+        public SysUser Form { get; set; }
         public List<Guid> RoleIds { get; set; }
         public List<SysRole> AllRoles { get; set; }
     }

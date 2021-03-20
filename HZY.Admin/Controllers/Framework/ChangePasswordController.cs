@@ -26,7 +26,7 @@ namespace HZY.Admin.Controllers.Framework
         /// <param name="form"></param>
         /// <returns></returns>
         [HttpPost("SaveForm")]
-        public async Task<ApiResult> ChangePasswordAsync([FromBody] ChangePasswordDto form)
+        public async Task<ApiResult> SaveFormAsync([FromBody] ChangePasswordDto form)
             => this.ResultOk(await this.DefaultService.ChangePasswordAsync(form.OldPassword, form.NewPassword));
     }
 }

@@ -1,11 +1,7 @@
 ﻿@inject AppConfiguration AppConfiguration
-@{
-    ViewData["HzyAdminUIPath"] = "/admin/hzyAdminUI/";
-}
 
 <!DOCTYPE html>
-@* class="animation-fade" *@
-<html lang="zh">
+<html lang="zh-cn">
 <head>
     <script>
         var _hmt = _hmt || [];
@@ -16,7 +12,7 @@
             s.parentNode.insertBefore(hm, s);
         })();
     </script>
-    <meta name="keywords" content="hzyadmin,hzy,HZY,HZY.AdminRazor,hzyadminspa,HZY.AdminSpa">
+    <meta name="keywords" content="hzyadmin,hzy,HZY,HzyAdminRazor,HzyAdminSpa">
     <meta charset="UTF-8">
     <!-- 避免IE使用兼容模式 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
@@ -41,49 +37,14 @@
     <![endif]-->
     <title>@ViewData["Title"] - @AppConfiguration.AppTitle</title>
     <link rel="shortcut icon" href="/favicon.ico">
-    <!--菜单-->
-    <link href="@ViewData["HzyAdminUIPath"]libs/metismenu-master/metisMenu.min.css" rel="stylesheet"/>
-    <!--web icons 图标库-->
-    <link href="@ViewData["HzyAdminUIPath"]css/web-icons-master/css/web-icons.css" rel="stylesheet"/>
-    <!--样式-->
-    <link href="@ViewData["HzyAdminUIPath"]css/fontawesome-free/css/all.min.css" rel="stylesheet">
-    <link href="@ViewData["HzyAdminUIPath"]css/bootstrap.min.css" rel="stylesheet"/>
-    <link href="@ViewData["HzyAdminUIPath"]css/core.css" rel="stylesheet"/>
-    <link href="@ViewData["HzyAdminUIPath"]css/site.css" rel="stylesheet"/>
-    <!--选项卡-->
-    <link href="@ViewData["HzyAdminUIPath"]libs/hzyBootStrapTabs/index.css" rel="stylesheet"/>
-    <!--主页面-->
-    <link href="@ViewData["HzyAdminUIPath"]css/hzyAdminUI.css" rel="stylesheet"/>
-    <!--element ui-->
-    <link rel="stylesheet" href="~/admin/libs/elementui/lib/theme-chalk/index.css">
-    <!--框架样式-->
-    <link href="~/admin/css/hzyAdmin.css" rel="stylesheet"/>
+    <partial name="_Styles" />
     @RenderSection("Styles", required: false)
 </head>
 <body>
 
-@RenderBody()
+    @RenderBody()
 
-<!--脚本-->
-<script src="@ViewData["HzyAdminUIPath"]libs/jquery/jquery-3.2.1.min.js"></script>
-<!--jquery bolb 文件下载扩展-->
-<script src="~/admin/libs/axios.min.js"></script>
-<!---->
-<script src="@ViewData["HzyAdminUIPath"]libs/bootstrap/js/bootstrap.bundle.min.js"></script>
-<!--metisMenu 菜单-->
-<script src="@ViewData["HzyAdminUIPath"]libs/metismenu-master/metisMenu.min.js"></script>
-<!--选项卡-->
-<script src="@ViewData["HzyAdminUIPath"]libs/hzyBootStrapTabs/index.js"></script>
-<!--主页面-->
-<script src="@ViewData["HzyAdminUIPath"]js/hzyAdminUI.js"></script>
-<!-- vue -->
-<script src="~/admin/libs/vue.js"></script>
-<!--element ui-->
-<script src="~/admin/libs/elementui/lib/index.js"></script>
-<!--layer 弹框插件-->
-<script src="~/admin/libs/layer/layer.js"></script>
-<!-- hzyAdmin -->
-<script src="~/admin/js/hzyAdmin.js"></script>
-@RenderSection("Scripts", required: false)
+    <partial name="_Scripts" />
+    @RenderSection("Scripts", required: false)
 </body>
 </html>

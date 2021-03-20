@@ -1,17 +1,12 @@
 ﻿@model Guid
 @section Styles{
-    <style type="text/css">
-        html,
-        body {
-            background: #ffffff;
-        }
-    </style>
+
 }
 @section Scripts{
     <input type="hidden" value='@Html.Raw(ViewData["power"])' id="hidden_power" />
     <input type="hidden" value='@Model' id="hidden_id" />
     <!--引入 wangEditor js-->
-    <script src="~/admin/libs/wangEditor.min.js"></script>
+    <script src="~/libs/wangEditor.min.js"></script>
     <script type="text/javascript">
         var power = JSON.parse(document.getElementById('hidden_power').value);
         var id = document.getElementById('hidden_id').value;
@@ -21,16 +16,15 @@
                 return {
                     power: power,
                     prefix: "/Admin/Member",
-                    form: {
-                        saveState: false,
-                        vm: {
-                            model: {},
-                            sysUser: {}
-                        },
-                        Photo: null,
-                        Files: [],
-                        FilesName: [],
+                    vm: {
+                        id: "",
+                        form: {},
+                        sysUser: {}
                     },
+                    loading:false,
+                    Photo: null,
+                    Files: [],
+                    FilesName: [],
                     editor: null
                 }
             },
@@ -40,68 +34,57 @@
                 }
             },
             created: function () {
-               
+                
             },
             mounted: function () {
                 this.initEditor();
-                this.loadForm();
+                this.findForm();
             },
             methods: {
-                loadForm: function () {
-                    var _this = this;
-                    var path = _this.prefix + "/FindForm/" + this.formKey;
-
-                    hzyAdmin.httpGet(path, {}, function (r) {
-                        if (r.code !== 1) return;
-                        _this.form.vm = r.data;
+                closeWindow: function () {
+                    tools.getLayer().close(tools.getLayer().getFrameIndex(window.name));
+                },
+                findForm() {
+                    http.get(`${this.prefix}/findForm/${this.formKey}`, {}).then((res) => {
+                        if (res.code != 1) return;
+                        this.vm = res.data;
                         //处理文件
-                        if (_this.form.vm.model.filePath) _this.form.FilesName = _this.form.vm.model.filePath.split(',');
+                        if (this.vm.form.filePath) this.FilesName = this.vm.form.filePath.split(',');
 
-                        let introduce = _this.form.vm.model.introduce ? _this.form.vm.model.introduce.replace(/'/g, '\'') : "";
-                        console.log(_this.editor, introduce);
-                        _this.editor.txt.html(introduce) // 重新设置编辑器内容
-
+                        let introduce = this.vm.form.introduce ? this.vm.form.introduce.replace(/'/g, '\'') : "";
+                        this.editor.txt.html(introduce) // 重新设置编辑器内容
                     });
                 },
-                closeWindow: function (delay = 0) {
-                    setTimeout(function () {
-                        hzyAdmin.layer.close(hzyAdmin.layer.getFrameIndex(window.name));
-                    }, delay);
-                },
-                save: function () {
-                    var _this = this;
-                    var path = _this.prefix + "/SaveForm";
-
+                saveForm() {
                     //验证
-                    if (!this.form.vm.model.name) return hzyAdmin.alert('会员名称不能为空!', '警告');
+                    if (!this.vm.form.name) return hzyAdmin.alert('名称不能为空!', '警告');
 
                     //组装数据
                     var formData = new FormData();
-                    for (var key in this.form.vm.model) {
-                        var value = this.form.vm.model[key];
-                        formData.append(key, value ? value : '');
+                    for (var key in this.vm.form) {
+                        var value = this.vm.form[key];
+                        if (!value) continue;
+                        formData.append(key, value);
                     }
 
-                    if (this.form.Photo) formData.append('Photo', this.form.Photo);
+                    if (this.Photo) formData.append('Photo', this.Photo);
 
-                    for (var i = 0; i < this.form.Files.length; i++) {
-                        var item = this.form.Files[i];
+                    for (var i = 0; i < this.Files.length; i++) {
+                        var item = this.Files[i];
                         formData.append('Files[' + i + ']', item);
                     }
 
-                    this.form.saveState = true;
-                    hzyAdmin.httpUpload(path, formData, function (r) {
-                        _this.form.saveState = false;
-                        if (r.code === 1) {
-                            hzyAdmin.alert('保存成功', '成功');
-                            //关闭当前窗口
-                            _this.closeWindow();
-                        }
+                    this.loading = true;
+                    http.upload(`${this.prefix}/saveForm`, formData).then((res) => {
+                        if (res.code != 1) return;
+                        tools.message("操作成功!", "成功");
+                        this.loading = false;
+                        this.closeWindow();
                     });
                 },
                 /**
-                    * 初始化 富文本编辑器
-                    */
+                   * 初始化 富文本编辑器
+                   */
                 initEditor: function () {
                     let t = this;
                     let E = window.wangEditor;
@@ -111,7 +94,7 @@
                     // 配置 onchange 回调函数
                     this.editor.config.onchange = function (newHtml) {
                         //console.log('change 之后最新的 html', newHtml)
-                        t.form.vm.model.introduce = newHtml;
+                        t.vm.form.introduce = newHtml;
                     }
                     // 配置触发 onchange 的时间频率，默认为 200ms
                     this.editor.config.onchangeTimeout = 300 // 修改为 500ms
@@ -120,6 +103,8 @@
                     this.editor.config.uploadImgServer = "/Upload/Images";
                     this.editor.config.uploadFileName = "editorFileImages";
                     this.editor.config.uploadImgTimeout = 60 * 1000;
+                    //z-index
+                    this.editor.config.zIndex = 10;
 
                     //创建
                     this.editor.create();
@@ -127,38 +112,32 @@
                 photoChange: function (e) {
                     let files = e.target.files;
                     if (files.length > 0) {
-                        this.form.vm.model.photo = hzyAdmin.getObjectUrl(files[0]); //显示
-                        this.form.Photo = files[0];
+                        this.vm.form.photo = tools.getObjectUrl(files[0]); //显示
+                        this.Photo = files[0];
                     }
                 },
                 fielsChange: function (e) {
                     var files = e.target.files;
                     if (files.length > 0) {
-                        //for (var i = 0; i < files.length; i++) {
-                        //    var item = files[i];
-                        //    this.form.FielsName.push(item.filename);
-                        //}
-                        this.form.Files = files;
+                        this.Files = files;
                     }
                 },
                 //查找带回
                 findBack_User: function (isRemove) {
                     if (isRemove) {
                         //清空信息
-                        this.form.vm.model.userId = '';
-                        this.form.vm.sysUser.name = '';
+                        this.vm.form.userId = '';
+                        this.vm.sysUser.name = '';
                         return;
                     }
                     //打开页面查找带回信息
-                    var _this = this;
+                    var t = this;
                     var path = "/Admin/SysUser/Index?findBack=1";
 
-                    hzyAdmin.openPage('请选择用户', path, function (row) {
-                        console.log('查找带回 行数据', row);
+                    tools.pageOpen('请选择用户', path, function (row) {
                         if (row == null) return;
-                        _this.form.vm.model.userId = row.id;
-                        _this.form.vm.sysUser.name = row.name;
-
+                        t.vm.form.userId = row.id;
+                        t.vm.sysUser.name = row.name;
                     }, 1200, 1000);
                 }
 
@@ -166,98 +145,68 @@
         });
     </script>
 }
-<div class="m-20 hzyAdminForm" id="app">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-4">
-                <h4 class="example-title">编号</h4>
-                <input type="text" class="form-control" placeholder="请输入 编号" v-model="form.vm.model.number"
-                       autocomplete="off" />
-            </div>
-            <div class="col-sm-4">
-                <h4 class="example-title">会员名称</h4>
-                <input type="text" class="form-control" placeholder="请输入 会员名称" v-model="form.vm.model.name"
-                       autocomplete="off" />
-            </div>
-            <div class="col-sm-4">
-                <h4 class="example-title">联系电话</h4>
-                <input type="text" class="form-control" placeholder="请输入 联系电话" v-model="form.vm.model.phone"
-                       autocomplete="off" />
-            </div>
-            <div class="col-sm-4">
-                <h4 class="example-title">生日</h4>
-                <el-date-picker type="date" placeholder="请选择 生日" v-model="form.vm.model.birthday"
-                                format="yyyy 年 MM 月 dd 日" value-format="yyyy-MM-dd" style="width:100%"></el-date-picker>
-            </div>
-            <div class="col-sm-4">
-                <h4 class="example-title">性别</h4>
-                <el-radio v-model="form.vm.model.sex" label="男">男</el-radio>
-                <el-radio v-model="form.vm.model.sex" label="女">女</el-radio>
-            </div>
-            <div class="col-sm-4">
-                <h4 class="example-title">账户</h4>
-                <!--<div class="hzyAdmin-FindBack-Container">
-                    <input type="text" class="form-control" readonly="readonly" v-model="form.vm.sysUser.User_Name">
-                    <div class="hzyAdmin-FindBack-Btns">
-                        <button type="button" class="btn btn-default btn-outline" @@click="findBack_User()">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <button type="button" class="btn btn-default btn-outline" @@click="findBack_User(1)">
-                            <i class="fas fa-trash-alt text-danger"></i>
-                        </button>
-                    </div>
-                </div>-->
-                <!--旧版查找带回 样式-->
-                <div class="input-group">
-                    <input type="text" class="form-control" readonly="readonly" v-model="form.vm.sysUser.name">
-                    <div class="input-group-append">
-                        <button type="button" class="btn btn-default btn-outline" @@click="findBack_User()">
-                            <i class="fas fa-search"></i>
-                        </button>
-                        <button type="button" class="btn btn-default btn-outline" @@click="findBack_User(1)">
-                            <i class="fas fa-trash-alt text-danger"></i>
-                        </button>
-                    </div>
-                </div>
 
-            </div>
+<div id="app" v-cloak class="pl-20 pr-20 pb-100">
+    <el-row :gutter="15">
+        <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8">
+            <h4>编号:</h4>
+            <el-input v-model="vm.form.number" placeholder="请输入" />
+        </el-col>
+        <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8">
+            <h4>会员名称:</h4>
+            <el-input v-model="vm.form.name" placeholder="请输入" />
+        </el-col>
+        <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8">
+            <h4>联系电话:</h4>
+            <el-input v-model="vm.form.phone" placeholder="请输入" />
+        </el-col>
+        <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8">
+            <h4>生日:</h4>
+            <el-date-picker type="date" placeholder="请选择 生日" v-model="vm.form.birthday"
+                            format="yyyy 年 MM 月 dd 日" value-format="yyyy-MM-dd" class="w100"></el-date-picker>
+        </el-col>
+        <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8">
+            <h4>性别:</h4>
+            <el-radio v-model="vm.form.sex" label="男">男</el-radio>
+            <el-radio v-model="vm.form.sex" label="女">女</el-radio>
+        </el-col>
+        <el-col :xs="24" :sm="8" :md="8" :lg="8" :xl="8">
+            <h4>账户:</h4>
+            <el-input placeholder="请输入内容" v-model="vm.sysUser.name" disabled>
+                <el-button slot="prepend" icon="el-icon-search" @@click="findBack_User()"></el-button>
+                <el-button slot="append" icon="el-icon-close" @@click="findBack_User(1)" class="text-danger"></el-button>
+            </el-input>
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+            <el-row :gutter="15">
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                    <h4>头像:</h4>
+                    <input type="file" @@change="photoChange" />
+                    <br />
+                    <img width="150" class="rounded" :src="vm.form.photo" v-show="vm.form.photo" />
+                </el-col>
+                <el-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+                    <h4>文件:</h4>
+                    <input type="file" @@change="fielsChange" multiple="multiple" />
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="(item,index) in FilesName" :key="index">
+                            <a :href="item" target="_blank">{{item}}</a>
+                        </li>
+                    </ul>
+                </el-col>
+            </el-row>
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+            <h4>简介:</h4>
+            <div id="editor"></div>
+        </el-col>
 
-            <div class="col-sm-12">
-                <div class="row">
-                    <div class="col-sm-6">
-                        <h4 class="example-title">头像</h4>
-                        <input type="file" @@change="photoChange" />
-                        <br />
-                        <img width="150" class="rounded" :src="form.vm.model.photo" v-show="form.vm.model.photo" />
-                    </div>
-                    <div class="col-sm-6">
-                        <h4 class="example-title">文件</h4>
-                        <input type="file" @@change="fielsChange" multiple="multiple" />
-                        <ul class="list-group">
-                            <li class="list-group-item" v-for="(item,index) in form.FilesName" :key="index">
-                                <a :href="item" target="_blank">{{item}}</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <div class="col-sm-12">
-                <h4 class="example-title">简介</h4>
-                <div id="editor"></div>
-            </div>
-
-        </div>
-        <div class="hzyAdminForm-footer">
-            <div class="row">
-                <div class="col-sm-6"></div>
-                <div class="col-sm-6 text-right">
-                    <button class="btn btn-primary" @@click="save" v-bind:disabled="form.saveState"
-                            v-if="power.Save">
-                        保存
-                    </button>
-                    <button class="btn btn-danger" @@click="closeWindow()">关闭</button>
-                </div>
-            </div>
+    </el-row>
+    <div class="hzy-admin-window-footer">
+        <div style="flex: 1 1 0%"></div>
+        <div class="p-10">
+            <el-button type="primary" @@click="saveForm" :loading="loading">提交</el-button>
+            <el-button type="danger" @@click="closeWindow">关闭</el-button>
         </div>
     </div>
 </div>

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using HZY.Admin.Services;
 using HZY.Admin.Services.Framework;
 using HZY.Framework;
 using HZY.Framework.Attributes;
@@ -33,6 +34,26 @@ namespace HZY.Admin.Core
         /// <param name="context"></param>
         public virtual void OnActionExecuting(ActionExecutingContext context)
         {
+            var httpContext = context.HttpContext;
+            var routeValues = context.ActionDescriptor.RouteValues;
+            //var areaName = routeValues["area"];
+            var controllerName = routeValues["controller"];
+            var actionName = routeValues["action"];
+
+
+            #region 拦截操作数据库的 接口 方便发布线上演示
+
+            //拦截操作数据库的 接口
+
+            //var actionList = new[] { "SaveForm", "DeleteList" };
+            //if (actionList.Any(w => w.ToLower() == actionName.ToLower()))
+            //{
+            //    MessageBox.Show("请下载源代码本地运行!");
+            //}
+
+
+            #endregion
+
             if (!(context.Controller is Controller))
             {
                 return;
@@ -48,11 +69,6 @@ namespace HZY.Admin.Core
 
             if (adminApiDescribeAttribute == null) return;
 
-            var httpContext = context.HttpContext;
-            var routeValues = context.ActionDescriptor.RouteValues;
-            //var areaName = routeValues["area"];
-            var controllerName = routeValues["controller"];
-            var actionName = routeValues["action"];
             const string unAuthMessage = "未授权,请先登录授权!";
 
             #region 检查是否登录 授权
@@ -110,7 +126,7 @@ namespace HZY.Admin.Core
                         //收集用户权限
                         power = this._sysMenuService.GetPowerStateByMenuId(menuId).Result;
 
-                        if (!power["Have"].ToBool())
+                        if (!power[AppConst.Function_Have].ToBool())
                         {
                             context.Result = new ContentResult()
                             {

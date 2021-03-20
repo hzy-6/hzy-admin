@@ -1,5 +1,9 @@
 ﻿@section Styles{
-
+    <style>
+        body {
+            background-color: #f0f2f5 !important;
+        }
+    </style>
 }
 
 @section Scripts{
@@ -9,9 +13,12 @@
             data: function () {
                 return {
                     grid: 24,
-                    oldPassword: null,
-                    newPassword: null,
-                    qrPassword: null
+                    vm: {
+                        oldPassword: null,
+                        newPassword: null,
+                        qrPassword: null
+                    },
+                    loading:false
                 }
             },
             created: function () {
@@ -21,17 +28,14 @@
 
             },
             methods: {
-                save: function () {
-                    let _this = this;
+                saveForm: function () {
                     let path = "/Admin/ChangePassword/SaveForm";
 
-                    hzyAdmin.httpPost(path, { 
-                        oldPassword:_this.oldPassword,
-                        newPassword: _this.newPassword,
-                        qrPassword:_this.qrPassword 
-                   }, function (r) {
-                        if (r.code !== 1) return;
-                        hzyAdmin.alert('变更成功!即将退出重新登录', '成功');
+                    this.loading = true;
+                    http.post(path, this.vm).then(res => {
+                        this.loading = false;
+                        if (res.code !== 1) return;
+                        tools.alert('变更成功!即将退出重新登录', '成功');
                         setTimeout(function () {
                             top.window.location = '/Admin/Login/Out';
                         }, 500);
@@ -42,33 +46,35 @@
     </script>
 }
 
-<div class="m-20" id="app">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-sm-4 offset-sm-4">
-                <el-card>
-                    <div class="col-sm-12">
-                        <h4 class="example-title">旧密码</h4>
-                        <input type="text" class="form-control" placeholder="请输入 旧密码" v-model="oldPassword"
-                               autocomplete="off"/>
-                    </div>
-                    <div class="col-sm-12">
-                        <h4 class="example-title">新密码</h4>
-                        <input type="text" class="form-control" placeholder="请输入 新密码" v-model="newPassword"
-                               autocomplete="off"/>
-                    </div>
-                    <div class="col-sm-12">
-                        <h4 class="example-title">确认密码</h4>
-                        <input type="text" class="form-control" placeholder="请输入 确认密码" v-model="qrPassword"
-                               autocomplete="off"/>
-                    </div>
+<div id="app" v-cloak class="p-15">
 
-                    <div class="col-sm-12 mt-20 text-center">
-                        <button class="btn btn-primary" @@click="save">保存</button>
-                    </div>
-                </el-card>
-            </div>
-        </div>
-
-    </div>
+    <el-row :gutter="15">
+        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
+            <div>&nbsp;</div>
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
+            <el-card>
+                <div slot="header" class=" text-center">
+                    <span class="fs-20">修改密码</span>
+                </div>
+                <el-row :gutter="15">
+                    <el-col :xs="24">
+                        <h4>旧密码:</h4>
+                        <el-input v-model="vm.oldPassword" placeholder="请输入" type="password" />
+                    </el-col>
+                    <el-col :xs="24">
+                        <h4>新密码:</h4>
+                        <el-input v-model="vm.newPassword" placeholder="请输入" type="password" />
+                    </el-col>
+                    <el-col :xs="24">
+                        <h4>确认新密码:</h4>
+                        <el-input v-model="vm.qrPassword" placeholder="请输入" type="password" />
+                    </el-col>
+                    <el-col :xs="24" class="pt-20 pb-20">
+                        <el-button type="primary" class="w100" @@click="saveForm" :loading="loading">保存</el-button>
+                    </el-col>
+                </el-row>
+            </el-card>
+        </el-col>
+    </el-row>
 </div>

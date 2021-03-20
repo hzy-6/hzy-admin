@@ -4,7 +4,7 @@
         <name>HZY.Admin</name>
     </assembly>
     <members>
-        <member name="M:HZY.Admin.Controllers.Framework.ChangePasswordController.ChangePasswordAsync(HZY.Admin.Model.Dto.ChangePasswordDto)">
+        <member name="M:HZY.Admin.Controllers.Framework.ChangePasswordController.SaveFormAsync(HZY.Admin.Model.Dto.ChangePasswordDto)">
             <summary>
             更新密码
             </summary>
@@ -278,6 +278,12 @@
         <member name="M:HZY.Admin.Controllers.Framework.UploadController.Images">
             <summary>
             上传图片
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Admin.Controllers.HomeController.GetRouters">
+            <summary>
+            获取 路由
             </summary>
             <returns></returns>
         </member>

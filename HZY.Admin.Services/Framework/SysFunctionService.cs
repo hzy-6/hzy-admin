@@ -64,16 +64,16 @@ namespace HZY.Admin.Services.Framework
         public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
         {
             var res = new Dictionary<string, object>();
-            var model = await this.Repository.FindAsync(id);
-            model = model.NullSafe();
+            var form = await this.Repository.FindAsync(id);
+            form = form.NullSafe();
 
-            if (model.Id == Guid.Empty)
+            if (form.Id == Guid.Empty)
             {
                 var maxNumber = await this.Repository.Select.MaxAsync(w => w.Number);
-                model.Number = (maxNumber ?? 0) + 1;
+                form.Number = (maxNumber ?? 0) + 1;
             }
 
-            res[nameof(model)] = model;
+            res[nameof(form)] = form;
             return res;
         }
 

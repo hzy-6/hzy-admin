@@ -1,5 +1,9 @@
 ﻿@section Styles{
-
+    <style type="text/css">
+        body {
+            background-color: #f0f2f5 !important;
+        }
+    </style>
 }
 @section Scripts{
     <script type="text/javascript">
@@ -205,7 +209,7 @@
                     }],
                     drawer: false,
                     direction: 'rtl',
-                    value:'',
+                    value: '',
                 }
             },
             created: function () {
@@ -227,134 +231,129 @@
                 },
                 openBaidu: function () {
                     //这是一个在页面内部打开一个标签页的例子
-                    top.hzyBootStrapTabs.addTab('baidu_id', '大家好我是百度', 'https://www.baidu.com');
+                    tools.addView('baidu_123', '大家好我是百度', 'https://www.baidu.com');
                 },
                 openBaiduMap: function () {
                     var path = "https://www.baidu.com/link?url=UKeA9WyYe_6Tv7SMOhwYWoLbLAMPNXeMX36hwOB2L1m&wd=&eqid=bea9a4e90002a0f1000000025ea7c756";
-                    top.hzyBootStrapTabs.addTab('baidumap_id', '我是一个百度地图', path);
+                    tools.addView('baidumap_id', '我是一个百度地图', path);
                 },
-                openCCT: function () {
-                    var path = "/Admin/CCT/Index";
-                    var id = "4ce21a81-1cae-44d2-b29e-07058ff04b3e";//这里的 id 必须与 左侧菜单id 对应上 ，如果没有对应 则 开启新的标签页面!
-                    top.hzyBootStrapTabs.addTab(id, '代码创建', path);
+                openMenu: function () {
+                    var id = "7c34c2fd-98ed-4655-aa04-bb00b915a751";//这里的 id 必须与 左侧菜单id 对应上
+                    tools.openView(id);
                 }
             }
         });
     </script>
 }
-<div class="m-20" id="app">
-    <div class="container-fluid">
+<div id="app" v-cloak class="p-15">
 
-        <el-row :gutter="20">
-            <el-col :span="12">
-                <el-card class="box-card">
-                    <div slot="header" class="clearfix">
-                        <span>日历</span>
-                        <el-link target="_blank" type="success" style="float: right; padding: 3px 0" href="https://element.eleme.cn/#/zh-CN/component/layout">更多组件</el-link>
-                    </div>
-                    <el-calendar v-model="time"></el-calendar>
-                </el-card>
-            </el-col>
-            <el-col :span="12">
-                <el-card class="box-card">
-                    <div slot="header" class="clearfix">
-                        <span>按钮</span>
-                        <el-link target="_blank" type="success" style="float: right; padding: 3px 0" href="https://element.eleme.cn/#/zh-CN/component/layout">更多组件</el-link>
-                    </div>
-                    <el-row class="mb-20">
-                        <el-col :span="24">
-                            <el-button type="primary" @@click="openCCT" style="width:100%">打开创建代码页面</el-button>
-                        </el-col>
-                    </el-row>
-                    <el-row class="mb-20">
-                        <el-col :span="24">
-                            <el-button type="primary" @@click="openBaidu" style="width:100%">打开一个百度</el-button>
-                        </el-col>
-                    </el-row>
-                    <el-row class="mb-20">
-                        <el-col :span="24">
-                            <el-button type="primary" @@click="openBaiduMap" style="width:100%">打开一个百度地图</el-button>
-                        </el-col>
-                    </el-row>
+    <el-row :gutter="20">
+        <el-col :span="12">
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <span>日历</span>
+                    <el-link target="_blank" type="success" style="float: right; padding: 3px 0" href="https://element.eleme.cn/#/zh-CN/component/layout">更多组件</el-link>
+                </div>
+                <el-calendar v-model="time"></el-calendar>
+            </el-card>
+        </el-col>
+        <el-col :span="12">
+            <el-card class="box-card">
+                <div slot="header" class="clearfix">
+                    <span>按钮</span>
+                    <el-link target="_blank" type="success" style="float: right; padding: 3px 0" href="https://element.eleme.cn/#/zh-CN/component/layout">更多组件</el-link>
+                </div>
+                <el-row class="mb-20">
+                    <el-col :span="24">
+                        <el-button type="primary" @@click="openMenu" style="width:100%">打开会员管理</el-button>
+                    </el-col>
+                </el-row>
+                <el-row class="mb-20">
+                    <el-col :span="24">
+                        <el-button type="primary" @@click="openBaidu" style="width:100%">打开一个百度</el-button>
+                    </el-col>
+                </el-row>
+                <el-row class="mb-20">
+                    <el-col :span="24">
+                        <el-button type="primary" @@click="openBaiduMap" style="width:100%">打开一个百度地图</el-button>
+                    </el-col>
+                </el-row>
 
-                    <el-row class="mb-20">
-                        <el-button>默认按钮</el-button>
-                        <el-button type="primary">主要按钮</el-button>
-                        <el-button type="success">成功按钮</el-button>
-                        <el-button type="info">信息按钮</el-button>
-                        <el-button type="warning">警告按钮</el-button>
-                        <el-button type="danger">危险按钮</el-button>
-                    </el-row>
+                <el-row class="mb-20">
+                    <el-button>默认按钮</el-button>
+                    <el-button type="primary">主要按钮</el-button>
+                    <el-button type="success">成功按钮</el-button>
+                    <el-button type="info">信息按钮</el-button>
+                    <el-button type="warning">警告按钮</el-button>
+                    <el-button type="danger">危险按钮</el-button>
+                </el-row>
 
-                    <el-row class="mb-20">
-                        <el-button plain>朴素按钮</el-button>
-                        <el-button type="primary" plain>主要按钮</el-button>
-                        <el-button type="success" plain>成功按钮</el-button>
-                        <el-button type="info" plain>信息按钮</el-button>
-                        <el-button type="warning" plain>警告按钮</el-button>
-                        <el-button type="danger" plain>危险按钮</el-button>
-                    </el-row>
+                <el-row class="mb-20">
+                    <el-button plain>朴素按钮</el-button>
+                    <el-button type="primary" plain>主要按钮</el-button>
+                    <el-button type="success" plain>成功按钮</el-button>
+                    <el-button type="info" plain>信息按钮</el-button>
+                    <el-button type="warning" plain>警告按钮</el-button>
+                    <el-button type="danger" plain>危险按钮</el-button>
+                </el-row>
 
-                    <el-row class="mb-20">
-                        <el-button round>圆角按钮</el-button>
-                        <el-button type="primary" round>主要按钮</el-button>
-                        <el-button type="success" round>成功按钮</el-button>
-                        <el-button type="info" round>信息按钮</el-button>
-                        <el-button type="warning" round>警告按钮</el-button>
-                        <el-button type="danger" round>危险按钮</el-button>
-                    </el-row>
+                <el-row class="mb-20">
+                    <el-button round>圆角按钮</el-button>
+                    <el-button type="primary" round>主要按钮</el-button>
+                    <el-button type="success" round>成功按钮</el-button>
+                    <el-button type="info" round>信息按钮</el-button>
+                    <el-button type="warning" round>警告按钮</el-button>
+                    <el-button type="danger" round>危险按钮</el-button>
+                </el-row>
 
-                    <el-row class="mb-20">
-                        <el-button icon="el-icon-search" circle></el-button>
-                        <el-button type="primary" icon="el-icon-edit" circle></el-button>
-                        <el-button type="success" icon="el-icon-check" circle></el-button>
-                        <el-button type="info" icon="el-icon-message" circle></el-button>
-                        <el-button type="warning" icon="el-icon-star-off" circle></el-button>
-                        <el-button type="danger" icon="el-icon-delete" circle></el-button>
-                    </el-row>
-                    <el-row class="mb-20">
-                        <el-col :span="12">
-                            <span class="demonstration">默认 click 触发子菜单</span>
-                            <el-cascader v-model="value"
-                                         :options="options"
-                                         @@change="handleChange"></el-cascader>
-                        </el-col>
-                        <el-col :span="12">
-                            <span class="demonstration">hover 触发子菜单</span>
-                            <el-cascader v-model="value"
-                                         :options="options"
-                                         :props="{ expandTrigger: 'hover' }"
-                                         @@change="handleChange"></el-cascader>
-                        </el-col>
-                    </el-row>
-                    <el-row class="mb-20">
-                        <el-col :span="23">
-                            <el-radio-group v-model="direction">
-                                <el-radio label="ltr">从左往右开</el-radio>
-                                <el-radio label="rtl">从右往左开</el-radio>
-                                <el-radio label="ttb">从上往下开</el-radio>
-                                <el-radio label="btt">从下往上开</el-radio>
-                            </el-radio-group>
+                <el-row class="mb-20">
+                    <el-button icon="el-icon-search" circle></el-button>
+                    <el-button type="primary" icon="el-icon-edit" circle></el-button>
+                    <el-button type="success" icon="el-icon-check" circle></el-button>
+                    <el-button type="info" icon="el-icon-message" circle></el-button>
+                    <el-button type="warning" icon="el-icon-star-off" circle></el-button>
+                    <el-button type="danger" icon="el-icon-delete" circle></el-button>
+                </el-row>
+                <el-row class="mb-20">
+                    <el-col :span="12">
+                        <span class="demonstration">默认 click 触发子菜单</span>
+                        <el-cascader v-model="value"
+                                     :options="options"
+                                     @@change="handleChange"></el-cascader>
+                    </el-col>
+                    <el-col :span="12">
+                        <span class="demonstration">hover 触发子菜单</span>
+                        <el-cascader v-model="value"
+                                     :options="options"
+                                     :props="{ expandTrigger: 'hover' }"
+                                     @@change="handleChange"></el-cascader>
+                    </el-col>
+                </el-row>
+                <el-row class="mb-20">
+                    <el-col :span="23">
+                        <el-radio-group v-model="direction">
+                            <el-radio label="ltr">从左往右开</el-radio>
+                            <el-radio label="rtl">从右往左开</el-radio>
+                            <el-radio label="ttb">从上往下开</el-radio>
+                            <el-radio label="btt">从下往上开</el-radio>
+                        </el-radio-group>
 
-                            <el-button @@click="drawer = true" type="primary" style="margin-left: 16px;">
-                                点我打开
-                            </el-button>
+                        <el-button @@click="drawer = true" type="primary" style="margin-left: 16px;">
+                            点我打开
+                        </el-button>
 
-                            <el-drawer title="我是标题"
-                                       :visible.sync="drawer"
-                                       :direction="direction"
-                                       :before-close="handleClose">
-                                <span>来啦老弟？</span>
-                            </el-drawer>
+                        <el-drawer title="我是标题"
+                                   :visible.sync="drawer"
+                                   :direction="direction"
+                                   :before-close="handleClose">
+                            <span>来啦老弟？</span>
+                        </el-drawer>
 
-                        </el-col>
-                    </el-row>
-                </el-card>
+                    </el-col>
+                </el-row>
+            </el-card>
 
-            </el-col>
-        </el-row>
-
-
-    </div>
+        </el-col>
+    </el-row>
 
 </div>
