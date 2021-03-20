@@ -76,9 +76,9 @@
 
                     this.loading = true;
                     http.upload(`${this.prefix}/saveForm`, formData).then((res) => {
-                        if (res.code != 1) return;
-                        tools.message("操作成功!", "成功");
                         this.loading = false;
+                        if (res.code != 1) return;
+                        tools.message("操作成功!", "成功");                        
                         this.closeWindow();
                     });
                 },
