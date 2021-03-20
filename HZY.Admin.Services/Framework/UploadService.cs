@@ -39,7 +39,7 @@ namespace HZY.Admin.Services.Framework
 
             if (string.IsNullOrWhiteSpace(folder)) folder = "files";
 
-            var path = $"/upload/{folder}";
+            var path = $"/admin/upload/{folder}";
 
             if (!Directory.Exists(this._webRootPath + path))
             {
