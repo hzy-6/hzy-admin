@@ -22,19 +22,26 @@ class Tools {
         };
     }
 
+    isLoadingClose = false;
     loadingIndex = null;
     /**
      * 加载开始
      * 
      */
     loadingStart() {
-        // this.loadingIndex = this.vuePrototype.$loading({
-        //     fullscreen: true,
-        //     background: 'rgba(255,255,255,0.1)'
-        // });
-
-        // top.NProgress.start();
-        top.NProgress.set(0.3);
+        var value = 0.1;
+        var time = setInterval(function() {
+            if (this.isLoadingClose) {
+                top.NProgress.set(1);
+                return clearInterval(time);
+            }
+            value = value + 0.1;
+            if (value >= 1) {
+                top.NProgress.set(1);
+                return clearInterval(time);
+            }
+            top.NProgress.set(value);
+        }, 100);
     }
 
     /**
@@ -42,11 +49,7 @@ class Tools {
      * 
      */
     loadingStop() {
-        // if (this.loadingIndex) {
-        //     this.loadingIndex.close();
-        // }
-        // top.NProgress.done();
-        top.NProgress.set(1);
+        this.isLoadingClose = true;
     }
 
     /**
