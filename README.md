@@ -23,8 +23,8 @@ https://gitee.com/hzy6/HzyAdminSpa
 
 ###  **_交流群: 534584927_** 
 
-
-前端：Vue 、Element UI、Layer(只是弹层 没用到 layui)
+后端技术：.Net5、EFcore5
+前端技术：Vue 、Element UI、Layer(只是弹层 没用到 layui)
 
 数据库脚本位置：根目录/doc/HZY.Admin.sql
 
