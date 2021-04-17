@@ -17,7 +17,7 @@ namespace HZY.Repository.Core.Provider
     {
         public static void RegisterRepository(this IServiceCollection services, string connectionString)
         {
-            services.AddDbContextPool<AppDbContext>(options =>
+            services.AddDbContext<AppDbContext>(options =>
             {
                 options
                     .UseSqlServer(connectionString, w => w.MinBatchSize(1).MaxBatchSize(100))
