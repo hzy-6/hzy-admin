@@ -19,11 +19,12 @@ https://gitee.com/hzy6/HzyAdminSpa
 
 
 #### 软件架构
-开发环境：vs2019 、 .Net5.0
+开发环境：vs2019 、 .Net5.0(最新版本)
 
 ###  **_交流群: 534584927_** 
 
 后端技术：.Net5、EFcore5
+
 前端技术：Vue 、Element UI、Layer(只是弹层 没用到 layui)
 
 数据库脚本位置：根目录/doc/HZY.Admin.sql
