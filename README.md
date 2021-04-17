@@ -5,7 +5,7 @@
 ### :yellow_heart: 介绍 
 后台通配权限管理系统！基于.Net5
 
-### 基于后台模板(hzy-admin-ui)
+### 基于后台模板(hzy-admin-ui)可结合自己的后台架构
 https://gitee.com/hzy6/hzy-admin-ui
 
 ###  :cherries: 前后端分离版
