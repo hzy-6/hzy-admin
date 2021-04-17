@@ -27,7 +27,7 @@ https://gitee.com/hzy6/HzyAdminSpa
 
 前端技术：Vue 、Element UI、Layer(只是弹层 没用到 layui)
 
-数据库脚本位置：根目录/doc/HZY.Admin.sql
+数据库脚本位置：根目录/doc/HzyAdminRazor.sql
 
 
 #### 部分界面截图
