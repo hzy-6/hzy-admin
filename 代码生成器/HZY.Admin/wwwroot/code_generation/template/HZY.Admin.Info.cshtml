@@ -1,0 +1,106 @@
+﻿@model HZY.Admin.Model.CodeGenerationModel
+@{
+    var className = Model.TableName;
+    var ignores = new string[] {"Id", "CreateTime", "UpdateTime"};
+    var tableInfos = Model.AppTableInfos
+        .Where(w => !ignores.Contains(w.ColName))
+        .ToList()
+        ;
+}
+<pre>
+@@model Guid
+
+@@section Styles{
+<style type="text/css">
+    html,
+    body {
+        background: #ffffff;
+    }
+</style>
+}
+
+@@section Scripts{
+<input type="hidden" value='@@Html.Raw(ViewData["power"])' id="hidden_power" />
+<input type="hidden" value='@@Model' id="hidden_id" />
+<!--js service-->
+<script type="text/javascript">
+    var power = JSON.parse(document.getElementById('hidden_power').value);
+    var id = document.getElementById('hidden_id').value;
+    var app = new Vue({
+        el: "#app",
+        data: function () {
+            return {
+                power: power,
+                prefix: "/Admin/SysRole",
+                vm: {
+                    id: "",
+                    form: {}
+                },
+                loading: false,
+            }
+        },
+        computed:{
+            formKey:function (){
+                return id ? id : '';
+            }
+        },
+        created: function () {
+            this.loadForm();
+        },
+        mounted: function () {
+
+        },
+        methods: {
+            closeWindow: function () {
+                tools.getLayer().close(tools.getLayer().getFrameIndex(window.name));
+            },
+            findForm() {
+                http.get(`${this.prefix}/findForm/${this.formKey}`, {}).then((res) => {
+                    if (res.code != 1) return;
+                    this.vm = res.data;
+                });
+            },
+            saveForm() {
+                //验证
+                if (!this.vm.form.name) return tools.message('名称不能为空!', '警告');
+
+                this.loading = true;
+                http.post(`${this.prefix}/saveForm`, this.vm.form).then((res) => {
+                    this.loading = false;
+                    if (res.code != 1) return;
+                    tools.message("操作成功!", "成功");
+                    this.closeWindow();
+                });
+            }
+        }
+    });
+</script>
+}
+
+<div id="app" v-cloak class="pl-20 pr-20 pb-100">
+    <el-row :gutter="15">
+        @foreach (var item in tableInfos)
+        {
+            var name = item.ColName.ToLower();
+            var title = item.ColRemark;
+            if (string.IsNullOrWhiteSpace(title))
+            {
+                title = name;
+            }
+
+            <el-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                <h4>@(title):</h4>
+                <el-input v-model="vm.form.@(name)" placeholder="请输入" />
+            </el-col>
+        }
+
+    </el-row>
+    <div class="hzy-admin-window-footer">
+        <div style="flex: 1 1 0%"></div>
+        <div class="p-10">
+            <el-button type="primary" @("@@")click="saveForm" :loading="loading">提交</el-button>
+            <el-button type="danger" @("@@")click="closeWindow">关闭</el-button>
+        </div>
+    </div>
+</div>
+</pre>

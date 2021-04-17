@@ -1,0 +1,10 @@
+// Variables
+// --------------------------
+@wb-font-path:        "../fonts";
+@wb-font-file:        "web-icons";
+@wb-font-family:      "Web Icons";
+@wb-css-prefix:       wb;
+@wb-version:          "0.0.0";
+
+<% if (iconsStyles) { %><% for (var glyphIdx = 0; glyphIdx < glyphs.length; glyphIdx++) { %><%= varPrefix %>-<%= glyphs[glyphIdx] %>: "<% if (addLigatures) { %><%= glyphs[glyphIdx] %><% } else { %>\<%= codepoints[glyphIdx] %><% } %>";
+<% } } %>

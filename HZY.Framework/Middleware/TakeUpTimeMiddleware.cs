@@ -1,6 +1,6 @@
 ﻿using System.Diagnostics;
 using System.Threading.Tasks;
-using HZY.Toolkit;
+using HZY.Common;
 using Microsoft.AspNetCore.Http;
 
 namespace HZY.Framework.Middleware

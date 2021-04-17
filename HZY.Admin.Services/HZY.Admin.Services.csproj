@@ -5,11 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HZY.Admin.Model\HZY.Admin.Model.csproj" />
     <ProjectReference Include="..\HZY.Framework\HZY.Framework.csproj" />
-    <ProjectReference Include="..\HZY.Repository.Entity\HZY.Repository.Entity.csproj" />
     <ProjectReference Include="..\HZY.Repository\HZY.Repository.csproj" />
-    <ProjectReference Include="..\HZY.Toolkit\HZY.Toolkit.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,0 +1,569 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HzyAdminUI</title>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Safari浏览器添加到主屏幕（IOS） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <!--[if lt IE 9]>
+                      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+                      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+                    <![endif]-->
+    <link href="../../css/web-icons-master/css/web-icons.css" rel="stylesheet" />
+    <!--样式-->
+    <link href="../../css/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/core.css" rel="stylesheet" />
+    <link href="../../css/site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="page">
+        <div class="page-header">
+            <h1 class="page-title">步骤条</h1>
+        </div>
+        <div class="page-content">
+
+            <div class="panel">
+                <div class="panel-body container-fluid">
+                    <div class="row">
+                        <div class="col-12">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">默认</h4>
+                                <div class="example">
+                                    <div class="steps row">
+                                        <div class="step col-4">
+                                            <span class="step-number">1</span>
+                                            <div class="step-desc">
+                                                <span class="step-title">购买</span>
+                                                <p>选中您所需的商品</p>
+                                            </div>
+                                        </div>
+                                        <div class="step col-4 current">
+                                            <span class="step-number">2</span>
+                                            <div class="step-desc">
+                                                <span class="step-title">付款</span>
+                                                <p>支付商品费用</p>
+                                            </div>
+                                        </div>
+                                        <div class="step col-4">
+                                            <span class="step-number">3</span>
+                                            <div class="step-desc">
+                                                <span class="step-title">发货</span>
+                                                <p>等待商家发货</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-12">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">带图标</h4>
+                                <div class="example">
+                                    <div class="steps row">
+                                        <div class="step col-4">
+                                            <span class="step-icon icon wb-shopping-cart" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">购买</span>
+                                            </div>
+                                        </div>
+                                        <div class="step col-4 current">
+                                            <span class="step-icon icon wb-pluse" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">付款</span>
+                                            </div>
+                                        </div>
+                                        <div class="step col-4">
+                                            <span class="step-icon icon wb-time" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">发货</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row row-lg">
+                        <div class="col-xl-3 col-lg-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">完成状态</h4>
+                                <p>添加
+                                    <code>.done</code> 类。</p>
+                                <div class="example">
+                                    <div class="step done">
+                                        <span class="step-number">1</span>
+                                        <div class="step-desc">
+                                            <span class="step-title">发货</span>
+                                            <p>等待商家发货</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-3 col-lg-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">错误状态</h4>
+                                <p>添加
+                                    <code>.error</code> 类。</p>
+                                <div class="example">
+                                    <div class="step error">
+                                        <span class="step-number">2</span>
+                                        <div class="step-desc">
+                                            <span class="step-title">发货</span>
+                                            <p>等待商家发货</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-3 col-lg-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">选中状态</h4>
+                                <p>添加
+                                    <code>.current</code> 类。</p>
+                                <div class="example">
+                                    <div class="step current">
+                                        <span class="step-number">3</span>
+                                        <div class="step-desc">
+                                            <span class="step-title">发货</span>
+                                            <p>等待商家发货</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-3 col-lg-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">禁用状态</h4>
+                                <p>添加
+                                    <code>.disabled</code> 类。</p>
+                                <div class="example">
+                                    <div class="step disabled">
+                                        <span class="step-number">4</span>
+                                        <div class="step-desc">
+                                            <span class="step-title">发货</span>
+                                            <p>等待商家发货</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="row row-lg">
+                        <div class="col-lg-8">
+
+                            <div class="example-wrap m-md-0">
+                                <h4 class="example-title">大小</h4>
+
+                                <div class="example">
+                                    <div class="steps row steps-xs">
+                                        <div class="step col-4">
+                                            <span class="step-icon icon wb-shopping-cart" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">购买</span>
+                                            </div>
+                                        </div>
+                                        <div class="step col-4 current">
+                                            <span class="step-icon icon wb-pluse" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">付款</span>
+                                            </div>
+                                        </div>
+                                        <div class="step col-4">
+                                            <span class="step-icon icon wb-time" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">发货</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="example">
+                                    <div class="steps row steps-sm">
+                                        <div class="step col-4">
+                                            <span class="step-icon icon wb-shopping-cart" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">购买</span>
+                                            </div>
+                                        </div>
+                                        <div class="step col-4 current">
+                                            <span class="step-icon icon wb-pluse" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">付款</span>
+                                            </div>
+                                        </div>
+                                        <div class="step col-4">
+                                            <span class="step-icon icon wb-time" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">发货</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="example">
+                                    <div class="steps row">
+                                        <div class="step col-4">
+                                            <span class="step-icon icon wb-shopping-cart" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">购买</span>
+                                            </div>
+                                        </div>
+                                        <div class="step col-4 current">
+                                            <span class="step-icon icon wb-pluse" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">付款</span>
+                                            </div>
+                                        </div>
+                                        <div class="step col-4">
+                                            <span class="step-icon icon wb-time" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">发货</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="example">
+                                    <div class="steps row steps-lg">
+                                        <div class="step col-4">
+                                            <span class="step-icon icon wb-shopping-cart" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">购买</span>
+                                            </div>
+                                        </div>
+                                        <div class="step col-4 current">
+                                            <span class="step-icon icon wb-pluse" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">付款</span>
+                                            </div>
+                                        </div>
+                                        <div class="step col-4">
+                                            <span class="step-icon icon wb-time" aria-hidden="true"></span>
+                                            <div class="step-desc">
+                                                <span class="step-title">发货</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-lg-4">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">竖向显示</h4>
+                                <div class="example">
+                                    <div class="steps steps-vertical">
+                                        <div class="step">
+                                            <span class="step-number">1</span>
+                                            <div class="step-desc">
+                                                <span class="step-title">购买</span>
+                                                <p>选中您所需的商品</p>
+                                            </div>
+                                        </div>
+                                        <div class="step current">
+                                            <span class="step-number">2</span>
+                                            <div class="step-desc">
+                                                <span class="step-title">付款</span>
+                                                <p>支付商品费用</p>
+                                            </div>
+                                        </div>
+                                        <div class="step">
+                                            <span class="step-number">3</span>
+                                            <div class="step-desc">
+                                                <span class="step-title">发货</span>
+                                                <p>等待商家发货</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <div class="panel-title">
+                        链式效果
+                    </div>
+                </div>
+                <div class="panel-body container-fluid">
+                    <div class="row row-lg">
+                        <div class="col-lg-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">默认</h4>
+                                <div class="example">
+                                    <div class="pearls row">
+                                        <div class="pearl done col-4">
+                                            <span class="pearl-number">1</span>
+                                            <span class="pearl-title">账户信息</span>
+                                        </div>
+                                        <div class="pearl current col-4">
+                                            <span class="pearl-number">2</span>
+                                            <span class="pearl-title">付款信息</span>
+                                        </div>
+                                        <div class="pearl col-4">
+                                            <span class="pearl-number">3</span>
+                                            <span class="pearl-title">确认信息</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">图标</h4>
+                                <div class="example">
+                                    <div class="pearls row">
+                                        <div class="pearl done col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-user" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">账户信息</span>
+                                        </div>
+                                        <div class="pearl current col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-payment" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">付款信息</span>
+                                        </div>
+                                        <div class="pearl col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-check" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">确认信息</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="example-wrap m-md-0">
+                                <h4 class="example-title">大小</h4>
+
+                                <div class="example">
+                                    <div class="pearls pearls-xs row">
+                                        <div class="pearl done col-4">
+                                            <span class="pearl-number">1</span>
+                                            <span class="pearl-title">账户信息</span>
+                                        </div>
+                                        <div class="pearl current col-4">
+                                            <span class="pearl-number">2</span>
+                                            <span class="pearl-title">付款信息</span>
+                                        </div>
+                                        <div class="pearl col-4">
+                                            <span class="pearl-number">3</span>
+                                            <span class="pearl-title">确认信息</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="example">
+                                    <div class="pearls pearls-sm row">
+                                        <div class="pearl done col-4">
+                                            <span class="pearl-number">1</span>
+                                            <span class="pearl-title">账户信息</span>
+                                        </div>
+                                        <div class="pearl current col-4">
+                                            <span class="pearl-number">2</span>
+                                            <span class="pearl-title">付款信息</span>
+                                        </div>
+                                        <div class="pearl col-4">
+                                            <span class="pearl-number">3</span>
+                                            <span class="pearl-title">确认信息</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="example">
+                                    <div class="pearls row">
+                                        <div class="pearl done col-4">
+                                            <span class="pearl-number">1</span>
+                                            <span class="pearl-title">账户信息</span>
+                                        </div>
+                                        <div class="pearl current col-4">
+                                            <span class="pearl-number">2</span>
+                                            <span class="pearl-title">付款信息</span>
+                                        </div>
+                                        <div class="pearl col-4">
+                                            <span class="pearl-number">3</span>
+                                            <span class="pearl-title">确认信息</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class="example">
+                                    <div class="pearls pearls-lg row">
+                                        <div class="pearl done col-4">
+                                            <span class="pearl-number">1</span>
+                                            <span class="pearl-title">账户信息</span>
+                                        </div>
+                                        <div class="pearl current col-4">
+                                            <span class="pearl-number">2</span>
+                                            <span class="pearl-title">付款信息</span>
+                                        </div>
+                                        <div class="pearl col-4">
+                                            <span class="pearl-number">3</span>
+                                            <span class="pearl-title">确认信息</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">状态</h4>
+                                <div class="example">
+                                    <div class="pearls row">
+                                        <div class="pearl current col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-user" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">账户信息</span>
+                                        </div>
+                                        <div class="pearl disabled col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-payment" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">付款信息</span>
+                                        </div>
+                                        <div class="pearl disabled col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-check" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">确认信息</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="example">
+                                    <div class="pearls row">
+                                        <div class="pearl done col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-user" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">账户信息</span>
+                                        </div>
+                                        <div class="pearl current col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-payment" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">付款信息</span>
+                                        </div>
+                                        <div class="pearl disabled col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-check" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">确认信息</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="example">
+                                    <div class="pearls row">
+                                        <div class="pearl done col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-user" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">账户信息</span>
+                                        </div>
+                                        <div class="pearl current error col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-payment" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">付款信息</span>
+                                        </div>
+                                        <div class="pearl disabled col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-check" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">确认信息</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="example">
+                                    <div class="pearls row">
+                                        <div class="pearl done col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-user" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">账户信息</span>
+                                        </div>
+                                        <div class="pearl done col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-payment" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">付款信息</span>
+                                        </div>
+                                        <div class="pearl current col-4">
+                                            <div class="pearl-icon">
+                                                <i class="icon wb-check" aria-hidden="true"></i>
+                                            </div>
+                                            <span class="pearl-title">确认信息</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--脚本-->
+    <script src="../../libs/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../../libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

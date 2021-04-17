@@ -4,10 +4,12 @@ using System.Linq;
 using System.Threading.Tasks;
 using HZY.Framework;
 using HZY.Framework.Services;
-using HZY.Repository.Entity.Framework;
 using HZY.Repository.Core.Models;
+using HZY.Repository.Core.Provider;
+using HZY.Repository.Domain.Framework;
 using HZY.Repository.Framework;
-using HZY.Toolkit;
+using HZY.Common;
+using Microsoft.EntityFrameworkCore;
 
 namespace HZY.Admin.Services.Framework
 {
@@ -33,12 +35,10 @@ namespace HZY.Admin.Services.Framework
         /// <returns></returns>
         public async Task<PagingViewModel> FindListAsync(int page, int size, SysRole search)
         {
-            var query = await this.Repository.Select
+            var query = this.Repository.Select
                     .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.Name.Contains(search.Name))
                     .OrderBy(w => w.Number)
-                    .Count(out var total)
-                    .Page(page, size)
-                    .ToListAsync(w => new
+                    .Select(w => new
                     {
                         w.Id,
                         w.Number,
@@ -49,7 +49,7 @@ namespace HZY.Admin.Services.Framework
                     })
                 ;
 
-            return await this.Repository.AsPagingViewModelAsync(query, page, size, total);
+            return await this.Repository.AsPagingViewModelAsync(query, page, size);
         }
 
         /// <summary>
@@ -61,7 +61,7 @@ namespace HZY.Admin.Services.Framework
         {
             foreach (var item in ids)
             {
-                var role = await this.Repository.FindAsync(item);
+                var role = await this.Repository.FindByIdAsync(item);
                 if (role.IsDelete == 2)
                     MessageBox.Show("该信息不能删除!");
                 await this.Repository.DeleteAsync(role);
@@ -77,7 +77,7 @@ namespace HZY.Admin.Services.Framework
         public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
         {
             var res = new Dictionary<string, object>();
-            var form = await this.Repository.FindAsync(id);
+            var form = await this.Repository.FindByIdAsync(id);
             form = form.NullSafe();
 
             if (id == Guid.Empty)

@@ -1,5 +1,5 @@
 ﻿using System.Threading.Tasks;
-using HZY.Admin.Model.Dto;
+using HZY.Admin.Services.Dto;
 using HZY.Admin.Services.Framework;
 using HZY.Framework.Controllers;
 using HZY.Framework.Model;

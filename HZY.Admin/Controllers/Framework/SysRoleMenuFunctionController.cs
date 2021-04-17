@@ -1,12 +1,12 @@
 ﻿using System;
 using System.Threading.Tasks;
-using HZY.Admin.Model.Dto;
+using HZY.Admin.Services.Dto;
 using HZY.Admin.Services.Framework;
 using HZY.Framework.Attributes;
 using HZY.Framework.Controllers;
 using HZY.Framework.Model;
-using HZY.Repository.Entity.Framework;
 using HZY.Repository.Attributes;
+using HZY.Repository.Domain.Framework;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HZY.Admin.Controllers.Framework
@@ -21,7 +21,7 @@ namespace HZY.Admin.Controllers.Framework
         {
             _sysRoleService = sysRoleService;
         }
-        
+
         /// <summary>
         /// 列表页
         /// </summary>
@@ -40,8 +40,7 @@ namespace HZY.Admin.Controllers.Framework
         /// <param name="search"></param>
         /// <returns></returns>
         [HttpPost("FindList/{page}/{rows}")]
-        public async Task<ApiResult> FindListAsync([FromRoute] int page, [FromRoute] int rows,
-            [FromBody] SysRole search)
+        public async Task<ApiResult> FindListAsync([FromRoute] int page, [FromRoute] int rows, [FromBody] SysRole search)
         {
             return this.ResultOk(await this._sysRoleService.FindListAsync(page, rows, search));
         }
@@ -70,7 +69,7 @@ namespace HZY.Admin.Controllers.Framework
         {
             var (guids, objects) = await this.DefaultService.GetRoleMenuFunctionTreeAsync(roleId);
 
-            return this.ResultOk(new {expandedRowKeys = guids, list = objects});
+            return this.ResultOk(new { expandedRowKeys = guids, list = objects });
         }
 
         #endregion

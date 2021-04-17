@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Linq;
-using HZY.Admin.Model.Bo;
+using HZY.Admin.Services.Bo;
 using HZY.Framework.Services;
 using HZY.Repository.Framework;
-using HZY.Toolkit;
+using HZY.Common;
 using Microsoft.AspNetCore.Http;
 
 namespace HZY.Admin.Services.Framework
@@ -72,7 +72,7 @@ namespace HZY.Admin.Services.Framework
         /// <returns></returns>
         private AccountInfo FindAccountInfoByUserId(Guid id)
         {
-            var sysUser = this.Repository.Find(id);
+            var sysUser = this.Repository.FindById(id);
             if (sysUser == null) return default;
             var sysUserRoles = this._sysUserRoleRepository.Select
                     .Where(w => w.UserId == sysUser.Id)

@@ -1,0 +1,132 @@
+﻿@model HZY.Admin.Model.CodeGenerationModel
+@{
+    var className = Model.TableName;
+    var ignores = new string[] {"Id", "CreateTime", "UpdateTime"};
+    var tableInfos = Model.AppTableInfos
+        .Where(w => !ignores.Contains(w.ColName))
+        .ToList()
+        ;
+    var searchKeyWords = new[] {"Title", "Name", "Phone", "Address", "Email"};
+    var searchKeyWord = string.Empty;
+    foreach (var item in searchKeyWords)
+    {
+        if (tableInfos.Any(w => w.ColName == item))
+        {
+            searchKeyWord = item;
+            break;
+        }
+    }
+}
+<pre>
+/*
+ * *******************************************************
+ *
+ * 作者：hzy
+ *
+ * 开源地址：https://gitee.com/hzy6
+ *
+ * *******************************************************
+ */
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using HZY.Admin.Services.Framework;
+using HZY.Framework.Services;
+using HZY.Repository;
+using HZY.Repository.Core.Models;
+using HZY.Repository.Core.Provider;
+using HZY.Repository.Domain;
+using HZY.Repository.Framework;
+using HZY.Common;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+
+namespace HZY.Admin.Services
+{
+    /// <summary>
+    /// 服务 @(className)Service
+    /// </summary>
+    public class @(className)Service : AdminBaseService<@($"{className}Repository")>
+    {
+        public @(className)Service(@(className)Repository repository) 
+            : base(repository)
+        {
+
+        }
+
+        /// <summary>
+        /// 获取列表数据
+        /// </summary>
+        /// <param name="page">page</param>
+        /// <param name="rows">size</param>
+        /// <param name="search">search</param>
+        /// <returns></returns>
+        public async Task<@("PagingViewModel")> FindListAsync(int page, int size, @(className) search)
+        {
+            var query = this.Repository.Select
+                    @if (!string.IsNullOrWhiteSpace(searchKeyWord))
+                    {
+<pre>.WhereIf(!string.IsNullOrWhiteSpace(search?.@(searchKeyWord)), w => w.@(searchKeyWord).Contains(search.@(searchKeyWord)))</pre>
+                    }
+                    .OrderByDescending(w => w.CreateTime)
+                    .Select(w => new
+                    {
+                        w.Id,
+                        @(string.Join(',', tableInfos.Select(w => "w." + w.ColName)))@(",")
+                        UpdateTime = w.UpdateTime.ToString("yyyy-MM-dd"),
+                        CreateTime = w.CreateTime.ToString("yyyy-MM-dd")
+                    })
+                ;
+
+            return await this.Repository.AsPagingViewModelAsync(query, page, size);
+        }
+
+        /// <summary>
+        /// 根据id数组删除
+        /// </summary>
+        /// <param name="ids">ids</param>
+        /// <returns></returns>
+        public async Task DeleteListAsync(List<@("Guid")> ids)
+        {
+            await this.Repository.DeleteByIdAsync(ids);
+        }
+
+        /// <summary>
+        /// 查询表单数据
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        public async Task<@("Dictionary")<@("string,object")>> FindFormAsync(Guid id)
+        {
+            var res = new Dictionary<@("string, object")>();
+            var model = await this.Repository.FindByIdAsync(id);
+            model = model.NullSafe();
+
+            res[nameof(model)] = model;
+            return res;
+        }
+
+        /// <summary>
+        /// 保存数据
+        /// </summary>
+        /// <param name="form">form</param>
+        /// <returns></returns>
+        public async Task<@(className)> SaveFormAsync(@className form)
+        {
+            return await this.Repository.InsertOrUpdateAsync(form);
+        }
+
+        /// <summary>
+        /// 导出Excel
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
+        public async Task<@("byte[]")> ExportExcelAsync(@className search)
+        {
+            var tableViewModel = await this.FindListAsync(1, 999999, search);
+            return this.ExportExcelByPagingViewModel(tableViewModel);
+        }
+    }
+}
+</pre>

@@ -2,7 +2,7 @@ using System;
 using System.IO;
 using System.Linq;
 using HZY.Framework;
-using HZY.Toolkit.Attributes;
+using HZY.Common.Attributes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 

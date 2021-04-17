@@ -1,11 +1,12 @@
-﻿using HZY.Repository.Entity.Framework;
+﻿using HZY.Repository.Domain.Framework;
 using HZY.Repository.Core;
+using HZY.Repository.Core.Provider;
 
 namespace HZY.Repository.Framework
 {
     public class SysRoleRepository : AppRepository<SysRole>
     {
-        public SysRoleRepository(IFreeSql freeSql) : base(freeSql)
+        public SysRoleRepository(AppDbContext context) : base(context)
         {
         }
     }

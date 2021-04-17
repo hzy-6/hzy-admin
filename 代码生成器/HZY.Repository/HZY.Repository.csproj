@@ -1,0 +1,19 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <PackageReference Include="FreeSql" Version="2.3.100" />
+    <PackageReference Include="FreeSql.Provider.SqlServer" Version="2.3.100" />
+    <PackageReference Include="FreeSql.Repository" Version="2.3.100" />
+    <PackageReference Include="FreeSql.Extensions.Linq" Version="2.3.100" />
+  </ItemGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.Repository.Entity\HZY.Repository.Entity.csproj" />
+    <ProjectReference Include="..\HZY.Toolkit\HZY.Toolkit.csproj" />
+  </ItemGroup>
+  
+</Project>

@@ -1,0 +1,98 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN" style="overflow: hidden;">
+
+<head>
+    <meta charset="UTF-8">
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Safari浏览器添加到主屏幕（IOS） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <!--[if lt IE 9]>
+          <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+          <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    <title>HzyAdmin</title>
+    <link rel="shortcut icon" href="favicon.ico">
+    <!--样式-->
+    <link href="css/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="css/bootstrap.min.css" rel="stylesheet" />
+    <link href="css/core.css" rel="stylesheet" />
+    <link href="css/site.css" rel="stylesheet" />
+    <!--主页面-->
+    <link href="css/hzyAdminUI.css" rel="stylesheet" />
+
+    <style type="text/css">
+        #hzy-login {
+            background: #f0f2f5 url(images/login-bg.svg) no-repeat 50%;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="hzy-login">
+        <!-- <div class="login-modal">
+        </div> -->
+        <div class="container-fluid">
+            <div class="row">
+                <div class="login-panel shadow-lg">
+                    <h1 class="text-center">HzyAdmin</h1>
+
+                    <div class="container-fluid">
+
+                        <div class="pt-50">
+
+                            <div class="form-group form-material">
+                                <label class="col-form-label" for="uName">帐户名</label>
+                                <input type="text" class="form-control" id="uName" name="uName" placeholder="请输入帐户名">
+                            </div>
+
+                            <div class="form-group form-material">
+                                <label class="col-form-label" for="uName">密码</label>
+                                <input type="text" class="form-control" id="uName" name="uName" placeholder="请输入密码">
+                            </div>
+
+                            <div class="form-group form-material">
+                                <label class="col-form-label" for="inputAddons">验证码</label>
+                                <div class="input-group">
+                                    <input type="text" class="form-control" name="loginCode" placeholder="请输入验证码">
+                                    <div class="input-group-append">
+                                        <img class="yzm" src="http://www.suiyu.org.cn/Admin/Login/yzm"
+                                            onclick="$(this).attr('src','http://www.suiyu.org.cn/Admin/Login/yzm'+'/'+new Date().getTime());"
+                                            width="100" style="height: 29px; border-bottom: 1px solid #e4eaec;">
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <a class="btn btn-block btn-primary btn-lg mt-60" href="main.html">登录</a>
+
+
+                        </div>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--js-->
+    <script src="libs/jquery/jquery-3.2.1.min.js"></script>
+    <script src="libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

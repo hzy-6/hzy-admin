@@ -1,0 +1,39 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation" Version="5.0.2" />
+    <PackageReference Include="NLog.Web.AspNetCore" Version="4.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.Admin.Model\HZY.Admin.Model.csproj" />
+    <ProjectReference Include="..\HZY.Admin.Services\HZY.Admin.Services.csproj" />
+    <ProjectReference Include="..\HZY.Repository.Entity\HZY.Repository.Entity.csproj" />
+    <ProjectReference Include="..\HZY.Repository\HZY.Repository.csproj" />
+    <ProjectReference Include="..\HZY.Toolkit\HZY.Toolkit.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="nlog.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <_ContentIncludedByDefault Remove="Views\Home\Index.cshtml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\code_generation\template\HZY.Controller.cshtml" />
+    <None Include="wwwroot\code_generation\template\HZY.Admin.Index.cshtml" />
+    <None Include="wwwroot\code_generation\template\HZY.Admin.Info.cshtml" />
+    <None Include="wwwroot\code_generation\template\HZY.Repository.Domain.cshtml" />
+    <None Include="wwwroot\code_generation\template\HZY.Repository.cshtml" />
+    <None Include="wwwroot\code_generation\template\HZY.Services.cshtml" />
+  </ItemGroup>
+
+</Project>

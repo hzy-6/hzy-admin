@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
@@ -8,25 +8,21 @@
     <DocumentationFile>HZY.Repository.xml</DocumentationFile>
     <NoWarn>1701;1702;1591</NoWarn>
   </PropertyGroup>
-  
+
   <ItemGroup>
-    <ProjectReference Include="..\HZY.Repository.Entity\HZY.Repository.Entity.csproj" />
-    <ProjectReference Include="..\HZY.Toolkit\HZY.Toolkit.csproj" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.UnitOfWork" Version="3.1.0" />
+    <PackageReference Include="Z.EntityFramework.Extensions.EFCore" Version="5.1.30" />
+    <PackageReference Include="Z.EntityFramework.Plus.EFCore" Version="5.1.30" />
   </ItemGroup>
 
   <ItemGroup>
-    <!--    <PackageReference Include="FreeSql" Version="2.3.0-preview20210123" />-->
-    <!--    <PackageReference Include="FreeSql.Provider.SqlServer" Version="2.3.0-preview20210123" />-->
-    <!--    <PackageReference Include="FreeSql.Repository" Version="2.3.0-preview20210123" />-->
-    <!--    <PackageReference Include="FreeSql.Extensions.Linq" Version="2.3.0-preview20210123" />-->
-    <PackageReference Include="FreeSql" Version="2.3.200" />
-    <PackageReference Include="FreeSql.Provider.SqlServer" Version="2.3.200" />
-    <PackageReference Include="FreeSql.Repository" Version="2.3.200" />
-    <PackageReference Include="FreeSql.Extensions.Linq" Version="2.3.200" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Attributes" />
+    <ProjectReference Include="..\HZY.Common\HZY.Common.csproj" />
   </ItemGroup>
 
 </Project>

@@ -1,11 +1,13 @@
-﻿using HZY.Repository.Entity;
+﻿using HZY.Repository.Domain.Framework;
+using HZY.Repository.Domain;
 using HZY.Repository.Core;
+using HZY.Repository.Core.Provider;
 
 namespace HZY.Repository
 {
     public class MemberRepository : AppRepository<Member>
     {
-        public MemberRepository(IFreeSql freeSql) : base(freeSql)
+        public MemberRepository(AppDbContext context) : base(context)
         {
 
         }

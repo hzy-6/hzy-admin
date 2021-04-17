@@ -1,0 +1,92 @@
+﻿
+@section Styles{
+    <link href="~/admin/css/hzy_code_generation.css" rel="stylesheet" />
+}
+
+@section Scripts{
+    <script type="text/javascript">
+        let app = new Vue({
+            el: '#app',
+            data: function () {
+                return {
+                    routePrefix: '/Admin/HzyAdminCodeGeneration',
+                    columnInfos: [],
+                    tableNames: [],
+                    steps: ['HZY.Repository.Domain', 'HZY.Repository', 'HZY.Services', 'HZY.Controller', 'HZY.Admin.Index.cshtml', 'HZY.Admin.Info.cshtml'],
+                    tableName: '',
+                    step: 'HZY.Repository.Domain',
+                    codeString: '',
+                };
+            },
+            created: function () {
+                this.init();
+            },
+            mounted: function () {
+
+            },
+            methods: {
+                init: function () {
+                    let _this = this;
+                    let path = this.routePrefix + '/Init';
+                    hzyAdmin.httpGet(path, null, function (r) {
+                        if (r.code !== 1) return;
+                        _this.tableNames = r.data.tableNames;
+                        _this.tableName = _this.tableNames[0];
+                        _this.findCode();
+                    });
+                },
+                findCode: function () {
+                    let _this = this;
+                    let path = this.routePrefix + '/FindCode/' + _this.step + '/' + _this.tableName;
+                    hzyAdmin.httpGet(path, null, function (r) {
+                        if (r.code !== 1) return;
+                        _this.codeString = r.data.code;
+                        _this.columnInfos = r.data.appTableInfos;
+                    });
+                },
+                download: function () {
+                    let _this = this;
+                    let path = this.routePrefix + '/Download/' + _this.step + '/' + _this.tableName;
+                    hzyAdmin.httpDownload(path, { code: _this.codeString });
+                },
+                downloadAll: function () {
+                    let _this = this;
+                    let path = this.routePrefix + '/DownloadAll/' + _this.step;
+                    hzyAdmin.httpDownload(path);
+                }
+            }
+        });
+    </script>
+}
+
+<div class="code_generation_container" id="app">
+    <div class="code_generation_left">
+        <h2 style="color: #B683D4; padding-bottom: 10px">HzyAdminSpa 代码生成器</h2>
+        <h2 style="color: #B683D4; padding-bottom: 10px">代码由 [ .cshtml ] 文件作为模板生成</h2>
+        <div style="padding-bottom: 10px;">
+            <select v-model="tableName" @@change="findCode">
+                <option value="">==请选择表==</option>
+                <option v-for="item,index in tableNames">{{item}}</option>
+            </select>
+        </div>
+        <ul>
+            <li style="color: #B683D4">注意：按照以下顺序 下载代码后 粘贴到项目对应位置，在重新生成项目后在走下一步！</li>
+            <li v-for="item,index in steps" @@click="step=item;findCode();">.No{{(index+1)}}&nbsp;&nbsp;{{item}}</li>
+            <li class="download" v-if="step!=='HZY.Repository.DbSet'" @@click="download">下载当前代码</li>
+            <li class="download" v-if="step!=='HZY.Repository.DbSet'" @@click="downloadAll">下载所有代码</li>
+        </ul>
+    </div>
+    <div class="code_generation_center">
+        <pre>{{codeString}}</pre>
+    </div>
+    <div class="code_generation_right">
+        <ul>
+            <li v-for="item,index in columnInfos">
+                <p>字段: {{item.colName}}&nbsp;&nbsp;&nbsp;<span class="key" v-if="item.colIsKey==1">主键</span></p>
+                <p>类型: {{item.colType}}</p>
+                <p>是否可为空: {{item.colIsNull==1?'是':'否'}}</p>
+                <p>备注: {{item.colRemark}}</p>
+            </li>
+        </ul>
+    </div>
+</div>

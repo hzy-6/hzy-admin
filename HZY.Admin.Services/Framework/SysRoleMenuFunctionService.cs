@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HZY.Admin.Model.Dto;
+using HZY.Admin.Services.Dto;
 using HZY.Framework.Services;
-using HZY.Repository.Entity.Framework;
+using HZY.Repository.Domain.Framework;
 using HZY.Repository.Framework;
+using Microsoft.EntityFrameworkCore;
 
 namespace HZY.Admin.Services.Framework
 {
@@ -63,8 +64,7 @@ namespace HZY.Admin.Services.Framework
         {
             var sysMenuList = await this._sysMenuRepository.Select.OrderBy(w => w.Number).ToListAsync();
             var sysFunctionList = await this._sysFunctionRepository.Select.OrderBy(w => w.Number).ToListAsync();
-            var sysMenuFunctionList =
-                await this._sysMenuFunctionRepository.Select.OrderBy(w => w.CreateTime).ToListAsync();
+            var sysMenuFunctionList = await this._sysMenuFunctionRepository.Select.OrderBy(w => w.CreateTime).ToListAsync();
             var sysRoleMenuFunctionList = await this.Repository.Select.Where(w => w.RoleId == roleId).ToListAsync();
 
             return (_ids, this.CreateRoleMenuFunctionTree(Guid.Empty, sysMenuList, sysFunctionList,

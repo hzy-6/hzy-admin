@@ -1,0 +1,33 @@
+﻿@model HZY.Admin.Model.CodeGenerationModel
+@{
+    var className = Model.TableName;
+}
+<pre>
+/*
+ * *******************************************************
+ *
+ * 作者：hzy
+ *
+ * 开源地址：https://gitee.com/hzy6
+ *
+ * *******************************************************
+ */
+using HZY.Repository.Domain.Framework;
+using HZY.Repository.Domain;
+using HZY.Repository.Core;
+using HZY.Repository.Core.Provider;
+
+namespace HZY.Repository
+{
+    /// <summary>
+    /// 仓储 @(className)Repository
+    /// </summary>
+    public class @(className)Repository : AppRepository<@className>
+    {
+        public MemberRepository(AppDbContext context) : base(context)
+        {
+
+        }
+    }
+}
+</pre>

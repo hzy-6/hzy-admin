@@ -3,13 +3,15 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HZY.Admin.Model.Bo;
-using HZY.Admin.Model.Dto;
 using HZY.Framework.Services;
-using HZY.Repository.Entity.Framework;
 using HZY.Repository.Core.Models;
 using HZY.Repository.Framework;
-using HZY.Toolkit;
+using HZY.Common;
+using HZY.Repository.Domain.Framework;
+using Microsoft.EntityFrameworkCore;
+using HZY.Admin.Services.Dto;
+using HZY.Admin.Services.Bo;
+using HZY.Repository.Core.Provider;
 
 namespace HZY.Admin.Services.Framework
 {
@@ -48,17 +50,14 @@ namespace HZY.Admin.Services.Framework
         /// <returns></returns>
         public async Task<PagingViewModel> FindListAsync(int page, int size, SysMenu search)
         {
-            var query = await this.Repository.Orm.Select<SysMenu, SysMenu>()
-                    .LeftJoin(w => w.t1.ParentId == w.t2.Id)
-                    .WhereIf(search?.ParentId == Guid.Empty || search?.ParentId == null,
-                        w => w.t1.ParentId == null || w.t1.ParentId == Guid.Empty)
-                    .WhereIf(search?.ParentId != Guid.Empty && search?.ParentId != null,
-                        w => w.t1.ParentId == search.ParentId)
+            var query = (from sysMenu in this.Repository.Orm.SysMenu
+                         from sysMenuParent in this.Repository.Orm.SysMenu.Where(w => w.Id == sysMenu.ParentId).DefaultIfEmpty()
+                         select new { t1 = sysMenu, t2 = sysMenuParent })
+                    .WhereIf(search?.ParentId == Guid.Empty || search?.ParentId == null, w => w.t1.ParentId == null || w.t1.ParentId == Guid.Empty)
+                    .WhereIf(search?.ParentId != Guid.Empty && search?.ParentId != null, w => w.t1.ParentId == search.ParentId)
                     .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.t1.Name.Contains(search.Name))
                     .OrderBy(w => w.t1.Number)
-                    .Count(out var total)
-                    .Page(page, size)
-                    .ToListAsync(w => new
+                    .Select(w => new
                     {
                         w.t1.Id,
                         w.t1.Number,
@@ -67,13 +66,13 @@ namespace HZY.Admin.Services.Framework
                         父级菜单 = w.t2.Name,
                         w.t1.Icon,
                         w.t1.IsClose,
-                        IsShow = w.t1.IsShow == 1 ? "是" : "否",
+                        w.t1.IsShow,
                         UpdateTime = w.t1.UpdateTime.ToString("yyyy-MM-dd"),
                         CreateTime = w.t1.CreateTime.ToString("yyyy-MM-dd"),
                     })
                 ;
 
-            return await this.Repository.AsPagingViewModelAsync(query, page, size, total);
+            return await this.Repository.AsPagingViewModelAsync(query, page, size);
         }
 
         /// <summary>
@@ -85,7 +84,7 @@ namespace HZY.Admin.Services.Framework
         {
             await this._sysRoleMenuFunctionRepository.DeleteAsync(w => ids.Contains(w.MenuId));
             await this._sysMenuFunctionRepository.DeleteAsync(w => ids.Contains(w.MenuId));
-            await this.Repository.DeleteAsync(ids);
+            await this.Repository.DeleteByIdAsync(ids);
         }
 
         /// <summary>
@@ -97,7 +96,7 @@ namespace HZY.Admin.Services.Framework
         {
             var res = new Dictionary<string, object>();
 
-            var form = await this.Repository.FindAsync(id);
+            var form = await this.Repository.FindByIdAsync(id);
             var functionAllList = await this._sysFunctionRepository.Select
                 .OrderBy(w => w.Number)
                 .ToListAsync();
@@ -169,12 +168,15 @@ namespace HZY.Admin.Services.Framework
 
             if (this._accountInfo.IsSuperManage) return sysMenuAllList;
 
-            var sysMenuList = await this.Repository.Orm.Select<SysRoleMenuFunction, SysFunction, SysMenu>()
-                    .LeftJoin(w => w.t1.FunctionId == w.t2.Id)
-                    .LeftJoin(w => w.t1.MenuId == w.t3.Id)
+            var sysMenuList = await (
+                        from sysRoleMenuFunction in this.Repository.Orm.SysRoleMenuFunction
+                        from sysFunction in this.Repository.Orm.SysFunction.Where(w => w.Id == sysRoleMenuFunction.FunctionId).DefaultIfEmpty()
+                        from sysMenu in this.Repository.Orm.SysMenu.Where(w => w.Id == sysRoleMenuFunction.MenuId).DefaultIfEmpty()
+                        select new { t1 = sysRoleMenuFunction, t2 = sysFunction, t3 = sysMenu })
                     .Where(w => this._accountInfo.RoleIds.Contains(w.t1.RoleId))
-                    .Where(w => w.t2.ByName == AppConst.Function_Have && w.t3.IsShow == 1)
-                    .ToListAsync(w => w.t3)
+                    .Where(w => w.t2.ByName == "Have" && w.t3.IsShow == 1)
+                    .Select(w => w.t3)
+                    .ToListAsync()
                 ;
 
             var newSysMenuList = new List<SysMenu>();
@@ -216,14 +218,14 @@ namespace HZY.Admin.Services.Framework
                 : sysMenuList.Where(w => w.ParentId == id).ToList();
 
             return menus.Select(item => new Dictionary<string, object>
-                {
-                    ["id"] = item.Id,
-                    ["name"] = item.Name,
-                    ["path"] = item.Url,
-                    ["icon"] = item.Icon,
-                    ["isClose"] = item.IsClose,
-                    ["children"] = this.CreateMenus(item.Id.ToGuid(), sysMenuList)
-                })
+            {
+                ["id"] = item.Id,
+                ["name"] = item.Name,
+                ["path"] = item.Url,
+                ["icon"] = item.Icon,
+                ["isClose"] = item.IsClose,
+                ["children"] = this.CreateMenus(item.Id.ToGuid(), sysMenuList)
+            })
                 .ToList();
         }
 
@@ -370,7 +372,7 @@ namespace HZY.Admin.Services.Framework
         /// <returns></returns>
         public async Task<Dictionary<string, bool>> GetPowerStateByMenuId(Guid menuId)
         {
-            var sysMenu = await this.Repository.FindAsync(menuId);
+            var sysMenu = await this.Repository.FindByIdAsync(menuId);
             var sysFunctionList = await this._sysFunctionRepository.Select.OrderBy(w => w.Number).ToListAsync();
             var sysMenuFunctionList = await this._sysMenuFunctionRepository.Select.ToListAsync();
             var sysRoleMenuFunctionList = await this._sysRoleMenuFunctionRepository.Select
@@ -415,7 +417,7 @@ namespace HZY.Admin.Services.Framework
         }
 
         public async Task<SysMenu> GetMenuByIdAsync(Guid menuId)
-            => await this.Repository.FindAsync(menuId);
+            => await this.Repository.FindByIdAsync(menuId);
 
         #endregion 左侧菜单
 

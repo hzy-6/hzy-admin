@@ -15,7 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HZY.Toolkit\HZY.Toolkit.csproj" />
     <ProjectReference Include="..\HZY.Repository\HZY.Repository.csproj" />
   </ItemGroup>
 

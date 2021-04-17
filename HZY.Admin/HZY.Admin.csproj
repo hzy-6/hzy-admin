@@ -20,10 +20,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\HZY.Admin.Model\HZY.Admin.Model.csproj" />
     <ProjectReference Include="..\HZY.Admin.Services\HZY.Admin.Services.csproj" />
+    <ProjectReference Include="..\HZY.Common\HZY.Common.csproj" />
     <ProjectReference Include="..\HZY.Framework\HZY.Framework.csproj" />
-    <ProjectReference Include="..\HZY.Repository.Entity\HZY.Repository.Entity.csproj" />
     <ProjectReference Include="..\HZY.Repository\HZY.Repository.csproj" />
   </ItemGroup>
 

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using HZY.Admin.Model.Bo;
-using HZY.Admin.Model.Dto;
 using HZY.Admin.Services.Framework;
 using HZY.Framework.Attributes;
 using HZY.Framework.Controllers;
 using HZY.Framework.Model;
-using HZY.Repository.Entity.Framework;
 using HZY.Repository.Attributes;
-using HZY.Toolkit;
+using HZY.Common;
 using Microsoft.AspNetCore.Mvc;
+using HZY.Repository.Domain.Framework;
+using HZY.Admin.Services.Dto;
+using HZY.Admin.Services.Bo;
 
 namespace HZY.Admin.Controllers.Framework
 {
@@ -55,8 +55,7 @@ namespace HZY.Admin.Controllers.Framework
         /// <param name="search"></param>
         /// <returns></returns>
         [HttpPost("FindList/{page}/{rows}")]
-        public async Task<ApiResult> FindListAsync([FromRoute] int page, [FromRoute] int rows,
-            [FromBody] SysMenu search)
+        public async Task<ApiResult> FindListAsync([FromRoute] int page, [FromRoute] int rows, [FromBody] SysMenu search)
         {
             return this.ResultOk(await this.DefaultService.FindListAsync(page, rows, search));
         }

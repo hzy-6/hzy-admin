@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.Admin.Model\HZY.Admin.Model.csproj" />
+    <ProjectReference Include="..\HZY.Repository.Entity\HZY.Repository.Entity.csproj" />
+    <ProjectReference Include="..\HZY.Repository\HZY.Repository.csproj" />
+  </ItemGroup>
+
+</Project>

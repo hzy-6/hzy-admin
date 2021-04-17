@@ -1,0 +1,749 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HzyAdminUI</title>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Safari浏览器添加到主屏幕（IOS） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <!--[if lt IE 9]>
+              <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+              <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+            <![endif]-->
+    <link href="../../css/web-icons-master/css/web-icons.css" rel="stylesheet" />
+    <!--样式-->
+    <link href="../../css/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/core.css" rel="stylesheet" />
+    <link href="../../css/site.css" rel="stylesheet" />
+</head>
+
+<body>
+    <div class="page page-forms">
+        <div class="page-header">
+            <h1 class="page-title">基本表单元素</h1>
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">
+                    <a>首页</a>
+                </li>
+                <li class="breadcrumb-item">
+                    <a href="javascript:;">表单</a>
+                </li>
+                <li class="breadcrumb-item active">基本表单元素</li>
+            </ol>
+        </div>
+        <div class="page-content">
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">表单原色</h3>
+                </div>
+                <div class="panel-body container-fluid">
+                    <div class="row row-lg">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">圆形</h4>
+                                <input type="text" class="form-control round" id="inputRounded">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">禁用</h4>
+                                <input type="text" class="form-control" id="inputDisabled" placeholder="被禁用的文本框"
+                                    disabled="">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">获得焦点</h4>
+                                <input type="text" class="form-control focus" id="inputFocus" value="当前文本框获得了焦点">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">占位符</h4>
+                                <input type="text" class="form-control" id="inputPlaceholder" placeholder="我是占位符">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">文本</h4>
+                                <p class="form-control-plaintext">email@example.com</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">文件上传</h4>
+                                <div class="form-group">
+                                    <div class="input-group input-group-file" data-plugin="inputGroupFile">
+                                        <input type="text" class="form-control" readonly="">
+                                        <div class="input-group-append">
+                                            <span class="btn btn-success btn-file">
+                                                <i class="icon wb-upload" aria-hidden="true"></i>
+                                                <input type="file" name="" multiple="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group input-group-file" data-plugin="inputGroupFile">
+                                        <input type="text" class="form-control" readonly="">
+                                        <div class="input-group-append">
+                                            <span class="btn btn-outline btn-file">
+                                                <i class="icon wb-upload" aria-hidden="true"></i>
+                                                <input type="file" name="" multiple="">
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">辅助文本</h4>
+                                <input type="text" class="form-control" id="inputHelpText">
+                                <span class="form-text">这里可以显示说明、帮助、描述等信息</span>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">搜索</h4>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" name="" placeholder="请输入关键词...">
+                                        <span class="input-group-append">
+                                            <button type="submit" class="btn btn-primary"><i class="icon wb-search"
+                                                    aria-hidden="true"></i></button>
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-search">
+                                        <button type="submit" class="input-search-btn"><i class="icon wb-search"
+                                                aria-hidden="true"></i></button>
+                                        <input type="text" class="form-control" name="" placeholder="请输入关键词...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-search input-search-dark">
+                                        <i class="input-search-icon wb-search" aria-hidden="true"></i>
+                                        <input type="text" class="form-control" name="" placeholder="请输入关键词...">
+                                        <button type="button" class="input-search-close icon wb-close"
+                                            aria-label="清除"></button>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-search">
+                                        <i class="input-search-icon wb-search" aria-hidden="true"></i>
+                                        <input type="text" class="form-control" name="" placeholder="请输入关键词...">
+                                        <button type="button" class="input-search-close icon wb-close"
+                                            aria-label="清除"></button>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">大小</h4>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-sm" placeholder="小尺寸">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control" placeholder="普通">
+                                </div>
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" placeholder="大尺寸">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="example-wrap m-sm-0">
+                                <h4 class="example-title">下拉选择</h4>
+                                <div class="form-group">
+                                    <select class="form-control">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                                <div class="form-group">
+                                    <select class="form-control" multiple="">
+                                        <option>1</option>
+                                        <option>2</option>
+                                        <option>3</option>
+                                        <option>4</option>
+                                        <option>5</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <div class="example-wrap">
+                                <h4 class="example-title">文本域</h4>
+                                <textarea class="form-control" id="textareaDefault" rows="3"></textarea>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">输入组</h3>
+                </div>
+                <div class="panel-body container-fluid">
+                    <div class="row row-lg">
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">复选框 &amp; 单选框</h4>
+                                <p>复选框，单选框也可以换成其他元素</p>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <span class="checkbox-custom checkbox-default">
+                                                    <input type="checkbox" id="inputCheckbox" name="inputCheckbox"
+                                                        checked="">
+                                                    <label for="inputCheckbox"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <span class="radio-custom radio-default">
+                                                    <input type="radio" id="inputRadio" name="inputRadio" checked="">
+                                                    <label for="inputRadio"></label>
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">文本</h4>
+                                <p>可以在文本框任意一侧放置</p>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="email" class="form-control" placeholder="email">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">@example.com</span>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">¥</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">¥</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="">
+                                        <div class="input-group-append">
+                                            <span class="input-group-text">.00</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">图标</h4>
+                                <p>可以使用字体图标</p>
+                                <div class="form-group">
+                                    <div class="input-group input-group-icon">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <span class="icon wb-user" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="用户名">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group input-group-icon">
+                                        <div class="input-group-prepend">
+                                            <div class="input-group-text">
+                                                <span class="icon wb-envelope" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="邮箱">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group input-group-icon">
+                                        <input type="email" class="form-control" placeholder="邮箱">
+                                        <div class="input-group-append">
+                                            <div class="input-group-text">
+                                                <span class="icon wb-envelope" aria-hidden="true"></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap m-md-0">
+                                <h4 class="example-title">按钮</h4>
+                                <p>输入组中的按钮有点不同，需要一层额外嵌套</p>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-default btn-outline">查找</button>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="请输入关键词...">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="请输入关键词...">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-default btn-outline">搜索</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap m-sm-0">
+                                <h4 class="example-title">下拉菜单</h4>
+                                <p>使用下拉菜单</p>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <button type="button" class="btn btn-default btn-outline dropdown-toggle"
+                                                data-toggle="dropdown" aria-expanded="false">操作</button>
+                                            <div class="dropdown-menu" role="menu">
+                                                <a class="dropdown-item" href="javascript:;" role="menuitem">菜单项一</a>
+                                                <a class="dropdown-item" href="javascript:;" role="menuitem">菜单项二</a>
+                                                <a class="dropdown-item" href="javascript:;" role="menuitem">菜单项三</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="javascript:;" role="menuitem">菜单项四</a>
+                                            </div>
+                                        </div>
+                                        <input type="text" class="form-control" aria-label="使用下拉菜单">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control"
+                                            aria-label="Text input with dropdown button">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-default btn-outline"
+                                                tabindex="-1">操作</button>
+                                            <button type="button" class="btn btn-default btn-outline dropdown-toggle"
+                                                data-toggle="dropdown" aria-expanded="false" tabindex="-1">
+                                            </button>
+                                            <div class="dropdown-menu float-right" role="menu">
+                                                <a class="dropdown-item" href="javascript:;" role="menuitem">菜单项一</a>
+                                                <a class="dropdown-item" href="javascript:;" role="menuitem">菜单项二</a>
+                                                <a class="dropdown-item" href="javascript:;" role="menuitem">菜单项三</a>
+                                                <div class="dropdown-divider"></div>
+                                                <a class="dropdown-item" href="javascript:;" role="menuitem">菜单项四</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-4">
+                            <div class="example-wrap">
+                                <h4 class="example-title">大小</h4>
+                                <p>在 <code>.input-group</code> 添加控制大小的类 </p>
+                                <div class="form-group">
+                                    <div class="input-group input-group-lg">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">@</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="用户名">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">@</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="用户名">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="input-group input-group-sm">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">@</span>
+                                        </div>
+                                        <input type="text" class="form-control" placeholder="用户名">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">单选、复选框
+                        <small>
+                            <a class="example-plugin-link"
+                                href="http://flatlogic.github.io/awesome-bootstrap-checkbox/demo/" target="_blank">
+                                官网
+                            </a>
+                        </small>
+                    </h3>
+                </div>
+                <div class="panel-body container-fluid">
+                    <div class="row row-lg">
+                        <div class="col-sm-6 col-lg-4">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">复选框</h4>
+                                <p>添加 <code>.checkbox-custom</code></p>
+                                <div class="checkbox-custom checkbox-primary">
+                                    <input type="checkbox" id="inputUnchecked">
+                                    <label for="inputUnchecked">未选中</label>
+                                </div>
+                                <div class="checkbox-custom checkbox-primary">
+                                    <input type="checkbox" id="inputChecked" checked="">
+                                    <label for="inputChecked">选中</label>
+                                </div>
+                                <div class="checkbox-custom">
+                                    <input type="checkbox" disabled="">
+                                    <label>未选中（禁用）</label>
+                                </div>
+                                <div class="checkbox-custom">
+                                    <input type="checkbox" disabled="" checked="">
+                                    <label>选中（禁用）</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">单选</h4>
+                                <p>添加 <code>.radio-custom</code></p>
+                                <div class="radio-custom radio-primary">
+                                    <input type="radio" id="inputRadiosUnchecked" name="inputRadios">
+                                    <label for="inputRadiosUnchecked">未选中</label>
+                                </div>
+                                <div class="radio-custom radio-primary">
+                                    <input type="radio" id="inputRadiosChecked" name="inputRadios" checked="">
+                                    <label for="inputRadiosChecked">选中</label>
+                                </div>
+                                <div class="radio-custom radio-primary">
+                                    <input type="radio" id="inputRadiosDisabled" name="inputRadiosDisabled" disabled="">
+                                    <label for="inputRadiosDisabled">未选中（禁用）</label>
+                                </div>
+                                <div class="radio-custom radio-primary">
+                                    <input type="radio" id="inputRadiosDisabledChecked"
+                                        name="inputRadiosDisabledChecked" disabled="" checked="">
+                                    <label for="inputRadiosDisabledChecked">选中（禁用）</label>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-sm-6 col-lg-4">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">颜色</h4>
+                                <p>添加 <code>.checkbox-default</code>, <code>.checkbox-primary</code>,
+                                    <code>.checkbox-success</code>,
+                                    <code>.checkbox-info</code>, <code>.checkbox-warning</code>,
+                                    <code>.checkbox-danger</code> 可改变其颜色</p>
+                                <ul class="list-unstyled list-inline mb-0">
+                                    <li class="list-inline-item">
+                                        <div class="checkbox-custom">
+                                            <input type="checkbox" name="inputCheckboxes" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="checkbox-custom checkbox-default">
+                                            <input type="checkbox" name="inputCheckboxes" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="checkbox-custom checkbox-primary">
+                                            <input type="checkbox" name="inputCheckboxes" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="checkbox-custom checkbox-success">
+                                            <input type="checkbox" name="inputCheckboxes" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="checkbox-custom checkbox-info">
+                                            <input type="checkbox" name="inputCheckboxes" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="checkbox-custom checkbox-warning">
+                                            <input type="checkbox" name="inputCheckboxes" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="checkbox-custom checkbox-danger">
+                                            <input type="checkbox" name="inputCheckboxes" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                </ul>
+                                <ul class="list-unstyled list-inline">
+                                    <li class="list-inline-item">
+                                        <div class="radio-custom">
+                                            <input type="radio" id="inputRadioNormal" name="inputRadiosNormal"
+                                                checked="">
+                                            <label for="inputRadioNormal"></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="radio-custom radio-default">
+                                            <input type="radio" name="inputRadioDefault" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="radio-custom radio-primary">
+                                            <input type="radio" name="inputRadioPrimary" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="radio-custom radio-success">
+                                            <input type="radio" name="inputRadioSuccess" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="radio-custom radio-info">
+                                            <input type="radio" name="inputRadioInfo" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="radio-custom radio-warning">
+                                            <input type="radio" name="inputRadioWarning" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <div class="radio-custom radio-danger">
+                                            <input type="radio" name="inputRadioDanger" checked="">
+                                            <label></label>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel form-icons">
+                <div class="panel-heading">
+                    <h3 class="panel-title">表单图表</h3>
+                </div>
+                <div class="panel-body container-fluid">
+                    <div class="row">
+                        <div class="col-md-6 col-lg-3">
+                            <div class="example-warp">
+                                <div class="example">
+                                    <div class="input-group">
+                                        <i class="form-control-icon wb-map"></i>
+                                        <input class="form-control" type="text" name="left" placeholder="left">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3">
+                            <div class="example-warp">
+                                <div class="example">
+                                    <div class="input-group">
+                                        <i class="form-control-icon form-control-icon-right wb-map"></i>
+                                        <input class="form-control" type="text" name="right" placeholder="right">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3">
+                            <div class="example-warp">
+                                <div class="example">
+                                    <div class="input-group">
+                                        <i class="form-control-icon wb-map red-600"></i>
+                                        <input class="form-control" type="text" name="red" placeholder="red">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3">
+                            <div class="example-warp">
+                                <div class="example">
+                                    <div class="input-group">
+                                        <i class="form-control-icon wb-map blue-600"></i>
+                                        <input class="form-control" type="text" name="blue" placeholder="blue">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3">
+                            <div class="example-warp">
+                                <div class="example">
+                                    <div class="input-group">
+                                        <i class="form-control-icon wb-map purple-600"></i>
+                                        <input class="form-control" type="text" name="purple" placeholder="purple">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3">
+                            <div class="example-warp">
+                                <div class="example">
+                                    <div class="input-group">
+                                        <i class="form-control-icon wb-map green-600"></i>
+                                        <input class="form-control" type="text" name="green" placeholder="green">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3">
+                            <div class="example-warp">
+                                <div class="example">
+                                    <div class="input-group">
+                                        <i class="form-control-icon wb-map blue-grey-600"></i>
+                                        <input class="form-control" type="text" name="blue-grey"
+                                            placeholder="blue-grey">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3">
+                            <div class="example-warp">
+                                <div class="example large-icon">
+                                    <div class="input-group">
+                                        <i class="form-control-icon wb-map"></i>
+                                        <input class="form-control" type="text" name="left-large"
+                                            placeholder="left-large">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3">
+                            <div class="example-warp">
+                                <div class="example large-icon">
+                                    <div class="input-group">
+                                        <i class="form-control-icon wb-map"></i>
+                                        <input class="form-control" type="text" name="left-large"
+                                            placeholder="left-large">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3">
+                            <div class="example-warp">
+                                <div class="example small-icon">
+                                    <div class="input-group">
+                                        <i class="form-control-icon wb-map"></i>
+                                        <input class="form-control" type="text" name="left-large"
+                                            placeholder="left-large">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3">
+                            <div class="example-warp">
+                                <div class="example round-input-control">
+                                    <div class="input-group">
+                                        <i class="form-control-icon wb-map"></i>
+                                        <input class="form-control" type="text" name="round-input-control"
+                                            placeholder="round-input-control">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-md-6 col-lg-3">
+                            <div class="example-warp">
+                                <div class="example">
+                                    <div class="input-group">
+                                        <i class="form-control-icon wb-image red-600"></i>
+                                        <input class="form-control" type="text" name="change-icon"
+                                            placeholder="change-icon">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--脚本-->
+    <script src="../../libs/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../../libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

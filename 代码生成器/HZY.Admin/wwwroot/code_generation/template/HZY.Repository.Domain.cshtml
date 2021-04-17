@@ -1,0 +1,76 @@
+﻿@using HZY.Repository.Entity
+@model HZY.Admin.Model.CodeGenerationModel
+@{
+    var className = Model.TableName;
+    var ignores = new string[] { "Id", "CreateTime", "UpdateTime" };
+    var tableInfos = Model.AppTableInfos
+        .Where(w => !ignores.Contains(w.ColName))
+        .ToList()
+        ;
+}
+
+@functions
+{
+    //获取类型 根据 appTableInfo
+    string GetType(AppTableInfo appTableInfo)
+    {
+        switch (appTableInfo.ColType)
+        {
+            case "uniqueidentifier":
+                return appTableInfo.ColIsKey == 1 ? "Guid" : "Guid?";
+            case "bit":
+            case "int":
+                return appTableInfo.ColIsKey == 1 ? "int" : "int?";
+            case "datetime":
+                return "DateTime?";
+            case "float":
+            case "money":
+                return "double?";
+            case "decimal":
+                return "decimal?";
+            default:
+                return "string";
+        }
+    }
+
+    //获取别名 根据 appTableInfo
+    string GetAliasByAppTableInfo(AppTableInfo appTableInfo)
+    {
+        return !string.IsNullOrWhiteSpace(appTableInfo.ColRemark) ? appTableInfo.ColRemark : $"请设置 {appTableInfo.ColName} 的显示名称";
+    }
+}
+
+<pre>
+/*
+ * *******************************************************
+ *
+ * 作者：hzy
+ *
+ * 开源地址：https://gitee.com/hzy6
+ *
+ * *******************************************************
+ */
+using System;
+using System.ComponentModel.DataAnnotations;
+using HZY.Repository.Core.Models;
+
+namespace HZY.Repository.Domain
+{
+    /// <summary>
+    /// @className
+    /// </summary>
+    public class @className : GuidKeyBaseModel
+    {
+        @foreach (var item in tableInfos)
+        {
+            <text>
+            /// <summary>
+            /// @(GetAliasByAppTableInfo(item)) => 备注: @item.ColName
+            /// </summary>
+            public @(GetType(item)) @item.ColName { get; set; }
+            </text>
+        }
+
+    }
+}
+</pre>

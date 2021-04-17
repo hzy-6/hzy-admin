@@ -1,0 +1,1933 @@
+﻿<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>HzyAdminUI</title>
+    <!-- 避免IE使用兼容模式 -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+    <!-- 移动设备 viewport -->
+    <meta name="viewport"
+        content="width=device-width,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no,minimal-ui">
+    <!-- 360浏览器默认使用Webkit内核 -->
+    <meta name="renderer" content="webkit">
+    <!-- 禁止搜索引擎抓取 -->
+    <meta name="robots" content="nofollow">
+    <!-- 禁止百度SiteAPP转码 -->
+    <meta http-equiv="Cache-Control" content="no-siteapp">
+    <!-- Chrome浏览器添加桌面快捷方式（安卓） -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <!-- Safari浏览器添加到主屏幕（IOS） -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="">
+    <!--[if lt IE 9]>
+                      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+                      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+                    <![endif]-->
+    <link href="../../css/web-icons-master/css/web-icons.css" rel="stylesheet" />
+    <!--样式-->
+    <link href="../../css/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link href="../../css/bootstrap.min.css" rel="stylesheet" />
+    <link href="../../css/core.css" rel="stylesheet" />
+    <link href="../../css/site.css" rel="stylesheet" />
+    <style type="text/css">
+        .visiblity-utilities th small {
+            display: block;
+            color: #999
+        }
+
+        .visiblity-utilities .is-visible {
+            color: #468847;
+            text-align: center;
+            background-color: #dff0d8 !important
+        }
+
+        .visiblity-utilities .is-hidden {
+            color: #ccc;
+            text-align: center;
+            background-color: #f9f9f9 !important
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page">
+        <div class="page-header">
+            <h1 class="page-title">辅助类</h1>
+        </div>
+        <div class="page-content">
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">对齐</h3>
+                </div>
+                <div class="panel-body container-fluid">
+                    <div class="row row-lg">
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">清除浮动与浮动</h4>
+                                <table class="table table-bordered table-hover">
+                                    <colgroup>
+                                        <col class="col-xs-1">
+                                        <col class="col-xs-7">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th class="text-nowrap">类</th>
+                                            <th>说明</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td class="text-nowrap">
+                                                <code>.float-left</code>
+                                            </td>
+                                            <td>元素浮动到左边</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-nowrap">
+                                                <code>.float-right</code>
+                                            </td>
+                                            <td>元素浮动到右边</td>
+                                        </tr>
+                                        <tr>
+                                            <td class="text-nowrap">
+                                                <code>.clearfix</code>
+                                            </td>
+                                            <td>清除浮动</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                                <div class="example example-box">
+                                    <button type="button" class="btn btn-default btn-outline">左浮动</button>
+                                    <button type="button" class="btn btn-default btn-outline float-right">右浮动</button>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">垂直对齐</h4>
+                                <div class="example-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <colgroup>
+                                                <col class="col-xs-2">
+                                                <col class="col-xs-6">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-nowrap">类</th>
+                                                    <th>说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.vertical-align</code>
+                                                    </td>
+                                                    <td>添加该类到父元素，父元素要有固定高度</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.vertical-align-middle</code>
+                                                    </td>
+                                                    <td>添加该类到您需要上下居中对齐的元素上</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.vertical-align-bottom</code>
+                                                    </td>
+                                                    <td>添加该类到您需要底部对齐的元素上</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="example example-box container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                                <div class="vertical-align h-100">
+                                                    <div class="vertical-align-middle">
+                                                        <button type="button" class="btn btn-default btn-outline">上下居中对齐
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md-6">
+                                                <div class="vertical-align h-100">
+                                                    <div class="vertical-align-bottom">
+                                                        <button type="button" class="btn btn-default btn-outline">底部对齐
+                                                        </button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">文字相关</h3>
+                </div>
+                <div class="panel-body container-fluid">
+                    <div class="row row-lg">
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">文本转换（仅针英文）</h4>
+                                <div class="example-body">
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <colgroup>
+                                                <col class="col-xs-2">
+                                                <col class="col-xs-6">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-nowrap">类</th>
+                                                    <th>说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.text-lowercase</code>
+                                                    </td>
+                                                    <td>英文字符小写</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.text-uppercase</code>
+                                                    </td>
+                                                    <td>英文字符大写</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.text-capitalize</code>
+                                                    </td>
+                                                    <td>英文首字母大写</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="example example-box">
+                                        <p class="text-lowercase">Lowercased text.</p>
+                                        <p class="text-uppercase">Uppercased text.</p>
+                                        <p class="text-capitalize">Capitalized text.</p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">文本显示</h4>
+                                <div class="example-body">
+                                    <table class="table table-bordered table-hover">
+                                        <colgroup>
+                                            <col class="col-xs-1">
+                                            <col class="col-xs-7">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-nowrap">类</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.text-hide</code>
+                                                </td>
+                                                <td>用背景替换文本内容</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.text-truncate</code>
+                                                </td>
+                                                <td>文本截断</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.text-break</code>
+                                                </td>
+                                                <td>文本换行显示</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.text-nowrap</code>
+                                                </td>
+                                                <td>文本不换行，在一行显示</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="example example-box container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-3">
+                                                <div class="text-hide h-100"
+                                                    style="border:1px solid #e6e8ea; background-image: url(http://cdn.admui.com/demo/iframe/2.0.0/images/placeholder.png)">
+                                                    这是一段很长很长很长很长的文本内容，用来测试文本显示。
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="text-truncate h-100" style="border:1px solid #e6e8ea;">
+                                                    这是一段很长很长很长很长的文本内容，用来测试文本显示。
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="text-break h-100" style="border:1px solid #e6e8ea;">
+                                                    这是一段很长很长很长很长的文本内容，用来测试文本显示。
+                                                </div>
+                                            </div>
+                                            <div class="col-md-3">
+                                                <div class="text-nowrap h-100"
+                                                    style="border:1px solid #e6e8ea;overflow: hidden;">
+                                                    这是一段很长很长很长很长的文本内容，用来测试文本显示。
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">文本对齐</h4>
+                                <div class="example-body">
+                                    <table class="table table-bordered table-hover">
+                                        <colgroup>
+                                            <col class="col-xs-1">
+                                            <col class="col-xs-7">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-nowrap">类</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.text-top</code>
+                                                </td>
+                                                <td>顶部对齐</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.text-middle</code>
+                                                </td>
+                                                <td>上下居中</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.text-bottom</code>
+                                                </td>
+                                                <td>底部对齐</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.text-left</code>
+                                                </td>
+                                                <td>左对齐</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.text-center</code>
+                                                </td>
+                                                <td>居中显示</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.text-right</code>
+                                                </td>
+                                                <td>右对齐</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.text-justify</code>
+                                                </td>
+                                                <td>两端对齐</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                    <div class="example example-box container-fluid">
+                                        <div class="row">
+                                            <div class="col-md-4 mb-10">
+                                                <a class="avatar" href="javascript:;">
+                                                    <img class="w-50"
+                                                        src="http://cdn.admui.com/demo/iframe/2.0.0/images/portraits/1.jpg"
+                                                        alt="...">
+                                                </a>
+                                                <span class="text-top">测试文本</span>
+                                            </div>
+                                            <div class="col-md-4 mb-10">
+                                                <a class="avatar" href="javascript:;">
+                                                    <img class="w-50"
+                                                        src="http://cdn.admui.com/demo/iframe/2.0.0/images/portraits/2.jpg"
+                                                        alt="...">
+                                                </a>
+                                                <span class="text-middle">测试文本</span>
+                                            </div>
+                                            <div class="col-md-4 mb-10">
+                                                <a class="avatar" href="javascript:;">
+                                                    <img class="w-50"
+                                                        src="http://cdn.admui.com/demo/iframe/2.0.0/images/portraits/3.jpg"
+                                                        alt="...">
+                                                </a>
+                                                <span class="text-bottom">测试文本</span>
+                                            </div>
+                                        </div>
+                                        <div class="mt-20">
+                                            <p class="text-left">测试文本</p>
+                                            <p class="text-center">测试文本</p>
+                                            <p class="text-right">测试文本</p>
+                                            <p class="text-justify">测试文本</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">字体大小</h4>
+                                <div class="example-body">
+                                    <p>可选值：0, 10, 12, 14, 16, 18, 20, 24, 26, 30, 40, 50, 60, 70 , 80 。</p>
+                                    <table class="table table-bordered table-hover">
+                                        <colgroup>
+                                            <col class="col-xs-1">
+                                            <col class="col-xs-7">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-nowrap">类</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.font-size-0</code>
+                                                </td>
+                                                <td>font-size: 0px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.font-size-10</code>
+                                                </td>
+                                                <td>font-size: 10px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.font-size-12</code>
+                                                </td>
+                                                <td>font-size: 12px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.font-size-14</code>
+                                                </td>
+                                                <td>font-size: 14px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.font-size-16</code>
+                                                </td>
+                                                <td>font-size: 16px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.font-size-18</code>
+                                                </td>
+                                                <td>font-size: 18px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.font-size-20</code>
+                                                </td>
+                                                <td>font-size: 20px</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">字体粗细</h4>
+                                <div class="example-body">
+                                    <p>可选值：unset, 100, 200, 300, 400, 500, 600, 700, 800, 900 。</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <colgroup>
+                                                <col class="col-xs-1">
+                                                <col class="col-xs-7">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-nowrap">类</th>
+                                                    <th>说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.font-weight-unset</code>
+                                                    </td>
+                                                    <td>font-weight: unset</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.font-weight-100</code>
+                                                    </td>
+                                                    <td>font-weight: 100</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">盒式模型</h3>
+                </div>
+                <div class="panel-body container-fluid">
+                    <div class="row row-lg">
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">Padding</h4>
+                                <div class="example-body">
+                                    <p>可选值：0, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 。</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <colgroup>
+                                                <col class="col-xs-1">
+                                                <col class="col-xs-7">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-nowrap">类</th>
+                                                    <th>说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.p-5</code>
+                                                    </td>
+                                                    <td>padding: 5px</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.py-5</code>
+                                                    </td>
+                                                    <td>
+                                                        <p>padding-top: 5px</p>
+                                                        <p>padding-bottom: 5px</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.px-5</code>
+                                                    </td>
+                                                    <td>
+                                                        <p>padding-left: 5px</p>
+                                                        <p>padding-right: 5px</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.pt-5</code>
+                                                    </td>
+                                                    <td>padding-top: 5px</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.pr-5</code>
+                                                    </td>
+                                                    <td>padding-right: 5px</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.pb-5</code>
+                                                    </td>
+                                                    <td>padding-bottom: 5px</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.pl-5</code>
+                                                    </td>
+                                                    <td>padding-left: 5px</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">Margin</h4>
+                                <div class="example-body">
+                                    <p>可选值：0, 3, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50 。</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <colgroup>
+                                                <col class="col-xs-1">
+                                                <col class="col-xs-7">
+                                            </colgroup>
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-nowrap">类</th>
+                                                    <th>说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.m-5</code>
+                                                    </td>
+                                                    <td>margin: 5px</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.my-5</code>
+                                                    </td>
+                                                    <td>
+                                                        <p>margin-top: 5px</p>
+                                                        <p>margin-bottom: 5px</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.mx-5</code>
+                                                    </td>
+                                                    <td>
+                                                        <p>margin-left: 5px</p>
+                                                        <p>margin-right: 5px</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.mt-5</code>
+                                                    </td>
+                                                    <td>margin-top: 5px</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.mr-5</code>
+                                                    </td>
+                                                    <td>margin-right: 5px</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.mb-5</code>
+                                                    </td>
+                                                    <td>margin-bottom: 5px</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.ml-5</code>
+                                                    </td>
+                                                    <td>margin-left: 5px</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="example-wrap">
+                                <h4 class="example-title">响应式 Margin &amp; Padding</h4>
+                                <div class="example-body table-responsive">
+                                    <table class="table table-bordered table-hover visiblity-utilities">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>
+                                                    小屏幕
+                                                    <small>平板 (≥480px)</small>
+                                                </th>
+                                                <th>
+                                                    小屏幕
+                                                    <small>平板 (≥768px)</small>
+                                                </th>
+                                                <th>
+                                                    中等屏幕
+                                                    <small>桌面显示器 (≥992px)</small>
+                                                </th>
+                                                <th>
+                                                    大屏幕
+                                                    <small>大桌面显示器 (≥1200px)</small>
+                                                </th>
+                                                <th>
+                                                    大屏幕
+                                                    <small>大桌面显示器 (≥1600px)</small>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-nowrap">margin: 5px</td>
+                                                <td class="text-nowrap">
+                                                    <code>.m-sm-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.m-md-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.m-lg-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.m-xl-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.m-xxl-5</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">margin-right: 5px</td>
+                                                <td class="text-nowrap">
+                                                    <code>.mr-sm-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mr-md-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mr-lg-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mr-xl-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mr-xxl-5</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">margin-left: auto</td>
+                                                <td class="text-nowrap">
+                                                    <code>.ml-sm-auto</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.ml-md-auto</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.ml-lg-auto</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.ml-xl-auto</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.ml-xxl-auto</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">margin-top: -5px</td>
+                                                <td class="text-nowrap">
+                                                    <code>.mt-sm--5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mt-md--5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mt-lg--5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mt-xl--5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mt-xxl--5</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">margin-bottom: 5px</td>
+                                                <td class="text-nowrap">
+                                                    <code>.mb-sm-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mb-md-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mb-lg-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mb-xl-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mb-xxl-5</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <div>margin-right: 5px;</div>
+                                                    <div>margin-left: 5px</div>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mx-sm-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mx-md-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mx-lg-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mx-xl-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.mx-xxl-5</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <div>margin-top: 5px;</div>
+                                                    <div>margin-bottom: 5px</div>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.my-sm-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.my-md-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.my-lg-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.my-xl-5</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.my-xxl-5</code>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="example-wrap">
+                                <h4 class="example-title">负值 Margin</h4>
+                                <div class="example-body">
+                                    <p>可选值：-30, -25, -20, -15, -10, -5, -3, -1</p>
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered table-hover">
+                                            <thead>
+                                                <tr>
+                                                    <th class="text-nowrap">类</th>
+                                                    <th>说明</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.m--5</code>
+                                                    </td>
+                                                    <td>margin: -5px</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.my--5</code>
+                                                    </td>
+                                                    <td>
+                                                        <p>margin-top: -5px</p>
+                                                        <p>margin-bottom: -5px</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.mx--5</code>
+                                                    </td>
+                                                    <td>
+                                                        <p>margin-left: -5px</p>
+                                                        <p>margin-right: -5px</p>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.mt--5</code>
+                                                    </td>
+                                                    <td>margin-top: -5px</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.mr--5</code>
+                                                    </td>
+                                                    <td>margin-right: -5px</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.mb--5</code>
+                                                    </td>
+                                                    <td>margin-bottom: -5px</td>
+                                                </tr>
+                                                <tr>
+                                                    <td class="text-nowrap">
+                                                        <code>.ml--5</code>
+                                                    </td>
+                                                    <td>margin-left: -5px</td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+                            <div class="example-wrap">
+                                <h4 class="example-title">百分比高度</h4>
+                                <div class="example-body">
+                                    <p>可选值：5%, 10%, 15%, 20%, 25%, 30%, 33.3333%, 50%, 75%, 100%.
+                                    </p>
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-nowrap">类</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-p5</code>
+                                                </td>
+                                                <td>height: 5%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-p10</code>
+                                                </td>
+                                                <td>height: 10%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-p15</code>
+                                                </td>
+                                                <td>height: 15%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-p20</code>
+                                                </td>
+                                                <td>height: 20%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-p25</code>
+                                                </td>
+                                                <td>height: 25%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-p30</code>
+                                                </td>
+                                                <td>height: 30%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-p33</code>
+                                                </td>
+                                                <td>height: 33.3333%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-p75</code>
+                                                </td>
+                                                <td>height: 75%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-p100</code> or
+                                                    <code>.h-full</code>
+                                                </td>
+                                                <td>height: 100%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-xl-6">
+                            <div class="example-wrap">
+                                <h4 class="example-title">百分比宽度</h4>
+                                <div class="example-body">
+                                    <p>可选值：5%, 10%, 15%, 20%, 25%, 30%, 33.3333%, 50%, 75%, 100%.
+                                    </p>
+                                    <table class="table table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="text-nowrap">类</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-p5</code>
+                                                </td>
+                                                <td>width: 5%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-p10</code>
+                                                </td>
+                                                <td>width: 10%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-p15</code>
+                                                </td>
+                                                <td>width: 15%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-p20</code>
+                                                </td>
+                                                <td>width: 20%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-p25</code>
+                                                </td>
+                                                <td>width: 25%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-p30</code>
+                                                </td>
+                                                <td>width: 30%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-p33</code>
+                                                </td>
+                                                <td>width: 33.3333%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-p75</code>
+                                                </td>
+                                                <td>width: 75%</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-p100</code> or
+                                                    <code>.w-full</code>
+                                                </td>
+                                                <td>width: 100%</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">高度</h4>
+                                <div class="example-body">
+                                    <p>可选值：50, 100, 150, 200, 250, 300, 350, 400, 450, 500。</p>
+                                    <table class="table table-bordered table-hover">
+                                        <colgroup>
+                                            <col class="col-xs-1">
+                                            <col class="col-xs-7">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-nowrap">类</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-50</code>
+                                                </td>
+                                                <td>height: 50px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-100</code>
+                                                </td>
+                                                <td>height: 100px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-150</code>
+                                                </td>
+                                                <td>height: 150px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-200</code>
+                                                </td>
+                                                <td>height: 200px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-250</code>
+                                                </td>
+                                                <td>height: 250px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-300</code>
+                                                </td>
+                                                <td>height: 300px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-350</code>
+                                                </td>
+                                                <td>height: 350px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-400</code>
+                                                </td>
+                                                <td>height: 400px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-450</code>
+                                                </td>
+                                                <td>height: 450px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.h-500</code>
+                                                </td>
+                                                <td>height: 500px</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">宽度</h4>
+                                <div class="example-body">
+                                    <p>可选值：50, 100, 150, 200, 250, 300, 350, 400, 450, 500 。</p>
+                                    <table class="table table-bordered table-hover">
+                                        <colgroup>
+                                            <col class="col-xs-1">
+                                            <col class="col-xs-7">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-nowrap">类</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-50</code>
+                                                </td>
+                                                <td>width: 50px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-100</code>
+                                                </td>
+                                                <td>width: 100px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-150</code>
+                                                </td>
+                                                <td>width: 150px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-200</code>
+                                                </td>
+                                                <td>width: 200px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-250</code>
+                                                </td>
+                                                <td>width: 250px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-300</code>
+                                                </td>
+                                                <td>width: 300px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-350</code>
+                                                </td>
+                                                <td>width: 350px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-400</code>
+                                                </td>
+                                                <td>width: 400px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-450</code>
+                                                </td>
+                                                <td>width: 450px</td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.w-500</code>
+                                                </td>
+                                                <td>width: 500px</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-12">
+                            <div class="example-wrap">
+                                <h4 class="example-title">响应式高度 &amp; 宽度</h4>
+                                <div class="example-body table-responsive">
+                                    <table class="table table-bordered table-hover visiblity-utilities">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>
+                                                    小屏幕
+                                                    <small>平板 (≥480px)</small>
+                                                </th>
+                                                <th>
+                                                    小屏幕
+                                                    <small>平板 (≥768px)</small>
+                                                </th>
+                                                <th>
+                                                    中等屏幕
+                                                    <small>桌面显示器 (≥992px)</small>
+                                                </th>
+                                                <th>
+                                                    大屏幕
+                                                    <small>大桌面显示器 (≥1200px)</small>
+                                                </th>
+                                                <th>
+                                                    大屏幕
+                                                    <small>大桌面显示器 (≥1600px)</small>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>50px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-sm-50</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-md-50</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-lg-50</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xl-50</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xxl-50</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>100px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-sm-100</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-md-100</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-lg-100</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xl-100</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xxl-100</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>150px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-sm-150</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-md-150</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-lg-150</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xl-150</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xxl-150</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>200px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-sm-200</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-md-200</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-lg-200</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xl-200</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xxl-200</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>250px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-sm-250</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-md-250</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-lg-250</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xl-250</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xxl-250</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>300px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-sm-300</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-md-300</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-lg-300</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xl-300</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xxl-300</code>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr>
+                                                <th>350px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-sm-350</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-md-350</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-lg-350</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xl-350</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xxl-350</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>400px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-sm-400</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-md-400</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-lg-400</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xl-400</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xxl-400</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>450px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-sm-450</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-md-450</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-lg-450</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xl-450</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xxl-450</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>500px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-sm-500</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-md-500</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-lg-500</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xl-500</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-xxl-500</code>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+
+                                <div class="example-body table-responsive mt-20">
+                                    <table class="table table-bordered table-hover visiblity-utilities">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>
+                                                    小屏幕
+                                                    <small>平板 (≥480px)</small>
+                                                </th>
+                                                <th>
+                                                    小屏幕
+                                                    <small>平板 (≥768px)</small>
+                                                </th>
+                                                <th>
+                                                    中等屏幕
+                                                    <small>桌面显示器 (≥992px)</small>
+                                                </th>
+                                                <th>
+                                                    大屏幕
+                                                    <small>大桌面显示器 (≥1200px)</small>
+                                                </th>
+                                                <th>
+                                                    大屏幕
+                                                    <small>大桌面显示器 (≥1600px)</small>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th>50px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xs-50</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-sm-50</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-md-50</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-lg-50</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xl-50</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>100px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xs-100</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-sm-100</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-md-100</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-lg-100</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xl-100</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>150px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xs-150</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-sm-150</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-md-150</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-lg-150</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xl-150</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>200px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xs-200</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-sm-200</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-md-200</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-lg-200</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xl-200</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>250px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xs-250</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-sm-250</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-md-250</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-lg-250</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xl-250</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>300px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xs-300</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-sm-300</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-md-300</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-lg-300</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xl-300</code>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                        <tbody>
+                                            <tr>
+                                                <th>350px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xs-350</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-sm-350</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-md-350</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-lg-350</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xl-350</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>400px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xs-400</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-sm-400</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-md-400</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-lg-400</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xl-400</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>450px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xs-450</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-sm-450</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-md-450</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-lg-450</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xl-450</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <th>500px</th>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xs-500</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-only-sm-500</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-md-500</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-lg-500</code>
+                                                </td>
+                                                <td class="text-nowrap">
+                                                    <code>.h-only-xl-500</code>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="panel">
+                <div class="panel-heading">
+                    <h3 class="panel-title">杂项</h3>
+                </div>
+                <div class="panel-body container-fluid">
+                    <div class="row row-lg">
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">无间距栅格</h4>
+                                <div class="example-body">
+                                    <p>
+                                        在
+                                        <code>.row</code> 添加
+                                        <code>.no-space</code> 类来实现无间距栅格。 </p>
+                                    <div class="example container-fluid">
+                                        <div class="row no-space text-center">
+                                            <div class="col-3" style="border: 1px solid #ddd">col-3</div>
+                                            <div class="col-3" style="border: 1px solid #ddd">col-3</div>
+                                            <div class="col-3" style="border: 1px solid #ddd">col-3</div>
+                                            <div class="col-3" style="border: 1px solid #ddd">col-3</div>
+                                        </div>
+                                        <div class="row no-space text-center mt-10">
+                                            <div class="col-6" style="border: 1px solid #ddd">col-6</div>
+                                            <div class="col-6" style="border: 1px solid #ddd">col-6</div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">显示相关</h4>
+                                <div class="example-body">
+                                    <table class="table table-bordered table-hover">
+                                        <colgroup>
+                                            <col class="col-xs-1">
+                                            <col class="col-xs-7">
+                                        </colgroup>
+                                        <thead>
+                                            <tr>
+                                                <th class="text-nowrap">类</th>
+                                                <th>说明</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.inline</code>
+                                                </td>
+                                                <td>类似
+                                                    <code>display:inline;</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.inline-block</code>
+                                                </td>
+                                                <td>类似
+                                                    <code>display:inline-block;</code>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td class="text-nowrap">
+                                                    <code>.block</code>
+                                                </td>
+                                                <td>类似
+                                                    <code>display:block;</code>
+                                                </td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-6">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">屏幕阅读器和键盘导航内容</h4>
+                                <div class="example-body">
+                                    <p>在所有设备上都不显示，
+                                        <strong>除了屏幕阅读器</strong> 使用
+                                        <code>.sr-only</code> 。 可以结合
+                                        <code>.sr-only</code> 使用
+                                        <code>.sr-only-focusable</code> 当元素获得焦点时来重点突出元素（如只有键盘的用户），也可以混合使用。 </p>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-xl-12">
+
+                            <div class="example-wrap">
+                                <h4 class="example-title">响应式工具</h4>
+                                <div class="example-body table-responsive">
+                                    <table class="table table-bordered table-hover visiblity-utilities">
+                                        <thead>
+                                            <tr>
+                                                <th></th>
+                                                <th>
+                                                    超小屏幕
+                                                    <small>手机 (&lt;480px)</small>
+                                                </th>
+                                                <th>
+                                                    小屏幕
+                                                    <small>平板 (≥480px)</small>
+                                                </th>
+                                                <th>
+                                                    小屏幕
+                                                    <small>平板 (≥768px)</small>
+                                                </th>
+                                                <th>
+                                                    中等屏幕
+                                                    <small>桌面显示器 (≥992px)</small>
+                                                </th>
+                                                <th>
+                                                    大屏幕
+                                                    <small>大桌面显示器 (≥1200px)</small>
+                                                </th>
+                                                <th>
+                                                    大屏幕
+                                                    <small>大桌面显示器 (≥1600px)</small>
+                                                </th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <th class="text-nowrap" scope="row">
+                                                    <code>.hidden-xs-down</code>
+                                                </th>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-nowrap" scope="row">
+                                                    <code>.hidden-sm-down</code>
+                                                </th>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-nowrap" scope="row">
+                                                    <code>.hidden-md-down</code>
+                                                </th>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-nowrap" scope="row">
+                                                    <code>.hidden-lg-down</code>
+                                                </th>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-nowrap" scope="row">
+                                                    <code>.hidden-xl-down</code>
+                                                </th>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-visible">显示</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-nowrap" scope="row">
+                                                    <code>.hidden-xxl-down</code>
+                                                </th>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-nowrap" scope="row">
+                                                    <code>.hidden-xs-up</code>
+                                                </th>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-nowrap" scope="row">
+                                                    <code>.hidden-sm-up</code>
+                                                </th>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-nowrap" scope="row">
+                                                    <code>.hidden-md-up</code>
+                                                </th>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-nowrap" scope="row">
+                                                    <code>.hidden-lg-up</code>
+                                                </th>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-nowrap" scope="row">
+                                                    <code>.hidden-xl-up</code>
+                                                </th>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-hidden">隐藏</td>
+                                                <td class="is-hidden">隐藏</td>
+                                            </tr>
+                                            <tr>
+                                                <th class="text-nowrap" scope="row">
+                                                    <code>.hidden-xxl-up</code>
+                                                </th>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-visible">显示</td>
+                                                <td class="is-hidden">隐藏</td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    <!--脚本-->
+    <script src="../../libs/jquery/jquery-3.2.1.min.js"></script>
+    <script src="../../libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>
