@@ -1,13 +1,17 @@
 ﻿using HZY.Repository.Domain;
 using HZY.Repository.Core.Provider;
 using Microsoft.EntityFrameworkCore;
+using HZY.Repository.Core.Interface;
 
 namespace HZY.Repository.Core
 {
     public class AppDbContext : BaseDbContext<AppDbContext>
     {
-        public AppDbContext(DbContextOptions<AppDbContext> options) : base(options)
+        private readonly ICacheEntity _cacheEntity;
+
+        public AppDbContext(DbContextOptions<AppDbContext> options, ICacheEntity cacheEntity) : base(options, cacheEntity)
         {
+            _cacheEntity = cacheEntity;
         }
 
         #region DbSet

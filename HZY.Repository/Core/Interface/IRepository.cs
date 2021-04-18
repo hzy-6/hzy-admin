@@ -74,6 +74,7 @@ namespace HZY.Repository.Core.Interface
 
         IQueryable<T> Query(bool isTracking);
         IQueryable<T> Select => this.Query(true);
+        IQueryable<T> SelectNoTracking => this.Query(false);
 
         #endregion
 

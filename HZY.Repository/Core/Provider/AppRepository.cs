@@ -41,7 +41,7 @@ namespace HZY.Repository.Core.Provider
             List<string> fieldNames,
             List<TableViewColumnHead> columnHeads)
         {
-            var entityInfos = EntityCache.GetModelInfos(typeof(T).Name);
+            var entityInfos = this.Orm.CacheEntity.GetEntityInfos(typeof(T).Name);
 
             foreach (var item in fieldNames)
             {

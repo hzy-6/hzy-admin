@@ -45,7 +45,7 @@ namespace HZY.Repository.Core.Impl
         public virtual TDbContext Orm => this._context;
 
         /// <summary>
-        /// 设置 跟踪 Attach
+        /// 设置 跟踪 Attachq
         /// </summary>
         /// <param name="model"></param>
         /// <param name="entityState"></param>
@@ -249,9 +249,14 @@ namespace HZY.Repository.Core.Impl
             => isTracking ? this._dbSet.AsQueryable() : this._dbSet.AsNoTracking();
 
         /// <summary>
-        /// 查询
+        /// 查询 有跟踪
         /// </summary>
         public virtual IQueryable<T> Select => this.Query();
+
+        /// <summary>
+        /// 查询 无跟踪
+        /// </summary>
+        public virtual IQueryable<T> SelectNoTracking => this.Query(false);
 
         #endregion
 
@@ -314,7 +319,7 @@ namespace HZY.Repository.Core.Impl
             => this.Query().LongCount(expWhere);
 
         public virtual bool Any(Expression<Func<T, bool>> expWhere)
-            => this.Query().Where(expWhere).Any();
+            => this.Query().Any(expWhere);
 
         public virtual Task<int> CountAsync()
             => this.Query().CountAsync();
@@ -329,8 +334,23 @@ namespace HZY.Repository.Core.Impl
             => this.Query().LongCountAsync(expWhere);
 
         public virtual Task<bool> AnyAsync(Expression<Func<T, bool>> expWhere)
-            => this.Query().Where(expWhere).AnyAsync();
+            => this.Query().AnyAsync(expWhere);
 
         #endregion
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     }
 }

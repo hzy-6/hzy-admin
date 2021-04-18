@@ -12,28 +12,26 @@ using System;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using HZY.Repository.Domain;
 using HZY.Repository.Domain.Framework;
 using HZY.Repository.Core.Interface;
 using HZY.Repository.Core.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Storage;
-using Microsoft.Extensions.Logging;
 using HZY.Repository.Core.Impl;
-using HZY.Common;
-using Microsoft.EntityFrameworkCore.Diagnostics;
 
 namespace HZY.Repository.Core.Provider
 {
     public class BaseDbContext<TDbContext> : DbContext where TDbContext : DbContext
     {
         private readonly IUnitOfWork _unitOfWork;
+        private readonly ICacheEntity _cacheEntity;
 
-        public BaseDbContext(DbContextOptions<TDbContext> options) : base(options)
+        public BaseDbContext(DbContextOptions<TDbContext> options, ICacheEntity cacheEntity) : base(options)
         {
             _unitOfWork = new UnitOfWorkImpl();
             this.SavingChanges += (sender, args) => this.SavingChangesEvent(sender, args);
+            _cacheEntity = cacheEntity;
         }
 
         #region DbSet
@@ -48,10 +46,15 @@ namespace HZY.Repository.Core.Provider
 
         #endregion
 
+        /// <summary>
+        /// 获取实体信息缓存服务
+        /// </summary>
+        public virtual ICacheEntity CacheEntity => this._cacheEntity;
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             //扫描表 并 缓存 属性 xml 信息
-            EntityCache.Set(modelBuilder.Model.GetEntityTypes().Select(item => item.ClrType).ToList());
+            _cacheEntity.Set(modelBuilder.Model.GetEntityTypes().Select(item => item.ClrType));
         }
 
         //protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -70,7 +73,7 @@ namespace HZY.Repository.Core.Provider
         protected void SavingChangesEvent(object sender, SavingChangesEventArgs e)
         {
             #region 处理 createTime updateTime
-            
+
             var entries = ChangeTracker.Entries();
             var entityEntries = entries as EntityEntry[] ?? entries.ToArray();
 
@@ -113,7 +116,7 @@ namespace HZY.Repository.Core.Provider
         /// 工作单元
         /// </summary>
         /// <returns></returns>
-        public virtual IUnitOfWork GetUnitOfWork() => this._unitOfWork;
+        public virtual IUnitOfWork UnitOfWork => this._unitOfWork;
 
         /// <summary>
         /// 开启 提交

@@ -26,11 +26,7 @@ namespace HZY.Repository.Core.Provider
                 // options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             });
 
-            //services.AddIdentity<ApplicationUser, IdentityRole>()
-            //    .AddEntityFrameworkStores<ApplicationDbContext>()
-            //    .AddDefaultTokenProviders();
-
-            services.AddSingleton<IUnitOfWork, UnitOfWorkImpl>();
+            services.AddSingleton<ICacheEntity, CacheEntityImpl>();
             services.AddScoped(typeof(AppRepository<>));
         }
 
