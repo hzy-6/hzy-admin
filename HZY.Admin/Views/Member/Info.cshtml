@@ -57,7 +57,7 @@
                 },
                 saveForm() {
                     //验证
-                    if (!this.vm.form.name) return hzyAdmin.alert('名称不能为空!', '警告');
+                    if (!this.vm.form.name) return tools.message('名称不能为空!', '警告');
 
                     //组装数据
                     var formData = new FormData();
