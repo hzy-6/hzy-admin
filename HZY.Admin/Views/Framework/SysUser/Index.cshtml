@@ -79,7 +79,7 @@
                         if (id) {
                             ids.push(id);
                         } else {
-                            ids = t.table.selectedRowKeys;
+                            ids = t.table.selectedRowKeys.map(w => w.id);
                         }
                         if (ids && ids.length === 0) {
                             return tools.message("请选择要删除的数据!", "警告");

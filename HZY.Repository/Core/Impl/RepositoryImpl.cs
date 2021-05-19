@@ -226,6 +226,10 @@ namespace HZY.Repository.Core.Impl
 
         public virtual async Task<int> DeleteByIdAsync<TKey>(TKey key)
         {
+            if (key.GetType().Name == "List`1")
+            {
+                return await DeleteByIdsAsync((IEnumerable<TKey>)key);
+            }
             var exp = HzyRepositoryExtensions.CreateEqualExpression<T, TKey>(_keyPropertyInfo.Name, key);
             return await this.DeleteAsync(await this._dbSet.FirstOrDefaultAsync(exp));
         }

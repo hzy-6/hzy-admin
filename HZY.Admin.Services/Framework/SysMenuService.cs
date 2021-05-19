@@ -84,7 +84,7 @@ namespace HZY.Admin.Services.Framework
         {
             await this._sysRoleMenuFunctionRepository.DeleteAsync(w => ids.Contains(w.MenuId));
             await this._sysMenuFunctionRepository.DeleteAsync(w => ids.Contains(w.MenuId));
-            await this.Repository.DeleteByIdAsync(ids);
+            await this.Repository.DeleteByIdsAsync(ids);
         }
 
         /// <summary>
