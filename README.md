@@ -8,6 +8,9 @@
 ### 基于后台模板(hzy-admin-ui)可结合自己的后台架构
 https://gitee.com/hzy6/hzy-admin-ui
 
+### WebApi 任务调度平台
+https://gitee.com/hzy6/hzy-quartz
+
 ###  :cherries: 前后端分离版
 https://gitee.com/hzy6/HzyAdminSpa
 
