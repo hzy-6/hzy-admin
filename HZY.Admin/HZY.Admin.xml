@@ -4,6 +4,22 @@
         <name>HZY.Admin</name>
     </assembly>
     <members>
+        <member name="T:HZY.Admin.Controllers.AdminBaseController`1">
+            <summary>
+            控制器服务
+            </summary>
+            <typeparam name="TDefaultService">默认服务类型</typeparam>
+        </member>
+        <member name="F:HZY.Admin.Controllers.AdminBaseController`1.DefaultService">
+            <summary>
+            默认服务
+            </summary>
+        </member>
+        <member name="T:HZY.Admin.Controllers.AdminBaseController">
+            <summary>
+            控制器服务
+            </summary>
+        </member>
         <member name="M:HZY.Admin.Controllers.Framework.ChangePasswordController.SaveFormAsync(HZY.Admin.Services.Dto.ChangePasswordDto)">
             <summary>
             更新密码
@@ -337,29 +353,29 @@
             <param name="search"></param>
             <returns></returns>
         </member>
-        <member name="T:HZY.Admin.Core.AdminAuthorizationActionFilter">
+        <member name="T:HZY.Admin.Filters.AdminAuthorizationActionFilter">
             <summary>
             后台 权限 管理 控制
             </summary>
         </member>
-        <member name="M:HZY.Admin.Core.AdminAuthorizationActionFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+        <member name="M:HZY.Admin.Filters.AdminAuthorizationActionFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
             <summary>
             Action 执行前
             </summary>
             <param name="context"></param>
         </member>
-        <member name="M:HZY.Admin.Core.AdminAuthorizationActionFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+        <member name="M:HZY.Admin.Filters.AdminAuthorizationActionFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
             <summary>
             Action 执行后
             </summary>
             <param name="context"></param>
         </member>
-        <member name="T:HZY.Admin.Core.AdminCheckModelAttribute">
+        <member name="T:HZY.Admin.Filters.AdminCheckModelAttribute">
             <summary>
             实体模型验证
             </summary>
         </member>
-        <member name="M:HZY.Admin.Core.AdminCheckModelAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+        <member name="M:HZY.Admin.Filters.AdminCheckModelAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
             <summary>
             每次请求Action之前发生，，在行为方法执行前执行
             </summary>

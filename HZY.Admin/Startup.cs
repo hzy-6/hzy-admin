@@ -1,9 +1,5 @@
 using System.Text.Json;
-using HZY.Admin.Core;
-using HZY.Framework.Filter;
 using HZY.Framework.Middleware;
-using HZY.Repository.Core.Provider;
-using HZY.Common;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -11,6 +7,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using HZY.Framework.Filters;
+using HZY.Admin.Filters;
+using HZY.Repository.AppCore;
+using HZY.Common.ScanDIService;
+using NLog.Extensions.Logging;
 
 namespace HZY.Admin
 {
@@ -26,9 +27,14 @@ namespace HZY.Admin
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            var jwtKeyName = Configuration["AppConfiguration:JwtKeyName"];
+            var jwtSecurityKey = Configuration["AppConfiguration:JwtSecurityKey"];
+            var connectionString = Configuration["AppConfiguration:ConnectionString"];
+            var connectionStringRedis = Configuration["AppConfiguration:ConnectionStringRedis"];
+
             services.AddControllersWithViews(options =>
                 {
-                    options.Filters.Add<ExceptionFilter>();
+                    options.Filters.Add<ApiExceptionFilter>();
                     options.Filters.Add<AdminAuthorizationActionFilter>();
                 })
                 .AddJsonOptions(options =>
@@ -45,17 +51,19 @@ namespace HZY.Admin
 
             #endregion
 
-            #region HttpContext
+            #region HttpContext、IMemoryCache
 
             services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddMemoryCache();
 
             #endregion
 
             #region 仓储注册 、 自动扫描服务注册 、 中间件注册
 
-            services.RegisterRepository(Configuration["AppConfiguration:ConnectionString"]);
-            services.ScanAppServices();
-            services.AddTransient<TakeUpTimeMiddleware>();
+            RepositoryModule.RegisterAdminRepository(services, connectionString);
+            //RepositoryRedisModule.RegisterRedisRepository(services, connectionStringRedis);
+            services.ScanningAppServices("HZY.");
+            services.AddScoped<TakeUpTimeMiddleware>();
 
             #endregion
 
@@ -69,6 +77,12 @@ namespace HZY.Admin
                 //基础管理
                 item.ViewLocationFormats.Add("/Views/Framework/{1}/{0}.cshtml");
             });
+
+            #endregion
+
+            #region NLog 日志配置 ILogger 对象日志可以自动存入 nlog 文件中
+
+            services.AddLogging(w => w.AddNLog());
 
             #endregion
         }
@@ -94,6 +108,10 @@ namespace HZY.Admin
             app.UseRouting();
 
             app.UseAuthorization();
+
+            #region 使用 Api 耗时计算中间件
+            app.UseMiddleware<TakeUpTimeMiddleware>();
+            #endregion
 
             app.UseEndpoints(endpoints =>
             {

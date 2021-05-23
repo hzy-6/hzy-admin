@@ -1,6 +1,6 @@
 ﻿using System;
 using HZY.Common;
-using HZY.Common.Attributes;
+using HZY.Common.ScanDIService.Interface;
 using Microsoft.Extensions.Configuration;
 
 namespace HZY.Admin.Services.Bo
@@ -8,8 +8,7 @@ namespace HZY.Admin.Services.Bo
     /// <summary>
     /// 程序配置信息映射类 appsettings.json
     /// </summary>
-    [AppService(AppServiceType.Singleton)]
-    public class AppConfiguration
+    public class AppConfiguration : IDISingletonSelf
     {
         private readonly IConfiguration _configuration;
 

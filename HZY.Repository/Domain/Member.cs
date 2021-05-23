@@ -1,6 +1,6 @@
-﻿using System;
+﻿using HZY.Repository.AppCore.Models;
+using System;
 using System.ComponentModel.DataAnnotations;
-using HZY.Repository.Core.Models;
 
 namespace HZY.Repository.Domain
 {

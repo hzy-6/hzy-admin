@@ -1,13 +1,14 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
-using HZY.Admin.Services.Dto;
 using HZY.Admin.Services.Framework;
-using HZY.Framework.Attributes;
-using HZY.Framework.Controllers;
-using HZY.Framework.Model;
-using HZY.Repository.Attributes;
 using HZY.Repository.Domain.Framework;
+using HZY.Common;
 using Microsoft.AspNetCore.Mvc;
+using HZY.Framework.Permission.Attributes;
+using HZY.Repository.AppCore.Attributes;
+using HZY.Admin.Services.Dto;
+using HZY.Repository.AppCore.Models;
 
 namespace HZY.Admin.Controllers.Framework
 {
@@ -40,9 +41,9 @@ namespace HZY.Admin.Controllers.Framework
         /// <param name="search"></param>
         /// <returns></returns>
         [HttpPost("FindList/{page}/{rows}")]
-        public async Task<ApiResult> FindListAsync([FromRoute] int page, [FromRoute] int rows, [FromBody] SysRole search)
+        public async Task<PagingViewModel> FindListAsync([FromRoute] int page, [FromRoute] int rows, [FromBody] SysRole search)
         {
-            return this.ResultOk(await this._sysRoleService.FindListAsync(page, rows, search));
+            return await this._sysRoleService.FindListAsync(page, rows, search);
         }
 
 
@@ -53,9 +54,9 @@ namespace HZY.Admin.Controllers.Framework
         /// <returns></returns>
         [Transactional]
         [HttpPost("SaveForm")]
-        public async Task<ApiResult> SaveFormAsync([FromBody] SysRoleMenuFunctionDto form)
+        public async Task<Guid> SaveFormAsync([FromBody] SysRoleMenuFunctionDto form)
         {
-            return this.ResultOk(await this.DefaultService.SaveFormAsync(form));
+            return await this.DefaultService.SaveFormAsync(form);
         }
 
         #region 角色菜单功能 Tree
@@ -65,11 +66,11 @@ namespace HZY.Admin.Controllers.Framework
         /// </summary>
         /// <returns></returns>
         [HttpGet("FindRoleMenuFunctionTree/{RoleId}")]
-        public async Task<ApiResult> FindRoleMenuFunctionTreeAsync(Guid roleId)
+        public async Task<dynamic> FindRoleMenuFunctionTreeAsync(Guid roleId)
         {
             var (guids, objects) = await this.DefaultService.GetRoleMenuFunctionTreeAsync(roleId);
 
-            return this.ResultOk(new { expandedRowKeys = guids, list = objects });
+            return new { expandedRowKeys = guids, list = objects };
         }
 
         #endregion

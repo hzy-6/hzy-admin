@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using HZY.Admin.Services.Framework;
-using HZY.Framework.Attributes;
-using HZY.Framework.Controllers;
-using HZY.Framework.Model;
-using HZY.Repository.Attributes;
+using HZY.Repository.Domain.Framework;
 using HZY.Common;
 using Microsoft.AspNetCore.Mvc;
-using HZY.Repository.Domain.Framework;
-using HZY.Admin.Services.Dto;
+using HZY.Framework.Permission.Attributes;
 using HZY.Admin.Services.Bo;
+using HZY.Repository.AppCore.Attributes;
+using HZY.Admin.Services.Dto;
+using HZY.Repository.AppCore.Models;
 
 namespace HZY.Admin.Controllers.Framework
 {
@@ -55,9 +54,9 @@ namespace HZY.Admin.Controllers.Framework
         /// <param name="search"></param>
         /// <returns></returns>
         [HttpPost("FindList/{page}/{rows}")]
-        public async Task<ApiResult> FindListAsync([FromRoute] int page, [FromRoute] int rows, [FromBody] SysMenu search)
+        public async Task<PagingViewModel> FindListAsync([FromRoute] int page, [FromRoute] int rows, [FromBody] SysMenu search)
         {
-            return this.ResultOk(await this.DefaultService.FindListAsync(page, rows, search));
+            return await this.DefaultService.FindListAsync(page, rows, search);
         }
 
         /// <summary>
@@ -67,10 +66,10 @@ namespace HZY.Admin.Controllers.Framework
         /// <returns></returns>
         [Transactional]
         [HttpPost("DeleteList")]
-        public async Task<ApiResult> DeleteListAsync([FromBody] List<Guid> ids)
+        public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
         {
             await this.DefaultService.DeleteListAsync(ids);
-            return this.ResultOk("ok");
+            return true;
         }
 
         /// <summary>
@@ -79,9 +78,9 @@ namespace HZY.Admin.Controllers.Framework
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("FindForm/{id?}")]
-        public async Task<ApiResult> FindFormAsync([FromRoute] Guid id)
+        public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
         {
-            return this.ResultOk(await this.DefaultService.FindFormAsync(id));
+            return await this.DefaultService.FindFormAsync(id);
         }
 
         /// <summary>
@@ -91,9 +90,9 @@ namespace HZY.Admin.Controllers.Framework
         /// <returns></returns>
         [Transactional]
         [HttpPost("SaveForm")]
-        public async Task<ApiResult> SaveFormAsync([FromBody] SysMenuFormDto form)
+        public async Task<SysMenu> SaveFormAsync([FromBody] SysMenuFormDto form)
         {
-            return this.ResultOk(await this.DefaultService.SaveFormAsync(form));
+            return await this.DefaultService.SaveFormAsync(form);
         }
 
         /// <summary>
@@ -112,17 +111,17 @@ namespace HZY.Admin.Controllers.Framework
         /// </summary>
         /// <returns></returns>
         [HttpGet("FindSysMenuTree")]
-        public async Task<ApiResult> FindSysMenuTreeAsync()
+        public async Task<dynamic> FindSysMenuTreeAsync()
         {
             var allList = await DefaultService.GetMenuByRoleIdAsync();
 
-            return this.ResultOk(new
+            return new
             {
                 userName = this._accountInfo.UserName,
                 list = this.DefaultService.CreateMenus(Guid.Empty, allList),
                 allList,
                 powerState = await this.DefaultService.GetPowerState(allList)
-            });
+            };
         }
 
         /// <summary>
@@ -130,16 +129,16 @@ namespace HZY.Admin.Controllers.Framework
         /// </summary>
         /// <returns></returns>
         [HttpGet("FindMenuFunctionTree")]
-        public async Task<ApiResult> FindMenuFunctionTreeAsync()
+        public async Task<dynamic> FindMenuFunctionTreeAsync()
         {
             var menuFunctionTree = await this.DefaultService.GetMenuFunctionTreeAsync();
 
-            return this.ResultOk(new
+            return new
             {
                 treeData = menuFunctionTree.Item1,
                 defaultExpandedKeys = menuFunctionTree.Item2,
                 defaultCheckedKeys = menuFunctionTree.Item3
-            });
+            };
         }
 
         #endregion

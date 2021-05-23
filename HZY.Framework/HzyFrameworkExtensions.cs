@@ -2,10 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using HZY.Framework.Attributes;
-using HZY.Common;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace HZY.Framework
 {

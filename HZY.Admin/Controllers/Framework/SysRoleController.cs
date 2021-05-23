@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using HZY.Admin.Services.Framework;
-using HZY.Framework.Attributes;
-using HZY.Framework.Controllers;
-using HZY.Framework.Model;
-using HZY.Repository.Attributes;
+using HZY.Repository.Domain.Framework;
 using HZY.Common;
 using Microsoft.AspNetCore.Mvc;
-using HZY.Repository.Domain.Framework;
+using HZY.Framework.Permission.Attributes;
+using HZY.Repository.AppCore.Attributes;
+using HZY.Repository.AppCore.Models;
 
 namespace HZY.Admin.Controllers.Framework
 {
@@ -48,9 +47,9 @@ namespace HZY.Admin.Controllers.Framework
         /// <param name="search"></param>
         /// <returns></returns>
         [HttpPost("FindList/{page}/{rows}")]
-        public async Task<ApiResult> FindListAsync([FromRoute] int page, [FromRoute] int rows, [FromBody] SysRole search)
+        public async Task<PagingViewModel> FindListAsync([FromRoute] int page, [FromRoute] int rows, [FromBody] SysRole search)
         {
-            return this.ResultOk(await this.DefaultService.FindListAsync(page, rows, search));
+            return await this.DefaultService.FindListAsync(page, rows, search);
         }
 
         /// <summary>
@@ -60,10 +59,10 @@ namespace HZY.Admin.Controllers.Framework
         /// <returns></returns>
         [Transactional]
         [HttpPost("DeleteList")]
-        public async Task<ApiResult> DeleteListAsync([FromBody] List<Guid> ids)
+        public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
         {
             await this.DefaultService.DeleteListAsync(ids);
-            return this.ResultOk("ok");
+            return true;
         }
 
         /// <summary>
@@ -72,9 +71,9 @@ namespace HZY.Admin.Controllers.Framework
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("FindForm/{id?}")]
-        public async Task<ApiResult> FindFormAsync([FromRoute] Guid id)
+        public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
         {
-            return this.ResultOk(await this.DefaultService.FindFormAsync(id));
+            return await this.DefaultService.FindFormAsync(id);
         }
 
         /// <summary>
@@ -84,9 +83,9 @@ namespace HZY.Admin.Controllers.Framework
         /// <returns></returns>
         [Transactional]
         [HttpPost("SaveForm")]
-        public async Task<ApiResult> SaveFormAsync([FromBody] SysRole form)
+        public async Task<SysRole> SaveFormAsync([FromBody] SysRole form)
         {
-            return this.ResultOk(await this.DefaultService.SaveFormAsync(form));
+            return await this.DefaultService.SaveFormAsync(form);
         }
 
         /// <summary>

@@ -1,16 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
-using HZY.Admin.Services.Framework;
-using HZY.Framework.Services;
-using HZY.Repository;
-using HZY.Repository.Core.Models;
-using HZY.Repository.Core.Provider;
-using HZY.Repository.Domain;
 using HZY.Repository.Framework;
 using HZY.Common;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using HZY.Repository.AppCore.Models;
+using HZY.Repository.AppCore.Extensions;
+using HZY.Admin.Services.Framework;
+using HZY.Repository;
 using Microsoft.AspNetCore.Hosting;
+using HZY.Repository.Domain;
 using Microsoft.AspNetCore.Http;
 
 namespace HZY.Admin.Services

@@ -1,9 +1,7 @@
 ﻿using System.Threading.Tasks;
-using HZY.Admin.Services.Dto;
 using HZY.Admin.Services.Framework;
-using HZY.Framework.Controllers;
-using HZY.Framework.Model;
 using Microsoft.AspNetCore.Mvc;
+using HZY.Admin.Services.Dto;
 
 namespace HZY.Admin.Controllers.Framework
 {
@@ -26,7 +24,7 @@ namespace HZY.Admin.Controllers.Framework
         /// <param name="form"></param>
         /// <returns></returns>
         [HttpPost("SaveForm")]
-        public async Task<ApiResult> SaveFormAsync([FromBody] ChangePasswordDto form)
-            => this.ResultOk(await this.DefaultService.ChangePasswordAsync(form.OldPassword, form.NewPassword));
+        public async Task<int> SaveFormAsync([FromBody] ChangePasswordDto form)
+            => await this.DefaultService.ChangePasswordAsync(form.OldPassword, form.NewPassword);
     }
 }

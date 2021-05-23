@@ -4,160 +4,356 @@
         <name>HZY.Repository</name>
     </assembly>
     <members>
-        <member name="T:HZY.Repository.Core.Impl.CacheEntityImpl">
+        <member name="T:HZY.Repository.AppCore.Attributes.TransactionalAttribute">
+            <summary>
+            通过标记 自动 事务 适用于 控制器 Action 上标记
+            自动档 事务
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.AppCore.DbContexts.AdminBaseDbContext">
+            <summary>
+            后台权限管理系统 DbContext
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.AppCore.DbContexts.AdminBaseDbContext.CacheEntity">
+            <summary>
+            获取实体信息缓存服务
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.AppCore.DbContexts.AdminBaseDbContext.SavingChangesEvent(System.Object,Microsoft.EntityFrameworkCore.SavingChangesEventArgs)">
+            <summary>
+            在调用SaveChanges结束时激发的事件 
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.AppCore.DbContexts.BaseDbContext`1">
+            <summary>
+            基础上下文
+            </summary>
+            <typeparam name="TDbContext"></typeparam>
+        </member>
+        <member name="M:HZY.Repository.AppCore.DbContexts.BaseDbContext`1.BeginTransaction">
+            <summary>
+            事务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.DbContexts.BaseDbContext`1.BeginTransactionAsync">
+            <summary>
+            事务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:HZY.Repository.AppCore.DbContexts.BaseDbContext`1.UnitOfWork">
+            <summary>
+            工作单元
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.DbContexts.BaseDbContext`1.CommitOpen">
+            <summary>
+            开启 提交
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.AppCore.DbContexts.BaseDbContext`1.Commit">
+            <summary>
+            提交
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.DbContexts.BaseDbContext`1.CommitAsync">
+            <summary>
+            提交
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Repository.AppCore.Extensions.DatabaseFacadeExtensions">
+            <summary>
+            DatabaseFacade 扩展
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.DatabaseFacadeExtensions.GetDataConnection(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade)">
+            <summary>
+            获取连接对象
+            </summary>
+            <param name="databaseFacade"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions">
+            <summary>
+            仓储扩展
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.GetPropertyInfos(System.Type,System.Reflection.BindingFlags)">
+            <summary>
+            获取 PropertyInfo 集合
+            </summary>
+            <param name="type"></param>
+            <param name="bindingFlags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.CreateInstance``1">
+            <summary>
+            创建 对象实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.GetAttribute``1(System.Type,System.String)">
+            <summary>
+            获取 对象 中 某个属性得 标记
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.GetPropertyInfo(System.Type,System.String)">
+            <summary>
+            获取 PropertyInfo 对象
+            </summary>
+            <param name="type"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.GetKeyProperty(System.Type)">
+            <summary>
+            获取 模型 有 Key 特性得 属性对象
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.HasKey(System.Reflection.PropertyInfo)">
+            <summary>
+            是否有 KeyAttribute 标记
+            </summary>
+            <param name="propertyInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.CreateContainsExpression``2(System.String,System.Collections.Generic.IEnumerable{``1},System.String)">
+            <summary>
+            生成表达式树 例如：( w=> new [] {1,2,3}.Contains(w.Key) )
+            </summary>
+            <param name="name"></param>
+            <param name="values"></param>
+            <param name="expName"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.CreateContainsExpression``1(System.String,System.Collections.Generic.IEnumerable{System.Object},System.String)">
+            <summary>
+            生成表达式树 例如：( w=> new [] {1,2,3}.Contains(w.Key) )
+            </summary>
+            <param name="name"></param>
+            <param name="values"></param>
+            <param name="expName"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.CreateEqualExpression``2(System.String,``1,System.String)">
+            <summary>
+            生成表达式树 例如：( w=>w.Key==Guid.Empty )
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="expName"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.CreateEqualExpression``1(System.String,System.Object,System.String)">
+            <summary>
+            生成表达式树 例如：( w=>w.Key==Guid.Empty )
+            </summary>
+            <param name="name"></param>
+            <param name="value"></param>
+            <param name="expName"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.CreateMemberInitByModel``1(``0,System.String)">
+            <summary>
+            获取 Expression {Func{T, T}} 树结构 Lambda => | w => new User{ Name="hzy" }
+            </summary>
+            <param name="model"></param>
+            <param name="expName"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.WhereIf``1(System.Linq.IQueryable{``0},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            WhereIf
+            </summary>
+            <param name="query"></param>
+            <param name="if"></param>
+            <param name="expWhere"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.AppCore.Extensions.HzyRepositoryExtensions.Page``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Page 分页简写
+            </summary>
+            <param name="query"></param>
+            <param name="page"></param>
+            <param name="rows"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Repository.AppCore.Impl.CacheEntityImpl">
             <summary>
             缓存实体信息服务
             </summary>
         </member>
-        <member name="T:HZY.Repository.Core.Impl.RepositoryImpl`2">
+        <member name="T:HZY.Repository.AppCore.Impl.RepositoryImpl`2">
             <summary>
             基础仓储 实现
             </summary>
             <typeparam name="T"></typeparam>
             <typeparam name="TDbContext"></typeparam>
         </member>
-        <member name="P:HZY.Repository.Core.Impl.RepositoryImpl`2.Orm">
+        <member name="P:HZY.Repository.AppCore.Impl.RepositoryImpl`2.Orm">
             <summary>
             DbContext 对象
             </summary>
         </member>
-        <member name="M:HZY.Repository.Core.Impl.RepositoryImpl`2.SetAttach(`0,Microsoft.EntityFrameworkCore.EntityState)">
+        <member name="M:HZY.Repository.AppCore.Impl.RepositoryImpl`2.SetAttach(`0,Microsoft.EntityFrameworkCore.EntityState)">
             <summary>
             设置 跟踪 Attachq
             </summary>
             <param name="model"></param>
             <param name="entityState"></param>
         </member>
-        <member name="M:HZY.Repository.Core.Impl.RepositoryImpl`2.Query(System.Boolean)">
+        <member name="M:HZY.Repository.AppCore.Impl.RepositoryImpl`2.Query(System.Boolean)">
             <summary>
             查询
             </summary>
             <param name="isTracking">是否追踪</param>
             <returns></returns>
         </member>
-        <member name="P:HZY.Repository.Core.Impl.RepositoryImpl`2.Select">
+        <member name="P:HZY.Repository.AppCore.Impl.RepositoryImpl`2.Select">
             <summary>
             查询 有跟踪
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Impl.RepositoryImpl`2.SelectNoTracking">
+        <member name="P:HZY.Repository.AppCore.Impl.RepositoryImpl`2.SelectNoTracking">
             <summary>
             查询 无跟踪
             </summary>
         </member>
-        <member name="T:HZY.Repository.Core.Interface.ICacheEntity">
+        <member name="T:HZY.Repository.AppCore.Interface.ICacheEntity">
             <summary>
             缓存实体信息服务
             </summary>
         </member>
-        <member name="T:HZY.Repository.Core.Models.BaseModel">
+        <member name="T:HZY.Repository.AppCore.Models.BaseModel">
             <summary>
             基础模型
             包含属性 Id、UpdateTime、CreateTime
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.BaseModel.UpdateTime">
+        <member name="P:HZY.Repository.AppCore.Models.BaseModel.UpdateTime">
             <summary>
             更新时间
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.BaseModel.CreateTime">
+        <member name="P:HZY.Repository.AppCore.Models.BaseModel.CreateTime">
             <summary>
             创建时间
             </summary>
         </member>
-        <member name="T:HZY.Repository.Core.Models.GuidKeyBaseModel">
+        <member name="T:HZY.Repository.AppCore.Models.GuidKeyBaseModel">
             <summary>
             Guid Key
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.GuidKeyBaseModel.Id">
+        <member name="P:HZY.Repository.AppCore.Models.GuidKeyBaseModel.Id">
             <summary>
             Id
             </summary>
         </member>
-        <member name="T:HZY.Repository.Core.Models.LongKeyBaseModel">
+        <member name="T:HZY.Repository.AppCore.Models.LongKeyBaseModel">
             <summary>
             Int Key
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.LongKeyBaseModel.Id">
+        <member name="P:HZY.Repository.AppCore.Models.LongKeyBaseModel.Id">
             <summary>
             Id
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.PagingViewModel.Columns">
+        <member name="P:HZY.Repository.AppCore.Models.PagingViewModel.Columns">
             <summary>
             列信息
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.PagingViewModel.DataSource">
+        <member name="P:HZY.Repository.AppCore.Models.PagingViewModel.DataSource">
             <summary>
             转换后数据
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.PagingViewModel.Count">
+        <member name="P:HZY.Repository.AppCore.Models.PagingViewModel.Total">
             <summary>
             总数
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.PagingViewModel.PageCount">
+        <member name="P:HZY.Repository.AppCore.Models.PagingViewModel.PageCount">
             <summary>
             总页数
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.PagingViewModel.Size">
+        <member name="P:HZY.Repository.AppCore.Models.PagingViewModel.Size">
             <summary>
             一页显示多少条
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.PagingViewModel.Page">
+        <member name="P:HZY.Repository.AppCore.Models.PagingViewModel.Page">
             <summary>
             页码
             </summary>
         </member>
-        <member name="T:HZY.Repository.Core.Models.StringKeyBaseModel">
+        <member name="T:HZY.Repository.AppCore.Models.StringKeyBaseModel">
             <summary>
             String Key
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.StringKeyBaseModel.Id">
+        <member name="P:HZY.Repository.AppCore.Models.StringKeyBaseModel.Id">
             <summary>
             Id
             </summary>
         </member>
-        <member name="T:HZY.Repository.Core.Models.TableViewColumnHead">
+        <member name="T:HZY.Repository.AppCore.Models.TableViewColumnHead">
             <summary>
             列头信息
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.TableViewColumnHead.FieldName">
+        <member name="P:HZY.Repository.AppCore.Models.TableViewColumnHead.FieldName">
             <summary>
             字段名称
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.TableViewColumnHead.Title">
+        <member name="P:HZY.Repository.AppCore.Models.TableViewColumnHead.Title">
             <summary>
             标题名称
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.TableViewColumnHead.Show">
+        <member name="P:HZY.Repository.AppCore.Models.TableViewColumnHead.Show">
             <summary>
             是否显示
             </summary>
         </member>
-        <member name="P:HZY.Repository.Core.Models.TableViewColumnHead.Width">
+        <member name="P:HZY.Repository.AppCore.Models.TableViewColumnHead.Width">
             <summary>
             列宽度
             </summary>
         </member>
-        <member name="T:HZY.Repository.Core.Provider.AppRepository`1">
+        <member name="T:HZY.Repository.AppCore.Provider.AdminBaseRepository`1">
             <summary>
             默认基础仓储
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:HZY.Repository.Core.Provider.AppRepository`1.CreateColumnHeads(HZY.Repository.Core.Models.PagingViewModel,System.Collections.Generic.List{System.String},System.Collections.Generic.List{HZY.Repository.Core.Models.TableViewColumnHead})">
+        <member name="M:HZY.Repository.AppCore.Provider.AdminBaseRepository`1.CreateColumnHeads(HZY.Repository.AppCore.Models.PagingViewModel,System.Collections.Generic.List{System.String},System.Collections.Generic.List{HZY.Repository.AppCore.Models.TableViewColumnHead})">
             <summary>
             创建列头
             </summary>
@@ -165,7 +361,7 @@
             <param name="fieldNames"></param>
             <param name="columnHeads"></param>
         </member>
-        <member name="M:HZY.Repository.Core.Provider.AppRepository`1.AsPagingViewModelAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.Repository.Core.Models.TableViewColumnHead})">
+        <member name="M:HZY.Repository.AppCore.Provider.AdminBaseRepository`1.AsPagingViewModelAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.Repository.AppCore.Models.TableViewColumnHead})">
             <summary>
             查询转换为分页视图模型
             </summary>
@@ -176,7 +372,7 @@
             <typeparam name="TModel"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:HZY.Repository.Core.Provider.AppRepository`1.AsPagingViewModelAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.Repository.Core.Models.TableViewColumnHead},System.Object[])">
+        <member name="M:HZY.Repository.AppCore.Provider.AdminBaseRepository`1.AsPagingViewModelAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.Repository.AppCore.Models.TableViewColumnHead},System.Object[])">
             <summary>
             查询转换为分页视图模型 支持 Sql 字符串
             </summary>
@@ -187,240 +383,6 @@
             <param name="columnHeads"></param>
             <param name="parameters"></param>
             <returns></returns>
-        </member>
-        <member name="P:HZY.Repository.Core.Provider.BaseDbContext`1.CacheEntity">
-            <summary>
-            获取实体信息缓存服务
-            </summary>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.BaseDbContext`1.SavingChangesEvent(System.Object,Microsoft.EntityFrameworkCore.SavingChangesEventArgs)">
-            <summary>
-            在调用SaveChanges结束时激发的事件 
-            </summary>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.BaseDbContext`1.BeginTransaction">
-            <summary>
-            事务
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.BaseDbContext`1.BeginTransactionAsync">
-            <summary>
-            事务
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="P:HZY.Repository.Core.Provider.BaseDbContext`1.UnitOfWork">
-            <summary>
-            工作单元
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.BaseDbContext`1.CommitOpen">
-            <summary>
-            开启 提交
-            </summary>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.BaseDbContext`1.Commit">
-            <summary>
-            提交
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.BaseDbContext`1.CommitAsync">
-            <summary>
-            提交
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="T:HZY.Repository.Core.Provider.DatabaseFacadeExtensions">
-            <summary>
-            DatabaseFacade 扩展
-            </summary>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExcuteDataTable(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)">
-            <summary>
-            执行 sql 返回 DataTable
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExcuteDataTable(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
-            <summary>
-            执行 sql 返回 DataTable
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <param name="parameters"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExcuteReader(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)">
-            <summary>
-            执行 sql 返回 SqlDataReader
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExcuteReader(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
-            <summary>
-            执行 sql 返回 SqlDataReader
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <param name="parameters"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExcuteListDictionary(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String)">
-            <summary>
-            执行 sql 返回 List[Dictionary[string,object]]
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExcuteListDictionary(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
-            <summary>
-            执行 sql 返回 List[Dictionary[string,object]]
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <param name="parameters"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.DatabaseFacadeExtensions.ExecuteScalar``1(Microsoft.EntityFrameworkCore.Infrastructure.DatabaseFacade,System.String,System.Object[])">
-            <summary>
-            执行 sql 返回 第一行第一列值
-            </summary>
-            <param name="databaseFacade"></param>
-            <param name="sql"></param>
-            <param name="parameters"></param>
-            <typeparam name="TResult"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.GetPropertyInfos(System.Type,System.Reflection.BindingFlags)">
-            <summary>
-            获取 PropertyInfo 集合
-            </summary>
-            <param name="type"></param>
-            <param name="bindingFlags"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.CreateInstance``1">
-            <summary>
-            创建 对象实例
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.GetAttribute``1(System.Type,System.String)">
-            <summary>
-            获取 对象 中 某个属性得 标记
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="type"></param>
-            <param name="name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.GetPropertyInfo(System.Type,System.String)">
-            <summary>
-            获取 PropertyInfo 对象
-            </summary>
-            <param name="type"></param>
-            <param name="name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.GetKeyProperty(System.Type)">
-            <summary>
-            获取 模型 有 Key 特性得 属性对象
-            </summary>
-            <param name="type"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.HasKey(System.Reflection.PropertyInfo)">
-            <summary>
-            是否有 KeyAttribute 标记
-            </summary>
-            <param name="propertyInfo"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.CreateContainsExpression``2(System.String,System.Collections.Generic.IEnumerable{``1},System.String)">
-            <summary>
-            生成表达式树 例如：( w=> new [] {1,2,3}.Contains(w.Key) )
-            </summary>
-            <param name="name"></param>
-            <param name="values"></param>
-            <param name="expName"></param>
-            <typeparam name="T"></typeparam>
-            <typeparam name="TKey"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.CreateContainsExpression``1(System.String,System.Collections.Generic.IEnumerable{System.Object},System.String)">
-            <summary>
-            生成表达式树 例如：( w=> new [] {1,2,3}.Contains(w.Key) )
-            </summary>
-            <param name="name"></param>
-            <param name="values"></param>
-            <param name="expName"></param>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.CreateEqualExpression``2(System.String,``1,System.String)">
-            <summary>
-            生成表达式树 例如：( w=>w.Key==Guid.Empty )
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="expName"></param>
-            <typeparam name="T"></typeparam>
-            <typeparam name="TKey"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.CreateEqualExpression``1(System.String,System.Object,System.String)">
-            <summary>
-            生成表达式树 例如：( w=>w.Key==Guid.Empty )
-            </summary>
-            <param name="name"></param>
-            <param name="value"></param>
-            <param name="expName"></param>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.CreateMemberInitByModel``1(``0,System.String)">
-            <summary>
-            获取 Expression {Func{T, T}} 树结构 Lambda => | w => new User{ Name="hzy" }
-            </summary>
-            <param name="model"></param>
-            <param name="expName"></param>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.WhereIf``1(System.Linq.IQueryable{``0},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
-            <summary>
-            WhereIf
-            </summary>
-            <param name="query"></param>
-            <param name="if"></param>
-            <param name="expWhere"></param>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Repository.Core.Provider.HzyRepositoryExtensions.Page``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
-            <summary>
-            Page 分页简写
-            </summary>
-            <param name="query"></param>
-            <param name="page"></param>
-            <param name="rows"></param>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="T:HZY.Repository.Attributes.TransactionalAttribute">
-            <summary>
-            通过标记 自动 事务 适用于 控制器 Action 上标记
-            自动档 事务
-            </summary>
         </member>
         <member name="T:HZY.Repository.Domain.Framework.SysFunction">
             <summary>

@@ -1,10 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using HZY.Admin.Services.Framework;
-using HZY.Framework.Attributes;
-using HZY.Framework.Controllers;
-using HZY.Framework.Model;
 using Microsoft.AspNetCore.Mvc;
+using HZY.Framework.Permission.Attributes;
 
 namespace HZY.Admin.Controllers
 {
@@ -52,10 +51,10 @@ namespace HZY.Admin.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpGet("Routers.json")]
-        public async Task<ApiResult> GetRouters()
+        public async Task<List<Dictionary<string, object>>> GetRouters()
         {
             var allList = await this.DefaultService.GetMenuByRoleIdAsync();
-            return this.ResultOk(this.DefaultService.CreateRouters(allList));
+            return this.DefaultService.CreateRouters(allList);
         }
 
 
