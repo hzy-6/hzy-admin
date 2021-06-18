@@ -171,7 +171,7 @@ namespace HZY.Admin.Services.Framework
                 MessageBox.Show("请输入密码！");
             // if (string.IsNullOrWhiteSpace(code))
             //  MessageBox.Show("请输入验证码!");
-            var sysUser = await this.Repository.Select.Where(w => w.LoginName == name).FirstAsync();
+            var sysUser = await this.Repository.Select.Where(w => w.LoginName == name).FirstOrDefaultAsync();
             if (sysUser == null)
             {
                 MessageBox.Show("账户不存在!");
