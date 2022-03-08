@@ -72,7 +72,7 @@ public class SysRoleService : AdminBaseService<SysRoleRepository>
         foreach (var item in ids)
         {
             var role = await this.Repository.FindByIdAsync(item);
-            if (role.DeleteLock) MessageBox.Show("该信息不能删除!");
+            if (role.DeleteLock) MessageBox.Show("该信息已被锁定不能删除！");
             await this.Repository.DeleteAsync(role);
             await this._sysUserRoleRepository.DeleteAsync(w => w.RoleId == item);
         }

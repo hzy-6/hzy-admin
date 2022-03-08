@@ -64,7 +64,8 @@ public class SysUserService : AdminBaseService<SysUserRepository>
                 .WhereIf(search.OrganizationId != null, w => w.t1.OrganizationId == search.OrganizationId)
                 .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), w => w.t1.Name.Contains(search.Name))
                 .WhereIf(!string.IsNullOrWhiteSpace(search?.LoginName), w => w.t1.LoginName.Contains(search.LoginName))
-                .OrderByDescending(w => w.t1.CreationTime)
+                .OrderBy(w => w.t1.OrganizationId)
+                .ThenByDescending(w => w.t1.CreationTime)
                 .Select(w => new
                 {
                     w.t1.Id,
@@ -95,7 +96,7 @@ public class SysUserService : AdminBaseService<SysUserRepository>
         foreach (var item in ids)
         {
             var userModel = await this.Repository.FindByIdAsync(item);
-            if (userModel.DeleteLock) MessageBox.Show("该信息不能删除！");
+            if (userModel.DeleteLock) MessageBox.Show("该信息已被锁定不能删除！");
             await this._sysUserRoleRepository.DeleteAsync(w => w.UserId == item);
             await this.Repository.DeleteAsync(userModel);
         }

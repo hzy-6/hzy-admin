@@ -71,7 +71,17 @@
           </a-row>
           <!-- 表格 -->
           <a-spin :spinning="table.loading">
-            <vxe-table class="mt-24" ref="refTable" size="medium" border stripe :data="table.data" :row-config="{ isHover: true }" :column-config="{resizable: true}">
+            <vxe-table
+              class="mt-24"
+              ref="refTable"
+              size="medium"
+              border
+              stripe
+              :data="table.data"
+              :row-config="{ isCurrent: true, isHover: true }"
+              :column-config="{ isCurrent: true, resizable: true }"
+              :checkbox-config="{ highlight: true }"
+            >
               <vxe-column type="checkbox" width="60"></vxe-column>
               <vxe-column field="name" title="真实姓名"></vxe-column>
               <vxe-column field="loginName" title="账号"></vxe-column>
@@ -206,6 +216,9 @@ export default defineComponent({
       },
       //打开表单页面
       openForm(id) {
+        if (!id && !state.table.search.vm.organizationId) {
+          return tools.message("请选择组织!", "警告");
+        }
         refForm.value.openForm({
           visible: true,
           key: id,
@@ -219,11 +232,12 @@ export default defineComponent({
       sysOrganizationTree() {
         state.tree.loadingTree = true;
         organizationService.sysOrganizationTree().then((res) => {
+          state.tree.loadingTree = false;
           let data = res.data;
           state.tree.data = data.rows;
           state.tree.expandedKeys = data.expandedRowKeys;
-          state.tree.selectedKeys = [data.rows[0].key];
-          state.tree.loadingTree = false;
+          // state.tree.selectedKeys = [data.rows[0].key];
+          methods.findList();
         });
       },
       //获取一级菜单

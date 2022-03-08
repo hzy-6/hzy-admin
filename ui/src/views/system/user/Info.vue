@@ -32,10 +32,19 @@
               <a-input v-model:value="vm.form.email" placeholder="请输入" />
             </a-form-item>
           </a-col>
+          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+            <a-form-item label="删除锁定">
+              <a-radio-group v-model:value="vm.form.deleteLock">
+                <a-radio :value="true">锁定</a-radio>
+                <a-radio :value="false">不锁定</a-radio>
+              </a-radio-group>
+            </a-form-item>
+          </a-col>
+          
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
             <a-form-item label="所属岗位">
               <a-checkbox-group v-model:value="vm.postIds" class="w100">
-                <a-row>
+                <a-row :gutter="[16, 16]">
                   <a-col :span="6" v-for="(item, index) in vm.allPostList" :key="index">
                     <a-checkbox :value="item.id">
                       {{ item.name }}
@@ -48,7 +57,7 @@
           <a-col :xs="24">
             <a-form-item label="所属角色">
               <a-checkbox-group v-model:value="vm.roleIds" class="w100">
-                <a-row>
+                <a-row :gutter="[16, 16]">
                   <a-col :span="6" v-for="(item, index) in vm.allRoleList" :key="index">
                     <a-checkbox :value="item.id">
                       {{ item.name }}
@@ -102,6 +111,7 @@ export default defineComponent({
           if (res.code != 1) return;
           state.vm = res.data;
           state.vm.form.password = "";
+          state.organizationId = state.vm.form.organizationId;
         });
       },
       saveForm() {

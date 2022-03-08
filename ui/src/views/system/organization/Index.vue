@@ -45,8 +45,9 @@
         border
         stripe
         :data="table.data"
-        :row-config="{ isHover: true }"
-        :column-config="{ resizable: true }"
+        :row-config="{ isCurrent: true, isHover: true }"
+        :column-config="{ isCurrent: true, resizable: true }"
+        :checkbox-config="{ highlight: true }"
         :tree-config="{ transform: true, rowField: 'id', parentField: 'parentId' }"
       >
         <vxe-column field="name" title="部门名称" tree-node></vxe-column>
