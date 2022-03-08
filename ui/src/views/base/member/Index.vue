@@ -57,7 +57,7 @@
 
       <!-- 表格 -->
       <a-spin :spinning="table.loading">
-        <vxe-table class="mt-24" ref="refTable" border stripe resizable :data="table.data" :row-config="{ isHover: true }">
+        <vxe-table class="mt-24" ref="refTable" size="medium" border stripe :data="table.data" :row-config="{ isHover: true }" :column-config="{ resizable: true }">
           <vxe-column type="checkbox" width="60"></vxe-column>
           <vxe-column field="number" title="编号"></vxe-column>
           <vxe-column field="photo" title="头像">

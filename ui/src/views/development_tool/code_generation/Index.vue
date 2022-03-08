@@ -45,7 +45,7 @@
       </a-row>
       <!-- 表格 -->
       <a-spin :spinning="table.loading">
-        <vxe-table class="mt-24" ref="refTable" resizable :data="table.data" :row-config="{ isHover: true }">
+        <vxe-table class="mt-24" ref="refTable" size="medium" border stripe :data="table.data" :row-config="{ isHover: true }" :column-config="{ resizable: true }">
           <vxe-column type="checkbox" width="60"></vxe-column>
           <vxe-column field="schema" title="数据库空间"></vxe-column>
           <vxe-column field="name" title="表名称"></vxe-column>

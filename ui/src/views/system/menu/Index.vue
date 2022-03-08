@@ -64,9 +64,9 @@
           size="medium"
           border
           stripe
-          resizable
           :data="table.data"
           :row-config="{ isHover: true }"
+          :column-config="{ resizable: true }"
           :tree-config="{ transform: true, rowField: 'id', parentField: 'parentId' }"
           @toggle-tree-expand="onToggleTreeExpand"
         >
