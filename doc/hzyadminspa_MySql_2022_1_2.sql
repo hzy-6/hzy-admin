@@ -1,0 +1,440 @@
+/*
+ Navicat Premium Data Transfer
+
+ Source Server         : 本地_MySql
+ Source Server Type    : MySQL
+ Source Server Version : 80019
+ Source Host           : localhost:3306
+ Source Schema         : hzyadminspa
+
+ Target Server Type    : MySQL
+ Target Server Version : 80019
+ File Encoding         : 65001
+
+ Date: 02/01/2022 12:13:17
+*/
+
+SET NAMES utf8mb4;
+SET FOREIGN_KEY_CHECKS = 0;
+
+-- ----------------------------
+-- Table structure for member
+-- ----------------------------
+DROP TABLE IF EXISTS `member`;
+CREATE TABLE `member`  (
+  `Id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Number` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Sex` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Birthday` datetime(0) NULL DEFAULT NULL,
+  `Photo` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Introduce` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `FilePath` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of member
+-- ----------------------------
+INSERT INTO `member` VALUES ('96A1AA3D-A61A-42D0-954A-C71753FB2065', '123', '123', '123', '女', '2018-04-25 23:00:00', NULL, '<p>123</p>', NULL, 'AC18F496-E93D-42F0-B59E-E321ACC85335', '2020-10-24 00:07:42', '2021-04-18 22:08:06');
+INSERT INTO `member` VALUES ('9A604AA2-9AE6-4A2F-8DDB-D9E0289EAD9E', '1', '测试会员', '18510912123', '男', '2019-07-08 11:47:24', '/upload/files/20210118/time_232747_old_name_hzy.png', '<p>888</p>', '/upload/files/20210118/time_233310_old_name_hzy.png', 'AC18F496-E93D-42F0-B59E-E321ACC85335', '2018-04-25 23:00:00', '2021-01-19 14:19:47');
+
+-- ----------------------------
+-- Table structure for sysdictionary
+-- ----------------------------
+DROP TABLE IF EXISTS `sysdictionary`;
+CREATE TABLE `sysdictionary`  (
+  `Id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `CreationTime` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `Sort` int(0) NULL DEFAULT NULL COMMENT '排序号',
+  `Code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '编码',
+  `Value` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '值',
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '分组名/键',
+  `ParentId` int(0) NULL DEFAULT NULL COMMENT '父级分组id',
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci COMMENT = '数据字典' ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sysdictionary
+-- ----------------------------
+INSERT INTO `sysdictionary` VALUES (1, '2021-07-25 22:39:35', '2021-07-25 22:31:30', 1, 'news_type', NULL, '资讯类别', NULL);
+INSERT INTO `sysdictionary` VALUES (2, '2021-07-25 22:40:30', '2021-07-25 22:38:49', 1, 'news_type_nan', '1', '男', 1);
+INSERT INTO `sysdictionary` VALUES (3, '2021-07-25 22:40:53', '2021-07-25 22:40:48', 2, 'news_type_nv', '2', '女', 1);
+
+-- ----------------------------
+-- Table structure for sysfunction
+-- ----------------------------
+DROP TABLE IF EXISTS `sysfunction`;
+CREATE TABLE `sysfunction`  (
+  `Id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Number` int(0) NULL DEFAULT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ByName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sysfunction
+-- ----------------------------
+INSERT INTO `sysfunction` VALUES ('2401F4D0-60B0-4E2E-903F-84C603373572', 70, '导出', 'Export', 'Export', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO `sysfunction` VALUES ('383E7EE2-7690-46AC-9230-65155C84AA30', 50, '保存', 'Save', 'Save', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO `sysfunction` VALUES ('9C388461-2704-4C5E-A729-72C17E9018E1', 40, '删除', 'Delete', 'Delete', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO `sysfunction` VALUES ('B6FD5425-504A-46A9-993B-2F8DC9158EB8', 80, '打印', 'Print', 'Print', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO `sysfunction` VALUES ('BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', 20, '添加', 'Insert', 'Insert', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO `sysfunction` VALUES ('C9518758-B2E1-4F51-B517-5282E273889C', 10, '显示', 'Display', 'Display', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO `sysfunction` VALUES ('E7EF2A05-8317-41C3-B588-99519FE88BF9', 30, '修改', 'Update', 'Update', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO `sysfunction` VALUES ('F27ECB0A-197D-47B1-B243-59A8C71302BF', 60, '检索', 'Search', 'Search', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+
+-- ----------------------------
+-- Table structure for sysmenu
+-- ----------------------------
+DROP TABLE IF EXISTS `sysmenu`;
+CREATE TABLE `sysmenu`  (
+  `Id` int(0) NOT NULL AUTO_INCREMENT,
+  `LevelCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Number` int(0) NULL DEFAULT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Url` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Router` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ComponentName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Icon` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ParentId` int(0) NULL DEFAULT NULL,
+  `Show` tinyint(0) NULL DEFAULT NULL,
+  `Close` tinyint(0) NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  `JumpUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `KeepAlive` tinyint(0) NULL DEFAULT NULL,
+  `State` tinyint(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 29 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sysmenu
+-- ----------------------------
+INSERT INTO `sysmenu` VALUES (1, '1', 10, '更多示例', NULL, NULL, NULL, 'MoreOutlined', NULL, 1, 1, '2021-06-06 00:29:45', '2021-05-28 11:49:02', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (2, '1.2', 10, 'Antd Vue3.0组件', 'views/AntdVueComponents.vue', '/antd/vue/components', 'AntdVueComponentsCom', 'LayoutOutlined', 1, 1, 1, '2021-12-28 15:08:50', '2021-01-16 16:05:22', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (3, '1.3', 30, '按钮', 'views/Button.vue', '/button', 'ButtonCom', 'AppstoreOutlined', 1, 1, 1, '2021-12-28 13:42:18', '2020-12-17 14:58:05', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (4, '1.4', 40, '图表 AntV G2', NULL, NULL, NULL, 'PieChartOutlined', 1, 1, 1, '2021-01-16 16:06:33', '2021-01-16 16:06:33', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (5, '1.4.5', 10, '基础图表', 'views/chart/Base.vue', '/chart/base', 'ChartBaseCom', NULL, 4, 1, 1, '2021-01-16 16:07:24', '2021-01-16 16:07:24', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (6, '1.4.6', 20, '更多图表', 'views/chart/More.vue', '/chart/more', 'ChartMoreCom', NULL, 4, 1, 1, '2021-01-16 16:10:06', '2021-01-16 16:10:06', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (7, '1.7', 50, '表格管理', NULL, NULL, NULL, 'TableOutlined', 1, 1, 1, '2021-01-16 17:32:07', '2018-03-10 12:16:38', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (8, '1.7.8', 100, '基础列表', 'views/BaseList.vue', '/base/list', 'BaseListCom', NULL, 7, 1, 1, '2020-12-17 14:49:10', '2020-12-17 14:49:12', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (9, '1.7.9', 110, '标准表格', 'views/list/Index.vue', '/list', 'ListIndexCom', NULL, 7, 1, 1, '2020-12-17 14:51:05', '2020-12-17 14:51:07', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (10, '1.10', 60, '富文本编辑器', 'views/Editor.vue', '/editor', 'EditorCom', 'PicRightOutlined', 1, 1, 1, '2021-01-18 19:34:54', '2021-01-18 19:34:28', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (11, '1.11', 70, '跳转外部地址', 'components/ExternalJump.vue', '/external/jump/:path(.*)', 'ExternalJumpCom', 'RadarChartOutlined', 1, 1, 1, '2021-08-05 21:51:12', '2021-08-05 21:51:12', 'https://antv.vision/zh', 1, 1);
+INSERT INTO `sysmenu` VALUES (12, '12', 90, '基础信息', NULL, NULL, NULL, 'GoldOutlined', NULL, 1, 1, '2021-01-18 19:33:46', '2018-03-10 12:16:38', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (13, '12.13', 10, '会员管理', 'views/base/member/Index.vue', '/base/member', 'base_member', 'UsergroupAddOutlined', 12, 1, 1, '2021-05-28 12:58:22', '2018-03-10 12:16:38', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (14, '14', 100, '系统管理', NULL, NULL, NULL, 'DesktopOutlined', NULL, 1, 1, '2018-03-10 12:16:38', '2018-03-10 12:16:38', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (15, '14.15', 100, '账户管理', 'views/system/user/Index.vue', '/system/user', 'system_user', 'UserOutlined', 14, 1, 1, '2021-12-29 16:42:32', '2018-03-10 12:16:38', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (16, '14.16', 110, '角色管理', 'views/system/role/Index.vue', '/system/role', 'system_role', 'TeamOutlined', 14, 1, 1, '2021-05-28 12:45:16', '2018-03-10 12:16:38', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (17, '14.17', 120, '功能管理', 'views/system/function/Index.vue', '/system/function', 'system_function', 'ControlOutlined', 14, 1, 1, '2021-05-28 12:49:53', '2018-03-10 12:16:38', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (19, '14.19', 150, '个人中心', 'views/system/personal_center/Index.vue', '/system/personal/center', 'system_personal_center', 'FormOutlined', 14, 1, 1, '2021-06-06 00:28:43', '2018-03-10 12:16:38', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (20, '14.20', 160, '岗位管理', 'views/system/post/Index.vue', '/system/post', 'system_post', 'IdcardOutlined', 14, 1, 1, '2021-06-06 00:29:11', '2021-05-27 17:29:49', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (21, '14.21', 170, '组织机构', 'views/system/organization/Index.vue', '/system/organization', 'system_organization', 'ClusterOutlined', 14, 1, 1, '2021-06-06 00:29:19', '2021-05-27 20:27:56', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (22, '14.22', 180, '接口文档', 'views/system/Swagger.vue', '/system/swagger', 'system_swagger', 'FileSearchOutlined', 14, 1, 1, '2021-06-06 00:29:25', '2018-03-10 12:17:03', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (23, '14.23', 190, '数据字典', 'views/system/dictionary/Index.vue', '/system/dictionary', 'system_dictionary', 'FileDoneOutlined', 14, 1, 1, '2021-07-25 21:51:53', '2021-07-25 21:50:01', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (24, '14.24', 200, '操作日志', 'views/system/sys_operation_log/Index.vue', '/system/sys_operation_log', 'sys_operation_log', 'ContainerOutlined', 14, 1, 1, '2021-08-05 21:48:54', '2021-08-05 21:24:54', '', 1, 1);
+INSERT INTO `sysmenu` VALUES (25, '14.25', 130, '菜单功能', 'views/system/menu/Index.vue', '/system/menu', 'system_menu', 'MenuOutlined', 14, 1, 1, '2021-05-28 12:51:15', '2018-03-10 12:16:38', NULL, 1, 1);
+INSERT INTO `sysmenu` VALUES (28, '1.28', 1, 'Vxe-Table', 'views/VxeTable.vue', '/vxe/table', 'VxeTableCom', 'BorderlessTableOutlined', 1, 1, 1, '2021-12-29 17:13:26', '2021-12-29 17:13:26', NULL, 1, 1);
+
+-- ----------------------------
+-- Table structure for sysmenufunction
+-- ----------------------------
+DROP TABLE IF EXISTS `sysmenufunction`;
+CREATE TABLE `sysmenufunction`  (
+  `Id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `MenuId` int(0) NULL DEFAULT NULL,
+  `FunctionId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sysmenufunction
+-- ----------------------------
+INSERT INTO `sysmenufunction` VALUES ('014D7F2C-34B7-42AF-E101-08D9CAA12654', 15, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-29 16:42:32', '2021-12-29 16:42:32');
+INSERT INTO `sysmenufunction` VALUES ('0488152F-3F5D-4FA7-E0D9-08D9CAA12654', 20, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-29 16:38:08', '2021-12-29 16:38:08');
+INSERT INTO `sysmenufunction` VALUES ('06B66ADB-264F-440A-A070-08D9C9AB518E', 23, '2401F4D0-60B0-4E2E-903F-84C603373572', '2021-12-28 10:44:06', '2021-12-28 10:44:06');
+INSERT INTO `sysmenufunction` VALUES ('0C5CB9B2-4319-4A20-E0E8-08D9CAA12654', 19, 'B6FD5425-504A-46A9-993B-2F8DC9158EB8', '2021-12-29 16:39:16', '2021-12-29 16:39:16');
+INSERT INTO `sysmenufunction` VALUES ('104A88C6-6CEF-4F74-A071-08D9C9AB518E', 23, 'B6FD5425-504A-46A9-993B-2F8DC9158EB8', '2021-12-28 10:44:06', '2021-12-28 10:44:06');
+INSERT INTO `sysmenufunction` VALUES ('11423833-00CE-4F49-A068-08D9C9AB518E', 22, '2401F4D0-60B0-4E2E-903F-84C603373572', '2021-12-28 10:44:01', '2021-12-28 10:44:01');
+INSERT INTO `sysmenufunction` VALUES ('114CA32C-05D8-45DF-E0DF-08D9CAA12654', 20, '2401F4D0-60B0-4E2E-903F-84C603373572', '2021-12-29 16:38:08', '2021-12-29 16:38:08');
+INSERT INTO `sysmenufunction` VALUES ('12E846A7-51BB-486C-E0EB-08D9CAA12654', 17, 'E7EF2A05-8317-41C3-B588-99519FE88BF9', '2021-12-29 16:40:12', '2021-12-29 16:40:12');
+INSERT INTO `sysmenufunction` VALUES ('1376CC74-710A-4A01-E0DD-08D9CAA12654', 20, '383E7EE2-7690-46AC-9230-65155C84AA30', '2021-12-29 16:38:08', '2021-12-29 16:38:08');
+INSERT INTO `sysmenufunction` VALUES ('1BB81800-11DE-49D1-E0B8-08D9CAA12654', 16, 'B6FD5425-504A-46A9-993B-2F8DC9158EB8', '2021-12-29 16:29:55', '2021-12-29 16:29:55');
+INSERT INTO `sysmenufunction` VALUES ('2244F634-EDC4-45C2-E0E7-08D9CAA12654', 19, '2401F4D0-60B0-4E2E-903F-84C603373572', '2021-12-29 16:39:16', '2021-12-29 16:39:16');
+INSERT INTO `sysmenufunction` VALUES ('239CD589-33A4-4985-E0E9-08D9CAA12654', 17, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-29 16:40:12', '2021-12-29 16:40:12');
+INSERT INTO `sysmenufunction` VALUES ('247A8853-76B9-468D-A05D-08D9C9AB518E', 21, '9C388461-2704-4C5E-A729-72C17E9018E1', '2021-12-28 10:43:54', '2021-12-28 10:43:54');
+INSERT INTO `sysmenufunction` VALUES ('248A3067-1C4C-4969-E0F5-08D9CAA12654', 25, '383E7EE2-7690-46AC-9230-65155C84AA30', '2021-12-29 16:42:14', '2021-12-29 16:42:14');
+INSERT INTO `sysmenufunction` VALUES ('2B6D4962-4816-43E8-E0B4-08D9CAA12654', 16, '9C388461-2704-4C5E-A729-72C17E9018E1', '2021-12-29 16:29:55', '2021-12-29 16:29:55');
+INSERT INTO `sysmenufunction` VALUES ('2DB4B3C2-8639-44A9-E0E2-08D9CAA12654', 19, 'BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', '2021-12-29 16:39:16', '2021-12-29 16:39:16');
+INSERT INTO `sysmenufunction` VALUES ('30974FD8-E30F-47A4-A05B-08D9C9AB518E', 21, 'BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', '2021-12-28 10:43:54', '2021-12-28 10:43:54');
+INSERT INTO `sysmenufunction` VALUES ('35832DBD-AFD3-41A6-A079-08D9C9AB518E', 13, 'B6FD5425-504A-46A9-993B-2F8DC9158EB8', '2021-12-28 10:44:19', '2021-12-28 10:44:19');
+INSERT INTO `sysmenufunction` VALUES ('370EE9EB-A798-4396-A060-08D9C9AB518E', 21, '2401F4D0-60B0-4E2E-903F-84C603373572', '2021-12-28 10:43:54', '2021-12-28 10:43:54');
+INSERT INTO `sysmenufunction` VALUES ('3758E181-272E-4704-A069-08D9C9AB518E', 22, 'B6FD5425-504A-46A9-993B-2F8DC9158EB8', '2021-12-28 10:44:01', '2021-12-28 10:44:01');
+INSERT INTO `sysmenufunction` VALUES ('3BEC973F-332F-4275-E0DB-08D9CAA12654', 20, 'E7EF2A05-8317-41C3-B588-99519FE88BF9', '2021-12-29 16:38:08', '2021-12-29 16:38:08');
+INSERT INTO `sysmenufunction` VALUES ('41A066D8-DB3F-41CC-E0E3-08D9CAA12654', 19, 'E7EF2A05-8317-41C3-B588-99519FE88BF9', '2021-12-29 16:39:16', '2021-12-29 16:39:16');
+INSERT INTO `sysmenufunction` VALUES ('43746E4B-B67A-4817-A06E-08D9C9AB518E', 23, '383E7EE2-7690-46AC-9230-65155C84AA30', '2021-12-28 10:44:06', '2021-12-28 10:44:06');
+INSERT INTO `sysmenufunction` VALUES ('44B56FF0-1759-4CDD-E0B5-08D9CAA12654', 16, '383E7EE2-7690-46AC-9230-65155C84AA30', '2021-12-29 16:29:55', '2021-12-29 16:29:55');
+INSERT INTO `sysmenufunction` VALUES ('4B827F9A-698D-443A-E0F0-08D9CAA12654', 17, 'B6FD5425-504A-46A9-993B-2F8DC9158EB8', '2021-12-29 16:40:12', '2021-12-29 16:40:12');
+INSERT INTO `sysmenufunction` VALUES ('4B91D103-4B34-4ED8-A07A-08D9C9AB518E', 24, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-28 11:26:44', '2021-12-28 11:26:44');
+INSERT INTO `sysmenufunction` VALUES ('4DFCCBDC-4A18-4D77-A061-08D9C9AB518E', 21, 'B6FD5425-504A-46A9-993B-2F8DC9158EB8', '2021-12-28 10:43:54', '2021-12-28 10:43:54');
+INSERT INTO `sysmenufunction` VALUES ('4EC5B6FF-6837-48C9-97D0-08D9CAAB7863', 28, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-29 17:13:26', '2021-12-29 17:13:26');
+INSERT INTO `sysmenufunction` VALUES ('551BBA4A-76E6-46DA-A076-08D9C9AB518E', 13, '383E7EE2-7690-46AC-9230-65155C84AA30', '2021-12-28 10:44:19', '2021-12-28 10:44:19');
+INSERT INTO `sysmenufunction` VALUES ('57080C79-709F-4738-A072-08D9C9AB518E', 13, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-28 10:44:18', '2021-12-28 10:44:18');
+INSERT INTO `sysmenufunction` VALUES ('57BEE1C8-C2FF-49A7-E0EA-08D9CAA12654', 17, 'BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', '2021-12-29 16:40:12', '2021-12-29 16:40:12');
+INSERT INTO `sysmenufunction` VALUES ('5909BB02-079B-46FB-E0F2-08D9CAA12654', 25, 'BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', '2021-12-29 16:42:14', '2021-12-29 16:42:14');
+INSERT INTO `sysmenufunction` VALUES ('5F602E04-C523-4A9E-A06F-08D9C9AB518E', 23, 'F27ECB0A-197D-47B1-B243-59A8C71302BF', '2021-12-28 10:44:06', '2021-12-28 10:44:06');
+INSERT INTO `sysmenufunction` VALUES ('61FDE7D3-3D8F-4C28-E0F1-08D9CAA12654', 25, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-29 16:42:14', '2021-12-29 16:42:14');
+INSERT INTO `sysmenufunction` VALUES ('62EB566D-7C40-444A-E0B7-08D9CAA12654', 16, '2401F4D0-60B0-4E2E-903F-84C603373572', '2021-12-29 16:29:55', '2021-12-29 16:29:55');
+INSERT INTO `sysmenufunction` VALUES ('639CB3C6-75DF-45ED-E0F8-08D9CAA12654', 25, 'B6FD5425-504A-46A9-993B-2F8DC9158EB8', '2021-12-29 16:42:14', '2021-12-29 16:42:14');
+INSERT INTO `sysmenufunction` VALUES ('64E3B018-6CCD-46CD-A065-08D9C9AB518E', 22, '9C388461-2704-4C5E-A729-72C17E9018E1', '2021-12-28 10:44:01', '2021-12-28 10:44:01');
+INSERT INTO `sysmenufunction` VALUES ('669C6D95-FA29-451C-A05E-08D9C9AB518E', 21, '383E7EE2-7690-46AC-9230-65155C84AA30', '2021-12-28 10:43:54', '2021-12-28 10:43:54');
+INSERT INTO `sysmenufunction` VALUES ('675C2A47-7E11-43CF-A067-08D9C9AB518E', 22, 'F27ECB0A-197D-47B1-B243-59A8C71302BF', '2021-12-28 10:44:01', '2021-12-28 10:44:01');
+INSERT INTO `sysmenufunction` VALUES ('67A933FE-0784-4FE6-E0DA-08D9CAA12654', 20, 'BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', '2021-12-29 16:38:08', '2021-12-29 16:38:08');
+INSERT INTO `sysmenufunction` VALUES ('69A539C0-41BD-44C8-E0E4-08D9CAA12654', 19, '9C388461-2704-4C5E-A729-72C17E9018E1', '2021-12-29 16:39:16', '2021-12-29 16:39:16');
+INSERT INTO `sysmenufunction` VALUES ('6A5BCB65-F536-46AF-E104-08D9CAA12654', 15, '9C388461-2704-4C5E-A729-72C17E9018E1', '2021-12-29 16:42:32', '2021-12-29 16:42:32');
+INSERT INTO `sysmenufunction` VALUES ('6BE618A2-61C7-4223-E0F3-08D9CAA12654', 25, 'E7EF2A05-8317-41C3-B588-99519FE88BF9', '2021-12-29 16:42:14', '2021-12-29 16:42:14');
+INSERT INTO `sysmenufunction` VALUES ('6C768319-7967-4ACF-E0B2-08D9CAA12654', 16, 'BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', '2021-12-29 16:29:55', '2021-12-29 16:29:55');
+INSERT INTO `sysmenufunction` VALUES ('701338A1-A49E-468C-E0EE-08D9CAA12654', 17, 'F27ECB0A-197D-47B1-B243-59A8C71302BF', '2021-12-29 16:40:12', '2021-12-29 16:40:12');
+INSERT INTO `sysmenufunction` VALUES ('7017668C-6B2C-46EB-E0E0-08D9CAA12654', 20, 'B6FD5425-504A-46A9-993B-2F8DC9158EB8', '2021-12-29 16:38:08', '2021-12-29 16:38:08');
+INSERT INTO `sysmenufunction` VALUES ('75E99C9D-3E34-448A-A078-08D9C9AB518E', 13, '2401F4D0-60B0-4E2E-903F-84C603373572', '2021-12-28 10:44:19', '2021-12-28 10:44:19');
+INSERT INTO `sysmenufunction` VALUES ('81162ECD-ADF7-4875-A06B-08D9C9AB518E', 23, 'BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', '2021-12-28 10:44:06', '2021-12-28 10:44:06');
+INSERT INTO `sysmenufunction` VALUES ('81F839BE-8753-40EC-A077-08D9C9AB518E', 13, 'F27ECB0A-197D-47B1-B243-59A8C71302BF', '2021-12-28 10:44:19', '2021-12-28 10:44:19');
+INSERT INTO `sysmenufunction` VALUES ('84771BA1-3831-49A0-A05C-08D9C9AB518E', 21, 'E7EF2A05-8317-41C3-B588-99519FE88BF9', '2021-12-28 10:43:54', '2021-12-28 10:43:54');
+INSERT INTO `sysmenufunction` VALUES ('8725306C-EE0B-4803-A063-08D9C9AB518E', 22, 'BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', '2021-12-28 10:44:01', '2021-12-28 10:44:01');
+INSERT INTO `sysmenufunction` VALUES ('88D7F424-EC8B-48EC-E0ED-08D9CAA12654', 17, '383E7EE2-7690-46AC-9230-65155C84AA30', '2021-12-29 16:40:12', '2021-12-29 16:40:12');
+INSERT INTO `sysmenufunction` VALUES ('9050B6B6-4F11-4F87-A074-08D9C9AB518E', 13, 'E7EF2A05-8317-41C3-B588-99519FE88BF9', '2021-12-28 10:44:18', '2021-12-28 10:44:18');
+INSERT INTO `sysmenufunction` VALUES ('92550E68-C31C-42DD-E0DE-08D9CAA12654', 20, 'F27ECB0A-197D-47B1-B243-59A8C71302BF', '2021-12-29 16:38:08', '2021-12-29 16:38:08');
+INSERT INTO `sysmenufunction` VALUES ('9363CC80-B00C-424B-E0EC-08D9CAA12654', 17, '9C388461-2704-4C5E-A729-72C17E9018E1', '2021-12-29 16:40:12', '2021-12-29 16:40:12');
+INSERT INTO `sysmenufunction` VALUES ('9A754201-E1C1-4CD9-A05A-08D9C9AB518E', 21, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-28 10:43:54', '2021-12-28 10:43:54');
+INSERT INTO `sysmenufunction` VALUES ('9B37A272-7FA8-4F36-E0B1-08D9CAA12654', 16, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-29 16:29:55', '2021-12-29 16:29:55');
+INSERT INTO `sysmenufunction` VALUES ('A3254EF2-641C-48CF-E106-08D9CAA12654', 15, 'F27ECB0A-197D-47B1-B243-59A8C71302BF', '2021-12-29 16:42:32', '2021-12-29 16:42:32');
+INSERT INTO `sysmenufunction` VALUES ('A6FA1360-F26C-42B2-A062-08D9C9AB518E', 22, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-28 10:44:01', '2021-12-28 10:44:01');
+INSERT INTO `sysmenufunction` VALUES ('A785942E-BA72-4BB6-E0E1-08D9CAA12654', 19, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-29 16:39:16', '2021-12-29 16:39:16');
+INSERT INTO `sysmenufunction` VALUES ('A8A5E24F-53D0-4161-E0EF-08D9CAA12654', 17, '2401F4D0-60B0-4E2E-903F-84C603373572', '2021-12-29 16:40:12', '2021-12-29 16:40:12');
+INSERT INTO `sysmenufunction` VALUES ('A8D64615-5CB4-4B22-E0B3-08D9CAA12654', 16, 'E7EF2A05-8317-41C3-B588-99519FE88BF9', '2021-12-29 16:29:55', '2021-12-29 16:29:55');
+INSERT INTO `sysmenufunction` VALUES ('B0C0E2C3-FC20-4D1F-E103-08D9CAA12654', 15, 'E7EF2A05-8317-41C3-B588-99519FE88BF9', '2021-12-29 16:42:32', '2021-12-29 16:42:32');
+INSERT INTO `sysmenufunction` VALUES ('B367EF95-B112-49F5-E0DC-08D9CAA12654', 20, '9C388461-2704-4C5E-A729-72C17E9018E1', '2021-12-29 16:38:08', '2021-12-29 16:38:08');
+INSERT INTO `sysmenufunction` VALUES ('B5C26C68-C152-44C1-E0E5-08D9CAA12654', 19, '383E7EE2-7690-46AC-9230-65155C84AA30', '2021-12-29 16:39:16', '2021-12-29 16:39:16');
+INSERT INTO `sysmenufunction` VALUES ('B9AA5AB0-03B7-4F30-E107-08D9CAA12654', 15, '2401F4D0-60B0-4E2E-903F-84C603373572', '2021-12-29 16:42:32', '2021-12-29 16:42:32');
+INSERT INTO `sysmenufunction` VALUES ('BA1FDAD6-C28E-462C-E0F6-08D9CAA12654', 25, 'F27ECB0A-197D-47B1-B243-59A8C71302BF', '2021-12-29 16:42:14', '2021-12-29 16:42:14');
+INSERT INTO `sysmenufunction` VALUES ('C96E8476-529F-4707-E0F4-08D9CAA12654', 25, '9C388461-2704-4C5E-A729-72C17E9018E1', '2021-12-29 16:42:14', '2021-12-29 16:42:14');
+INSERT INTO `sysmenufunction` VALUES ('CA27EB94-9FEB-497B-E102-08D9CAA12654', 15, 'BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', '2021-12-29 16:42:32', '2021-12-29 16:42:32');
+INSERT INTO `sysmenufunction` VALUES ('D0A41214-744C-4E68-A073-08D9C9AB518E', 13, 'BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', '2021-12-28 10:44:18', '2021-12-28 10:44:18');
+INSERT INTO `sysmenufunction` VALUES ('D5D41D85-6CB3-4B3F-A05F-08D9C9AB518E', 21, 'F27ECB0A-197D-47B1-B243-59A8C71302BF', '2021-12-28 10:43:54', '2021-12-28 10:43:54');
+INSERT INTO `sysmenufunction` VALUES ('D68FE19A-36B0-49BB-E0F7-08D9CAA12654', 25, '2401F4D0-60B0-4E2E-903F-84C603373572', '2021-12-29 16:42:14', '2021-12-29 16:42:14');
+INSERT INTO `sysmenufunction` VALUES ('D7E4C5C4-2F3F-4A63-A066-08D9C9AB518E', 22, '383E7EE2-7690-46AC-9230-65155C84AA30', '2021-12-28 10:44:01', '2021-12-28 10:44:01');
+INSERT INTO `sysmenufunction` VALUES ('DB3B2563-6EF5-4F6F-E108-08D9CAA12654', 15, 'B6FD5425-504A-46A9-993B-2F8DC9158EB8', '2021-12-29 16:42:32', '2021-12-29 16:42:32');
+INSERT INTO `sysmenufunction` VALUES ('E00DC41C-1AD9-44D7-A06C-08D9C9AB518E', 23, 'E7EF2A05-8317-41C3-B588-99519FE88BF9', '2021-12-28 10:44:06', '2021-12-28 10:44:06');
+INSERT INTO `sysmenufunction` VALUES ('E0546CC6-D74D-4B3B-A06A-08D9C9AB518E', 23, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-28 10:44:06', '2021-12-28 10:44:06');
+INSERT INTO `sysmenufunction` VALUES ('E5D2D1DF-CCA5-46E6-A06D-08D9C9AB518E', 23, '9C388461-2704-4C5E-A729-72C17E9018E1', '2021-12-28 10:44:06', '2021-12-28 10:44:06');
+INSERT INTO `sysmenufunction` VALUES ('EF5CA0C6-7E97-4955-E0E6-08D9CAA12654', 19, 'F27ECB0A-197D-47B1-B243-59A8C71302BF', '2021-12-29 16:39:16', '2021-12-29 16:39:16');
+INSERT INTO `sysmenufunction` VALUES ('F093BB17-6797-4572-E105-08D9CAA12654', 15, '383E7EE2-7690-46AC-9230-65155C84AA30', '2021-12-29 16:42:32', '2021-12-29 16:42:32');
+INSERT INTO `sysmenufunction` VALUES ('F1532E35-9F0C-4FAB-A075-08D9C9AB518E', 13, '9C388461-2704-4C5E-A729-72C17E9018E1', '2021-12-28 10:44:18', '2021-12-28 10:44:18');
+INSERT INTO `sysmenufunction` VALUES ('F3FF09D4-F8FE-41A9-E0B6-08D9CAA12654', 16, 'F27ECB0A-197D-47B1-B243-59A8C71302BF', '2021-12-29 16:29:55', '2021-12-29 16:29:55');
+INSERT INTO `sysmenufunction` VALUES ('FB442F05-A084-4B87-A064-08D9C9AB518E', 22, 'E7EF2A05-8317-41C3-B588-99519FE88BF9', '2021-12-28 10:44:01', '2021-12-28 10:44:01');
+
+-- ----------------------------
+-- Table structure for sysoperationlog
+-- ----------------------------
+DROP TABLE IF EXISTS `sysoperationlog`;
+CREATE TABLE `sysoperationlog`  (
+  `Id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Api` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '接口地址',
+  `Ip` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT 'ip地址',
+  `Form` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '表单信息',
+  `FormBody` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT 'json表单信息',
+  `QueryString` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '地址栏信息',
+  `Browser` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `OS` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '当前操作人id',
+  `TakeUpTime` bigint(0) NOT NULL COMMENT '接口耗时（毫秒）',
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sysoperationlog
+-- ----------------------------
+INSERT INTO `sysoperationlog` VALUES ('08d9cb63-8b46-4870-8e13-7992255fa125', '/api/admin/SysOperationLog/deleteAllData', '0.0.0.1', '', '', '', 'Chrome96', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 28, '2021-12-30 15:11:05', '2021-12-30 15:11:05');
+INSERT INTO `sysoperationlog` VALUES ('08d9cb63-8b5d-405a-8015-c2f331f34b43', '/api/admin/SysOperationLog/findList/10/1', '0.0.0.1', '', '{\"name\":null}', '', 'Chrome96', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 31, '2021-12-30 15:11:05', '2021-12-30 15:11:05');
+
+-- ----------------------------
+-- Table structure for sysorganization
+-- ----------------------------
+DROP TABLE IF EXISTS `sysorganization`;
+CREATE TABLE `sysorganization`  (
+  `Id` int(0) NOT NULL AUTO_INCREMENT,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `OrderNumber` int(0) NULL DEFAULT NULL,
+  `LevelCode` varchar(50) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Leader` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `State` int(0) NULL DEFAULT NULL,
+  `ParentId` int(0) NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sysorganization
+-- ----------------------------
+INSERT INTO `sysorganization` VALUES (1, '阿里巴巴集团', 1, '1', 'hzy', '18410912184', '18410912184@qq.com', 1, NULL, '2021-05-27 20:50:31', '2021-05-27 20:50:31');
+INSERT INTO `sysorganization` VALUES (2, '北京分部', 3, '1.2', '北京分部', '132123', '13131', 1, 1, '2021-12-28 16:13:34', '2021-05-27 22:33:44');
+INSERT INTO `sysorganization` VALUES (3, '市场部门', 1, '1.2.3', '市场部门', '234124234', '234234@qq.com', 1, 2, '2021-05-27 22:33:57', '2021-05-27 22:33:57');
+INSERT INTO `sysorganization` VALUES (4, '财务部门', 2, '1.2.4', '财务部门', '435543535', '123@qq.com', 1, 2, '2021-05-27 22:34:11', '2021-05-27 22:34:11');
+INSERT INTO `sysorganization` VALUES (5, '成都分部', 2, '1.5', '成都分部', '123123123', '123@qq.com', 1, 1, '2021-05-27 22:31:45', '2021-05-27 21:01:50');
+INSERT INTO `sysorganization` VALUES (6, '财务部门', 4, '1.5.6', '财务部门', '12323452345', '12312@qq.com', 1, 5, '2021-05-27 22:33:13', '2021-05-27 22:33:13');
+INSERT INTO `sysorganization` VALUES (7, '研发部门', 1, '1.5.7', '研发部门', '1234323423', '12312@qq.com', 1, 5, '2021-05-27 22:32:29', '2021-05-27 22:32:08');
+INSERT INTO `sysorganization` VALUES (8, '市场部门', 2, '1.5.8', '市场部门', '123213', '123@qq.com', 1, 5, '2021-05-27 22:32:46', '2021-05-27 22:32:40');
+INSERT INTO `sysorganization` VALUES (9, '运维部门', 5, '1.5.9', '运维部门', '1232133452', '12341@qq.com', 1, 5, '2021-05-27 22:33:25', '2021-05-27 22:33:25');
+INSERT INTO `sysorganization` VALUES (10, '测试部门', 3, '1.5.10', '测试部门', '12313', '123123@qq.com', 1, 5, '2021-05-27 22:32:59', '2021-05-27 22:32:59');
+
+-- ----------------------------
+-- Table structure for syspost
+-- ----------------------------
+DROP TABLE IF EXISTS `syspost`;
+CREATE TABLE `syspost`  (
+  `Id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Number` int(0) NULL DEFAULT NULL,
+  `Code` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `State` int(0) NULL DEFAULT NULL,
+  `Remarks` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of syspost
+-- ----------------------------
+INSERT INTO `syspost` VALUES ('0716B4B0-9A06-43E9-8AE8-82C74875F83E', 2, 'se', '项目经理', 1, NULL, '2021-05-27 20:26:35', '2021-05-27 20:26:35');
+INSERT INTO `syspost` VALUES ('96927C30-41D0-4CED-8E29-CBED35C90FB0', 1, 'ceo', '董事长', 1, NULL, '2021-05-27 20:26:22', '2021-05-27 20:26:22');
+INSERT INTO `syspost` VALUES ('E46AF329-6D08-442C-9837-F22CFF954411', 4, 'user', '普通员工', 1, NULL, '2021-05-27 20:26:52', '2021-05-27 20:26:52');
+INSERT INTO `syspost` VALUES ('F0C67537-8094-429A-B474-F54AC518609E', 3, 'hr', '人力资源', 1, NULL, '2021-05-27 20:26:44', '2021-05-27 20:26:44');
+
+-- ----------------------------
+-- Table structure for sysrole
+-- ----------------------------
+DROP TABLE IF EXISTS `sysrole`;
+CREATE TABLE `sysrole`  (
+  `Id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Number` int(0) NULL DEFAULT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `IsDelete` int(0) NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sysrole
+-- ----------------------------
+INSERT INTO `sysrole` VALUES ('18FA4771-6F58-46A3-80D2-6F0F5E9972E3', 1, '超级管理员', '拥有所有权限', 0, '2021-01-10 11:25:12', '2016-07-06 17:59:20');
+INSERT INTO `sysrole` VALUES ('40FF1844-C099-4061-98E0-CD6E544FCFD3', 2, '普通用户', '普通用户', 1, '2021-01-30 00:51:17', '2016-07-06 17:59:20');
+
+-- ----------------------------
+-- Table structure for sysrolemenufunction
+-- ----------------------------
+DROP TABLE IF EXISTS `sysrolemenufunction`;
+CREATE TABLE `sysrolemenufunction`  (
+  `Id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `RoleId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `MenuId` int(0) NULL DEFAULT NULL,
+  `FunctionId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sysrolemenufunction
+-- ----------------------------
+INSERT INTO `sysrolemenufunction` VALUES ('15A20E57-C338-4359-6874-08D9CA9289B5', '18FA4771-6F58-46A3-80D2-6F0F5E9972E3', 13, 'E7EF2A05-8317-41C3-B588-99519FE88BF9', '2021-12-29 14:40:50', '2021-12-29 14:40:50');
+INSERT INTO `sysrolemenufunction` VALUES ('1F8C9CC0-0AF8-405F-6873-08D9CA9289B5', '18FA4771-6F58-46A3-80D2-6F0F5E9972E3', 13, 'BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', '2021-12-29 14:40:50', '2021-12-29 14:40:50');
+INSERT INTO `sysrolemenufunction` VALUES ('3E8625E6-B829-4C6A-6879-08D9CA9289B5', '18FA4771-6F58-46A3-80D2-6F0F5E9972E3', 13, 'B6FD5425-504A-46A9-993B-2F8DC9158EB8', '2021-12-29 14:40:50', '2021-12-29 14:40:50');
+INSERT INTO `sysrolemenufunction` VALUES ('53BF048A-7078-4EF3-6875-08D9CA9289B5', '18FA4771-6F58-46A3-80D2-6F0F5E9972E3', 13, '9C388461-2704-4C5E-A729-72C17E9018E1', '2021-12-29 14:40:50', '2021-12-29 14:40:50');
+INSERT INTO `sysrolemenufunction` VALUES ('950735AA-4158-4402-6878-08D9CA9289B5', '18FA4771-6F58-46A3-80D2-6F0F5E9972E3', 13, '2401F4D0-60B0-4E2E-903F-84C603373572', '2021-12-29 14:40:50', '2021-12-29 14:40:50');
+INSERT INTO `sysrolemenufunction` VALUES ('A502B878-254C-4F50-6877-08D9CA9289B5', '18FA4771-6F58-46A3-80D2-6F0F5E9972E3', 13, 'F27ECB0A-197D-47B1-B243-59A8C71302BF', '2021-12-29 14:40:50', '2021-12-29 14:40:50');
+INSERT INTO `sysrolemenufunction` VALUES ('BA849832-A0A0-4364-6876-08D9CA9289B5', '18FA4771-6F58-46A3-80D2-6F0F5E9972E3', 13, '383E7EE2-7690-46AC-9230-65155C84AA30', '2021-12-29 14:40:50', '2021-12-29 14:40:50');
+INSERT INTO `sysrolemenufunction` VALUES ('D93AB57E-AA37-494F-6872-08D9CA9289B5', '18FA4771-6F58-46A3-80D2-6F0F5E9972E3', 13, 'C9518758-B2E1-4F51-B517-5282E273889C', '2021-12-29 14:40:50', '2021-12-29 14:40:50');
+
+-- ----------------------------
+-- Table structure for sysuser
+-- ----------------------------
+DROP TABLE IF EXISTS `sysuser`;
+CREATE TABLE `sysuser`  (
+  `Id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `LoginName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Phone` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `Email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `IsDelete` int(0) NULL DEFAULT NULL,
+  `OrganizationId` int(0) NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sysuser
+-- ----------------------------
+INSERT INTO `sysuser` VALUES ('0198459E-2034-4533-B843-5D227AD20740', '超级管理员', 'admin', 'E10ADC3949BA59ABBE56E057F20F883E', '123123123', '1396510655@qq.com', 2, 1, '2021-12-30 15:10:24', '2017-04-06 19:55:53');
+INSERT INTO `sysuser` VALUES ('AC18F496-E93D-42F0-B59E-E321ACC85335', '用户', 'user', 'E10ADC3949BA59ABBE56E057F20F883E', '456456456', '18123456789@live.com', 1, 1, '2021-12-27 22:17:01', '2017-04-06 19:55:53');
+
+-- ----------------------------
+-- Table structure for sysuserpost
+-- ----------------------------
+DROP TABLE IF EXISTS `sysuserpost`;
+CREATE TABLE `sysuserpost`  (
+  `Id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `PostId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sysuserpost
+-- ----------------------------
+INSERT INTO `sysuserpost` VALUES ('6357195E-7FDB-42F2-A16B-2AE0D2E7A69D', 'AC18F496-E93D-42F0-B59E-E321ACC85335', '0716B4B0-9A06-43E9-8AE8-82C74875F83E', '2021-12-27 22:17:01', '2021-12-27 22:17:01');
+INSERT INTO `sysuserpost` VALUES ('78d7b197-b611-4b15-b0a2-22978b08e288', '0198459e-2034-4533-b843-5d227ad20740', '96927c30-41d0-4ced-8e29-cbed35c90fb0', '2021-12-30 15:10:24', '2021-12-30 15:10:24');
+
+-- ----------------------------
+-- Table structure for sysuserrole
+-- ----------------------------
+DROP TABLE IF EXISTS `sysuserrole`;
+CREATE TABLE `sysuserrole`  (
+  `Id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `UserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `RoleId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = DYNAMIC;
+
+-- ----------------------------
+-- Records of sysuserrole
+-- ----------------------------
+INSERT INTO `sysuserrole` VALUES ('87f6cbe5-d1b1-40ad-a52b-4cc1ad72ba4f', '0198459e-2034-4533-b843-5d227ad20740', '18fa4771-6f58-46a3-80d2-6f0f5e9972e3', '2021-12-30 15:10:24', '2021-12-30 15:10:24');
+INSERT INTO `sysuserrole` VALUES ('D5109601-AF57-4DB4-8537-EADFD9165D04', 'AC18F496-E93D-42F0-B59E-E321ACC85335', '40FF1844-C099-4061-98E0-CD6E544FCFD3', '2021-12-27 22:17:01', '2021-12-27 22:17:01');
+
+SET FOREIGN_KEY_CHECKS = 1;

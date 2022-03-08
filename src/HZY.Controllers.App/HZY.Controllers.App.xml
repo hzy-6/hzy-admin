@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Controllers.App</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Controllers.App.AppTestController">
+            <summary>
+            App 接口测试
+            </summary>
+        </member>
+    </members>
+</doc>

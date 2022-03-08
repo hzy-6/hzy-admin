@@ -1,0 +1,91 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.WebHost</name>
+    </assembly>
+    <members>
+        <member name="M:HZY.WebHost.Configure.AppConfigure.Build(Microsoft.AspNetCore.Builder.WebApplication,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,System.IServiceProvider,HZY.Infrastructure.MessageQueue.IMessageQueueProvider)">
+            <summary>
+            配置构建
+            </summary>
+            <param name="app"></param>
+            <param name="env"></param>
+            <param name="serviceProvider"></param>
+            <param name="messageQueueProvider"></param>
+        </member>
+        <member name="M:HZY.WebHost.Configure.AppConfigureServices.GetVersionList">
+            <summary>
+            获取 Swagger 版本集合
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.WebHost.Configure.AppConfigureServices.Build(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            配置服务
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:HZY.WebHost.Configure.CustomPolicyRequirement.AuthKey">
+            <summary>
+            权限认证键
+            </summary>
+        </member>
+        <member name="T:HZY.WebHost.Configure.LifetimeEventsHostedService">
+            <summary>
+            生命周期监听
+            </summary>
+        </member>
+        <member name="T:HZY.WebHost.Controllers.AccountController">
+            <summary>
+            账户控制器
+            </summary>
+        </member>
+        <member name="M:HZY.WebHost.Controllers.AccountController.CheckAsync(HZY.Models.DTO.AuthUserFormDto)">
+            <summary>
+            检查帐户并获取 token
+            </summary>
+            <param name="authUserDto">Dto</param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.WebHost.Controllers.JumpClientController">
+            <summary>
+            跳转客户端
+            </summary>
+        </member>
+        <member name="T:HZY.WebHost.Filters.ApiAuthorizationFilter">
+            <summary>
+            授权认证 拦截
+            </summary>
+        </member>
+        <member name="T:HZY.WebHost.Filters.ApiPermissionFilter">
+            <summary>
+            权限 拦截
+            </summary>
+        </member>
+        <member name="M:HZY.WebHost.Filters.ApiPermissionFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            action 执行之前
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:HZY.WebHost.Middlewares.TakeUpTimeMiddleware">
+            <summary>
+            统计耗时 并记录日志中 中间件
+            </summary>
+        </member>
+        <member name="M:HZY.WebHost.Middlewares.TakeUpTimeMiddleware.IsApi(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            判断请求类型 是否 是 api
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.WebHost.Middlewares.TakeUpTimeMiddleware.ReadBodyAsync">
+            <summary>
+            读取 body 信息
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

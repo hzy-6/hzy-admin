@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Controllers</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Controllers.PublicController">
+            <summary>
+            公共接口控制器
+            </summary>
+        </member>
+        <member name="M:HZY.Controllers.PublicController.GetDictionaryByCodeAsync(System.String)">
+            <summary>
+            根据编码获取 字典集合
+            </summary>
+            <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Controllers.UploadController">
+            <summary>
+            上传文件控制器
+            </summary>
+        </member>
+        <member name="M:HZY.Controllers.UploadController.Images">
+            <summary>
+            上传图片
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

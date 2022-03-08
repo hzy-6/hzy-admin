@@ -1,0 +1,34 @@
+{
+  "name": "hzy-admin-spa-ui",
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@ant-design/icons-vue": "^6.0.1",
+    "@antv/g2": "^4.1.47",
+    "@antv/g2plot": "^2.4.9",
+    "ant-design-vue": "3.0.0-beta.13",
+    "axios": "^0.26.0",
+    "core-js": "^3.21.1",
+    "dayjs": "^1.10.8",
+    "less": "^4.1.2",
+    "less-loader": "^10.2.0",
+    "md-editor-v3": "^1.10.1",
+    "moment": "^2.29.1",
+    "nprogress": "^0.2.0",
+    "pinia": "^2.0.11",
+    "screenfull": "^6.0.1",
+    "vue": "^3.2.31",
+    "vue-router": "^4.0.13",
+    "vxe-table": "^4.2.0",
+    "wangeditor": "^4.7.12",
+    "xe-utils": "3.5.4"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^2.2.4",
+    "vite": "^2.8.6"
+  }
+}

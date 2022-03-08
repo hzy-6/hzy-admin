@@ -1,0 +1,69 @@
+﻿@using HZY.Infrastructure;
+@using FreeSql.DatabaseModel;
+@model HZY.Models.DTO.DevelopmentTool.GenContextDto
+@{
+    var className = Model.Name;
+    var classNameRemark = Model.Comment;
+    var ignores = new string[] { "Id", "CreationTime", "CreatorUserId", "LastModificationTime", "LastModifierUserId", "DeletionTime", "DeleterUserId", "IsDeleted" };
+    var tableInfos = Model.Columns
+        .Where(w => !ignores.Contains(w.Name))
+        .ToList()
+        ;
+}
+
+@functions
+{
+    //获取类型 根据 appTableInfo
+    string GetType(DbColumnInfo appTableInfo)
+    {
+        switch (appTableInfo.DbTypeText)
+        {
+            case "uniqueidentifier":
+                return appTableInfo.IsPrimary ? "Guid" : "Guid?";
+            case "bit":
+            case "int":
+                return appTableInfo.IsPrimary ? "int" : "int?";
+            case "datetime":
+                return appTableInfo.IsNullable ? "DateTime?" : "DateTime";
+            case "float":
+            case "money":
+                return appTableInfo.IsNullable ? "double?" : "double";
+            case "decimal":
+                return appTableInfo.IsNullable ? "decimal?" : "decimal";
+            default:
+                return appTableInfo.IsNullable ? appTableInfo.CsType.Name + "?" : appTableInfo.CsType.Name;
+        }
+    }
+    //获取类型 根据 appTableInfo
+    string GetTypeNew(DbColumnInfo appTableInfo)
+    {
+        if (appTableInfo.CsType.Name.ToLower().Equals("string")) return appTableInfo.CsType.Name;
+        return appTableInfo.IsNullable ? $"{appTableInfo.CsType.Name}?" : appTableInfo.CsType.Name;
+    }
+}
+
+<pre>
+using System;
+using System.ComponentModel.DataAnnotations;
+using @(Model.Namespace).Models.Entities.BaseEntitys;
+
+namespace @(Model.Namespace).Models.Entities
+{
+    /// <summary>
+    /// @(string.IsNullOrWhiteSpace(classNameRemark) ? className : classNameRemark)
+    /// </summary>
+    public class @className : DefaultBaseEntity<@("Guid")>
+    {
+        @foreach (var item in tableInfos)
+        {
+        <pre>
+        /// <summary>
+        ///  @item.Name => 备注: @(string.IsNullOrWhiteSpace(item.Comment) ? item.Name: item.Comment)
+        /// </summary>
+        public @(GetTypeNew(item)) @item.Name { get; set; }
+        </pre>
+        }
+
+    }
+}
+</pre>

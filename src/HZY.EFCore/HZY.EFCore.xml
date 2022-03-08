@@ -1,0 +1,293 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.EFCore</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.EFCore.Attributes.TransactionalAttribute">
+            <summary>
+            通过标记 自动 事务 适用于 控制器 Action 上标记
+            自动档 事务
+            </summary>
+        </member>
+        <member name="T:HZY.EFCore.DbContexts.AdminBaseDbContext">
+            <summary>
+            后台权限管理系统 DbContext
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.DbContexts.AdminBaseDbContext.CacheEntity">
+            <summary>
+            获取实体信息缓存服务
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.DbContexts.AdminBaseDbContext.SavingChangesEvent(System.Object,Microsoft.EntityFrameworkCore.SavingChangesEventArgs)">
+            <summary>
+            在调用SaveChanges结束时激发的事件 
+            </summary>
+        </member>
+        <member name="T:HZY.EFCore.DbContexts.BaseDbContext`1">
+            <summary>
+            基础上下文
+            </summary>
+            <typeparam name="TDbContext"></typeparam>
+        </member>
+        <member name="M:HZY.EFCore.DbContexts.BaseDbContext`1.BeginTransaction">
+            <summary>
+            事务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.DbContexts.BaseDbContext`1.BeginTransactionAsync">
+            <summary>
+            事务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:HZY.EFCore.DbContexts.BaseDbContext`1.UnitOfWork">
+            <summary>
+            工作单元
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.DbContexts.BaseDbContext`1.CommitOpen">
+            <summary>
+            开启 提交
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.DbContexts.BaseDbContext`1.Commit">
+            <summary>
+            提交
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.DbContexts.BaseDbContext`1.CommitAsync">
+            <summary>
+            提交
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.EFCore.EFCoreModule">
+            <summary>
+            仓储模块
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.EFCoreModule.RegisterAdminBaseDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            注册 Admin 后台管理数据库
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:HZY.EFCore.Extensions.HzyRepositoryExtensions">
+            <summary>
+            仓储扩展
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.GetPropertyInfos(System.Type,System.Reflection.BindingFlags)">
+            <summary>
+            获取 PropertyInfo 集合
+            </summary>
+            <param name="type"></param>
+            <param name="bindingFlags"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.CreateInstance``1">
+            <summary>
+            创建 对象实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.GetAttribute``1(System.Type,System.String)">
+            <summary>
+            获取 对象 中 某个属性得 标记
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="type"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.GetPropertyInfo(System.Type,System.String)">
+            <summary>
+            获取 PropertyInfo 对象
+            </summary>
+            <param name="type"></param>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.GetKeyProperty(System.Type,System.Boolean)">
+            <summary>
+            获取 模型 有 Key 特性得 属性对象
+            </summary>
+            <param name="type"></param>
+            <param name="isCheckKey"></param>
+            <returns></returns>
+            <exception cref="T:System.InvalidOperationException"></exception>
+        </member>
+        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.HasKey(System.Reflection.PropertyInfo)">
+            <summary>
+            是否有 KeyAttribute 标记
+            </summary>
+            <param name="propertyInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.WhereIf``1(System.Linq.IQueryable{``0},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            WhereIf
+            </summary>
+            <param name="query"></param>
+            <param name="if"></param>
+            <param name="expWhere"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.WhereIf``1(System.Collections.Generic.IEnumerable{``0},System.Boolean,System.Func{``0,System.Boolean})">
+            <summary>
+            WhereIf
+            </summary>
+            <param name="query"></param>
+            <param name="if"></param>
+            <param name="expWhere"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.Page``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+            <summary>
+            Page 分页简写
+            </summary>
+            <param name="query"></param>
+            <param name="page"></param>
+            <param name="rows"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.EFCore.Impl.CacheEntityImpl">
+            <summary>
+            缓存实体信息服务
+            </summary>
+        </member>
+        <member name="T:HZY.EFCore.Impl.RepositoryImpl`2">
+            <summary>
+            基础仓储 实现
+            </summary>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TDbContext"></typeparam>
+        </member>
+        <member name="P:HZY.EFCore.Impl.RepositoryImpl`2.Orm">
+            <summary>
+            DbContext 对象
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.Impl.RepositoryImpl`2.SetAttach(`0,Microsoft.EntityFrameworkCore.EntityState)">
+            <summary>
+            设置 跟踪 Attachq
+            </summary>
+            <param name="model"></param>
+            <param name="entityState"></param>
+        </member>
+        <member name="M:HZY.EFCore.Impl.RepositoryImpl`2.GetKeyExpression(System.Object)">
+            <summary>
+            生成表达式树 例如：( w=>w.Key==Guid.Empty )
+            </summary>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Impl.RepositoryImpl`2.AddQueryFilter(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            添加检索过滤
+            </summary>
+            <param name="filter"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Impl.RepositoryImpl`2.IgnoreQueryFilter">
+            <summary>
+            忽略查询过滤条件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Impl.RepositoryImpl`2.RecoveryQueryFilter">
+            <summary>
+            恢复忽略查询过滤条件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Impl.RepositoryImpl`2.Query(System.Boolean)">
+            <summary>
+            查询
+            </summary>
+            <param name="isTracking">是否追踪</param>
+            <returns></returns>
+        </member>
+        <member name="P:HZY.EFCore.Impl.RepositoryImpl`2.Select">
+            <summary>
+            查询 有跟踪
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.Impl.RepositoryImpl`2.SelectNoTracking">
+            <summary>
+            查询 无跟踪
+            </summary>
+        </member>
+        <member name="T:HZY.EFCore.Interface.ICacheEntity">
+            <summary>
+            缓存实体信息服务
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.Models.PagingViewModel.Columns">
+            <summary>
+            列信息
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.Models.PagingViewModel.DataSource">
+            <summary>
+            转换后数据
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.Models.PagingViewModel.Total">
+            <summary>
+            总数
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.Models.PagingViewModel.PageCount">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.Models.PagingViewModel.Size">
+            <summary>
+            一页显示多少条
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.Models.PagingViewModel.Page">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="T:HZY.EFCore.Models.TableViewColumn">
+            <summary>
+            列头信息
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.Models.TableViewColumn.FieldName">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.Models.TableViewColumn.Title">
+            <summary>
+            标题名称
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.Models.TableViewColumn.Show">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.Models.TableViewColumn.Width">
+            <summary>
+            列宽度
+            </summary>
+        </member>
+    </members>
+</doc>

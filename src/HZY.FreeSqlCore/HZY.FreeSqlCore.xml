@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.FreeSqlCore</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.FreeSqlCore.FreeSqlCoreModule">
+            <summary>
+            FreeSql 模块配置
+            </summary>
+        </member>
+        <member name="M:HZY.FreeSqlCore.FreeSqlCoreModule.RegisterFreeSql(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+            <summary>
+            注册 仓储层
+            </summary>
+            <param name="services"></param>
+            <param name="configuration"></param>
+            <param name="assemblyFilter"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:HZY.FreeSqlCore.FreeSqlCoreModule.CreateFreeSql(System.String,HZY.Infrastructure.DefaultDatabaseType)">
+            <summary>
+            创建 free sql 对象
+            </summary>
+            <param name="connectionString"></param>
+            <param name="defaultDatabaseType"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

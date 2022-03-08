@@ -1,0 +1,1025 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Models</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Model.BO.AccountInfo">
+            <summary>
+            账户 业务对象
+            </summary>
+        </member>
+        <member name="P:HZY.Model.BO.AccountInfo.SysRoles">
+            <summary>
+            角色 集合
+            </summary>
+        </member>
+        <member name="P:HZY.Model.BO.AccountInfo.SysPosts">
+            <summary>
+            所属岗位
+            </summary>
+        </member>
+        <member name="P:HZY.Model.BO.AccountInfo.SysOrganization">
+            <summary>
+            所属组织
+            </summary>
+        </member>
+        <member name="P:HZY.Model.BO.AccountInfo.IsAdministrator">
+            <summary>
+            是否超级管理员
+            </summary>
+        </member>
+        <member name="P:HZY.Model.BO.AccountInfo.Menus">
+            <summary>
+            菜单集合
+            </summary>
+        </member>
+        <member name="P:HZY.Model.BO.AccountInfo.MenuPowers">
+            <summary>
+            菜单功能集合
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.AuthUserFormDto.UserName">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.AuthUserFormDto.UserPassword">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.AuthUserFormDto.LoginCode">
+            <summary>
+            验证码(不填)
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.ChangePasswordFormDto.OldPassword">
+            <summary>
+            旧密码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.ChangePasswordFormDto.NewPassword">
+            <summary>
+            新密码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.ChangePasswordFormDto.QrPassword">
+            <summary>
+            确认密码
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:HZY.Models.DTO.DevelopmentTool.GenContextDto">
+            <summary>
+            生成代码上下文
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.DevelopmentTool.GenContextDto.Namespace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="T:HZY.Models.DTO.DevelopmentTool.GenFormDto">
+            <summary>
+            代码生成表单模型
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.DevelopmentTool.GenFormDto.TableName">
+            <summary>
+            表名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.DevelopmentTool.GenFormDto.Type">
+            <summary>
+            类型代码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.DevelopmentTool.GenFormDto.CodeText">
+            <summary>
+            代码文本
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.SysMenuTreeDto.ParentName">
+            <summary>
+            父级菜单名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.SysMenuTreeDto.Children">
+            <summary>
+            子级菜单
+            </summary>
+        </member>
+        <member name="T:HZY.Models.DTO.SysOrganizationTreeDto">
+            <summary>
+            组织机构树
+            </summary>
+        </member>
+        <member name="T:HZY.Models.DTO.SysUserFormDto">
+            <summary>
+            系统账户表单
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer">
+            <summary>
+            游戏玩家
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.Name">
+            <summary>
+            游戏昵称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.AccountNumber">
+            <summary>
+            账号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.AccountPassword">
+            <summary>
+            账户密码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.TeamId">
+            <summary>
+            所属队伍
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.GameCredits">
+            <summary>
+            游戏积分
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.IsOnline">
+            <summary>
+            是否在线
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.State">
+            <summary>
+            是否停用
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.AllPeopleGoGoGo.Room">
+            <summary>
+            房间
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.Room.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.Room.Name">
+            <summary>
+            房间名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.Room.SecretKey">
+            <summary>
+            房间密钥
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary">
+            <summary>
+            任务库
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Title">
+            <summary>
+            任务标题
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Description">
+            <summary>
+            摘要描述
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.CoverPicture">
+            <summary>
+            封面图
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Picture">
+            <summary>
+            图片
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Answer">
+            <summary>
+            答案
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Score">
+            <summary>
+            分值
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.DifficultyLevel">
+            <summary>
+            难度等级
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Type">
+            <summary>
+            任务类型 => 数据字典获取值
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Classify">
+            <summary>
+            任务分类 => 数据字典获取值
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.AllPeopleGoGoGo.Team">
+            <summary>
+            队伍
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.Team.Number">
+            <summary>
+            队伍编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.Team.Name">
+            <summary>
+            队伍名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.Team.RoomId">
+            <summary>
+            所属房间Id
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.ApprovalFlow.Flow">
+            <summary>
+            工作流主表
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.Flow.Number">
+            <summary>
+            编号 => 备注:Flow_Num 
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.Flow.Code">
+            <summary>
+            流程编码
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.Flow.Name">
+            <summary>
+            流程名称 => 备注:Flow_Name 
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.Flow.Remark">
+            <summary>
+            备注 => 备注:Flow_Remark 
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.ApprovalFlow.FlowApproval">
+            <summary>
+            审批发起表
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApproval.UserId">
+            <summary>
+            流程发起人Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApproval.UserName">
+            <summary>
+            流程发起人名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApproval.LaunchTime">
+            <summary>
+            流程发起时间
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApproval.FormId">
+            <summary>
+            表单Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApproval.FlowId">
+            <summary>
+            审批流Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApproval.FlowCode">
+            <summary>
+            审批流编码
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApproval.FlowName">
+            <summary>
+            审批流名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep">
+            <summary>
+            流程审批步骤记录表
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.Sort">
+            <summary>
+            流程审批顺序
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.FlowNodeId">
+            <summary>
+            审批流节点id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.FlowNodeName">
+            <summary>
+            节点名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.SortMore">
+            <summary>
+            多次审批顺序号
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.State">
+            <summary>
+            流程审批状态
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.Opinions">
+            <summary>
+            审批意见
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.UserId">
+            <summary>
+            审批人id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.UserName">
+            <summary>
+            审批人姓名
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.ApprovalDate">
+            <summary>
+            审批时间
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:HZY.Models.Entities.ApprovalFlow.EFlowApprovalStepState">
+            <summary>
+            流程审批步骤状态
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepUser">
+            <summary>
+            流程步骤可审批人记录表
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepUser.FlowApprovalStepId">
+            <summary>
+            审批步骤id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepUser.FlowNodeId">
+            <summary>
+            流程节点Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepUser.FlowNodeName">
+            <summary>
+            审批节点名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepUser.UserId">
+            <summary>
+            审批人Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepUser.UserName">
+            <summary>
+            审批人名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:HZY.Models.Entities.ApprovalFlow.FlowNode">
+            <summary>
+            工作流节点表
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowNode.FlowId">
+            <summary>
+            流程id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowNode.Sort">
+            <summary>
+            序号
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowNode.Name">
+            <summary>
+            节点名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowNode.RoleId">
+            <summary>
+            角色Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowNode.Remark">
+            <summary>
+            备注
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.BaseEntitys.ICreateBaseEntity.CreatorUserId">
+            <summary>
+            创建用户
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.BaseEntitys.ICreateBaseEntity.CreationTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.BaseEntitys.DefaultBaseEntity">
+            <summary>
+            基础模型
+            包含属性 LastModificationTime、CreationTime
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.BaseEntitys.DefaultBaseEntity.LastModificationTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.BaseEntitys.DefaultBaseEntity.CreationTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.BaseEntitys.DefaultBaseEntity`1">
+            <summary>
+            基础模型
+            包含属性 Id、UpdateTime、CreateTime
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:HZY.Models.Entities.BaseEntitys.IDeleteBaseEntity.IsDeleted">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.BaseEntitys.IDeleteBaseEntity.DeleterUserId">
+            <summary>
+            删除用户
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.BaseEntitys.IDeleteBaseEntity.DeletionTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.BaseEntitys.IUpdateBaseEntity.LastModifierUserId">
+            <summary>
+            更新用户
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.BaseEntitys.IUpdateBaseEntity.LastModificationTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysDataAuthority">
+            <summary>
+            数据权限主表
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysDataAuthority.PermissionType">
+            <summary>
+             PermissionType => 备注: 数据权限类型
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysDataAuthority.RoleId">
+            <summary>
+             RoleId => 备注: 角色Id
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysDataAuthorityPermissionTypeEnum">
+            <summary>
+            数据权限类型
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Entities.Framework.SysDataAuthorityPermissionTypeEnum.Custom">
+            <summary>
+            自定义权限 
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Entities.Framework.SysDataAuthorityPermissionTypeEnum.All">
+            <summary>
+            查看所有数据 
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Entities.Framework.SysDataAuthorityPermissionTypeEnum.Organization">
+            <summary>
+            仅查看本组织 
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Entities.Framework.SysDataAuthorityPermissionTypeEnum.OrganizationOrBranch">
+            <summary>
+            仅查看本组织和下属组织 
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Entities.Framework.SysDataAuthorityPermissionTypeEnum.Self">
+            <summary>
+            仅查看本人 
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysDataAuthorityCustom">
+            <summary>
+            数据权限子表
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysDataAuthorityCustom.SysDataAuthorityId">
+            <summary>
+             SysDataAuthorityId => 备注: 数据权限主表Id
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysDataAuthorityCustom.SysOrganizationId">
+            <summary>
+             SysOrganizationId => 备注: 组织Id
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysDictionary">
+            <summary>
+            数据字典
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysDictionary.Sort">
+            <summary>
+            排序号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysDictionary.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysDictionary.Name">
+            <summary>
+            分组名称/键
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysDictionary.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysDictionary.ParentId">
+            <summary>
+            父级Id
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysFunction">
+            <summary>
+            功能
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysFunction.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysFunction.Name">
+            <summary>
+            功能名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysFunction.ByName">
+            <summary>
+            功能标识
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysFunction.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysMenu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.LevelCode">
+            <summary>
+            级别码 1.1.1
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.Name">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.ComponentName">
+            <summary>
+            Vue组件名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.Url">
+            <summary>
+            菜单物理路径
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.Router">
+            <summary>
+            路由地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.JumpUrl">
+            <summary>
+            默认跳转地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.Icon">
+            <summary>
+            菜单图标
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.ParentId">
+            <summary>
+            父级Id
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.Show">
+            <summary>
+            显示状态 => 显示 | 隐藏
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.Close">
+            <summary>
+            选项卡是否可关闭
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.KeepAlive">
+            <summary>
+            是否缓存 => 是 | 否
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.State">
+            <summary>
+            菜单状态 => 正常 | 停用
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.Type">
+            <summary>
+            菜单类型
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysMenuFunction">
+            <summary>
+            菜单与功能绑定
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenuFunction.Number">
+            <summary>
+            序号
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenuFunction.MenuId">
+            <summary>
+            菜单id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenuFunction.FunctionCode">
+            <summary>
+            功能编码
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenuFunction.FunctionName">
+            <summary>
+            功能名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenuFunction.Remark">
+            <summary>
+            备注
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysOperationLog">
+            <summary>
+            操作日志
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOperationLog.Api">
+            <summary>
+            接口地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOperationLog.Ip">
+            <summary>
+            ip地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOperationLog.Form">
+            <summary>
+            表单信息
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOperationLog.FormBody">
+            <summary>
+            json表单信息
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOperationLog.QueryString">
+            <summary>
+            地址栏信息
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOperationLog.TakeUpTime">
+            <summary>
+            接口耗时（毫秒）
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOperationLog.Browser">
+            <summary>
+            浏览器名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOperationLog.OS">
+            <summary>
+            系统名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOperationLog.UserId">
+            <summary>
+            当前操作人id
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysOrganization">
+            <summary>
+            组织机构
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOrganization.Name">
+            <summary>
+            组织名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOrganization.OrderNumber">
+            <summary>
+            组织排序号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOrganization.LevelCode">
+            <summary>
+            等级码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOrganization.Leader">
+            <summary>
+            负责人
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOrganization.Phone">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOrganization.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOrganization.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOrganization.ParentId">
+            <summary>
+            父级Id
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysPost">
+            <summary>
+            岗位
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysPost.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysPost.Code">
+            <summary>
+            岗位编码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysPost.Name">
+            <summary>
+            岗位名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysPost.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysPost.Remarks">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.StateEnum">
+            <summary>
+            状态 枚举
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysRole">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysRole.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysRole.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysRole.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysRole.DeleteLock">
+            <summary>
+            删除锁 ，如果是 true 则不能删除
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysRoleMenuFunction">
+            <summary>
+            角色菜单功能绑定
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysUser">
+            <summary>
+            系统账号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysUser.Name">
+            <summary>
+            账户名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysUser.LoginName">
+            <summary>
+            登录账号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysUser.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysUser.Phone">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysUser.Email">
+            <summary>
+            账户邮件地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysUser.DeleteLock">
+            <summary>
+            删除锁 ，如果是 true 则不能删除
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysUser.OrganizationId">
+            <summary>
+            组织Id
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysUserPost">
+            <summary>
+            用户鱼岗位绑定表
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysUserPost.UserId">
+            <summary>
+            账户Id
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysUserPost.PostId">
+            <summary>
+            岗位Id
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Framework.SysUserRole">
+            <summary>
+            用户与角色绑定
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Member">
+            <summary>
+            member
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Member.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Member.Name">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Member.Phone">
+            <summary>
+            电话号码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Member.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Member.Birthday">
+            <summary>
+            生日
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Member.Photo">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Member.Introduce">
+            <summary>
+            简介
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Member.FilePath">
+            <summary>
+            文件
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Member.UserId">
+            <summary>
+            账户Id
+            </summary>
+        </member>
+    </members>
+</doc>

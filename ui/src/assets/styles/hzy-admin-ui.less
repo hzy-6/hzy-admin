@@ -1,0 +1,115 @@
+//公共样式
+html {
+    font-family: sans-serif;
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+    -ms-text-size-adjust: 100%;
+    -ms-overflow-style: scrollbar;
+    -webkit-tap-highlight-color: transparent;
+    --antd-wave-shadow-color: #1890ff;
+    --scroll-bar: 0;
+}
+
+body {
+    margin: 0;
+    color: rgba(0, 0, 0, 0.85);
+    font-size: 14px;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol, Noto Color Emoji symbol, noto color emoji;
+    font-variant: tabular-nums;
+    line-height: 1.5715;
+    background-color: #fff;
+    -webkit-font-feature-settings: "tnum";
+    font-feature-settings: "tnum";
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    overflow-y: auto;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    width: 8px;
+    background: rgba(#606266, 0.1);
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: rgba(#606266, 0.8);
+    background-clip: padding-box;
+    min-height: 28px;
+    -webkit-border-radius: 2em;
+    -moz-border-radius: 2em;
+    border-radius: 2em;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(#606266, 1);
+}
+
+// .ant-spin-nested-loading {
+//     min-height: 500px;
+// }
+
+.ant-spin-nested-loading {
+    div {
+        .ant-spin {
+            max-height: 100vh !important;
+        }
+    }
+}
+
+.ant-table-body {
+    overflow: auto;
+}
+
+//success
+.btn-success {
+    color: #fff;
+    background-color: #67c23a;
+    border-color: #67c23a;
+}
+
+.btn-success:hover,
+.btn-success:focus {
+    background: #85ce61;
+    border-color: #85ce61;
+    color: #fff;
+}
+
+//info
+.btn-info {
+    color: #fff;
+    background-color: #909399;
+    border-color: #909399;
+}
+
+.btn-info:hover,
+.btn-info:focus {
+    background: #a6a9ad;
+    border-color: #a6a9ad;
+    color: #fff;
+}
+
+//warning
+.btn-warning {
+    color: #fff;
+    background-color: #e6a23c;
+    border-color: #e6a23c;
+}
+
+.btn-warning:hover,
+.btn-warning:focus {
+    background: #ebb563;
+    border-color: #ebb563;
+    color: #fff;
+}
+
+.vxe-pager {
+    height: auto !important;
+}

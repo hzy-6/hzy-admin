@@ -1,0 +1,109 @@
+﻿@using HZY.Infrastructure;
+@using FreeSql.DatabaseModel;
+@model HZY.Models.DTO.DevelopmentTool.GenContextDto
+@{
+    var className = Model.Name;
+}
+<pre>
+using @(Model.Namespace).Controllers.Admin.ControllersAdmin;
+using @(Model.Namespace).EFCore.Attributes;
+using @(Model.Namespace).EFCore.Models;
+using @(Model.Namespace).Infrastructure;
+using @(Model.Namespace).Infrastructure.Filters;
+using @(Model.Namespace).Infrastructure.Permission.Attributes;
+using @(Model.Namespace).Models.DTO;
+using @(Model.Namespace).Models.Entities;
+using @(Model.Namespace).Models.Entities.Framework;
+using @(Model.Namespace).Repositories.Framework;
+using @(Model.Namespace).Services.Accounts;
+using @(Model.Namespace).Services.Admin.Framework;
+using @(Model.Namespace).Services.Admin.Memebers;
+using @(Model.Namespace).Services.Consts;
+using Microsoft.AspNetCore.Mvc;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace @(Model.Namespace).Controllers.Admin
+{
+    public class @(className)Controller : AdminBaseController<@($"{className}Service")>
+    {
+        public @(className)Controller(@(className)Service defaultService) 
+            : base("请设置菜单Id 系统菜单表中查找",defaultService)
+        {
+        }
+        
+
+        /// <summary>
+        /// 获取列表
+        /// </summary>
+        /// <param name="size">size</param>
+        /// <param name="page">page</param>
+        /// <param name="search">search</param>
+        /// <returns></returns>
+        [ApiResourceCacheFilter(1)]
+        [ActionDescriptor(AdminFunctionConsts.Function_Display)]
+        [HttpPost("FindList/{size}/{page}")]
+        public async Task<@("PagingViewModel")> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] @(className) search)
+        {
+            return await this.DefaultService.FindListAsync(page, size, search);
+        }
+
+        /// <summary>
+        /// 根据id数组删除
+        /// </summary>
+        /// <param name="ids">ids</param>
+        /// <returns></returns>
+        [ActionDescriptor(AdminFunctionConsts.Function_Delete)]
+        [HttpPost("DeleteList")]
+        public async Task<@("bool")> DeleteListAsync([FromBody] List<@("Guid")> ids)
+        {
+            await this.DefaultService.DeleteListAsync(ids);
+            return true;
+        }
+
+        /// <summary>
+        /// 查询表单数据
+        /// </summary>
+        /// <param name="id">id</param>
+        /// <returns></returns>
+        [ActionDescriptor(AdminFunctionConsts.Function_Display)]
+        [HttpGet("FindForm/{id?}")]
+        public Task<@Html.Raw("Dictionary<string, object>")> FindFormAsync([FromRoute] Guid id)
+        {
+            return this.DefaultService.FindFormAsync(id);
+        }
+
+        /// <summary>
+        /// 保存
+        /// </summary>
+        /// <param name="form">form</param>
+        /// <returns></returns>
+        [ActionDescriptor(AdminFunctionConsts.Function_Save)]
+        [ApiCheckModel]
+        [HttpPost("SaveForm")]
+        public Task<@(className)> SaveFormAsync([FromBody] @(className) form)
+        {
+            return this.DefaultService.SaveFormAsync(form);
+        }
+
+        /// <summary>
+        /// 导出Excel
+        /// </summary>
+        /// <param name="search"></param>
+        /// <returns></returns>
+        [ApiResourceCacheFilter(5)]
+        [ActionDescriptor(AdminFunctionConsts.Function_Export)]
+        [HttpPost("ExportExcel")]
+        public async Task<@("FileContentResult")> ExportExcelAsync([FromBody] @(className) search)
+            => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+                $"{Guid.NewGuid()}.xls");
+
+
+
+
+    }
+}
+</pre>

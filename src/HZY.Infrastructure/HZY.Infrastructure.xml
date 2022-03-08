@@ -1,0 +1,1364 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Infrastructure</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Infrastructure.ApiResultManage.ApiResult">
+            <summary>
+            Api 消息返回类
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.ApiResult.ResultMessage(HZY.Infrastructure.ApiResultManage.ApiResultCodeEnum,System.String)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="apiResultCodeEnum"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.ApiResult.ResultData(HZY.Infrastructure.ApiResultManage.ApiResultCodeEnum,System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="apiResultCodeEnum"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.ApiResult.Result(HZY.Infrastructure.ApiResultManage.ApiResultCodeEnum,System.String,System.Object)">
+            <summary>
+            可返回消息和数据
+            </summary>
+            <param name="apiResultCodeEnum"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.ApiResult.ResultMessage(System.Int32,System.String)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.ApiResult.ResultData(System.Int32,System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="code"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.ApiResult.Result(System.Int32,System.String,System.Object)">
+            <summary>
+            可返回消息和数据
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.ApiResult.OkMessage(System.String)">
+            <summary>
+            成功 可返回消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.ApiResult.OkData(System.Object)">
+            <summary>
+            成功 可返回数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.ApiResult.Ok(System.String,System.Object)">
+            <summary>
+            成功 可返回 消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.ApiResult.WarnMessage(System.String)">
+            <summary>
+            警告 可返回消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.ApiResult.WarnData(System.Object)">
+            <summary>
+            警告 可返回数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.ApiResult.Warn(System.String,System.Object)">
+            <summary>
+            警告 可返回 消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.ApiResultManage.ApiResultCodeEnum">
+            <summary>
+            消息返回码
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.ApiResultManage.ApiResultCodeEnum.NotFount">
+            <summary>
+            接口不存在
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.ApiResultManage.ApiResultCodeEnum.Error">
+            <summary>
+            程序错误
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.ApiResultManage.ApiResultCodeEnum.UnAuth">
+            <summary>
+            未授权
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.ApiResultManage.ApiResultCodeEnum.Warn">
+            <summary>
+            警告
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.ApiResultManage.ApiResultCodeEnum.Ok">
+            <summary>
+            成功
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ApiResultManage.MessageBox">
+            <summary>
+            警告消息
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.MessageBox.GetApiResult">
+            <summary>
+            获取 ApiResult
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.MessageBox.Show(System.String)">
+            <summary>
+            输出消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.MessageBox.Show(System.String,System.Object)">
+            <summary>
+            输出消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.ApiResultManage.MessageBox.Show(HZY.Infrastructure.ApiResultManage.ApiResult)">
+            <summary>
+            支持传入 ApiResult 对象
+            </summary>
+            <param name="apiResult"></param>
+        </member>
+        <member name="T:HZY.Infrastructure.AppConfiguration">
+            <summary>
+            程序配置信息映射类 appsettings.json
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.AppConfiguration.Mapping(System.String)">
+            <summary>
+            映射数据 到 属性
+            </summary>
+            <param name="key"></param>
+        </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.DefaultDatabaseType">
+            <summary>
+            默认数据库类型
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.DefaultConnectionString_SqlServer">
+            <summary>
+            sqlserver
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.DefaultConnectionString_MySql">
+            <summary>
+            mysql
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.DefaultConnectionString_PgSql">
+            <summary>
+            pgsql
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.ConnectionStringRedis">
+            <summary>
+            redis 地址
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.AppTitle">
+            <summary>
+            程序标题
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.AuthorizationKeyName">
+            <summary>
+            token 键名
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.AdminRoleId">
+            <summary>
+            超级管理员角色id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.SysMenuId">
+            <summary>
+            系统菜单id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.Namespace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.Controllers.ApiBaseController`1.DefaultService">
+            <summary>
+            默认服务
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.Controllers.ApiBaseController">
+            <summary>
+            控制器服务
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ConvertExtensions">
+            <summary>
+            数据转换扩展
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToStr``1(``0)">
+            <summary>
+            string
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToInt32``1(``0)">
+            <summary>
+            int
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToFloat``1(``0)">
+            <summary>
+            float
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToDouble``1(``0)">
+            <summary>
+            double
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToDecimal``1(``0)">
+            <summary>
+            decimal
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToGuid``1(``0)">
+            <summary>
+            Guid
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToGuidNull``1(``0)">
+            <summary>
+            Guid?
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToGuidStr``1(``0)">
+            <summary>
+            GuidString
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToDateTime``1(``0)">
+            <summary>
+            DateTime
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToDateTimeNull``1(``0)">
+            <summary>
+            DateTime?
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToDateTimeFormat``1(``0,System.String)">
+            <summary>
+            格式的 时间 字符串
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <param name="formatStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToBool``1(``0)">
+            <summary>
+            bool
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToBytes``1(``0)">
+            <summary>
+            byte[]
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="value"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToTime``1(System.Int32)">
+            <summary>
+            时间戳转为C#格式时间
+            </summary>
+            <param name="timeStamp"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.ToTimeInt``1(System.DateTime)">
+            <summary>
+            DateTime时间格式转换为Unix时间戳格式
+            </summary>
+            <param name="time"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.CreateInstance``1">
+            <summary>
+            
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ConvertExtensions.NullSafe``1(``0,``0)">
+            <summary>
+            将 Null 对象转换为 对象的实例
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="model"></param>
+            <param name="defaultInstance">自定义 默认实例</param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.DefaultDatabaseType">
+            <summary>
+            默认数据库类型
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ExpressionTree.ExpressionTreeExtensions">
+            <summary>
+            表达式树扩展
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.ExpressionTree.ExpressionTreeExtensions.Contains``2(System.String,System.Collections.Generic.IEnumerable{``1},System.String)">
+            <summary>
+            生成包含表达式
+            例如：w=> new [] {1,2,3}.Contains(w.Key)
+            </summary>
+            <param name="fieldName"></param>
+            <param name="items"></param>
+            <param name="lambdaParameterName"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ExpressionTree.ExpressionTreeExtensions.Equal``2(System.String,``1,System.String)">
+            <summary>
+            生成等等于表达式
+            例如：w=>w.Key == Guid.Empty
+            </summary>
+            <param name="fieldName"></param>
+            <param name="value"></param>
+            <param name="lambdaParameterName"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TKey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ExpressionTree.ExpressionTreeExtensions.MemberInit``1(``0,System.String)">
+            <summary>
+            对象实例化
+            例如：w => new User{ Name="hzy" }
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ExpressionTree.ExpressionTreeExtensions.And``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            两个拉姆达表达式相连接
+            例如：w=>w.Key == Guid.Empty AND new [] {1,2,3}.Contains(w.Key)
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ExpressionTree.ExpressionTreeExtensions.Or``1(System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+            <summary>
+            两个拉姆达表达式 为或者关系
+            例如：w=>w.Key == Guid.Empty || new [] {1,2,3}.Contains(w.Key)
+            </summary>
+            <param name="left"></param>
+            <param name="right"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ExpressionTree.ExpressionTreeExtensions.Contains``1(System.Type,System.String,System.Collections.Generic.IEnumerable{``0},System.String)">
+            <summary>
+            生成包含表达式
+            例如：w=> new [] {1,2,3}.Contains(w.Key)
+            </summary>
+            <param name="modelType"></param>
+            <param name="fieldName"></param>
+            <param name="items"></param>
+            <param name="lambdaParameterName"></param>
+            <typeparam name="TKey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ExpressionTree.ExpressionTreeExtensions.Equal``1(System.Type,System.String,``0,System.String)">
+            <summary>
+            生成等等于表达式
+            例如：w=>w.Key == Guid.Empty
+            </summary>
+            <param name="modelType"></param>
+            <param name="fieldName"></param>
+            <param name="value"></param>
+            <param name="lambdaParameterName"></param>
+            <typeparam name="TKey"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.ExpressionTree.ReplateParameterExpressionVisitor`1">
+            <summary>
+            将拉姆达参数 w=> 部分修改替换
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="F:HZY.Infrastructure.ExpressionTree.ReplateParameterExpressionVisitor`1._parameterName">
+            <summary>
+            被替换后新的参数名称
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.Filters.ApiCheckModelAttribute">
+            <summary>
+            对接口模型验证
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Filters.ApiCheckModelAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            每次请求Action之前发生，，在行为方法执行前执行
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:HZY.Infrastructure.Filters.ApiExceptionFilter">
+            <summary>
+            异常过滤器
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.Filters.ApiResourceCacheFilterAttribute">
+            <summary>
+            接口资源加载过滤 拦截资源做缓存
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Filters.ApiResourceCacheFilterAttribute.OnResourceExecuting(Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext)">
+            <summary>
+            资源加载之前
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Filters.ApiResourceCacheFilterAttribute.OnResourceExecuted(Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext)">
+            <summary>
+            资源加载之后
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Filters.ApiResourceCacheFilterAttribute.GetCacheKey(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取每个唯一请求的缓存 key
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.Filters.ApiResultFilterAttribute">
+            <summary>
+            Api 结果返回包装器
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Filters.ApiResultFilterAttribute.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)">
+            <summary>
+            结果 返回前
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Filters.ApiResultFilterAttribute.OnResultExecuted(Microsoft.AspNetCore.Mvc.Filters.ResultExecutedContext)">
+            <summary>
+            返回结果后
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:HZY.Infrastructure.MessageQueue.IMessageQueueProvider">
+            <summary>
+            消息队列提供者
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.MessageQueue.IMessageQueueProvider.RunAsync">
+            <summary>
+            启动运行
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.MessageQueue.IMessageQueueProvider.SendMessageQueueAsync(System.String,System.Object,System.Action{System.Object,System.IServiceProvider})">
+            <summary>
+            发布消息队列
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.MessageQueue.MessageQueueProvider">
+            <summary>
+            消息队列提供者
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.MessageQueue.Models.MessageQueueContext.Key">
+            <summary>
+            队列主键
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.MessageQueue.Models.MessageQueueContext.Message">
+            <summary>
+            消息
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.MessageQueue.Models.MessageQueueContext.Call">
+            <summary>
+            队列回调函数
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.NLogService.NLogUtil">
+            <summary>
+            参考地址：  
+                        https://www.cnblogs.com/muyeh/p/9788311.html 
+                        https://www.cnblogs.com/qulianqing/p/7222177.html
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.NLogService.NLogUtil.GetLogger">
+            <summary>
+            日志对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.NLogService.NLogUtil.Write(System.String)">
+            <summary>
+            写入日志
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.NLogService.NLogUtil.WriteDebug(System.String)">
+            <summary>
+            Debug
+            </summary>
+            <param name="text"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.NLogService.NLogUtil.Write(System.String,System.Exception)">
+            <summary>
+            写入日志
+            </summary>
+            <param name="text"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.NLogService.NLogUtil.WriteError(System.Exception,System.String,System.Action{System.Text.StringBuilder})">
+            <summary>
+            写入日志
+            </summary>
+            <param name="exception"></param>
+            <param name="userHostAddress"></param>
+            <param name="callBack"></param>
+        </member>
+        <member name="T:HZY.Infrastructure.ObjectMapper">
+            <summary>
+            对象映射类
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.ObjectMapper.MapTo``2(``0)">
+            <summary>
+            copy object
+            </summary>
+            <typeparam name="TOld">旧对象类型</typeparam>
+            <typeparam name="TNew">新复制对象类型</typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ObjectMapper.MapToList``2(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            copy list
+            </summary>
+            <typeparam name="TOld">旧对象类型</typeparam>
+            <typeparam name="TNew">新复制对象类型</typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.Permission.Attributes.ActionDescriptorAttribute">
+            <summary>
+            action 功能模块描述
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.Permission.Attributes.ActionDescriptorAttribute._functionName">
+            <summary>
+            功能名称
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Permission.Attributes.ActionDescriptorAttribute.GetFunctionName">
+            <summary>
+            获取功能名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.Permission.Attributes.ControllerDescriptorAttribute">
+            <summary>
+            控制器 接口 描述
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.Permission.Attributes.ControllerDescriptorAttribute._menuId">
+            <summary>
+            用于接口权限鉴定 菜单id
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Permission.Attributes.ControllerDescriptorAttribute.#ctor(System.String)">
+            <summary>
+            控制器描述
+            </summary>
+            <param name="menuId">用于接口权限鉴定 菜单id</param>
+        </member>
+        <member name="M:HZY.Infrastructure.Permission.Attributes.ControllerDescriptorAttribute.GetMenuId">
+            <summary>
+            获取菜单 Id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.Permission.IApiPermissionController">
+            <summary>
+            用于获取权限所需要的菜单等一些信息，约束控制器
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.Quartz.IDataService">
+            <summary>
+            文件数据服务
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.IDataService.Init(System.String)">
+            <summary>
+            初始化配置
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.IDataService.ReadDataAsync``1">
+            <summary>
+            读取文件
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.IDataService.WriteDataAsync``1(``0)">
+            <summary>
+            写入文件
+            </summary>
+            <param name="contents"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.Quartz.IJobLoggerService">
+            <summary>
+            Job 运行 日志
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.Quartz.Impl.ApiRequestService">
+            <summary>
+            WebApi 请求服务
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.Impl.ApiRequestService.RequestAsync(HZY.Quartz.Entitys.TasksRequsetModeEnum,System.String,System.String)">
+            <summary>
+            请求数据
+            </summary>
+            <param name="requsetMode"></param>
+            <param name="apiUrl"></param>
+            <param name="headerKeyValue"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.Quartz.Impl.DataService">
+            <summary>
+            数据服务
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.Impl.DataService.ReadDataAsync``1">
+            <summary>
+            读取数据
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.Impl.DataService.WriteDataAsync``1(``0)">
+            <summary>
+            写入数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.Quartz.Impl.JobLoggerService">
+            <summary>
+            Job 运行 日志
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.Quartz.Impl.QuartzJobService">
+            <summary>
+            任务调度服务
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.Impl.QuartzJobService.RunAsync(HZY.Quartz.Entitys.Tasks)">
+            <summary>
+            开始运行一个调度器
+            </summary>
+            <param name="tasks"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.Impl.QuartzJobService.CloseAsync(HZY.Quartz.Entitys.Tasks)">
+            <summary>
+            关闭调度器
+            </summary>
+            <param name="tasks"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.Quartz.Impl.TaskService">
+            <summary>
+            任务服务
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.Impl.TaskService.FindByIdAsync(System.Guid)">
+            <summary>
+            根据Id 查询 任务
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.Impl.TaskService.RunByIdAsync(System.Guid)">
+            <summary>
+            根据任务id 运行任务调度
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.Impl.TaskService.CloseByIdAsync(System.Guid)">
+            <summary>
+            根据任务id 关闭任务调度
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.Impl.TaskService.UpdateExecuteTime(System.Guid,System.DateTime)">
+            <summary>
+            更新执行时间
+            </summary>
+            <param name="tasksId"></param>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.Impl.TaskService.IsValidExpression(System.String)">
+            <summary>
+            验证 Cron 表达式是否有效
+            </summary>
+            <param name="cronExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.Impl.TaskService.RecoveryTaskAsync">
+            <summary>
+            对任务数据 状态 重置 恢复运行状态
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.IQuartzJobService.RunAsync(HZY.Quartz.Entitys.Tasks)">
+            <summary>
+            开始运行一个任务调度器
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.IQuartzJobService.CloseAsync(HZY.Quartz.Entitys.Tasks)">
+            <summary>
+            关闭任务调度
+            </summary>
+            <param name="tasks"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.Quartz.ITaskService">
+            <summary>
+            任务 Job 服务
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.ITaskService.FindListAsync(System.String)">
+            <summary>
+            查询列表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.ITaskService.SaveAsync(HZY.Quartz.Entitys.Tasks)">
+            <summary>
+            保存数据
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.ITaskService.DeleteAsync(System.Collections.Generic.List{System.Guid})">
+            <summary>
+            删除数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.ITaskService.FindByIdAsync(System.Guid)">
+            <summary>
+            根据Id 查询 任务
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.ITaskService.RunByIdAsync(System.Guid)">
+            <summary>
+            根据任务id 运行任务调度
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.ITaskService.CloseByIdAsync(System.Guid)">
+            <summary>
+            根据任务id 关闭任务调度
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.ITaskService.UpdateExecuteTime(System.Guid,System.DateTime)">
+            <summary>
+            更新执行时间
+            </summary>
+            <param name="tasksId"></param>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Quartz.ITaskService.RecoveryTaskAsync">
+            <summary>
+            恢复任务
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.RazorView.IRazorViewRender.RenderAsync(System.String,System.Object)">
+            <summary>
+            渲染 razor cshtml
+            </summary>
+            <param name="viewName">例如： /wwwroot/Root/Service.cshtml</param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.RazorView.IRazorViewRender.RenderByDictionaryAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            渲染 razor cshtml
+            </summary>
+            <param name="viewName">例如： /wwwroot/Root/Service.cshtml</param>
+            <param name="viewData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.RazorView.IRazorViewRender.RenderAsync(System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            渲染 razor cshtml
+            </summary>
+            <param name="viewName">例如： /wwwroot/Root/Service.cshtml</param>
+            <param name="model"></param>
+            <param name="viewData"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.RazorView.RazorViewRender">
+            <summary>
+            razor cshtml 模板渲染
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ReadXmlSummary">
+            <summary>
+            读取 xml 摘要
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ScanDIService.Attributes.DIServiceAttribute">
+            <summary>
+            服务标记 用于 程序 启动 扫描到后自动 注册服务
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.ScanDIService.Attributes.DIServiceAttribute.IgnoreCurrent">
+            <summary>
+            忽略当前 对象 服务
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ScanDIService.DIServiceScanningExtensions">
+            <summary>
+            服务扫描扩展
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.ScanDIService.DIServiceScanningExtensions.ScanningAppServices(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            扫描服务 自动注入服务
+            </summary>
+            <param name="serviceCollection"></param>
+            <param name="assemblyFilter"></param>
+            <exception cref="T:System.NotSupportedException"></exception>
+        </member>
+        <member name="M:HZY.Infrastructure.ScanDIService.DIServiceScanningExtensions.GetAssemblyList(System.Func{System.Reflection.Assembly,System.Boolean})">
+            <summary>
+            获取所有的 程序集
+            </summary>
+            <param name="where"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.ScanDIService.DIServiceScanningProvider">
+            <summary>
+            扫描服务
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.ScanDIService.DIServiceScanningProvider.Start(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+            <summary>
+            开始扫描
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.ScanDIService.DIServiceScanningProvider.ScanningAppServiceAttribute(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.Type)">
+            <summary>
+            扫描特性 class
+            </summary>
+            <param name="serviceCollection"></param>
+            <param name="classType"></param>
+        </member>
+        <member name="T:HZY.Infrastructure.ScanDIService.Enums.DIType">
+            <summary>
+            依赖注入类型
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ScanDIService.Interface.IDiScoped">
+            <summary>
+            注册 Scoped
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ScanDIService.Interface.IDiScopedSelf">
+            <summary>
+            注册 Scoped 自身实现类
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ScanDIService.Interface.IDiSingleton">
+            <summary>
+             注册 Singleton
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ScanDIService.Interface.IDiSingletonSelf">
+            <summary>
+             注册 Singleton 自身实现类
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ScanDIService.Interface.IDiTransient">
+            <summary>
+             注册 Transient
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ScanDIService.Interface.IDiTransientSelf">
+            <summary>
+             注册 Transient 自身实现类
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ServiceProviderExtensions">
+            <summary>
+            服务提供者扩展
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.ServiceProviderExtensions.RegisterServiceProvider(System.IServiceProvider)">
+            <summary>
+            注册 服务提供者
+            </summary>
+            <param name="serviceProvider"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.ServiceProviderExtensions.GetServiceProvider">
+            <summary>
+            获取服务提供者
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.ServiceProviderExtensions.CreateScope">
+            <summary>
+            创建服务域
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.Services.FrameworkBaseService`1">
+            <summary>
+            服务层 基类
+            </summary>
+            <typeparam name="TRepository">默认仓储 类型</typeparam>
+        </member>
+        <member name="F:HZY.Infrastructure.Services.FrameworkBaseService`1.Repository">
+            <summary>
+            默认 仓储
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.TextJson.DateTimeJsonConverter">
+            <summary>
+            Json时间转化器
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.TextJson.DateTimeNullJsonConverter">
+            <summary>
+            Json时间转化器
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.Token.JwtTokenUtil">
+            <summary>
+            JWT是由 . 分割的三部分组成：
+            头部(Header)
+            载荷(Payload) : 这一部分是JWT主要的信息存储部分，其中包含了许多种的声明（claims）。
+            签名(Signature)：使用保存在服务端的秘钥对其签名，用来验证发送者的JWT的同时也能确保在期间不被篡改。
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.Token.TokenService">
+            <summary>
+            token 服务
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Token.TokenService.CreateTokenByAccountId(System.Guid)">
+            <summary>
+            根据 id 创建token
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Token.TokenService.HasTokenString">
+            <summary>
+            检查是否有Token字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Token.TokenService.GetTokenString">
+            <summary>
+            获取 token 字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Token.TokenService.GetAccountIdByToken">
+            <summary>
+            获取 token 并得到 id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            是否 Ajax 请求
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.IsJsonRequest(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            是否 Json 请求 content-type=application/json
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.IsHtmlRequest(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            是否为 html 网页请求
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.Md5Encrypt(System.String)">
+            <summary>
+            MD5加密
+            </summary>
+            <param name="str">要加密的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.DESEncrypt(System.String,System.String)">
+            <summary> 
+            DES加密字符串 
+            </summary> 
+            <param name="encryptString">待加密的字符串</param> 
+            <param name="encryptKey">加密密钥,要求为16位</param> 
+            <returns>加密成功返回加密后的字符串，失败返回源串</returns> 
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.DESDecrypt(System.String,System.String)">
+            <summary> 
+            DES解密字符串 
+            </summary> 
+            <param name="decryptString">待解密的字符串</param> 
+            <param name="decryptKey">解密密钥,要求为16位,和加密密钥相同</param> 
+            <returns>解密成功返回解密后的字符串，失败返源串</returns> 
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.GetSjs(System.Int32)">
+            <summary>
+            随机数
+            </summary>
+            <param name="length">随机数长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.GetWeekByDate(System.DateTime)">
+            <summary>
+            根据日期获取星期几
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.GetWeekNumInMonth(System.DateTime)">
+            <summary>
+            得到这个月的第几周
+            </summary>
+            <param name="daytime">年月日</param>
+            <returns>传递过来的时间是第几周</returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.Serialize``1(``0)">
+            <summary>
+            将对象序列化为Json字符串
+            </summary>
+            <param name="obj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.Deserialize``1(System.String)">
+            <summary>
+            将 Json 字符串转换为 指定的对象
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.Deserialize(System.String)">
+            <summary>
+            将 Json 字符串转换为 object对象
+            </summary>
+            <param name="json"></param>
+            <returns></returns>
+        </member>
+        <member name="F:HZY.Infrastructure.Tools.GetFileContentType">
+            <summary>
+            获取文件Content-Type
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.PackageManyZip(System.Collections.Generic.Dictionary{System.String,System.IO.Stream})">
+            <summary>
+            将多个流进行zip压缩，返回压缩后的流
+            </summary>
+            <param name="streams">key：文件名；value：文件名对应的要压缩的流</param>
+            <returns>压缩后的流</returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.SetCookie(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String,System.Nullable{System.Int32})">
+            <summary>
+            写入Cookie
+            </summary>
+            <param name="httpContext"></param>
+            <param name="key">键</param>
+            <param name="value">值</param>
+            <param name="expires">过期时长</param>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.GetCookie(Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            <summary>
+            读Cookie值
+            </summary>
+            <param name="httpContext"></param>
+            <param name="key">cookies名称</param>
+            <returns>返回的cookies</returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.RemoveCookie(Microsoft.AspNetCore.Http.HttpContext,System.String)">
+            <summary>
+            删除Cookie对象
+            </summary>
+            <param name="httpContext"></param>
+            <param name="key">Cookie对象名称</param>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.FirstCharToLower(System.String)">
+            <summary>
+            首字母小写写
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.FirstCharToUpper(System.String)">
+            <summary>
+            首字母大写
+            </summary>
+            <param name="input"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.GetBrowserClientInfo(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取浏览器客户端信息
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.StringToBytes(System.String)">
+            <summary>
+            将16
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.BytesToString(System.Byte[])">
+            <summary>
+            byte 数组 转化为 string
+            </summary>
+            <param name="reb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Tools.DownLoadFile(Microsoft.AspNetCore.Http.HttpContext,System.Byte[],System.String,System.String)">
+            <summary>
+            通过 httpcontext 下载文件
+            </summary>
+            <param name="httpContext"></param>
+            <param name="fileContents"></param>
+            <param name="contentType"></param>
+            <param name="fileDownloadName"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.Zip">
+            <summary>
+            压缩 zip  https://www.cnblogs.com/xielong/p/6165550.html
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Zip.UnZip(System.String,System.String)">
+            <summary>
+            解压
+            </summary>
+            <param name="zipFile">压缩包文件名</param>
+            <param name="targetPath">解压缩目标路径</param>
+        </member>
+        <member name="T:HZY.Quartz.Service.Jobs.ResultfulApiJob">
+            <summary>
+            Resultful 风格 Api Job
+            </summary>
+        </member>
+        <member name="T:HZY.Quartz.Service.Jobs.ResultfulApiJobFactory">
+            <summary>
+            IJob 对象无法构造注入 需要此类实现 返回 注入后得 Job 实例
+            </summary>
+        </member>
+        <member name="T:HZY.Quartz.Entitys.JobLoggerInfo">
+            <summary>
+            任务日志信息
+            </summary>
+        </member>
+        <member name="T:HZY.Quartz.Entitys.Tasks">
+            <summary>
+            定时任务
+            </summary>
+        </member>
+        <member name="P:HZY.Quartz.Entitys.Tasks.Id">
+            <summary>
+            Id
+            </summary>
+        </member>
+        <member name="P:HZY.Quartz.Entitys.Tasks.Name">
+            <summary>
+            任务名称
+            </summary>
+        </member>
+        <member name="P:HZY.Quartz.Entitys.Tasks.GroupName">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:HZY.Quartz.Entitys.Tasks.Cron">
+            <summary>
+            间隔表达式
+            </summary>
+        </member>
+        <member name="P:HZY.Quartz.Entitys.Tasks.ApiUrl">
+            <summary>
+            请求地址
+            </summary>
+        </member>
+        <member name="P:HZY.Quartz.Entitys.Tasks.HeaderToken">
+            <summary>
+            请求 token 密钥
+            </summary>
+        </member>
+        <member name="P:HZY.Quartz.Entitys.Tasks.RequsetMode">
+            <summary>
+            请求方式
+            </summary>
+        </member>
+        <member name="P:HZY.Quartz.Entitys.Tasks.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:HZY.Quartz.Entitys.Tasks.State">
+            <summary>
+            运行状态
+            </summary>
+        </member>
+        <member name="P:HZY.Quartz.Entitys.Tasks.ExecuteTime">
+            <summary>
+            执行时间
+            </summary>
+        </member>
+        <member name="P:HZY.Quartz.Entitys.Tasks.CreateTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:HZY.Quartz.Entitys.TasksRequsetModeEnum">
+            <summary>
+            请求方式
+            </summary>
+        </member>
+        <member name="T:HZY.Quartz.Entitys.TasksStateEnum">
+            <summary>
+            状态情况
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.Redis.RedisService">
+            <summary>
+            Redis 服务类
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.Redis.RedisService.Database">
+            <summary>
+            get database
+            </summary>
+        </member>
+    </members>
+</doc>
