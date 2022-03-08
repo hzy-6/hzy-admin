@@ -5,7 +5,7 @@ specifiers:
   '@antv/g2': ^4.1.47
   '@antv/g2plot': ^2.4.9
   '@vitejs/plugin-vue': ^2.2.4
-  ant-design-vue: 3.0.0-beta.12
+  ant-design-vue: 3.0.0-beta.13
   axios: ^0.26.0
   core-js: ^3.21.1
   dayjs: ^1.10.8
@@ -27,7 +27,7 @@ dependencies:
   '@ant-design/icons-vue': 6.0.1_vue@3.2.31
   '@antv/g2': 4.1.47
   '@antv/g2plot': 2.4.9
-  ant-design-vue: 3.0.0-beta.12_vue@3.2.31
+  ant-design-vue: 3.0.0-beta.13_vue@3.2.31
   axios: 0.26.0
   core-js: 3.21.1
   dayjs: 1.10.8
@@ -432,8 +432,8 @@ packages:
     engines: {node: '>=0.10.0'}
     dev: false
 
-  /ant-design-vue/3.0.0-beta.12_vue@3.2.31:
-    resolution: {integrity: sha512-mS6G72rDB+oLkYAI6Cxv9Q4xtfssAkRRmbvN1Bu3C4JMGvbNcFuq03iJvFnZt9SPwGiLpQHLXCtlFHL9/9Bkcg==}
+  /ant-design-vue/3.0.0-beta.13_vue@3.2.31:
+    resolution: {integrity: sha512-+8AoxRqLaoP77Tt9eLvNwe3MY2c646APYEQ4Q/pSg5BWW/Jj2S5N+hdUSI1TZB19sEGjPdZ2wvdJxZppfyGadg==}
     peerDependencies:
       vue: '>=3.2.0'
     dependencies:
