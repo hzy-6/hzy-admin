@@ -1,5 +1,7 @@
 # HzyAdmin
 
+### MVC版本：https://gitee.com/hzy6/HzyAdmin/tree/MVC/
+
 ####  文档 : https://gitee.com/hzy6/HzyAdmin/wikis/pages
 
 #### WebApi 任务调度平台
