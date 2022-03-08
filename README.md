@@ -1,6 +1,6 @@
-# HzyAdminSpa
+# HzyAdmin
 
-####  文档 : https://gitee.com/hzy6/HzyAdminSpa/wikis/pages
+####  文档 : https://gitee.com/hzy6/HzyAdmin/wikis/pages
 
 #### WebApi 任务调度平台
 https://gitee.com/hzy6/hzy-quartz
