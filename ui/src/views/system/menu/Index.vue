@@ -61,6 +61,9 @@
         <vxe-table
           class="mt-24"
           ref="refTable"
+          size="medium"
+          border
+          stripe
           resizable
           :data="table.data"
           :row-config="{ isHover: true }"

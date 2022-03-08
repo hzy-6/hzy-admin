@@ -38,7 +38,17 @@
         </a-col>
       </a-row>
 
-      <vxe-table class="mt-24" ref="refTable" resizable :data="table.data" :row-config="{ isHover: true }" :tree-config="{ transform: true, rowField: 'id', parentField: 'parentId' }">
+      <vxe-table
+        class="mt-24"
+        ref="refTable"
+        size="medium"
+        border
+        stripe
+        resizable
+        :data="table.data"
+        :row-config="{ isHover: true }"
+        :tree-config="{ transform: true, rowField: 'id', parentField: 'parentId' }"
+      >
         <vxe-column field="name" title="部门名称" tree-node></vxe-column>
         <vxe-column field="orderNumber" title="排序号"></vxe-column>
         <vxe-column field="levelCode" title="级别码"></vxe-column>
