@@ -1,9 +1,13 @@
-# HzyAdminSpa
+# HzyAdmin
 
-####  文档 : https://gitee.com/hzy6/HzyAdminSpa/wikis/pages
+### MVC版本
+    https://gitee.com/hzy6/HzyAdmin/tree/MVC/
+
+###   文档
+    https://gitee.com/hzy6/HzyAdmin/wikis/pages
 
 #### WebApi 任务调度平台
-https://gitee.com/hzy6/hzy-quartz
+    https://gitee.com/hzy6/hzy-quartz
 
 #### 📝  介绍 
 前后分离,后台通配权限管理系统！
