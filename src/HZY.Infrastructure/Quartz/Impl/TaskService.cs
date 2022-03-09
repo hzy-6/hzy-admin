@@ -273,7 +273,7 @@ namespace HZY.Infrastructure.Quartz.Impl
                     Id = Guid.NewGuid(),
                     CreateTime = DateTime.Now,
                     ApiUrl = "http://localhost:5600/api/job/JobTest/Test",
-                    Cron = "0/10 * * * * ?",
+                    Cron = "0/59 * * * * ?",
                     ExecuteTime = DateTime.Now,
                     Name = "默认测试接口",
                     GroupName = "TEST",
@@ -302,6 +302,7 @@ namespace HZY.Infrastructure.Quartz.Impl
                         _logger.LogError(ex, $"自动开启任务错误 [{DateTime.Now}] : {ex.Message}");
                     }
 
+                    continue;
                 }
             }
 

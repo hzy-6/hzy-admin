@@ -16,7 +16,7 @@ namespace HZY.Infrastructure.Quartz.Impl
     {
         private ConcurrentBag<JobLoggerInfo> jobLoggerInfos;
         private string JobLoggerKey = "HZY.Infrastructure.Quartz:JobLogger";
-        private long ListMaxValue = 999999;//集合最大值
+        private long ListMaxValue = 9999;//集合最大值
         private readonly IRedisService _redisService;
 
         public JobLoggerService(IRedisService redisService)
