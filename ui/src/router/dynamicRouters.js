@@ -60,17 +60,15 @@ export default function getDynamicRouters(data) {
     allRouters = []
     createDynamicRouters(data);
     let hasRouteLayout = router.hasRoute("dynamicLayout");
-    if (!hasRouteLayout) {
-        router.addRoute({
-            name: 'dynamicLayout',
-            path: '',
-            redirect: '/home',
-            component: () =>
-                import('@/components/layout/Layout.vue'),
-            children: dynamicRouters
-        });
-    }
-
+    if (hasRouteLayout) router.removeRoute("dynamicLayout");
+    router.addRoute({
+        name: 'dynamicLayout',
+        path: '',
+        redirect: '/home',
+        component: () =>
+            import('@/components/layout/Layout.vue'),
+        children: dynamicRouters
+    });
     //将所有的路由信息记录到 全局状态 中
     var appStore = useAppStore();
     appStore.state.allRouters = allRouters;
