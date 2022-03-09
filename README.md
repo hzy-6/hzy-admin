@@ -1,13 +1,13 @@
 # HzyAdmin
 
 #### MVC版本
-    [https://gitee.com/hzy6/HzyAdmin/tree/MVC/](https://gitee.com/hzy6/HzyAdmin/tree/MVC/)
+[https://gitee.com/hzy6/HzyAdmin/tree/MVC/](https://gitee.com/hzy6/HzyAdmin/tree/MVC/)
 
 ####   文档
-    [https://gitee.com/hzy6/HzyAdmin/wikis/pages](https://gitee.com/hzy6/HzyAdmin/wikis/pages)
+[https://gitee.com/hzy6/HzyAdmin/wikis/pages](https://gitee.com/hzy6/HzyAdmin/wikis/pages)
 
 #### WebApi 任务调度平台
-    [https://gitee.com/hzy6/hzy-quartz](https://gitee.com/hzy6/hzy-quartz)
+[https://gitee.com/hzy6/hzy-quartz](https://gitee.com/hzy6/hzy-quartz)
 
 #### QQ交流群
     534584927
