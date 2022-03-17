@@ -1,10 +1,10 @@
 <template>
   <a-modal v-model:visible="visible" title="详情" centered @ok="visible = false" width="70%">
     <template #footer>
-      <a-button type="danger" ghost @click="visible = false" class="ml-24">关闭</a-button>
+      <a-button type="danger" ghost @click="visible = false" class="ml-15">关闭</a-button>
     </template>
     <a-spin :spinning="saveLoading">
-      <a-row :gutter="[24, 24]">
+      <a-row :gutter="[15, 15]">
         <a-descriptions bordered class="text-Center w100">
           <!-- :column="{ xxl: 3, xl: 3, lg: 3, md: 3, sm: 1, xs: 1 }" -->
           <a-descriptions-item label="请求接口" style="width: 150px" span="3">

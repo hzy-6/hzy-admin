@@ -2,7 +2,7 @@
   <a-modal v-model:visible="visible" :title="vm.id ? '编辑' : '新建'" centered @ok="visible = false" :width="800">
     <template #footer>
       <a-button type="primary" @click="saveForm()" :loading="saveLoading">提交</a-button>
-      <a-button type="danger" ghost @click="visible = false" class="ml-24">关闭</a-button>
+      <a-button type="danger" ghost @click="visible = false" class="ml-15">关闭</a-button>
     </template>
     <a-spin :spinning="saveLoading">
       <a-form layout="vertical" :model="vm.form">

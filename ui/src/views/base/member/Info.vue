@@ -2,11 +2,11 @@
   <a-modal v-model:visible="visible" :title="vm.id ? '编辑' : '新建'" centered @ok="visible = false" :width="1200">
     <template #footer>
       <a-button type="primary" @click="saveForm()" :loading="saveLoading">提交</a-button>
-      <a-button type="danger" ghost @click="visible = false" class="ml-24">关闭</a-button>
+      <a-button type="danger" ghost @click="visible = false" class="ml-15">关闭</a-button>
     </template>
     <a-spin :spinning="saveLoading">
       <a-form layout="vertical" :model="vm.form">
-        <a-row :gutter="[24, 24]">
+        <a-row :gutter="[15, 15]">
           <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
             <a-form-item label="编号">
               <a-input v-model:value="vm.form.number" placeholder="请输入" />

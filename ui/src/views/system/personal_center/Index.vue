@@ -1,6 +1,6 @@
 <template>
-  <div class="p-24">
-    <a-row :gutter="[24, 24]">
+  <div>
+    <a-row :gutter="[15, 15]">
       <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <a-card class="min-height">
           <a-descriptions title="基础信息" bordered>

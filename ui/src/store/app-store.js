@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
 import router from "@/router";
-import { useTabsStore } from "@/store/";
+import { useTabsStore } from "@/store";
+import userService from "@/service/system/userService";
 
 const appStore = defineStore("app-store", () => {
 
@@ -129,7 +130,7 @@ const appStore = defineStore("app-store", () => {
     function resetInfo() {
         setUserInfo(defaultUserInfo);
         tabsStore.state.tabs = [];
-        tabsStore.cacheViewMethods.delCacheViewAll();
+        tabsStore.delCacheViewAll();
     }
 
     return {

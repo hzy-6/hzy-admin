@@ -1,14 +1,14 @@
 <template>
   <a-modal v-model:visible="visible" centered width="1200px" :bodyStyle="{ overflowY: 'auto', height: 'calc(100vh - 100px)' }" :footer="null">
     <template #title>
-      <span class="mr-24">角色功能设置</span>
+      <span class="mr-15">角色功能设置</span>
       <a-button type="primary" @click="save">保存/提交</a-button>
     </template>
     <a-spin :spinning="loading">
       <vxe-table ref="refTable" resizable :data="data" :row-config="{ isHover: true }" :tree-config="{ transform: true, rowField: 'id', parentField: 'parentId' }" size="small">
         <vxe-column field="name" title="菜单名称" tree-node width="250">
           <template #default="{ row }">
-            <span class="mr-24">{{ row.name }}</span>
+            <span class="mr-15">{{ row.name }}</span>
             <a-checkbox v-model:checked="row.checkAll" :indeterminate="row.indeterminate" @change="(e) => onCheckAllChange(e, row)" v-if="row.menuFunctions.length > 0"> 全选 </a-checkbox>
           </template>
         </vxe-column>
@@ -16,7 +16,7 @@
           <template #default="{ row }">
             <template v-if="row.menuFunctions.length > 0">
               <a-checkbox-group style="display: block" v-model:value="row.checkedMenuFunctionIds" @change="(values) => onChangeCheckbox({ values, row })">
-                <span v-for="item in row.menuFunctions" :key="item.id" class="mr-24">
+                <span v-for="item in row.menuFunctions" :key="item.id" class="mr-15">
                   <a-checkbox :value="item.id">{{ item.label }}</a-checkbox>
                 </span>
               </a-checkbox-group>

@@ -2,13 +2,13 @@
   <a-modal v-model:visible="visible" :title="vm.id ? '编辑' : '新建'" centered @ok="visible = false" width="1000px" :bodyStyle="{ overflowY: 'auto', height: 'calc(100vh - 150px)' }">
     <template #footer>
       <a-button type="primary" @click="saveForm()" :loading="saveLoading">提交</a-button>
-      <a-button type="danger" ghost @click="visible = false" class="ml-24">关闭</a-button>
+      <a-button type="danger" ghost @click="visible = false" class="ml-15">关闭</a-button>
     </template>
     <a-spin :spinning="saveLoading">
       <a-tabs v-model:activeKey="activeKey">
         <a-tab-pane key="1" tab="基础数据设置">
           <a-form layout="vertical" :model="vm.form">
-            <a-row :gutter="[24, 24]">
+            <a-row :gutter="[15, 15]">
               <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
                 <a-form-item label="选项类型">
                   <a-radio-group v-model:value="vm.form.type">
@@ -178,10 +178,10 @@
               </template>
             </a-table-column>
           </a-table>
-          <div class="text-center p-24">
+          <div class="text-center p-15">
             <a-button type="primary" @click="addRow()">添加一行</a-button>
-            <a-button class="ml-24" @click="defaultRows">使用默认功能集</a-button>
-            <a-button class="ml-24" @click="defaultDisplayRows">使用显示功能</a-button>
+            <a-button class="ml-15" @click="defaultRows">使用默认功能集</a-button>
+            <a-button class="ml-15" @click="defaultDisplayRows">使用显示功能</a-button>
           </div>
         </a-tab-pane>
       </a-tabs>

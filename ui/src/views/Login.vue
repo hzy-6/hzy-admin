@@ -31,7 +31,7 @@
 </template>
 <script>
 import { defineComponent, reactive, toRefs, ref, onMounted } from "vue";
-import { useLayoutStore } from "@/store";
+import { useLayoutStore, useAppStore } from "@/store";
 import AppIcon from "@/components/AppIcon.vue";
 import router from "@/router/index";
 import tools from "@/scripts/tools";
@@ -49,6 +49,7 @@ export default defineComponent({
     const loading = ref(false);
 
     const layoutStore = useLayoutStore();
+    const appStore = useAppStore();
     const title = layoutStore.state.title;
 
     const methods = {

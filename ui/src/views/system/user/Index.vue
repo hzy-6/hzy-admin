@@ -1,8 +1,8 @@
 <template>
-  <div class="p-24">
-    <a-row :gutter="[24, 24]">
+  <div>
+    <a-row :gutter="[15, 15]">
       <a-col :xs="24" :sm="12" :md="12" :lg="5" :xl="5">
-        <a-card title="组织架构" class="w100 mb-24 min-height">
+        <a-card title="组织架构" class="w100 mb-15 min-height">
           <template #extra>
             <a href="javascript:void(0)" @click="getFirst">查看一级</a>
           </template>
@@ -12,8 +12,8 @@
         </a-card>
       </a-col>
       <a-col :xs="24" :sm="12" :md="12" :lg="19" :xl="19">
-        <a-card class="mb-24" v-show="table.search.state">
-          <a-row :gutter="[24, 24]">
+        <a-card class="mb-15" v-show="table.search.state">
+          <a-row :gutter="[15, 15]">
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
               <a-input v-model:value="table.search.vm.name" placeholder="真实名称" />
             </a-col>
@@ -22,22 +22,22 @@
             </a-col>
             <!--button-->
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
-              <a-button type="primary" class="mr-24" @click="findList">查询</a-button>
-              <a-button class="mr-24" @click="onResetSearch">重置</a-button>
+              <a-button type="primary" class="mr-15" @click="findList">查询</a-button>
+              <a-button class="mr-15" @click="onResetSearch">重置</a-button>
             </a-col>
           </a-row>
         </a-card>
         <a-card>
-          <a-row :gutter="[24, 24]">
+          <a-row :gutter="[15, 15]">
             <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
               <template v-if="power.search">
-                <a-button class="mr-24" @click="table.search.state = !table.search.state">
+                <a-button class="mr-15" @click="table.search.state = !table.search.state">
                   <div v-if="table.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
                   <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
                 </a-button>
               </template>
               <template v-if="power.insert">
-                <a-button type="primary" class="mr-24" @click="openForm()">
+                <a-button type="primary" class="mr-15" @click="openForm()">
                   <template #icon>
                     <AppIcon name="PlusOutlined" />
                   </template>
@@ -46,7 +46,7 @@
               </template>
               <template v-if="power.delete">
                 <a-popconfirm title="您确定要删除吗?" @confirm="deleteList()" okText="确定" cancelText="取消">
-                  <a-button type="danger" class="mr-24">
+                  <a-button type="danger" class="mr-15">
                     <template #icon>
                       <AppIcon name="DeleteOutlined" />
                     </template>
@@ -72,7 +72,7 @@
           <!-- 表格 -->
           <a-spin :spinning="table.loading">
             <vxe-table
-              class="mt-24"
+              class="mt-15"
               ref="refTable"
               size="medium"
               border
@@ -107,7 +107,7 @@
               </vxe-column>
             </vxe-table>
             <vxe-pager
-              class="mt-24"
+              class="mt-15"
               background
               v-model:current-page="table.page"
               v-model:page-size="table.rows"

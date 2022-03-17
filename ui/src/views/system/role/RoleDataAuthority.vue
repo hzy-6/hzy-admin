@@ -2,7 +2,7 @@
   <a-modal v-model:visible="visible" title="数据权限设置" centered @ok="visible = false" :width="400" :bodyStyle="{ overflowY: 'auto', height: 'calc(100vh - 300px)' }">
     <template #footer>
       <a-button type="primary" @click="saveForm()" :loading="saveLoading">提交</a-button>
-      <a-button type="danger" ghost @click="visible = false" class="ml-24">关闭</a-button>
+      <a-button type="danger" ghost @click="visible = false" class="ml-15">关闭</a-button>
     </template>
     <a-spin :spinning="loading">
       <!-- <a-divider>数据权限类型</a-divider> -->
@@ -17,7 +17,7 @@
       <!-- 自定义选择组织 -->
       <div v-if="form.sysDataAuthority.permissionType === 1">
         <a-divider>自定义数据权限</a-divider>
-        <div class="mb-24">
+        <div class="mb-15">
           <a-checkbox v-model:checked="selectAll" @change="onSelectAll()">全选/全不选</a-checkbox>
           <a-checkbox v-model:checked="expandedAll" @change="onExpandedAll()">展开/折叠</a-checkbox>
         </div>
