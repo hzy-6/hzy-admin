@@ -23,14 +23,14 @@
         <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
           <template v-if="power.search">
             <a-button class="mr-24" @click="table.search.state = !table.search.state">
-              <div v-if="table.search.state"><AppIcons name="UpOutlined" />&nbsp;&nbsp;收起</div>
-              <div v-else><AppIcons name="DownOutlined" />&nbsp;&nbsp;展开</div>
+              <div v-if="table.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
+              <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
             </a-button>
           </template>
           <template v-if="power.insert">
             <a-button type="primary" class="mr-24" @click="openForm()">
               <template #icon>
-                <AppIcons name="PlusOutlined" />
+                <AppIcon name="PlusOutlined" />
               </template>
               新建
             </a-button>
@@ -95,8 +95,8 @@
 </template>
 <script>
 import { defineComponent, onMounted, reactive, toRefs, ref, nextTick } from "vue";
-import useAppStore from "@/store/index";
-import AppIcons from "@/components/AppIcons.vue";
+import { useAppStore } from "@/store";
+import AppIcon from "@/components/AppIcon.vue";
 import Info from "./Info.vue";
 import tools from "@/scripts/tools";
 import service from "@/service/system/organizationService";
@@ -105,7 +105,7 @@ import router from "@/router/index";
 
 export default defineComponent({
   name: "system_organization",
-  components: { AppIcons, Info },
+  components: { AppIcon, Info },
   setup() {
     const appStore = useAppStore();
     const state = reactive({

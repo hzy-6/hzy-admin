@@ -1,5 +1,5 @@
 <template>
-  <div class="p-24">
+  <div>
     <a-spin v-if="loading" />
     <iframe src="https://g2.antv.vision/zh/examples/gallery" frameborder="0" id="iframe_g2" v-show="!loading"></iframe>
     <!--    <iframe src="https://antv-g2.gitee.io/zh/examples/gallery" frameBorder="0" id="iframe_g2" v-show="!loading"></iframe>-->

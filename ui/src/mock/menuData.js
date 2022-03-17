@@ -37,6 +37,32 @@ var menuTreeList = [
             //     "children": []
             // },
             {
+                "id": 33,
+                "name": "Vxe-Table",
+                "componentName": "VxeTableCom",
+                "url": "views/VxeTable.vue",
+                "router": "/vxe/table",
+                "jumpUrl": "/vxe/table",
+                "icon": "BorderlessTableOutlined",
+                "close": true,
+                "parentId": 1,
+                "levelCode": "1.33",
+                "children": []
+            },
+            {
+                "id": 34,
+                "name": "图标库",
+                "componentName": "IconsVue",
+                "url": "views/Icons.vue",
+                "router": "/icons",
+                "jumpUrl": "/icons",
+                "icon": "FireTwoTone",
+                "close": true,
+                "parentId": 1,
+                "levelCode": "1.34",
+                "children": []
+            },
+            {
                 "id": 3,
                 "name": "按钮",
                 "componentName": "ButtonCom",
@@ -171,14 +197,27 @@ var menuTreeList = [
             {
                 "id": 101,
                 "name": "Antd Vue3.0组件库",
-                "componentName": "AntdVueComponentsCom",
-                "url": "views/AntdVueComponents.vue",
-                "router": "/antd/vue/components",
-                "jumpUrl": "/antd/vue/components",
+                "componentName": "AppComponentsCom",
+                "url": "views/AppComponents.vue",
+                "router": "/app/components",
+                "jumpUrl": "/app/components",
                 "icon": "LayoutOutlined",
                 "close": true,
                 "parentId": 100,
                 "levelCode": "100.101",
+                "children": []
+            },
+            {
+                "id": 102,
+                "name": "X6",
+                "componentName": "X6Com",
+                "url": "views/x6/Index.vue",
+                "router": "/x6",
+                "jumpUrl": "/x6",
+                "icon": "LayoutOutlined",
+                "close": true,
+                "parentId": 100,
+                "levelCode": "100.102",
                 "children": []
             }]
     },

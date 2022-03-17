@@ -31,15 +31,15 @@
 </template>
 <script>
 import { defineComponent, reactive, toRefs, ref, onMounted } from "vue";
-import useAppStore from "@/store/index";
-import AppIcons from "@/components/AppIcons.vue";
+import { useLayoutStore } from "@/store";
+import AppIcon from "@/components/AppIcon.vue";
 import router from "@/router/index";
 import tools from "@/scripts/tools";
 import loginService from "@/service/system/loginService";
 
 export default defineComponent({
   name: "LoginCom",
-  components: { AppIcons },
+  components: { AppIcon },
   setup() {
     const state = reactive({
       userName: "admin",
@@ -48,8 +48,8 @@ export default defineComponent({
     const inputPassword = ref(null);
     const loading = ref(false);
 
-    const appStore = useAppStore();
-    const title = appStore.state.title;
+    const layoutStore = useLayoutStore();
+    const title = layoutStore.state.title;
 
     const methods = {
       check() {

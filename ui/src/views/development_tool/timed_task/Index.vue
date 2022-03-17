@@ -43,7 +43,7 @@
                 </a-menu>
               </template>
               <a-button size="small">
-                <AppIcons name="DashOutlined" />
+                <AppIcon name="DashOutlined" />
               </a-button>
             </a-dropdown>
           </a-card>
@@ -60,7 +60,7 @@
 
 <script>
 import { defineComponent, onBeforeUnmount, onMounted, reactive, ref, toRefs } from "vue";
-import AppIcons from "@/components/AppIcons.vue";
+import AppIcon from "@/components/AppIcon.vue";
 import Info from "./Info.vue";
 import service from "@/service/development_tool/timedTaskService.js";
 import tools from "@/scripts/tools.js";
@@ -68,7 +68,7 @@ import JobLogger from "./JobLogger.vue";
 
 export default defineComponent({
   name: "TimedTaskCom",
-  components: { AppIcons, Info, JobLogger },
+  components: { AppIcon, Info, JobLogger },
   setup() {
     const state = reactive({
       list: [],

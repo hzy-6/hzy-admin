@@ -1,8 +1,8 @@
 <template>
-  <div class="p-24">
+  <div>
     <a-alert message="富文本编辑器 WangEditor" type="success">
       <template #description>
-        <a target="_blank" href="https://www.wangeditor.com/">查看示例</a>
+        <a target="_blank" href="https://doc.wangeditor.com/">查看示例</a>
       </template>
     </a-alert>
 

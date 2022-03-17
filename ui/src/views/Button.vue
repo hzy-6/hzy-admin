@@ -1,5 +1,5 @@
 <template>
-  <div class="p-24 text-center" @click="onHello">
+  <div class="text-center" @click="onHello">
     <a-button type="primary">Primary</a-button>
     <a-button>Default</a-button>
     <a-button type="dashed">Dashed</a-button>

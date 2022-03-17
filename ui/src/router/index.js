@@ -1,11 +1,11 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 import 'nprogress/nprogress.css';
 import defaultRouters from '@/router/defaultRouters';
-import getDynamicRouters from '@/router/dynamicRouters';
+import { getDynamicRouters } from '@/router/dynamicRouters';
 import tools from '@/scripts/tools';
 //菜单数据
 // import menuTreeList from "@/mock/menuData"
-import useAppStore from "@/store/index"
+import { useAppStore } from "@/store"
 
 const routerHistory = createWebHashHistory();
 

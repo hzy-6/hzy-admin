@@ -1,5 +1,5 @@
 <template>
-  <a-card title="饼图-蜘蛛布局标签" :bordered="false" :headStyle="{ 'border-bottom': 0 }" hoverable>
+  <a-card title="饼图-蜘蛛布局标签" :bordered="false" :headStyle="{ 'border-bottom': 0 }" >
     <template #extra>
       <a href="https://g2plot.antv.vision/zh/docs/manual/getting-started" target="_black"> 组件地址</a>
     </template>
@@ -22,7 +22,6 @@ export default defineComponent({
         { type: "分类五", value: 10 },
         { type: "其他", value: 5 },
       ];
-
       document.getElementById("container-home-chart3").innerHTML = "";
       const piePlot = new Pie("container-home-chart3", {
         appendPadding: 10,

@@ -1,13 +1,13 @@
 .hzy-logo {
     text-align: center;
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     height: 85px;
     line-height: 85px;
-    // border-bottom: 1px solid #434343;
+    overflow: hidden;
 }
 
-#hzy-layout {
+.hzy-layout {
 
     display: flex;
 
@@ -29,73 +29,75 @@
 
     //=======// 头部 亮色
     .hzy-layout-header-light {
-        background: #fff;
-        color: rgba(0, 0, 0, 0.85);
+        background-color: #fff;
 
         .hzy-header-btn:hover {
             background: rgba(0, 0, 0, 0.025);
         }
 
-        .anticon {
+        * {
             color: rgba(0, 0, 0, 0.85);
         }
 
-        .ant-dropdown-trigger {
-            color: rgba(0, 0, 0, 0.85);
+        // 一级菜单样式处理
+        .hzy-one-nav {
+            .active {
+                * {
+                    color: #fff !important;
+                }
+            }
+
+            li:hover {
+                * {
+                    color: #fff !important;
+                }
+            }
         }
+
     }
 
     //=======// 头部 暗色
     .hzy-layout-header-dark {
-        background: #001529;
-        color: #fff;
+        background-color: #001529;
     }
 
     //=======// 头部 蓝色
     .hzy-layout-header-blue {
-        background: #1890ff;
-        color: #fff;
+        background-color: #096dd9;
     }
 
     //=======// 头部 红色
     .hzy-layout-header-1 {
-        background: #997b71;
-        color: #fff;
-    }
-
-    //=======// 头部 橙色
-    .hzy-layout-header-2 {
-        background: #11c26d;
-        color: #fff;
-    }
-
-    //=======// 头部 黄色
-    .hzy-layout-header-3 {
-        background: #667afa;
-        color: #fff;
-    }
-
-    //=======// 头部 青色
-    .hzy-layout-header-4 {
-        background: #f74584;
-        color: #fff;
+        background-color: #997b71;
     }
 
     //=======// 头部 绿色
-    .hzy-layout-header-5 {
-        background: #9463f7;
-        color: #fff;
+    .hzy-layout-header-2 {
+        background-color: #237804;
     }
 
-    //=======// 头部 深蓝色
-    .hzy-layout-header-6 {
-        background: #ffcd17;
-        color: #fff;
+    //=======// 头部 淡蓝色
+    .hzy-layout-header-3 {
+        background-color: #667afa;
+    }
+
+    //=======// 头部 粉色
+    .hzy-layout-header-4 {
+        background-color: #f74584;
     }
 
     //=======// 头部 紫色
+    .hzy-layout-header-5 {
+        background-color: #9463f7;
+    }
+
+    //=======// 头部 黄色
+    .hzy-layout-header-6 {
+        background-color: #d48806;
+    }
+
+    //=======// 头部 红色
     .hzy-layout-header-7 {
-        background: #ff4c52;
-        color: #fff;
+        background-color: #ff4c52;
     }
 }

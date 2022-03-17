@@ -1,5 +1,5 @@
 <template>
-  <div class="p-24">
+  <div class="p-15">
     <a-spin />
   </div>
 </template>

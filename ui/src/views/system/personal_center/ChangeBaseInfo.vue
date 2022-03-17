@@ -22,7 +22,7 @@
 import { defineComponent, reactive, toRefs, ref, computed } from "vue";
 import tools from "@/scripts/tools";
 import service from "@/service/system/personal_center_service";
-import useAppStore from "@/store/index";
+import { useAppStore } from "@/store";
 
 export default defineComponent({
   name: "change_base_info",

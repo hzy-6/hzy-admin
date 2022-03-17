@@ -34,19 +34,19 @@
       <a-row :gutter="[24, 24]">
         <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
           <a-button class="mr-24" @click="fromSearch.state = !fromSearch.state">
-            <div v-if="fromSearch.state"><AppIcons name="UpOutlined" />&nbsp;&nbsp;收起</div>
-            <div v-else><AppIcons name="DownOutlined" />&nbsp;&nbsp;展开</div>
+            <div v-if="fromSearch.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
+            <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
           </a-button>
           <a-button type="primary" class="mr-24" @click="openForm()">
             <template #icon>
-              <AppIcons name="PlusOutlined" />
+              <AppIcon name="PlusOutlined" />
             </template>
             新建
           </a-button>
           <a-popconfirm title="您确定要删除?" @confirm="confirm" okText="确定" cancelText="取消">
             <a-button type="primary" danger class="mr-24">
               <template #icon>
-                <AppIcons name="DeleteOutlined" />
+                <AppIcon name="DeleteOutlined" />
               </template>
               批量删除
             </a-button>
@@ -63,7 +63,7 @@
             </template>
             <a-button>
               更多操作
-              <AppIcons name="DownOutlined" />
+              <AppIcon name="DownOutlined" />
             </a-button>
           </a-dropdown>
         </a-col>
@@ -96,7 +96,7 @@
 
 <script>
 import { defineComponent, reactive, toRefs, ref, onMounted } from "vue";
-import AppIcons from "@/components/AppIcons.vue";
+import AppIcon from "@/components/AppIcon.vue";
 import Info from "./Info.vue";
 import tools from "@/scripts/tools";
 
@@ -159,7 +159,7 @@ const columns = [
 
 export default defineComponent({
   name: "ListIndexCom",
-  components: { AppIcons, Info },
+  components: { AppIcon, Info },
   setup() {
     const state = reactive({
       fromSearch: {

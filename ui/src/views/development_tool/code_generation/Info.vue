@@ -3,13 +3,13 @@
     <template #footer>
       <a-button type="primary" @click="download()" class="ml-24" :loading="saveLoading">
         <template #icon>
-          <AppIcons name="DownloadOutlined" />
+          <AppIcon name="DownloadOutlined" />
         </template>
         下载当前
       </a-button>
       <a-button type="primary" @click="downloadAll()" class="ml-24" :loading="saveLoading">
         <template #icon>
-          <AppIcons name="DownloadOutlined" />
+          <AppIcon name="DownloadOutlined" />
         </template>
         下载所有
       </a-button>
@@ -36,14 +36,14 @@
 import { defineComponent, reactive, toRefs, watch } from "vue";
 import service from "@/service/development_tool/code_generation_service";
 import MdEditorShowCode from "@/components/MdEditorShowCode.vue";
-import AppIcons from "@/components/AppIcons.vue";
+import AppIcon from "@/components/AppIcon.vue";
 
 export default defineComponent({
   name: "code_generation_info",
   props: {
     onSuccess: Function,
   },
-  components: { MdEditorShowCode, AppIcons },
+  components: { MdEditorShowCode, AppIcon },
   setup(props, context) {
     const state = reactive({
       vm: {

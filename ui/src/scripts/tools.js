@@ -8,14 +8,10 @@ let tools = {
      * 加载效果开始
      */
     loadingStart() {
-        // const hide = message.loading('加载中...', 0);
         var value = 0.1;
         tools.nprogressState = false;
         var loadingTime = setInterval(function () {
             if (tools.nprogressState) {
-                // setTimeout(() => {
-                //     hide();
-                // }, 500);
                 NProgress.set(1);
                 return clearInterval(loadingTime);
             }
@@ -250,7 +246,7 @@ let tools = {
     clearCache(call) {
         localStorage.removeItem(appConsts.appPrefix + '-HeaderTheme');
         localStorage.removeItem(appConsts.appPrefix + '-MenuTheme');
-        localStorage.removeItem(appConsts.appPrefix + '-TopNav');
+        localStorage.removeItem(appConsts.appPrefix + '-OneNav');
         // localStorage.removeItem(appConsts.appPrefix + '-OpenMenuKeys');
         localStorage.removeItem(appConsts.appPrefix + '-MenuCollapsed');
         if (call) call();
@@ -270,15 +266,15 @@ let tools = {
     //获取菜单颜色 //light|dark //菜单主题颜色
     getMenuTheme() {
         let theme = localStorage.getItem(appConsts.appPrefix + "-MenuTheme");
-        return theme ? theme : "light";//dark
+        return theme ? theme : "dark";
     },
     //设置 topNav
-    setTopNav(topNav) {
-        localStorage.setItem(appConsts.appPrefix + "-TopNav", topNav ? "1" : "0");
+    setOneNav(topNav) {
+        localStorage.setItem(appConsts.appPrefix + "-OneNav", topNav ? "1" : "0");
     },
     //获取 topNav
-    getTopNav() {
-        let value = localStorage.getItem(appConsts.appPrefix + "-TopNav");
+    getOneNav() {
+        let value = localStorage.getItem(appConsts.appPrefix + "-OneNav");
         return value ? (value == "1" ? true : false) : true;
     },
     // //获取打开的菜单keys

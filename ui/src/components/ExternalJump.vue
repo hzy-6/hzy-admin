@@ -1,5 +1,5 @@
 <template>
-  <div class="p-24 text-center">
+  <div class="p-15 text-center">
     <a target="_black" :href="path">{{ path }}</a>
   </div>
 </template>

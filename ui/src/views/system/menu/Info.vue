@@ -48,7 +48,7 @@
                     菜单路由 &nbsp;&nbsp;
                     <a-tooltip>
                       <template #title>跳转外部地址使用此表达式：/external/jump/:path(.*) 。并且要在跳转地址填上外部网址</template>
-                      <AppIcons name="QuestionCircleOutlined" class="text-danger" />
+                      <AppIcon name="QuestionCircleOutlined" class="text-danger" />
                     </a-tooltip>
                   </template>
                   <a-input v-model:value="vm.form.router" placeholder="请输入" />
@@ -61,7 +61,7 @@
                     跳转地址 &nbsp;&nbsp;
                     <a-tooltip>
                       <template #title>跳转地址（不填默认使用 菜单路由地址）支持 http、https</template>
-                      <AppIcons name="QuestionCircleOutlined" class="text-danger" />
+                      <AppIcon name="QuestionCircleOutlined" class="text-danger" />
                     </a-tooltip>
                   </template>
                   <a-input v-model:value="vm.form.jumpUrl" placeholder="请输入" />
@@ -76,7 +76,7 @@
                   <a-dropdown>
                     <a-input v-model:value="vm.form.icon" placeholder="请输入">
                       <template #suffix v-if="vm.form.icon">
-                        <AppIcons :name="vm.form.icon" />
+                        <AppIcon :name="vm.form.icon" />
                       </template>
                     </a-input>
                     <template #overlay>
@@ -94,7 +94,7 @@
                         显示状态&nbsp;<span class="text-danger">隐藏后此菜单就变成了路由</span>&nbsp;
                         <a-tooltip>
                           <template #title> 隐藏后菜单不会显示在左侧显示，但是路由会自动添加到程序中 </template>
-                          <AppIcons name="QuestionCircleOutlined" class="text-danger" />
+                          <AppIcon name="QuestionCircleOutlined" class="text-danger" />
                         </a-tooltip>
                       </template>
                       <a-radio-group v-model:value="vm.form.show">
@@ -110,7 +110,7 @@
                         菜单状态 &nbsp;&nbsp;
                         <a-tooltip>
                           <template #title>停用后菜单不会显示在左侧显示，并且路由也不会自动添加到程序中</template>
-                          <AppIcons name="QuestionCircleOutlined" class="text-danger" />
+                          <AppIcon name="QuestionCircleOutlined" class="text-danger" />
                         </a-tooltip>
                       </template>
                       <a-radio-group v-model:value="vm.form.state">
@@ -192,7 +192,7 @@
 import { defineAsyncComponent, defineComponent, reactive, toRefs, watch, ref } from "vue";
 import tools from "@/scripts/tools";
 import service from "@/service/system/menuService";
-import AppIcons from "@/components/AppIcons.vue";
+import AppIcon from "@/components/AppIcon.vue";
 // import AppIconList from "@/components/AppIconList.vue";
 
 export default defineComponent({
@@ -201,7 +201,7 @@ export default defineComponent({
     onSuccess: Function,
   },
   components: {
-    AppIcons,
+    AppIcon,
     AppIconList: defineAsyncComponent(() => import("@/components/AppIconList.vue")),
   },
   setup(props, context) {

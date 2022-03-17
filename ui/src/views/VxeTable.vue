@@ -1,16 +1,16 @@
 <template>
-  <div class="p-24">
+  <div>
     <a-card title="VxeTable 演示">
       <template #extra><a href="https://xuliangzhan_admin.gitee.io/vxe-table/v4/table/start/install" target="_black">VxeTable 官网文档</a></template>
       <vxe-table
         border
         stripe
         height="400"
-        :loading="demo1.loading"
+        :loading="loading"
         :column-config="{ resizable: true }"
         :row-config="{ isHover: true }"
         :checkbox-config="{ labelField: 'id', highlight: true, range: true }"
-        :data="demo1.tableData"
+        :data="tableData"
       >
         <vxe-column type="seq" width="60"></vxe-column>
         <vxe-column type="checkbox" title="ID" width="140"></vxe-column>
@@ -33,7 +33,7 @@
   </div>
 </template>
 <script>
-import { defineComponent, reactive, onMounted } from "vue";
+import { defineComponent, reactive, onMounted, toRefs } from "vue";
 
 export default defineComponent({
   name: "VxeTableCom",
@@ -88,11 +88,11 @@ export default defineComponent({
           { id: 10020, name: "Test20", role: "Develop", sex: "1", age: 41, address: "test abc" },
         ];
         demo1.loading = false;
-      }, 500);
+      }, 200);
     });
 
     return {
-      demo1,
+      ...toRefs(demo1),
       formatterSex,
       filterAgeMethod,
     };

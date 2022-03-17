@@ -1,108 +1,63 @@
 <template>
-  <a-drawer class="app-settings" placement="right" width="300px" :closable="false" @close="setState(!state)" :visible="state">
+  <a-drawer class="app-settings" placement="right" width="300px" :closable="false" v-model:visible="settingsStoreState.show">
     <a-divider>头部颜色</a-divider>
     <div class="app-skin-list mb-5 text-center">
-      <div class="app-skin-item" v-for="(item, index) in headerThemes" :key="index" :style="{ background: item.color }" @click="onHeaderTheme(item.className)"></div>
+      <div class="app-skin-item" v-for="(item, index) in headerStore.state.theme.classList" :key="index" :style="{ background: item.color }" @click="onHeaderTheme(item.className)"></div>
     </div>
     <a-divider>菜单颜色</a-divider>
-    <div class="mt-24 text-center">
-      <a-radio-group name="radioGroup" defaultValue="dark" v-model:value="menuTheme">
+    <div class="mt-15 text-center">
+      <a-radio-group name="radioGroup" defaultValue="dark" v-model:value="menuStoreState.themeType">
         <a-radio value="dark">暗色</a-radio>
         <a-radio value="light">亮色</a-radio>
       </a-radio-group>
     </div>
-    <a-divider v-if="!isMobile">左侧大菜单</a-divider>
-    <div class="mt-24 text-center" v-if="!isMobile">
-      <a-switch v-model:checked="topNav" />
+    <a-divider v-if="!layoutStoreState.isMobile">左侧大菜单</a-divider>
+    <div class="mt-15 text-center" v-if="!layoutStoreState.isMobile">
+      <a-switch v-model:checked="menuStoreState.isOneNav" />
     </div>
   </a-drawer>
 </template>
-<script>
-import tools from "@/scripts/tools";
-import useAppStore from "@/store";
-import { defineComponent, reactive, toRefs, watch, computed } from "vue";
+<script lang="ts">
+import { defineComponent, watch, computed } from "vue";
+import { useSettingsStore, useHeaderStore, useMenuStore, useLayoutStore } from "@/store";
+
 export default defineComponent({
   name: "LayoutSettingsCom",
-  props: {
-    propState: Boolean,
-    propMenuTheme: String,
-    propHeaderTheme: String,
-  },
   setup(props, context) {
-    var appStore = useAppStore();
-    const topNavValue = computed(() => appStore.state.topNav);
-    const isMobile = computed(() => appStore.state.isMobile);
-    const state = reactive({
-      state: props.propState,
-      menuTheme: props.propMenuTheme ?? "",
-      headerTheme: props.propHeaderTheme,
-      headerThemes: [
-        { className: "hzy-layout-header-light", color: "#ffffff" },
-        { className: "hzy-layout-header-dark", color: "#001529" },
-        { className: "hzy-layout-header-blue", color: "#1890ff" },
-        { className: "hzy-layout-header-1", color: "#997b71" },
-        { className: "hzy-layout-header-2", color: "#11c26d" },
-        { className: "hzy-layout-header-3", color: "#667afa" },
-        { className: "hzy-layout-header-4", color: "#f74584" },
-        { className: "hzy-layout-header-5", color: "#9463f7" },
-        { className: "hzy-layout-header-6", color: "#ffcd17" },
-        { className: "hzy-layout-header-7", color: "#ff4c52" },
-      ],
-      topNav: topNavValue.value,
-    });
+    const settingsStore = useSettingsStore();
+    const settingsStoreState = computed(() => settingsStore.state);
+    // header
+    const headerStore = useHeaderStore();
+    //
+    const menuStore = useMenuStore();
+    const menuStoreState = computed(() => menuStore.state);
+    //
+    const layoutStore = useLayoutStore();
+    const layoutStoreState = computed(() => layoutStore.state);
 
     watch(
-      () => props.propState,
+      () => menuStoreState.value.themeType,
       (value) => {
-        state.state = value;
-      }
-    );
-
-    watch(
-      () => props.propMenuTheme,
-      (value) => {
-        state.menuTheme = value ?? "";
-      }
-    );
-
-    watch(
-      () => props.propHeaderTheme,
-      (value) => {
-        state.headerTheme = value;
-      }
-    );
-
-    watch(
-      () => state.menuTheme,
-      (value) => {
-        context.emit("update:propMenuTheme", value);
-        tools.setMenuTheme(value);
-      }
-    );
-
-    watch(
-      () => state.topNav,
-      (value) => {
-        appStore.saveTopNavState(value);
+        menuStore.onChangeTheme(value);
       }
     );
 
     const methods = {
-      setState(value) {
-        state.state = value;
-        context.emit("update:propState", value);
+      setState() {
+        settingsStore.isShow();
       },
       onHeaderTheme(value) {
-        state.headerTheme = value;
-        context.emit("update:propHeaderTheme", value);
-        tools.setHeaderTheme(value);
+        headerStore.onChangeThemeClass(value);
       },
     };
 
     return {
-      ...toRefs(state),
       ...methods,
-      isMobile,
+      settingsStoreState,
+      headerStore,
+      menuStore,
+      menuStoreState,
+      layoutStoreState,
     };
   },
 });

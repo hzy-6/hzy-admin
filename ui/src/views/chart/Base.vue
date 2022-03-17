@@ -1,5 +1,5 @@
 <template>
-  <div class="p-24">
+  <div>
     <a-alert message="图表" type="success">
       <template #description>
         <p>

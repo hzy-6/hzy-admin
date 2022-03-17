@@ -1,10 +1,10 @@
 <template>
-  <a-row class="work-order" :gutter="[24, 24]">
+  <a-row class="work-order" :gutter="[15, 15]">
     <a-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6">
       <a-card :bordered="false" hoverable>
-        <a-row :gutter="[24, 24]" class="text-center">
+        <a-row :gutter="[15, 15]" class="text-center">
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <AppIcons name="DashboardOutlined" class="icon-size" style="color: #5b8ff9" />
+            <AppIcon name="DashboardOutlined" :size="70" style="color: #5b8ff9" />
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
             <h3>CPU占用率</h3>
@@ -15,9 +15,9 @@
     </a-col>
     <a-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6">
       <a-card :bordered="false" hoverable>
-        <a-row :gutter="[24, 24]" class="text-center">
+        <a-row :gutter="[15, 15]" class="text-center">
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <AppIcons name="CloudServerOutlined" class="icon-size" style="color: #61ddaa" />
+            <AppIcon name="CloudServerOutlined" :size="70" style="color: #61ddaa" />
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
             <h3>内存占用率</h3>
@@ -28,9 +28,9 @@
     </a-col>
     <a-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6">
       <a-card :bordered="false" hoverable>
-        <a-row :gutter="[24, 24]" class="text-center">
+        <a-row :gutter="[15, 15]" class="text-center">
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <AppIcons name="LinkOutlined" class="icon-size" style="color: #85ce61" />
+            <AppIcon name="LinkOutlined" :size="70" style="color: #85ce61" />
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
             <h3>当前在线设备</h3>
@@ -41,9 +41,9 @@
     </a-col>
     <a-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6">
       <a-card :bordered="false" hoverable>
-        <a-row :gutter="[24, 24]" class="text-center">
+        <a-row :gutter="[15, 15]" class="text-center">
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <AppIcons name="DisconnectOutlined" class="icon-size" style="color: #ff7875" />
+            <AppIcon name="DisconnectOutlined" :size="70" style="color: #ff7875" />
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
             <h3>当前离线设备</h3>
@@ -59,7 +59,7 @@ export default { name: "WorkOrderCom" };
 </script>
 <script setup>
 import { ref, onBeforeUnmount } from "vue";
-import AppIcons from "@/components/AppIcons.vue";
+import AppIcon from "@/components/AppIcon.vue";
 
 let value1 = ref(12);
 let value2 = ref(26);
@@ -77,10 +77,3 @@ onBeforeUnmount(() => {
   clearInterval(timer.value);
 });
 </script>
-<style lang="less">
-.work-order {
-  .icon-size {
-    font-size: 70px;
-  }
-}
-</style>

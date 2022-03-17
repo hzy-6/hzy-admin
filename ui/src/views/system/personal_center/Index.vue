@@ -33,7 +33,7 @@
 import { defineComponent, reactive, toRefs, computed } from "vue";
 import ChangePassword from "./ChangePassword.vue";
 import ChangeBaseInfo from "./ChangeBaseInfo.vue";
-import useAppStore from "@/store/index";
+import { useAppStore } from "@/store";
 
 export default defineComponent({
   name: "system_personal_center", //不缓存页面 去除 name

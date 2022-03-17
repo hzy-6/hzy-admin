@@ -1,5 +1,5 @@
 <template>
-  <div class="p-24">
+  <div>
     <a-table :row-selection="rowSelection" :columns="columns" :data-source="data">
       <template #bodyCell="{ column, text }">
         <template v-if="column.dataIndex === 'name'">

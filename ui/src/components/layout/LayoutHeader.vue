@@ -1,43 +1,45 @@
 <template>
   <a-layout-header style="padding: 0; height: auto; background: #ffffff">
-    <div class="hzy-layout-header" :class="propHeaderTheme">
-      <!-- <div class="hzy-header-btn hzy-logo" v-show="!isMobile">{{ title }}</div> -->
-      <div class="hzy-header-btn" @click="onCollapsed">
+    <div class="hzy-layout-header" :class="headerStoreState.theme.class">
+      <div class="hzy-header-btn" @click="menuStore.onChangeCollapse(!menuStoreState.isCollapse)">
         <a-tooltip>
           <template #title>菜单收展</template>
-          <AppIcons :name="collapsed ? 'MenuUnfoldOutlined' : 'MenuFoldOutlined'" />
+          <AppIcon :name="menuStoreState.isCollapse ? 'MenuUnfoldOutlined' : 'MenuFoldOutlined'" :size="16" />
         </a-tooltip>
       </div>
+      <div style="flex: 1 1 0%; height: 100%; display: flex" v-if="menuStoreState.isOneNav">
+        <LayoutOneLevelMenu />
+      </div>
+      <div style="flex: 1 1 0%" v-else></div>
       <div class="hzy-header-btn" @click="onReload">
         <a-tooltip>
           <template #title>刷新当前选项卡</template>
-          <AppIcons name="ReloadOutlined" />
+          <AppIcon name="ReloadOutlined" :size="16" />
         </a-tooltip>
       </div>
-      <div style="flex: 1 1 0%"></div>
-      <div class="hzy-header-btn" @click="onSettings">
+      <div class="hzy-header-btn" @click="settingsStore.isShow()">
         <a-tooltip>
           <template #title>界面设置</template>
-          <AppIcons name="SettingOutlined" />
+          <AppIcon name="SettingOutlined" :size="16" />
         </a-tooltip>
       </div>
-      <div class="hzy-header-btn" @click="onFullScreen" v-if="!isMobile">
+      <div class="hzy-header-btn" @click="onFullScreen" v-if="!layoutStoreState.isMobile">
         <a-tooltip>
-          <template #title>全屏</template>
-          <AppIcons name="FullscreenExitOutlined" v-if="fullscreen" />
-          <AppIcons name="FullscreenOutlined" v-else />
+          <template #title>界面设置</template>
+          <AppIcon :name="fullscreen ? 'FullscreenExitOutlined' : 'FullscreenOutlined'" :size="16" />
         </a-tooltip>
       </div>
       <div class="hzy-header-btn">
         <a-dropdown>
           <div>
-            <AppIcons name="UserOutlined" />
-            &nbsp;&nbsp;{{ userName ? userName : "未知用户" }}
+            <AppIcon name="UserOutlined" :size="16" />
+            &nbsp;&nbsp;
+            <span>{{ appStoreState.userInfo.name ? appStoreState.userInfo.name : "未知用户" }}</span>
           </div>
           <template #overlay>
             <a-menu>
               <a-menu-item @click="onLogOut">
-                <a href="javascript:;"> <AppIcons name="LogoutOutlined" />&nbsp;&nbsp;退出登录 </a>
+                <a href="javascript:;"> <AppIcon name="LogoutOutlined" />&nbsp;&nbsp;退出登录 </a>
               </a-menu-item>
             </a-menu>
           </template>
@@ -47,56 +49,41 @@
   </a-layout-header>
 </template>
 <script>
-import { defineComponent, reactive, toRefs, watch, computed } from "vue";
-import AppIcons from "@/components/AppIcons.vue";
-import useAppStore from "@/store";
-import router from "@/router/index";
+import { defineComponent, reactive, toRefs, computed } from "vue";
+import { useLayoutStore, useTabsStore, useMenuStore, useHeaderStore, useAppStore, useSettingsStore } from "@/store";
+import AppIcon from "@/components/AppIcon.vue";
+import router from "@/router";
 import screenfull from "screenfull";
-import tools from "@/scripts/tools";
+import LayoutOneLevelMenu from "./menus/LayoutOneLevelMenu.vue";
 
 export default defineComponent({
   name: "LayoutHeaderCom",
-  props: {
-    propCollapsed: Boolean,
-    propLayoutSettingsState: Boolean,
-    propHeaderTheme: String,
-  },
-  components: { AppIcons },
+  components: { AppIcon, LayoutOneLevelMenu },
   setup(props, context) {
+    //layout
+    const layoutStore = useLayoutStore();
+    const layoutStoreState = computed(() => layoutStore.state);
+    //tabs
+    const tabsStore = useTabsStore();
+    const tabsStoreState = computed(() => tabsStore.state);
+    //menu
+    const menuStore = useMenuStore();
+    const menuStoreState = computed(() => menuStore.state);
+    //header
+    const headerStore = useHeaderStore();
+    const headerStoreState = computed(() => headerStore.state);
+    //app
     const appStore = useAppStore();
-    const userName = computed(() => appStore.state.userInfo.name);
-    const title = computed(() => appStore.state.title);
-    const isMobile = computed(() => appStore.state.isMobile);
+    const appStoreState = computed(() => appStore.state);
+    // settingsStore
+    const settingsStore = useSettingsStore();
+    const settingsStoreState = computed(() => settingsStore.state);
+
     const state = reactive({
-      collapsed: props.propCollapsed,
       fullscreen: false,
-      layoutSettings: {
-        state: props.propLayoutSettingsState,
-      },
     });
 
-    watch(
-      () => props.propCollapsed,
-      (value) => {
-        state.collapsed = value;
-      }
-    );
-
-    watch(
-      () => props.propLayoutSettingsState,
-      (value) => {
-        state.layoutSettings.state = value;
-      }
-    );
-
     const methods = {
-      onCollapsed() {
-        state.collapsed = !state.collapsed;
-        context.emit("update:propCollapsed", state.collapsed);
-      },
-      onSettings() {
-        context.emit("update:propLayoutSettingsState", !state.layoutSettings.state);
-      },
       onLogOut() {
         //退出登录
         router.push("/login");
@@ -104,36 +91,30 @@ export default defineComponent({
       //全屏事件
       onFullScreen() {
         if (!screenfull.isEnabled) {
-          return tools.message("您的浏览器无法使用全屏功能，请更换谷歌浏览器或者请手动点击F11按钮全屏展示！");
+          return alert("您的浏览器无法使用全屏功能，请更换谷歌浏览器或者请手动点击F11按钮全屏展示！");
         }
         screenfull.toggle();
         state.fullscreen = !screenfull.isFullscreen;
       },
       //刷新当前页面
       onReload() {
-        appStore.refresh(router.currentRoute.value.fullPath, router.currentRoute.value.name);
+        layoutStore.refresh(router.currentRoute.value.fullPath, router.currentRoute.value.name);
       },
     };
 
-    return {
-      ...toRefs(state),
-      ...methods,
-      userName,
-      title,
-      isMobile,
-    };
+    return { ...toRefs(state), ...methods, layoutStoreState, tabsStoreState, menuStoreState, headerStoreState, menuStore, appStoreState, settingsStore, settingsStoreState };
   },
 });
 </script>
 <style lang="less">
-#hzy-layout {
+.hzy-layout {
   //覆盖样式
   .ant-layout-header {
     position: relative;
     z-index: 6;
     width: 100%;
-    height: 48px !important;
-    line-height: 48px !important;
+    height: auto !important;
+    line-height: normal !important;
   }
 
   //=======// 头部
@@ -143,28 +124,29 @@ export default defineComponent({
     display: flex;
     align-items: center;
     height: 48px;
+    //
+    transition: background-color 0.8s;
+    -moz-transition: background-color 0.8s;
+    /* Firefox 4 */
+    -webkit-transition: background-color 0.8s;
+    /* Safari 和 Chrome */
+    -o-transition: background-color 0.8s;
+
+    * {
+      color: #fff;
+    }
 
     .hzy-header-btn {
-      padding: 0 10px;
+      padding: 0 12px;
       cursor: pointer;
+      height: 100%;
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
     }
 
     .hzy-header-btn:hover {
       background: rgba(243, 246, 248, 0.2);
-    }
-
-    .anticon {
-      color: #fff;
-    }
-
-    .ant-dropdown-trigger {
-      color: #fff;
-    }
-
-    .ant-menu-item-selected {
-      .anticon {
-        color: #1890ff;
-      }
     }
   }
 }

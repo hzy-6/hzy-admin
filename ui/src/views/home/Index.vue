@@ -1,21 +1,21 @@
 <template>
-  <div class="p-24">
+  <div>
     <!-- 标题 -->
     <h2>
       首页
       <a-button type="link" @click="visible = !visible">更多</a-button>
     </h2>
     <!-- 基础统计数据 -->
-    <div class="mt-24">
+    <div class="mt-15">
       <WorkOrder />
     </div>
     <!-- 近一年设备销售量 -->
-    <div class="mt-24">
+    <div class="mt-15">
       <WorkOrderStatistics />
     </div>
     <!-- 更多图形报表 -->
-    <div class="mt-24">
-      <a-row :gutter="[24, 24]">
+    <div class="mt-15">
+      <a-row :gutter="[15, 15]">
         <a-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
           <HomeChart1 />
         </a-col>
@@ -29,11 +29,11 @@
     </div>
 
     <!-- 更多图形报表 -->
-    <div class="mt-24">
-      <a-row :gutter="[24, 24]">
+    <div class="mt-15">
+      <a-row :gutter="[15, 15]">
         <a-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8"></a-col>
         <a-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-          <a-card hoverable>
+          <a-card >
             <template #cover>
               <img alt="example" :src="homebg" />
             </template>

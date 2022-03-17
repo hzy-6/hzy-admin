@@ -18,13 +18,13 @@
         <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
           <template v-if="power.search">
             <a-button class="mr-24" @click="table.search.state = !table.search.state">
-              <div v-if="table.search.state"><AppIcons name="UpOutlined" />&nbsp;&nbsp;收起</div>
-              <div v-else><AppIcons name="DownOutlined" />&nbsp;&nbsp;展开</div>
+              <div v-if="table.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
+              <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
             </a-button>
           </template>
           <a-button type="primary" class="mr-24" @click="createDataDictionary()">
             <template #icon>
-              <AppIcons name="DownloadOutlined" />
+              <AppIcon name="DownloadOutlined" />
             </template>
             下载数据库设计(Excel)
           </a-button>
@@ -38,7 +38,7 @@
             </template>
             <a-button>
               更多操作
-              <AppIcons name="DownOutlined" />
+              <AppIcon name="DownOutlined" />
             </a-button>
           </a-dropdown> -->
         </a-col>
@@ -92,15 +92,15 @@
 </template>
 <script>
 import { defineComponent, onMounted, reactive, toRefs, ref } from "vue";
-import useAppStore from "@/store/index";
-import AppIcons from "@/components/AppIcons.vue";
+import { useAppStore } from "@/store";
+import AppIcon from "@/components/AppIcon.vue";
 import Info from "./Info.vue";
 import service from "@/service/development_tool/code_generation_service";
 import router from "@/router/index";
 
 export default defineComponent({
   name: "code_generation_index",
-  components: { AppIcons, Info },
+  components: { AppIcon, Info },
   setup() {
     const appStore = useAppStore();
     const state = reactive({

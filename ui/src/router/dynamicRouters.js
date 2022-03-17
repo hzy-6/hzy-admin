@@ -1,8 +1,6 @@
-import router from '@/router/index.js'
-import useAppStore from '@/store';
+import router from '@/router'
+import { useAppStore } from '@/store';
 
-let dynamicRouters = [];
-let allRouters = [];
 // [{
 //     path: '/system/role',
 //     name: "system_role",
@@ -11,7 +9,10 @@ let allRouters = [];
 // }]
 
 //导出所有的 vue 模块
+let dynamicRouters = [];
+let allRouters = [];
 const modules = import.meta.glob('../**.vue');
+const dynamicLayoutName = "dynamicLayout";
 
 /**
  * 创建动态路由
@@ -56,7 +57,7 @@ function createDynamicRouters(data) {
  * 获取动态路由
  * @param data
  */
-export default function getDynamicRouters(data) {
+export function getDynamicRouters(data) {
     allRouters = []
     createDynamicRouters(data);
     let hasRouteLayout = router.hasRoute("dynamicLayout");
@@ -74,4 +75,21 @@ export default function getDynamicRouters(data) {
     appStore.state.allRouters = allRouters;
 
     return hasRouteLayout;
+}
+
+
+/**
+ * 是否有动态路由节点存在
+ * 
+ * @returns 
+ */
+ export function hasRoute() {
+    return router.hasRoute(dynamicLayoutName);
+}
+
+/**
+ * 移除动态路由节点
+ */
+export function removeRoute() {
+    router.removeRoute(dynamicLayoutName);
 }
