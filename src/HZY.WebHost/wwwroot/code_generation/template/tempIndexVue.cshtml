@@ -138,12 +138,12 @@
 </template>
 <script>
 import { defineComponent, onMounted, reactive, toRefs, ref } from "vue";
-import useAppStore from "@@/store/index";
-import AppIcons from "@@/components/AppIcons.vue";
+import { useAppStore } from "@@/store";
+import AppIcons from "@@/components/AppIcon.vue";
 import Info from "./Info.vue";
 import tools from "@@/scripts/tools";
 import service from "@@/service/[请完善您的目录]/@(className.FirstCharToLower())Service";
-import router from "@@/router/index";
+import router from "@@/router";
 
 export default defineComponent({
   name: "@(className.FirstCharToLower())Index",
