@@ -12,7 +12,7 @@
  Target Server Version : 130003
  File Encoding         : 65001
 
- Date: 18/03/2022 09:56:51
+ Date: 18/03/2022 10:09:33
 */
 
 
@@ -21,7 +21,7 @@
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."Member";
 CREATE TABLE "public"."Member" (
-  "Id" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "Id" uuid NOT NULL,
   "Number" varchar(255) COLLATE "pg_catalog"."default",
   "Name" varchar(255) COLLATE "pg_catalog"."default",
   "Phone" varchar(255) COLLATE "pg_catalog"."default",
@@ -30,7 +30,7 @@ CREATE TABLE "public"."Member" (
   "Photo" varchar(255) COLLATE "pg_catalog"."default",
   "Introduce" varchar(255) COLLATE "pg_catalog"."default",
   "FilePath" varchar(255) COLLATE "pg_catalog"."default",
-  "UserId" char(36) COLLATE "pg_catalog"."default",
+  "UserId" uuid,
   "CreationTime" timestamp(6),
   "LastModificationTime" timestamp(6)
 )
@@ -39,18 +39,18 @@ CREATE TABLE "public"."Member" (
 -- ----------------------------
 -- Records of Member
 -- ----------------------------
-INSERT INTO "public"."Member" VALUES ('96A1AA3D-A61A-42D0-954A-C71753FB2065', '123', '123', '123', '女', '2018-04-25 23:00:00', NULL, '<p>123</p>', NULL, 'AC18F496-E93D-42F0-B59E-E321ACC85335', '2020-10-24 00:07:42', '2021-04-18 22:08:06');
-INSERT INTO "public"."Member" VALUES ('9A604AA2-9AE6-4A2F-8DDB-D9E0289EAD9E', '1', '测试会员', '18510912123', '男', '2019-07-08 11:47:24', '/upload/files/20210118/time_232747_old_name_hzy.png', '<p>888</p>', '/upload/files/20210118/time_233310_old_name_hzy.png', 'AC18F496-E93D-42F0-B59E-E321ACC85335', '2018-04-25 23:00:00', '2021-01-19 14:19:47');
+INSERT INTO "public"."Member" VALUES ('96a1aa3d-a61a-42d0-954a-c71753fb2065', '123', '123', '123', '女', '2018-04-25 23:00:00', NULL, '<p>123</p>', NULL, 'ac18f496-e93d-42f0-b59e-e321acc85335', '2020-10-24 00:07:42', '2021-04-18 22:08:06');
+INSERT INTO "public"."Member" VALUES ('9a604aa2-9ae6-4a2f-8ddb-d9e0289ead9e', '1', '测试会员', '18510912123', '男', '2019-07-08 11:47:24', '/upload/files/20210118/time_232747_old_name_hzy.png', '<p>888</p>', '/upload/files/20210118/time_233310_old_name_hzy.png', 'ac18f496-e93d-42f0-b59e-e321acc85335', '2018-04-25 23:00:00', '2021-01-19 14:19:47');
 
 -- ----------------------------
 -- Table structure for SysDataAuthority
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."SysDataAuthority";
 CREATE TABLE "public"."SysDataAuthority" (
-  "Id" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "Id" uuid NOT NULL,
   "LastModificationTime" timestamp(6),
   "CreationTime" timestamp(6),
-  "RoleId" char(36) COLLATE "pg_catalog"."default",
+  "RoleId" uuid,
   "PermissionType" int4
 )
 ;
@@ -59,17 +59,17 @@ COMMENT ON COLUMN "public"."SysDataAuthority"."PermissionType" IS '数据权限�
 -- ----------------------------
 -- Records of SysDataAuthority
 -- ----------------------------
-INSERT INTO "public"."SysDataAuthority" VALUES ('D09BF250-C5B0-41CB-237D-08DA00442990', '2022-03-08 10:02:22.62', '2022-03-07 22:09:58', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 5);
+INSERT INTO "public"."SysDataAuthority" VALUES ('d09bf250-c5b0-41cb-237d-08da00442990', '2022-03-08 10:02:22.62', '2022-03-07 22:09:58', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 5);
 
 -- ----------------------------
 -- Table structure for SysDataAuthorityCustom
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."SysDataAuthorityCustom";
 CREATE TABLE "public"."SysDataAuthorityCustom" (
-  "Id" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "Id" uuid NOT NULL,
   "LastModificationTime" timestamp(6),
   "CreationTime" timestamp(6),
-  "SysDataAuthorityId" char(36) COLLATE "pg_catalog"."default",
+  "SysDataAuthorityId" uuid,
   "SysOrganizationId" int4 NOT NULL
 )
 ;
@@ -115,7 +115,7 @@ INSERT INTO "public"."SysDictionary" VALUES (3, '2021-07-25 22:40:52.99', '2021-
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."SysFunction";
 CREATE TABLE "public"."SysFunction" (
-  "Id" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "Id" uuid NOT NULL,
   "Number" int4,
   "Name" varchar(255) COLLATE "pg_catalog"."default",
   "ByName" varchar(255) COLLATE "pg_catalog"."default",
@@ -128,14 +128,14 @@ CREATE TABLE "public"."SysFunction" (
 -- ----------------------------
 -- Records of SysFunction
 -- ----------------------------
-INSERT INTO "public"."SysFunction" VALUES ('B6FD5425-504A-46A9-993B-2F8DC9158EB8', 80, '打印', 'Print', 'Print', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
-INSERT INTO "public"."SysFunction" VALUES ('C9518758-B2E1-4F51-B517-5282E273889C', 10, '显示', 'Display', 'Display', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
-INSERT INTO "public"."SysFunction" VALUES ('F27ECB0A-197D-47B1-B243-59A8C71302BF', 60, '检索', 'Search', 'Search', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
-INSERT INTO "public"."SysFunction" VALUES ('383E7EE2-7690-46AC-9230-65155C84AA30', 50, '保存', 'Save', 'Save', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
-INSERT INTO "public"."SysFunction" VALUES ('9C388461-2704-4C5E-A729-72C17E9018E1', 40, '删除', 'Delete', 'Delete', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
-INSERT INTO "public"."SysFunction" VALUES ('BFFEFB1C-8988-4DDF-B4AC-81C2B30E80CD', 20, '添加', 'Insert', 'Insert', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
-INSERT INTO "public"."SysFunction" VALUES ('2401F4D0-60B0-4E2E-903F-84C603373572', 70, '导出', 'Export', 'Export', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
-INSERT INTO "public"."SysFunction" VALUES ('E7EF2A05-8317-41C3-B588-99519FE88BF9', 30, '修改', 'Update', 'Update', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO "public"."SysFunction" VALUES ('b6fd5425-504a-46a9-993b-2f8dc9158eb8', 80, '打印', 'Print', 'Print', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO "public"."SysFunction" VALUES ('c9518758-b2e1-4f51-b517-5282e273889c', 10, '显示', 'Display', 'Display', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO "public"."SysFunction" VALUES ('f27ecb0a-197d-47b1-b243-59a8c71302bf', 60, '检索', 'Search', 'Search', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO "public"."SysFunction" VALUES ('383e7ee2-7690-46ac-9230-65155c84aa30', 50, '保存', 'Save', 'Save', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO "public"."SysFunction" VALUES ('9c388461-2704-4c5e-a729-72c17e9018e1', 40, '删除', 'Delete', 'Delete', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO "public"."SysFunction" VALUES ('bffefb1c-8988-4ddf-b4ac-81c2b30e80cd', 20, '添加', 'Insert', 'Insert', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO "public"."SysFunction" VALUES ('2401f4d0-60b0-4e2e-903f-84c603373572', 70, '导出', 'Export', 'Export', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
+INSERT INTO "public"."SysFunction" VALUES ('e7ef2a05-8317-41c3-b588-99519fe88bf9', 30, '修改', 'Update', 'Update', '2021-04-18 22:08:06', '2016-06-20 13:40:52');
 
 -- ----------------------------
 -- Table structure for SysMenu
@@ -153,10 +153,10 @@ CREATE TABLE "public"."SysMenu" (
   "ComponentName" varchar(255) COLLATE "pg_catalog"."default",
   "Icon" varchar(255) COLLATE "pg_catalog"."default",
   "ParentId" int4,
-  "Show" int2,
-  "Close" int2,
-  "KeepAlive" int2,
-  "State" int2,
+  "Show" bool,
+  "Close" bool,
+  "KeepAlive" bool,
+  "State" bool,
   "JumpUrl" varchar(255) COLLATE "pg_catalog"."default",
   "Type" int4
 )
@@ -165,42 +165,42 @@ CREATE TABLE "public"."SysMenu" (
 -- ----------------------------
 -- Records of SysMenu
 -- ----------------------------
-INSERT INTO "public"."SysMenu" VALUES (1, '2022-03-04 12:25:39', '2021-05-28 11:49:02', '1', 10, '更多示例', NULL, NULL, NULL, 'MoreOutlined', NULL, 1, 1, 1, 1, NULL, 1);
-INSERT INTO "public"."SysMenu" VALUES (2, '2022-03-04 12:26:04', '2021-01-16 16:05:22', '1.2', 10, 'Antd Vue3.0组件', 'views/AntdVueComponents.vue', '/antd/vue/components', 'AntdVueComponentsCom', 'LayoutOutlined', 1, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (3, '2022-03-04 12:26:14', '2020-12-17 14:58:05', '1.3', 30, '按钮', 'views/Button.vue', '/button', 'ButtonCom', 'AppstoreOutlined', 1, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (4, '2022-03-04 12:26:21', '2021-01-16 16:06:33', '1.4', 40, '图表 AntV G2', NULL, NULL, NULL, 'PieChartOutlined', 1, 1, 1, 1, 1, NULL, 1);
-INSERT INTO "public"."SysMenu" VALUES (5, '2022-03-04 12:26:25', '2021-01-16 16:07:24', '1.4.5', 10, '基础图表', 'views/chart/Base.vue', '/chart/base', 'ChartBaseCom', NULL, 4, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (6, '2022-03-04 12:26:28', '2021-01-16 16:10:06', '1.4.6', 20, '更多图表', 'views/chart/More.vue', '/chart/more', 'ChartMoreCom', NULL, 4, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (7, '2022-03-04 12:26:34', '2018-03-10 12:16:38', '1.7', 50, '表格管理', NULL, NULL, NULL, 'TableOutlined', 1, 1, 1, 1, 1, NULL, 1);
-INSERT INTO "public"."SysMenu" VALUES (8, '2022-03-04 12:26:38', '2020-12-17 14:49:12', '1.7.8', 100, '基础列表', 'views/BaseList.vue', '/base/list', 'BaseListCom', NULL, 7, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (9, '2022-03-04 12:26:41', '2020-12-17 14:51:07', '1.7.9', 110, '标准表格', 'views/list/Index.vue', '/list', 'ListIndexCom', NULL, 7, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (10, '2022-03-04 12:26:46', '2021-01-18 19:34:28', '1.10', 60, '富文本编辑器', 'views/Editor.vue', '/editor', 'EditorCom', 'PicRightOutlined', 1, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (11, '2022-03-04 12:26:49', '2021-08-05 21:51:12', '1.11', 70, '跳转外部地址', 'components/ExternalJump.vue', '/external/jump/:path(.*)', 'ExternalJumpCom', 'RadarChartOutlined', 1, 1, 1, 1, 1, 'https://antv.vision/zh', 2);
-INSERT INTO "public"."SysMenu" VALUES (12, '2022-03-04 12:25:43', '2018-03-10 12:16:38', '12', 50, '基础信息', NULL, NULL, NULL, 'GoldOutlined', NULL, 1, 1, 1, 1, NULL, 1);
-INSERT INTO "public"."SysMenu" VALUES (13, '2022-03-04 12:26:55', '2018-03-10 12:16:38', '12.13', 10, '会员管理', 'views/base/member/Index.vue', '/base/member', 'base_member', 'UsergroupAddOutlined', 12, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (14, '2022-03-04 12:25:46', '2018-03-10 12:16:38', '14', 100, '系统管理', NULL, NULL, NULL, 'DesktopOutlined', NULL, 1, 1, 1, 1, NULL, 1);
-INSERT INTO "public"."SysMenu" VALUES (15, '2022-03-04 12:27:02', '2018-03-10 12:16:38', '14.15', 100, '账户管理', 'views/system/user/Index.vue', '/system/user', 'system_user', 'UserOutlined', 14, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (16, '2022-03-04 12:27:07', '2018-03-10 12:16:38', '14.16', 110, '角色管理', 'views/system/role/Index.vue', '/system/role', 'system_role', 'TeamOutlined', 14, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (17, '2022-03-04 12:27:11', '2018-03-10 12:16:38', '14.17', 120, '功能管理', 'views/system/function/Index.vue', '/system/function', 'system_function', 'ControlOutlined', 14, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (19, '2022-03-04 12:27:19', '2018-03-10 12:16:38', '14.19', 150, '个人中心', 'views/system/personal_center/Index.vue', '/system/personal/center', 'system_personal_center', 'FormOutlined', 14, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (20, '2022-03-04 12:27:23', '2021-05-27 17:29:49', '14.20', 160, '岗位管理', 'views/system/post/Index.vue', '/system/post', 'system_post', 'IdcardOutlined', 14, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (21, '2022-03-04 12:27:27', '2021-05-27 20:27:56', '14.21', 170, '组织机构', 'views/system/organization/Index.vue', '/system/organization', 'system_organization', 'ClusterOutlined', 14, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (22, '2022-03-04 12:27:41', '2018-03-10 12:17:03', '29.22', 10, '接口文档', 'views/development_tool/Swagger.vue', '/development_tool/swagger', 'swagger', 'FileSearchOutlined', 29, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (23, '2022-03-04 12:27:31', '2021-07-25 21:50:01', '14.23', 190, '数据字典', 'views/system/dictionary/Index.vue', '/system/dictionary', 'system_dictionary', 'FileDoneOutlined', 14, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (24, '2022-03-04 12:27:35', '2021-08-05 21:24:54', '14.24', 200, '操作日志', 'views/system/sys_operation_log/Index.vue', '/system/sys_operation_log', 'sys_operation_log', 'ContainerOutlined', 14, 1, 1, 1, 1, '', 2);
-INSERT INTO "public"."SysMenu" VALUES (25, '2022-03-04 12:27:15', '2018-03-10 12:16:38', '14.25', 130, '菜单功能', 'views/system/menu/Index.vue', '/system/menu', 'system_menu', 'MenuOutlined', 14, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (28, '2022-03-04 12:26:00', '2021-12-29 17:13:26', '1.28', 1, 'Vxe-Table', 'views/VxeTable.vue', '/vxe/table', 'VxeTableCom', 'BorderlessTableOutlined', 1, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (29, '2022-03-04 12:25:49', '2022-01-12 14:17:21', '29', 200, '开发工具', NULL, NULL, NULL, 'CodepenOutlined', NULL, 1, 1, 1, 1, NULL, 1);
-INSERT INTO "public"."SysMenu" VALUES (30, '2022-03-04 12:27:44', '2022-01-12 14:22:04', '29.30', 20, '定时任务', 'views/development_tool/timed_task/Index.vue', '/development_tool/timed_task', 'TimedTaskCom', 'FieldTimeOutlined', 29, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (31, '2022-03-04 12:27:48', '2022-01-12 15:39:46', '29.31', 30, '代码生成', 'views/development_tool/code_generation/Index.vue', '/development_tool/code_generation', 'code_generation_index', 'CodeTwoTone', 29, 1, 1, 1, 1, NULL, 2);
-INSERT INTO "public"."SysMenu" VALUES (32, '2022-03-04 12:26:08', '2022-02-24 10:51:38', '1.32', 20, '图标展示', 'views/AntdIcons.vue', '/antd/icons', 'AntdIconsCom', 'TagsTwoTone', 1, 1, 1, 1, 1, NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (1, '2022-03-04 12:25:39', '2021-05-28 11:49:02', '1', 10, '更多示例', NULL, NULL, NULL, 'MoreOutlined', NULL, 't', 't', 't', 't', NULL, 1);
+INSERT INTO "public"."SysMenu" VALUES (2, '2022-03-04 12:26:04', '2021-01-16 16:05:22', '1.2', 10, 'Antd Vue3.0组件', 'views/AntdVueComponents.vue', '/antd/vue/components', 'AntdVueComponentsCom', 'LayoutOutlined', 1, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (3, '2022-03-04 12:26:14', '2020-12-17 14:58:05', '1.3', 30, '按钮', 'views/Button.vue', '/button', 'ButtonCom', 'AppstoreOutlined', 1, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (4, '2022-03-04 12:26:21', '2021-01-16 16:06:33', '1.4', 40, '图表 AntV G2', NULL, NULL, NULL, 'PieChartOutlined', 1, 't', 't', 't', 't', NULL, 1);
+INSERT INTO "public"."SysMenu" VALUES (5, '2022-03-04 12:26:25', '2021-01-16 16:07:24', '1.4.5', 10, '基础图表', 'views/chart/Base.vue', '/chart/base', 'ChartBaseCom', NULL, 4, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (6, '2022-03-04 12:26:28', '2021-01-16 16:10:06', '1.4.6', 20, '更多图表', 'views/chart/More.vue', '/chart/more', 'ChartMoreCom', NULL, 4, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (7, '2022-03-04 12:26:34', '2018-03-10 12:16:38', '1.7', 50, '表格管理', NULL, NULL, NULL, 'TableOutlined', 1, 't', 't', 't', 't', NULL, 1);
+INSERT INTO "public"."SysMenu" VALUES (8, '2022-03-04 12:26:38', '2020-12-17 14:49:12', '1.7.8', 100, '基础列表', 'views/BaseList.vue', '/base/list', 'BaseListCom', NULL, 7, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (9, '2022-03-04 12:26:41', '2020-12-17 14:51:07', '1.7.9', 110, '标准表格', 'views/list/Index.vue', '/list', 'ListIndexCom', NULL, 7, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (10, '2022-03-04 12:26:46', '2021-01-18 19:34:28', '1.10', 60, '富文本编辑器', 'views/Editor.vue', '/editor', 'EditorCom', 'PicRightOutlined', 1, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (11, '2022-03-04 12:26:49', '2021-08-05 21:51:12', '1.11', 70, '跳转外部地址', 'components/ExternalJump.vue', '/external/jump/:path(.*)', 'ExternalJumpCom', 'RadarChartOutlined', 1, 't', 't', 't', 't', 'https://antv.vision/zh', 2);
+INSERT INTO "public"."SysMenu" VALUES (12, '2022-03-04 12:25:43', '2018-03-10 12:16:38', '12', 50, '基础信息', NULL, NULL, NULL, 'GoldOutlined', NULL, 't', 't', 't', 't', NULL, 1);
+INSERT INTO "public"."SysMenu" VALUES (13, '2022-03-04 12:26:55', '2018-03-10 12:16:38', '12.13', 10, '会员管理', 'views/base/member/Index.vue', '/base/member', 'base_member', 'UsergroupAddOutlined', 12, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (14, '2022-03-04 12:25:46', '2018-03-10 12:16:38', '14', 100, '系统管理', NULL, NULL, NULL, 'DesktopOutlined', NULL, 't', 't', 't', 't', NULL, 1);
+INSERT INTO "public"."SysMenu" VALUES (15, '2022-03-04 12:27:02', '2018-03-10 12:16:38', '14.15', 100, '账户管理', 'views/system/user/Index.vue', '/system/user', 'system_user', 'UserOutlined', 14, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (16, '2022-03-04 12:27:07', '2018-03-10 12:16:38', '14.16', 110, '角色管理', 'views/system/role/Index.vue', '/system/role', 'system_role', 'TeamOutlined', 14, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (17, '2022-03-04 12:27:11', '2018-03-10 12:16:38', '14.17', 120, '功能管理', 'views/system/function/Index.vue', '/system/function', 'system_function', 'ControlOutlined', 14, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (19, '2022-03-04 12:27:19', '2018-03-10 12:16:38', '14.19', 150, '个人中心', 'views/system/personal_center/Index.vue', '/system/personal/center', 'system_personal_center', 'FormOutlined', 14, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (20, '2022-03-04 12:27:23', '2021-05-27 17:29:49', '14.20', 160, '岗位管理', 'views/system/post/Index.vue', '/system/post', 'system_post', 'IdcardOutlined', 14, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (21, '2022-03-04 12:27:27', '2021-05-27 20:27:56', '14.21', 170, '组织机构', 'views/system/organization/Index.vue', '/system/organization', 'system_organization', 'ClusterOutlined', 14, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (22, '2022-03-04 12:27:41', '2018-03-10 12:17:03', '29.22', 10, '接口文档', 'views/development_tool/Swagger.vue', '/development_tool/swagger', 'swagger', 'FileSearchOutlined', 29, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (23, '2022-03-04 12:27:31', '2021-07-25 21:50:01', '14.23', 190, '数据字典', 'views/system/dictionary/Index.vue', '/system/dictionary', 'system_dictionary', 'FileDoneOutlined', 14, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (24, '2022-03-04 12:27:35', '2021-08-05 21:24:54', '14.24', 200, '操作日志', 'views/system/sys_operation_log/Index.vue', '/system/sys_operation_log', 'sys_operation_log', 'ContainerOutlined', 14, 't', 't', 't', 't', '', 2);
+INSERT INTO "public"."SysMenu" VALUES (25, '2022-03-04 12:27:15', '2018-03-10 12:16:38', '14.25', 130, '菜单功能', 'views/system/menu/Index.vue', '/system/menu', 'system_menu', 'MenuOutlined', 14, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (28, '2022-03-04 12:26:00', '2021-12-29 17:13:26', '1.28', 1, 'Vxe-Table', 'views/VxeTable.vue', '/vxe/table', 'VxeTableCom', 'BorderlessTableOutlined', 1, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (29, '2022-03-04 12:25:49', '2022-01-12 14:17:21', '29', 200, '开发工具', NULL, NULL, NULL, 'CodepenOutlined', NULL, 't', 't', 't', 't', NULL, 1);
+INSERT INTO "public"."SysMenu" VALUES (30, '2022-03-04 12:27:44', '2022-01-12 14:22:04', '29.30', 20, '定时任务', 'views/development_tool/timed_task/Index.vue', '/development_tool/timed_task', 'TimedTaskCom', 'FieldTimeOutlined', 29, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (31, '2022-03-04 12:27:48', '2022-01-12 15:39:46', '29.31', 30, '代码生成', 'views/development_tool/code_generation/Index.vue', '/development_tool/code_generation', 'code_generation_index', 'CodeTwoTone', 29, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (32, '2022-03-04 12:26:08', '2022-02-24 10:51:38', '1.32', 20, '图标展示', 'views/AntdIcons.vue', '/antd/icons', 'AntdIconsCom', 'TagsTwoTone', 1, 't', 't', 't', 't', NULL, 2);
 
 -- ----------------------------
 -- Table structure for SysMenuFunction
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."SysMenuFunction";
 CREATE TABLE "public"."SysMenuFunction" (
-  "Id" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "Id" uuid NOT NULL,
   "LastModificationTime" timestamp(6),
   "CreationTime" timestamp(6),
   "Number" int4,
@@ -214,94 +214,94 @@ CREATE TABLE "public"."SysMenuFunction" (
 -- ----------------------------
 -- Records of SysMenuFunction
 -- ----------------------------
-INSERT INTO "public"."SysMenuFunction" VALUES ('33C80938-82C8-4299-0F12-08D9FDAD00AB', '2022-03-04 15:17:09', '2022-03-04 15:17:09', 10, 30, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('EF70B789-21EE-4850-0F1B-08D9FDAD00AB', '2022-03-04 15:16:44', '2022-03-04 15:16:44', 10, 22, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('DAB12C2F-1F4D-4347-0F1C-08D9FDAD00AB', '2022-03-04 15:17:24', '2022-03-04 15:17:24', 10, 31, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('A7CD04DB-BBE3-49B6-0F1E-08D9FDAD00AB', '2022-03-04 15:24:16', '2022-03-04 15:24:16', 10, 2, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('6C09C0C0-72FA-4842-0F1F-08D9FDAD00AB', '2022-03-04 15:24:21', '2022-03-04 15:24:21', 10, 32, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('F64CFE50-1EF1-457F-0F20-08D9FDAD00AB', '2022-03-04 15:24:24', '2022-03-04 15:24:24', 10, 3, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('A1DDD02F-8C21-4D79-0F21-08D9FDAD00AB', '2022-03-04 15:24:30', '2022-03-04 15:24:30', 10, 5, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('1CB6FBE1-4A6C-4AAD-0F22-08D9FDAD00AB', '2022-03-04 15:24:34', '2022-03-04 15:24:34', 10, 6, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('D2E6EA60-2CF6-478A-0F23-08D9FDAD00AB', '2022-03-04 15:24:40', '2022-03-04 15:24:40', 10, 8, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('B7533A90-DAE4-4263-0F24-08D9FDAD00AB', '2022-03-04 15:24:43', '2022-03-04 15:24:43', 10, 9, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('EC535908-8671-4928-0F25-08D9FDAD00AB', '2022-03-04 15:24:47', '2022-03-04 15:24:47', 10, 10, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('3BC0E68F-D03D-4E99-0F26-08D9FDAD00AB', '2022-03-04 15:24:53', '2022-03-04 15:24:53', 10, 11, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('EB958545-6449-40DB-0F27-08D9FDAD00AB', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 10, 13, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('B5881044-AFB8-40B2-0F28-08D9FDAD00AB', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 20, 13, 'Insert', '添加', 'Insert');
-INSERT INTO "public"."SysMenuFunction" VALUES ('106FB69A-8BB5-4559-0F29-08D9FDAD00AB', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 30, 13, 'Update', '修改', 'Update');
-INSERT INTO "public"."SysMenuFunction" VALUES ('F4621FBE-6B40-4454-0F2A-08D9FDAD00AB', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 40, 13, 'Delete', '删除', 'Delete');
-INSERT INTO "public"."SysMenuFunction" VALUES ('523B53B5-8159-4A16-0F2B-08D9FDAD00AB', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 50, 13, 'Save', '保存', 'Save');
-INSERT INTO "public"."SysMenuFunction" VALUES ('A3754771-F6E9-4A23-0F2C-08D9FDAD00AB', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 60, 13, 'Search', '检索', 'Search');
-INSERT INTO "public"."SysMenuFunction" VALUES ('B96F977C-A36E-4E7F-0F2D-08D9FDAD00AB', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 70, 13, 'Export', '导出', 'Export');
-INSERT INTO "public"."SysMenuFunction" VALUES ('541D9045-47B2-4629-0F2E-08D9FDAD00AB', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 80, 13, 'Print', '打印', 'Print');
-INSERT INTO "public"."SysMenuFunction" VALUES ('13F3F74D-C6FC-4488-0F2F-08D9FDAD00AB', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 10, 15, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('CCE82EB4-7FC5-4308-0F30-08D9FDAD00AB', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 20, 15, 'Insert', '添加', 'Insert');
-INSERT INTO "public"."SysMenuFunction" VALUES ('8564E4D8-D7F4-4F12-0F31-08D9FDAD00AB', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 30, 15, 'Update', '修改', 'Update');
-INSERT INTO "public"."SysMenuFunction" VALUES ('0AD6A459-1D9D-4512-0F32-08D9FDAD00AB', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 40, 15, 'Delete', '删除', 'Delete');
-INSERT INTO "public"."SysMenuFunction" VALUES ('37D3E492-62DA-47A4-0F33-08D9FDAD00AB', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 50, 15, 'Save', '保存', 'Save');
-INSERT INTO "public"."SysMenuFunction" VALUES ('BEB87004-5CFB-417A-0F34-08D9FDAD00AB', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 60, 15, 'Search', '检索', 'Search');
-INSERT INTO "public"."SysMenuFunction" VALUES ('A46E07D3-C722-4548-0F35-08D9FDAD00AB', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 70, 15, 'Export', '导出', 'Export');
-INSERT INTO "public"."SysMenuFunction" VALUES ('C8EDBB79-567E-461B-0F36-08D9FDAD00AB', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 80, 15, 'Print', '打印', 'Print');
-INSERT INTO "public"."SysMenuFunction" VALUES ('550F874B-E804-44A0-0F37-08D9FDAD00AB', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 10, 16, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('C67A0ABE-DAEC-491B-0F38-08D9FDAD00AB', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 20, 16, 'Insert', '添加', 'Insert');
-INSERT INTO "public"."SysMenuFunction" VALUES ('823AC05D-65E4-4216-0F39-08D9FDAD00AB', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 30, 16, 'Update', '修改', 'Update');
-INSERT INTO "public"."SysMenuFunction" VALUES ('BD6AE6DA-1CA6-46C2-0F3A-08D9FDAD00AB', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 40, 16, 'Delete', '删除', 'Delete');
-INSERT INTO "public"."SysMenuFunction" VALUES ('14783A71-E265-4D6B-0F3B-08D9FDAD00AB', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 50, 16, 'Save', '保存', 'Save');
-INSERT INTO "public"."SysMenuFunction" VALUES ('2FEA8F87-2A13-4C95-0F3C-08D9FDAD00AB', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 60, 16, 'Search', '检索', 'Search');
-INSERT INTO "public"."SysMenuFunction" VALUES ('437FBF85-8704-4E87-0F3D-08D9FDAD00AB', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 70, 16, 'Export', '导出', 'Export');
-INSERT INTO "public"."SysMenuFunction" VALUES ('6B009415-EADF-4DAB-0F3E-08D9FDAD00AB', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 80, 16, 'Print', '打印', 'Print');
-INSERT INTO "public"."SysMenuFunction" VALUES ('53FDB4A0-CA6E-4568-0F3F-08D9FDAD00AB', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 10, 17, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('86465238-C51C-45D5-0F40-08D9FDAD00AB', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 20, 17, 'Insert', '添加', 'Insert');
-INSERT INTO "public"."SysMenuFunction" VALUES ('86FF83FD-D34A-4290-0F41-08D9FDAD00AB', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 30, 17, 'Update', '修改', 'Update');
-INSERT INTO "public"."SysMenuFunction" VALUES ('7EA8F706-BFE5-42B2-0F42-08D9FDAD00AB', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 40, 17, 'Delete', '删除', 'Delete');
-INSERT INTO "public"."SysMenuFunction" VALUES ('DEE401B1-E20E-496E-0F43-08D9FDAD00AB', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 50, 17, 'Save', '保存', 'Save');
-INSERT INTO "public"."SysMenuFunction" VALUES ('0B27E69F-AF16-4481-0F44-08D9FDAD00AB', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 60, 17, 'Search', '检索', 'Search');
-INSERT INTO "public"."SysMenuFunction" VALUES ('A726455F-1C29-4BE0-0F45-08D9FDAD00AB', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 70, 17, 'Export', '导出', 'Export');
-INSERT INTO "public"."SysMenuFunction" VALUES ('0CAA6E7D-92B0-4814-0F46-08D9FDAD00AB', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 80, 17, 'Print', '打印', 'Print');
-INSERT INTO "public"."SysMenuFunction" VALUES ('DB3AB8BD-7709-41A2-0F47-08D9FDAD00AB', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 10, 25, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('FE6465BF-E429-45BD-0F48-08D9FDAD00AB', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 20, 25, 'Insert', '添加', 'Insert');
-INSERT INTO "public"."SysMenuFunction" VALUES ('4A67FCDB-A7A9-4E3C-0F49-08D9FDAD00AB', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 30, 25, 'Update', '修改', 'Update');
-INSERT INTO "public"."SysMenuFunction" VALUES ('20AB5395-D57C-49DB-0F4A-08D9FDAD00AB', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 40, 25, 'Delete', '删除', 'Delete');
-INSERT INTO "public"."SysMenuFunction" VALUES ('41CB1942-573A-4D63-0F4B-08D9FDAD00AB', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 50, 25, 'Save', '保存', 'Save');
-INSERT INTO "public"."SysMenuFunction" VALUES ('7E0F6C84-D7F1-4243-0F4C-08D9FDAD00AB', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 60, 25, 'Search', '检索', 'Search');
-INSERT INTO "public"."SysMenuFunction" VALUES ('1E69DF5D-D1E9-4BC8-0F4D-08D9FDAD00AB', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 70, 25, 'Export', '导出', 'Export');
-INSERT INTO "public"."SysMenuFunction" VALUES ('4BBBE120-0CC6-4A08-0F4E-08D9FDAD00AB', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 80, 25, 'Print', '打印', 'Print');
-INSERT INTO "public"."SysMenuFunction" VALUES ('45E2CA86-4823-4FB9-0F57-08D9FDAD00AB', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 10, 20, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('3E44C6F5-E090-40A1-0F58-08D9FDAD00AB', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 20, 20, 'Insert', '添加', 'Insert');
-INSERT INTO "public"."SysMenuFunction" VALUES ('22A675F6-EFDA-481D-0F59-08D9FDAD00AB', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 30, 20, 'Update', '修改', 'Update');
-INSERT INTO "public"."SysMenuFunction" VALUES ('69DA651E-787B-42E5-0F5A-08D9FDAD00AB', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 40, 20, 'Delete', '删除', 'Delete');
-INSERT INTO "public"."SysMenuFunction" VALUES ('616C4E4A-FB61-49CF-0F5B-08D9FDAD00AB', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 50, 20, 'Save', '保存', 'Save');
-INSERT INTO "public"."SysMenuFunction" VALUES ('5E4E87BD-C179-4B5B-0F5C-08D9FDAD00AB', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 60, 20, 'Search', '检索', 'Search');
-INSERT INTO "public"."SysMenuFunction" VALUES ('54743C86-AC73-4345-0F5D-08D9FDAD00AB', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 70, 20, 'Export', '导出', 'Export');
-INSERT INTO "public"."SysMenuFunction" VALUES ('2469188C-21DE-492A-0F5E-08D9FDAD00AB', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 80, 20, 'Print', '打印', 'Print');
-INSERT INTO "public"."SysMenuFunction" VALUES ('C6BA141B-99BA-4114-0F5F-08D9FDAD00AB', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 10, 21, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('0A85E4FD-5A1C-47F6-0F60-08D9FDAD00AB', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 20, 21, 'Insert', '添加', 'Insert');
-INSERT INTO "public"."SysMenuFunction" VALUES ('F4C73AC0-C66D-4988-0F61-08D9FDAD00AB', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 30, 21, 'Update', '修改', 'Update');
-INSERT INTO "public"."SysMenuFunction" VALUES ('3CB3CBC7-9E45-4CC3-0F62-08D9FDAD00AB', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 40, 21, 'Delete', '删除', 'Delete');
-INSERT INTO "public"."SysMenuFunction" VALUES ('6B209D5A-B366-4A61-0F63-08D9FDAD00AB', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 50, 21, 'Save', '保存', 'Save');
-INSERT INTO "public"."SysMenuFunction" VALUES ('F36B9B06-2826-425F-0F64-08D9FDAD00AB', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 60, 21, 'Search', '检索', 'Search');
-INSERT INTO "public"."SysMenuFunction" VALUES ('A9503588-E6F7-420B-0F65-08D9FDAD00AB', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 70, 21, 'Export', '导出', 'Export');
-INSERT INTO "public"."SysMenuFunction" VALUES ('C9E5FFF0-6744-47D7-0F66-08D9FDAD00AB', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 80, 21, 'Print', '打印', 'Print');
-INSERT INTO "public"."SysMenuFunction" VALUES ('9426768E-B90D-41E1-0F67-08D9FDAD00AB', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 10, 23, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('E991934A-0D30-416B-0F68-08D9FDAD00AB', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 20, 23, 'Insert', '添加', 'Insert');
-INSERT INTO "public"."SysMenuFunction" VALUES ('B98A365E-6FB4-4EFB-0F69-08D9FDAD00AB', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 30, 23, 'Update', '修改', 'Update');
-INSERT INTO "public"."SysMenuFunction" VALUES ('92B39A10-3927-4EE7-0F6A-08D9FDAD00AB', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 40, 23, 'Delete', '删除', 'Delete');
-INSERT INTO "public"."SysMenuFunction" VALUES ('A03D56D7-4B0D-47CC-0F6B-08D9FDAD00AB', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 50, 23, 'Save', '保存', 'Save');
-INSERT INTO "public"."SysMenuFunction" VALUES ('E2319118-42CC-41A2-0F6C-08D9FDAD00AB', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 60, 23, 'Search', '检索', 'Search');
-INSERT INTO "public"."SysMenuFunction" VALUES ('0984A2E1-3722-41D4-0F6D-08D9FDAD00AB', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 70, 23, 'Export', '导出', 'Export');
-INSERT INTO "public"."SysMenuFunction" VALUES ('1D831D57-6634-45D7-0F6E-08D9FDAD00AB', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 80, 23, 'Print', '打印', 'Print');
-INSERT INTO "public"."SysMenuFunction" VALUES ('C77C812A-1601-4311-0F70-08D9FDAD00AB', '2022-03-04 15:26:00', '2022-03-04 15:26:00', 10, 19, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('3F6D0AF7-5386-4D3A-0F71-08D9FDAD00AB', '2022-03-04 15:40:52', '2022-03-04 15:40:52', 10, 28, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('55750F56-EDC9-4771-E2D6-08D9FDEFA8F8', '2022-03-04 23:00:02', '2022-03-04 23:00:02', 10, 24, 'Display', '显示', 'Display');
-INSERT INTO "public"."SysMenuFunction" VALUES ('7694FBF5-E28D-424C-E2D7-08D9FDEFA8F8', '2022-03-04 23:00:02', '2022-03-04 23:00:02', 40, 24, 'Delete', '删除', 'Delete');
-INSERT INTO "public"."SysMenuFunction" VALUES ('2186550D-246C-4552-E2D8-08D9FDEFA8F8', '2022-03-04 23:00:02', '2022-03-04 23:00:02', 60, 24, 'Search', '检索', 'Search');
+INSERT INTO "public"."SysMenuFunction" VALUES ('33c80938-82c8-4299-0f12-08d9fdad00ab', '2022-03-04 15:17:09', '2022-03-04 15:17:09', 10, 30, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('ef70b789-21ee-4850-0f1b-08d9fdad00ab', '2022-03-04 15:16:44', '2022-03-04 15:16:44', 10, 22, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('dab12c2f-1f4d-4347-0f1c-08d9fdad00ab', '2022-03-04 15:17:24', '2022-03-04 15:17:24', 10, 31, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('a7cd04db-bbe3-49b6-0f1e-08d9fdad00ab', '2022-03-04 15:24:16', '2022-03-04 15:24:16', 10, 2, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('6c09c0c0-72fa-4842-0f1f-08d9fdad00ab', '2022-03-04 15:24:21', '2022-03-04 15:24:21', 10, 32, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('f64cfe50-1ef1-457f-0f20-08d9fdad00ab', '2022-03-04 15:24:24', '2022-03-04 15:24:24', 10, 3, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('a1ddd02f-8c21-4d79-0f21-08d9fdad00ab', '2022-03-04 15:24:30', '2022-03-04 15:24:30', 10, 5, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('1cb6fbe1-4a6c-4aad-0f22-08d9fdad00ab', '2022-03-04 15:24:34', '2022-03-04 15:24:34', 10, 6, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('d2e6ea60-2cf6-478a-0f23-08d9fdad00ab', '2022-03-04 15:24:40', '2022-03-04 15:24:40', 10, 8, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('b7533a90-dae4-4263-0f24-08d9fdad00ab', '2022-03-04 15:24:43', '2022-03-04 15:24:43', 10, 9, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('ec535908-8671-4928-0f25-08d9fdad00ab', '2022-03-04 15:24:47', '2022-03-04 15:24:47', 10, 10, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('3bc0e68f-d03d-4e99-0f26-08d9fdad00ab', '2022-03-04 15:24:53', '2022-03-04 15:24:53', 10, 11, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('eb958545-6449-40db-0f27-08d9fdad00ab', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 10, 13, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('b5881044-afb8-40b2-0f28-08d9fdad00ab', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 20, 13, 'Insert', '添加', 'Insert');
+INSERT INTO "public"."SysMenuFunction" VALUES ('106fb69a-8bb5-4559-0f29-08d9fdad00ab', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 30, 13, 'Update', '修改', 'Update');
+INSERT INTO "public"."SysMenuFunction" VALUES ('f4621fbe-6b40-4454-0f2a-08d9fdad00ab', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 40, 13, 'Delete', '删除', 'Delete');
+INSERT INTO "public"."SysMenuFunction" VALUES ('523b53b5-8159-4a16-0f2b-08d9fdad00ab', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 50, 13, 'Save', '保存', 'Save');
+INSERT INTO "public"."SysMenuFunction" VALUES ('a3754771-f6e9-4a23-0f2c-08d9fdad00ab', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 60, 13, 'Search', '检索', 'Search');
+INSERT INTO "public"."SysMenuFunction" VALUES ('b96f977c-a36e-4e7f-0f2d-08d9fdad00ab', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 70, 13, 'Export', '导出', 'Export');
+INSERT INTO "public"."SysMenuFunction" VALUES ('541d9045-47b2-4629-0f2e-08d9fdad00ab', '2022-03-04 15:25:07', '2022-03-04 15:25:07', 80, 13, 'Print', '打印', 'Print');
+INSERT INTO "public"."SysMenuFunction" VALUES ('13f3f74d-c6fc-4488-0f2f-08d9fdad00ab', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 10, 15, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('cce82eb4-7fc5-4308-0f30-08d9fdad00ab', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 20, 15, 'Insert', '添加', 'Insert');
+INSERT INTO "public"."SysMenuFunction" VALUES ('8564e4d8-d7f4-4f12-0f31-08d9fdad00ab', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 30, 15, 'Update', '修改', 'Update');
+INSERT INTO "public"."SysMenuFunction" VALUES ('0ad6a459-1d9d-4512-0f32-08d9fdad00ab', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 40, 15, 'Delete', '删除', 'Delete');
+INSERT INTO "public"."SysMenuFunction" VALUES ('37d3e492-62da-47a4-0f33-08d9fdad00ab', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 50, 15, 'Save', '保存', 'Save');
+INSERT INTO "public"."SysMenuFunction" VALUES ('beb87004-5cfb-417a-0f34-08d9fdad00ab', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 60, 15, 'Search', '检索', 'Search');
+INSERT INTO "public"."SysMenuFunction" VALUES ('a46e07d3-c722-4548-0f35-08d9fdad00ab', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 70, 15, 'Export', '导出', 'Export');
+INSERT INTO "public"."SysMenuFunction" VALUES ('c8edbb79-567e-461b-0f36-08d9fdad00ab', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 80, 15, 'Print', '打印', 'Print');
+INSERT INTO "public"."SysMenuFunction" VALUES ('550f874b-e804-44a0-0f37-08d9fdad00ab', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 10, 16, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('c67a0abe-daec-491b-0f38-08d9fdad00ab', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 20, 16, 'Insert', '添加', 'Insert');
+INSERT INTO "public"."SysMenuFunction" VALUES ('823ac05d-65e4-4216-0f39-08d9fdad00ab', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 30, 16, 'Update', '修改', 'Update');
+INSERT INTO "public"."SysMenuFunction" VALUES ('bd6ae6da-1ca6-46c2-0f3a-08d9fdad00ab', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 40, 16, 'Delete', '删除', 'Delete');
+INSERT INTO "public"."SysMenuFunction" VALUES ('14783a71-e265-4d6b-0f3b-08d9fdad00ab', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 50, 16, 'Save', '保存', 'Save');
+INSERT INTO "public"."SysMenuFunction" VALUES ('2fea8f87-2a13-4c95-0f3c-08d9fdad00ab', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 60, 16, 'Search', '检索', 'Search');
+INSERT INTO "public"."SysMenuFunction" VALUES ('437fbf85-8704-4e87-0f3d-08d9fdad00ab', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 70, 16, 'Export', '导出', 'Export');
+INSERT INTO "public"."SysMenuFunction" VALUES ('6b009415-eadf-4dab-0f3e-08d9fdad00ab', '2022-03-04 15:25:18', '2022-03-04 15:25:18', 80, 16, 'Print', '打印', 'Print');
+INSERT INTO "public"."SysMenuFunction" VALUES ('53fdb4a0-ca6e-4568-0f3f-08d9fdad00ab', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 10, 17, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('86465238-c51c-45d5-0f40-08d9fdad00ab', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 20, 17, 'Insert', '添加', 'Insert');
+INSERT INTO "public"."SysMenuFunction" VALUES ('86ff83fd-d34a-4290-0f41-08d9fdad00ab', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 30, 17, 'Update', '修改', 'Update');
+INSERT INTO "public"."SysMenuFunction" VALUES ('7ea8f706-bfe5-42b2-0f42-08d9fdad00ab', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 40, 17, 'Delete', '删除', 'Delete');
+INSERT INTO "public"."SysMenuFunction" VALUES ('dee401b1-e20e-496e-0f43-08d9fdad00ab', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 50, 17, 'Save', '保存', 'Save');
+INSERT INTO "public"."SysMenuFunction" VALUES ('0b27e69f-af16-4481-0f44-08d9fdad00ab', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 60, 17, 'Search', '检索', 'Search');
+INSERT INTO "public"."SysMenuFunction" VALUES ('a726455f-1c29-4be0-0f45-08d9fdad00ab', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 70, 17, 'Export', '导出', 'Export');
+INSERT INTO "public"."SysMenuFunction" VALUES ('0caa6e7d-92b0-4814-0f46-08d9fdad00ab', '2022-03-04 15:25:21', '2022-03-04 15:25:21', 80, 17, 'Print', '打印', 'Print');
+INSERT INTO "public"."SysMenuFunction" VALUES ('db3ab8bd-7709-41a2-0f47-08d9fdad00ab', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 10, 25, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('fe6465bf-e429-45bd-0f48-08d9fdad00ab', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 20, 25, 'Insert', '添加', 'Insert');
+INSERT INTO "public"."SysMenuFunction" VALUES ('4a67fcdb-a7a9-4e3c-0f49-08d9fdad00ab', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 30, 25, 'Update', '修改', 'Update');
+INSERT INTO "public"."SysMenuFunction" VALUES ('20ab5395-d57c-49db-0f4a-08d9fdad00ab', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 40, 25, 'Delete', '删除', 'Delete');
+INSERT INTO "public"."SysMenuFunction" VALUES ('41cb1942-573a-4d63-0f4b-08d9fdad00ab', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 50, 25, 'Save', '保存', 'Save');
+INSERT INTO "public"."SysMenuFunction" VALUES ('7e0f6c84-d7f1-4243-0f4c-08d9fdad00ab', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 60, 25, 'Search', '检索', 'Search');
+INSERT INTO "public"."SysMenuFunction" VALUES ('1e69df5d-d1e9-4bc8-0f4d-08d9fdad00ab', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 70, 25, 'Export', '导出', 'Export');
+INSERT INTO "public"."SysMenuFunction" VALUES ('4bbbe120-0cc6-4a08-0f4e-08d9fdad00ab', '2022-03-04 15:25:28', '2022-03-04 15:25:28', 80, 25, 'Print', '打印', 'Print');
+INSERT INTO "public"."SysMenuFunction" VALUES ('45e2ca86-4823-4fb9-0f57-08d9fdad00ab', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 10, 20, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('3e44c6f5-e090-40a1-0f58-08d9fdad00ab', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 20, 20, 'Insert', '添加', 'Insert');
+INSERT INTO "public"."SysMenuFunction" VALUES ('22a675f6-efda-481d-0f59-08d9fdad00ab', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 30, 20, 'Update', '修改', 'Update');
+INSERT INTO "public"."SysMenuFunction" VALUES ('69da651e-787b-42e5-0f5a-08d9fdad00ab', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 40, 20, 'Delete', '删除', 'Delete');
+INSERT INTO "public"."SysMenuFunction" VALUES ('616c4e4a-fb61-49cf-0f5b-08d9fdad00ab', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 50, 20, 'Save', '保存', 'Save');
+INSERT INTO "public"."SysMenuFunction" VALUES ('5e4e87bd-c179-4b5b-0f5c-08d9fdad00ab', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 60, 20, 'Search', '检索', 'Search');
+INSERT INTO "public"."SysMenuFunction" VALUES ('54743c86-ac73-4345-0f5d-08d9fdad00ab', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 70, 20, 'Export', '导出', 'Export');
+INSERT INTO "public"."SysMenuFunction" VALUES ('2469188c-21de-492a-0f5e-08d9fdad00ab', '2022-03-04 15:25:36', '2022-03-04 15:25:36', 80, 20, 'Print', '打印', 'Print');
+INSERT INTO "public"."SysMenuFunction" VALUES ('c6ba141b-99ba-4114-0f5f-08d9fdad00ab', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 10, 21, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('0a85e4fd-5a1c-47f6-0f60-08d9fdad00ab', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 20, 21, 'Insert', '添加', 'Insert');
+INSERT INTO "public"."SysMenuFunction" VALUES ('f4c73ac0-c66d-4988-0f61-08d9fdad00ab', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 30, 21, 'Update', '修改', 'Update');
+INSERT INTO "public"."SysMenuFunction" VALUES ('3cb3cbc7-9e45-4cc3-0f62-08d9fdad00ab', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 40, 21, 'Delete', '删除', 'Delete');
+INSERT INTO "public"."SysMenuFunction" VALUES ('6b209d5a-b366-4a61-0f63-08d9fdad00ab', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 50, 21, 'Save', '保存', 'Save');
+INSERT INTO "public"."SysMenuFunction" VALUES ('f36b9b06-2826-425f-0f64-08d9fdad00ab', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 60, 21, 'Search', '检索', 'Search');
+INSERT INTO "public"."SysMenuFunction" VALUES ('a9503588-e6f7-420b-0f65-08d9fdad00ab', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 70, 21, 'Export', '导出', 'Export');
+INSERT INTO "public"."SysMenuFunction" VALUES ('c9e5fff0-6744-47d7-0f66-08d9fdad00ab', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 80, 21, 'Print', '打印', 'Print');
+INSERT INTO "public"."SysMenuFunction" VALUES ('9426768e-b90d-41e1-0f67-08d9fdad00ab', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 10, 23, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('e991934a-0d30-416b-0f68-08d9fdad00ab', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 20, 23, 'Insert', '添加', 'Insert');
+INSERT INTO "public"."SysMenuFunction" VALUES ('b98a365e-6fb4-4efb-0f69-08d9fdad00ab', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 30, 23, 'Update', '修改', 'Update');
+INSERT INTO "public"."SysMenuFunction" VALUES ('92b39a10-3927-4ee7-0f6a-08d9fdad00ab', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 40, 23, 'Delete', '删除', 'Delete');
+INSERT INTO "public"."SysMenuFunction" VALUES ('a03d56d7-4b0d-47cc-0f6b-08d9fdad00ab', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 50, 23, 'Save', '保存', 'Save');
+INSERT INTO "public"."SysMenuFunction" VALUES ('e2319118-42cc-41a2-0f6c-08d9fdad00ab', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 60, 23, 'Search', '检索', 'Search');
+INSERT INTO "public"."SysMenuFunction" VALUES ('0984a2e1-3722-41d4-0f6d-08d9fdad00ab', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 70, 23, 'Export', '导出', 'Export');
+INSERT INTO "public"."SysMenuFunction" VALUES ('1d831d57-6634-45d7-0f6e-08d9fdad00ab', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 80, 23, 'Print', '打印', 'Print');
+INSERT INTO "public"."SysMenuFunction" VALUES ('c77c812a-1601-4311-0f70-08d9fdad00ab', '2022-03-04 15:26:00', '2022-03-04 15:26:00', 10, 19, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('3f6d0af7-5386-4d3a-0f71-08d9fdad00ab', '2022-03-04 15:40:52', '2022-03-04 15:40:52', 10, 28, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('55750f56-edc9-4771-e2d6-08d9fdefa8f8', '2022-03-04 23:00:02', '2022-03-04 23:00:02', 10, 24, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('7694fbf5-e28d-424c-e2d7-08d9fdefa8f8', '2022-03-04 23:00:02', '2022-03-04 23:00:02', 40, 24, 'Delete', '删除', 'Delete');
+INSERT INTO "public"."SysMenuFunction" VALUES ('2186550d-246c-4552-e2d8-08d9fdefa8f8', '2022-03-04 23:00:02', '2022-03-04 23:00:02', 60, 24, 'Search', '检索', 'Search');
 
 -- ----------------------------
 -- Table structure for SysOperationLog
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."SysOperationLog";
 CREATE TABLE "public"."SysOperationLog" (
-  "Id" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "Id" uuid NOT NULL,
   "Api" varchar(500) COLLATE "pg_catalog"."default",
   "Ip" varchar(255) COLLATE "pg_catalog"."default",
   "Form" text COLLATE "pg_catalog"."default",
@@ -309,7 +309,7 @@ CREATE TABLE "public"."SysOperationLog" (
   "QueryString" text COLLATE "pg_catalog"."default",
   "Browser" varchar(255) COLLATE "pg_catalog"."default",
   "OS" varchar(255) COLLATE "pg_catalog"."default",
-  "UserId" char(36) COLLATE "pg_catalog"."default",
+  "UserId" uuid,
   "TakeUpTime" int8 NOT NULL,
   "LastModificationTime" timestamp(6),
   "CreationTime" timestamp(6)
@@ -326,6 +326,7 @@ COMMENT ON COLUMN "public"."SysOperationLog"."TakeUpTime" IS '接口耗时（毫
 -- ----------------------------
 -- Records of SysOperationLog
 -- ----------------------------
+INSERT INTO "public"."SysOperationLog" VALUES ('b4a5c339-6fda-4ed4-bef3-a51f8e80455c', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 'Chrome99', 'Windows10', NULL, 11, '2022-03-18 09:59:03.274476', '2022-03-18 09:59:03.274421');
 
 -- ----------------------------
 -- Table structure for SysOrganization
@@ -364,7 +365,7 @@ INSERT INTO "public"."SysOrganization" VALUES (11, '技术部门', 2, '1.5.11', 
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."SysPost";
 CREATE TABLE "public"."SysPost" (
-  "Id" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "Id" uuid NOT NULL,
   "Number" int4,
   "Code" varchar(255) COLLATE "pg_catalog"."default",
   "Name" varchar(255) COLLATE "pg_catalog"."default",
@@ -378,42 +379,42 @@ CREATE TABLE "public"."SysPost" (
 -- ----------------------------
 -- Records of SysPost
 -- ----------------------------
-INSERT INTO "public"."SysPost" VALUES ('F0BD38C2-F1DE-4BD9-E2DB-08DA00A93622', 5, 'dotnet_engineer', 'DotNet软件工程师', 1, NULL, '2022-03-08 10:13:18', '2022-03-08 10:13:18');
-INSERT INTO "public"."SysPost" VALUES ('0716B4B0-9A06-43E9-8AE8-82C74875F83E', 2, 'se', '项目经理', 1, NULL, '2021-05-27 20:26:35', '2021-05-27 20:26:35');
-INSERT INTO "public"."SysPost" VALUES ('96927C30-41D0-4CED-8E29-CBED35C90FB0', 1, 'ceo', '董事长', 1, NULL, '2021-05-27 20:26:22', '2021-05-27 20:26:22');
-INSERT INTO "public"."SysPost" VALUES ('E46AF329-6D08-442C-9837-F22CFF954411', 4, 'user', '普通员工', 1, NULL, '2021-05-27 20:26:52', '2021-05-27 20:26:52');
-INSERT INTO "public"."SysPost" VALUES ('F0C67537-8094-429A-B474-F54AC518609E', 3, 'hr', '人力资源', 1, NULL, '2021-05-27 20:26:44', '2021-05-27 20:26:44');
+INSERT INTO "public"."SysPost" VALUES ('f0bd38c2-f1de-4bd9-e2db-08da00a93622', 5, 'dotnet_engineer', 'DotNet软件工程师', 1, NULL, '2022-03-08 10:13:18', '2022-03-08 10:13:18');
+INSERT INTO "public"."SysPost" VALUES ('0716b4b0-9a06-43e9-8ae8-82c74875f83e', 2, 'se', '项目经理', 1, NULL, '2021-05-27 20:26:35', '2021-05-27 20:26:35');
+INSERT INTO "public"."SysPost" VALUES ('96927c30-41d0-4ced-8e29-cbed35c90fb0', 1, 'ceo', '董事长', 1, NULL, '2021-05-27 20:26:22', '2021-05-27 20:26:22');
+INSERT INTO "public"."SysPost" VALUES ('e46af329-6d08-442c-9837-f22cff954411', 4, 'user', '普通员工', 1, NULL, '2021-05-27 20:26:52', '2021-05-27 20:26:52');
+INSERT INTO "public"."SysPost" VALUES ('f0c67537-8094-429a-b474-f54ac518609e', 3, 'hr', '人力资源', 1, NULL, '2021-05-27 20:26:44', '2021-05-27 20:26:44');
 
 -- ----------------------------
 -- Table structure for SysRole
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."SysRole";
 CREATE TABLE "public"."SysRole" (
-  "Id" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "Id" uuid NOT NULL,
   "LastModificationTime" timestamp(6),
   "CreationTime" timestamp(6),
   "Number" int4,
   "Name" varchar(255) COLLATE "pg_catalog"."default",
   "Remark" varchar(255) COLLATE "pg_catalog"."default",
-  "DeleteLock" int2
+  "DeleteLock" bool
 )
 ;
 
 -- ----------------------------
 -- Records of SysRole
 -- ----------------------------
-INSERT INTO "public"."SysRole" VALUES ('18FA4771-6F58-46A3-80D2-6F0F5E9972E3', '2021-01-10 11:25:12', '2016-07-06 17:59:20', 1, '超级管理员', '拥有所有权限', 1);
-INSERT INTO "public"."SysRole" VALUES ('40FF1844-C099-4061-98E0-CD6E544FCFD3', '2021-01-30 00:51:17', '2016-07-06 17:59:20', 2, '普通用户', '普通用户', 1);
+INSERT INTO "public"."SysRole" VALUES ('18fa4771-6f58-46a3-80d2-6f0f5e9972e3', '2021-01-10 11:25:12', '2016-07-06 17:59:20', 1, '超级管理员', '拥有所有权限', 't');
+INSERT INTO "public"."SysRole" VALUES ('40ff1844-c099-4061-98e0-cd6e544fcfd3', '2021-01-30 00:51:17', '2016-07-06 17:59:20', 2, '普通用户', '普通用户', 't');
 
 -- ----------------------------
 -- Table structure for SysRoleMenuFunction
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."SysRoleMenuFunction";
 CREATE TABLE "public"."SysRoleMenuFunction" (
-  "Id" char(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "RoleId" char(36) COLLATE "pg_catalog"."default",
+  "Id" uuid NOT NULL,
+  "RoleId" uuid,
   "MenuId" int4,
-  "MenuFunctionId" char(36) COLLATE "pg_catalog"."default",
+  "MenuFunctionId" uuid,
   "LastModificationTime" timestamp(6),
   "CreationTime" timestamp(6)
 )
@@ -422,33 +423,33 @@ CREATE TABLE "public"."SysRoleMenuFunction" (
 -- ----------------------------
 -- Records of SysRoleMenuFunction
 -- ----------------------------
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('8E81677B-0B69-4AA2-50B7-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 2, 'A7CD04DB-BBE3-49B6-0F1E-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('C6C7C04B-D22E-4AAD-50B8-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 3, 'F64CFE50-1EF1-457F-0F20-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('74857E94-3AEA-4161-50B9-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 5, 'A1DDD02F-8C21-4D79-0F21-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('537EE83D-2022-40F1-50BA-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 6, '1CB6FBE1-4A6C-4AAD-0F22-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('BCC9DD20-62FF-4A1B-50BB-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 8, 'D2E6EA60-2CF6-478A-0F23-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('2DADAF13-6DDC-4458-50BC-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 9, 'B7533A90-DAE4-4263-0F24-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('B2A39591-7A0C-419D-50BD-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 10, 'EC535908-8671-4928-0F25-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('A96009AD-B7E9-4EB6-50BE-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 11, '3BC0E68F-D03D-4E99-0F26-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('59F64FDF-1DC8-4031-50BF-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 13, 'EB958545-6449-40DB-0F27-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('F3C080A9-DDAB-4BCE-50C0-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 13, 'B5881044-AFB8-40B2-0F28-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('E6D2ABFF-C1D4-4855-50C1-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 13, '106FB69A-8BB5-4559-0F29-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('02B217C2-9AA8-4102-50C2-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 13, 'F4621FBE-6B40-4454-0F2A-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('0A2DA8BA-74A6-4BDC-50C3-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 13, '523B53B5-8159-4A16-0F2B-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('25F59BC4-B4A2-4B0E-50C4-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 13, 'A3754771-F6E9-4A23-0F2C-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('C3F0D869-EB3A-4966-50C5-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 13, 'B96F977C-A36E-4E7F-0F2D-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('82220BFF-16F7-4413-50C6-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 13, '541D9045-47B2-4629-0F2E-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('6623169B-0573-4F75-50C7-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 15, '13F3F74D-C6FC-4488-0F2F-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('6AC3E66C-48BE-4262-50C8-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 19, 'C77C812A-1601-4311-0F70-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('5B3530FD-A94F-47AE-50C9-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 28, '3F6D0AF7-5386-4D3A-0F71-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
-INSERT INTO "public"."SysRoleMenuFunction" VALUES ('24E9A375-893B-4432-50CA-08DA0046A5B6', '40FF1844-C099-4061-98E0-CD6E544FCFD3', 32, '6C09C0C0-72FA-4842-0F1F-08D9FDAD00AB', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('8e81677b-0b69-4aa2-50b7-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 2, 'a7cd04db-bbe3-49b6-0f1e-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('c6c7c04b-d22e-4aad-50b8-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 3, 'f64cfe50-1ef1-457f-0f20-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('74857e94-3aea-4161-50b9-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 5, 'a1ddd02f-8c21-4d79-0f21-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('537ee83d-2022-40f1-50ba-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 6, '1cb6fbe1-4a6c-4aad-0f22-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('bcc9dd20-62ff-4a1b-50bb-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 8, 'd2e6ea60-2cf6-478a-0f23-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('2dadaf13-6ddc-4458-50bc-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 9, 'b7533a90-dae4-4263-0f24-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('b2a39591-7a0c-419d-50bd-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 10, 'ec535908-8671-4928-0f25-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('a96009ad-b7e9-4eb6-50be-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 11, '3bc0e68f-d03d-4e99-0f26-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('59f64fdf-1dc8-4031-50bf-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 13, 'eb958545-6449-40db-0f27-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('f3c080a9-ddab-4bce-50c0-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 13, 'b5881044-afb8-40b2-0f28-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('e6d2abff-c1d4-4855-50c1-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 13, '106fb69a-8bb5-4559-0f29-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('02b217c2-9aa8-4102-50c2-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 13, 'f4621fbe-6b40-4454-0f2a-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('0a2da8ba-74a6-4bdc-50c3-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 13, '523b53b5-8159-4a16-0f2b-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('25f59bc4-b4a2-4b0e-50c4-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 13, 'a3754771-f6e9-4a23-0f2c-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('c3f0d869-eb3a-4966-50c5-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 13, 'b96f977c-a36e-4e7f-0f2d-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('82220bff-16f7-4413-50c6-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 13, '541d9045-47b2-4629-0f2e-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('6623169b-0573-4f75-50c7-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 15, '13f3f74d-c6fc-4488-0f2f-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('6ac3e66c-48be-4262-50c8-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 19, 'c77c812a-1601-4311-0f70-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('5b3530fd-a94f-47ae-50c9-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 28, '3f6d0af7-5386-4d3a-0f71-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
+INSERT INTO "public"."SysRoleMenuFunction" VALUES ('24e9a375-893b-4432-50ca-08da0046a5b6', '40ff1844-c099-4061-98e0-cd6e544fcfd3', 32, '6c09c0c0-72fa-4842-0f1f-08d9fdad00ab', '2022-03-07 22:27:45', '2022-03-07 22:27:45');
 
 -- ----------------------------
 -- Table structure for SysUser
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."SysUser";
 CREATE TABLE "public"."SysUser" (
-  "Id" char(36) COLLATE "pg_catalog"."default" NOT NULL,
+  "Id" uuid NOT NULL,
   "LastModificationTime" timestamp(6),
   "CreationTime" timestamp(6),
   "Name" varchar(255) COLLATE "pg_catalog"."default",
@@ -456,7 +457,7 @@ CREATE TABLE "public"."SysUser" (
   "Password" varchar(255) COLLATE "pg_catalog"."default",
   "Phone" varchar(255) COLLATE "pg_catalog"."default",
   "Email" varchar(255) COLLATE "pg_catalog"."default" NOT NULL,
-  "DeleteLock" int2,
+  "DeleteLock" bool,
   "OrganizationId" int4
 )
 ;
@@ -464,25 +465,25 @@ CREATE TABLE "public"."SysUser" (
 -- ----------------------------
 -- Records of SysUser
 -- ----------------------------
-INSERT INTO "public"."SysUser" VALUES ('5722AF0F-2366-4FC9-62D5-08DA00E3D8A0', '2022-03-08 17:13:02', '2022-03-08 17:13:02', '杜甫', '杜甫', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 0, 7);
-INSERT INTO "public"."SysUser" VALUES ('4FD6A740-0CF1-4975-62D6-08DA00E3D8A0', '2022-03-08 17:14:13', '2022-03-08 17:14:13', '李商隐', '李商隐', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 0, 7);
-INSERT INTO "public"."SysUser" VALUES ('E225E163-31C9-4DA9-62D7-08DA00E3D8A0', '2022-03-08 17:15:07', '2022-03-08 17:15:07', '苏轼', '苏轼', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 0, 7);
-INSERT INTO "public"."SysUser" VALUES ('3739F349-7995-4C63-62D8-08DA00E3D8A0', '2022-03-08 17:17:58', '2022-03-08 17:17:58', '白居易', '白居易', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 0, 7);
-INSERT INTO "public"."SysUser" VALUES ('A3F9784C-5F00-4EC9-62D9-08DA00E3D8A0', '2022-03-08 17:19:22', '2022-03-08 17:19:22', '陶渊明 ', '陶渊明 ', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 0, 7);
-INSERT INTO "public"."SysUser" VALUES ('A1B6DAFB-2B6A-4FF9-62DA-08DA00E3D8A0', '2022-03-08 17:19:55', '2022-03-08 17:19:55', '屈原', '屈原', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 0, 7);
-INSERT INTO "public"."SysUser" VALUES ('CC186FE2-EE27-4292-62DB-08DA00E3D8A0', '2022-03-08 17:20:20', '2022-03-08 17:20:20', '孟浩然', '孟浩然', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 0, 7);
-INSERT INTO "public"."SysUser" VALUES ('1550D6D4-0529-4FDD-62DC-08DA00E3D8A0', '2022-03-08 17:30:56', '2022-03-08 17:21:56', '鲁迅', '鲁迅', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 0, 7);
-INSERT INTO "public"."SysUser" VALUES ('0198459E-2034-4533-B843-5D227AD20740', '2022-03-08 17:27:36', '2017-04-06 19:55:53', '超级管理员', 'admin', 'E10ADC3949BA59ABBE56E057F20F883E', '10000000000', '1396510655@qq.com', 1, 7);
-INSERT INTO "public"."SysUser" VALUES ('AC18F496-E93D-42F0-B59E-E321ACC85335', '2022-03-08 10:12:14', '2017-04-06 19:55:53', '李白', 'libai', 'E10ADC3949BA59ABBE56E057F20F883E', '12345678900', '12345678900@live.com', 1, 7);
+INSERT INTO "public"."SysUser" VALUES ('5722af0f-2366-4fc9-62d5-08da00e3d8a0', '2022-03-08 17:13:02', '2022-03-08 17:13:02', '杜甫', '杜甫', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 'f', 7);
+INSERT INTO "public"."SysUser" VALUES ('4fd6a740-0cf1-4975-62d6-08da00e3d8a0', '2022-03-08 17:14:13', '2022-03-08 17:14:13', '李商隐', '李商隐', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 'f', 7);
+INSERT INTO "public"."SysUser" VALUES ('e225e163-31c9-4da9-62d7-08da00e3d8a0', '2022-03-08 17:15:07', '2022-03-08 17:15:07', '苏轼', '苏轼', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 'f', 7);
+INSERT INTO "public"."SysUser" VALUES ('3739f349-7995-4c63-62d8-08da00e3d8a0', '2022-03-08 17:17:58', '2022-03-08 17:17:58', '白居易', '白居易', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 'f', 7);
+INSERT INTO "public"."SysUser" VALUES ('a3f9784c-5f00-4ec9-62d9-08da00e3d8a0', '2022-03-08 17:19:22', '2022-03-08 17:19:22', '陶渊明 ', '陶渊明 ', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 'f', 7);
+INSERT INTO "public"."SysUser" VALUES ('a1b6dafb-2b6a-4ff9-62da-08da00e3d8a0', '2022-03-08 17:19:55', '2022-03-08 17:19:55', '屈原', '屈原', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 'f', 7);
+INSERT INTO "public"."SysUser" VALUES ('cc186fe2-ee27-4292-62db-08da00e3d8a0', '2022-03-08 17:20:20', '2022-03-08 17:20:20', '孟浩然', '孟浩然', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 'f', 7);
+INSERT INTO "public"."SysUser" VALUES ('1550d6d4-0529-4fdd-62dc-08da00e3d8a0', '2022-03-08 17:30:56', '2022-03-08 17:21:56', '鲁迅', '鲁迅', '46F94C8DE14FB36680850768FF1B7F2A', '12345678900', '12345678900@qq.com', 'f', 7);
+INSERT INTO "public"."SysUser" VALUES ('0198459e-2034-4533-b843-5d227ad20740', '2022-03-08 17:27:36', '2017-04-06 19:55:53', '超级管理员', 'admin', 'E10ADC3949BA59ABBE56E057F20F883E', '10000000000', '1396510655@qq.com', 't', 7);
+INSERT INTO "public"."SysUser" VALUES ('ac18f496-e93d-42f0-b59e-e321acc85335', '2022-03-08 10:12:14', '2017-04-06 19:55:53', '李白', 'libai', 'E10ADC3949BA59ABBE56E057F20F883E', '12345678900', '12345678900@live.com', 't', 7);
 
 -- ----------------------------
 -- Table structure for SysUserPost
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."SysUserPost";
 CREATE TABLE "public"."SysUserPost" (
-  "Id" char(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "UserId" char(36) COLLATE "pg_catalog"."default",
-  "PostId" char(36) COLLATE "pg_catalog"."default",
+  "Id" uuid NOT NULL,
+  "UserId" uuid,
+  "PostId" uuid,
   "LastModificationTime" timestamp(6),
   "CreationTime" timestamp(6)
 )
@@ -491,27 +492,27 @@ CREATE TABLE "public"."SysUserPost" (
 -- ----------------------------
 -- Records of SysUserPost
 -- ----------------------------
-INSERT INTO "public"."SysUserPost" VALUES ('978FC672-D829-4DAD-ABC7-071810C5AD18', 'E225E163-31C9-4DA9-62D7-08DA00E3D8A0', 'E46AF329-6D08-442C-9837-F22CFF954411', '2022-03-08 17:15:08', '2022-03-08 17:15:08');
-INSERT INTO "public"."SysUserPost" VALUES ('8100145C-9CD0-49BF-9A62-25C9E508BC1C', 'A1B6DAFB-2B6A-4FF9-62DA-08DA00E3D8A0', 'F0BD38C2-F1DE-4BD9-E2DB-08DA00A93622', '2022-03-08 17:19:55', '2022-03-08 17:19:55');
-INSERT INTO "public"."SysUserPost" VALUES ('575BF085-47BB-42F2-8B68-620CF460B164', '0198459E-2034-4533-B843-5D227AD20740', '96927C30-41D0-4CED-8E29-CBED35C90FB0', '2022-03-08 17:29:22', '2022-03-08 17:29:22');
-INSERT INTO "public"."SysUserPost" VALUES ('AF1BEC7E-3309-4629-9606-72EEFA1826B3', 'CC186FE2-EE27-4292-62DB-08DA00E3D8A0', 'F0BD38C2-F1DE-4BD9-E2DB-08DA00A93622', '2022-03-08 17:20:20', '2022-03-08 17:20:20');
-INSERT INTO "public"."SysUserPost" VALUES ('AD627AF5-0FE8-4B33-B4AC-73C22C2EA1BC', '1550D6D4-0529-4FDD-62DC-08DA00E3D8A0', 'F0BD38C2-F1DE-4BD9-E2DB-08DA00A93622', '2022-03-08 17:30:56', '2022-03-08 17:30:56');
-INSERT INTO "public"."SysUserPost" VALUES ('D4E0AE0B-3573-4901-8FD7-9BB2C88EBE94', '3739F349-7995-4C63-62D8-08DA00E3D8A0', 'F0BD38C2-F1DE-4BD9-E2DB-08DA00A93622', '2022-03-08 17:17:58', '2022-03-08 17:17:58');
-INSERT INTO "public"."SysUserPost" VALUES ('B97331A7-E281-4027-AADE-9F068558826A', '5722AF0F-2366-4FC9-62D5-08DA00E3D8A0', 'F0BD38C2-F1DE-4BD9-E2DB-08DA00A93622', '2022-03-08 17:13:02', '2022-03-08 17:13:02');
-INSERT INTO "public"."SysUserPost" VALUES ('0C1A55BA-6BD3-4810-A494-A6B9B7374D4D', 'AC18F496-E93D-42F0-B59E-E321ACC85335', 'F0BD38C2-F1DE-4BD9-E2DB-08DA00A93622', '2022-03-08 10:13:35', '2022-03-08 10:13:35');
-INSERT INTO "public"."SysUserPost" VALUES ('E64EF93C-2CE5-4B1D-A5D0-A9DE937C5A3F', 'E225E163-31C9-4DA9-62D7-08DA00E3D8A0', 'F0BD38C2-F1DE-4BD9-E2DB-08DA00A93622', '2022-03-08 17:15:07', '2022-03-08 17:15:07');
-INSERT INTO "public"."SysUserPost" VALUES ('6F671077-C98D-4106-9736-BF2EDB6DB58D', '4FD6A740-0CF1-4975-62D6-08DA00E3D8A0', 'E46AF329-6D08-442C-9837-F22CFF954411', '2022-03-08 17:14:13', '2022-03-08 17:14:13');
-INSERT INTO "public"."SysUserPost" VALUES ('6C34F115-28DD-441A-81D5-F6598C97D44A', 'A3F9784C-5F00-4EC9-62D9-08DA00E3D8A0', 'F0BD38C2-F1DE-4BD9-E2DB-08DA00A93622', '2022-03-08 17:19:22', '2022-03-08 17:19:22');
-INSERT INTO "public"."SysUserPost" VALUES ('B797FF16-D6F7-45DB-83EC-F910B2612926', '4FD6A740-0CF1-4975-62D6-08DA00E3D8A0', 'F0BD38C2-F1DE-4BD9-E2DB-08DA00A93622', '2022-03-08 17:14:13', '2022-03-08 17:14:13');
+INSERT INTO "public"."SysUserPost" VALUES ('978fc672-d829-4dad-abc7-071810c5ad18', 'e225e163-31c9-4da9-62d7-08da00e3d8a0', 'e46af329-6d08-442c-9837-f22cff954411', '2022-03-08 17:15:08', '2022-03-08 17:15:08');
+INSERT INTO "public"."SysUserPost" VALUES ('8100145c-9cd0-49bf-9a62-25c9e508bc1c', 'a1b6dafb-2b6a-4ff9-62da-08da00e3d8a0', 'f0bd38c2-f1de-4bd9-e2db-08da00a93622', '2022-03-08 17:19:55', '2022-03-08 17:19:55');
+INSERT INTO "public"."SysUserPost" VALUES ('575bf085-47bb-42f2-8b68-620cf460b164', '0198459e-2034-4533-b843-5d227ad20740', '96927c30-41d0-4ced-8e29-cbed35c90fb0', '2022-03-08 17:29:22', '2022-03-08 17:29:22');
+INSERT INTO "public"."SysUserPost" VALUES ('af1bec7e-3309-4629-9606-72eefa1826b3', 'cc186fe2-ee27-4292-62db-08da00e3d8a0', 'f0bd38c2-f1de-4bd9-e2db-08da00a93622', '2022-03-08 17:20:20', '2022-03-08 17:20:20');
+INSERT INTO "public"."SysUserPost" VALUES ('ad627af5-0fe8-4b33-b4ac-73c22c2ea1bc', '1550d6d4-0529-4fdd-62dc-08da00e3d8a0', 'f0bd38c2-f1de-4bd9-e2db-08da00a93622', '2022-03-08 17:30:56', '2022-03-08 17:30:56');
+INSERT INTO "public"."SysUserPost" VALUES ('d4e0ae0b-3573-4901-8fd7-9bb2c88ebe94', '3739f349-7995-4c63-62d8-08da00e3d8a0', 'f0bd38c2-f1de-4bd9-e2db-08da00a93622', '2022-03-08 17:17:58', '2022-03-08 17:17:58');
+INSERT INTO "public"."SysUserPost" VALUES ('b97331a7-e281-4027-aade-9f068558826a', '5722af0f-2366-4fc9-62d5-08da00e3d8a0', 'f0bd38c2-f1de-4bd9-e2db-08da00a93622', '2022-03-08 17:13:02', '2022-03-08 17:13:02');
+INSERT INTO "public"."SysUserPost" VALUES ('0c1a55ba-6bd3-4810-a494-a6b9b7374d4d', 'ac18f496-e93d-42f0-b59e-e321acc85335', 'f0bd38c2-f1de-4bd9-e2db-08da00a93622', '2022-03-08 10:13:35', '2022-03-08 10:13:35');
+INSERT INTO "public"."SysUserPost" VALUES ('e64ef93c-2ce5-4b1d-a5d0-a9de937c5a3f', 'e225e163-31c9-4da9-62d7-08da00e3d8a0', 'f0bd38c2-f1de-4bd9-e2db-08da00a93622', '2022-03-08 17:15:07', '2022-03-08 17:15:07');
+INSERT INTO "public"."SysUserPost" VALUES ('6f671077-c98d-4106-9736-bf2edb6db58d', '4fd6a740-0cf1-4975-62d6-08da00e3d8a0', 'e46af329-6d08-442c-9837-f22cff954411', '2022-03-08 17:14:13', '2022-03-08 17:14:13');
+INSERT INTO "public"."SysUserPost" VALUES ('6c34f115-28dd-441a-81d5-f6598c97d44a', 'a3f9784c-5f00-4ec9-62d9-08da00e3d8a0', 'f0bd38c2-f1de-4bd9-e2db-08da00a93622', '2022-03-08 17:19:22', '2022-03-08 17:19:22');
+INSERT INTO "public"."SysUserPost" VALUES ('b797ff16-d6f7-45db-83ec-f910b2612926', '4fd6a740-0cf1-4975-62d6-08da00e3d8a0', 'f0bd38c2-f1de-4bd9-e2db-08da00a93622', '2022-03-08 17:14:13', '2022-03-08 17:14:13');
 
 -- ----------------------------
 -- Table structure for SysUserRole
 -- ----------------------------
 DROP TABLE IF EXISTS "public"."SysUserRole";
 CREATE TABLE "public"."SysUserRole" (
-  "Id" char(36) COLLATE "pg_catalog"."default" NOT NULL,
-  "UserId" char(36) COLLATE "pg_catalog"."default",
-  "RoleId" char(36) COLLATE "pg_catalog"."default",
+  "Id" uuid NOT NULL,
+  "UserId" uuid,
+  "RoleId" uuid,
   "LastModificationTime" timestamp(6),
   "CreationTime" timestamp(6)
 )
@@ -520,13 +521,13 @@ CREATE TABLE "public"."SysUserRole" (
 -- ----------------------------
 -- Records of SysUserRole
 -- ----------------------------
-INSERT INTO "public"."SysUserRole" VALUES ('AD5014F2-92E8-4109-9CA4-013A92390F8B', 'CC186FE2-EE27-4292-62DB-08DA00E3D8A0', '40FF1844-C099-4061-98E0-CD6E544FCFD3', '2022-03-08 17:20:20', '2022-03-08 17:20:20');
-INSERT INTO "public"."SysUserRole" VALUES ('CE9F61AC-79D8-426F-9066-36962C017BF6', '5722AF0F-2366-4FC9-62D5-08DA00E3D8A0', '40FF1844-C099-4061-98E0-CD6E544FCFD3', '2022-03-08 17:13:02', '2022-03-08 17:13:02');
-INSERT INTO "public"."SysUserRole" VALUES ('B79A27F7-FC78-421C-9872-3F54BBD303A1', '1550D6D4-0529-4FDD-62DC-08DA00E3D8A0', '40FF1844-C099-4061-98E0-CD6E544FCFD3', '2022-03-08 17:30:56', '2022-03-08 17:30:56');
-INSERT INTO "public"."SysUserRole" VALUES ('A646DEF7-0581-4CE9-947E-400360C339F9', 'A1B6DAFB-2B6A-4FF9-62DA-08DA00E3D8A0', '40FF1844-C099-4061-98E0-CD6E544FCFD3', '2022-03-08 17:19:55', '2022-03-08 17:19:55');
-INSERT INTO "public"."SysUserRole" VALUES ('DBC656A6-4264-417D-97D8-577E1218FECA', 'A3F9784C-5F00-4EC9-62D9-08DA00E3D8A0', '40FF1844-C099-4061-98E0-CD6E544FCFD3', '2022-03-08 17:19:22', '2022-03-08 17:19:22');
-INSERT INTO "public"."SysUserRole" VALUES ('1FE23F57-97C5-4670-9064-88D7D972CD28', 'E225E163-31C9-4DA9-62D7-08DA00E3D8A0', '40FF1844-C099-4061-98E0-CD6E544FCFD3', '2022-03-08 17:15:07', '2022-03-08 17:15:07');
-INSERT INTO "public"."SysUserRole" VALUES ('A9F8A23B-8C2F-43CC-97AF-8ED6F4C4D097', '4FD6A740-0CF1-4975-62D6-08DA00E3D8A0', '40FF1844-C099-4061-98E0-CD6E544FCFD3', '2022-03-08 17:14:13', '2022-03-08 17:14:13');
-INSERT INTO "public"."SysUserRole" VALUES ('45B7D5AF-4D2C-465E-A4B6-99E52AF9AEE5', '3739F349-7995-4C63-62D8-08DA00E3D8A0', '40FF1844-C099-4061-98E0-CD6E544FCFD3', '2022-03-08 17:17:58', '2022-03-08 17:17:58');
-INSERT INTO "public"."SysUserRole" VALUES ('1C9F81DF-C8A0-45BB-A272-C84BD3AF0C19', '0198459E-2034-4533-B843-5D227AD20740', '18FA4771-6F58-46A3-80D2-6F0F5E9972E3', '2022-03-08 17:29:22', '2022-03-08 17:29:22');
-INSERT INTO "public"."SysUserRole" VALUES ('FA1FDF14-3847-4194-894C-CD935A3DD9E6', 'AC18F496-E93D-42F0-B59E-E321ACC85335', '40FF1844-C099-4061-98E0-CD6E544FCFD3', '2022-03-08 10:13:35', '2022-03-08 10:13:35');
+INSERT INTO "public"."SysUserRole" VALUES ('ad5014f2-92e8-4109-9ca4-013a92390f8b', 'cc186fe2-ee27-4292-62db-08da00e3d8a0', '40ff1844-c099-4061-98e0-cd6e544fcfd3', '2022-03-08 17:20:20', '2022-03-08 17:20:20');
+INSERT INTO "public"."SysUserRole" VALUES ('ce9f61ac-79d8-426f-9066-36962c017bf6', '5722af0f-2366-4fc9-62d5-08da00e3d8a0', '40ff1844-c099-4061-98e0-cd6e544fcfd3', '2022-03-08 17:13:02', '2022-03-08 17:13:02');
+INSERT INTO "public"."SysUserRole" VALUES ('b79a27f7-fc78-421c-9872-3f54bbd303a1', '1550d6d4-0529-4fdd-62dc-08da00e3d8a0', '40ff1844-c099-4061-98e0-cd6e544fcfd3', '2022-03-08 17:30:56', '2022-03-08 17:30:56');
+INSERT INTO "public"."SysUserRole" VALUES ('a646def7-0581-4ce9-947e-400360c339f9', 'a1b6dafb-2b6a-4ff9-62da-08da00e3d8a0', '40ff1844-c099-4061-98e0-cd6e544fcfd3', '2022-03-08 17:19:55', '2022-03-08 17:19:55');
+INSERT INTO "public"."SysUserRole" VALUES ('dbc656a6-4264-417d-97d8-577e1218feca', 'a3f9784c-5f00-4ec9-62d9-08da00e3d8a0', '40ff1844-c099-4061-98e0-cd6e544fcfd3', '2022-03-08 17:19:22', '2022-03-08 17:19:22');
+INSERT INTO "public"."SysUserRole" VALUES ('1fe23f57-97c5-4670-9064-88d7d972cd28', 'e225e163-31c9-4da9-62d7-08da00e3d8a0', '40ff1844-c099-4061-98e0-cd6e544fcfd3', '2022-03-08 17:15:07', '2022-03-08 17:15:07');
+INSERT INTO "public"."SysUserRole" VALUES ('a9f8a23b-8c2f-43cc-97af-8ed6f4c4d097', '4fd6a740-0cf1-4975-62d6-08da00e3d8a0', '40ff1844-c099-4061-98e0-cd6e544fcfd3', '2022-03-08 17:14:13', '2022-03-08 17:14:13');
+INSERT INTO "public"."SysUserRole" VALUES ('45b7d5af-4d2c-465e-a4b6-99e52af9aee5', '3739f349-7995-4c63-62d8-08da00e3d8a0', '40ff1844-c099-4061-98e0-cd6e544fcfd3', '2022-03-08 17:17:58', '2022-03-08 17:17:58');
+INSERT INTO "public"."SysUserRole" VALUES ('1c9f81df-c8a0-45bb-a272-c84bd3af0c19', '0198459e-2034-4533-b843-5d227ad20740', '18fa4771-6f58-46a3-80d2-6f0f5e9972e3', '2022-03-08 17:29:22', '2022-03-08 17:29:22');
+INSERT INTO "public"."SysUserRole" VALUES ('fa1fdf14-3847-4194-894c-cd935a3dd9e6', 'ac18f496-e93d-42f0-b59e-e321acc85335', '40ff1844-c099-4061-98e0-cd6e544fcfd3', '2022-03-08 10:13:35', '2022-03-08 10:13:35');

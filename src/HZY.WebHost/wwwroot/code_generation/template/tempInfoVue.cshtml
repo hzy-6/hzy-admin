@@ -18,11 +18,11 @@
     <a-modal v-model:visible="visible" title="编辑" centered @@ok="visible = false" :width="800">
         <template #footer>
           <a-button type="primary" @@click="saveForm()" :loading="saveLoading">提交</a-button>
-          <a-button type="danger" ghost @@click="visible = false" class="ml-24">关闭</a-button>
+          <a-button type="danger" ghost @@click="visible = false" class="ml-15">关闭</a-button>
         </template>
         <a-spin :spinning="saveLoading">
             <a-form layout="vertical" :model="vm.form">
-                <a-row :gutter="[24, 24]">
+                <a-row :gutter="[15, 15]">
                     @foreach (var item in tableInfos)
                     {
                         var name = item.Name.FirstCharToLower();

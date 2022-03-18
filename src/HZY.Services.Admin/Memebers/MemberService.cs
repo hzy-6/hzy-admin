@@ -64,8 +64,8 @@ public class MemberService : AdminBaseService<MemberRepository>
                     w.t1.Sex,
                     Birthday = w.t1.Birthday.ToString("yyyy-MM-dd"),
                     操作人 = w.t2.Name,
-                    UpdateTime = w.t1.LastModificationTime.ToString("yyyy-MM-dd"),
-                    CreateTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
+                    LastModificationTime = w.t1.LastModificationTime.ToString("yyyy-MM-dd"),
+                    CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
                     //别名 前面包含 _ 则表示忽略该列
                     _UserId = w.t1.UserId
                 })
