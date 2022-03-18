@@ -49,6 +49,7 @@ export default defineComponent({
   props: {
     name: String,
     height: Number,
+    onChangeName: Function,
   },
   components: { AppIcon },
   setup(props, context) {
@@ -63,6 +64,7 @@ export default defineComponent({
 
     const onClickIcon = (currentName) => {
       context.emit("update:name", currentName);
+      context.emit("onChangeName", currentName);
     };
 
     const onClickTab = (active) => {

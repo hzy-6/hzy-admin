@@ -73,16 +73,15 @@
                     <a href="https://next.antdv.com/components/icon-cn" target="black"> 图标（请使用AntdV 3.0 官方icon） </a>
                   </template>
 
-                  <a-dropdown>
-                    <a-input v-model:value="vm.form.icon" placeholder="请输入">
-                      <template #suffix v-if="vm.form.icon">
-                        <AppIcon :name="vm.form.icon" />
-                      </template>
-                    </a-input>
-                    <template #overlay>
-                      <AppIconList v-model:name="vm.form.icon" class="AppIconList" />
+                  <a-input-search v-model:value="vm.form.icon" placeholder="请输入" @search="iconFormcVisible = !iconFormcVisible">
+                    <template #enterButton>
+                      <AppIcon :name="vm.form.icon" />
                     </template>
-                  </a-dropdown>
+                  </a-input-search>
+
+                  <a-modal v-model:visible="iconFormcVisible" title="图标库" width="100%" wrap-class-name="full-modal" :footer="false">
+                    <AppIconList v-model:name="vm.form.icon" @onChangeName="() => (iconFormcVisible = !iconFormcVisible)" />
+                  </a-modal>
                 </a-form-item>
               </a-col>
 
@@ -219,6 +218,8 @@ export default defineComponent({
       indeterminate: false,
       //选项卡
       activeKey: ref("1"),
+      //图标页面
+      iconFormcVisible: false,
     });
 
     const methods = {
@@ -342,18 +343,25 @@ export default defineComponent({
   },
 });
 </script>
-<style lang="less" scoped>
+<style lang="less">
 .ant-form-item {
   margin-bottom: 0;
 }
 
-.AppIconList {
-  position: absolute;
-  background: #ffffff;
-  z-index: 1;
-  border: 1px solid #52c41a;
-  border-radius: 2px;
-  height: 250px;
-  overflow: auto;
+.full-modal {
+  .ant-modal {
+    max-width: 100%;
+    top: 0 !important;
+    padding-bottom: 0;
+    margin: 0;
+  }
+  .ant-modal-content {
+    display: flex;
+    flex-direction: column;
+    // height: calc(100vh);
+  }
+  .ant-modal-body {
+    flex: 1;
+  }
 }
 </style>
