@@ -286,7 +286,7 @@ export default defineComponent({
       },
       //将功能列表转化为 菜单列表对象
       functionToMenuFunction(functionRow) {
-        return { number: functionRow.number, menuId: state.vm.id, functionCode: functionRow.byName, functionName: functionRow.name, remark: functionRow.remark };
+        return { number: functionRow.number, menuId: state.vm.id ? state.vm.id : 0, functionCode: functionRow.byName, functionName: functionRow.name, remark: functionRow.remark };
       },
       //默认行
       defaultRows() {
@@ -318,7 +318,7 @@ export default defineComponent({
         if (row) {
           state.vm.menuFunctionList.push(row);
         } else {
-          state.vm.menuFunctionList.push({ number: 0, menuId: state.vm.id, functionCode: "", functionName: "", remark: "" });
+          state.vm.menuFunctionList.push({ number: 0, menuId: state.vm.id ? state.vm.id : 0, functionCode: "", functionName: "", remark: "" });
           console.log(state.vm.menuFunctionList);
         }
       },

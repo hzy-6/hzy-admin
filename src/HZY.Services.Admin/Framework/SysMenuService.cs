@@ -161,6 +161,7 @@ public class SysMenuService : AdminBaseService<SysMenuRepository>
         foreach (var item in menuFunctionList)
         {
             item.Id = item.Id == Guid.Empty ? Guid.Empty : item.Id;
+            item.MenuId = model.Id;
         }
         await this._sysMenuFunctionRepository.InsertRangeAsync(menuFunctionList);
 

@@ -61,6 +61,7 @@ public static class JwtTokenUtil
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var readJwtToken = jwtSecurityTokenHandler.ReadJwtToken(token);
             var key = string.Empty;
+            
             if (readJwtToken.Claims?.Count() > 0)
             {
                 key = readJwtToken.Claims.FirstOrDefault()?.Value;
