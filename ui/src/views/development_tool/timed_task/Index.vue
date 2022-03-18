@@ -1,14 +1,6 @@
 <template>
-  <div class="p-24">
-    <!-- <a-tag color="pink">pink</a-tag>
-    <a-tag color="red">red</a-tag>
-    <a-tag color="orange">orange</a-tag>
-    <a-tag color="green">green</a-tag>
-    <a-tag color="cyan">cyan</a-tag>
-    <a-tag color="blue">blue</a-tag>
-    <a-tag color="purple">purple</a-tag> -->
-
-    <a-row :gutter="[24, 24]" class="mb-24">
+  <div>
+    <a-row :gutter="[15, 15]" class="mb-15">
       <a-col :span="8">
         <a-button type="primary" @click="openForm(null)">添加</a-button>
       </a-col>
@@ -17,7 +9,7 @@
       </a-col>
     </a-row>
 
-    <a-row :gutter="[24, 24]">
+    <a-row :gutter="[15, 15]">
       <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" v-for="item in list">
         <a-tooltip placement="top">
           <template #title>
@@ -34,7 +26,7 @@
             <a-divider />
             <a-button type="primary" size="small" v-if="item.state == 0" @click="run(item.id)"> 启动 </a-button>
             <a-button type="primary" size="small" danger v-if="item.state == 1" @click="close(item.id)"> 停止 </a-button>
-            <a-dropdown class="ml-24">
+            <a-dropdown class="ml-15">
               <template #overlay>
                 <a-menu>
                   <a-menu-item key="1" @click="openForm(item.id)">修改</a-menu-item>

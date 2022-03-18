@@ -4,7 +4,7 @@
       <a-button type="primary" :loading="saveLoading" @click="save"> 提交</a-button>
       <a-button type="primary" danger ghost @click="visible = false">关闭</a-button>
     </template>
-    <a-row :gutter="[24, 24]">
+    <a-row :gutter="[15, 15]">
       <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <h4>用户名:</h4>
         <a-input v-model:value="vm.form.value" placeholder="请输入" />

@@ -1,28 +1,28 @@
 <template>
-  <div class="p-24">
-    <a-card class="mb-24" v-show="table.search.state">
-      <a-row :gutter="[24, 24]">
+  <div>
+    <a-card class="mb-15" v-show="table.search.state">
+      <a-row :gutter="[15, 15]">
         <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
           <a-input v-model:value="table.search.vm.tableName" placeholder="名称" />
         </a-col>
         <!--button-->
         <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
-          <a-button type="primary" class="mr-24" @click="findList">查询</a-button>
-          <a-button class="mr-24" @click="onResetSearch">重置</a-button>
+          <a-button type="primary" class="mr-15" @click="findList">查询</a-button>
+          <a-button class="mr-15" @click="onResetSearch">重置</a-button>
         </a-col>
       </a-row>
     </a-card>
 
     <a-card>
-      <a-row :gutter="[24, 24]">
+      <a-row :gutter="[15, 15]">
         <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
           <template v-if="power.search">
-            <a-button class="mr-24" @click="table.search.state = !table.search.state">
+            <a-button class="mr-15" @click="table.search.state = !table.search.state">
               <div v-if="table.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
               <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
             </a-button>
           </template>
-          <a-button type="primary" class="mr-24" @click="createDataDictionary()">
+          <a-button type="primary" class="mr-15" @click="createDataDictionary()">
             <template #icon>
               <AppIcon name="DownloadOutlined" />
             </template>
@@ -46,7 +46,7 @@
       <!-- 表格 -->
       <a-spin :spinning="table.loading">
         <vxe-table
-          class="mt-24"
+          class="mt-15"
           ref="refTable"
           size="medium"
           border
@@ -74,7 +74,7 @@
           </vxe-column>
         </vxe-table>
         <vxe-pager
-          class="mt-24"
+          class="mt-15"
           background
           v-model:current-page="table.page"
           v-model:page-size="table.rows"

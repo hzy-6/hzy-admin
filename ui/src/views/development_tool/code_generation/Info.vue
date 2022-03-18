@@ -1,22 +1,22 @@
 <template>
   <a-modal v-model:visible="visible" title="查看代码" centered @ok="visible = false" width="70%" wrap-class-name="full-modal">
     <template #footer>
-      <a-button type="primary" @click="download()" class="ml-24" :loading="saveLoading">
+      <a-button type="primary" @click="download()" class="ml-15" :loading="saveLoading">
         <template #icon>
           <AppIcon name="DownloadOutlined" />
         </template>
         下载当前
       </a-button>
-      <a-button type="primary" @click="downloadAll()" class="ml-24" :loading="saveLoading">
+      <a-button type="primary" @click="downloadAll()" class="ml-15" :loading="saveLoading">
         <template #icon>
           <AppIcon name="DownloadOutlined" />
         </template>
         下载所有
       </a-button>
-      <a-button type="danger" ghost @click="visible = false" class="ml-24">关闭</a-button>
+      <a-button type="danger" ghost @click="visible = false" class="ml-15">关闭</a-button>
     </template>
     <a-spin :spinning="saveLoading">
-      <div class="mb-24">
+      <div class="mb-15">
         <a-radio-group v-model:value="activeCode">
           <a-radio-button value="HZY.Models">HZY.Models</a-radio-button>
           <a-radio-button value="HZY.Repository">HZY.Repository</a-radio-button>

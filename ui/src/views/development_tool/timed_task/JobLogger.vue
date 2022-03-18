@@ -1,5 +1,5 @@
 <template>
-  <a-button class="mb-24" @click="firstPage"> 首页 </a-button>
+  <a-button class="mb-15" @click="firstPage"> 首页 </a-button>
   <a-spin :spinning="loading">
     <a-steps progress-dot direction="vertical">
       <a-step v-for="item in dataSource" :key="item.id" status="process" :title="item.text" />
