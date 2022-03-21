@@ -1,5 +1,21 @@
 <template>
-  <ul class="hzy-one-nav">
+  <!-- 左侧模式 -->
+  <div class="hzy-left-nav" v-if="menuStoreState.oneLevelMenuMode == 3">
+    <div class="hzy-logo-img">
+      <AppIcon name="AntDesignOutlined" style="font-size: 48px; color: #1890ff" />
+    </div>
+    <ul>
+      <li v-for="item in appStoreState.oneLevels" :key="getJumpUrl(item)" :class="{ active: getJumpUrl(item) == selectedKey }" @click="onMenuSelected(getJumpUrl(item))">
+        <a-tooltip placement="right">
+          <template #title>{{ item.name }}</template>
+          <AppIcon :name="item.icon" />
+          <div class="title">{{ item.name }}</div>
+        </a-tooltip>
+      </li>
+    </ul>
+  </div>
+  <!-- 顶部模式 -->
+  <ul class="hzy-one-nav" v-if="menuStoreState.oneLevelMenuMode == 2">
     <li v-for="item in appStoreState.oneLevels" :key="getJumpUrl(item)" :class="{ active: getJumpUrl(item) == selectedKey }" @click="onMenuSelected(getJumpUrl(item))">
       <div class="menu-item">
         <AppIcon :name="item.icon" :size="16" />
@@ -12,11 +28,11 @@
 <script>
 import { defineComponent, onMounted, reactive, toRefs, computed, watch } from "vue";
 import AppIcon from "@/components/AppIcon.vue";
-import { useAppStore, useHeaderStore } from "@/store";
+import { useAppStore, useHeaderStore, useMenuStore } from "@/store";
 import router from "@/router";
 
 export default defineComponent({
-  name: "LayoutOneLevelMenuCom",
+  name: "LayoutOneLevelMenuVue",
   components: { AppIcon },
   setup() {
     const fullPath = computed(() => router.currentRoute.value.fullPath);
@@ -24,6 +40,8 @@ export default defineComponent({
     const appStoreState = computed(() => appStore.state);
     const headerStore = useHeaderStore();
     const headerStoreState = computed(() => headerStore.state);
+    const menuStore = useMenuStore();
+    const menuStoreState = computed(() => menuStore.state);
     const topMenuId = computed(() => appStore.getTopMenuIdByCurrentRoute());
     const state = reactive({
       selectedKey: fullPath.value,
@@ -77,11 +95,58 @@ export default defineComponent({
       ...methods,
       appStoreState,
       headerStoreState,
+      menuStoreState,
     };
   },
 });
 </script>
 <style lang="less" scoped>
+.hzy-left-nav {
+  color: #ffffff;
+  background-color: #000000;
+  width: 80px;
+  z-index: 7;
+  box-shadow: 5px 0px 2px 0 rgba(0, 0, 0, 0.1);
+
+  ul {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    li {
+      text-align: center;
+      cursor: pointer;
+      padding: 13px 0;
+      height: 80px;
+      color: #8c8c8c;
+
+      .anticon {
+        font-size: 25px;
+      }
+      .title {
+        padding-left: 5px;
+        padding-right: 5px;
+        padding-top: 5px;
+        width: 100%;
+        text-align: center;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+      }
+    }
+
+    .active {
+      // background-color: #1890ff;
+      border-left: 2px solid #1890ff;
+      color: #d9d9d9;
+    }
+  }
+  li:hover {
+    // background-color: #1890ff;
+    border-right: 2px solid #1890ff;
+    color: #d9d9d9;
+  }
+}
+
 .hzy-one-nav {
   margin: 0;
   padding: 0;

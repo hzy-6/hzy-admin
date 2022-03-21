@@ -1,7 +1,7 @@
 <template>
   <a-menu :theme="menuStoreState.themeType" mode="inline" @select="onMenuSelected" v-model:selectedKeys="selectedKeys" v-model:openKeys="openKeys">
     <!-- 动态生成 topnav-->
-    <template v-if="menuStoreState.isOneNav">
+    <template v-if="menuStoreState.oneLevelMenuMode != 1">
       <template v-for="item in appStoreState.subMenus">
         <a-menu-item v-if="item.children.length === 0" :key="item.jumpUrl ? item.jumpUrl : item.id" :title="item.name">
           <AppIcon :name="item.icon" />

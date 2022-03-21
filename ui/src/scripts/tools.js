@@ -246,7 +246,7 @@ let tools = {
     clearCache(call) {
         localStorage.removeItem(appConsts.appPrefix + '-HeaderTheme');
         localStorage.removeItem(appConsts.appPrefix + '-MenuTheme');
-        localStorage.removeItem(appConsts.appPrefix + '-OneNav');
+        localStorage.removeItem(appConsts.appPrefix + '-OneLevelMenuMode');
         // localStorage.removeItem(appConsts.appPrefix + '-OpenMenuKeys');
         localStorage.removeItem(appConsts.appPrefix + '-MenuCollapsed');
         if (call) call();
@@ -268,24 +268,15 @@ let tools = {
         let theme = localStorage.getItem(appConsts.appPrefix + "-MenuTheme");
         return theme ? theme : "dark";
     },
-    //设置 topNav
-    setOneNav(topNav) {
-        localStorage.setItem(appConsts.appPrefix + "-OneNav", topNav ? "1" : "0");
+    //设置 oneLevelMenuMode
+    setOneLevelMenuMode(topNav) {
+        localStorage.setItem(appConsts.appPrefix + "-OneLevelMenuMode", topNav);
     },
-    //获取 topNav
-    getOneNav() {
-        let value = localStorage.getItem(appConsts.appPrefix + "-OneNav");
-        return value ? (value == "1" ? true : false) : true;
+    //获取 oneLevelMenuMode
+    getOneLevelMenuMode() {
+        let value = localStorage.getItem(appConsts.appPrefix + "-OneLevelMenuMode");
+        return value ? (isNaN(parseInt(value)) ? 2 : parseInt(value)) : 2;
     },
-    // //获取打开的菜单keys
-    // getOpenMenuKeys() {
-    //     const openKeysString = localStorage.getItem(appConsts.appPrefix + "-OpenMenuKeys") ?? "";
-    //     return openKeysString ? JSON.parse(openKeysString) ?? [] : [];
-    // },
-    // //设置打开的菜单keys
-    // setOpenMenuKeys(keys) {
-    //     localStorage.setItem(appConsts.appPrefix + "-OpenMenuKeys", JSON.stringify(keys));
-    // },
     //获取菜单收展状态
     getMenuCollapsed() {
         let value = localStorage.getItem(appConsts.appPrefix + "-MenuCollapsed");

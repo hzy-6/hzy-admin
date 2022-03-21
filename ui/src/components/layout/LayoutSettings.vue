@@ -11,9 +11,13 @@
         <a-radio value="light">亮色</a-radio>
       </a-radio-group>
     </div>
-    <a-divider v-if="!layoutStoreState.isMobile">左侧大菜单</a-divider>
+    <a-divider v-if="!layoutStoreState.isMobile">菜单栏模式</a-divider>
     <div class="mt-15 text-center" v-if="!layoutStoreState.isMobile">
-      <a-switch v-model:checked="menuStoreState.isOneNav" />
+      <a-radio-group name="radioGroup" :defaultValue="1" v-model:value="menuStoreState.oneLevelMenuMode">
+        <a-radio :value="1">常规</a-radio>
+        <a-radio :value="2">顶部</a-radio>
+        <a-radio :value="3">左侧</a-radio>
+      </a-radio-group>
     </div>
   </a-drawer>
 </template>

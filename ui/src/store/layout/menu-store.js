@@ -32,17 +32,16 @@ const menuStore = defineStore("menu-store", () => {
         themeType: tools.getMenuTheme(),//dark | light
         //菜单收展
         isCollapse: currentIsCollapse,
-        //是否开启一级导航模式
-        isOneNav: tools.getOneNav()
+        //菜单栏模式 = 1：常规模式|2：顶部模式|3：左侧模式
+        oneLevelMenuMode: window.innerWidth < layoutSore.state.demarcation ? 1 : tools.getOneLevelMenuMode()
     });
 
-    watch(() => layoutSore.state.isMobile, (value) => {
-        // 监听窗口大小 小屏幕下不使用 topnav
-        setOneNav(window.innerWidth > layoutSore.state.demarcation);
-    })
-    watch(() => state.isOneNav, (value) => tools.setOneNav(value));
+    watch(() => state.oneLevelMenuMode, (value) => tools.setOneLevelMenuMode(value));
     watch(() => state.isCollapse, (value) => calcMenuWidth(value));
     watch(() => layoutSore.state.isMobile, (value) => {
+        // 监听窗口大小 小屏幕下不使用 oneLevelMenuMode
+        setOneLevelMenuMode(window.innerWidth < layoutSore.state.demarcation ? 1 : tools.getOneLevelMenuMode());
+        //
         if (layoutSore.state.isMobile) {
             state.isCollapse = true;
         }
@@ -99,17 +98,17 @@ const menuStore = defineStore("menu-store", () => {
 
     /**
      * 设置一级菜单 是否开启
-     * @param {*} isOneNav 
+     * @param {*} oneLevelMenuMode 
      */
-    function setOneNav(isOneNav) {
-        state.isOneNav = isOneNav;
+    function setOneLevelMenuMode(isOnoneLevelMenuModeeNav) {
+        state.oneLevelMenuMode = oneLevelMenuMode;
     }
 
     return {
         state,
         onChangeTheme,
         onChangeCollapse,
-        setOneNav
+        setOneLevelMenuMode
     }
 });
 

@@ -7,7 +7,7 @@
           <AppIcon :name="menuStoreState.isCollapse ? 'MenuUnfoldOutlined' : 'MenuFoldOutlined'" :size="16" />
         </a-tooltip>
       </div>
-      <div style="flex: 1 1 0%; height: 100%; display: flex" v-if="menuStoreState.isOneNav">
+      <div style="flex: 1 1 0%; height: 100%; display: flex" v-if="menuStoreState.oneLevelMenuMode == 2">
         <LayoutOneLevelMenu />
       </div>
       <div style="flex: 1 1 0%" v-else></div>
