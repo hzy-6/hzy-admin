@@ -267,23 +267,23 @@
         </member>
         <member name="P:HZY.Models.Entities.ApprovalFlow.Flow.Number">
             <summary>
-            编号 => 备注:Flow_Num 
+            序号 => 备注:Number
             </summary>
         </member>
         <member name="P:HZY.Models.Entities.ApprovalFlow.Flow.Code">
             <summary>
-            流程编码
+            流程编码 => 备注:Code
             </summary>
             <value></value>
         </member>
         <member name="P:HZY.Models.Entities.ApprovalFlow.Flow.Name">
             <summary>
-            流程名称 => 备注:Flow_Name 
+            流程名称 => 备注:Name 
             </summary>
         </member>
         <member name="P:HZY.Models.Entities.ApprovalFlow.Flow.Remark">
             <summary>
-            备注 => 备注:Flow_Remark 
+            备注 => 备注:Name 
             </summary>
         </member>
         <member name="T:HZY.Models.Entities.ApprovalFlow.FlowApproval">

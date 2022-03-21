@@ -16,6 +16,7 @@ using HZY.Infrastructure;
 using HZY.Infrastructure.ExpressionTree;
 using HZY.Infrastructure.Token;
 using HZY.Models.Entities;
+using HZY.Models.Entities.ApprovalFlow;
 using HZY.Models.Entities.BaseEntitys;
 using HZY.Models.Entities.Framework;
 using Microsoft.EntityFrameworkCore;
@@ -61,6 +62,14 @@ public class AdminBaseDbContext : BaseDbContext<AdminBaseDbContext>
     public DbSet<SysOperationLog> SysOperationLog { get; set; }
     public DbSet<SysDataAuthority> SysDataAuthority { get; set; }
     public DbSet<SysDataAuthorityCustom> SysDataAuthorityCustom { get; set; }
+    #endregion
+
+    #region 审批流
+    public DbSet<Flow> Flows { get; set; }
+    public DbSet<FlowNode> FlowNodes { get; set; }
+    public DbSet<FlowApproval> FlowApprovals { get; set; }
+    public DbSet<FlowApprovalStep> FlowApprovalSteps { get; set; }
+    public DbSet<FlowApprovalStepUser> FlowApprovalStepUsers { get; set; }
     #endregion
 
     #region 业务

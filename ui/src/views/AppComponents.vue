@@ -41,6 +41,6 @@ export default defineComponent({
 <style lang="less" scoped>
 iframe {
   width: 100%;
-  height: calc(100vh - 200px);
+  height: calc(100vh - 120px);
 }
 </style>

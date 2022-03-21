@@ -12,23 +12,23 @@ namespace HZY.Models.Entities.ApprovalFlow
     public class Flow : DefaultBaseEntity<Guid>
     {
         /// <summary>
-        /// 编号 => 备注:Flow_Num 
+        /// 序号 => 备注:Number
         /// </summary>
         public int? Number { get; set; }
 
         /// <summary>
-        /// 流程编码
+        /// 流程编码 => 备注:Code
         /// </summary>
         /// <value></value>
         public string Code { get; set; }
 
         /// <summary>
-        /// 流程名称 => 备注:Flow_Name 
+        /// 流程名称 => 备注:Name 
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 备注 => 备注:Flow_Remark 
+        /// 备注 => 备注:Name 
         /// </summary>
         public string Remark { get; set; }
     }
