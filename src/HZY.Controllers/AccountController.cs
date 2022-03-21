@@ -1,3 +1,4 @@
+using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
 using HZY.Models.DTO;
@@ -5,7 +6,7 @@ using HZY.Services.Accounts;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 
-namespace HZY.WebHost.Controllers;
+namespace HZY.Controllers;
 
 /// <summary>
 /// 账户控制器
@@ -13,6 +14,7 @@ namespace HZY.WebHost.Controllers;
 [ApiResultFilter]
 [ApiController]
 [Route("api/[controller]")]
+[ApiExplorerSettings(GroupName = nameof(ApiVersions.Public))]
 public class AccountController : ApiBaseController
 {
     private const string tokenType = "Bearer ";

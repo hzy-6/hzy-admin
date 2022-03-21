@@ -4,6 +4,18 @@
         <name>HZY.Controllers</name>
     </assembly>
     <members>
+        <member name="T:HZY.Controllers.AccountController">
+            <summary>
+            账户控制器
+            </summary>
+        </member>
+        <member name="M:HZY.Controllers.AccountController.CheckAsync(HZY.Models.DTO.AuthUserFormDto)">
+            <summary>
+            检查帐户并获取 token
+            </summary>
+            <param name="authUserDto">Dto</param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Controllers.PublicController">
             <summary>
             公共接口控制器

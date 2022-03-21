@@ -1,3 +1,4 @@
+using HZY.Infrastructure;
 using HZY.Services.Upload;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -8,6 +9,7 @@ namespace HZY.Controllers;
 /// 上传文件控制器
 /// </summary>
 [Route("api/[controller]")]
+[ApiExplorerSettings(GroupName = nameof(ApiVersions.Public))]
 public class UploadController : ControllerBase
 {
     private readonly IUploadService _uploadService;

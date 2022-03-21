@@ -1,4 +1,5 @@
-﻿using HZY.Infrastructure.Filters;
+﻿using HZY.Infrastructure;
+using HZY.Infrastructure.Filters;
 using HZY.Models.DTO;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Mvc;
@@ -14,6 +15,7 @@ namespace HZY.Controllers;
 /// </summary>
 [ApiResultFilter]
 [Route("api/[controller]")]
+[ApiExplorerSettings(GroupName = nameof(ApiVersions.Public))]
 public class PublicController : ControllerBase
 {
     private readonly SysDictionaryService _sysDictionaryService;

@@ -36,18 +36,6 @@
             生命周期监听
             </summary>
         </member>
-        <member name="T:HZY.WebHost.Controllers.AccountController">
-            <summary>
-            账户控制器
-            </summary>
-        </member>
-        <member name="M:HZY.WebHost.Controllers.AccountController.CheckAsync(HZY.Models.DTO.AuthUserFormDto)">
-            <summary>
-            检查帐户并获取 token
-            </summary>
-            <param name="authUserDto">Dto</param>
-            <returns></returns>
-        </member>
         <member name="T:HZY.WebHost.Controllers.JumpClientController">
             <summary>
             跳转客户端
