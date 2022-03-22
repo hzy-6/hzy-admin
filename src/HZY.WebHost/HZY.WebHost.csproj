@@ -1,58 +1,64 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-  </PropertyGroup>
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<!--<Nullable>enable</Nullable>-->
+		<ImplicitUsings>enable</ImplicitUsings>
+	</PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>HZY.WebHost.xml</DocumentationFile>
-    <NoWarn>1701;1702;1591</NoWarn>
-  </PropertyGroup>
+	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+		<DocumentationFile>HZY.WebHost.xml</DocumentationFile>
+		<NoWarn>1701;1702;1591</NoWarn>
+	</PropertyGroup>
 
-  <ItemGroup>
-    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
-  </ItemGroup>
+	<ItemGroup>
+		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.1" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.2" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\HZY.EFCore\HZY.EFCore.csproj" />
-    <ProjectReference Include="..\HZY.Controllers.Admin\HZY.Controllers.Admin.csproj" />
-    <ProjectReference Include="..\HZY.Controllers.App\HZY.Controllers.App.csproj" />
-    <ProjectReference Include="..\HZY.Controllers\HZY.Controllers.csproj" />
-    <ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
-    <ProjectReference Include="..\HZY.Models\HZY.Models.csproj" />
-    <ProjectReference Include="..\HZY.Repositories.Redis\HZY.Repositories.Redis.csproj" />
-    <ProjectReference Include="..\HZY.Repositories\HZY.Repositories.csproj" />
-    <ProjectReference Include="..\HZY.Services.Admin\HZY.Services.Admin.csproj" />
-    <ProjectReference Include="..\HZY.Services\HZY.Services.csproj" />
-  </ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\HZY.EFCore\HZY.EFCore.csproj" />
+		<ProjectReference Include="..\HZY.Controllers.Admin\HZY.Controllers.Admin.csproj" />
+		<ProjectReference Include="..\HZY.Controllers.App\HZY.Controllers.App.csproj" />
+		<ProjectReference Include="..\HZY.Controllers\HZY.Controllers.csproj" />
+		<ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
+		<ProjectReference Include="..\HZY.Models\HZY.Models.csproj" />
+		<ProjectReference Include="..\HZY.Repositories.Redis\HZY.Repositories.Redis.csproj" />
+		<ProjectReference Include="..\HZY.Repositories\HZY.Repositories.csproj" />
+		<ProjectReference Include="..\HZY.Services.Admin\HZY.Services.Admin.csproj" />
+		<ProjectReference Include="..\HZY.Services\HZY.Services.csproj" />
+	</ItemGroup>
 
-  <ItemGroup>
-    <Content Update="wwwroot\code_generation\template\tempController.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\code_generation\template\tempIndexVue.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\code_generation\template\tempInfoVue.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\code_generation\template\tempModel.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\code_generation\template\tempRepository.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\code_generation\template\tempService.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Update="wwwroot\code_generation\template\tempServiceJs.cshtml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
+	<ItemGroup>
+		<Content Update="wwwroot\code_generation\template\tempController.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="wwwroot\code_generation\template\tempIndexVue.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="wwwroot\code_generation\template\tempInfoVue.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="wwwroot\code_generation\template\tempModel.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="wwwroot\code_generation\template\tempRepository.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="wwwroot\code_generation\template\tempService.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+		<Content Update="wwwroot\code_generation\template\tempServiceJs.cshtml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</Content>
+	</ItemGroup>
 
-  <ProjectExtensions><VisualStudio><UserProperties appsettings_1json__JsonSchema="" /></VisualStudio></ProjectExtensions>
+	<ProjectExtensions>
+		<VisualStudio>
+			<UserProperties appsettings_1json__JsonSchema="" />
+		</VisualStudio>
+	</ProjectExtensions>
 
 </Project>
