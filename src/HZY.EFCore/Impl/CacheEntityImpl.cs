@@ -36,7 +36,7 @@ public class CacheEntityImpl : ICacheEntity
         {
             Name = w.Name,
             Remark = ReadXmlSummary.XmlForMember(w)?.InnerText?.Trim()?.Split("=>")?[0],
-            IsKey = HzyRepositoryExtensions.HasKey(w),
+            IsKey = EFCoreRepositoryExtensions.HasKey(w),
             Type = w.PropertyType
         });
 

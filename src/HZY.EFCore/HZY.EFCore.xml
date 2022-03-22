@@ -79,12 +79,12 @@
             <param name="configuration"></param>
             <exception cref="T:System.Exception"></exception>
         </member>
-        <member name="T:HZY.EFCore.Extensions.HzyRepositoryExtensions">
+        <member name="T:HZY.EFCore.Extensions.EFCoreRepositoryExtensions">
             <summary>
             仓储扩展
             </summary>
         </member>
-        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.GetPropertyInfos(System.Type,System.Reflection.BindingFlags)">
+        <member name="M:HZY.EFCore.Extensions.EFCoreRepositoryExtensions.GetPropertyInfos(System.Type,System.Reflection.BindingFlags)">
             <summary>
             获取 PropertyInfo 集合
             </summary>
@@ -92,14 +92,14 @@
             <param name="bindingFlags"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.CreateInstance``1">
+        <member name="M:HZY.EFCore.Extensions.EFCoreRepositoryExtensions.CreateInstance``1">
             <summary>
             创建 对象实例
             </summary>
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.GetAttribute``1(System.Type,System.String)">
+        <member name="M:HZY.EFCore.Extensions.EFCoreRepositoryExtensions.GetAttribute``1(System.Type,System.String)">
             <summary>
             获取 对象 中 某个属性得 标记
             </summary>
@@ -108,7 +108,7 @@
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.GetPropertyInfo(System.Type,System.String)">
+        <member name="M:HZY.EFCore.Extensions.EFCoreRepositoryExtensions.GetPropertyInfo(System.Type,System.String)">
             <summary>
             获取 PropertyInfo 对象
             </summary>
@@ -116,7 +116,7 @@
             <param name="name"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.GetKeyProperty(System.Type,System.Boolean)">
+        <member name="M:HZY.EFCore.Extensions.EFCoreRepositoryExtensions.GetKeyProperty(System.Type,System.Boolean)">
             <summary>
             获取 模型 有 Key 特性得 属性对象
             </summary>
@@ -125,14 +125,14 @@
             <returns></returns>
             <exception cref="T:System.InvalidOperationException"></exception>
         </member>
-        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.HasKey(System.Reflection.PropertyInfo)">
+        <member name="M:HZY.EFCore.Extensions.EFCoreRepositoryExtensions.HasKey(System.Reflection.PropertyInfo)">
             <summary>
             是否有 KeyAttribute 标记
             </summary>
             <param name="propertyInfo"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.WhereIf``1(System.Linq.IQueryable{``0},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
+        <member name="M:HZY.EFCore.Extensions.EFCoreRepositoryExtensions.WhereIf``1(System.Linq.IQueryable{``0},System.Boolean,System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})">
             <summary>
             WhereIf
             </summary>
@@ -142,7 +142,7 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.WhereIf``1(System.Collections.Generic.IEnumerable{``0},System.Boolean,System.Func{``0,System.Boolean})">
+        <member name="M:HZY.EFCore.Extensions.EFCoreRepositoryExtensions.WhereIf``1(System.Collections.Generic.IEnumerable{``0},System.Boolean,System.Func{``0,System.Boolean})">
             <summary>
             WhereIf
             </summary>
@@ -152,7 +152,7 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Extensions.HzyRepositoryExtensions.Page``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
+        <member name="M:HZY.EFCore.Extensions.EFCoreRepositoryExtensions.Page``1(System.Linq.IQueryable{``0},System.Int32,System.Int32)">
             <summary>
             Page 分页简写
             </summary>

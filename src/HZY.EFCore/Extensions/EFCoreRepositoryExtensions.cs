@@ -11,7 +11,7 @@ namespace HZY.EFCore.Extensions;
 /// <summary>
 /// 仓储扩展
 /// </summary>
-public static class HzyRepositoryExtensions
+public static class EFCoreRepositoryExtensions
 {
 
     /// <summary>
