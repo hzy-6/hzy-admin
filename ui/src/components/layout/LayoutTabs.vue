@@ -98,6 +98,7 @@ export default defineComponent({
     border: 0 !important;
     height: 32px;
     padding: 4px 15px;
+    background: #ffffff !important;
 
     .close {
       visibility: hidden;
