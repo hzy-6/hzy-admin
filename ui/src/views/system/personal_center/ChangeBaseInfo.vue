@@ -1,21 +1,33 @@
 <template>
-  <a-form ref="formRef" :model="vm" :rules="rules" layout="vertical">
-    <a-form-item label="真实姓名" name="name">
-      <a-input v-model:value="vm.name" placeholder="真实姓名" />
-    </a-form-item>
-    <a-form-item label="账户名称" name="loginName">
-      <a-input v-model:value="vm.loginName" placeholder="账户名称" />
-    </a-form-item>
-    <a-form-item label="联系电话" name="phone">
-      <a-input v-model:value="vm.phone" placeholder="联系电话" />
-    </a-form-item>
-    <a-form-item label="邮箱" name="email">
-      <a-input v-model:value="vm.email" placeholder="邮箱" />
-    </a-form-item>
-    <a-form-item :wrapper-col="{ span: 14 }">
-      <a-button type="primary" @click="saveForm">提交</a-button>
-      <!-- <a-button style="margin-left: 10px" @click="resetForm">重置</a-button> -->
-    </a-form-item>
+  <a-form layout="vertical" ref="formRef" :model="vm" :rules="rules">
+    <a-row :gutter="[15, 15]">
+      <a-col :xs="24">
+        <a-form-item label="真实姓名" name="name">
+          <a-input v-model:value="vm.name" placeholder="真实姓名" />
+        </a-form-item>
+      </a-col>
+      <a-col :xs="24">
+        <a-form-item label="账户名称" name="loginName">
+          <a-input v-model:value="vm.loginName" placeholder="账户名称" />
+        </a-form-item>
+      </a-col>
+      <a-col :xs="24">
+        <a-form-item label="联系电话" name="phone">
+          <a-input v-model:value="vm.phone" placeholder="联系电话" />
+        </a-form-item>
+      </a-col>
+      <a-col :xs="24">
+        <a-form-item label="邮箱" name="email">
+          <a-input v-model:value="vm.email" placeholder="邮箱" />
+        </a-form-item>
+      </a-col>
+      <a-col :xs="24">
+        <a-form-item :wrapper-col="{ span: 14 }">
+          <a-button type="primary" @click="saveForm">提交</a-button>
+          <!-- <a-button style="margin-left: 10px" @click="resetForm">重置</a-button> -->
+        </a-form-item>
+      </a-col>
+    </a-row>
   </a-form>
 </template>
 <script>

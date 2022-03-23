@@ -1,18 +1,28 @@
 <template>
-  <a-form ref="formRef" :model="vm" :rules="rules" layout="vertical">
-    <a-form-item label="旧密码" name="oldPassword">
-      <a-input v-model:value="vm.oldPassword" type="password" placeholder="旧密码" />
-    </a-form-item>
-    <a-form-item label="新密码" name="newPassword">
-      <a-input v-model:value="vm.newPassword" type="password" placeholder="新密码" />
-    </a-form-item>
-    <a-form-item label="确认新密码" name="qrPassword">
-      <a-input v-model:value="vm.qrPassword" type="password" placeholder="确认新密码" />
-    </a-form-item>
-    <a-form-item :wrapper-col="{ span: 14 }">
-      <a-button type="primary" @click="saveForm">提交</a-button>
-      <a-button style="margin-left: 10px" @click="resetForm">重置</a-button>
-    </a-form-item>
+  <a-form layout="vertical" ref="formRef" :model="vm" :rules="rules">
+    <a-row :gutter="[15, 15]">
+      <a-col :xs="24">
+        <a-form-item label="旧密码" name="oldPassword">
+          <a-input v-model:value="vm.oldPassword" type="password" placeholder="旧密码" />
+        </a-form-item>
+      </a-col>
+      <a-col :xs="24">
+        <a-form-item label="新密码" name="newPassword">
+          <a-input v-model:value="vm.newPassword" type="password" placeholder="新密码" />
+        </a-form-item>
+      </a-col>
+      <a-col :xs="24">
+        <a-form-item label="确认新密码" name="qrPassword">
+          <a-input v-model:value="vm.qrPassword" type="password" placeholder="确认新密码" />
+        </a-form-item>
+      </a-col>
+      <a-col :xs="24">
+        <a-form-item :wrapper-col="{ span: 14 }">
+          <a-button type="primary" @click="saveForm">提交</a-button>
+          <a-button style="margin-left: 10px" @click="resetForm">重置</a-button>
+        </a-form-item>
+      </a-col>
+    </a-row>
   </a-form>
 </template>
 
