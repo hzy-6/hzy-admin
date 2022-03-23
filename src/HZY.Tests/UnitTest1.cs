@@ -1,5 +1,6 @@
 using HZY.Infrastructure.ExpressionTree;
 using NUnit.Framework;
+using System;
 
 namespace HZY.Tests;
 
@@ -30,4 +31,90 @@ public class User
 {
     public string? Name { get; set; }
     public int Age { get; set; }
+}
+
+public interface IUserService
+{
+    string GetName();
+}
+
+[AopBase]
+public class UserService : IUserService
+{
+    public virtual string GetName()
+    {
+        return "123";
+    }
+
+}
+
+//[TaskAop("0/12 1 1 1*")]
+public class MemberService
+{
+
+}
+
+//ProxyContext<UserService> _userService; UserServiceProxy
+
+//IUserService
+
+public class UserServiceProxy : UserService
+{
+    public bool Before()
+    {
+        //typeof(AopBase).InvokeMember();
+        return true;
+    }
+
+    public bool After()
+    {
+        return true;
+    }
+
+    public override string GetName()
+    {
+        Before();
+        var str = base.GetName();
+        After();
+        return str;
+    }
+
+}
+
+[AttributeUsage(AttributeTargets.Class | AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
+public class AopBase : Attribute
+{
+    public AopBase()
+    {
+
+    }
+
+
+    public virtual bool Before()
+    {
+
+        return true;
+    }
+
+    public virtual bool After()
+    {
+        return true;
+    }
+
+
+}
+
+
+public class TaskAop : AopBase
+{
+    public override bool Before()
+    {
+        return base.Before();
+    }
+
+    public override bool After()
+    {
+        return base.After();
+    }
+
 }
