@@ -11,7 +11,6 @@
             <a-form-item label="真实姓名" ref="name" name="name">
               <a-input v-model:value="vm.form.name" placeholder="请输入" />
             </a-form-item>
-            {{ organizationId }}
           </a-col>
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="账户名称" ref="loginName" name="loginName">

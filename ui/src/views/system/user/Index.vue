@@ -121,8 +121,6 @@
         </a-card>
       </a-col>
     </a-row>
-    {{ tree.selectedKeys }}
-    {{ table.search.vm.organizationId }}
     <!--表单弹层-->
     <Info ref="refForm" @onSuccess="() => findList()" />
   </div>
