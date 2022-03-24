@@ -71,6 +71,7 @@ public class UserServiceProxy : UserService
         return true;
     }
 
+    [AopBase]
     public override string GetName()
     {
         Before();

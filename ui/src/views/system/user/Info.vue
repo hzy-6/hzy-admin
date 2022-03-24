@@ -11,6 +11,7 @@
             <a-form-item label="真实姓名" ref="name" name="name">
               <a-input v-model:value="vm.form.name" placeholder="请输入" />
             </a-form-item>
+            {{ organizationId }}
           </a-col>
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="账户名称" ref="loginName" name="loginName">
@@ -40,7 +41,7 @@
               </a-radio-group>
             </a-form-item>
           </a-col>
-          
+
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
             <a-form-item label="所属岗位">
               <a-checkbox-group v-model:value="vm.postIds" class="w100">
@@ -93,6 +94,7 @@ export default defineComponent({
       },
       visible: false,
       saveLoading: false,
+      //父级传递过来的 id
       organizationId: null,
     });
     const formRef = ref();
@@ -111,17 +113,19 @@ export default defineComponent({
           if (res.code != 1) return;
           state.vm = res.data;
           state.vm.form.password = "";
-          state.organizationId = state.vm.form.organizationId;
         });
       },
       saveForm() {
-        if (!state.organizationId) {
+        if (!state.vm.id) {
+          state.vm.form.organizationId = state.organizationId;
+        }
+
+        if (!state.vm.form.organizationId) {
           return tools.message("请选择组织", "警告");
         }
 
         formRef.value.validate().then(() => {
           state.saveLoading = true;
-          state.vm.form.organizationId = state.organizationId;
           service
             .saveForm(state.vm)
             .then((res) => {
