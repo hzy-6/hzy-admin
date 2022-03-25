@@ -7,7 +7,7 @@
  *
  * *******************************************************
  */
-using HZY.Infrastructure.ScanDIService.Interface;
+using HzyScanDiService.Interface;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;

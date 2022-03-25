@@ -1,4 +1,4 @@
-﻿using HZY.Infrastructure.ScanDIService.Interface;
+﻿using HzyScanDiService.Interface;
 using Microsoft.AspNetCore.Http;
 
 namespace HZY.Services.Upload;

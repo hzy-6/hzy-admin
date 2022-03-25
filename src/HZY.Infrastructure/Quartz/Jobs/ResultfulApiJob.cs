@@ -1,6 +1,6 @@
 ﻿using HZY.Infrastructure.Quartz;
-using HZY.Infrastructure.ScanDIService.Interface;
 using HZY.Quartz.Entitys;
+using HzyScanDiService.Interface;
 using Microsoft.Extensions.Logging;
 using Quartz;
 using System;

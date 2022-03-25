@@ -9,6 +9,7 @@ using HZY.Models.Entities.Framework;
 using HZY.Repositories.Framework;
 using HZY.Services.Accounts;
 using HZY.Services.Admin.BaseServicesAdmin;
+using HzyScanDiService.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;

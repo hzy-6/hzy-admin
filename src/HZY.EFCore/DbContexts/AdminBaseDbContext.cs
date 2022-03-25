@@ -19,6 +19,7 @@ using HZY.Models.Entities;
 using HZY.Models.Entities.ApprovalFlow;
 using HZY.Models.Entities.BaseEntitys;
 using HZY.Models.Entities.Framework;
+using HzyScanDiService.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.Extensions.DependencyInjection;

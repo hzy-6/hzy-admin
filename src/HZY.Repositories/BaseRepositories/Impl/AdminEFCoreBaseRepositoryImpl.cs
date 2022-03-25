@@ -25,6 +25,7 @@ using HZY.Model.BO;
 using HZY.Models.Entities.Framework;
 using HZY.Repositories.Framework;
 using HZY.Infrastructure.ExpressionTree;
+using HzyScanDiService.Extensions;
 
 namespace HZY.Repositories.BaseRepositories.Impl;
 

@@ -1,4 +1,4 @@
-﻿using HZY.Infrastructure.ScanDIService.Interface;
+﻿using HzyScanDiService.Interface;
 using System;
 using System.Threading.Tasks;
 

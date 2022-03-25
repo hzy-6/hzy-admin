@@ -2,7 +2,6 @@ using System;
 using System.IO;
 using System.Linq;
 using HZY.Infrastructure.ApiResultManage;
-using HZY.Infrastructure.ScanDIService.Attributes;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 

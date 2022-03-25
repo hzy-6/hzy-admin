@@ -1,5 +1,5 @@
-﻿using HZY.Infrastructure.ScanDIService.Interface;
-using HZY.Quartz.Entitys;
+﻿using HZY.Quartz.Entitys;
+using HzyScanDiService.Interface;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

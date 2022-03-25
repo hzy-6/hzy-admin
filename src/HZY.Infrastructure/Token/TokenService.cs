@@ -1,5 +1,5 @@
 ﻿using HZY.Infrastructure;
-using HZY.Infrastructure.ScanDIService.Interface;
+using HzyScanDiService.Interface;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;

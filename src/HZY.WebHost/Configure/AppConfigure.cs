@@ -2,6 +2,7 @@
 using HZY.Infrastructure.MessageQueue;
 using HZY.Infrastructure.Quartz;
 using HZY.WebHost.Middlewares;
+using HzyScanDiService.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -24,7 +25,7 @@ public class AppConfigure
 
         #region 注册服务提供者
 
-        serviceProvider.RegisterServiceProvider();
+        serviceProvider.UseServiceProvider();
 
         #endregion
 

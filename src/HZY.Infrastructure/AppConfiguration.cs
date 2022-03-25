@@ -1,7 +1,6 @@
 ﻿using System;
 using HZY.Infrastructure;
-using HZY.Infrastructure.ScanDIService.Attributes;
-using HZY.Infrastructure.ScanDIService.Enums;
+using HzyScanDiService.Interface;
 using Microsoft.Extensions.Configuration;
 
 namespace HZY.Infrastructure;
@@ -9,8 +8,7 @@ namespace HZY.Infrastructure;
 /// <summary>
 /// 程序配置信息映射类 appsettings.json
 /// </summary>
-[DIService(DIType.Singleton)]
-public class AppConfiguration
+public class AppConfiguration : IDiSingletonSelf
 {
     private readonly IConfiguration _configuration;
 

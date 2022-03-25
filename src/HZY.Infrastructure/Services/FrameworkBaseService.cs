@@ -1,5 +1,4 @@
-﻿
-using HZY.Infrastructure.ScanDIService.Interface;
+﻿using HzyScanDiService.Interface;
 
 namespace HZY.Infrastructure.Services;
 

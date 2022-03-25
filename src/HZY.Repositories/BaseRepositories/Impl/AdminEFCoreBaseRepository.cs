@@ -1,5 +1,5 @@
 ﻿using HZY.EFCore.DbContexts;
-using HZY.Infrastructure.ScanDIService.Interface;
+using HzyScanDiService.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;

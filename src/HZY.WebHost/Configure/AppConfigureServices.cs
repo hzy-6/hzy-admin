@@ -1,7 +1,6 @@
 ﻿using HZY.FreeSqlCore;
 using HZY.EFCore;
 using HZY.Infrastructure;
-using HZY.Infrastructure.ScanDIService;
 using HZY.WebHost.Middlewares;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Http;
@@ -22,6 +21,7 @@ using Quartz;
 using Quartz.Impl;
 using HZY.Infrastructure.Quartz;
 using Microsoft.AspNetCore.Authorization;
+using HzyScanDiService.Extensions;
 
 namespace HZY.WebHost.Configure;
 
@@ -47,7 +47,7 @@ public class AppConfigureServices
         #region 自动扫描服务注册 、 其他服务注册
 
         //扫描服务自动化注册
-        services.ScanningAppServices(prefixString);
+        services.AddHzyScanDiService(prefixString);
 
         services.AddSingleton<IHostedService, LifetimeEventsHostedService>();
 

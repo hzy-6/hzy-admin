@@ -1,5 +1,5 @@
-﻿using HZY.Infrastructure.ScanDIService.Interface;
-using HZY.Model.BO;
+﻿using HZY.Model.BO;
+using HzyScanDiService.Interface;
 using System.Threading.Tasks;
 
 namespace HZY.Services.Accounts;

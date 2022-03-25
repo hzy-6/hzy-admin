@@ -1,6 +1,6 @@
 ﻿using HZY.Infrastructure;
 using HZY.Infrastructure.NLogService;
-using HZY.Infrastructure.ScanDIService;
+using HzyScanDiService.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -43,7 +43,7 @@ public static class FreeSqlCoreModule
         var freeSql = CreateFreeSql(connectionString, defaultDatabaseType);
         services.AddSingleton(freeSql);
         //services.AddScoped<UnitOfWorkManager>();
-        services.AddFreeRepository(null, DIServiceScanningExtensions.GetAssemblyList(w =>
+        services.AddFreeRepository(null, DiServiceScanningExtensions.GetAssemblyList(w =>
         {
             var name = w.GetName().Name;
             return name != null && name.StartsWith(assemblyFilter);

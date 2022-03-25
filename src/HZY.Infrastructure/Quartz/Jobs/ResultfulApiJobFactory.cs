@@ -1,5 +1,6 @@
 ﻿using HZY.Infrastructure;
-using HZY.Infrastructure.ScanDIService.Interface;
+using HzyScanDiService.Extensions;
+using HzyScanDiService.Interface;
 using Quartz;
 using Quartz.Spi;
 using System;
