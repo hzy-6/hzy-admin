@@ -29,25 +29,29 @@ public class MessageQueueProvider : IMessageQueueProvider
 
     public virtual Task<bool> RunAsync()
     {
-        Task.Factory.StartNew(() =>
+        Task.Factory.StartNew(async () =>
         {
             //从队列中取元素。
             while (true)
             {
-                try
+                if (!IsComleted() && blockingCollection.Count > 0)
                 {
-                    if (!IsComleted() && blockingCollection.Count > 0)
+                    await Task.Factory.StartNew(() =>
                     {
-                        var messageQueueModel = blockingCollection.Take();
-                        messageQueueModel.Call?.Invoke(messageQueueModel.Message, _services);
-                        Console.WriteLine("消费:" + messageQueueModel.Key);
-                    }
+                        try
+                        {
+                            var messageQueueModel = blockingCollection.Take();
+                            messageQueueModel.Call?.Invoke(messageQueueModel.Message, _services);
+                            Console.WriteLine("消费:" + messageQueueModel.Key);
+                        }
+                        catch (Exception ex)
+                        {
+                            NLogUtil.Write(ex.Message, ex);
+                            Console.WriteLine("队列消费异常：" + ex.Message);
+                        }
+                    });
                 }
-                catch (Exception ex)
-                {
-                    NLogUtil.Write(ex.Message, ex);
-                    Console.WriteLine("队列消费异常：" + ex.Message);
-                }
+                await Task.Delay(20);
             }
         });
 
