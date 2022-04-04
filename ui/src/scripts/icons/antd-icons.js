@@ -18,7 +18,7 @@ export function useAllAntdIcons(app) {
         var com = icons[key];
 
         //验证能否注册
-        if (allIcons.findIndex(w => w == key) < 0 && com.displayName && key != "Icon" && com.displayName != "Icon") {
+        if (allIcons.findIndex(w => w == key) < 0 && key != "Icon" && com && com.displayName && com.displayName != "Icon") {
             app.component(key, com);
             names.push(key);
             allIcons.push(key);

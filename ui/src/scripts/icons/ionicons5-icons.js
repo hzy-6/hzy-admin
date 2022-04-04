@@ -17,7 +17,7 @@ export function useAllIonicons5Icons(app) {
         var com = icons[key];
 
         //验证能否注册
-        if (allIcons.findIndex(w => w == key) < 0) {
+        if (allIcons.findIndex(w => w == key) < 0 && com) {
             app.component(key, com);
             names.push(key);
             allIcons.push(key);

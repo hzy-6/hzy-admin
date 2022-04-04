@@ -98,10 +98,10 @@ const menuStore = defineStore("menu-store", () => {
 
     /**
      * 设置一级菜单 是否开启
-     * @param {*} oneLevelMenuMode 
+     * @param {*} isOneLevelMenuMode 
      */
-    function setOneLevelMenuMode(isOnoneLevelMenuModeeNav) {
-        state.oneLevelMenuMode = oneLevelMenuMode;
+    function setOneLevelMenuMode(isOneLevelMenuMode) {
+        state.oneLevelMenuMode = isOneLevelMenuMode;
     }
 
     return {
