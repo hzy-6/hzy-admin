@@ -103,7 +103,7 @@ public class AdminBaseDbContext : BaseDbContext<AdminBaseDbContext>
             // BinaryExpression compareExpression = Expression.MakeBinary(ExpressionType.Equal, isDeletedProperty, Expression.Constant(false));
             // var lambda = Expression.Lambda(compareExpression, parameter);
 
-            var lambda = ExpressionTreeExtensions.Equal(entityType.ClrType, nameof(IDeleteBaseEntity.IsDeleted), Expression.Constant(false));
+            var lambda = ExpressionTreeExtensions.Equal(entityType.ClrType, nameof(IDeleteBaseEntity.IsDeleted), false);
 
             modelBuilder.Entity(entityType.ClrType).HasQueryFilter(lambda);
         }
