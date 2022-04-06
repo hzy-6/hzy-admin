@@ -5,13 +5,14 @@
       <AppIcon name="AntDesignOutlined" style="font-size: 48px; color: #1890ff" />
     </div>
     <ul>
-      <li v-for="item in appStoreState.oneLevels" :key="getJumpUrl(item)" :class="{ active: getJumpUrl(item) == selectedKey }" @click="onMenuSelected(getJumpUrl(item))">
+      <template v-for="item in appStoreState.oneLevels">
         <a-tooltip placement="right">
           <template #title>{{ item.name }}</template>
-          <AppIcon :name="item.icon" />
-          <div class="title">{{ item.name }}</div>
+          <li :key="getJumpUrl(item)" :class="{ active: getJumpUrl(item) == selectedKey }" @click="onMenuSelected(getJumpUrl(item))">
+            <AppIcon :name="item.icon" :size="30" />
+          </li>
         </a-tooltip>
-      </li>
+      </template>
     </ul>
   </div>
   <!-- 顶部模式 -->

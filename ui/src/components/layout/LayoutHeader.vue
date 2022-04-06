@@ -125,12 +125,12 @@ export default defineComponent({
     align-items: center;
     height: 48px;
     //
-    transition: background-color 0.8s;
-    -moz-transition: background-color 0.8s;
+    transition: background-color 0.1s;
+    -moz-transition: background-color 0.1s;
     /* Firefox 4 */
-    -webkit-transition: background-color 0.8s;
+    -webkit-transition: background-color 0.1s;
     /* Safari 和 Chrome */
-    -o-transition: background-color 0.8s;
+    -o-transition: background-color 0.1s;
 
     * {
       color: #fff;

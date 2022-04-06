@@ -19,6 +19,13 @@ const menuStore = defineStore("menu-store", () => {
         backgroundColor: '#001529',
     }
 
+    const darkOfficial = {
+        textColor: 'hsla(0,0%,100%,.85)',
+        // textColor: '#fff',
+        activeTextColor: '#409eff',
+        backgroundColor: '#545c64',
+    }
+
     var currentIsCollapse = layoutSore.state.isMobile ? true : tools.getMenuCollapsed();
 
     //定义状态
@@ -29,7 +36,7 @@ const menuStore = defineStore("menu-store", () => {
             backgroundColor: '',
         },
         width: 220,
-        themeType: tools.getMenuTheme(),//dark | light
+        themeType: tools.getMenuTheme(),//dark | light | darkOfficial
         //菜单收展
         isCollapse: currentIsCollapse,
         //菜单栏模式 = 1：常规模式|2：顶部模式|3：左侧模式
@@ -82,6 +89,8 @@ const menuStore = defineStore("menu-store", () => {
         state.themeType = themeType;
         if (state.themeType == "dark") {
             state.theme = dark;
+        } else if (state.themeType == 'darkOfficial') {
+            state.theme = darkOfficial;
         } else {
             state.theme = light;
         }

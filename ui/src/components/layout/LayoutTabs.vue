@@ -11,11 +11,11 @@
       </a-tab-pane>
       <template #rightExtra>
         <a-dropdown placement="bottomRight">
-          <AppIcon name="DownOutlined" class="pl-20 pr-20" style="height: 100%" />
+          <AppIcon name="MoreOutlined" class="pl-20 pr-20" style="height: 100%" :size="16" />
           <template #overlay>
             <a-menu>
-              <a-menu-item key="2" @click="closeTabOther()">关闭其他</a-menu-item>
-              <a-menu-item key="3" @click="closeTabAll()">关闭全部</a-menu-item>
+              <a-menu-item key="2" @click="closeTabOther()"><AppIcon name="CloseOutlined" /> 关闭其他</a-menu-item>
+              <a-menu-item key="3" @click="closeTabAll()"><AppIcon name="DeleteOutlined" /> 关闭全部</a-menu-item>
             </a-menu>
           </template>
         </a-dropdown>

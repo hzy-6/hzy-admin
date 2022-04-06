@@ -78,7 +78,7 @@ export default defineComponent({
      */
     function getOpenMenuKeys() {
       let route = router.currentRoute.value;
-      let levelCode = route.meta.levelCode;
+      let levelCode = route.meta.levelCode as any;
       if (!levelCode) return [];
       var keys = [];
       if (levelCode.indexOf(".") > -1) {
