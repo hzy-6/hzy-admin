@@ -118,10 +118,9 @@ export default defineComponent({
       padding: 15px 15px;
       color: #8c8c8c;
     }
-
     .active {
-      background-color: #1890ff;
-      color: #fff;
+      color: #1890ff;
+      border-left: 1px solid #1890ff;
       //
       transition: background-color 0.1s;
       -moz-transition: background-color 0.1s;
@@ -132,7 +131,7 @@ export default defineComponent({
     }
   }
   li:hover {
-    color: #fff;
+    color: #1890ff;
   }
 }
 
