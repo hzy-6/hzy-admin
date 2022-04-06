@@ -106,6 +106,7 @@ export default defineComponent({
   background-color: #000000;
   z-index: 7;
   box-shadow: 5px 0px 2px 0 rgba(0, 0, 0, 0.1);
+  width: 60px;
 
   ul {
     margin: 0;
@@ -115,12 +116,13 @@ export default defineComponent({
     li {
       text-align: center;
       cursor: pointer;
-      padding: 15px 15px;
-      color: #8c8c8c;
+      color: #fff;
+      padding: 5px 0px;
+      margin: 15px 5px;
     }
     .active {
       color: #1890ff;
-      border-left: 1px solid #1890ff;
+      border-left: 2px solid #1890ff;
       //
       transition: background-color 0.1s;
       -moz-transition: background-color 0.1s;
