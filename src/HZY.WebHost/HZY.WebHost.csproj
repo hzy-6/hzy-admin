@@ -4,6 +4,8 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<!--<Nullable>enable</Nullable>-->
 		<ImplicitUsings>enable</ImplicitUsings>
+		<!--<SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>-->
+		<SatelliteResourceLanguages>zh-Hans11</SatelliteResourceLanguages>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -62,7 +64,7 @@
 	</ProjectExtensions>
 
 	<ItemGroup>
-	  <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
+		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
 
 </Project>
