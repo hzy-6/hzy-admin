@@ -9,7 +9,7 @@
         <a-tooltip placement="right">
           <template #title>{{ item.name }}</template>
           <li :key="getJumpUrl(item)" :class="{ active: getJumpUrl(item) == selectedKey }" @click="onMenuSelected(getJumpUrl(item))">
-            <AppIcon :name="item.icon" :size="30" />
+            <AppIcon :name="item.icon" :size="25" />
           </li>
         </a-tooltip>
       </template>
@@ -103,9 +103,7 @@ export default defineComponent({
 </script>
 <style lang="less" scoped>
 .hzy-left-nav {
-  color: #ffffff;
   background-color: #000000;
-  width: 80px;
   z-index: 7;
   box-shadow: 5px 0px 2px 0 rgba(0, 0, 0, 0.1);
 
@@ -113,38 +111,28 @@ export default defineComponent({
     margin: 0;
     padding: 0;
     list-style: none;
+
     li {
       text-align: center;
       cursor: pointer;
-      padding: 13px 0;
-      height: 80px;
+      padding: 15px 15px;
       color: #8c8c8c;
-
-      .anticon {
-        font-size: 25px;
-      }
-      .title {
-        padding-left: 5px;
-        padding-right: 5px;
-        padding-top: 5px;
-        width: 100%;
-        text-align: center;
-        overflow: hidden;
-        white-space: nowrap;
-        text-overflow: ellipsis;
-      }
     }
 
     .active {
-      // background-color: #1890ff;
-      border-left: 2px solid #1890ff;
-      color: #d9d9d9;
+      background-color: #1890ff;
+      color: #fff;
+      //
+      transition: background-color 0.1s;
+      -moz-transition: background-color 0.1s;
+      /* Firefox 4 */
+      -webkit-transition: background-color 0.1s;
+      /* Safari 和 Chrome */
+      -o-transition: background-color 0.1s;
     }
   }
   li:hover {
-    // background-color: #1890ff;
-    border-right: 2px solid #1890ff;
-    color: #d9d9d9;
+    color: #fff;
   }
 }
 
@@ -168,8 +156,8 @@ export default defineComponent({
       align-items: center;
       justify-content: center;
       height: 32px;
-      padding: 4px 15px;
-      border-radius: 2px;
+      padding: 2px 15px;
+      border-radius: 4px;
       //
       transition: background-color 0.3s;
       -moz-transition: background-color 0.3s;
