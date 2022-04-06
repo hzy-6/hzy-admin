@@ -20,7 +20,7 @@ var logger = NLogBuilder.ConfigureNLog("nlog.config").GetCurrentClassLogger();
 var builder = WebApplication.CreateBuilder(args);
 
 //地址
-// builder.WebHost.UseUrls("http://*:5600", "http://localhost:5600");
+//builder.WebHost.UseUrls("http://*:5600", "http://localhost:5600");
 //builder.WebHost.UseUrls("http://*:5600");
 
 //使用 Nlog
