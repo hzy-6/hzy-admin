@@ -1,9 +1,9 @@
-﻿using HZY.EFCore.Extensions;
-using HZY.EFCore.Models;
+﻿using HZY.EFCore.Models;
 using HZY.Models.Entities.Framework;
 using HZY.Repositories.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HZY.Services.Admin.BaseServicesAdmin.Impl;
+using HzyEFCoreRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;

@@ -22,7 +22,7 @@
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
 		<PackageReference Include="UAParser" Version="3.1.47" />
 		<PackageReference Include="NPOI" Version="2.5.5" />
-		<PackageReference Include="HzyScanDiService" Version="1.0.1" />
+		<PackageReference Include="HzyScanDiService" Version="1.0.2" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -1,5 +1,4 @@
-﻿using HZY.EFCore.Extensions;
-using HZY.EFCore.Models;
+﻿using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using HZY.Model.BO;
 using HZY.Models.DTO;
@@ -9,6 +8,7 @@ using HZY.Repositories.Framework;
 using HZY.Services.Accounts;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HZY.Services.Consts;
+using HzyEFCoreRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections;

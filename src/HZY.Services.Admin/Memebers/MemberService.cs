@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HZY.EFCore.Extensions;
 using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
@@ -12,6 +11,7 @@ using HZY.Services.Accounts;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HZY.Services.Admin.Framework;
 using HZY.Services.Upload;
+using HzyEFCoreRepositories.Extensions;
 using Microsoft.AspNetCore.Http;
 
 namespace HZY.Services.Admin.Memebers;

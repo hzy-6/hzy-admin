@@ -1,5 +1,4 @@
-﻿using HZY.EFCore.Extensions;
-using HZY.EFCore.Models;
+﻿using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.MessageQueue;
@@ -9,6 +8,7 @@ using HZY.Models.Entities.Framework;
 using HZY.Repositories.Framework;
 using HZY.Services.Accounts;
 using HZY.Services.Admin.BaseServicesAdmin;
+using HzyEFCoreRepositories.Extensions;
 using HzyScanDiService.Extensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;

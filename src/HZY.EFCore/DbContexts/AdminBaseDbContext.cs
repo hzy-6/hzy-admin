@@ -1,24 +1,15 @@
-﻿/*
- * *******************************************************
- *
- * 作者：hzy
- *
- * 开源地址：https://gitee.com/hzy6
- *
- * *******************************************************
- */
-
-using System;
+﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using HZY.EFCore.Interface;
+using HZY.EFCore.CacheEntity;
 using HZY.Infrastructure;
-using HZY.Infrastructure.ExpressionTree;
 using HZY.Infrastructure.Token;
 using HZY.Models.Entities;
 using HZY.Models.Entities.ApprovalFlow;
 using HZY.Models.Entities.BaseEntitys;
 using HZY.Models.Entities.Framework;
+using HzyEFCoreRepositories.DbContexts;
+using HzyEFCoreRepositories.ExpressionTree;
 using HzyScanDiService.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.ChangeTracking;

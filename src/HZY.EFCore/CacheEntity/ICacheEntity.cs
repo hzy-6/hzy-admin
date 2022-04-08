@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.EFCore.Interface;
+namespace HZY.EFCore.CacheEntity;
 
 /// <summary>
 /// 缓存实体信息服务

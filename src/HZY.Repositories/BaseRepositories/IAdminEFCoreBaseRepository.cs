@@ -1,6 +1,6 @@
 ﻿using HZY.EFCore.DbContexts;
-using HZY.EFCore.Interface;
 using HZY.EFCore.Models;
+using HzyEFCoreRepositories.Repositories.Interface;
 using HzyScanDiService.Interface;
 using System;
 using System.Collections.Generic;

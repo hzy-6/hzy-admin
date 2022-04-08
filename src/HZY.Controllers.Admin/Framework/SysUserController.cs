@@ -1,5 +1,4 @@
 ﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.EFCore.Attributes;
 using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Filters;
@@ -24,12 +23,11 @@ namespace HZY.Controllers.Admin.Framework;
 /// </summary>
 public class SysUserController : AdminBaseController<SysUserService>
 {
-    private readonly SysOrganizationService _sysOrganizationService;
 
-    public SysUserController(SysUserService defaultService, SysOrganizationService sysOrganizationService)
+    public SysUserController(SysUserService defaultService)
         : base("15", defaultService)
     {
-        _sysOrganizationService = sysOrganizationService;
+
     }
 
     /// <summary>

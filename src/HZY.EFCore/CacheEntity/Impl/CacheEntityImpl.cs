@@ -1,12 +1,11 @@
-﻿using HZY.EFCore.Extensions;
-using HZY.EFCore.Interface;
-using HZY.EFCore.Models;
+﻿using HZY.EFCore.Models;
 using HZY.Infrastructure;
+using HzyEFCoreRepositories.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace HZY.EFCore.Impl;
+namespace HZY.EFCore.CacheEntity.Impl;
 
 /// <summary>
 /// 缓存实体信息服务

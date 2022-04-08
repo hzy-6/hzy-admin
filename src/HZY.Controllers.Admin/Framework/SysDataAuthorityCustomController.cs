@@ -1,5 +1,4 @@
 ﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.EFCore.Attributes;
 using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Filters;
@@ -50,7 +49,6 @@ namespace HZY.Controllers.Admin.Framework
         /// <param name="ids">ids</param>
         /// <returns></returns>
         [ActionDescriptor(AdminFunctionConsts.Function_Delete)]
-        [Transactional]
         [HttpPost("DeleteList")]
         public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
         {
@@ -77,7 +75,6 @@ namespace HZY.Controllers.Admin.Framework
         /// <returns></returns>
         [ActionDescriptor(AdminFunctionConsts.Function_Save)]
         [ApiCheckModel]
-        [Transactional]
         [HttpPost("SaveForm")]
         public Task<SysDataAuthorityCustom> SaveFormAsync([FromBody] SysDataAuthorityCustom form)
         {

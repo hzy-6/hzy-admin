@@ -1,31 +1,21 @@
-﻿/*
- * *******************************************************
- *
- * 作者：hzy
- *
- * 开源地址：https://gitee.com/hzy6
- *
- * *******************************************************
- */
-
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
 using System;
-using HZY.EFCore.Impl;
 using HZY.EFCore.DbContexts;
 using HZY.EFCore.Models;
-using HZY.EFCore.Extensions;
 using HZY.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq.Expressions;
 using HZY.Model.BO;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
-using HZY.Infrastructure.ExpressionTree;
 using HzyScanDiService.Extensions;
+using HzyEFCoreRepositories.Repositories;
+using HzyEFCoreRepositories.Extensions;
+using HZY.Repositories.Framework;
+using HzyEFCoreRepositories.ExpressionTree;
 
 namespace HZY.Repositories.BaseRepositories.Impl;
 
@@ -33,7 +23,7 @@ namespace HZY.Repositories.BaseRepositories.Impl;
 /// Admin默认基础仓储接口
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class AdminEfCoreBaseRepositoryImpl<T> : RepositoryImpl<T, AdminBaseDbContext>, IAdminEfCoreBaseRepository<T> where T : class, new()
+public class AdminEfCoreBaseRepositoryImpl<T> : BaseRepository<T, AdminBaseDbContext>, IAdminEfCoreBaseRepository<T> where T : class, new()
 {
 
     public AdminEfCoreBaseRepositoryImpl(AdminBaseDbContext context, Expression<Func<T, bool>> filter = null) : base(context, filter)

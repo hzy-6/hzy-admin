@@ -1,6 +1,6 @@
-﻿using HZY.EFCore.DbContexts;
-using HZY.EFCore.Impl;
-using HZY.EFCore.Interface;
+﻿using HZY.EFCore.CacheEntity;
+using HZY.EFCore.CacheEntity.Impl;
+using HZY.EFCore.DbContexts;
 using HZY.Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

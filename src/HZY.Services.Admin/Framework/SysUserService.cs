@@ -1,4 +1,3 @@
-using HZY.EFCore.Extensions;
 using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
@@ -9,6 +8,7 @@ using HZY.Models.Entities.Framework;
 using HZY.Repositories.Framework;
 using HZY.Services.Accounts;
 using HZY.Services.Admin.BaseServicesAdmin;
+using HzyEFCoreRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
