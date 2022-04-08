@@ -16,6 +16,7 @@ using HzyEFCoreRepositories.Repositories;
 using HzyEFCoreRepositories.Extensions;
 using HZY.Repositories.Framework;
 using HzyEFCoreRepositories.ExpressionTree;
+using HzyEFCoreRepositories.Repositories.Impl;
 
 namespace HZY.Repositories.BaseRepositories.Impl;
 

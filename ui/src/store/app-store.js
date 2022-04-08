@@ -28,7 +28,7 @@ const appStore = defineStore("app-store", () => {
      * 创建一级菜单
      */
     function createOneLevelMenu() {
-        state.oneLevels = state.userInfo.menus.filter((w) => w.parentId == null || w.parentId == "");
+        state.oneLevels = state.userInfo.menus.filter((w) => (w.parentId == null || w.parentId == ""));
     }
 
     /**
