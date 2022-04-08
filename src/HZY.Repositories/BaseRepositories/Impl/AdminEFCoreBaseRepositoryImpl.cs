@@ -121,9 +121,8 @@ public class AdminEfCoreBaseRepositoryImpl<T> : BaseRepository<T, AdminBaseDbCon
     public virtual async Task<PagingViewModel> AsPagingViewModelAsync(string sql, int page, int size, string orderBy = "1", List<TableViewColumn> columnHeads = default, params object[] parameters)
     {
         using var serviceScope = ServiceProviderExtensions.CreateScope();
-        var freeSql = serviceScope.ServiceProvider.GetRequiredService<IFreeSql>();
 
-        var count = await freeSql.Ado.QuerySingleAsync<long>($"SELECT COUNT(1) FROM ({sql}) TAB", parameters);
+        var count = await this.QueryScalarBySqlAsync<long>($"SELECT COUNT(1) FROM ({sql}) TAB", parameters);
         var pagingViewModel = new PagingViewModel { Page = page, Size = size, Total = count };
         pagingViewModel.PageCount = (pagingViewModel.Total / size);
         var offSet = size * (page - 1);
@@ -142,7 +141,7 @@ public class AdminEfCoreBaseRepositoryImpl<T> : BaseRepository<T, AdminBaseDbCon
             throw new Exception("查询数据库类型不支持!");
         }
 
-        var data = await freeSql.Ado.ExecuteDataTableAsync(sqlString, parameters);
+        var data = await this.QueryDataTableBySqlAsync(sqlString, parameters);
 
         var fieldNames = (from DataColumn dc in data.Columns select dc.ColumnName).ToList();
 
