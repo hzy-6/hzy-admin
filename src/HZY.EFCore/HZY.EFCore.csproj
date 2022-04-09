@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -21,7 +21,7 @@
 		</PackageReference>
 		<PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.3" />
 		<PackageReference Include="Pomelo.EntityFrameworkCore.MySql" Version="6.0.1" />
-		<PackageReference Include="HzyEFCoreRepositories" Version="1.0.2" />
+		<PackageReference Include="HzyEFCoreRepositories" Version="1.0.4" />
 	</ItemGroup>
 
 	<ItemGroup>
