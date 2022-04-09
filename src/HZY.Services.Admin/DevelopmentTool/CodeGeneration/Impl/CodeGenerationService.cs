@@ -8,6 +8,7 @@ using HZY.Repositories.DevelopmentTool;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using NPOI.HSSF.UserModel;
+using NPOI.XSSF.UserModel;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -325,7 +326,7 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
         public (byte[] excel, string dataBase) CreateDataDictionary()
         {
             var tables = _codeGenerationRepository.GetAllTables();
-            var workbook = new HSSFWorkbook();
+            var workbook = new XSSFWorkbook();
             var dataBaseName = _codeGenerationRepository.GetConnectionString().Split(';')
                 .Where(w => w.ToLower().Trim().Contains("database"))
                 .FirstOrDefault()?.Split('=')[1]
