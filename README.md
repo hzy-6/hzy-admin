@@ -52,7 +52,7 @@
 | ![输入图片说明](gitee/images/MenuInfo.png) | ![输入图片说明](gitee/images/menu_function.png)  |
 |--------------------------------------|---|
 
-| ![输入图片说明](gitee/images/image.png) | ![输入图片说明](gitee/images/icons.png)  |
+| ![输入图片说明](gitee/images/home.png) | ![输入图片说明](gitee/images/icons.png)  |
 |-----------------------------------|---|
 
 | ![输入图片说明](gitee/images/chart.png) | ![输入图片说明](gitee/images/%E6%9B%B4%E5%A4%9A%E5%9B%BE%E8%A1%A8.png)  |
@@ -64,6 +64,9 @@
 | ![输入图片说明](gitee/images/code_gen.png) | ![输入图片说明](gitee/images/user_center.png)  |
 |--------------------------------------|---|
 
-![输入图片说明](gitee/images/login.png)
 
-![输入图片说明](gitee/images/Efcore%20%E7%9B%91%E6%8E%A7.png)
+| ![输入图片说明](gitee/images/login.png) | ![输入图片说明](gitee/images/Efcore%20%E7%9B%91%E6%8E%A7.png)  |
+|-----------------------------------|---|
+
+
+
