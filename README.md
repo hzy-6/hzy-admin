@@ -24,8 +24,7 @@
     
     开发需要环境：vs2022 、 .Net6.0 、VsCode 、Redis
 
-    框架基于 HzyEFCoreRepositories 数据访问
-    [https://gitee.com/hzy6/hzy-efcore-repositories](https://gitee.com/hzy6/hzy-efcore-repositories)
+    框架基于 HzyEFCoreRepositories 数据访问 : https://gitee.com/hzy6/hzy-efcore-repositories
     
 
 #### 功能列表
