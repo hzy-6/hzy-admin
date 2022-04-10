@@ -23,6 +23,9 @@
     前端：Vue3.x 、Antd Of Vue 3.0 、Vite
     
     开发需要环境：vs2022 、 .Net6.0 、VsCode 、Redis
+
+    框架基于 HzyEFCoreRepositories 数据访问
+    https://gitee.com/hzy6/hzy-efcore-repositories
     
 
 #### 功能列表
