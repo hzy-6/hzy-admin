@@ -56,9 +56,6 @@ public class SysOperationLogService : AdminBaseService<SysOperationLogRepository
         var queryString = _httpContext.Request.QueryString.ToString();
         var apiUrl = _httpContext.Request.Path;
 
-        //对有关job接口屏蔽访问记录
-        if (apiUrl.ToString().Contains("/job/")) return;
-
         //获取请求ip
         var ip = _httpContext.Request.Headers["X-Forwarded-For"].FirstOrDefault();
         if (string.IsNullOrEmpty(ip))

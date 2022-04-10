@@ -2,6 +2,8 @@
 using HZY.EFCore.CacheEntity.Impl;
 using HZY.EFCore.DbContexts;
 using HZY.Infrastructure;
+using HzyEFCoreRepositories.Extensions;
+using HzyEFCoreRepositories.Interceptor;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -40,12 +42,14 @@ public class EFCoreModule
 
         services.AddDbContextPool<AdminBaseDbContext>(options =>
         {
-
-            options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()))
-            //.UseLazyLoadingProxies()
-            ;
-            //无跟踪
-            // .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+            // sql 日志写入控制台
+            options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+            // 无跟踪
+            // options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+            // 懒加载代理
+            //options.UseLazyLoadingProxies()
+            //添加 EFCore 监控 和 动态表名
+            options.AddEFCoreInterceptor();
 
             if (defaultDatabaseType == DefaultDatabaseType.SqlServer)
             {

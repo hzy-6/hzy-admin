@@ -123,6 +123,29 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="T:HZY.Controllers.Admin.DevelopmentTool.MonitorEFCoreController">
+            <summary>
+            EFCore 监控 控制器
+            </summary>
+        </member>
+        <member name="M:HZY.Controllers.Admin.DevelopmentTool.MonitorEFCoreController.GetEFCoreMonitorContext">
+            <summary>
+            获取 EFCore 监控上下文
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.DevelopmentTool.MonitorEFCoreController.GetTimeConsumingRanking">
+            <summary>
+            获取 EFCore Sql 监控上下文 耗时排行榜
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.DevelopmentTool.MonitorEFCoreController.GetNewest">
+            <summary>
+            获取 EFCore Sql 监控上下文 最新数据
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Controllers.Admin.DevelopmentTool.QuartzTasksController">
             <summary>
             系统账号管理

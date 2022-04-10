@@ -41,15 +41,7 @@ public class PersonalCenterController : AdminBaseController<SysUserService>
     /// <returns></returns>
     [HttpPost("SaveForm")]
     public async Task<SysUser> SaveFormAsync([FromBody] SysUser form)
-    {
-        var accountInfo = _accountService.GetAccountInfo();
-        var sysUser = await _sysUserRepository.FindByIdAsync(accountInfo.Id);
-        sysUser.Name = form.Name;
-        sysUser.LoginName = form.LoginName;
-        sysUser.Email = form.Email;
-        sysUser.Phone = form.Phone;
-        return await _sysUserRepository.InsertOrUpdateAsync(sysUser);
-    }
+    => await this._accountService.ChangeUserAsync(form);
 
 
 }

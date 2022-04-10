@@ -94,7 +94,7 @@ public class SysUserController : AdminBaseController<SysUserService>
     /// 获取用户信息
     /// </summary>
     /// <returns></returns>
-    [ApiResourceCacheFilter(3)]
+    [ApiResourceCacheFilter(10)]
     [HttpGet("info")]
     public Task<AccountInfo> GetUserInfoAsync()
     {

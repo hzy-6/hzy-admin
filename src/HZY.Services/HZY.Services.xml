@@ -32,6 +32,34 @@
             <param name="newPassword"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Services.Accounts.IAccountService.ChangeUserAsync(HZY.Models.Entities.Framework.SysUser)">
+            <summary>
+            修改用户信息
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Accounts.IAccountService.SetCacheByAccountInfo(HZY.Model.BO.AccountInfo)">
+            <summary>
+            根据账户信息缓存
+            </summary>
+            <param name="accountInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Accounts.IAccountService.GetCacheAccountInfoById(System.String)">
+            <summary>
+            获取缓存中的账户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Accounts.IAccountService.DeleteCacheAccountInfoById(System.String)">
+            <summary>
+            删除缓存账户信息 根据id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Services.Accounts.Impl.AccountServiceImpl">
             <summary>
             当前登录账户服务
@@ -64,6 +92,34 @@
             </summary>
             <param name="oldPassword"></param>
             <param name="newPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Accounts.Impl.AccountServiceImpl.ChangeUserAsync(HZY.Models.Entities.Framework.SysUser)">
+            <summary>
+            修改用户基础信息
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Accounts.Impl.AccountServiceImpl.SetCacheByAccountInfo(HZY.Model.BO.AccountInfo)">
+            <summary>
+            根据账户信息缓存
+            </summary>
+            <param name="accountInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Accounts.Impl.AccountServiceImpl.GetCacheAccountInfoById(System.String)">
+            <summary>
+            获取缓存中的账户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Accounts.Impl.AccountServiceImpl.DeleteCacheAccountInfoById(System.String)">
+            <summary>
+            删除缓存账户信息 根据id
+            </summary>
+            <param name="id"></param>
             <returns></returns>
         </member>
         <member name="T:HZY.Services.Consts.AdminFunctionConsts">

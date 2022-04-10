@@ -1,18 +1,18 @@
 /*
  Navicat Premium Data Transfer
 
- Source Server         : 本机_postgresql
+ Source Server         : 本地_PostgreSql
  Source Server Type    : PostgreSQL
  Source Server Version : 130003
  Source Host           : localhost:5432
- Source Catalog        : HzyAdminSpa20220318
+ Source Catalog        : HzyAdminSpa20220410
  Source Schema         : public
 
  Target Server Type    : PostgreSQL
  Target Server Version : 130003
  File Encoding         : 65001
 
- Date: 18/03/2022 12:19:13
+ Date: 10/04/2022 14:29:04
 */
 
 
@@ -194,6 +194,7 @@ INSERT INTO "public"."SysMenu" VALUES (30, '2022-03-04 12:27:44', '2022-01-12 14
 INSERT INTO "public"."SysMenu" VALUES (31, '2022-03-04 12:27:48', '2022-01-12 15:39:46', '29.31', 30, '代码生成', 'views/development_tool/code_generation/Index.vue', '/development_tool/code_generation', 'code_generation_index', 'CodeTwoTone', 29, 't', 't', 't', 't', NULL, 2);
 INSERT INTO "public"."SysMenu" VALUES (2, '2022-03-18 12:10:01.994211', '2021-01-16 16:05:22', '1.2', 10, 'Antd Vue3.0组件', 'views/AppComponents.vue', '/app/components', 'AppComponentsCom', 'LayoutOutlined', 1, 't', 't', 't', 't', NULL, 2);
 INSERT INTO "public"."SysMenu" VALUES (32, '2022-03-18 12:10:18.281067', '2022-02-24 10:51:38', '1.32', 20, '图标展示', 'views/Icons.vue', '/icons', 'IconsVue', 'TagsTwoTone', 1, 't', 't', 't', 't', NULL, 2);
+INSERT INTO "public"."SysMenu" VALUES (33, '2022-04-10 10:56:17', '2022-04-10 10:55:41', '29.33', 40, 'EFCore监控台', 'views/development_tool/monitor_ef_core/Index.vue', '/development_tool/monitor/efcore', 'monitor_ef_core', 'DashboardFilled', 29, 't', 't', 't', 't', NULL, 2);
 
 -- ----------------------------
 -- Table structure for SysMenuFunction
@@ -295,6 +296,7 @@ INSERT INTO "public"."SysMenuFunction" VALUES ('2186550d-246c-4552-e2d8-08d9fdef
 INSERT INTO "public"."SysMenuFunction" VALUES ('dab12c2f-1f4d-4347-0f1c-08d9fdad00ab', '2022-03-18 10:12:25.725887', '2022-03-18 10:12:25.725885', 10, 31, 'Display', '显示', 'Display');
 INSERT INTO "public"."SysMenuFunction" VALUES ('a7cd04db-bbe3-49b6-0f1e-08d9fdad00ab', '2022-03-18 12:10:02.023777', '2022-03-18 12:10:02.023776', 10, 2, 'Display', '显示', 'Display');
 INSERT INTO "public"."SysMenuFunction" VALUES ('6c09c0c0-72fa-4842-0f1f-08d9fdad00ab', '2022-03-18 12:10:18.286502', '2022-03-18 12:10:18.286501', 10, 32, 'Display', '显示', 'Display');
+INSERT INTO "public"."SysMenuFunction" VALUES ('e7b0bac6-ae96-474b-84d2-15d3f50353fd', '2022-04-10 14:27:57.990795', '2022-04-10 14:27:57.990794', 10, 33, 'Display', '显示', 'Display');
 
 -- ----------------------------
 -- Table structure for SysOperationLog
@@ -369,6 +371,16 @@ INSERT INTO "public"."SysOperationLog" VALUES ('f937407d-d58c-4ba1-8146-f97f9e90
 INSERT INTO "public"."SysOperationLog" VALUES ('2a7d83ab-5a81-42b7-9752-e3c4d7640352', '/api/admin/SysMenu/getAll', '0.0.0.1', '', '{"name":null}', '', 'Chrome99', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 21, '2022-03-18 12:10:02.149812', '2022-03-18 12:10:02.149812');
 INSERT INTO "public"."SysOperationLog" VALUES ('b85077a4-0a3d-4d5f-bc46-3dddde6ffc8b', '/api/admin/SysMenu/findForm/32', '0.0.0.1', '', '', '', 'Chrome99', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 33, '2022-03-18 12:10:05.482983', '2022-03-18 12:10:05.482983');
 INSERT INTO "public"."SysOperationLog" VALUES ('352c414a-523a-47be-b6b0-0fc21a988321', '/api/admin/SysMenu/saveForm', '0.0.0.1', '', '{"id":32,"form":{"id":32,"levelCode":"1.32","number":20,"name":"图标展示","componentName":"IconsVue","url":"views/Icons.vue","router":"/icons","jumpUrl":null,"icon":"TagsTwoTone","parentId":1,"show":true,"close":true,"keepAlive":true,"state":true,"type":2,"lastModificationTime":"2022-03-04 12:26:08","creationTime":"2022-02-24 10:51:38"},"allFunctions":[{"number":10,"name":"显示","byName":"Display","remark":"Display","id":"c9518758-b2e1-4f51-b517-5282e273889c","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":20,"name":"添加","byName":"Insert","remark":"Insert","id":"bffefb1c-8988-4ddf-b4ac-81c2b30e80cd","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":30,"name":"修改","byName":"Update","remark":"Update","id":"e7ef2a05-8317-41c3-b588-99519fe88bf9","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":40,"name":"删除","byName":"Delete","remark":"Delete","id":"9c388461-2704-4c5e-a729-72c17e9018e1","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":50,"name":"保存","byName":"Save","remark":"Save","id":"383e7ee2-7690-46ac-9230-65155c84aa30","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":60,"name":"检索","byName":"Search","remark":"Search","id":"f27ecb0a-197d-47b1-b243-59a8c71302bf","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":70,"name":"导出","byName":"Export","remark":"Export","id":"2401f4d0-60b0-4e2e-903f-84c603373572","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":80,"name":"打印","byName":"Print","remark":"Print","id":"b6fd5425-504a-46a9-993b-2f8dc9158eb8","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"}],"menuFunctionList":[{"number":10,"menuId":32,"functionCode":"Display","functionName":"显示","remark":"Display","id":"6c09c0c0-72fa-4842-0f1f-08d9fdad00ab","lastModificationTime":"2022-03-04 15:24:21","creationTime":"2022-03-04 15:24:21"}]}', '', 'Chrome99', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 39, '2022-03-18 12:10:18.315172', '2022-03-18 12:10:18.315172');
+INSERT INTO "public"."SysOperationLog" VALUES ('0bc53710-fd2d-48e0-a9ae-b50c195c5094', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 330, '2022-04-10 14:27:42.229963', '2022-04-10 14:27:42.229961');
+INSERT INTO "public"."SysOperationLog" VALUES ('3e05ce25-fd99-40dd-ae42-b436b52734c7', '/api/admin/SysUser/info', '127.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 41, '2022-04-10 14:27:46.80031', '2022-04-10 14:27:46.800309');
+INSERT INTO "public"."SysOperationLog" VALUES ('8e8408c9-6762-4a7f-9392-000c16a2c711', '/api/account/check', '127.0.0.1', '', '{"userName":"admin","userPassword":"123456"}', '', 'Chrome100', 'Windows10', NULL, 82, '2022-04-10 14:27:48.090321', '2022-04-10 14:27:48.090321');
+INSERT INTO "public"."SysOperationLog" VALUES ('656170b4-f60b-4661-bd5b-9bc0e346883e', '/api/admin/SysUser/info', '127.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 4, '2022-04-10 14:27:48.165252', '2022-04-10 14:27:48.165251');
+INSERT INTO "public"."SysOperationLog" VALUES ('9b13680c-770b-41cf-80c5-55c89abed832', '/api/admin/SysMenu/getAll', '127.0.0.1', '', '{"name":null}', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 73, '2022-04-10 14:27:51.799384', '2022-04-10 14:27:51.799383');
+INSERT INTO "public"."SysOperationLog" VALUES ('a2ed2682-5489-4ef9-8f33-2524fd2c2110', '/api/admin/SysMenu/findForm/33', '127.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 60, '2022-04-10 14:27:54.683049', '2022-04-10 14:27:54.683048');
+INSERT INTO "public"."SysOperationLog" VALUES ('9679300e-1829-4009-b40a-b5965c03bdd6', '/api/admin/SysMenu/saveForm', '127.0.0.1', '', '{"id":33,"form":{"id":33,"levelCode":"29.33","number":40,"name":"EFCore监控台","componentName":"monitor_ef_core","url":"views/development_tool/monitor_ef_core/Index.vue","router":"/development_tool/monitor/efcore","jumpUrl":null,"icon":"DashboardFilled","parentId":29,"show":true,"close":true,"keepAlive":true,"state":true,"type":2,"lastModificationTime":"2022-04-10 10:56:17","creationTime":"2022-04-10 10:55:41"},"allFunctions":[{"number":10,"name":"显示","byName":"Display","remark":"Display","id":"c9518758-b2e1-4f51-b517-5282e273889c","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":20,"name":"添加","byName":"Insert","remark":"Insert","id":"bffefb1c-8988-4ddf-b4ac-81c2b30e80cd","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":30,"name":"修改","byName":"Update","remark":"Update","id":"e7ef2a05-8317-41c3-b588-99519fe88bf9","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":40,"name":"删除","byName":"Delete","remark":"Delete","id":"9c388461-2704-4c5e-a729-72c17e9018e1","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":50,"name":"保存","byName":"Save","remark":"Save","id":"383e7ee2-7690-46ac-9230-65155c84aa30","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":60,"name":"检索","byName":"Search","remark":"Search","id":"f27ecb0a-197d-47b1-b243-59a8c71302bf","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":70,"name":"导出","byName":"Export","remark":"Export","id":"2401f4d0-60b0-4e2e-903f-84c603373572","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"},{"number":80,"name":"打印","byName":"Print","remark":"Print","id":"b6fd5425-504a-46a9-993b-2f8dc9158eb8","lastModificationTime":"2021-04-18 22:08:06","creationTime":"2016-06-20 13:40:52"}],"menuFunctionList":[{"number":10,"menuId":33,"functionCode":"Display","functionName":"显示","remark":"Display"}]}', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 98, '2022-04-10 14:27:58.089029', '2022-04-10 14:27:58.089028');
+INSERT INTO "public"."SysOperationLog" VALUES ('23888b8e-7482-40f3-be18-526d350210a2', '/api/admin/SysMenu/getAll', '127.0.0.1', '', '{"name":null}', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 41, '2022-04-10 14:27:58.226652', '2022-04-10 14:27:58.226651');
+INSERT INTO "public"."SysOperationLog" VALUES ('ddd8899f-d345-4af7-88b0-b7e2d690c6f8', '/api/admin/SysUser/info', '127.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 31, '2022-04-10 14:28:00.282213', '2022-04-10 14:28:00.282213');
+INSERT INTO "public"."SysOperationLog" VALUES ('d82e2e3b-eedd-4721-8d24-d4f5b442c373', '/api/admin/SysMenu/getAll', '127.0.0.1', '', '{"name":null}', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 30, '2022-04-10 14:28:00.558013', '2022-04-10 14:28:00.558011');
 
 -- ----------------------------
 -- Table structure for SysOrganization

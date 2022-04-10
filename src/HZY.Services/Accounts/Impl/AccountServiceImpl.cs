@@ -4,6 +4,7 @@ using HZY.Infrastructure.Token;
 using HZY.Model.BO;
 using HZY.Models.Entities.Framework;
 using HZY.Repositories.Framework;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Linq;
 using System.Threading.Tasks;
@@ -20,16 +21,20 @@ public class AccountServiceImpl : IAccountService
     private readonly TokenService _tokenService;
     private readonly SysOrganizationRepository _sysOrganizationRepository;
     private readonly SysUserRepository _sysUserRepository;
+    private readonly IMemoryCache _memoryCache;
+    private readonly string AccountInfoCacheName = "AccountInfo";
 
     public AccountServiceImpl(SysUserRepository sysUserRepository,
         AppConfiguration appConfiguration,
         TokenService tokenService,
-        SysOrganizationRepository sysOrganizationRepository)
+        SysOrganizationRepository sysOrganizationRepository,
+        IMemoryCache memoryCache)
     {
         _sysUserRepository = sysUserRepository;
         _appConfiguration = appConfiguration;
         _tokenService = tokenService;
         _sysOrganizationRepository = sysOrganizationRepository;
+        _memoryCache = memoryCache;
         this._accountInfo = this.FindAccountInfoByToken();
     }
 
@@ -44,6 +49,13 @@ public class AccountServiceImpl : IAccountService
         if (id == Guid.Empty || id == default)
         {
             return default;
+        }
+
+        var accountInfo = this.GetCacheAccountInfoById(id.ToString());
+
+        if (accountInfo != null)
+        {
+            return accountInfo;
         }
 
         var sysUser = this._sysUserRepository.FindById(id);
@@ -64,12 +76,15 @@ public class AccountServiceImpl : IAccountService
 
         var sysOrganization = this._sysOrganizationRepository.FindById(sysUser.OrganizationId);
 
-        var accountInfo = new AccountInfo();
+        accountInfo = new AccountInfo();
         accountInfo = sysUser.MapTo<SysUser, AccountInfo>();
         accountInfo.IsAdministrator = sysRoles.Any(w => w.Id == this._appConfiguration.AdminRoleId);
         accountInfo.SysRoles = sysRoles;
         accountInfo.SysPosts = sysPosts;
         accountInfo.SysOrganization = sysOrganization;
+
+        //缓存
+        this.SetCacheByAccountInfo(accountInfo);
 
         return accountInfo;
     }
@@ -126,7 +141,62 @@ public class AccountServiceImpl : IAccountService
         var sysUser = await this._sysUserRepository.FindByIdAsync(this.GetAccountInfo().Id);
         if (sysUser.Password != oldPassword) MessageBox.Show("旧密码不正确！");
         sysUser.Password = newPassword;
+        this.DeleteCacheAccountInfoById(sysUser.Id.ToString());
         return await this._sysUserRepository.UpdateAsync(sysUser);
     }
 
+    /// <summary>
+    /// 修改用户基础信息
+    /// </summary>
+    /// <param name="form"></param>
+    /// <returns></returns>
+    public virtual async Task<SysUser> ChangeUserAsync(SysUser form)
+    {
+        var sysUser = await _sysUserRepository.FindByIdAsync(_accountInfo.Id);
+        sysUser.Name = form.Name;
+        sysUser.LoginName = form.LoginName;
+        sysUser.Email = form.Email;
+        sysUser.Phone = form.Phone;
+        this.DeleteCacheAccountInfoById(sysUser.Id.ToString());
+        return await _sysUserRepository.InsertOrUpdateAsync(sysUser);
+    }
+
+    /// <summary>
+    /// 根据账户信息缓存
+    /// </summary>
+    /// <param name="accountInfo"></param>
+    /// <returns></returns>
+    public virtual AccountInfo SetCacheByAccountInfo(AccountInfo accountInfo)
+    {
+        //缓存
+        return _memoryCache.Set(GetCacheKeyById(accountInfo.Id.ToString()), accountInfo, DateTime.Now.AddHours(5));
+    }
+
+    /// <summary>
+    /// 获取缓存中的账户信息
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public virtual AccountInfo GetCacheAccountInfoById(string id)
+    {
+        //缓存
+        return _memoryCache.Get<AccountInfo>(GetCacheKeyById(id));
+    }
+
+    /// <summary>
+    /// 删除缓存账户信息 根据id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public virtual bool DeleteCacheAccountInfoById(string id)
+    {
+        _memoryCache.Remove(GetCacheKeyById(id));
+        return true;
+    }
+
+    #region 私有方法
+
+    private string GetCacheKeyById(string id) => AccountInfoCacheName + id;
+
+    #endregion
 }

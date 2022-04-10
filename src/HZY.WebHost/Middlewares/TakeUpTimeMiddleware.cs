@@ -2,6 +2,7 @@
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
+using HZY.Infrastructure;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
@@ -17,17 +18,28 @@ public class TakeUpTimeMiddleware : IMiddleware
     private readonly ILogger _logger;
     private readonly SysOperationLogService _sysOperationLogService;
     private readonly HttpContext _httpContext;
+    private readonly AppConfiguration _appConfiguration;
 
-    public TakeUpTimeMiddleware(ILogger<TakeUpTimeMiddleware> logger, SysOperationLogService sysOperationLogService, IHttpContextAccessor iHttpContextAccessor)
+    public TakeUpTimeMiddleware(ILogger<TakeUpTimeMiddleware> logger, SysOperationLogService sysOperationLogService, IHttpContextAccessor iHttpContextAccessor, AppConfiguration appConfiguration)
     {
         this._stopwatch ??= new Stopwatch();
         _logger = logger;
         _sysOperationLogService = sysOperationLogService;
         _httpContext = iHttpContextAccessor.HttpContext;
+        _appConfiguration = appConfiguration;
     }
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
+        var apiList = _appConfiguration.ApiWhiteList.Split("|").ToList();
+        var path = context.Request.Path;
+
+        if (apiList.Any(w => path.ToString().ToLower().Contains(w.ToLower())))
+        {
+            await next.Invoke(context);
+            return;
+        }
+
         //获取body
         var bodyString = await this.ReadBodyAsync();
 
@@ -41,7 +53,6 @@ public class TakeUpTimeMiddleware : IMiddleware
         if (this.IsApi(context))
         {
             var remoteIpAddress = context.Connection.RemoteIpAddress;
-            var path = context.Request.Path;
             var log = $"{remoteIpAddress} 请求：{path} 耗时：{_stopwatch.ElapsedMilliseconds} 毫秒!";
             _logger.LogInformation(log);
 

@@ -97,4 +97,8 @@ public class AppConfiguration : IDiSingletonSelf
     /// 命名空间
     /// </summary>
     public string Namespace { get; set; }
+    /// <summary>
+    /// Api 白名单
+    /// </summary>
+    public string ApiWhiteList { get; set; }
 }

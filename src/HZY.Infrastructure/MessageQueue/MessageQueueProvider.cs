@@ -51,7 +51,7 @@ public class MessageQueueProvider : IMessageQueueProvider
                         }
                     });
                 }
-                await Task.Delay(20);
+                await Task.Delay(50);
             }
         });
 

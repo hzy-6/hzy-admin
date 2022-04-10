@@ -1,4 +1,5 @@
 ﻿using HZY.Model.BO;
+using HZY.Models.Entities.Framework;
 using HzyScanDiService.Interface;
 using System.Threading.Tasks;
 
@@ -31,5 +32,33 @@ public interface IAccountService : IDiScoped
     /// <param name="newPassword"></param>
     /// <returns></returns>
     Task<int> ChangePasswordAsync(string oldPassword, string newPassword);
+
+    /// <summary>
+    /// 修改用户信息
+    /// </summary>
+    /// <param name="form"></param>
+    /// <returns></returns>
+    Task<SysUser> ChangeUserAsync(SysUser form);
+
+    /// <summary>
+    /// 根据账户信息缓存
+    /// </summary>
+    /// <param name="accountInfo"></param>
+    /// <returns></returns>
+    AccountInfo SetCacheByAccountInfo(AccountInfo accountInfo);
+
+    /// <summary>
+    /// 获取缓存中的账户信息
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    AccountInfo GetCacheAccountInfoById(string id);
+
+    /// <summary>
+    /// 删除缓存账户信息 根据id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    bool DeleteCacheAccountInfoById(string id);
 
 }

@@ -349,6 +349,29 @@
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Services.Admin.DevelopmentTool.MonitorEFCore.IMonitorEFCoreService.GetEFCoreMonitorContext">
+            <summary>
+            获取 EFCore 监控上下文
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.DevelopmentTool.MonitorEFCore.IMonitorEFCoreService.GetTimeConsumingRanking">
+            <summary>
+            获取 EFCore Sql 监控上下文 耗时排行榜
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.DevelopmentTool.MonitorEFCore.IMonitorEFCoreService.GetNewest">
+            <summary>
+            获取 EFCore Sql 监控上下文 最新数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Services.Admin.DevelopmentTool.MonitorEFCore.Impl.MonitorEFCoreService">
+            <summary>
+            监控 EFCore 服务
+            </summary>
+        </member>
         <member name="T:HZY.Services.Admin.Framework.SysDataAuthorityCustomService">
             <summary>
             服务 SysDataAuthorityCustomService

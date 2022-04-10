@@ -3,15 +3,15 @@
 
  Source Server         : 本地_MySql
  Source Server Type    : MySQL
- Source Server Version : 80025
+ Source Server Version : 80019
  Source Host           : localhost:3306
- Source Schema         : hzyadminspa20220318
+ Source Schema         : hzyadminspa20220410
 
  Target Server Type    : MySQL
- Target Server Version : 80025
+ Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 18/03/2022 12:19:24
+ Date: 10/04/2022 14:25:28
 */
 
 SET NAMES utf8mb4;
@@ -27,15 +27,15 @@ CREATE TABLE `member`  (
   `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Sex` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `Birthday` datetime NULL DEFAULT NULL,
+  `Birthday` datetime(0) NULL DEFAULT NULL,
   `Photo` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Introduce` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `FilePath` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `UserId` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of member
@@ -49,12 +49,12 @@ INSERT INTO `member` VALUES ('9A604AA2-9AE6-4A2F-8DDB-D9E0289EAD9E', '1', '测�
 DROP TABLE IF EXISTS `sysdataauthority`;
 CREATE TABLE `sysdataauthority`  (
   `Id` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
   `RoleId` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `PermissionType` int NULL DEFAULT NULL COMMENT '数据权限类型',
+  `PermissionType` int(0) NULL DEFAULT NULL COMMENT '数据权限类型',
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysdataauthority
@@ -67,12 +67,12 @@ INSERT INTO `sysdataauthority` VALUES ('40C10217-B94C-43EC-237E-08DA00442990', '
 DROP TABLE IF EXISTS `sysdataauthoritycustom`;
 CREATE TABLE `sysdataauthoritycustom`  (
   `Id` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
   `SysDataAuthorityId` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `SysOrganizationId` int NOT NULL,
+  `SysOrganizationId` int(0) NOT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysdataauthoritycustom
@@ -83,16 +83,16 @@ CREATE TABLE `sysdataauthoritycustom`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sysdictionary`;
 CREATE TABLE `sysdictionary`  (
-  `Id` int NOT NULL AUTO_INCREMENT COMMENT 'id',
-  `LastModificationTime` datetime NULL DEFAULT NULL COMMENT '更新时间',
-  `CreationTime` datetime NULL DEFAULT NULL COMMENT '创建时间',
-  `Sort` int NULL DEFAULT NULL COMMENT '排序号',
+  `Id` int(0) NOT NULL AUTO_INCREMENT COMMENT 'id',
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL COMMENT '更新时间',
+  `CreationTime` datetime(0) NULL DEFAULT NULL COMMENT '创建时间',
+  `Sort` int(0) NULL DEFAULT NULL COMMENT '排序号',
   `Code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '编码',
   `Value` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '值',
   `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '分组名/键',
-  `ParentId` int NULL DEFAULT NULL COMMENT '父级分组id',
+  `ParentId` int(0) NULL DEFAULT NULL COMMENT '父级分组id',
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '数据字典' ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8 COLLATE = utf8_general_ci COMMENT = '数据字典' ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysdictionary
@@ -107,14 +107,14 @@ INSERT INTO `sysdictionary` VALUES (3, '2021-07-25 22:40:53', '2021-07-25 22:40:
 DROP TABLE IF EXISTS `sysfunction`;
 CREATE TABLE `sysfunction`  (
   `Id` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `Number` int NULL DEFAULT NULL,
+  `Number` int(0) NULL DEFAULT NULL,
   `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ByName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysfunction
@@ -133,25 +133,25 @@ INSERT INTO `sysfunction` VALUES ('F27ECB0A-197D-47B1-B243-59A8C71302BF', 60, '�
 -- ----------------------------
 DROP TABLE IF EXISTS `sysmenu`;
 CREATE TABLE `sysmenu`  (
-  `Id` int NOT NULL AUTO_INCREMENT,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
+  `Id` int(0) NOT NULL AUTO_INCREMENT,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
   `LevelCode` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `Number` int NULL DEFAULT NULL,
+  `Number` int(0) NULL DEFAULT NULL,
   `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Url` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Router` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `ComponentName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Icon` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `ParentId` int NULL DEFAULT NULL,
-  `Show` tinyint NULL DEFAULT NULL,
-  `Close` tinyint NULL DEFAULT NULL,
-  `KeepAlive` tinyint NULL DEFAULT NULL,
-  `State` tinyint NULL DEFAULT NULL,
+  `ParentId` int(0) NULL DEFAULT NULL,
+  `Show` tinyint(0) NULL DEFAULT NULL,
+  `Close` tinyint(0) NULL DEFAULT NULL,
+  `KeepAlive` tinyint(0) NULL DEFAULT NULL,
+  `State` tinyint(0) NULL DEFAULT NULL,
   `JumpUrl` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `Type` int NULL DEFAULT NULL,
+  `Type` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 33 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysmenu
@@ -185,6 +185,7 @@ INSERT INTO `sysmenu` VALUES (29, '2022-03-04 12:25:49', '2022-01-12 14:17:21', 
 INSERT INTO `sysmenu` VALUES (30, '2022-03-04 12:27:44', '2022-01-12 14:22:04', '29.30', 20, '定时任务', 'views/development_tool/timed_task/Index.vue', '/development_tool/timed_task', 'TimedTaskCom', 'FieldTimeOutlined', 29, 1, 1, 1, 1, NULL, 2);
 INSERT INTO `sysmenu` VALUES (31, '2022-03-04 12:27:48', '2022-01-12 15:39:46', '29.31', 30, '代码生成', 'views/development_tool/code_generation/Index.vue', '/development_tool/code_generation', 'code_generation_index', 'CodeTwoTone', 29, 1, 1, 1, 1, NULL, 2);
 INSERT INTO `sysmenu` VALUES (32, '2022-03-18 12:15:24', '2022-02-24 10:51:38', '1.32', 20, '图标展示', 'views/Icons.vue', '/icons', 'IconsVue', 'TagsTwoTone', 1, 1, 1, 1, 1, NULL, 2);
+INSERT INTO `sysmenu` VALUES (33, '2022-04-10 10:56:17', '2022-04-10 10:55:41', '29.33', 40, 'EFCore监控台', 'views/development_tool/monitor_ef_core/Index.vue', '/development_tool/monitor/efcore', 'monitor_ef_core', 'DashboardFilled', 29, 1, 1, 1, 1, NULL, 2);
 
 -- ----------------------------
 -- Table structure for sysmenufunction
@@ -192,19 +193,20 @@ INSERT INTO `sysmenu` VALUES (32, '2022-03-18 12:15:24', '2022-02-24 10:51:38', 
 DROP TABLE IF EXISTS `sysmenufunction`;
 CREATE TABLE `sysmenufunction`  (
   `Id` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
-  `Number` int NULL DEFAULT NULL,
-  `MenuId` int NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  `Number` int(0) NULL DEFAULT NULL,
+  `MenuId` int(0) NULL DEFAULT NULL,
   `FunctionCode` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `FunctionName` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Remark` varchar(100) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysmenufunction
 -- ----------------------------
+INSERT INTO `sysmenufunction` VALUES ('08da1aba-cc8f-432f-81ad-384c24600b40', '2022-04-10 14:24:42', '2022-04-10 14:24:42', 10, 33, 'Display', '显示', 'Display');
 INSERT INTO `sysmenufunction` VALUES ('0984A2E1-3722-41D4-0F6D-08D9FDAD00AB', '2022-03-04 15:25:50', '2022-03-04 15:25:50', 70, 23, 'Export', '导出', 'Export');
 INSERT INTO `sysmenufunction` VALUES ('0A85E4FD-5A1C-47F6-0F60-08D9FDAD00AB', '2022-03-04 15:25:40', '2022-03-04 15:25:40', 20, 21, 'Insert', '添加', 'Insert');
 INSERT INTO `sysmenufunction` VALUES ('0AD6A459-1D9D-4512-0F32-08D9FDAD00AB', '2022-03-04 15:25:14', '2022-03-04 15:25:14', 40, 15, 'Delete', '删除', 'Delete');
@@ -301,11 +303,11 @@ CREATE TABLE `sysoperationlog`  (
   `Browser` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `OS` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `UserId` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL COMMENT '当前操作人id',
-  `TakeUpTime` bigint NOT NULL COMMENT '接口耗时（毫秒）',
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
+  `TakeUpTime` bigint(0) NOT NULL COMMENT '接口耗时（毫秒）',
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysoperationlog
@@ -469,25 +471,55 @@ INSERT INTO `sysoperationlog` VALUES ('08da0896-3d3a-461a-8d37-13fe6c31940a', '/
 INSERT INTO `sysoperationlog` VALUES ('08da0896-432f-4fc0-8c1d-53ace385fd9c', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '', '', 'Chrome99', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 18, '2022-03-18 12:17:49', '2022-03-18 12:17:49');
 INSERT INTO `sysoperationlog` VALUES ('08da0896-4927-49ab-8aa9-3a6026468a7f', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '', '', 'Chrome99', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 19, '2022-03-18 12:17:59', '2022-03-18 12:17:59');
 INSERT INTO `sysoperationlog` VALUES ('08da0896-4f1b-43f5-84d7-1847428b9d86', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '', '', 'Chrome99', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 19, '2022-03-18 12:18:09', '2022-03-18 12:18:09');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-0e66-4eb8-8baf-5264458eb844', '/api/account/check', '0.0.0.1', '', '{\"userName\":\"admin\",\"userPassword\":\"123456\"}', '', 'Chrome100', 'Windows10', NULL, 535, '2022-04-10 14:19:23', '2022-04-10 14:19:23');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-0ea0-4935-8aa1-3c2852358c7a', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 187, '2022-04-10 14:19:24', '2022-04-10 14:19:24');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-2b04-4e8c-8d2d-fcf3411afcfb', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 38, '2022-04-10 14:20:11', '2022-04-10 14:20:11');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-3364-4b38-83be-d00a7819907d', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 66, '2022-04-10 14:20:25', '2022-04-10 14:20:25');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-40c9-4927-8e63-25472d362585', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 48, '2022-04-10 14:20:48', '2022-04-10 14:20:48');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-438d-4f38-8f3d-d5e96fea4ad4', '/api/account/check', '0.0.0.1', '', '{\"userName\":\"admin\",\"userPassword\":\"123456\"}', '', 'Chrome100', 'Windows10', NULL, 32, '2022-04-10 14:20:53', '2022-04-10 14:20:53');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-4397-442e-81cc-3d1f47e09083', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 1, '2022-04-10 14:20:53', '2022-04-10 14:20:53');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-5e7b-4727-8b68-6b9a9f8a42fb', '/api/account/check', '0.0.0.1', '', '{\"userName\":\"admin\",\"userPassword\":\"123456\"}', '', 'Chrome100', 'Windows10', NULL, 29, '2022-04-10 14:21:38', '2022-04-10 14:21:38');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-5e86-470b-8377-b7a6fe529783', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 45, '2022-04-10 14:21:38', '2022-04-10 14:21:38');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-74c5-4c76-882a-9790fa6e0b43', '/api/account/check', '0.0.0.1', '', '{\"userName\":\"admin\",\"userPassword\":\"123456\"}', '', 'Chrome100', 'Windows10', NULL, 700, '2022-04-10 14:22:15', '2022-04-10 14:22:15');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-7520-4f00-8945-612e6e5b12da', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 259, '2022-04-10 14:22:16', '2022-04-10 14:22:16');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-7a07-46de-8158-3e1497ca5890', '/api/account/check', '0.0.0.1', '', '{\"userName\":\"admin\",\"userPassword\":\"123456\"}', '', 'Chrome100', 'Windows10', NULL, 29, '2022-04-10 14:22:24', '2022-04-10 14:22:24');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-7a12-4ff6-874f-58dbfd63f835', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 1, '2022-04-10 14:22:24', '2022-04-10 14:22:24');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-9497-4a5e-8a16-ca8281cd6c5b', '/api/admin/CodeGeneration/findList/10/1', '0.0.0.1', '', '{\"tableName\":null}', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 116, '2022-04-10 14:23:09', '2022-04-10 14:23:09');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-9529-460b-82a8-1899ece52200', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 42, '2022-04-10 14:23:10', '2022-04-10 14:23:10');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-9b1e-4624-8bd6-c158acb3d72a', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 24, '2022-04-10 14:23:20', '2022-04-10 14:23:20');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-a115-482a-8a64-6f4150fd1af8', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 36, '2022-04-10 14:23:30', '2022-04-10 14:23:30');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-a57d-4ca8-85c1-662a7ac8adde', '/api/admin/SysMenu/getAll', '0.0.0.1', '', '{\"name\":null}', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 69, '2022-04-10 14:23:37', '2022-04-10 14:23:37');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-a70b-4336-8d3b-33399dad0a9a', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 26, '2022-04-10 14:23:40', '2022-04-10 14:23:40');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-a9db-432d-8ae2-06aa44151b5d', '/api/admin/SysMenu/findForm/33', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 69, '2022-04-10 14:23:44', '2022-04-10 14:23:44');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-ad02-480c-87d7-f7538c154218', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 22, '2022-04-10 14:23:50', '2022-04-10 14:23:50');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-b126-4af3-8a47-0a254b96e6c7', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 53, '2022-04-10 14:23:56', '2022-04-10 14:23:56');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-b14c-46f7-83af-e55f0b8917c6', '/api/admin/SysMenu/getAll', '0.0.0.1', '', '{\"name\":null}', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 36, '2022-04-10 14:23:57', '2022-04-10 14:23:57');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-b305-4260-8ff8-ed0c7dd72e08', '/api/admin/SysMenu/findForm/33', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 29, '2022-04-10 14:24:00', '2022-04-10 14:24:00');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-cca3-4abe-8734-da7a78c8e67e', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 355, '2022-04-10 14:24:43', '2022-04-10 14:24:43');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-ccb5-4226-88be-3f20b505c8f1', '/api/admin/SysMenu/saveForm', '127.0.0.1', '', '{\"id\":33,\"form\":{\"id\":33,\"levelCode\":\"29.33\",\"number\":40,\"name\":\"EFCore监控台\",\"componentName\":\"monitor_ef_core\",\"url\":\"views/development_tool/monitor_ef_core/Index.vue\",\"router\":\"/development_tool/monitor/efcore\",\"jumpUrl\":null,\"icon\":\"DashboardFilled\",\"parentId\":29,\"show\":true,\"close\":true,\"keepAlive\":true,\"state\":true,\"type\":2,\"lastModificationTime\":\"2022-04-10 10:56:17\",\"creationTime\":\"2022-04-10 10:55:41\"},\"allFunctions\":[{\"number\":10,\"name\":\"显示\",\"byName\":\"Display\",\"remark\":\"Display\",\"id\":\"c9518758-b2e1-4f51-b517-5282e273889c\",\"lastModificationTime\":\"2021-04-18 22:08:06\",\"creationTime\":\"2016-06-20 13:40:52\"},{\"number\":20,\"name\":\"添加\",\"byName\":\"Insert\",\"remark\":\"Insert\",\"id\":\"bffefb1c-8988-4ddf-b4ac-81c2b30e80cd\",\"lastModificationTime\":\"2021-04-18 22:08:06\",\"creationTime\":\"2016-06-20 13:40:52\"},{\"number\":30,\"name\":\"修改\",\"byName\":\"Update\",\"remark\":\"Update\",\"id\":\"e7ef2a05-8317-41c3-b588-99519fe88bf9\",\"lastModificationTime\":\"2021-04-18 22:08:06\",\"creationTime\":\"2016-06-20 13:40:52\"},{\"number\":40,\"name\":\"删除\",\"byName\":\"Delete\",\"remark\":\"Delete\",\"id\":\"9c388461-2704-4c5e-a729-72c17e9018e1\",\"lastModificationTime\":\"2021-04-18 22:08:06\",\"creationTime\":\"2016-06-20 13:40:52\"},{\"number\":50,\"name\":\"保存\",\"byName\":\"Save\",\"remark\":\"Save\",\"id\":\"383e7ee2-7690-46ac-9230-65155c84aa30\",\"lastModificationTime\":\"2021-04-18 22:08:06\",\"creationTime\":\"2016-06-20 13:40:52\"},{\"number\":60,\"name\":\"检索\",\"byName\":\"Search\",\"remark\":\"Search\",\"id\":\"f27ecb0a-197d-47b1-b243-59a8c71302bf\",\"lastModificationTime\":\"2021-04-18 22:08:06\",\"creationTime\":\"2016-06-20 13:40:52\"},{\"number\":70,\"name\":\"导出\",\"byName\":\"Export\",\"remark\":\"Export\",\"id\":\"2401f4d0-60b0-4e2e-903f-84c603373572\",\"lastModificationTime\":\"2021-04-18 22:08:06\",\"creationTime\":\"2016-06-20 13:40:52\"},{\"number\":80,\"name\":\"打印\",\"byName\":\"Print\",\"remark\":\"Print\",\"id\":\"b6fd5425-504a-46a9-993b-2f8dc9158eb8\",\"lastModificationTime\":\"2021-04-18 22:08:06\",\"creationTime\":\"2016-06-20 13:40:52\"}],\"menuFunctionList\":[{\"number\":10,\"menuId\":33,\"functionCode\":\"Display\",\"functionName\":\"显示\",\"remark\":\"Display\"}]}', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 463, '2022-04-10 14:24:43', '2022-04-10 14:24:43');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-cce6-42a8-8cb3-b14ea96f250c', '/api/admin/SysMenu/getAll', '127.0.0.1', '', '{\"name\":null}', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 83, '2022-04-10 14:24:43', '2022-04-10 14:24:43');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-cff9-42bd-8877-e29aaa1b844b', '/api/admin/SysMenu/findForm/33', '127.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 60, '2022-04-10 14:24:48', '2022-04-10 14:24:48');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-d1f9-495d-8a9f-26a8618ffdf3', '/api/admin/SysUser/info', '127.0.0.1', '', '', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 33, '2022-04-10 14:24:52', '2022-04-10 14:24:52');
+INSERT INTO `sysoperationlog` VALUES ('08da1aba-d221-4d7c-8607-c17adcd72747', '/api/admin/SysMenu/getAll', '127.0.0.1', '', '{\"name\":null}', '', 'Chrome100', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 26, '2022-04-10 14:24:52', '2022-04-10 14:24:52');
 
 -- ----------------------------
 -- Table structure for sysorganization
 -- ----------------------------
 DROP TABLE IF EXISTS `sysorganization`;
 CREATE TABLE `sysorganization`  (
-  `Id` int NOT NULL AUTO_INCREMENT,
+  `Id` int(0) NOT NULL AUTO_INCREMENT,
   `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `OrderNumber` int NULL DEFAULT NULL,
+  `OrderNumber` int(0) NULL DEFAULT NULL,
   `LevelCode` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Leader` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `State` int NULL DEFAULT NULL,
-  `ParentId` int NULL DEFAULT NULL,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
+  `State` int(0) NULL DEFAULT NULL,
+  `ParentId` int(0) NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysorganization
@@ -508,15 +540,15 @@ INSERT INTO `sysorganization` VALUES (11, '技术部门', 2, '1.5.11', '技术�
 DROP TABLE IF EXISTS `syspost`;
 CREATE TABLE `syspost`  (
   `Id` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `Number` int NULL DEFAULT NULL,
+  `Number` int(0) NULL DEFAULT NULL,
   `Code` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `State` int NULL DEFAULT NULL,
+  `State` int(0) NULL DEFAULT NULL,
   `Remarks` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of syspost
@@ -533,14 +565,14 @@ INSERT INTO `syspost` VALUES ('F0C67537-8094-429A-B474-F54AC518609E', 3, 'hr', '
 DROP TABLE IF EXISTS `sysrole`;
 CREATE TABLE `sysrole`  (
   `Id` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
-  `Number` int NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
+  `Number` int(0) NULL DEFAULT NULL,
   `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Remark` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `DeleteLock` tinyint NULL DEFAULT NULL,
+  `DeleteLock` tinyint(0) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysrole
@@ -555,12 +587,12 @@ DROP TABLE IF EXISTS `sysrolemenufunction`;
 CREATE TABLE `sysrolemenufunction`  (
   `Id` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `RoleId` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `MenuId` int NULL DEFAULT NULL,
+  `MenuId` int(0) NULL DEFAULT NULL,
   `MenuFunctionId` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysrolemenufunction
@@ -592,17 +624,17 @@ INSERT INTO `sysrolemenufunction` VALUES ('F3C080A9-DDAB-4BCE-50C0-08DA0046A5B6'
 DROP TABLE IF EXISTS `sysuser`;
 CREATE TABLE `sysuser`  (
   `Id` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
   `Name` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `LoginName` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Phone` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `Email` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
-  `DeleteLock` tinyint NULL DEFAULT NULL,
-  `OrganizationId` int NULL DEFAULT NULL,
+  `DeleteLock` tinyint(0) NULL DEFAULT NULL,
+  `OrganizationId` int(0) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysuser
@@ -626,10 +658,10 @@ CREATE TABLE `sysuserpost`  (
   `Id` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `UserId` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `PostId` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysuserpost
@@ -655,10 +687,10 @@ CREATE TABLE `sysuserrole`  (
   `Id` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   `UserId` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `RoleId` char(36) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
-  `LastModificationTime` datetime NULL DEFAULT NULL,
-  `CreationTime` datetime NULL DEFAULT NULL,
+  `LastModificationTime` datetime(0) NULL DEFAULT NULL,
+  `CreationTime` datetime(0) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = DYNAMIC;
 
 -- ----------------------------
 -- Records of sysuserrole

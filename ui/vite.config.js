@@ -12,7 +12,7 @@ export default defineConfig({
   resolve: {
     extensions: ['.js', '.json', '.vue', '.scss', '.css', '.less'],
     alias: {
-      '@': path.resolve('src'),
+      '@/': path.resolve('src') + '/',
     }
   },
   // CSS 预处理器

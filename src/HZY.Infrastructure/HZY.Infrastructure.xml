@@ -233,6 +233,11 @@
             命名空间
             </summary>
         </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.ApiWhiteList">
+            <summary>
+            Api 白名单
+            </summary>
+        </member>
         <member name="F:HZY.Infrastructure.Controllers.ApiBaseController`1.DefaultService">
             <summary>
             默认服务

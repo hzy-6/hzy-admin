@@ -1,53 +1,53 @@
 <template>
   <a-row class="work-order" :gutter="[15, 15]">
     <a-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6">
-      <a-card :bordered="false" hoverable>
+      <a-card :bordered="false" hoverable :bodyStyle="{ background: '#5b8ff9' }">
         <a-row :gutter="[15, 15]" class="text-center">
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <AppIcon name="DashboardOutlined" :size="70" style="color: #5b8ff9" />
+            <AppIcon name="DashboardOutlined" :size="70" style="color: #fff" />
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <h3>CPU占用率</h3>
-            <h2>{{ value1 }}%</h2>
+            <h3 style="color: #fff">CPU占用率</h3>
+            <h2 style="color: #fff">{{ value1 }}%</h2>
           </a-col>
         </a-row>
       </a-card>
     </a-col>
     <a-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6">
-      <a-card :bordered="false" hoverable>
+      <a-card :bordered="false" hoverable :bodyStyle="{ background: '#61ddaa' }">
         <a-row :gutter="[15, 15]" class="text-center">
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <AppIcon name="CloudServerOutlined" :size="70" style="color: #61ddaa" />
+            <AppIcon name="CloudServerOutlined" :size="70" style="color: #fff" />
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <h3>内存占用率</h3>
-            <h2>{{ value2 }}%</h2>
+            <h3 style="color: #fff">内存占用率</h3>
+            <h2 style="color: #fff">{{ value2 }}%</h2>
           </a-col>
         </a-row>
       </a-card>
     </a-col>
     <a-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6">
-      <a-card :bordered="false" hoverable>
+      <a-card :bordered="false" hoverable :bodyStyle="{ background: '#85ce61' }">
         <a-row :gutter="[15, 15]" class="text-center">
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <AppIcon name="LinkOutlined" :size="70" style="color: #85ce61" />
+            <AppIcon name="LinkOutlined" :size="70" style="color: #fff" />
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <h3>当前在线设备</h3>
-            <h2>{{ value3 }}台</h2>
+            <h3 style="color: #fff">当前在线设备</h3>
+            <h2 style="color: #fff">{{ value3 }}台</h2>
           </a-col>
         </a-row>
       </a-card>
     </a-col>
     <a-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6">
-      <a-card :bordered="false" hoverable>
+      <a-card :bordered="false" hoverable :bodyStyle="{ background: '#ff7875' }">
         <a-row :gutter="[15, 15]" class="text-center">
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <AppIcon name="DisconnectOutlined" :size="70" style="color: #ff7875" />
+            <AppIcon name="DisconnectOutlined" :size="70" style="color: #fff" />
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <h3>当前离线设备</h3>
-            <h2>{{ value4 }}台</h2>
+            <h3 style="color: #fff">当前离线设备</h3>
+            <h2 style="color: #fff">{{ value4 }}台</h2>
           </a-col>
         </a-row>
       </a-card>
