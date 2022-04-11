@@ -16,7 +16,7 @@
 #### 📝  介绍 
     前后分离,后台通配权限管理系统！
 
-    数据库脚本位置根目录 doc 文件夹
+    数据库脚本位置根目录 doc 文件夹 目前仅提供了 MySql、SqlServer、PgSql 脚本
 
     后端技术：.Net6、EFCore6、Swagger 、Redis
     
