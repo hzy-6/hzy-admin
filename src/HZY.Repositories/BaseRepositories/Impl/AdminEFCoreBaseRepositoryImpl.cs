@@ -120,8 +120,6 @@ public class AdminEfCoreBaseRepositoryImpl<T> : BaseRepository<T, AdminBaseDbCon
     /// <returns></returns>
     public virtual async Task<PagingViewModel> AsPagingViewModelAsync(string sql, int page, int size, string orderBy = "1", List<TableViewColumn> columnHeads = default, params object[] parameters)
     {
-        using var serviceScope = ServiceProviderExtensions.CreateScope();
-
         var count = await this.QuerySingleBySqlAsync<long>($"SELECT COUNT(1) FROM ({sql}) TAB", parameters);
         var pagingViewModel = new PagingViewModel { Page = page, Size = size, Total = count };
         pagingViewModel.PageCount = (pagingViewModel.Total / size);
