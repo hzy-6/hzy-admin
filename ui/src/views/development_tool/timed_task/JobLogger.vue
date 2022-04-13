@@ -11,7 +11,7 @@
   </a-spin>
 </template>
 <script>
-import { defineComponent, onMounted, reactive, toRefs } from "vue";
+import { computed, defineComponent, onMounted, reactive, toRefs } from "vue";
 import tools from "@/scripts/tools";
 import moment from "moment";
 import service from "@/service/development_tool/timedTaskService";
@@ -22,7 +22,7 @@ export default defineComponent({
   },
   setup(props) {
     const state = reactive({
-      vm: props.formId,
+      vm: computed(() => props.formId),
       loading: true,
       loadingMore: false,
       showLoadingMore: true,
