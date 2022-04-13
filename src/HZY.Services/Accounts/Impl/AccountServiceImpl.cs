@@ -168,8 +168,8 @@ public class AccountServiceImpl : IAccountService
     /// <returns></returns>
     public virtual AccountInfo SetCacheByAccountInfo(AccountInfo accountInfo)
     {
-        //缓存
-        return _memoryCache.Set(GetCacheKeyById(accountInfo.Id.ToString()), accountInfo, DateTime.Now.AddHours(5));
+        //缓存 30 分钟
+        return _memoryCache.Set(GetCacheKeyById(accountInfo.Id.ToString()), accountInfo, DateTime.Now.AddMinutes(30));
     }
 
     /// <summary>

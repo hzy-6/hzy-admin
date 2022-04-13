@@ -6,6 +6,7 @@ using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
 using HZY.Repositories;
+using HZY.Repositories.BaseRepositories;
 using HZY.Repositories.Framework;
 using HZY.Services.Accounts;
 using HZY.Services.Admin.BaseServicesAdmin;
@@ -19,13 +20,13 @@ namespace HZY.Services.Admin.Memebers;
 /// <summary>
 /// 会员服务
 /// </summary>
-public class MemberService : AdminBaseService<MemberRepository>
+public class MemberService : AdminBaseService<IAdminEfCoreBaseRepository<Member>>
 {
     private readonly SysUserRepository _sysUserRepository;
     private readonly IUploadService _uploadService;
     private readonly IAccountService _accountService;
 
-    public MemberService(MemberRepository repository,
+    public MemberService(IAdminEfCoreBaseRepository<Member> repository,
         SysUserRepository sysUserRepository,
         IUploadService uploadService,
         IAccountService accountService)

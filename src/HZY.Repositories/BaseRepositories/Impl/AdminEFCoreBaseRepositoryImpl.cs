@@ -171,7 +171,7 @@ public class AdminEfCoreBaseRepositoryImpl<T> : BaseRepository<T, AdminBaseDbCon
     /// </summary>
     /// <param name="accountInfo"></param>
     /// <returns></returns>
-    public (bool Self, List<int> OrganizationList) GetDataAuthority(AccountInfo accountInfo)
+    protected virtual (bool Self, List<int> OrganizationList) GetDataAuthority(AccountInfo accountInfo)
     {
         var organizationList = new List<int>();
         var self = false;
@@ -239,7 +239,7 @@ public class AdminEfCoreBaseRepositoryImpl<T> : BaseRepository<T, AdminBaseDbCon
     /// <param name="userIdFieldNameExpression">用户id字段 默认：UserId</param>
     /// <param name="organizationIdFieldNameExpression">组织id字段 默认：OrganizationId</param>
     /// <returns></returns>
-    public IQueryable<T> QueryByDataAuthority(AccountInfo accountInfo, Expression<Func<T, object>> userIdFieldNameExpression = null, Expression<Func<T, object>> organizationIdFieldNameExpression = null)
+    public virtual IQueryable<T> QueryByDataAuthority(AccountInfo accountInfo, Expression<Func<T, object>> userIdFieldNameExpression = null, Expression<Func<T, object>> organizationIdFieldNameExpression = null)
     {
         var query = this.Query();
 

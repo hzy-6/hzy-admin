@@ -99,6 +99,8 @@ public class SysUserService : AdminBaseService<SysUserRepository>
             if (userModel.DeleteLock) MessageBox.Show("该信息已被锁定不能删除！");
             await this._sysUserRoleRepository.DeleteAsync(w => w.UserId == item);
             await this.Repository.DeleteAsync(userModel);
+            //清除缓存
+            _accountService.DeleteCacheAccountInfoById(item.ToString());
         }
     }
 
@@ -210,6 +212,9 @@ public class SysUserService : AdminBaseService<SysUserRepository>
                 await this._sysUserPostRepository.InsertAsync(sysUserPost);
             }
         }
+
+        //清除缓存
+        _accountService.DeleteCacheAccountInfoById(model.Id.ToString());
 
         return model;
     }

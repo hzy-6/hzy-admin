@@ -33,6 +33,15 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Repositories.BaseRepositories.IAdminEfCoreBaseRepository`1.QueryByDataAuthority(HZY.Model.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+            <summary>
+            根据组织 获取数据权限
+            </summary>
+            <param name="accountInfo"></param>
+            <param name="userIdFieldNameExpression"></param>
+            <param name="organizationIdFieldNameExpression"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Repositories.BaseRepositories.Impl.AdminEfCoreBaseRepositoryImpl`1">
             <summary>
             Admin默认基础仓储接口
