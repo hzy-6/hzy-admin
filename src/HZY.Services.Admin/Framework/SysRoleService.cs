@@ -44,20 +44,29 @@ public class SysRoleService : AdminBaseService<SysRoleRepository>
     /// <returns></returns>
     public async Task<PagingViewModel> FindListAsync(int page, int size, SysRole search)
     {
-        var query = this.Repository.Select
-                .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.Name.Contains(search.Name))
-                .OrderBy(w => w.Number)
-                .Select(w => new
-                {
-                    w.Id,
-                    w.Number,
-                    w.Name,
-                    w.Remark,
-                    w.DeleteLock,
-                    LastModificationTime = w.LastModificationTime.ToString("yyyy-MM-dd"),
-                    CreationTime = w.CreationTime.ToString("yyyy-MM-dd"),
-                })
-            ;
+        var query = (from sysRole in this.Repository.Select
+                     from sysDataAuthority in this.Repository.Orm.SysDataAuthority
+                     .Where(w => w.RoleId == sysRole.Id)
+                     .DefaultIfEmpty()
+                     select new
+                     {
+                         t1 = sysRole,
+                         t2 = sysDataAuthority
+                     })
+                    .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.t1.Name.Contains(search.Name))
+                    .OrderBy(w => w.t1.Number)
+                    .Select(w => new
+                    {
+                        w.t1.Id,
+                        w.t1.Number,
+                        w.t1.Name,
+                        w.t1.Remark,
+                        w.t1.DeleteLock,
+                        w.t2.PermissionType,
+                        LastModificationTime = w.t1.LastModificationTime.ToString("yyyy-MM-dd"),
+                        CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
+                    })
+                    ;
 
         return await this.Repository.AsPagingViewModelAsync(query, page, size);
     }

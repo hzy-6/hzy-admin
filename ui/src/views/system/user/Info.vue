@@ -33,6 +33,24 @@
             </a-form-item>
           </a-col>
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+            <a-form-item label="所属组织">
+              <a-tree-select
+                v-model:value="vm.form.organizationId"
+                :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
+                placeholder="所属组织"
+                allow-clear
+                tree-default-expand-all
+                :tree-data="organizationTree"
+                :field-names="{
+                  children: 'children',
+                  label: 'title',
+                  key: 'key',
+                  value: 'key',
+                }"
+              ></a-tree-select>
+            </a-form-item>
+          </a-col>
+          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="删除锁定">
               <a-radio-group v-model:value="vm.form.deleteLock">
                 <a-radio :value="true">锁定</a-radio>
@@ -76,6 +94,7 @@
 import { defineComponent, reactive, toRefs, ref, nextTick } from "vue";
 import tools from "@/scripts/tools";
 import service from "@/service/system/userService";
+import organizationService from "@/service/system/organizationService";
 
 export default defineComponent({
   name: "system_user_info",
@@ -93,10 +112,10 @@ export default defineComponent({
       },
       visible: false,
       saveLoading: false,
-      //父级传递过来的 id
-      organizationId: null,
+      organizationTree: [],
     });
-    const formRef = ref();
+
+    const formRef = ref(null);
 
     //验证规则
     const rules = {
@@ -107,7 +126,7 @@ export default defineComponent({
     const methods = {
       findForm() {
         state.saveLoading = true;
-        service.findForm(state.vm.id).then((res) => {
+        return service.findForm(state.vm.id).then((res) => {
           state.saveLoading = false;
           if (res.code != 1) return;
           state.vm = res.data;
@@ -115,10 +134,6 @@ export default defineComponent({
         });
       },
       saveForm() {
-        if (!state.vm.id) {
-          state.vm.form.organizationId = state.organizationId;
-        }
-
         if (!state.vm.form.organizationId) {
           return tools.message("请选择组织", "警告");
         }
@@ -146,12 +161,22 @@ export default defineComponent({
         state.visible = visible;
         if (visible) {
           state.vm.id = key;
-          state.organizationId = organizationId;
           nextTick(() => {
             formRef.value.resetFields();
+            methods.sysOrganizationTree();
           });
-          methods.findForm();
+          methods.findForm().then((res) => {
+            if (!key) {
+              state.vm.form.organizationId = organizationId;
+            }
+          });
         }
+      },
+      //获取组织树
+      sysOrganizationTree() {
+        organizationService.sysOrganizationTree().then((res) => {
+          state.organizationTree = res.data.rows;
+        });
       },
     };
 

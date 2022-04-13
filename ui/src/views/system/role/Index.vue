@@ -70,6 +70,15 @@
           <vxe-column type="checkbox" width="60"></vxe-column>
           <vxe-column field="number" title="编号" width="100"></vxe-column>
           <vxe-column field="name" title="角色名称"></vxe-column>
+          <vxe-column field="permissionType" title="数据权限">
+            <template #default="{ row }">
+              <a-tag color="success" v-if="row.permissionType == 1">自定义权限</a-tag>
+              <a-tag color="success" v-if="row.permissionType == 2">查看所有数据</a-tag>
+              <a-tag color="success" v-if="row.permissionType == 3">仅查看本组织</a-tag>
+              <a-tag color="success" v-if="row.permissionType == 4">仅查看本组织和下属组织</a-tag>
+              <a-tag color="success" v-if="row.permissionType == 5">仅查看本人</a-tag>
+            </template>
+          </vxe-column>
           <vxe-column field="deleteLock" title="删除锁定">
             <template #default="{ row }">
               <a-tag color="success" v-if="row.deleteLock">锁定</a-tag>
