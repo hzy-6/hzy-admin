@@ -1,4 +1,5 @@
 ﻿using HZY.EFCore.Models;
+using HzyScanDiService.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +11,7 @@ namespace HZY.EFCore.CacheEntity;
 /// <summary>
 /// 缓存实体信息服务
 /// </summary>
-public interface ICacheEntity
+public interface ICacheEntity : IDiSingleton
 {
     Dictionary<string, List<EntityInfo>> Gets();
 

@@ -45,9 +45,9 @@ public class EFCoreModule
             // sql 日志写入控制台
             options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
             // 无跟踪
-            // options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking)
+            // options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             // 懒加载代理
-            //options.UseLazyLoadingProxies()
+            //options.UseLazyLoadingProxies();
             //添加 EFCore 监控 和 动态表名
             options.AddEFCoreInterceptor();
 
@@ -77,8 +77,6 @@ public class EFCoreModule
         }, 100);
 
         #endregion
-
-        services.AddSingleton<ICacheEntity, CacheEntityImpl>();
     }
 
 
