@@ -34,12 +34,13 @@
             仓储模块
             </summary>
         </member>
-        <member name="M:HZY.EFCore.EFCoreModule.RegisterAdminBaseDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:HZY.EFCore.EFCoreModule.RegisterAdminBaseDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,HZY.Infrastructure.AppConfiguration)">
             <summary>
             注册 Admin 后台管理数据库
             </summary>
             <param name="services"></param>
             <param name="configuration"></param>
+            <param name="appConfiguration"></param>
             <exception cref="T:System.Exception"></exception>
         </member>
         <member name="P:HZY.EFCore.Models.PagingViewModel.Columns">

@@ -4,6 +4,7 @@ using HZY.Infrastructure.NLogService;
 using HZY.Infrastructure.TextJson;
 using HZY.WebHost.Configure;
 using HZY.WebHost.Filters;
+using HzyScanDiService.Extensions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;
@@ -25,6 +26,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 //使用 Nlog
 builder.WebHost.UseNLog();
+
 
 //设置NLog
 NLogUtil.Init(logger);

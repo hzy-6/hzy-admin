@@ -7,6 +7,7 @@ using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.Permission;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Services.Admin.Framework;
+using HzyScanDiService.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -40,7 +41,6 @@ namespace HZY.WebHost.Filters
             #region 拦截操作数据库的 接口 方便发布线上演示
 
             //拦截操作数据库的 接口
-
             //var actionList = new[] { "SaveForm", "DeleteList", "ChangePassword" };
             //if (actionList.Any(w => w.ToLower() == actionName.ToLower()))
             //{

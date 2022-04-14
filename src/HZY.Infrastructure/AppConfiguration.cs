@@ -38,6 +38,10 @@ public class AppConfiguration : IDiSingletonSelf
             {
                 item.SetValue(this, value.ToInt32());
             }
+            else if (item.PropertyType == typeof(bool))
+            {
+                item.SetValue(this, value.ToBool());
+            }
             else
             {
                 item.SetValue(this, value);
@@ -101,4 +105,9 @@ public class AppConfiguration : IDiSingletonSelf
     /// Api 白名单
     /// </summary>
     public string ApiWhiteList { get; set; }
+
+    /// <summary>
+    /// 是否监控EFCore程序
+    /// </summary>
+    public bool IsMonitorEFCore { get; set; }
 }

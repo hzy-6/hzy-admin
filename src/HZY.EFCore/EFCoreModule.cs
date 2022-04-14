@@ -4,6 +4,7 @@ using HZY.EFCore.DbContexts;
 using HZY.Infrastructure;
 using HzyEFCoreRepositories.Extensions;
 using HzyEFCoreRepositories.Interceptor;
+using HzyScanDiService.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -21,8 +22,9 @@ public class EFCoreModule
     /// </summary>
     /// <param name="services"></param>
     /// <param name="configuration"></param>
+    /// <param name="appConfiguration"></param>
     /// <exception cref="System.Exception"></exception>
-    public static void RegisterAdminBaseDbContext(IServiceCollection services, IConfiguration configuration)
+    public static void RegisterAdminBaseDbContext(IServiceCollection services, IConfiguration configuration, AppConfiguration appConfiguration)
     {
         DefaultDatabaseType defaultDatabaseType = DefaultDatabaseType.SqlServer;
 
@@ -49,7 +51,7 @@ public class EFCoreModule
             // 懒加载代理
             //options.UseLazyLoadingProxies();
             //添加 EFCore 监控 和 动态表名
-            options.AddEFCoreInterceptor();
+            options.AddEFCoreInterceptor(appConfiguration.IsMonitorEFCore);
 
             if (defaultDatabaseType == DefaultDatabaseType.SqlServer)
             {

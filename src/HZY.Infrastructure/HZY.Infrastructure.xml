@@ -238,6 +238,11 @@
             Api 白名单
             </summary>
         </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.IsMonitorEFCore">
+            <summary>
+            是否监控EFCore程序
+            </summary>
+        </member>
         <member name="F:HZY.Infrastructure.Controllers.ApiBaseController`1.DefaultService">
             <summary>
             默认服务

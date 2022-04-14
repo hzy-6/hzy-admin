@@ -62,7 +62,7 @@ public class SysRoleService : AdminBaseService<SysRoleRepository>
                         w.t1.Name,
                         w.t1.Remark,
                         w.t1.DeleteLock,
-                        w.t2.PermissionType,
+                        PermissionType = w.t2 == null ? 0 : w.t2.PermissionType,
                         LastModificationTime = w.t1.LastModificationTime.ToString("yyyy-MM-dd"),
                         CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
                     })

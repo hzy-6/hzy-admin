@@ -73,7 +73,7 @@ public class AppConfigureServices
 
         #region 数据库仓储注册 、 中间件注册
         //配置efcore
-        EFCoreModule.RegisterAdminBaseDbContext(services, configuration);
+        EFCoreModule.RegisterAdminBaseDbContext(services, configuration, appConfig);
         //配置freesql
         FreeSqlCoreModule.RegisterFreeSql(services, configuration, $"{prefixString}Repositories");
         //配置redis
