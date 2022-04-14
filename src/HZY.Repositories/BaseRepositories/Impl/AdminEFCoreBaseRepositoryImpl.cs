@@ -255,12 +255,28 @@ public class AdminEfCoreBaseRepositoryImpl<T> : BaseRepository<T, AdminBaseDbCon
 
         if (userIdFieldNameExpression != null)
         {
-            userIdFieldName = ((MemberExpression)((UnaryExpression)userIdFieldNameExpression.Body).Operand).Member.Name;
+            if (userIdFieldNameExpression.Body is UnaryExpression)
+            {
+                userIdFieldName = ((MemberExpression)((UnaryExpression)userIdFieldNameExpression.Body).Operand).Member.Name;
+            }
+
+            if (userIdFieldNameExpression.Body is MemberExpression)
+            {
+                userIdFieldName = ((MemberExpression)userIdFieldNameExpression.Body).Member.Name;
+            }
         }
 
         if (organizationIdFieldNameExpression != null)
         {
-            organizationIdFieldName = ((MemberExpression)((UnaryExpression)organizationIdFieldNameExpression.Body).Operand).Member.Name;
+            if (userIdFieldNameExpression.Body is UnaryExpression)
+            {
+                organizationIdFieldName = ((MemberExpression)((UnaryExpression)organizationIdFieldNameExpression.Body).Operand).Member.Name;
+            }
+
+            if (userIdFieldNameExpression.Body is MemberExpression)
+            {
+                organizationIdFieldName = ((MemberExpression)organizationIdFieldNameExpression.Body).Member.Name;
+            }
         }
 
         if (!modelFileds.Any(w => w.Name == userIdFieldName) && !modelFileds.Any(w => w.Name == organizationIdFieldName))
