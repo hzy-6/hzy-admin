@@ -39,15 +39,18 @@ namespace HZY.WebHost.Filters
             var actionName = routeValues["action"];
 
             #region 拦截操作数据库的 接口 方便发布线上演示
+            var appConfiguration = httpContext.RequestServices.GetRequiredService<AppConfiguration>();
 
             //拦截操作数据库的 接口
-            //var actionList = new[] { "SaveForm", "DeleteList", "ChangePassword" };
-            //if (actionList.Any(w => w.ToLower() == actionName.ToLower()))
-            //{
-            //    var data = ApiResult.ResultMessage(ApiResultCodeEnum.Warn, "请下载源代码本地运行!");
-            //    context.Result = new JsonResult(data);
-            //}
-
+            if (appConfiguration.IsInterceptEdit)
+            {
+                var actionList = new[] { "SaveForm", "DeleteList", "ChangePassword" };
+                if (actionList.Any(w => w.ToLower() == actionName.ToLower()))
+                {
+                    var data = ApiResult.ResultMessage(ApiResultCodeEnum.Warn, "请下载源代码本地运行!");
+                    context.Result = new JsonResult(data);
+                }
+            }
             #endregion
 
             #region 检查控制器 是否有控制器描述标记 [ControllerDescriptorAttribute]

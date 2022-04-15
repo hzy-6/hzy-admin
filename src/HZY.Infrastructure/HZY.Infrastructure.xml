@@ -243,6 +243,11 @@
             是否监控EFCore程序
             </summary>
         </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.IsInterceptEdit">
+            <summary>
+            是否拦截编辑 添加、修改、删除
+            </summary>
+        </member>
         <member name="F:HZY.Infrastructure.Controllers.ApiBaseController`1.DefaultService">
             <summary>
             默认服务

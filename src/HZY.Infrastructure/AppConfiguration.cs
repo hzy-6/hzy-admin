@@ -110,4 +110,9 @@ public class AppConfiguration : IDiSingletonSelf
     /// 是否监控EFCore程序
     /// </summary>
     public bool IsMonitorEFCore { get; set; }
+
+    /// <summary>
+    /// 是否拦截编辑 添加、修改、删除
+    /// </summary>
+    public bool IsInterceptEdit { get; set; }
 }
