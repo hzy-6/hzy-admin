@@ -28,6 +28,35 @@
             </a-form-item>
           </a-col>
           <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
+            <a-form-item label="所属用户">
+              <!-- 查找带回 -->
+              <FindBack
+                title="查找所属用户"
+                v-model:label="vm.sysUser.name"
+                v-model:visible="findBackUserVisible"
+                @onClear="
+                  () => {
+                    vm.form.userId = null;
+                    vm.sysUser.name = null;
+                  }
+                "
+              >
+                <SystemUser
+                  isFindBack
+                  :defaultRowIds="[vm.form.userId]"
+                  @onChange="
+                    (rows) => {
+                      var row = rows[0];
+                      vm.form.userId = row.id;
+                      vm.sysUser.name = row.name;
+                      findBackUserVisible = false;
+                    }
+                  "
+                />
+              </FindBack>
+            </a-form-item>
+          </a-col>
+          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
             <a-form-item label="性别">
               <a-radio-group name="radioGroup" default-value="男" v-model:value="vm.form.sex">
                 <a-radio value="男">男</a-radio>
@@ -73,24 +102,28 @@ import appConsts from "@/scripts/app-consts";
 // import dayjs from 'dayjs';
 //
 // const dateFormat = 'YYYY-MM-DD';
+import FindBack from "@/components/FindBack.vue";
+import SystemUser from "@/views/system/user/Index.vue";
 
 export default defineComponent({
   name: "base_member_info",
   props: {
     onSaveSuccess: Function,
   },
-  components: { WangEditor },
+  components: { WangEditor, FindBack, SystemUser },
   setup(props, context) {
     const state = reactive({
       vm: {
         id: "",
         form: {},
+        sysUser: {},
       },
       visible: false,
       saveLoading: false,
       photoObject: null,
       filesObject: [],
       domainName: appConsts.domainName,
+      findBackUserVisible: false,
     });
 
     const methods = {

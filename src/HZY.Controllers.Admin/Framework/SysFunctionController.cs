@@ -24,6 +24,7 @@ public class SysFunctionController : AdminBaseController<SysFunctionService>
 {
     public SysFunctionController(SysFunctionService defaultService) : base("17", defaultService)
     {
+        this.SetMenuName("功能");
     }
 
     /// <summary>
@@ -81,7 +82,8 @@ public class SysFunctionController : AdminBaseController<SysFunctionService>
     /// <returns></returns>
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
-    public async Task<FileContentResult> ExportExcelAsync([FromBody] SysFunction search)
-        => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(), $"{Guid.NewGuid()}.xls");
+    public async Task ExportExcelAsync([FromBody] SysFunction search)
+        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
 }

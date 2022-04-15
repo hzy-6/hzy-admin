@@ -28,6 +28,7 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     public SysOrganizationController(SysOrganizationService defaultService, SysOrganizationRepository sysOrganizationRepository) : base("21", defaultService)
     {
         _sysOrganizationRepository = sysOrganizationRepository;
+        this.SetMenuName("组织机构");
     }
 
     /// <summary>

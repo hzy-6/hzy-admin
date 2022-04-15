@@ -24,6 +24,7 @@ public class SysPostController : AdminBaseController<SysPostService>
 {
     public SysPostController(SysPostService defaultService) : base("20", defaultService)
     {
+        this.SetMenuName("岗位");
     }
 
     /// <summary>
@@ -79,8 +80,9 @@ public class SysPostController : AdminBaseController<SysPostService>
     /// <param name="search"></param>
     /// <returns></returns>
     [HttpPost("ExportExcel")]
-    public async Task<FileContentResult> ExportExcelAsync([FromBody] SysPost search)
-        => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(), $"{Guid.NewGuid()}.xls");
+    public async Task ExportExcelAsync([FromBody] SysPost search)
+        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
 
 }

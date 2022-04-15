@@ -100,6 +100,9 @@ namespace @(Model.Namespace).Controllers.Admin
         public async Task<@("FileContentResult")> ExportExcelAsync([FromBody] @(className) search)
             => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
                 $"{Guid.NewGuid()}.xls");
+        public async Task ExportExcelAsync([FromBody] @(className) search)
+        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+            $"用户列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
 
 

@@ -146,7 +146,6 @@ public class SysUserService : AdminBaseService<SysUserRepository>
     public async Task<SysUser> SaveFormAsync(SysUserFormDto form)
     {
         var model = form.Form;
-
         //if (string.IsNullOrWhiteSpace(model.Password))
         //    MessageBox.Show("密码不能为空！");
 

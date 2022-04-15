@@ -27,7 +27,7 @@ public class SysUserController : AdminBaseController<SysUserService>
     public SysUserController(SysUserService defaultService)
         : base("15", defaultService)
     {
-
+        this.SetMenuName("系统账号");
     }
 
     /// <summary>
@@ -86,9 +86,9 @@ public class SysUserController : AdminBaseController<SysUserService>
     /// <returns></returns>
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
-    public async Task<FileContentResult> ExportExcelAsync([FromBody] SysUser search)
-        => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"{Guid.NewGuid()}.xls");
+    public async Task ExportExcelAsync([FromBody] SysUser search)
+        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
     /// <summary>
     /// 获取用户信息

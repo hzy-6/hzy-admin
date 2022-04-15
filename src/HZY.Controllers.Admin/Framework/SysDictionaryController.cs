@@ -24,7 +24,7 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
 {
     public SysDictionaryController(SysDictionaryService defaultService) : base("23", defaultService)
     {
-
+        this.SetMenuName("数据字典");
     }
 
     /// <summary>
@@ -81,9 +81,9 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     /// <returns></returns>
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
-    public async Task<FileContentResult> ExportExcelAsync([FromBody] SysDictionary search)
-        => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"{Guid.NewGuid()}.xls");
+    public async Task ExportExcelAsync([FromBody] SysDictionary search)
+        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
     /// <summary>
     /// 获取字典树

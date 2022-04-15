@@ -28,6 +28,7 @@ public class SysMenuController : AdminBaseController<SysMenuService>
     public SysMenuController(SysMenuService defaultService, IAccountService accountService) : base("25", defaultService)
     {
         this._accountInfo = accountService.GetAccountInfo();
+        this.SetMenuName("菜单");
     }
 
     /// <summary>
@@ -85,9 +86,9 @@ public class SysMenuController : AdminBaseController<SysMenuService>
     /// <returns></returns>
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
-    public async Task<FileContentResult> ExportExcelAsync([FromBody] SysMenu search)
-        => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"{Guid.NewGuid()}.xls");
+    public async Task ExportExcelAsync([FromBody] SysMenu search)
+        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
     /// <summary>
     /// 获取所有菜单

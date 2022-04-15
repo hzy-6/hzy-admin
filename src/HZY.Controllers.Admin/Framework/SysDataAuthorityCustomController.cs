@@ -25,6 +25,7 @@ namespace HZY.Controllers.Admin.Framework
         public SysDataAuthorityCustomController(SysDataAuthorityCustomService defaultService)
             : base("", defaultService)
         {
+            this.SetMenuName("自定义数据权限");
         }
 
 
@@ -89,9 +90,9 @@ namespace HZY.Controllers.Admin.Framework
         [ApiResourceCacheFilter(5)]
         [ActionDescriptor(AdminFunctionConsts.Function_Export)]
         [HttpPost("ExportExcel")]
-        public async Task<FileContentResult> ExportExcelAsync([FromBody] SysDataAuthorityCustom search)
-            => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-                $"{Guid.NewGuid()}.xls");
+        public async Task ExportExcelAsync([FromBody] SysDataAuthorityCustom search)
+        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
 
 

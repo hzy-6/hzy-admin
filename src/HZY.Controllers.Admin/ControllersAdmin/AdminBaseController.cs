@@ -12,6 +12,7 @@ namespace HZY.Controllers.Admin.ControllersAdmin;
 public class AdminBaseController<TDefaultService> : ApiBaseController<TDefaultService>, IApiPermissionController where TDefaultService : class
 {
     private readonly string _menuId;
+    private string _menuName;
 
     /// <summary>
     /// 管理系统基础控制器构造函数
@@ -30,6 +31,24 @@ public class AdminBaseController<TDefaultService> : ApiBaseController<TDefaultSe
     [NonAction]
     public string GetCurrentMenuId() => this._menuId;
 
+    /// <summary>
+    /// 获取菜单名称
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public string GetMenuName() => this._menuName;
+
+    /// <summary>
+    /// 设置菜单名称
+    /// </summary>
+    /// <param name="menuName"></param>
+    /// <returns></returns>
+    [NonAction]
+    public void SetMenuName(string menuName)
+    {
+        _menuName = menuName;
+    }
+
 }
 
 [Authorize(Policy = "WebHostPolicy")]//是否授权 Authorize
@@ -38,6 +57,7 @@ public class AdminBaseController<TDefaultService> : ApiBaseController<TDefaultSe
 public class AdminBaseController : ApiBaseController, IApiPermissionController
 {
     private readonly string _menuId;
+    private string _menuName;
 
     /// <summary>
     /// 管理系统基础控制器构造函数
@@ -54,4 +74,22 @@ public class AdminBaseController : ApiBaseController, IApiPermissionController
     /// <returns></returns>
     [NonAction]
     public string GetCurrentMenuId() => this._menuId;
+
+    /// <summary>
+    /// 获取菜单名称
+    /// </summary>
+    /// <returns></returns>
+    [NonAction]
+    public string GetMenuName() => this._menuName;
+
+    /// <summary>
+    /// 设置菜单名称
+    /// </summary>
+    /// <param name="menuName"></param>
+    /// <returns></returns>
+    [NonAction]
+    public void SetMenuName(string menuName)
+    {
+        _menuName = menuName;
+    }
 }

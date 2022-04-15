@@ -27,7 +27,7 @@ public class MemberController : AdminBaseController<MemberService>
 {
     public MemberController(MemberService defaultService) : base("13", defaultService)
     {
-
+        this.SetMenuName("会员");
     }
 
     /// <summary>
@@ -91,7 +91,7 @@ public class MemberController : AdminBaseController<MemberService>
     [ApiResourceCacheFilter(5)]
     [ActionDescriptor(AdminFunctionConsts.Function_Export)]
     [HttpPost("ExportExcel")]
-    public async Task<FileContentResult> ExportExcelAsync([FromBody] Member search)
-        => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"{Guid.NewGuid()}.xls");
+    public async Task ExportExcelAsync([FromBody] Member search)
+        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 }

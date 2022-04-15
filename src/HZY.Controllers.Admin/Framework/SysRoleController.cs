@@ -24,6 +24,7 @@ public class SysRoleController : AdminBaseController<SysRoleService>
 {
     public SysRoleController(SysRoleService defaultService) : base("16", defaultService)
     {
+        this.SetMenuName("角色");
     }
 
     /// <summary>
@@ -81,8 +82,9 @@ public class SysRoleController : AdminBaseController<SysRoleService>
     /// <returns></returns>
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
-    public async Task<FileContentResult> ExportExcelAsync([FromBody] SysRole search)
-        => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(), $"{Guid.NewGuid()}.xls");
+    public async Task ExportExcelAsync([FromBody] SysRole search)
+        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
 
 

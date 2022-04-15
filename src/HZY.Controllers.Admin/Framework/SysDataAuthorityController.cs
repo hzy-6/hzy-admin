@@ -25,6 +25,7 @@ namespace HZY.Controllers.Admin.Framework
         public SysDataAuthorityController(SysDataAuthorityService defaultService)
             : base("", defaultService)
         {
+            this.SetMenuName("数据权限");
         }
 
 
@@ -89,9 +90,9 @@ namespace HZY.Controllers.Admin.Framework
         [ApiResourceCacheFilter(5)]
         [ActionDescriptor(AdminFunctionConsts.Function_Export)]
         [HttpPost("ExportExcel")]
-        public async Task<FileContentResult> ExportExcelAsync([FromBody] SysDataAuthority search)
-            => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-                $"{Guid.NewGuid()}.xls");
+        public async Task ExportExcelAsync([FromBody] SysDataAuthority search)
+        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
         /// <summary>
         /// 根据角色id获取数据权限信息

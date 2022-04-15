@@ -36,7 +36,7 @@
                   <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
                 </a-button>
               </template>
-              <template v-if="power.insert">
+              <template v-if="power.insert && !$props.isFindBack">
                 <a-button type="primary" class="mr-15" @click="openForm()">
                   <template #icon>
                     <AppIcon name="PlusOutlined" />
@@ -44,7 +44,7 @@
                   新建
                 </a-button>
               </template>
-              <template v-if="power.delete">
+              <template v-if="power.delete && !$props.isFindBack">
                 <a-popconfirm title="您确定要删除吗?" @confirm="deleteList()" okText="确定" cancelText="取消">
                   <a-button type="danger" class="mr-15">
                     <template #icon>
@@ -53,6 +53,15 @@
                     批量删除
                   </a-button>
                 </a-popconfirm>
+              </template>
+              <!-- 查找带回按钮 -->
+              <template v-if="$props.isFindBack">
+                <a-button type="primary" class="mr-15" @click="findBack.onChange()">
+                  <template #icon>
+                    <AppIcon name="CheckOutlined" />
+                  </template>
+                  带回数据
+                </a-button>
               </template>
             </a-col>
             <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="text-right">
@@ -80,7 +89,9 @@
               :data="table.data"
               :row-config="{ isCurrent: true, isHover: true }"
               :column-config="{ isCurrent: true, resizable: true }"
-              :checkbox-config="{ highlight: true }"
+              :checkbox-config="{
+                highlight: true,
+              }"
             >
               <vxe-column type="checkbox" width="60"></vxe-column>
               <vxe-column field="name" title="真实姓名"></vxe-column>
@@ -92,7 +103,7 @@
               <vxe-column field="lastModificationTime" title="更新时间"></vxe-column>
               <vxe-column field="creationTime" title="创建时间"></vxe-column>
               <!--  v-if="power.update || power.delete" 预防操作列还存在 -->
-              <vxe-column field="id" title="操作" v-if="power.update || power.delete">
+              <vxe-column field="id" title="操作" v-if="(power.update || power.delete) && !$props.isFindBack">
                 <template #default="{ row }">
                   <template v-if="power.update">
                     <a href="javascript:void(0)" @click="openForm(row.id)">编辑</a>
@@ -126,7 +137,7 @@
   </div>
 </template>
 <script>
-import { defineComponent, onMounted, reactive, toRefs, ref, watch } from "vue";
+import { defineComponent, onMounted, reactive, toRefs, ref, watch, computed } from "vue";
 import { useAppStore } from "@/store";
 import AppIcon from "@/components/AppIcon.vue";
 import Info from "./Info.vue";
@@ -138,7 +149,22 @@ import router from "@/router/index";
 export default defineComponent({
   name: "system_user",
   components: { AppIcon, Info },
-  setup() {
+  props: {
+    //查找带回
+    isFindBack: Boolean,
+    //查找带回回调函数
+    onChange: Function,
+    //默认选中的行id
+    defaultRowIds: Array,
+    //类型 带回 多条(false)还是单条(true)
+    type: {
+      type: Boolean,
+      default() {
+        return true;
+      },
+    },
+  },
+  setup(props, context) {
     const appStore = useAppStore();
     const state = reactive({
       table: {
@@ -163,6 +189,9 @@ export default defineComponent({
         expandedKeys: [],
         selectedKeys: [],
         loadingTree: false,
+      },
+      findBack: {
+        defaultRowIds: computed(() => props.defaultRowIds),
       },
     });
     //表单 ref 对象
@@ -198,6 +227,8 @@ export default defineComponent({
           state.table.rows = data.size;
           state.table.total = data.total;
           state.table.data = data.dataSource;
+          //
+          methods.findBack.initRows();
         });
       },
       //删除数据
@@ -243,6 +274,31 @@ export default defineComponent({
       //获取一级菜单
       getFirst() {
         state.tree.selectedKeys = [];
+      },
+      //查找带回处理
+      findBack: {
+        initRows() {
+          refTable.value.setCheckboxRow(methods.findBack.getRowsByIds(state.findBack.defaultRowIds), true);
+        },
+        //查找带回事件
+        onChange() {
+          var rows = refTable.value.getCheckboxRecords();
+          if (props.type && rows.length > 1) {
+            return tools.message("只能选择一条数据!", "警告");
+          }
+          context.emit("onChange", refTable.value.getCheckboxRecords());
+        },
+        getRowsByIds(ids) {
+          var rows = [];
+          var data = state.table.data;
+          for (let index = 0; index < data.length; index++) {
+            const element = data[index];
+            if (ids.filter((w) => w == element.id).length > 0) {
+              rows.push(data[index]);
+            }
+          }
+          return rows;
+        },
       },
     };
 

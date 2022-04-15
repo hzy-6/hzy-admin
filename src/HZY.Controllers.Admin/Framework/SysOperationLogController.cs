@@ -24,7 +24,7 @@ public class SysOperationLogController : AdminBaseController<SysOperationLogServ
 {
     public SysOperationLogController(SysOperationLogService defaultService) : base("24", defaultService)
     {
-
+        this.SetMenuName("操作日志");
     }
 
     /// <summary>
