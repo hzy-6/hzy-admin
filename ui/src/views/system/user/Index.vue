@@ -227,8 +227,8 @@ export default defineComponent({
           state.table.rows = data.size;
           state.table.total = data.total;
           state.table.data = data.dataSource;
-          //
-          methods.findBack.initRows();
+          //设置选中项
+          methods.findBack.setCheckboxRow();
         });
       },
       //删除数据
@@ -278,6 +278,16 @@ export default defineComponent({
       //查找带回处理
       findBack: {
         initRows() {
+          watch(
+            () => props.defaultRowIds,
+            () => {
+              methods.findBack.setCheckboxRow();
+            }
+          );
+        },
+        //设置默认选中项
+        setCheckboxRow() {
+          refTable.value.setAllCheckboxRow(false);
           refTable.value.setCheckboxRow(methods.findBack.getRowsByIds(state.findBack.defaultRowIds), true);
         },
         //查找带回事件
@@ -294,13 +304,17 @@ export default defineComponent({
           for (let index = 0; index < data.length; index++) {
             const element = data[index];
             if (ids.filter((w) => w == element.id).length > 0) {
-              rows.push(data[index]);
+              rows.push(element);
+              console.log("id=", element);
             }
           }
           return rows;
         },
       },
     };
+
+    //初始化查找待会行数据
+    methods.findBack.initRows();
 
     watch(
       () => state.tree.selectedKeys,

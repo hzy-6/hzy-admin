@@ -48,7 +48,7 @@ export default defineComponent({
 
     const onClear = () => {
       context.emit("onClear");
-      visible = !visible;
+      state.visible = !state.visible;
     };
 
     return {

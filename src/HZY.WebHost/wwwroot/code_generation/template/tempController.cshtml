@@ -33,6 +33,7 @@ namespace @(Model.Namespace).Controllers.Admin
         public @(className)Controller(@(className)Service defaultService) 
             : base("请设置菜单Id 系统菜单表中查找",defaultService)
         {
+            this.SetMenuName("@(className)");
         }
         
 
