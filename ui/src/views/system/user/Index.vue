@@ -14,14 +14,14 @@
       <a-col :xs="24" :sm="12" :md="12" :lg="19" :xl="19">
         <a-card class="mb-15" v-show="table.search.state">
           <a-row :gutter="[15, 15]">
-            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-input v-model:value="table.search.vm.name" placeholder="真实名称" />
             </a-col>
-            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-input v-model:value="table.search.vm.loginName" placeholder="账户名称" />
             </a-col>
             <!--button-->
-            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" style="float: right">
               <a-button type="primary" class="mr-15" @click="findList">查询</a-button>
               <a-button class="mr-15" @click="onResetSearch">重置</a-button>
             </a-col>

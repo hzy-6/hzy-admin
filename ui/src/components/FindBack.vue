@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-drawer :title="$props.title" placement="right" :visible="visible" :width="1200" @close="visible = false">
+    <a-drawer :title="$props.title" placement="right" :visible="visible" :width="1300" @close="visible = false">
       <slot></slot>
     </a-drawer>
     <!-- input 输入 -->
