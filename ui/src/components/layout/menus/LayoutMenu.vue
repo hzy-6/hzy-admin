@@ -3,7 +3,7 @@
     <!-- 动态生成 topnav-->
     <template v-if="menuStoreState.oneLevelMenuMode != 1">
       <template v-for="item in appStoreState.subMenus.filter((w) => w.show)">
-        <a-menu-item v-if="item.children.length === 0" :key="item.jumpUrl ? item.jumpUrl : item.id" :title="item.name">
+        <a-menu-item v-if="item.children.filter((w) => w.show).length == 0 && item.type == 2" :key="item.jumpUrl ? item.jumpUrl : item.id" :title="item.name">
           <AppIcon :name="item.icon" />
           <span>{{ item.name }}</span>
         </a-menu-item>
@@ -12,7 +12,7 @@
     </template>
     <template v-else>
       <template v-for="item in appStoreState.userInfo.menus.filter((w) => w.show)">
-        <a-menu-item v-if="item.children.length === 0" :key="item.jumpUrl ? item.jumpUrl : item.id" :title="item.name">
+        <a-menu-item v-if="item.children.filter((w) => w.show).length == 0 && item.type == 2" :key="item.jumpUrl ? item.jumpUrl : item.id" :title="item.name">
           <AppIcon :name="item.icon" />
           <span>{{ item.name }}</span>
         </a-menu-item>
