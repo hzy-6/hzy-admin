@@ -278,22 +278,23 @@ export default defineComponent({
       //查找带回处理
       findBack: {
         initRows() {
+          if (!props.isFindBack) return;
           watch(
             () => props.defaultRowIds,
             (value) => {
-              if (value) {
-                methods.findBack.setCheckboxRow();
-              }
+              methods.findBack.setCheckboxRow();
             }
           );
         },
         //设置默认选中项
         setCheckboxRow() {
+          if (!props.isFindBack) return;
           refTable.value.setAllCheckboxRow(false);
           refTable.value.setCheckboxRow(methods.findBack.getRowsByIds(state.findBack.defaultRowIds), true);
         },
         //查找带回事件
         onChange() {
+          if (!props.isFindBack) return;
           var rows = refTable.value.getCheckboxRecords();
           if (props.type && rows.length > 1) {
             return tools.message("只能选择一条数据!", "警告");
@@ -301,6 +302,7 @@ export default defineComponent({
           context.emit("onChange", refTable.value.getCheckboxRecords());
         },
         getRowsByIds(ids) {
+          if (!props.isFindBack) return;
           var rows = [];
           var data = state.table.data;
           for (let index = 0; index < data.length; index++) {
