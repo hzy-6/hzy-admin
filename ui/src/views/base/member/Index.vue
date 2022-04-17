@@ -84,6 +84,10 @@
           <vxe-column field="id" title="操作">
             <template #default="{ row }">
               <template v-if="power.update">
+                <a href="javascript:void(0)" @click="jumpDetails(row)">详情</a>
+              </template>
+              <a-divider type="vertical" />
+              <template v-if="power.update">
                 <a href="javascript:void(0)" @click="openForm(row.id)">编辑</a>
               </template>
               <a-divider type="vertical" />
@@ -202,6 +206,10 @@ export default defineComponent({
       },
       exportExcel() {
         service.exportExcel(state.table.search.vm);
+      },
+      //跳转详情
+      jumpDetails(row) {
+        router.push(`/base/member/details/${row.id}/${row.name}`);
       },
     };
 
