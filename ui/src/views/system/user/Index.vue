@@ -280,8 +280,10 @@ export default defineComponent({
         initRows() {
           watch(
             () => props.defaultRowIds,
-            () => {
-              methods.findBack.setCheckboxRow();
+            (value) => {
+              if (value) {
+                methods.findBack.setCheckboxRow();
+              }
             }
           );
         },
