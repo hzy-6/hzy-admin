@@ -7,7 +7,7 @@
       </span>
     </template>
     <template v-for="item in menuInfo.children.filter((w) => w.show)">
-      <a-menu-item v-if="item.children.length === 0" :key="item.jumpUrl ? item.jumpUrl : item.id" :title="item.name">
+      <a-menu-item v-if="item.children.filter((w) => w.show).length == 0 && item.type == 2" :key="item.jumpUrl ? item.jumpUrl : item.id" :title="item.name">
         <AppIcon :name="item.icon" />
         <span>{{ item.name }}</span>
       </a-menu-item>
