@@ -17,6 +17,7 @@ using HzyEFCoreRepositories.Extensions;
 using HZY.Repositories.Framework;
 using HzyEFCoreRepositories.ExpressionTree;
 using HzyEFCoreRepositories.Repositories.Impl;
+using HZY.EFCore.CacheEntity;
 
 namespace HZY.Repositories.BaseRepositories.Impl;
 
@@ -42,7 +43,10 @@ public class AdminEfCoreBaseRepositoryImpl<T> : BaseRepository<T, AdminBaseDbCon
         List<string> fieldNames,
         List<TableViewColumn> columnHeads)
     {
-        var entityInfos = this.Orm.CacheEntity.GetEntityInfos(typeof(T).Name);
+        using var scope = ServiceProviderExtensions.CreateScope();
+        var _cacheEntity = scope.ServiceProvider.GetService<ICacheEntity>();
+
+        var entityInfos = _cacheEntity.GetEntityInfos(typeof(T).Name);
 
         foreach (var item in fieldNames)
         {

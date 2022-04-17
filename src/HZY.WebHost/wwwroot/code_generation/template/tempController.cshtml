@@ -6,7 +6,6 @@
 }
 <pre>
 using @(Model.Namespace).Controllers.Admin.ControllersAdmin;
-using @(Model.Namespace).EFCore.Attributes;
 using @(Model.Namespace).EFCore.Models;
 using @(Model.Namespace).Infrastructure;
 using @(Model.Namespace).Infrastructure.Filters;
@@ -98,9 +97,6 @@ namespace @(Model.Namespace).Controllers.Admin
         [ApiResourceCacheFilter(5)]
         [ActionDescriptor(AdminFunctionConsts.Function_Export)]
         [HttpPost("ExportExcel")]
-        public async Task<@("FileContentResult")> ExportExcelAsync([FromBody] @(className) search)
-            => this.File(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-                $"{Guid.NewGuid()}.xls");
         public async Task ExportExcelAsync([FromBody] @(className) search)
         => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
             $"用户列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");

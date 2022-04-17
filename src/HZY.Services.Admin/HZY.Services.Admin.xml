@@ -372,6 +372,84 @@
             监控 EFCore 服务
             </summary>
         </member>
+        <member name="T:HZY.Services.Admin.Low_Code_ListService">
+            <summary>
+            服务 Low_Code_ListService
+            </summary>
+        </member>
+        <member name="T:HZY.Services.Admin.Low_Code_SearchService">
+            <summary>
+            服务 Low_Code_SearchService
+            </summary>
+        </member>
+        <member name="T:HZY.Services.Admin.Low_Code_TableService">
+            <summary>
+            服务 Low_Code_TableService
+            </summary>
+        </member>
+        <member name="M:HZY.Services.Admin.Low_Code_TableService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.Low_Code_Table)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="page"></param>
+            <param name="size"></param>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.Low_Code_TableService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
+            <summary>
+            根据id数组删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.Low_Code_TableService.SynchronizationAsync">
+            <summary>
+            同步表
+            </summary>
+        </member>
+        <member name="M:HZY.Services.Admin.Low_Code_TableService.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.Low_Code_Table})">
+            <summary>
+            变更数据
+            </summary>
+            <param name="low_Code_Tables"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Services.Admin.Low_Code_Table_InfoService">
+            <summary>
+            服务 Low_Code_Table_InfoService
+            </summary>
+        </member>
+        <member name="M:HZY.Services.Admin.Low_Code_Table_InfoService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.Low_Code_Table_Info)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="page"></param>
+            <param name="size"></param>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.Low_Code_Table_InfoService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
+            <summary>
+            根据id数组删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.Low_Code_Table_InfoService.SynchronizationColumnByTableIdAsync(System.Guid)">
+            <summary>
+            根据表名同步列数据
+            </summary>
+            <param name="tableId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.Low_Code_Table_InfoService.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.Low_Code_Table_Info})">
+            <summary>
+            变更数据
+            </summary>
+            <param name="low_Code_Table_Infos"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Services.Admin.Framework.SysDataAuthorityCustomService">
             <summary>
             服务 SysDataAuthorityCustomService

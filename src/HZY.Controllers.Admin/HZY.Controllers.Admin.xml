@@ -228,6 +228,64 @@
             <param name="size"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Controllers.Admin.Low_Code_TableController.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.Low_Code_Table)">
+            <summary>
+            获取列表
+            </summary>
+            <param name="size"></param>
+            <param name="page"></param>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Low_Code_TableController.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
+            <summary>
+            根据id数组删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Low_Code_TableController.SynchronizationAsync">
+            <summary>
+            同步表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Low_Code_TableController.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.Low_Code_Table})">
+            <summary>
+            变更数据
+            </summary>
+            <param name="low_Code_Tables"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Low_Code_Table_InfoController.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.Low_Code_Table_Info)">
+            <summary>
+            获取列表
+            </summary>
+            <param name="size"></param>
+            <param name="page"></param>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Low_Code_Table_InfoController.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
+            <summary>
+            根据id数组删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Low_Code_Table_InfoController.SynchronizationAsync(System.Guid)">
+            <summary>
+            同步表
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Low_Code_Table_InfoController.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.Low_Code_Table_Info})">
+            <summary>
+            变更数据
+            </summary>
+            <param name="low_Code_Table_Infos"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Controllers.Admin.Framework.PersonalCenterController">
             <summary>
             个人中心

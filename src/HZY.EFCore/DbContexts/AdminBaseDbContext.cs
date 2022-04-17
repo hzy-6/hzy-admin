@@ -8,6 +8,7 @@ using HZY.Models.Entities;
 using HZY.Models.Entities.ApprovalFlow;
 using HZY.Models.Entities.BaseEntitys;
 using HZY.Models.Entities.Framework;
+using HZY.Models.Entities.LowCode;
 using HzyEFCoreRepositories.DbContexts;
 using HzyEFCoreRepositories.ExpressionTree;
 using HzyScanDiService.Extensions;
@@ -22,20 +23,10 @@ namespace HZY.EFCore.DbContexts;
 /// </summary>
 public class AdminBaseDbContext : BaseDbContext<AdminBaseDbContext>
 {
-    private readonly ICacheEntity _cacheEntity;
-
     public AdminBaseDbContext(DbContextOptions<AdminBaseDbContext> options) : base(options)
     {
         this.SavingChanges += (sender, args) => this.SavingChangesEvent(sender, args);
-        var scope = ServiceProviderExtensions.CreateScope();
-        _cacheEntity = scope.ServiceProvider.GetService<ICacheEntity>();
     }
-
-    //public AdminBaseDbContext(DbContextOptions<AdminBaseDbContext> options, ICacheEntity cacheEntity) : base(options)
-    //{
-    //    this.SavingChanges += (sender, args) => this.SavingChangesEvent(sender, args);
-    //    _cacheEntity = cacheEntity;
-    //}
 
     #region DbSet
 
@@ -64,6 +55,13 @@ public class AdminBaseDbContext : BaseDbContext<AdminBaseDbContext>
     public DbSet<FlowApprovalStepUser> FlowApprovalStepUsers { get; set; }
     #endregion
 
+    #region 低代码
+    public DbSet<Low_Code_List> Low_Code_List { get; set; }
+    public DbSet<Low_Code_Search> Low_Code_Search { get; set; }
+    public DbSet<Low_Code_Table> Low_Code_Table { get; set; }
+    public DbSet<Low_Code_Table_Info> Low_Code_Table_Info { get; set; }
+    #endregion
+
     #region 业务
 
     public DbSet<Member> Member { get; set; }
@@ -72,15 +70,20 @@ public class AdminBaseDbContext : BaseDbContext<AdminBaseDbContext>
 
     #endregion
 
-    /// <summary>
-    /// 获取实体信息缓存服务
-    /// </summary>
-    public virtual ICacheEntity CacheEntity => this._cacheEntity;
-
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //扫描表 并 缓存 属性 xml 信息
-        _cacheEntity.Set(modelBuilder.Model.GetEntityTypes().Select(item => item.ClrType));
+        try
+        {
+            //缓存实体信息
+            using var scope = ServiceProviderExtensions.CreateScope();
+            var _cacheEntity = scope.ServiceProvider.GetService<ICacheEntity>();
+            //扫描表 并 缓存 属性 xml 信息
+            _cacheEntity.Set(modelBuilder.Model.GetEntityTypes().Select(item => item.ClrType));
+        }
+        catch (Exception)
+        {
+
+        }
 
         #region 过滤软删除
 
@@ -88,14 +91,7 @@ public class AdminBaseDbContext : BaseDbContext<AdminBaseDbContext>
             .GetEntityTypes()
             .Where(w => typeof(IDeleteBaseEntity).IsAssignableFrom(w.ClrType)))
         {
-            // var parameter = Expression.Parameter(entityType.ClrType);
-            // var propertyMethodInfo = typeof(EF).GetMethod(nameof(EF.Property)).MakeGenericMethod(typeof(bool));
-            // var isDeletedProperty = Expression.Call(propertyMethodInfo, parameter, Expression.Constant(nameof(IDeleteBaseEntity.IsDeleted)));
-            // BinaryExpression compareExpression = Expression.MakeBinary(ExpressionType.Equal, isDeletedProperty, Expression.Constant(false));
-            // var lambda = Expression.Lambda(compareExpression, parameter);
-
             var lambda = ExpressionTreeExtensions.Equal(entityType.ClrType, nameof(IDeleteBaseEntity.IsDeleted), false);
-
             modelBuilder.Entity(entityType.ClrType).HasQueryFilter(lambda);
         }
 

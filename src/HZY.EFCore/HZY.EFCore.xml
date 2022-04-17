@@ -19,11 +19,6 @@
             后台权限管理系统 DbContext
             </summary>
         </member>
-        <member name="P:HZY.EFCore.DbContexts.AdminBaseDbContext.CacheEntity">
-            <summary>
-            获取实体信息缓存服务
-            </summary>
-        </member>
         <member name="M:HZY.EFCore.DbContexts.AdminBaseDbContext.SavingChangesEvent(System.Object,Microsoft.EntityFrameworkCore.SavingChangesEventArgs)">
             <summary>
             在调用SaveChanges结束时激发的事件 
@@ -42,6 +37,17 @@
             <param name="configuration"></param>
             <param name="appConfiguration"></param>
             <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:HZY.EFCore.Migrations.ModelBuilderExtensions">
+            <summary>
+            EFCore 种子数据
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.Migrations.ModelBuilderExtensions.Seed(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            种子数据
+            </summary>
+            <param name="modelBuilder"></param>
         </member>
         <member name="P:HZY.EFCore.Models.PagingViewModel.Columns">
             <summary>

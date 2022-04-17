@@ -95,30 +95,30 @@
             <param name="organizationIdFieldNameExpression">组织id字段 默认：OrganizationId</param>
             <returns></returns>
         </member>
-        <member name="T:HZY.Repositories.DevelopmentTool.CodeGenerationRepository">
+        <member name="T:HZY.Repositories.DevelopmentTool.DatabaseTablesRepository">
             <summary>
-            代码生成仓储
+            用于获取表信息仓储
             </summary>
         </member>
-        <member name="M:HZY.Repositories.DevelopmentTool.CodeGenerationRepository.GetAllTables">
+        <member name="M:HZY.Repositories.DevelopmentTool.DatabaseTablesRepository.GetAllTables">
             <summary>
             获取所有的表 包含表下面的列
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Repositories.DevelopmentTool.CodeGenerationRepository.GetDataBaseName">
+        <member name="M:HZY.Repositories.DevelopmentTool.DatabaseTablesRepository.GetDataBaseName">
             <summary>
             获取数据库名称
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Repositories.DevelopmentTool.CodeGenerationRepository.GetConnectionString">
+        <member name="M:HZY.Repositories.DevelopmentTool.DatabaseTablesRepository.GetConnectionString">
             <summary>
             获取连接字符串
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Repositories.DevelopmentTool.CodeGenerationRepository.GetDataType">
+        <member name="M:HZY.Repositories.DevelopmentTool.DatabaseTablesRepository.GetDataType">
             <summary>
             获取数据库类型
             </summary>

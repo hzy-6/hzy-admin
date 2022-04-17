@@ -37,11 +37,11 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
         private readonly string templateIndexVue = "tempIndexVue.cshtml";
         private readonly string templateInfoVue = "tempInfoVue.cshtml";
 
-        private readonly CodeGenerationRepository _codeGenerationRepository;
+        private readonly DatabaseTablesRepository _codeGenerationRepository;
         private readonly IRazorViewRender _razorViewRender;
         private readonly AppConfiguration _appConfiguration;
 
-        public CodeGenerationService(CodeGenerationRepository codeGenerationRepository,
+        public CodeGenerationService(DatabaseTablesRepository codeGenerationRepository,
             IRazorViewRender razorViewRender,
             IWebHostEnvironment webHostEnvironment,
             AppConfiguration appConfiguration)
