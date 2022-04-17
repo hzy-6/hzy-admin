@@ -20,6 +20,7 @@ router.beforeEach((to, from, next) => {
     // console.log('路由拦截器=>', from, to);
     tools.loadingStart();
     let loginPath = "/login";
+    let noPowerMessage = "界面显示权限不足！请配置菜单显示权限.";
 
     if (to.fullPath === loginPath) {
         return next();
@@ -34,13 +35,13 @@ router.beforeEach((to, from, next) => {
     appStore.getUserInfo().then(data => {
         //创建动态路由
         let hasRouteLayout = getDynamicRouters(data.menus);
-        // console.log(router.getRoutes());
         appStore.state.userInfo.menus = data.menus;
         if (hasRouteLayout) {
             if (getAuthority(data, to)) {
                 next()
             } else {
-                next(loginPath);
+                tools.notice(noPowerMessage, "错误");
+                next(from.fullPath);
             }
         } else {
             next(to.fullPath)

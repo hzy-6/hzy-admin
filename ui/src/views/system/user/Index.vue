@@ -151,7 +151,12 @@ export default defineComponent({
   components: { AppIcon, Info },
   props: {
     //查找带回
-    isFindBack: Boolean,
+    isFindBack: {
+      type: Boolean,
+      default() {
+        return false;
+      },
+    },
     //查找带回回调函数
     onChange: Function,
     //默认选中的行id
@@ -307,6 +312,7 @@ export default defineComponent({
           var data = state.table.data;
           for (let index = 0; index < data.length; index++) {
             const element = data[index];
+            console.log(ids);
             if (ids.filter((w) => w == element.id).length > 0) {
               rows.push(element);
               console.log("id=", element);
