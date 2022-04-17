@@ -24,7 +24,7 @@ specifiers:
   vite: ^2.8.6
   vue: ^3.2.31
   vue-router: ^4.0.14
-  vxe-table: ^4.2.1
+  vxe-table: ^4.2.2
   wangeditor: ^4.7.12
   xe-utils: 3.5.4
 
@@ -47,7 +47,7 @@ dependencies:
   screenfull: 6.0.1
   vue: 3.2.31
   vue-router: 4.0.14_vue@3.2.31
-  vxe-table: 4.2.1_vue@3.2.31+xe-utils@3.5.4
+  vxe-table: 4.2.2_vue@3.2.31+xe-utils@3.5.4
   wangeditor: 4.7.12
   xe-utils: 3.5.4
 
@@ -1781,8 +1781,8 @@ packages:
       '@vue/shared': 3.2.31
     dev: false
 
-  /vxe-table/4.2.1_vue@3.2.31+xe-utils@3.5.4:
-    resolution: {integrity: sha512-m/oaHsr2HNeS+BM73ZGIeKQjy5qK9tB0T/3uhJ0H5V3PNcRjUgPvuDVRF0vQo4sCbyinP2aLcrR6M2Liy9N++A==}
+  /vxe-table/4.2.2_vue@3.2.31+xe-utils@3.5.4:
+    resolution: {integrity: sha512-snt+HAKdDy4nmdhmRVf8j70dg7uTtITLbd+QlD1SV423dIjDZ3ERI5UNY3JwRyK+UDR0BJjF3uiTSEMkW/rFlQ==}
     peerDependencies:
       vue: ^3.2.2
       xe-utils: ^3.5.0

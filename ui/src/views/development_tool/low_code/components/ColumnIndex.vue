@@ -233,11 +233,17 @@ export default defineComponent({
           methods.findList();
         });
       },
+      loadData(row) {
+        state.table.search.vm.low_Code_TableId = row.id;
+        methods.findList();
+      },
     };
 
-    onMounted(() => {
-      methods.findList();
-    });
+    context.expose({ ...methods });
+
+    // onMounted(() => {
+    //   methods.findList();
+    // });
 
     return {
       ...toRefs(state),

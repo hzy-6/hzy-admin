@@ -312,10 +312,8 @@ export default defineComponent({
           var data = state.table.data;
           for (let index = 0; index < data.length; index++) {
             const element = data[index];
-            console.log(ids);
             if (ids.filter((w) => w == element.id).length > 0) {
               rows.push(element);
-              console.log("id=", element);
             }
           }
           return rows;
