@@ -79,7 +79,6 @@ export default defineComponent({
     onMounted(() => {
       methods.reset();
       inputPassword.value.focus();
-      console.log("reset");
     });
 
     return {
