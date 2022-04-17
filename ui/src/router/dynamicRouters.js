@@ -22,9 +22,9 @@ function createDynamicRouters(data) {
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
         let path = item.router ? item.router : (item.url ? item.url : '/NotFoundComponent');
-        if (item.children.length > 0) {
-            createDynamicRouters(item.children);
-        } else {
+
+        //如果是菜单类型
+        if (item.type == 2) {
             var route = {
                 path: path,
                 name: item.componentName ? item.componentName : item.id,
@@ -48,8 +48,11 @@ function createDynamicRouters(data) {
 
             dynamicRouters.push(route);
             allRouters.push(route);
-
         }
+
+        //只要有 children 则需要往下递归
+        createDynamicRouters(item.children);
+
     }
 }
 
@@ -83,7 +86,7 @@ export function getDynamicRouters(data) {
  * 
  * @returns 
  */
- export function hasRoute() {
+export function hasRoute() {
     return router.hasRoute(dynamicLayoutName);
 }
 
