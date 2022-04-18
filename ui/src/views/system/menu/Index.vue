@@ -16,30 +16,37 @@
     <a-card>
       <a-row :gutter="[15, 15]">
         <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-          <template v-if="power.search">
-            <a-button class="mr-15" @click="table.search.state = !table.search.state">
-              <div v-if="table.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
-              <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
-            </a-button>
-          </template>
-          <template v-if="power.insert">
-            <a-button type="primary" class="mr-15" @click="openForm()">
-              <template #icon>
-                <AppIcon name="PlusOutlined" />
-              </template>
-              新建
-            </a-button>
-          </template>
-          <template v-if="power.delete">
-            <a-popconfirm title="您确定要删除吗?" @confirm="deleteList()" okText="确定" cancelText="取消">
-              <a-button type="danger" class="mr-15">
+          <a-space :size="15">
+            <!-- 检索 -->
+            <template v-if="power.search">
+              <a-button @click="table.search.state = !table.search.state">
                 <template #icon>
-                  <AppIcon name="DeleteOutlined" />
+                  <AppIcon :name="table.search.state ? 'UpOutlined' : 'DownOutlined'" />
                 </template>
-                批量删除
+                检索
               </a-button>
-            </a-popconfirm>
-          </template>
+            </template>
+            <!-- 新建 -->
+            <template v-if="power.insert">
+              <a-button type="primary" @click="openForm()">
+                <template #icon>
+                  <AppIcon name="PlusOutlined" />
+                </template>
+                新建
+              </a-button>
+            </template>
+            <!-- 批量删除 -->
+            <template v-if="power.delete">
+              <a-popconfirm title="您确定要删除吗?" @confirm="deleteList()" okText="确定" cancelText="取消">
+                <a-button type="danger">
+                  <template #icon>
+                    <AppIcon name="DeleteOutlined" />
+                  </template>
+                  批量删除
+                </a-button>
+              </a-popconfirm>
+            </template>
+          </a-space>
         </a-col>
         <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="text-right">
           <!-- <a-dropdown>

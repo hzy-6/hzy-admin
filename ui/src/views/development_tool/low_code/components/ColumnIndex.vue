@@ -16,38 +16,45 @@
     <a-card>
       <a-row :gutter="[15, 15]">
         <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-          <a-button class="mr-15" @click="table.search.state = !table.search.state">
-            <div v-if="table.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
-            <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
-          </a-button>
+          <a-space :size="15">
+            <!-- 检索 -->
+            <template v-if="power.search">
+              <a-button @click="table.search.state = !table.search.state">
+                <template #icon>
+                  <AppIcon :name="table.search.state ? 'UpOutlined' : 'DownOutlined'" />
+                </template>
+                检索
+              </a-button>
+            </template>
 
-          <!-- 同步表 -->
-          <a-popconfirm title="您确定要更新表吗?可能会导致数据丢失" @confirm="synchronization()" okText="确定" cancelText="取消">
-            <a-button type="primary" class="mr-15">
-              <template #icon>
-                <AppIcon name="ReloadOutlined" />
-              </template>
-              同步字段
-            </a-button>
-          </a-popconfirm>
-          <!-- 提交更改 -->
-          <a-popconfirm title="您确定要提交更改?" @confirm="change()" okText="确定" cancelText="取消">
-            <a-button type="primary" class="mr-15">
-              <template #icon>
-                <AppIcon name="PlusOutlined" />
-              </template>
-              提交更改
-            </a-button>
-          </a-popconfirm>
-          <!-- 删除 -->
-          <a-popconfirm title="您确定要删除吗?" @confirm="deleteList()" okText="确定" cancelText="取消">
-            <a-button type="danger" class="mr-15">
-              <template #icon>
-                <AppIcon name="DeleteOutlined" />
-              </template>
-              批量删除
-            </a-button>
-          </a-popconfirm>
+            <!-- 同步表 -->
+            <a-popconfirm title="您确定要更新表吗?可能会导致数据丢失" @confirm="synchronization()" okText="确定" cancelText="取消">
+              <a-button type="primary">
+                <template #icon>
+                  <AppIcon name="ReloadOutlined" />
+                </template>
+                同步字段
+              </a-button>
+            </a-popconfirm>
+            <!-- 提交更改 -->
+            <a-popconfirm title="您确定要提交更改?" @confirm="change()" okText="确定" cancelText="取消">
+              <a-button type="primary">
+                <template #icon>
+                  <AppIcon name="PlusOutlined" />
+                </template>
+                提交更改
+              </a-button>
+            </a-popconfirm>
+            <!-- 删除 -->
+            <a-popconfirm title="您确定要删除吗?" @confirm="deleteList()" okText="确定" cancelText="取消">
+              <a-button type="danger">
+                <template #icon>
+                  <AppIcon name="DeleteOutlined" />
+                </template>
+                批量删除
+              </a-button>
+            </a-popconfirm>
+          </a-space>
         </a-col>
         <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="text-right">
           <!-- <a-dropdown>
@@ -113,7 +120,6 @@
           </vxe-column>
         </vxe-table>
         <vxe-pager
-          class="mt-15"
           background
           v-model:current-page="table.page"
           v-model:page-size="table.rows"

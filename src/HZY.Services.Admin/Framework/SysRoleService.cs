@@ -84,6 +84,9 @@ public class SysRoleService : AdminBaseService<SysRoleRepository>
             if (role.DeleteLock) MessageBox.Show("该信息已被锁定不能删除！");
             await this.Repository.DeleteAsync(role);
             await this._sysUserRoleRepository.DeleteAsync(w => w.RoleId == item);
+            var list = await this._sysDataAuthorityRepository.ToListAsync(w => w.RoleId == item);
+            await this._sysDataAuthorityCustomRepository.DeleteAsync(w => list.Select(w => w.Id).Contains(w.SysDataAuthorityId.Value));
+            await this._sysDataAuthorityRepository.DeleteAsync(list);
         }
     }
 

@@ -21,20 +21,26 @@
     <a-card>
       <a-row :gutter="[15, 15]">
         <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-          <template v-if="power.search">
-            <a-button class="mr-15" @click="table.search.state = !table.search.state">
-              <div v-if="table.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
-              <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
-            </a-button>
-          </template>
-          <template v-if="power.insert">
-            <a-button type="primary" class="mr-15" @click="openForm()">
-              <template #icon>
-                <AppIcon name="PlusOutlined" />
-              </template>
-              新建
-            </a-button>
-          </template>
+          <a-space :size="15">
+            <!-- 检索 -->
+            <template v-if="power.search">
+              <a-button @click="table.search.state = !table.search.state">
+                <template #icon>
+                  <AppIcon :name="table.search.state ? 'UpOutlined' : 'DownOutlined'" />
+                </template>
+                检索
+              </a-button>
+            </template>
+            <!-- 新建 -->
+            <template v-if="power.insert">
+              <a-button type="primary" @click="openForm()">
+                <template #icon>
+                  <AppIcon name="PlusOutlined" />
+                </template>
+                新建
+              </a-button>
+            </template>
+          </a-space>
         </a-col>
       </a-row>
 

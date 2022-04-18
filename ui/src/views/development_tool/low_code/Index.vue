@@ -13,54 +13,71 @@
       </a-row>
     </a-card>
 
-    <a-card bodyStyle="padding-bottom:0px">
-      <a-space :size="15">
-        <template v-if="power.search">
-          <a-button @click="table.search.state = !table.search.state">
-            <template #icon>
-              <AppIcon name="UpOutlined" v-if="table.search.state" />
-              <AppIcon name="DownOutlined" v-else />
+    <a-card>
+      <a-row :gutter="[15, 15]">
+        <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+          <a-space :size="15">
+            <!-- 检索 -->
+            <template v-if="power.search">
+              <a-button @click="table.search.state = !table.search.state">
+                <template #icon>
+                  <AppIcon :name="table.search.state ? 'UpOutlined' : 'DownOutlined'" />
+                </template>
+                检索
+              </a-button>
             </template>
-            检索
-          </a-button>
-        </template>
 
-        <!-- 同步表 -->
-        <a-popconfirm title="您确定要更新表吗?可能会导致数据丢失" @confirm="synchronization()" okText="确定" cancelText="取消">
-          <a-button type="primary">
-            <template #icon>
-              <AppIcon name="ReloadOutlined" />
+            <!-- 同步表 -->
+            <a-popconfirm title="您确定要更新表吗?可能会导致数据丢失" @confirm="synchronization()" okText="确定" cancelText="取消">
+              <a-button type="primary">
+                <template #icon>
+                  <AppIcon name="ReloadOutlined" />
+                </template>
+                同步表
+              </a-button>
+            </a-popconfirm>
+
+            <!-- 提交更改 -->
+            <a-popconfirm title="您确定要提交更改?" @confirm="change()" okText="确定" cancelText="取消">
+              <a-button type="primary">
+                <template #icon>
+                  <AppIcon name="PlusOutlined" />
+                </template>
+                提交更改
+              </a-button>
+            </a-popconfirm>
+
+            <!-- 删除 -->
+            <template v-if="power.delete">
+              <a-popconfirm title="您确定要删除吗?" @confirm="deleteList()" okText="确定" cancelText="取消">
+                <a-button type="danger">
+                  <template #icon>
+                    <AppIcon name="DeleteOutlined" />
+                  </template>
+                  批量删除
+                </a-button>
+              </a-popconfirm>
             </template>
-            同步表
-          </a-button>
-        </a-popconfirm>
-
-        <!-- 提交更改 -->
-        <a-popconfirm title="您确定要提交更改?" @confirm="change()" okText="确定" cancelText="取消">
-          <a-button type="primary">
-            <template #icon>
-              <AppIcon name="PlusOutlined" />
+          </a-space>
+        </a-col>
+        <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="text-right">
+          <!-- <a-dropdown>
+            <template #overlay>
+              <a-menu>
+                <a-menu-item key="1" @click="exportExcel">导出 Excel</a-menu-item>
+              </a-menu>
             </template>
-            提交更改
-          </a-button>
-        </a-popconfirm>
-
-        <!-- 删除 -->
-        <template v-if="power.delete">
-          <a-popconfirm title="您确定要删除吗?" @confirm="deleteList()" okText="确定" cancelText="取消">
-            <a-button type="danger">
-              <template #icon>
-                <AppIcon name="DeleteOutlined" />
-              </template>
-              批量删除
+            <a-button>
+              更多操作
+              <AppIcon name="DownOutlined" />
             </a-button>
-          </a-popconfirm>
-        </template>
-      </a-space>
-
+          </a-dropdown> -->
+        </a-col>
+      </a-row>
       <!-- 表格 -->
       <a-spin :spinning="table.loading">
         <vxe-table
+          class="mt-15"
           ref="refTable"
           size="medium"
           border
