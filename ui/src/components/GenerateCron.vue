@@ -21,7 +21,7 @@ onMounted(() => {
 });
 
 watch(
-  () => cron,
+  () => cron.value,
   (value) => {
     emit("update:value", value);
   }
