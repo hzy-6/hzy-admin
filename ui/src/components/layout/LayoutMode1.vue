@@ -1,6 +1,13 @@
 <template>
   <a-layout style="min-height: 100vh">
-    <a-layout-sider hasSider v-model:collapsed="menuStoreState.isCollapse" :collapsedWidth="menuStoreState.width" :theme="menuStoreState.themeType" :width="menuStoreState.width">
+    <a-layout-sider
+      hasSider
+      v-model:collapsed="menuStoreState.isCollapse"
+      :collapsedWidth="menuStoreState.width"
+      :theme="menuStoreState.themeType"
+      :width="menuStoreState.width"
+      style="overflow: hidden; overflow-y: auto; height: 100vh"
+    >
       <div class="hzy-logo" v-show="!layoutStoreState.isMobile && !menuStoreState.isCollapse" :style="{ color: menuStoreState.themeType == 'dark' ? '#ffffff' : '' }">
         {{ layoutStoreState.title }}
       </div>
@@ -25,7 +32,7 @@
       <LayoutHeader :style="{ position: 'relative', zIndex: 1 }" />
       <a-layout-content>
         <LayoutTabs />
-        <div style="min-height: 100vh" class="p-15">
+        <div style="height: calc(100vh - 80px); overflow: hidden; overflow-y: auto" class="p-15">
           <!-- 由于必须要输出 cacheViews 才能不让缓存页面丢失事件 所以用了下面隐藏的input组件 来激活cacheViews变化-->
           <input type="hidden" :value="tabsStoreState.cacheViews" />
           <router-view v-slot="{ Component, route }">

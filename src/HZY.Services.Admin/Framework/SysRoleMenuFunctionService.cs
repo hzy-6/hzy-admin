@@ -47,7 +47,7 @@ public class SysRoleMenuFunctionService : AdminBaseService<SysRoleMenuFunctionRe
         if (roleId == Guid.Empty) return default;
 
         //开启事务
-        using var tran = await this.Repository.Orm.BeginTransactionAsync();
+        using var tran = await this.Repository.UnitOfWork.BeginTransactionAsync();
 
         try
         {

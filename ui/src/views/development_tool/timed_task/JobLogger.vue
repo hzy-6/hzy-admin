@@ -13,7 +13,6 @@
 <script>
 import { computed, defineComponent, onMounted, reactive, toRefs } from "vue";
 import tools from "@/scripts/tools";
-import moment from "moment";
 import service from "@/service/development_tool/timedTaskService";
 
 export default defineComponent({
@@ -76,9 +75,6 @@ export default defineComponent({
         state.table.page = 1;
         state.dataSource = [];
         methods.getloginfo();
-      },
-      timeFormat(time) {
-        return moment(time).format("YYYY-MM-DD HH:mm:ss");
       },
     };
 

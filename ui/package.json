@@ -1,5 +1,6 @@
 {
   "name": "hzy-admin-spa-ui",
+  "private": true,
   "version": "1.0.0",
   "scripts": {
     "dev": "vite",
@@ -8,32 +9,31 @@
   },
   "dependencies": {
     "@ant-design/icons-vue": "^6.1.0",
-    "@antv/g2": "^4.1.47",
-    "@antv/g2plot": "^2.4.10",
-    "@antv/x6": "^1.30.0",
-    "@antv/x6-vue-shape": "^1.3.1",
-    "ant-design-vue": "3.1.1",
+    "@antv/g2": "^4.2.0",
+    "@antv/g2plot": "^2.4.16",
+    "@antv/x6": "^1.31.4",
+    "@antv/x6-vue-shape": "^1.3.2",
+    "ant-design-vue": "3.2.0",
     "axios": "^0.26.1",
-    "core-js": "^3.21.1",
-    "dayjs": "^1.11.0",
+    "core-js": "^3.22.2",
+    "dayjs": "^1.11.1",
     "less": "^4.1.2",
     "less-loader": "^10.2.0",
-    "md-editor-v3": "^1.11.2",
-    "moment": "^2.29.1",
+    "md-editor-v3": "^1.11.11",
     "nprogress": "^0.2.0",
-    "pinia": "^2.0.12",
+    "pinia": "^2.0.13",
     "screenfull": "^6.0.1",
-    "vue": "^3.2.31",
+    "vue": "^3.2.33",
     "vue-router": "^4.0.14",
-    "vxe-table": "^4.2.2",
-    "wangeditor": "^4.7.12",
+    "vxe-table": "^4.2.3",
+    "wangeditor": "^4.7.15",
     "xe-utils": "3.5.4"
   },
   "devDependencies": {
     "@vicons/ionicons5": "^0.12.0",
     "@vicons/utils": "^0.1.4",
-    "@vitejs/plugin-vue": "^2.2.4",
+    "@vitejs/plugin-vue": "^2.3.1",
     "vfonts": "^0.0.3",
-    "vite": "^2.8.6"
+    "vite": "^2.9.5"
   }
 }
