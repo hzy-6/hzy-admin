@@ -1,6 +1,6 @@
 <template>
   <div>
-    <a-table :row-selection="rowSelection" :columns="columns" :data-source="data">
+    <a-table :row-selection="rowSelection" :columns="state.columns" :data-source="state.data">
       <template #bodyCell="{ column, text }">
         <template v-if="column.dataIndex === 'name'">
           <a>{{ text }}</a>
@@ -9,8 +9,12 @@
     </a-table>
   </div>
 </template>
+
 <script>
-import { defineComponent, reactive, toRefs } from "vue";
+export default { name: "BaseListCom" };
+</script>
+<script setup>
+import { reactive } from "vue";
 
 const columns = [
   {
@@ -53,28 +57,18 @@ const data = [
   },
 ];
 
-export default defineComponent({
-  name: "BaseListCom",
-  setup() {
-    const state = reactive({
-      columns,
-      data,
-    });
-
-    const rowSelection = {
-      onChange: (selectedRowKeys, selectedRows) => {
-        console.log(`selectedRowKeys: ${selectedRowKeys}`, "selectedRows: ", selectedRows);
-      },
-      getCheckboxProps: (record) => ({
-        disabled: record.name === "Disabled User", // Column configuration not to be checked
-        name: record.name,
-      }),
-    };
-
-    return {
-      ...toRefs(state),
-      rowSelection,
-    };
-  },
+const state = reactive({
+  columns,
+  data,
 });
+
+const rowSelection = {
+  onChange: (selectedRowKeys, selectedRows) => {
+    console.log(`selectedRowKeys: ${selectedRowKeys}`, "selectedRows: ", selectedRows);
+  },
+  getCheckboxProps: (record) => ({
+    disabled: record.name === "Disabled User", // Column configuration not to be checked
+    name: record.name,
+  }),
+};
 </script>

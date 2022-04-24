@@ -21,21 +21,14 @@
 </template>
 
 <script>
-import { defineComponent, ref } from "vue";
+export default { name: "EditorCom" };
+</script>
+<script setup>
+import { ref } from "vue";
 import WangEditor from "@/components/WangEditor.vue";
 
-export default defineComponent({
-  name: "EditorCom",
-  components: { WangEditor },
-  setup() {
-    const text = ref("");
-    text.value = "测试6666！！！";
-
-    return {
-      text,
-    };
-  },
-});
+const text = ref("");
+text.value = "测试6666！！！";
 </script>
 
 <style scoped></style>

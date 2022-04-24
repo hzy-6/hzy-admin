@@ -1,5 +1,5 @@
 <template>
-  <div class="text-center" @click="onHello">
+  <div class="text-center" @click="methods.onHello">
     <a-button type="primary">Primary</a-button>
     <a-button>Default</a-button>
     <a-button type="dashed">Dashed</a-button>
@@ -14,26 +14,21 @@
     <a-button class="btn-warning">warning</a-button>
   </div>
 </template>
+
 <script>
-import { defineComponent, ref } from "vue";
+export default { name: "ButtonCom" };
+</script>
+<script setup>
+import { ref } from "vue";
 import { message } from "ant-design-vue";
 
-export default defineComponent({
-  name: "ButtonCom",
-  setup() {
-    const messageText = ref("hello");
+const messageText = ref("hello");
 
-    const methods = {
-      onHello() {
-        message.success(messageText.value);
-      },
-    };
-
-    return {
-      ...methods,
-    };
+const methods = {
+  onHello() {
+    message.success(messageText.value);
   },
-});
+};
 </script>
 <style lang="less" scope>
 .ant-btn {

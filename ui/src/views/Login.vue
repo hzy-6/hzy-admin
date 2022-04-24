@@ -7,21 +7,21 @@
         <div class="p-24">
           <a-form layout="vertical">
             <a-form-item>
-              <a-input v-model:value="userName" placeholder="请输入" size="large" allow-clear>
+              <a-input v-model:value="state.userName" placeholder="请输入" size="large" allow-clear>
                 <template #prefix>
-                  <app-icons icon-name="UserOutlined" style="color: #1890ff; font-size: 14px" />
+                  <AppIcon name="UserOutlined" style="color: #1890ff; font-size: 14px" />
                 </template>
               </a-input>
             </a-form-item>
             <a-form-item>
-              <a-input-password type="password" v-model:value="userPassword" size="large" ref="inputPassword" @keyup.enter="check">
+              <a-input-password type="password" v-model:value="state.userPassword" size="large" ref="inputPassword" @keyup.enter="state.check">
                 <template #prefix>
-                  <app-icons icon-name="LockOutlined" style="color: #1890ff; font-size: 14px" />
+                  <AppIcon name="LockOutlined" style="color: #1890ff; font-size: 14px" />
                 </template>
               </a-input-password>
             </a-form-item>
             <a-form-item>
-              <a-button type="primary" @click="check" :loading="loading" size="large" block>登录</a-button>
+              <a-button type="primary" @click="methods.check" :loading="state.loading" size="large" block>登录</a-button>
             </a-form-item>
           </a-form>
         </div>
@@ -29,66 +29,53 @@
     </div>
   </div>
 </template>
-<script>
-import { defineComponent, reactive, toRefs, ref, onMounted } from "vue";
+
+<script setup>
+import { reactive, ref, onMounted } from "vue";
 import { useLayoutStore, useAppStore } from "@/store";
 import AppIcon from "@/components/AppIcon.vue";
 import router from "@/router/index";
 import tools from "@/scripts/tools";
 import loginService from "@/service/system/loginService";
 
-export default defineComponent({
-  name: "LoginCom",
-  components: { AppIcon },
-  setup() {
-    const state = reactive({
-      userName: "admin",
-      userPassword: "123456",
-    });
-    const inputPassword = ref(null);
-    const loading = ref(false);
+const state = reactive({
+  userName: "admin",
+  userPassword: "123456",
+});
+const inputPassword = ref(null);
+const loading = ref(false);
 
-    const layoutStore = useLayoutStore();
-    const appStore = useAppStore();
-    const title = layoutStore.state.title;
+const layoutStore = useLayoutStore();
+const appStore = useAppStore();
+const title = layoutStore.state.title;
 
-    const methods = {
-      check() {
-        if (!state.userName) return tools.message("用户名不能为空!", "警告");
-        if (!state.userPassword) return tools.message("密码不能为空!", "警告");
-        loading.value = true;
-        loginService
-          .login(state.userName, state.userPassword)
-          .then((res) => {
-            loading.value = false;
-            if (res.code !== 1) return;
-            tools.setAuthorization(res.data.token);
-            router.push("/");
-          })
-          .catch(() => {
-            loading.value = false;
-          });
-      },
-      // 重置系统信息
-      reset() {
-        tools.delAuthorization();
-        appStore.resetInfo();
-      },
-    };
-
-    onMounted(() => {
-      methods.reset();
-      inputPassword.value.focus();
-    });
-
-    return {
-      ...toRefs(state),
-      ...methods,
-      title,
-      inputPassword,
-      loading,
-    };
+const methods = {
+  check() {
+    if (!state.userName) return tools.message("用户名不能为空!", "警告");
+    if (!state.userPassword) return tools.message("密码不能为空!", "警告");
+    loading.value = true;
+    loginService
+      .login(state.userName, state.userPassword)
+      .then((res) => {
+        loading.value = false;
+        if (res.code !== 1) return;
+        tools.setAuthorization(res.data.token);
+        router.push("/");
+      })
+      .catch(() => {
+        loading.value = false;
+      });
   },
+  // 重置系统信息
+  reset() {
+    tools.delAuthorization();
+    appStore.resetInfo();
+  },
+};
+
+onMounted(() => {
+  methods.reset();
+  inputPassword.value.focus();
 });
 </script>
 <style lang="less" scoped>

@@ -7,37 +7,32 @@
   </a-card>
 </template>
 
-<script>
-import { defineComponent, onMounted } from "vue";
+<script setup>
+import { onMounted } from "vue";
 import { Line } from "@antv/g2plot";
 
-export default defineComponent({
-  name: "HomeChart1Com",
-  setup() {
-    onMounted(() => {
-      fetch("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json")
-        .then((res) => res.json())
-        .then((data) => {
-          document.getElementById("container-home-chart1").innerHTML = "";
-          const line = new Line("container-home-chart1", {
-            data,
-            padding: "auto",
-            xField: "Date",
-            yField: "scales",
-            xAxis: {
-              tickCount: 5,
-            },
-            slider: {
-              start: 0.1,
-              end: 0.5,
-            },
-            height: 280,
-          });
+onMounted(() => {
+  fetch("https://gw.alipayobjects.com/os/bmw-prod/1d565782-dde4-4bb6-8946-ea6a38ccf184.json")
+    .then((res) => res.json())
+    .then((data) => {
+      document.getElementById("container-home-chart1").innerHTML = "";
+      const line = new Line("container-home-chart1", {
+        data,
+        padding: "auto",
+        xField: "Date",
+        yField: "scales",
+        xAxis: {
+          tickCount: 5,
+        },
+        slider: {
+          start: 0.1,
+          end: 0.5,
+        },
+        height: 280,
+      });
 
-          line.render();
-        });
+      line.render();
     });
-  },
 });
 </script>
 <style lang="less">

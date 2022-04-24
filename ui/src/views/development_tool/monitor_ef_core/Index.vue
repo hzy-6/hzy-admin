@@ -16,16 +16,10 @@
 </template>
 
 <script>
-import { defineComponent } from "vue";
+export default { name: "monitor_ef_core" };
+</script>
+<script setup>
 import Context from "./components/Context.vue";
 import TimeConsumingRanking from "./components/TimeConsumingRanking.vue";
 import Newest from "./components/Newest.vue";
-
-export default defineComponent({
-  name: "monitor_ef_core",
-  components: { Context, TimeConsumingRanking, Newest },
-  setup() {
-    return {};
-  },
-});
 </script>

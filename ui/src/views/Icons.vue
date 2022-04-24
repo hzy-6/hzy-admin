@@ -3,24 +3,19 @@
     <template #extra>
       <a href="https://next.antdv.com/components/icon-cn" target="_black"> 官方图标</a>
     </template>
-    <AppIconList v-model:name="iconName" :height="600" />
+    <AppIconList v-model:name="state.iconName" :height="600" />
   </a-card>
 </template>
+
 <script>
-import { defineComponent, reactive, toRefs } from "vue";
+export default { name: "IconsVue" };
+</script>
+
+<script setup>
+import { reactive } from "vue";
 import AppIconList from "@/components/AppIconList.vue";
 
-export default defineComponent({
-  name: "IconsVue",
-  components: { AppIconList },
-  setup() {
-    const state = reactive({
-      iconName: "AlipaySquareFilled",
-    });
-
-    return {
-      ...toRefs(state),
-    };
-  },
+const state = reactive({
+  iconName: "AlipaySquareFilled",
 });
 </script>

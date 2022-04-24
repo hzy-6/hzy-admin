@@ -6,35 +6,30 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, ref } from "vue";
-export default defineComponent({
-  name: "AppComponentsCom",
-  setup() {
-    const loading = ref(true);
+export default { name: "AppComponentsCom" };
+</script>
+<script setup>
+import { onMounted, ref } from "vue";
 
-    onMounted(() => {
-      let iframe = document.getElementById("iframe_antd_vue");
+const loading = ref(true);
 
-      if (iframe != null) {
-        // 处理兼容行问题
-        if (Object.prototype.hasOwnProperty.call(iframe, "attachEvent")) {
-          iframe.addEventListener("onload", () => {
-            // iframe加载完毕以后执行操作
-            loading.value = false;
-          });
-        } else {
-          iframe.onload = function () {
-            // iframe加载完毕以后执行操作
-            loading.value = false;
-          };
-        }
-      }
-    });
+onMounted(() => {
+  let iframe = document.getElementById("iframe_antd_vue");
 
-    return {
-      loading,
-    };
-  },
+  if (iframe != null) {
+    // 处理兼容行问题
+    if (Object.prototype.hasOwnProperty.call(iframe, "attachEvent")) {
+      iframe.addEventListener("onload", () => {
+        // iframe加载完毕以后执行操作
+        loading.value = false;
+      });
+    } else {
+      iframe.onload = function () {
+        // iframe加载完毕以后执行操作
+        loading.value = false;
+      };
+    }
+  }
 });
 </script>
 

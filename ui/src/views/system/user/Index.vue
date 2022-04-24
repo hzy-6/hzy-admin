@@ -73,7 +73,7 @@
               </a-button>
             </a-dropdown>
           </template>
-          <!-- 工具栏左侧插槽 -->
+          <!-- 工具栏右侧插槽 -->
           <template #toolbar-right>
             <a-input v-model:value="state.search.vm.name" placeholder="名称" @keyup="methods.findList" />
             <a-button @click="methods.onResetSearch">重置</a-button>
@@ -134,10 +134,7 @@ import organizationService from "@/service/system/organizationService";
 import router from "@/router/index";
 
 //定义组件事件
-const emits = defineEmits({
-  //查找带回回调函数
-  onChange: Function,
-});
+const emits = defineEmits(["onChange"]);
 //定义组件属性
 const props = defineProps({
   //查找带回
@@ -280,17 +277,17 @@ const methods = {
     //设置默认选中项
     setCheckboxRow() {
       if (!props.isFindBack) return;
-      refTable.value.setAllCheckboxRow(false);
-      refTable.value.setCheckboxRow(methods.findBack.getRowsByIds(state.findBack.defaultRowIds), true);
+      refList.value.table.setAllCheckboxRow(false);
+      refList.value.table.setCheckboxRow(methods.findBack.getRowsByIds(state.findBack.defaultRowIds), true);
     },
     //查找带回事件
     onChange() {
       if (!props.isFindBack) return;
-      var rows = refTable.value.getCheckboxRecords();
+      var rows = refList.value.table.getCheckboxRecords();
       if (props.type && rows.length > 1) {
         return tools.message("只能选择一条数据!", "警告");
       }
-      emits("onChange", refTable.value.getCheckboxRecords());
+      emits("onChange", refList.value.table.getCheckboxRecords());
     },
     getRowsByIds(ids) {
       if (!props.isFindBack) return;

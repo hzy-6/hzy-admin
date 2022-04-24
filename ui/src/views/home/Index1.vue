@@ -6,7 +6,7 @@
           <a-row type="flex">
             <a-col :span="8" :order="1">
               <a-badge :count="666">
-                <a-avatar :size="100" :src="imgPath" />
+                <a-avatar :size="100" :src="state.imgPath" />
               </a-badge>
             </a-col>
             <a-col :span="16" :order="2">
@@ -56,17 +56,17 @@
           <a-row>
             <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
               <a-card-grid style="width: 100%; text-align: 'center'">
-                <a-statistic-countdown title="Countdown" :value="deadline" @finish="onFinish" style="margin-right: 50px" />
+                <a-statistic-countdown title="Countdown" :value="state.deadline" @finish="methods.onFinish" style="margin-right: 50px" />
               </a-card-grid>
             </a-col>
             <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
               <a-card-grid style="width: 100%; text-align: 'center'">
-                <a-statistic-countdown title="Million Seconds" :value="deadline" format="HH:mm:ss:SSS" style="margin-right: 50px" />
+                <a-statistic-countdown title="Million Seconds" :value="state.deadline" format="HH:mm:ss:SSS" style="margin-right: 50px" />
               </a-card-grid>
             </a-col>
             <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
               <a-card-grid style="width: 100%; text-align: 'center'">
-                <a-statistic-countdown title="Day Level" :value="deadline" format="D 天 H 时 m 分 s 秒" />
+                <a-statistic-countdown title="Day Level" :value="state.deadline" format="D 天 H 时 m 分 s 秒" />
               </a-card-grid>
             </a-col>
             <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
@@ -159,31 +159,19 @@
     </a-row>
   </div>
 </template>
-<script>
-import { defineComponent, reactive, toRefs } from "vue";
+<script setup>
+import { reactive } from "vue";
 import AppIcon from "@/components/AppIcon.vue";
 import hzyImg from "@/assets/hzy.jpg";
-import AppIconList from "../../components/AppIconList.vue";
 
-export default defineComponent({
-  name: "HomeIndex1Com",
-  components: { AppIcon, AppIconList },
-  setup() {
-    const state = reactive({
-      imgPath: hzyImg,
-      deadline: Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30,
-    });
-
-    const methods = {
-      onFinish() {
-        console.log("over");
-      },
-    };
-
-    return {
-      ...toRefs(state),
-      ...methods,
-    };
-  },
+const state = reactive({
+  imgPath: hzyImg,
+  deadline: Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30,
 });
+
+const methods = {
+  onFinish() {
+    console.log("over");
+  },
+};
 </script>
