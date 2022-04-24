@@ -15,94 +15,84 @@
 
 <pre>
 <template>
-    <a-modal v-model:visible="visible" title="编辑" centered @@ok="visible = false" :width="800">
-        <template #footer>
-          <a-button type="primary" @@click="saveForm()" :loading="saveLoading">提交</a-button>
-          <a-button type="danger" ghost @@click="visible = false" class="ml-15">关闭</a-button>
-        </template>
-        <a-spin :spinning="saveLoading">
-            <a-form layout="vertical" :model="vm.form">
-                <a-row :gutter="[15, 15]">
-                    @foreach (var item in tableInfos)
-                    {
-                        var name = item.Name.FirstCharToLower();
-                        var title = item.Comment;
+  <a-modal v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @@ok="state.visible = false" :width="400">
+    <template #footer>
+      <a-button type="primary" @@click="methods.saveForm()" :loading="state.saveLoading">提交</a-button>
+      <a-button type="danger" ghost @@click="state.visible = false" class="ml-15">关闭</a-button>
+    </template>
+    <a-spin :spinning="state.saveLoading">
+      <a-form layout="vertical" :model="state.vm.form">
+        <a-row :gutter="[15, 15]">
+          @foreach (var item in tableInfos)
+            {
+                var name = item.Name.FirstCharToLower();
+                var title = item.Comment;
 
-                        <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                            <a-form-item label="@title">
-                                <a-input v-model:value="vm.form.@(name)" placeholder="请输入 @title" />
-                            </a-form-item>
-                        </a-col>
-                    }
-               </a-row>
-             </a-form>
-         </a-spin>
-    </a-modal>
+                <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                    <a-form-item label="@title">
+                        <a-input v-model:value="state.vm.form.@(name)" placeholder="请输入 @title" />
+                    </a-form-item>
+                </a-col>
+            }
+        </a-row>
+      </a-form>
+    </a-spin>
+  </a-modal>
 </template>
 
-<script>
-import { defineComponent, reactive, toRefs } from "vue";
+<script setup>
+import { reactive } from "vue";
 import tools from "@@/scripts/tools";
 import service from "@@/service/[请完善您的目录]/@(className.FirstCharToLower())Service";
 
-export default defineComponent({
-    name: "@(className.FirstCharToLower())Info",
-    props: {
-        onSuccess: Function,
-    },
-    setup(props, context) {
-        const state = reactive({
-            vm: {
-                id: "",
-                form: {},
-            },
-            visible: false,
-            saveLoading: false,
-        });
+//定义组件事件
+const emits = defineEmits(["onSuccess"]);
 
-        const methods = {
-            async findForm() {
-                state.saveLoading = true;
-                service.findForm(state.vm.id).then((res) => {
-                    state.saveLoading = false;
-                    if (res.code != 1) return;
-                    state.vm = res.data;
-                });
-            },
-            saveForm() {
-                state.saveLoading = true;
-                service.saveForm(state.vm.form).then((res) => {
-                    state.saveLoading = false;
-                    if (res.code != 1) return;
-                    tools.message("操作成功!", "成功");
-                    context.emit("onSuccess", res.data);
-                    state.visible = false;
-                });
-            },
-            //打开表单初始化
-            openForm({ visible, key }) {
-                state.visible = visible;
-                if (visible) {
-                    state.vm.id = key;
-                    methods.findForm();
-                }
-            },
-        };
-
-        context.expose({ ...methods });
-
-        return {
-            ...toRefs(state),
-            ...methods,
-        };
-    }
+const state = reactive({
+  vm: {
+    id: "",
+    form: {},
+  },
+  visible: false,
+  saveLoading: false,
 });
-</script>
 
-<style lang="less" scoped>
-    .ant-form-item {
-        margin-bottom: 0;
+const methods = {
+  findForm() {
+    state.saveLoading = true;
+    service.findForm(state.vm.id).then((res) => {
+      state.saveLoading = false;
+      if (res.code != 1) return;
+      state.vm = res.data;
+    });
+  },
+  saveForm() {
+    state.saveLoading = true;
+    service.saveForm(state.vm.form).then((res) => {
+      state.saveLoading = false;
+      if (res.code != 1) return;
+      tools.message("操作成功!", "成功");
+      emits("onSuccess", res.data);
+      state.visible = false;
+    });
+  },
+  //打开表单初始化
+  openForm({ visible, key }) {
+    state.visible = visible;
+    if (visible) {
+      state.vm.id = key;
+      methods.findForm();
     }
+  },
+};
+// 暴露函数或者属性到外部
+defineExpose({ ...methods });
+</script>
+<style lang="less" scoped>
+.ant-form-item {
+  margin-bottom: 0;
+}
 </style>
+
 
 </pre>
