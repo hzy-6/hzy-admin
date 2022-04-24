@@ -1,6 +1,7 @@
 ﻿using HZY.EFCore.CacheEntity;
 using HZY.EFCore.CacheEntity.Impl;
 using HZY.EFCore.DbContexts;
+using HZY.EFCore.Interceptor;
 using HZY.Infrastructure;
 using HzyEFCoreRepositories.Extensions;
 using HzyEFCoreRepositories.Interceptor;
@@ -52,6 +53,7 @@ public class EFCoreModule
             //options.UseLazyLoadingProxies();
             //添加 EFCore 监控 和 动态表名
             options.AddEFCoreInterceptor(appConfiguration.IsMonitorEFCore);
+            options.AddInterceptors(new AuditInterceptor());
 
             if (defaultDatabaseType == DefaultDatabaseType.SqlServer)
             {

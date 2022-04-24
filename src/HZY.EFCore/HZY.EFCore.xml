@@ -19,11 +19,6 @@
             后台权限管理系统 DbContext
             </summary>
         </member>
-        <member name="M:HZY.EFCore.DbContexts.AdminBaseDbContext.SavingChangesEvent(System.Object,Microsoft.EntityFrameworkCore.SavingChangesEventArgs)">
-            <summary>
-            在调用SaveChanges结束时激发的事件 
-            </summary>
-        </member>
         <member name="T:HZY.EFCore.EFCoreModule">
             <summary>
             仓储模块
@@ -37,6 +32,11 @@
             <param name="configuration"></param>
             <param name="appConfiguration"></param>
             <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:HZY.EFCore.Interceptor.AuditInterceptor">
+            <summary>
+            审计 保存拦截器
+            </summary>
         </member>
         <member name="T:HZY.EFCore.Migrations.ModelBuilderExtensions">
             <summary>
