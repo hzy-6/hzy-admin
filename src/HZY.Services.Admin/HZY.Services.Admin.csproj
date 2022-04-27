@@ -6,6 +6,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 	</PropertyGroup>
 
+	<!--用于生成当前程序集xml描述-->
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>HZY.Services.Admin.xml</DocumentationFile>
 		<NoWarn>1701;1702;1591</NoWarn>

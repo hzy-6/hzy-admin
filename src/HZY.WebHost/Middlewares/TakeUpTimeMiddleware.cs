@@ -68,8 +68,7 @@ public class TakeUpTimeMiddleware : IMiddleware
     private bool IsApi(HttpContext context)
     {
         var contentTypes = new[] { "application/json", "text/html" };
-        if (string.IsNullOrWhiteSpace(context.Response.ContentType)) return true;
-        return contentTypes.Any(w => context.Response.ContentType.StartsWith(w));
+        return string.IsNullOrWhiteSpace(context.Response.ContentType) || contentTypes.Any(w => context.Response.ContentType.StartsWith(w));
     }
 
     /// <summary>

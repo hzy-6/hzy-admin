@@ -37,8 +37,8 @@ public class SysDictionaryService : AdminBaseService<IRepository<SysDictionary>>
     /// <returns></returns>
     public async Task<PagingViewModel> FindListAsync(int page, int size, SysDictionary search)
     {
-        var query = (from sysDictionary in this._defaultRepository.Orm.SysDictionary
-                     from sysDictionaryParent in this._defaultRepository.Orm.SysDictionary.Where(w => w.Id == sysDictionary.ParentId).DefaultIfEmpty()
+        var query = (from sysDictionary in this._defaultRepository.Select
+                     from sysDictionaryParent in this._defaultRepository.Select.Where(w => w.Id == sysDictionary.ParentId).DefaultIfEmpty()
                      select new { t1 = sysDictionary, t2 = sysDictionaryParent })
               .WhereIf(search?.ParentId == 0 || search?.ParentId == null, w => w.t1.ParentId == null || w.t1.ParentId == 0)
               .WhereIf(search?.ParentId != 0 && search?.ParentId != null, w => w.t1.ParentId == search.ParentId)

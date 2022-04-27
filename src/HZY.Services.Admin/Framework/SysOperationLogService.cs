@@ -113,7 +113,6 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
         });
     }
 
-
     /// <summary>
     /// 获取列表数据
     /// </summary>
@@ -123,8 +122,8 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
     /// <returns></returns>
     public async Task<PagingViewModel> FindListAsync(int page, int size, SysOperationLog search)
     {
-        var query = (from log in _defaultRepository.Orm.SysOperationLog.OrderByDescending(w => w.CreationTime)
-                     from use in _defaultRepository.Orm.SysUser.Where(w => w.Id == log.UserId).DefaultIfEmpty()
+        var query = (from log in _defaultRepository.Select.OrderByDescending(w => w.CreationTime)
+                     from use in _sysUserRepository.Select.Where(w => w.Id == log.UserId).DefaultIfEmpty()
                      select new
                      {
                          log.Id,
@@ -145,6 +144,7 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
 
         return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
     }
+
     /// <summary>
     /// 删除所有数据
     /// </summary>

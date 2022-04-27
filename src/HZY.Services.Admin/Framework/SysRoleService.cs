@@ -47,7 +47,7 @@ public class SysRoleService : AdminBaseService<IRepository<SysRole>>
     public async Task<PagingViewModel> FindListAsync(int page, int size, SysRole search)
     {
         var query = (from sysRole in this._defaultRepository.Select
-                     from sysDataAuthority in this._defaultRepository.Orm.SysDataAuthority
+                     from sysDataAuthority in this._sysDataAuthorityRepository.Select
                      .Where(w => w.RoleId == sysRole.Id)
                      .DefaultIfEmpty()
                      select new

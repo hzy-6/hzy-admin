@@ -16,25 +16,38 @@ namespace HZY.Domain.Services.Accounts.Impl;
 /// </summary>
 public class AccountDomainServiceImpl : IAccountDomainService
 {
+    private readonly string AccountInfoCacheName = "AccountInfo";
     private readonly AccountInfo _accountInfo;
     private readonly AppConfiguration _appConfiguration;
     private readonly TokenService _tokenService;
     private readonly IRepository<SysOrganization> _sysOrganizationRepository;
     private readonly IRepository<SysUser> _sysUserRepository;
     private readonly IMemoryCache _memoryCache;
-    private readonly string AccountInfoCacheName = "AccountInfo";
+    private readonly IRepository<SysUserRole> _sysUserRoleRepository;
+    private readonly IRepository<SysRole> _sysRoleRepository;
+    private readonly IRepository<SysPost> _sysPostRepository;
+    private readonly IRepository<SysUserPost> _sysUserPostRepository;
 
     public AccountDomainServiceImpl(IRepository<SysUser> sysUserRepository,
         IRepository<SysOrganization> sysOrganizationRepository,
         AppConfiguration appConfiguration,
         TokenService tokenService,
-        IMemoryCache memoryCache)
+        IMemoryCache memoryCache,
+        IRepository<SysUserRole> sysUserRoleRepository,
+        IRepository<SysRole> sysRoleRepository,
+        IRepository<SysPost> sysPostRepository,
+        IRepository<SysUserPost> sysUserPostRepository)
     {
         _sysUserRepository = sysUserRepository;
         _appConfiguration = appConfiguration;
         _tokenService = tokenService;
         _sysOrganizationRepository = sysOrganizationRepository;
         _memoryCache = memoryCache;
+        _sysUserRoleRepository = sysUserRoleRepository;
+        _sysRoleRepository = sysRoleRepository;
+        _sysPostRepository = sysPostRepository;
+        _sysUserPostRepository = sysUserPostRepository;
+
         this._accountInfo = this.FindAccountInfoByToken();
     }
 
@@ -61,15 +74,15 @@ public class AccountDomainServiceImpl : IAccountDomainService
         var sysUser = this._sysUserRepository.FindById(id);
         if (sysUser == null) return default;
         var sysRoles = (
-            from sysUserRole in this._sysUserRepository.Orm.SysUserRole
-            from sysRole in this._sysUserRepository.Orm.SysRole.Where(w => w.Id == sysUserRole.RoleId).DefaultIfEmpty()
+            from sysUserRole in this._sysUserRoleRepository.Select
+            from sysRole in this._sysRoleRepository.Select.Where(w => w.Id == sysUserRole.RoleId).DefaultIfEmpty()
             where sysUserRole.UserId == id
             select sysRole
             ).ToList();
 
         var sysPosts = (
-            from sysUserPost in this._sysUserRepository.Orm.SysUserPost
-            from sysPost in this._sysUserRepository.Orm.SysPost.Where(w => w.Id == sysUserPost.PostId).DefaultIfEmpty()
+            from sysUserPost in this._sysUserPostRepository.Select
+            from sysPost in this._sysPostRepository.Select.Where(w => w.Id == sysUserPost.PostId).DefaultIfEmpty()
             where sysUserPost.UserId == id
             select sysPost
             ).ToList();

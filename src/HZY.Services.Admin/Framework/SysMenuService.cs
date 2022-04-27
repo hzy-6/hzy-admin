@@ -53,8 +53,8 @@ public class SysMenuService : AdminBaseService<IRepository<SysMenu>>
     /// <returns></returns>
     public async Task<PagingViewModel> FindListAsync(int page, int size, SysMenu search)
     {
-        var query = (from sysMenu in this._defaultRepository.Orm.SysMenu
-                     from sysMenuParent in this._defaultRepository.Orm.SysMenu.Where(w => w.Id == sysMenu.ParentId).DefaultIfEmpty()
+        var query = (from sysMenu in this._defaultRepository.Select
+                     from sysMenuParent in this._defaultRepository.Select.Where(w => w.Id == sysMenu.ParentId).DefaultIfEmpty()
                      select new { t1 = sysMenu, t2 = sysMenuParent })
               .WhereIf(search?.ParentId == 0 || search?.ParentId == null, w => w.t1.ParentId == null || w.t1.ParentId == 0)
               .WhereIf(search?.ParentId != 0 && search?.ParentId != null, w => w.t1.ParentId == search.ParentId)
@@ -187,8 +187,8 @@ public class SysMenuService : AdminBaseService<IRepository<SysMenu>>
     /// <returns></returns>
     public async Task<List<SysMenuTreeDto>> GetAllAsync(SysMenu search)
     {
-        var query = (from sysMenu in this._defaultRepository.Orm.SysMenu
-                     from sysMenuParent in this._defaultRepository.Orm.SysMenu.Where(w => w.Id == sysMenu.ParentId).DefaultIfEmpty()
+        var query = (from sysMenu in this._defaultRepository.Select
+                     from sysMenuParent in this._defaultRepository.Select.Where(w => w.Id == sysMenu.ParentId).DefaultIfEmpty()
                      select new { t1 = sysMenu, t2 = sysMenuParent })
              .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.t1.Name.Contains(search.Name))
              .OrderBy(w => w.t1.Number)
@@ -233,9 +233,9 @@ public class SysMenuService : AdminBaseService<IRepository<SysMenu>>
         if (this._accountInfo.IsAdministrator) return sysMenuAllList;
 
         var sysMenuList = await (
-            from t1 in this._defaultRepository.Orm.SysRoleMenuFunction.Where(w => this._accountInfo.SysRoles.Select(s => s.Id).Contains(w.RoleId))
-            from t2 in this._defaultRepository.Orm.SysMenu.Where(w => w.Id == t1.MenuId && w.State).DefaultIfEmpty()
-            from t3 in this._defaultRepository.Orm.SysMenuFunction
+            from t1 in this._sysRoleMenuFunctionRepository.Select.Where(w => this._accountInfo.SysRoles.Select(s => s.Id).Contains(w.RoleId))
+            from t2 in this._defaultRepository.Select.Where(w => w.Id == t1.MenuId && w.State).DefaultIfEmpty()
+            from t3 in this._sysMenuFunctionRepository.Select
                 .Where(w => w.Id == t1.MenuFunctionId && w.FunctionCode == AdminFunctionConsts.Function_Display && t2.Id == w.MenuId)
                 .DefaultIfEmpty()
             select t2

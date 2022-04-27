@@ -49,7 +49,7 @@ public class MemberService : AdminBaseService<IRepository<Member>>
 
         var query = (
                     from member in this._defaultRepository.QueryByDataAuthority(accountInfo)
-                    from user in this._defaultRepository.Orm.SysUser.Where(w => w.Id == member.UserId).DefaultIfEmpty()
+                    from user in this._sysUserRepository.Select.Where(w => w.Id == member.UserId).DefaultIfEmpty()
                     select new { t1 = member, t2 = user }
                 )
                 .WhereIf(!string.IsNullOrWhiteSpace(search.Name), w => w.t1.Name.Contains(search.Name))

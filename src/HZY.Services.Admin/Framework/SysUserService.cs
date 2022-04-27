@@ -31,6 +31,7 @@ public class SysUserService : AdminBaseService<IRepository<SysUser>>
     private readonly IRepository<SysPost> _sysPostRepository;
     private readonly IAccountDomainService _accountService;
     private readonly SysMenuService _sysMenuService;
+    private readonly IRepository<SysOrganization> _sysOrganizationRepository;
 
     public SysUserService(IRepository<SysUser> defaultRepository,
         IRepository<SysUserRole> sysUserRoleRepository,
@@ -38,7 +39,8 @@ public class SysUserService : AdminBaseService<IRepository<SysUser>>
         IRepository<SysUserPost> sysUserPostRepository,
         IRepository<SysPost> sysPostRepository,
         IAccountDomainService accountService,
-        SysMenuService sysMenuService) : base(defaultRepository)
+        SysMenuService sysMenuService,
+        IRepository<SysOrganization> sysOrganizationRepository) : base(defaultRepository)
     {
         _sysUserRoleRepository = sysUserRoleRepository;
         _sysRoleRepository = sysRoleRepository;
@@ -46,6 +48,7 @@ public class SysUserService : AdminBaseService<IRepository<SysUser>>
         _sysPostRepository = sysPostRepository;
         _accountService = accountService;
         _sysMenuService = sysMenuService;
+        _sysOrganizationRepository = sysOrganizationRepository;
     }
 
     /// <summary>
@@ -59,7 +62,7 @@ public class SysUserService : AdminBaseService<IRepository<SysUser>>
     {
         var accountInfo = _accountService.GetAccountInfo();
         var query = (from sysUser in this._defaultRepository.QueryByDataAuthority(accountInfo, w => w.Id)
-                     from sysOrganization in this._defaultRepository.Orm.SysOrganization.Where(w => w.Id == sysUser.OrganizationId).DefaultIfEmpty()
+                     from sysOrganization in this._sysOrganizationRepository.Select.Where(w => w.Id == sysUser.OrganizationId).DefaultIfEmpty()
                      select new { t1 = sysUser, t2 = sysOrganization })
                 .WhereIf(search.OrganizationId != null, w => w.t1.OrganizationId == search.OrganizationId)
                 .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), w => w.t1.Name.Contains(search.Name))
@@ -71,8 +74,8 @@ public class SysUserService : AdminBaseService<IRepository<SysUser>>
                     w.t1.Id,
                     w.t1.Name,
                     w.t1.LoginName,
-                    所属角色 = string.Join(",", from userRole in this._defaultRepository.Orm.SysUserRole
-                                            join role in this._defaultRepository.Orm.SysRole on userRole.RoleId equals role.Id
+                    所属角色 = string.Join(",", from userRole in this._sysUserRoleRepository.Select
+                                            join role in this._sysRoleRepository.Select on userRole.RoleId equals role.Id
                                             where userRole.UserId == w.t1.Id
                                             select role.Name),
                     OrganizationName = w.t2.Name,

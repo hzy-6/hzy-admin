@@ -72,14 +72,32 @@ public class AdminBaseDbContext : BaseDbContext<AdminBaseDbContext>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        #region 过滤软删除
+        //#region 自动添加 实体到 dbset 条件是：实体必须继承自 IBaseEntity<>
 
-        foreach (var entityType in modelBuilder.Model
+        //var assmblys = DiServiceScanningExtensions.GetAssemblyList(w => !w.IsDynamic);
+
+        //foreach (var item in assmblys)
+        //{
+        //    foreach (var type in item.ExportedTypes)
+        //    {
+        //        if (type.GetInterfaces().Any(w => w.Name != typeof(IBaseEntity<>).Name)) continue;
+
+        //        modelBuilder.Entity(type);
+        //    }
+        //}
+
+        //#endregion
+
+        #region 过滤软删除 条件是：实体必须继承自 IDeleteBaseEntity
+
+        var deleteBaseEntitys = modelBuilder.Model
             .GetEntityTypes()
-            .Where(w => typeof(IDeleteBaseEntity).IsAssignableFrom(w.ClrType)))
+            .Where(w => typeof(IDeleteBaseEntity).IsAssignableFrom(w.ClrType))
+            ;
+        foreach (var item in deleteBaseEntitys)
         {
-            var lambda = ExpressionTreeExtensions.Equal(entityType.ClrType, nameof(IDeleteBaseEntity.IsDeleted), false);
-            modelBuilder.Entity(entityType.ClrType).HasQueryFilter(lambda);
+            var lambda = ExpressionTreeExtensions.Equal(item.ClrType, nameof(IDeleteBaseEntity.IsDeleted), false);
+            modelBuilder.Entity(item.ClrType).HasQueryFilter(lambda);
         }
 
         #endregion
