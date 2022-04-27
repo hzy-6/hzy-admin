@@ -5,8 +5,6 @@ using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -37,7 +35,7 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     [HttpPost("FindList/{size}/{page}")]
     public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysDictionary search)
     {
-        return await this.DefaultService.FindListAsync(page, size, search);
+        return await this._defaultService.FindListAsync(page, size, search);
     }
 
     /// <summary>
@@ -48,7 +46,7 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     [HttpPost("DeleteList")]
     public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
     {
-        await this.DefaultService.DeleteListAsync(ids);
+        await this._defaultService.DeleteListAsync(ids);
         return true;
     }
 
@@ -60,7 +58,7 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     [HttpGet("FindForm/{id?}")]
     public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] int id)
     {
-        return await this.DefaultService.FindFormAsync(id);
+        return await this._defaultService.FindFormAsync(id);
     }
 
     /// <summary>
@@ -71,7 +69,7 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     [HttpPost("SaveForm")]
     public async Task<SysDictionary> SaveFormAsync([FromBody] SysDictionary form)
     {
-        return await this.DefaultService.SaveFormAsync(form);
+        return await this._defaultService.SaveFormAsync(form);
     }
 
     /// <summary>
@@ -82,7 +80,7 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
     public async Task ExportExcelAsync([FromBody] SysDictionary search)
-        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+        => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
             $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
     /// <summary>
@@ -92,7 +90,7 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     [HttpGet("GetDictionaryTree")]
     public async Task<List<SysDictionaryDto>> GetDictionaryTreeAsync()
     {
-        return await this.DefaultService.GetDictionaryTreeAsync();
+        return await this._defaultService.GetDictionaryTreeAsync();
     }
 
 }

@@ -6,8 +6,6 @@ using HZY.Infrastructure.Permission.Attributes;
 using HZY.Model.BO;
 using HZY.Models.DTO;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -41,7 +39,7 @@ public class SysUserController : AdminBaseController<SysUserService>
     [HttpPost("FindList/{size}/{page}")]
     public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysUser search)
     {
-        return await this.DefaultService.FindListAsync(page, size, search);
+        return await this._defaultService.FindListAsync(page, size, search);
     }
 
     /// <summary>
@@ -52,7 +50,7 @@ public class SysUserController : AdminBaseController<SysUserService>
     [HttpPost("DeleteList")]
     public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
     {
-        await this.DefaultService.DeleteListAsync(ids);
+        await this._defaultService.DeleteListAsync(ids);
         return true;
     }
 
@@ -64,7 +62,7 @@ public class SysUserController : AdminBaseController<SysUserService>
     [HttpGet("FindForm/{id?}")]
     public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
     {
-        return await this.DefaultService.FindFormAsync(id);
+        return await this._defaultService.FindFormAsync(id);
     }
 
     /// <summary>
@@ -76,7 +74,7 @@ public class SysUserController : AdminBaseController<SysUserService>
     [ApiCheckModel]
     public async Task<SysUser> SaveFormAsync([FromBody] SysUserFormDto form)
     {
-        return await this.DefaultService.SaveFormAsync(form);
+        return await this._defaultService.SaveFormAsync(form);
     }
 
     /// <summary>
@@ -87,7 +85,7 @@ public class SysUserController : AdminBaseController<SysUserService>
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
     public async Task ExportExcelAsync([FromBody] SysUser search)
-        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+        => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
             $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
     /// <summary>
@@ -98,7 +96,7 @@ public class SysUserController : AdminBaseController<SysUserService>
     [HttpGet("info")]
     public Task<AccountInfo> GetUserInfoAsync()
     {
-        return this.DefaultService.GetUserInfoAsync();
+        return this._defaultService.GetUserInfoAsync();
     }
 
 }

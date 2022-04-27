@@ -1,6 +1,6 @@
-﻿using HZY.Infrastructure;
+﻿using HZY.Domain.Services.Quartz;
+using HZY.Infrastructure;
 using HZY.Infrastructure.MessageQueue;
-using HZY.Infrastructure.Quartz;
 using HZY.WebHost.Middlewares;
 using HzyScanDiService.Extensions;
 using Microsoft.AspNetCore.Builder;

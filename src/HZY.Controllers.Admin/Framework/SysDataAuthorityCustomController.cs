@@ -3,14 +3,12 @@ using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.Permission.Attributes;
+using HZY.Models.Consts;
 using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
 using HZY.Services.Admin.Framework;
 using HZY.Services.Admin.Memebers;
-using HZY.Services.Consts;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -41,7 +39,7 @@ namespace HZY.Controllers.Admin.Framework
         [HttpPost("FindList/{size}/{page}")]
         public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysDataAuthorityCustom search)
         {
-            return await this.DefaultService.FindListAsync(page, size, search);
+            return await this._defaultService.FindListAsync(page, size, search);
         }
 
         /// <summary>
@@ -53,7 +51,7 @@ namespace HZY.Controllers.Admin.Framework
         [HttpPost("DeleteList")]
         public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
         {
-            await this.DefaultService.DeleteListAsync(ids);
+            await this._defaultService.DeleteListAsync(ids);
             return true;
         }
 
@@ -66,7 +64,7 @@ namespace HZY.Controllers.Admin.Framework
         [HttpGet("FindForm/{id?}")]
         public Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
         {
-            return this.DefaultService.FindFormAsync(id);
+            return this._defaultService.FindFormAsync(id);
         }
 
         /// <summary>
@@ -79,7 +77,7 @@ namespace HZY.Controllers.Admin.Framework
         [HttpPost("SaveForm")]
         public Task<SysDataAuthorityCustom> SaveFormAsync([FromBody] SysDataAuthorityCustom form)
         {
-            return this.DefaultService.SaveFormAsync(form);
+            return this._defaultService.SaveFormAsync(form);
         }
 
         /// <summary>
@@ -91,7 +89,7 @@ namespace HZY.Controllers.Admin.Framework
         [ActionDescriptor(AdminFunctionConsts.Function_Export)]
         [HttpPost("ExportExcel")]
         public async Task ExportExcelAsync([FromBody] SysDataAuthorityCustom search)
-        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+        => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
             $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
 

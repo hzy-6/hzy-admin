@@ -1,0 +1,202 @@
+﻿using HZY.EFCore.Repositories.Base;
+using HZY.Infrastructure;
+using HZY.Infrastructure.ApiResultManage;
+using HZY.Infrastructure.Token;
+using HZY.Model.BO;
+using HZY.Models.Entities.Framework;
+using Microsoft.Extensions.Caching.Memory;
+using System;
+using System.Linq;
+using System.Threading.Tasks;
+
+namespace HZY.Domain.Services.Accounts.Impl;
+
+/// <summary>
+/// 当前登录账户服务
+/// </summary>
+public class AccountDomainServiceImpl : IAccountDomainService
+{
+    private readonly AccountInfo _accountInfo;
+    private readonly AppConfiguration _appConfiguration;
+    private readonly TokenService _tokenService;
+    private readonly IRepository<SysOrganization> _sysOrganizationRepository;
+    private readonly IRepository<SysUser> _sysUserRepository;
+    private readonly IMemoryCache _memoryCache;
+    private readonly string AccountInfoCacheName = "AccountInfo";
+
+    public AccountDomainServiceImpl(IRepository<SysUser> sysUserRepository,
+        IRepository<SysOrganization> sysOrganizationRepository,
+        AppConfiguration appConfiguration,
+        TokenService tokenService,
+        IMemoryCache memoryCache)
+    {
+        _sysUserRepository = sysUserRepository;
+        _appConfiguration = appConfiguration;
+        _tokenService = tokenService;
+        _sysOrganizationRepository = sysOrganizationRepository;
+        _memoryCache = memoryCache;
+        this._accountInfo = this.FindAccountInfoByToken();
+    }
+
+    /// <summary>
+    /// 根据用户信息获取 Account 对象
+    /// </summary>
+    /// <returns></returns>
+    private AccountInfo FindAccountInfoByToken()
+    {
+        var id = _tokenService.GetAccountIdByToken();
+
+        if (id == Guid.Empty || id == default)
+        {
+            return default;
+        }
+
+        var accountInfo = this.GetCacheAccountInfoById(id.ToString());
+
+        if (accountInfo != null)
+        {
+            return accountInfo;
+        }
+
+        var sysUser = this._sysUserRepository.FindById(id);
+        if (sysUser == null) return default;
+        var sysRoles = (
+            from sysUserRole in this._sysUserRepository.Orm.SysUserRole
+            from sysRole in this._sysUserRepository.Orm.SysRole.Where(w => w.Id == sysUserRole.RoleId).DefaultIfEmpty()
+            where sysUserRole.UserId == id
+            select sysRole
+            ).ToList();
+
+        var sysPosts = (
+            from sysUserPost in this._sysUserRepository.Orm.SysUserPost
+            from sysPost in this._sysUserRepository.Orm.SysPost.Where(w => w.Id == sysUserPost.PostId).DefaultIfEmpty()
+            where sysUserPost.UserId == id
+            select sysPost
+            ).ToList();
+
+        var sysOrganization = this._sysOrganizationRepository.FindById(sysUser.OrganizationId);
+
+        accountInfo = new AccountInfo();
+        accountInfo = sysUser.MapTo<SysUser, AccountInfo>();
+        accountInfo.IsAdministrator = sysRoles.Any(w => w.Id == this._appConfiguration.AdminRoleId);
+        accountInfo.SysRoles = sysRoles;
+        accountInfo.SysPosts = sysPosts;
+        accountInfo.SysOrganization = sysOrganization;
+
+        //缓存
+        this.SetCacheByAccountInfo(accountInfo);
+
+        return accountInfo;
+    }
+
+    /// <summary>
+    /// 获取当前登录账户信息
+    /// </summary>
+    /// <returns></returns>
+    public virtual AccountInfo GetAccountInfo() => this._accountInfo;
+
+    /// <summary>
+    /// 检查账户 登录信息 并返回 token
+    /// </summary>
+    /// <param name="name"></param>
+    /// <param name="password"></param>
+    /// <param name="code"></param>
+    /// <returns></returns>
+    public virtual async Task<string> CheckAccountAsync(string name, string password, string code)
+    {
+        if (string.IsNullOrWhiteSpace(name))
+            MessageBox.Show("请输入账户名!");
+        if (string.IsNullOrWhiteSpace(password))
+            MessageBox.Show("请输入密码！");
+        // if (string.IsNullOrWhiteSpace(code))
+        //  MessageBox.Show("请输入验证码!");
+        var sysUser = await this._sysUserRepository.FindAsync(w => w.LoginName == name);
+        if (sysUser == null)
+        {
+            MessageBox.Show("账户或者密码错误!");
+        }
+
+        if (sysUser.Password.Trim() != Tools.Md5Encrypt(password))
+        {
+            MessageBox.Show("账户或者密码错误!");
+        }
+
+        //string code = Tools.GetCookie("loginCode");
+        //if (string.IsNullOrEmpty(code)) throw new MessageBox("验证码失效");
+        //if (!code.ToLower().Equals(loginCode.ToLower())) throw new MessageBox("验证码不正确");
+
+        return _tokenService.CreateTokenByAccountId(sysUser.Id);
+    }
+
+    /// <summary>
+    /// 修改密码
+    /// </summary>
+    /// <param name="oldPassword"></param>
+    /// <param name="newPassword"></param>
+    /// <returns></returns>
+    public virtual async Task<int> ChangePasswordAsync(string oldPassword, string newPassword)
+    {
+        if (string.IsNullOrEmpty(oldPassword)) MessageBox.Show("旧密码不能为空！");
+        if (string.IsNullOrEmpty(newPassword)) MessageBox.Show("新密码不能为空！");
+        var sysUser = await this._sysUserRepository.FindByIdAsync(this.GetAccountInfo().Id);
+        if (sysUser.Password != oldPassword) MessageBox.Show("旧密码不正确！");
+        sysUser.Password = newPassword;
+        this.DeleteCacheAccountInfoById(sysUser.Id.ToString());
+        return await this._sysUserRepository.UpdateAsync(sysUser);
+    }
+
+    /// <summary>
+    /// 修改用户基础信息
+    /// </summary>
+    /// <param name="form"></param>
+    /// <returns></returns>
+    public virtual async Task<SysUser> ChangeUserAsync(SysUser form)
+    {
+        var sysUser = await _sysUserRepository.FindByIdAsync(_accountInfo.Id);
+        sysUser.Name = form.Name;
+        sysUser.LoginName = form.LoginName;
+        sysUser.Email = form.Email;
+        sysUser.Phone = form.Phone;
+        this.DeleteCacheAccountInfoById(sysUser.Id.ToString());
+        return await _sysUserRepository.InsertOrUpdateAsync(sysUser);
+    }
+
+    /// <summary>
+    /// 根据账户信息缓存
+    /// </summary>
+    /// <param name="accountInfo"></param>
+    /// <returns></returns>
+    public virtual AccountInfo SetCacheByAccountInfo(AccountInfo accountInfo)
+    {
+        //缓存 30 分钟
+        return _memoryCache.Set(GetCacheKeyById(accountInfo.Id.ToString()), accountInfo, DateTime.Now.AddMinutes(30));
+    }
+
+    /// <summary>
+    /// 获取缓存中的账户信息
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public virtual AccountInfo GetCacheAccountInfoById(string id)
+    {
+        //缓存
+        return _memoryCache.Get<AccountInfo>(GetCacheKeyById(id));
+    }
+
+    /// <summary>
+    /// 删除缓存账户信息 根据id
+    /// </summary>
+    /// <param name="id"></param>
+    /// <returns></returns>
+    public virtual bool DeleteCacheAccountInfoById(string id)
+    {
+        _memoryCache.Remove(GetCacheKeyById(id));
+        return true;
+    }
+
+    #region 私有方法
+
+    private string GetCacheKeyById(string id) => AccountInfoCacheName + id;
+
+    #endregion
+}

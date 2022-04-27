@@ -1,13 +1,13 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 using HZY.Services.Admin.Framework;
-using HZY.Services.Accounts;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
+using HZY.Domain.Services.Accounts;
 
 namespace HZY.WebHost.Filters;
 
@@ -16,12 +16,10 @@ namespace HZY.WebHost.Filters;
 /// </summary>
 public class ApiAuthorizationFilter : IAsyncAuthorizationFilter
 {
-    private readonly SysMenuService _sysMenuService;
-    private readonly IAccountService _accountService;
+    private readonly IAccountDomainService _accountService;
 
-    public ApiAuthorizationFilter(SysMenuService sysMenuService, IAccountService accountService)
+    public ApiAuthorizationFilter(IAccountDomainService accountService)
     {
-        _sysMenuService = sysMenuService;
         _accountService = accountService;
     }
 

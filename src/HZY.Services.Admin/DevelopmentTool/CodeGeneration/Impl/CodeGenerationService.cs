@@ -1,10 +1,10 @@
 ﻿using FreeSql.DatabaseModel;
 using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.DevelopmentTool;
 using HZY.Infrastructure;
-using HZY.Infrastructure.NLogService;
 using HZY.Infrastructure.RazorView;
+using HZY.Infrastructure.SerilogUtil;
 using HZY.Models.DTO.DevelopmentTool;
-using HZY.Repositories.DevelopmentTool;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using NPOI.HSSF.UserModel;
@@ -270,7 +270,7 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
             var isViews = genFormDto.Type == "Index.vue" || genFormDto.Type == "Info.vue";
             var success = await this.CreateAllCodeFilesAsync(genFormDto);
 
-            if (!success) NLogUtil.Write("无法下载,代码创建失败!");
+            if (!success) LogUtil.Log.Warning("无法下载,代码创建失败!");
 
             string path;
             string zipPath;

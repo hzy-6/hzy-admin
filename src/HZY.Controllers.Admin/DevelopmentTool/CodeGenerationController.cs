@@ -37,7 +37,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         [HttpPost("findList/{size}/{page}")]
         public PagingViewModel FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] GenFormDto search)
         {
-            return this.DefaultService.GetGenContextDtos(page, size, search);
+            return this._defaultService.GetGenContextDtos(page, size, search);
         }
 
         /// <summary>
@@ -48,13 +48,13 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         [HttpPost("getCode")]
         public async Task<dynamic> GetCodeAsync([FromBody] GenFormDto genFormDto)
         {
-            var code = await this.DefaultService.GetCodeByTypeAndTableNameAsync(genFormDto);
+            var code = await this._defaultService.GetCodeByTypeAndTableNameAsync(genFormDto);
 
             var appTableInfos = new List<DbColumnInfo>();
 
             if (!string.IsNullOrWhiteSpace(genFormDto.TableName))
             {
-                var table = this.DefaultService.GetGenContextDtoByTableName(genFormDto.TableName);
+                var table = this._defaultService.GetGenContextDtoByTableName(genFormDto.TableName);
 
                 appTableInfos = table.Columns;
             }
@@ -86,7 +86,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         [HttpPost("download")]
         public async Task DownloadAsync([FromBody] GenFormDto genFormDto)
         {
-            var (codeBytes, contentType, fileName) = await this.DefaultService.DownloadAsync(genFormDto);
+            var (codeBytes, contentType, fileName) = await this._defaultService.DownloadAsync(genFormDto);
             base.HttpContext.DownLoadFile(codeBytes, contentType, fileName);
         }
 
@@ -98,7 +98,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         [HttpPost("downloadAll")]
         public async Task DownloadAllAsync(GenFormDto genFormDto)
         {
-            var (codeBytes, contentType, fileName) = await this.DefaultService.DownloadAllAsync(genFormDto);
+            var (codeBytes, contentType, fileName) = await this._defaultService.DownloadAllAsync(genFormDto);
             base.HttpContext.DownLoadFile(codeBytes, contentType, fileName);
         }
 
@@ -109,7 +109,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         [HttpPost("createDataDictionary")]
         public void CreateDataDictionary()
         {
-            var data = this.DefaultService.CreateDataDictionary();
+            var data = this._defaultService.CreateDataDictionary();
             var fileName = $"{(string.IsNullOrWhiteSpace(data.dataBase) ? "" : data.dataBase + "_")}数据库设计{DateTime.Now.ToString("yyyyMMddHHmmss")}.xlsx";
 
             base.HttpContext.DownLoadFile(data.excel, Tools.GetFileContentType[".xlsx"], fileName);

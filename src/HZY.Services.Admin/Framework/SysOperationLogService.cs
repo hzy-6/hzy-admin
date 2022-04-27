@@ -1,12 +1,12 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.Domain.Services.Accounts;
+using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.MessageQueue;
 using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HzyEFCoreRepositories.Extensions;
 using HzyScanDiService.Extensions;
@@ -27,19 +27,19 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 操作日服务
 /// </summary>
-public class SysOperationLogService : AdminBaseService<SysOperationLogRepository>
+public class SysOperationLogService : AdminBaseService<IRepository<SysOperationLog>>
 {
     private readonly HttpContext _httpContext;
-    private readonly IAccountService _accountService;
+    private readonly IAccountDomainService _accountService;
     private readonly IMessageQueueProvider _messageQueueProvider;
-    private readonly SysUserRepository _sysUserRepository;
+    private readonly IRepository<SysUser> _sysUserRepository;
 
-    public SysOperationLogService(SysOperationLogRepository repository,
+    public SysOperationLogService(IRepository<SysOperationLog> defaultRepository,
         IHttpContextAccessor iHttpContextAccessor,
-        IAccountService accountService,
+        IAccountDomainService accountService,
         IMessageQueueProvider messageQueueProvider,
-        SysUserRepository sysUserRepository
-        ) : base(repository)
+        IRepository<SysUser> sysUserRepository
+        ) : base(defaultRepository)
     {
         this._httpContext = iHttpContextAccessor.HttpContext;
         _accountService = accountService;
@@ -108,7 +108,7 @@ public class SysOperationLogService : AdminBaseService<SysOperationLogRepository
         await _messageQueueProvider.SendMessageQueueAsync("WriteInLogAsync", sysOperationLog, (value, serviceProvider) =>
         {
             using var scope = ServiceProviderExtensions.CreateScope();
-            var repository = scope.ServiceProvider.GetRequiredService<SysOperationLogRepository>();
+            var repository = scope.ServiceProvider.GetRequiredService<IRepository<SysOperationLog>>();
             repository.InsertAsync((SysOperationLog)value).Wait();
         });
     }
@@ -123,8 +123,8 @@ public class SysOperationLogService : AdminBaseService<SysOperationLogRepository
     /// <returns></returns>
     public async Task<PagingViewModel> FindListAsync(int page, int size, SysOperationLog search)
     {
-        var query = (from log in Repository.Orm.SysOperationLog.OrderByDescending(w => w.CreationTime)
-                     from use in Repository.Orm.SysUser.Where(w => w.Id == log.UserId).DefaultIfEmpty()
+        var query = (from log in _defaultRepository.Orm.SysOperationLog.OrderByDescending(w => w.CreationTime)
+                     from use in _defaultRepository.Orm.SysUser.Where(w => w.Id == log.UserId).DefaultIfEmpty()
                      select new
                      {
                          log.Id,
@@ -143,7 +143,7 @@ public class SysOperationLogService : AdminBaseService<SysOperationLogRepository
                      .WhereIf(!string.IsNullOrWhiteSpace(search.OS), w => w.OS.Contains(search.OS))
                      ;
 
-        return await this.Repository.AsPagingViewModelAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
     }
     /// <summary>
     /// 删除所有数据
@@ -151,7 +151,7 @@ public class SysOperationLogService : AdminBaseService<SysOperationLogRepository
     /// <returns></returns>
     public async Task<bool> DeletedAllData()
     {
-        int i = await Repository.DeleteAsync(w => 1 == 1);
+        int i = await _defaultRepository.DeleteAsync(w => 1 == 1);
         if (i >= 0)
         {
             return await Task.FromResult(true);
@@ -167,7 +167,7 @@ public class SysOperationLogService : AdminBaseService<SysOperationLogRepository
     public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
     {
         var res = new Dictionary<string, object>();
-        var form = await this.Repository.FindByIdAsync(id);
+        var form = await this._defaultRepository.FindByIdAsync(id);
         form = form.NullSafe();
         var use = await _sysUserRepository.FindByIdAsync(form.UserId);
         use = use.NullSafe();

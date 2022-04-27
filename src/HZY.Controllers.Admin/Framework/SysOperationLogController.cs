@@ -5,8 +5,6 @@ using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -37,7 +35,7 @@ public class SysOperationLogController : AdminBaseController<SysOperationLogServ
     [HttpPost("FindList/{size}/{page}")]
     public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysOperationLog search)
     {
-        return await DefaultService.FindListAsync(page, size, search);
+        return await _defaultService.FindListAsync(page, size, search);
     }
 
     /// <summary>
@@ -47,7 +45,7 @@ public class SysOperationLogController : AdminBaseController<SysOperationLogServ
     [HttpGet("DeleteAllData")]
     public async Task<bool> DeleteAllDataAsync()
     {
-        return await DefaultService.DeletedAllData();
+        return await _defaultService.DeletedAllData();
     }
 
     /// <summary>
@@ -58,7 +56,7 @@ public class SysOperationLogController : AdminBaseController<SysOperationLogServ
     [HttpGet("FindForm/{id?}")]
     public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
     {
-        return await this.DefaultService.FindFormAsync(id);
+        return await this._defaultService.FindFormAsync(id);
     }
 
 }

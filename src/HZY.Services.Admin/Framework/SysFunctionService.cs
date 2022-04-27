@@ -1,6 +1,6 @@
 ﻿using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HZY.Services.Admin.BaseServicesAdmin.Impl;
 using HzyEFCoreRepositories.Extensions;
@@ -15,10 +15,10 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 功能服务
 /// </summary>
-public class SysFunctionService : AbsCrudBaseService<SysFunctionRepository, SysFunction, SysFunction, SysFunction, Guid>,
-    ICrudBaseService<SysFunctionRepository, SysFunction, SysFunction, SysFunction, Guid>
+public class SysFunctionService : AbsCrudBaseService<IRepository<SysFunction>, SysFunction, SysFunction, SysFunction, Guid>,
+    ICrudBaseService<IRepository<SysFunction>, SysFunction, SysFunction, SysFunction, Guid>
 {
-    public SysFunctionService(SysFunctionRepository repository) : base(repository)
+    public SysFunctionService(IRepository<SysFunction> defaultRepository) : base(defaultRepository)
     {
     }
 
@@ -31,7 +31,7 @@ public class SysFunctionService : AbsCrudBaseService<SysFunctionRepository, SysF
     /// <returns></returns>
     public override async Task<PagingViewModel> FindListAsync(int page, int size, SysFunction search)
     {
-        var query = this.Repository.Select
+        var query = this._repository.Select
             .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.Name.Contains(search.Name))
             .OrderBy(w => w.Number)
             .Select(w => new
@@ -45,7 +45,7 @@ public class SysFunctionService : AbsCrudBaseService<SysFunctionRepository, SysF
             })
         ;
 
-        return await this.Repository.AsPagingViewModelAsync(query, page, size);
+        return await this._repository.AsPagingViewModelAsync(query, page, size);
     }
 
     /// <summary>
@@ -59,7 +59,7 @@ public class SysFunctionService : AbsCrudBaseService<SysFunctionRepository, SysF
         var form = (SysFunction)res["form"];
         if (form.Id == Guid.Empty)
         {
-            var maxNumber = await this.Repository.Select.MaxAsync(w => w.Number);
+            var maxNumber = await this._repository.Select.MaxAsync(w => w.Number);
             form.Number = (maxNumber ?? 0) + 1;
         }
 

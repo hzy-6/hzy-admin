@@ -1,10 +1,10 @@
 ﻿using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -20,14 +20,14 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 角色 菜单 功能服务
 /// </summary>
-public class SysRoleMenuFunctionService : AdminBaseService<SysRoleMenuFunctionRepository>
+public class SysRoleMenuFunctionService : AdminBaseService<IRepository<SysRoleMenuFunction>>
 {
-    private readonly SysMenuRepository _sysMenuRepository;
-    private readonly SysMenuFunctionRepository _sysMenuFunctionRepository;
+    private readonly IRepository<SysMenu> _sysMenuRepository;
+    private readonly IRepository<SysMenuFunction> _sysMenuFunctionRepository;
 
-    public SysRoleMenuFunctionService(SysRoleMenuFunctionRepository repository,
-        SysMenuRepository sysMenuRepository,
-        SysMenuFunctionRepository sysMenuFunctionRepository) : base(repository)
+    public SysRoleMenuFunctionService(IRepository<SysRoleMenuFunction> defaultRepository,
+        IRepository<SysMenu> sysMenuRepository,
+        IRepository<SysMenuFunction> sysMenuFunctionRepository) : base(defaultRepository)
     {
         _sysMenuRepository = sysMenuRepository;
         _sysMenuFunctionRepository = sysMenuFunctionRepository;
@@ -47,11 +47,11 @@ public class SysRoleMenuFunctionService : AdminBaseService<SysRoleMenuFunctionRe
         if (roleId == Guid.Empty) return default;
 
         //开启事务
-        using var tran = await this.Repository.UnitOfWork.BeginTransactionAsync();
+        using var tran = await this._defaultRepository.UnitOfWork.BeginTransactionAsync();
 
         try
         {
-            await this.Repository.DeleteAsync(w => w.RoleId == roleId && form.Select(w => w.MenuId).Contains(w.MenuId));
+            await this._defaultRepository.DeleteAsync(w => w.RoleId == roleId && form.Select(w => w.MenuId).Contains(w.MenuId));
 
             foreach (var item in form)
             {
@@ -65,7 +65,7 @@ public class SysRoleMenuFunctionService : AdminBaseService<SysRoleMenuFunctionRe
                 sysRoleMenuFunctions.AddRange(list);
             }
 
-            await this.Repository.InsertRangeAsync(sysRoleMenuFunctions);
+            await this._defaultRepository.InsertRangeAsync(sysRoleMenuFunctions);
 
             await tran.CommitAsync();
         }
@@ -87,7 +87,7 @@ public class SysRoleMenuFunctionService : AdminBaseService<SysRoleMenuFunctionRe
     {
         var allMenus = await _sysMenuRepository.ToListAllAsync();
         var allMenuFunction = await _sysMenuFunctionRepository.ToListAllAsync();
-        var allRoleMenuFunction = await this.Repository.Select.Where(w => w.RoleId == roleId).ToListAsync();
+        var allRoleMenuFunction = await this._defaultRepository.Select.Where(w => w.RoleId == roleId).ToListAsync();
 
         var result = new List<Dictionary<string, object>>();
 

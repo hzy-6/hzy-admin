@@ -1,5 +1,4 @@
-﻿using HZY.Infrastructure.Quartz;
-using Microsoft.Extensions.Hosting;
+﻿using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;

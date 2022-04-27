@@ -2,16 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HZY.Domain.Services.Accounts;
+using HZY.Domain.Services.Upload;
 using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
-using HZY.Repositories;
-using HZY.Repositories.BaseRepositories;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
+using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HZY.Services.Admin.Framework;
-using HZY.Services.Upload;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.AspNetCore.Http;
 
@@ -20,17 +19,17 @@ namespace HZY.Services.Admin.Memebers;
 /// <summary>
 /// 会员服务
 /// </summary>
-public class MemberService : AdminBaseService<IAdminEfCoreBaseRepository<Member>>
+public class MemberService : AdminBaseService<IRepository<Member>>
 {
-    private readonly SysUserRepository _sysUserRepository;
-    private readonly IUploadService _uploadService;
-    private readonly IAccountService _accountService;
+    private readonly IRepository<SysUser> _sysUserRepository;
+    private readonly IUploadDomainService _uploadService;
+    private readonly IAccountDomainService _accountService;
 
-    public MemberService(IAdminEfCoreBaseRepository<Member> repository,
-        SysUserRepository sysUserRepository,
-        IUploadService uploadService,
-        IAccountService accountService)
-        : base(repository)
+    public MemberService(IRepository<Member> defaultRepository,
+        IRepository<SysUser> sysUserRepository,
+        IUploadDomainService uploadService,
+        IAccountDomainService accountService)
+        : base(defaultRepository)
     {
         _sysUserRepository = sysUserRepository;
         _uploadService = uploadService;
@@ -49,8 +48,8 @@ public class MemberService : AdminBaseService<IAdminEfCoreBaseRepository<Member>
         var accountInfo = _accountService.GetAccountInfo();
 
         var query = (
-                    from member in this.Repository.QueryByDataAuthority(accountInfo)
-                    from user in this.Repository.Orm.SysUser.Where(w => w.Id == member.UserId).DefaultIfEmpty()
+                    from member in this._defaultRepository.QueryByDataAuthority(accountInfo)
+                    from user in this._defaultRepository.Orm.SysUser.Where(w => w.Id == member.UserId).DefaultIfEmpty()
                     select new { t1 = member, t2 = user }
                 )
                 .WhereIf(!string.IsNullOrWhiteSpace(search.Name), w => w.t1.Name.Contains(search.Name))
@@ -72,7 +71,7 @@ public class MemberService : AdminBaseService<IAdminEfCoreBaseRepository<Member>
                 })
             ;
 
-        return await this.Repository.AsPagingViewModelAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
     }
 
     /// <summary>
@@ -82,7 +81,7 @@ public class MemberService : AdminBaseService<IAdminEfCoreBaseRepository<Member>
     /// <returns></returns>
     public async Task DeleteListAsync(List<Guid> ids)
     {
-        await this.Repository.DeleteByIdsAsync(ids);
+        await this._defaultRepository.DeleteByIdsAsync(ids);
     }
 
     /// <summary>
@@ -93,7 +92,7 @@ public class MemberService : AdminBaseService<IAdminEfCoreBaseRepository<Member>
     public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
     {
         var res = new Dictionary<string, object>();
-        var form = await this.Repository.FindByIdAsync(id);
+        var form = await this._defaultRepository.FindByIdAsync(id);
         form = form.NullSafe();
         var sysUser = await _sysUserRepository.FindByIdAsync(form.UserId.ToGuid());
         sysUser = sysUser.NullSafe();
@@ -132,7 +131,7 @@ public class MemberService : AdminBaseService<IAdminEfCoreBaseRepository<Member>
             if (path.Count > 0) form.FilePath = string.Join(",", path);
         }
 
-        return await this.Repository.InsertOrUpdateAsync(form);
+        return await this._defaultRepository.InsertOrUpdateAsync(form);
     }
 
     /// <summary>

@@ -17,7 +17,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
-		<ProjectReference Include="..\HZY.Repositories.Redis\HZY.Repositories.Redis.csproj" />
 		<ProjectReference Include="..\HZY.Services.Admin\HZY.Services.Admin.csproj" />
 	</ItemGroup>
 

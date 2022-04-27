@@ -5,8 +5,6 @@ using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -52,7 +50,7 @@ public class SysRoleMenuFunctionController : AdminBaseController<SysRoleMenuFunc
     [HttpPost("SaveForm")]
     public async Task<Guid> SaveFormAsync([FromBody] List<SysRoleMenuFunctionFormDto> form)
     {
-        return await this.DefaultService.SaveFormAsync(form);
+        return await this._defaultService.SaveFormAsync(form);
     }
 
     #region 角色菜单功能 Tree
@@ -64,7 +62,7 @@ public class SysRoleMenuFunctionController : AdminBaseController<SysRoleMenuFunc
     [HttpGet("GetRoleMenuFunctionByRoleId/{RoleId}")]
     public async Task<List<Dictionary<string, object>>> GetRoleMenuFunctionByRoleId(Guid roleId)
     {
-        return await this.DefaultService.GetRoleMenuFunctionByRoleIdAsync(roleId);
+        return await this._defaultService.GetRoleMenuFunctionByRoleIdAsync(roleId);
     }
 
     #endregion

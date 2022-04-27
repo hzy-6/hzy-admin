@@ -1,5 +1,5 @@
 ﻿using HZY.Infrastructure.MessageQueue.Models;
-using HZY.Infrastructure.NLogService;
+using HZY.Infrastructure.SerilogUtil;
 using NPOI.SS.Formula.Functions;
 using System;
 using System.Collections.Concurrent;
@@ -46,7 +46,7 @@ public class MessageQueueProvider : IMessageQueueProvider
                         }
                         catch (Exception ex)
                         {
-                            NLogUtil.Write(ex.Message, ex);
+                            LogUtil.Log.Error(ex.Message, ex);
                             Console.WriteLine("队列消费异常：" + ex.Message);
                         }
                     });

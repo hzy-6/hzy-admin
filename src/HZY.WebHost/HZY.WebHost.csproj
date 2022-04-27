@@ -32,13 +32,8 @@
 		<ProjectReference Include="..\HZY.EFCore\HZY.EFCore.csproj" />
 		<ProjectReference Include="..\HZY.Controllers.Admin\HZY.Controllers.Admin.csproj" />
 		<ProjectReference Include="..\HZY.Controllers.App\HZY.Controllers.App.csproj" />
-		<ProjectReference Include="..\HZY.Controllers\HZY.Controllers.csproj" />
 		<ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
-		<ProjectReference Include="..\HZY.Models\HZY.Models.csproj" />
-		<ProjectReference Include="..\HZY.Repositories.Redis\HZY.Repositories.Redis.csproj" />
-		<ProjectReference Include="..\HZY.Repositories\HZY.Repositories.csproj" />
 		<ProjectReference Include="..\HZY.Services.Admin\HZY.Services.Admin.csproj" />
-		<ProjectReference Include="..\HZY.Services\HZY.Services.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -74,5 +69,12 @@
 	<ItemGroup>
 		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
+
+
+	<!--防止发布报多个 xml 问题-->
+	<PropertyGroup>
+		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+	</PropertyGroup>
+
 
 </Project>

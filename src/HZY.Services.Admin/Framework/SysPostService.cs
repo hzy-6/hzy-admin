@@ -1,10 +1,10 @@
 ﻿using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -18,9 +18,9 @@ using System.Threading.Tasks;
 
 namespace HZY.Services.Admin.Framework;
 
-public class SysPostService : AdminBaseService<SysPostRepository>
+public class SysPostService : AdminBaseService<IRepository<SysPost>>
 {
-    public SysPostService(SysPostRepository repository) : base(repository)
+    public SysPostService(IRepository<SysPost> defaultRepository) : base(defaultRepository)
     {
     }
 
@@ -33,7 +33,7 @@ public class SysPostService : AdminBaseService<SysPostRepository>
     /// <returns></returns>
     public async Task<PagingViewModel> FindListAsync(int page, int size, SysPost search)
     {
-        var query = this.Repository.Select
+        var query = this._defaultRepository.Select
                 .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.Name.Contains(search.Name))
                 .OrderBy(w => w.Number)
                 .Select(w => new
@@ -50,7 +50,7 @@ public class SysPostService : AdminBaseService<SysPostRepository>
                 })
             ;
 
-        return await this.Repository.AsPagingViewModelAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
     }
 
     /// <summary>
@@ -60,7 +60,7 @@ public class SysPostService : AdminBaseService<SysPostRepository>
     /// <returns></returns>
     public async Task DeleteListAsync(List<Guid> ids)
     {
-        await this.Repository.DeleteAsync(w => ids.Contains(w.Id));
+        await this._defaultRepository.DeleteAsync(w => ids.Contains(w.Id));
     }
 
     /// <summary>
@@ -71,12 +71,12 @@ public class SysPostService : AdminBaseService<SysPostRepository>
     public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
     {
         var res = new Dictionary<string, object>();
-        var form = await this.Repository.FindByIdAsync(id);
+        var form = await this._defaultRepository.FindByIdAsync(id);
         form = form.NullSafe();
 
         if (id == Guid.Empty)
         {
-            var maxNum = await this.Repository.Select.MaxAsync(w => w.Number);
+            var maxNum = await this._defaultRepository.Select.MaxAsync(w => w.Number);
             form.Number = (maxNum ?? 0) + 1;
         }
 
@@ -92,7 +92,7 @@ public class SysPostService : AdminBaseService<SysPostRepository>
     /// <returns></returns>
     public async Task<SysPost> SaveFormAsync(SysPost form)
     {
-        return await this.Repository.InsertOrUpdateAsync(form);
+        return await this._defaultRepository.InsertOrUpdateAsync(form);
     }
 
     /// <summary>

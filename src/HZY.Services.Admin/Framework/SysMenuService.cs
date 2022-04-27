@@ -1,13 +1,13 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.Domain.Services.Accounts;
+using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Model.BO;
+using HZY.Models.Consts;
 using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
 using HZY.Services.Admin.BaseServicesAdmin;
-using HZY.Services.Consts;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -22,21 +22,20 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 菜单服务
 /// </summary>
-public class SysMenuService : AdminBaseService<SysMenuRepository>
+public class SysMenuService : AdminBaseService<IRepository<SysMenu>>
 {
-    private readonly SysFunctionRepository _sysFunctionRepository;
-    private readonly SysMenuFunctionRepository _sysMenuFunctionRepository;
-    private readonly SysRoleMenuFunctionRepository _sysRoleMenuFunctionRepository;
+    private readonly IRepository<SysFunction> _sysFunctionRepository;
+    private readonly IRepository<SysMenuFunction> _sysMenuFunctionRepository;
+    private readonly IRepository<SysRoleMenuFunction> _sysRoleMenuFunctionRepository;
     private readonly AccountInfo _accountInfo;
     private readonly AppConfiguration _appConfiguration;
 
-    public SysMenuService(SysMenuRepository repository,
-        SysFunctionRepository sysFunctionRepository,
-        SysMenuFunctionRepository sysMenuFunctionRepository,
-        SysRoleMenuFunctionRepository sysRoleMenuFunctionRepository,
-        IAccountService accountService,
-        AppConfiguration appConfiguration) : base(
-        repository)
+    public SysMenuService(IRepository<SysMenu> defaultRepository,
+        IRepository<SysFunction> sysFunctionRepository,
+        IRepository<SysMenuFunction> sysMenuFunctionRepository,
+        IRepository<SysRoleMenuFunction> sysRoleMenuFunctionRepository,
+        IAccountDomainService accountService,
+        AppConfiguration appConfiguration) : base(defaultRepository)
     {
         _sysFunctionRepository = sysFunctionRepository;
         _sysMenuFunctionRepository = sysMenuFunctionRepository;
@@ -54,8 +53,8 @@ public class SysMenuService : AdminBaseService<SysMenuRepository>
     /// <returns></returns>
     public async Task<PagingViewModel> FindListAsync(int page, int size, SysMenu search)
     {
-        var query = (from sysMenu in this.Repository.Orm.SysMenu
-                     from sysMenuParent in this.Repository.Orm.SysMenu.Where(w => w.Id == sysMenu.ParentId).DefaultIfEmpty()
+        var query = (from sysMenu in this._defaultRepository.Orm.SysMenu
+                     from sysMenuParent in this._defaultRepository.Orm.SysMenu.Where(w => w.Id == sysMenu.ParentId).DefaultIfEmpty()
                      select new { t1 = sysMenu, t2 = sysMenuParent })
               .WhereIf(search?.ParentId == 0 || search?.ParentId == null, w => w.t1.ParentId == null || w.t1.ParentId == 0)
               .WhereIf(search?.ParentId != 0 && search?.ParentId != null, w => w.t1.ParentId == search.ParentId)
@@ -78,7 +77,7 @@ public class SysMenuService : AdminBaseService<SysMenuRepository>
               })
           ;
 
-        return await this.Repository.AsPagingViewModelAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
     }
 
     /// <summary>
@@ -91,9 +90,9 @@ public class SysMenuService : AdminBaseService<SysMenuRepository>
         foreach (var item in ids)
         {
             //删除当前菜单及一下的子集菜单
-            var menu = await this.Repository.FindByIdAsync(item);
-            var menus = await this.Repository.ToListAsync(w => w.LevelCode == menu.LevelCode || w.LevelCode.StartsWith(menu.LevelCode + "."));
-            await this.Repository.DeleteAsync(menus);
+            var menu = await this._defaultRepository.FindByIdAsync(item);
+            var menus = await this._defaultRepository.ToListAsync(w => w.LevelCode == menu.LevelCode || w.LevelCode.StartsWith(menu.LevelCode + "."));
+            await this._defaultRepository.DeleteAsync(menus);
             //删除菜单关联表
             await this._sysRoleMenuFunctionRepository.DeleteAsync(w => menus.Select(w => w.Id).Contains(w.MenuId));
             await this._sysMenuFunctionRepository.DeleteAsync(w => menus.Select(w => w.Id).Contains(w.MenuId));
@@ -109,7 +108,7 @@ public class SysMenuService : AdminBaseService<SysMenuRepository>
     {
         var res = new Dictionary<string, object>();
 
-        var form = await this.Repository.FindByIdAsync(id);
+        var form = await this._defaultRepository.FindByIdAsync(id);
         var allFunctions = await this._sysFunctionRepository.Select
             .OrderBy(w => w.Number)
             .ToListAsync();
@@ -135,7 +134,7 @@ public class SysMenuService : AdminBaseService<SysMenuRepository>
         var model = form.Form;
         var menuFunctionList = form.MenuFunctionList;
 
-        model = await this.Repository.InsertOrUpdateAsync(model);
+        model = await this._defaultRepository.InsertOrUpdateAsync(model);
 
         #region 更新级别码
 
@@ -145,11 +144,11 @@ public class SysMenuService : AdminBaseService<SysMenuRepository>
         }
         else
         {
-            var parent = await this.Repository.FindByIdAsync(model.ParentId);
+            var parent = await this._defaultRepository.FindByIdAsync(model.ParentId);
             model.LevelCode = parent.LevelCode + "." + model.Id;
         }
 
-        model = await this.Repository.InsertOrUpdateAsync(model);
+        model = await this._defaultRepository.InsertOrUpdateAsync(model);
 
         #endregion
 
@@ -188,8 +187,8 @@ public class SysMenuService : AdminBaseService<SysMenuRepository>
     /// <returns></returns>
     public async Task<List<SysMenuTreeDto>> GetAllAsync(SysMenu search)
     {
-        var query = (from sysMenu in this.Repository.Orm.SysMenu
-                     from sysMenuParent in this.Repository.Orm.SysMenu.Where(w => w.Id == sysMenu.ParentId).DefaultIfEmpty()
+        var query = (from sysMenu in this._defaultRepository.Orm.SysMenu
+                     from sysMenuParent in this._defaultRepository.Orm.SysMenu.Where(w => w.Id == sysMenu.ParentId).DefaultIfEmpty()
                      select new { t1 = sysMenu, t2 = sysMenuParent })
              .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.t1.Name.Contains(search.Name))
              .OrderBy(w => w.t1.Number)
@@ -226,7 +225,7 @@ public class SysMenuService : AdminBaseService<SysMenuRepository>
     /// <returns></returns>
     public async Task<List<SysMenu>> GetMenusByCurrentRoleAsync()
     {
-        var sysMenuAllList = await this.Repository.Select
+        var sysMenuAllList = await this._defaultRepository.Select
             .Where(w => w.State)
             .OrderBy(w => w.Number)
             .ToListAsync();
@@ -234,9 +233,9 @@ public class SysMenuService : AdminBaseService<SysMenuRepository>
         if (this._accountInfo.IsAdministrator) return sysMenuAllList;
 
         var sysMenuList = await (
-            from t1 in this.Repository.Orm.SysRoleMenuFunction.Where(w => this._accountInfo.SysRoles.Select(s => s.Id).Contains(w.RoleId))
-            from t2 in this.Repository.Orm.SysMenu.Where(w => w.Id == t1.MenuId && w.State).DefaultIfEmpty()
-            from t3 in this.Repository.Orm.SysMenuFunction
+            from t1 in this._defaultRepository.Orm.SysRoleMenuFunction.Where(w => this._accountInfo.SysRoles.Select(s => s.Id).Contains(w.RoleId))
+            from t2 in this._defaultRepository.Orm.SysMenu.Where(w => w.Id == t1.MenuId && w.State).DefaultIfEmpty()
+            from t3 in this._defaultRepository.Orm.SysMenuFunction
                 .Where(w => w.Id == t1.MenuFunctionId && w.FunctionCode == AdminFunctionConsts.Function_Display && t2.Id == w.MenuId)
                 .DefaultIfEmpty()
             select t2
@@ -363,7 +362,7 @@ public class SysMenuService : AdminBaseService<SysMenuRepository>
     /// <returns></returns>
     public async Task<Dictionary<string, object>> GetPowerStateByMenuIdAsync(int menuId)
     {
-        var sysMenus = await this.Repository.Select.Where(w => w.Id == menuId).ToListAsync();
+        var sysMenus = await this._defaultRepository.Select.Where(w => w.Id == menuId).ToListAsync();
         return (await this.GetPowerByMenusAsync(sysMenus)).FirstOrDefault();
     }
 

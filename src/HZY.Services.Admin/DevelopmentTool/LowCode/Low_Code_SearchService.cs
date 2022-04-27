@@ -5,13 +5,10 @@ using System.Threading.Tasks;
 using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
-using HZY.Repositories;
-using HZY.Repositories.Framework;
 using HZY.Services.Admin.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;
-using HZY.Services.Upload;
 using Microsoft.AspNetCore.Http;
-using HZY.Repositories.DevelopmentTool.LowCode;
+using HZY.EFCore.Repositories.DevelopmentTool.LowCode;
 
 namespace HZY.Services.Admin
 {
@@ -20,8 +17,8 @@ namespace HZY.Services.Admin
     /// </summary>
     public class Low_Code_SearchService : AdminBaseService<Low_Code_SearchRepository>
     {
-        public Low_Code_SearchService(Low_Code_SearchRepository repository) 
-            : base(repository)
+        public Low_Code_SearchService(Low_Code_SearchRepository defaultRepository) 
+            : base(defaultRepository)
         {
 
         }

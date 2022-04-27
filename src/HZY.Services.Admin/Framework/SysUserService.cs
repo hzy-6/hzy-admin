@@ -1,12 +1,12 @@
+using HZY.Domain.Services.Accounts;
 using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Model.BO;
 using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -23,22 +23,22 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 系统账号服务
 /// </summary>
-public class SysUserService : AdminBaseService<SysUserRepository>
+public class SysUserService : AdminBaseService<IRepository<SysUser>>
 {
-    private readonly SysUserRoleRepository _sysUserRoleRepository;
-    private readonly SysRoleRepository _sysRoleRepository;
-    private readonly SysUserPostRepository _sysUserPostRepository;
-    private readonly SysPostRepository _sysPostRepository;
-    private readonly IAccountService _accountService;
+    private readonly IRepository<SysUserRole> _sysUserRoleRepository;
+    private readonly IRepository<SysRole> _sysRoleRepository;
+    private readonly IRepository<SysUserPost> _sysUserPostRepository;
+    private readonly IRepository<SysPost> _sysPostRepository;
+    private readonly IAccountDomainService _accountService;
     private readonly SysMenuService _sysMenuService;
 
-    public SysUserService(SysUserRepository repository,
-        SysUserRoleRepository sysUserRoleRepository,
-        SysRoleRepository sysRoleRepository,
-        SysUserPostRepository sysUserPostRepository,
-        SysPostRepository sysPostRepository,
-        IAccountService accountService,
-        SysMenuService sysMenuService) : base(repository)
+    public SysUserService(IRepository<SysUser> defaultRepository,
+        IRepository<SysUserRole> sysUserRoleRepository,
+        IRepository<SysRole> sysRoleRepository,
+        IRepository<SysUserPost> sysUserPostRepository,
+        IRepository<SysPost> sysPostRepository,
+        IAccountDomainService accountService,
+        SysMenuService sysMenuService) : base(defaultRepository)
     {
         _sysUserRoleRepository = sysUserRoleRepository;
         _sysRoleRepository = sysRoleRepository;
@@ -58,8 +58,8 @@ public class SysUserService : AdminBaseService<SysUserRepository>
     public async Task<PagingViewModel> FindListAsync(int page, int size, SysUser search)
     {
         var accountInfo = _accountService.GetAccountInfo();
-        var query = (from sysUser in this.Repository.QueryByDataAuthority(accountInfo, w => w.Id)
-                     from sysOrganization in this.Repository.Orm.SysOrganization.Where(w => w.Id == sysUser.OrganizationId).DefaultIfEmpty()
+        var query = (from sysUser in this._defaultRepository.QueryByDataAuthority(accountInfo, w => w.Id)
+                     from sysOrganization in this._defaultRepository.Orm.SysOrganization.Where(w => w.Id == sysUser.OrganizationId).DefaultIfEmpty()
                      select new { t1 = sysUser, t2 = sysOrganization })
                 .WhereIf(search.OrganizationId != null, w => w.t1.OrganizationId == search.OrganizationId)
                 .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), w => w.t1.Name.Contains(search.Name))
@@ -71,8 +71,8 @@ public class SysUserService : AdminBaseService<SysUserRepository>
                     w.t1.Id,
                     w.t1.Name,
                     w.t1.LoginName,
-                    所属角色 = string.Join(",", from userRole in this.Repository.Orm.SysUserRole
-                                            join role in this.Repository.Orm.SysRole on userRole.RoleId equals role.Id
+                    所属角色 = string.Join(",", from userRole in this._defaultRepository.Orm.SysUserRole
+                                            join role in this._defaultRepository.Orm.SysRole on userRole.RoleId equals role.Id
                                             where userRole.UserId == w.t1.Id
                                             select role.Name),
                     OrganizationName = w.t2.Name,
@@ -83,7 +83,7 @@ public class SysUserService : AdminBaseService<SysUserRepository>
                 })
             ;
 
-        return await this.Repository.AsPagingViewModelAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
     }
 
     /// <summary>
@@ -95,10 +95,10 @@ public class SysUserService : AdminBaseService<SysUserRepository>
     {
         foreach (var item in ids)
         {
-            var userModel = await this.Repository.FindByIdAsync(item);
+            var userModel = await this._defaultRepository.FindByIdAsync(item);
             if (userModel.DeleteLock) MessageBox.Show("该信息已被锁定不能删除！");
             await this._sysUserRoleRepository.DeleteAsync(w => w.UserId == item);
-            await this.Repository.DeleteAsync(userModel);
+            await this._defaultRepository.DeleteAsync(userModel);
             //清除缓存
             _accountService.DeleteCacheAccountInfoById(item.ToString());
         }
@@ -113,7 +113,7 @@ public class SysUserService : AdminBaseService<SysUserRepository>
     {
         var res = new Dictionary<string, object>();
 
-        var form = (await this.Repository.FindByIdAsync(id)).NullSafe();
+        var form = (await this._defaultRepository.FindByIdAsync(id)).NullSafe();
         //角色信息
         var roleIds = await this._sysUserRoleRepository.Select
             .Where(w => w.UserId == id)
@@ -157,7 +157,7 @@ public class SysUserService : AdminBaseService<SysUserRepository>
         {
             if (string.IsNullOrWhiteSpace(model.Password))
             {
-                var user = await this.Repository.FindByIdAsync(model.Id);
+                var user = await this._defaultRepository.FindByIdAsync(model.Id);
                 model.Password = user.Password;
             }
             else
@@ -166,12 +166,12 @@ public class SysUserService : AdminBaseService<SysUserRepository>
             }
         }
 
-        if (await this.Repository.AnyAsync(w => w.LoginName == model.LoginName && w.Id != model.Id))
+        if (await this._defaultRepository.AnyAsync(w => w.LoginName == model.LoginName && w.Id != model.Id))
         {
             MessageBox.Show("登录账号名称已存在!");
         }
 
-        await this.Repository.InsertOrUpdateAsync(form.Form);
+        await this._defaultRepository.InsertOrUpdateAsync(form.Form);
 
         //变更用户角色
         if (form.RoleIds.Count > 0)

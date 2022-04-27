@@ -2,17 +2,15 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HZY.Domain.Services.Accounts;
 using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HZY.Services.Admin.Framework;
-using HZY.Services.Upload;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 
@@ -21,15 +19,15 @@ namespace HZY.Services.Admin.Framework
     /// <summary>
     /// 服务 SysDataAuthorityService
     /// </summary>
-    public class SysDataAuthorityService : AdminBaseService<SysDataAuthorityRepository>
+    public class SysDataAuthorityService : AdminBaseService<IRepository<SysDataAuthority>>
     {
-        private readonly IAccountService _accountService;
-        private readonly SysDataAuthorityCustomRepository _sysDataAuthorityCustomRepository;
+        private readonly IAccountDomainService _accountService;
+        private readonly IRepository<SysDataAuthorityCustom> _sysDataAuthorityCustomRepository;
 
-        public SysDataAuthorityService(SysDataAuthorityRepository repository,
-        IAccountService accountService,
-        SysDataAuthorityCustomRepository sysDataAuthorityCustomRepository)
-            : base(repository)
+        public SysDataAuthorityService(IRepository<SysDataAuthority> defaultRepository,
+        IAccountDomainService accountService,
+        IRepository<SysDataAuthorityCustom> sysDataAuthorityCustomRepository)
+            : base(defaultRepository)
         {
             _accountService = accountService;
             _sysDataAuthorityCustomRepository = sysDataAuthorityCustomRepository;
@@ -44,7 +42,7 @@ namespace HZY.Services.Admin.Framework
         /// <returns></returns>
         public async Task<PagingViewModel> FindListAsync(int page, int size, SysDataAuthority search)
         {
-            var query = this.Repository.Select
+            var query = this._defaultRepository.Select
                     .OrderByDescending(w => w.CreationTime)
                     .Select(w => new
                     {
@@ -56,7 +54,7 @@ namespace HZY.Services.Admin.Framework
                     })
                 ;
 
-            return await this.Repository.AsPagingViewModelAsync(query, page, size);
+            return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
         }
 
         /// <summary>
@@ -66,7 +64,7 @@ namespace HZY.Services.Admin.Framework
         /// <returns></returns>
         public async Task DeleteListAsync(List<Guid> ids)
         {
-            await this.Repository.DeleteByIdsAsync(ids);
+            await this._defaultRepository.DeleteByIdsAsync(ids);
         }
 
         /// <summary>
@@ -77,7 +75,7 @@ namespace HZY.Services.Admin.Framework
         public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
         {
             var res = new Dictionary<string, object>();
-            var form = await this.Repository.FindByIdAsync(id);
+            var form = await this._defaultRepository.FindByIdAsync(id);
             form = form.NullSafe();
 
             res[nameof(id)] = id == Guid.Empty ? "" : id;
@@ -92,7 +90,7 @@ namespace HZY.Services.Admin.Framework
         /// <returns></returns>
         public async Task<SysDataAuthority> SaveFormAsync(SysDataAuthorityFormDto form)
         {
-            var sysDataAuthority = await this.Repository.InsertOrUpdateAsync(form.SysDataAuthority);
+            var sysDataAuthority = await this._defaultRepository.InsertOrUpdateAsync(form.SysDataAuthority);
 
             //删除集合 操作自定义数据权限
             await this._sysDataAuthorityCustomRepository.DeleteAsync(w => w.SysDataAuthorityId == sysDataAuthority.Id);
@@ -126,7 +124,7 @@ namespace HZY.Services.Admin.Framework
         {
             var result = new Dictionary<string, object>();
 
-            var sysDataAuthority = await this.Repository.FindAsync(w => w.RoleId == roleId);
+            var sysDataAuthority = await this._defaultRepository.FindAsync(w => w.RoleId == roleId);
             sysDataAuthority = sysDataAuthority.NullSafe();
             var sysDataAuthorityCustomList = await _sysDataAuthorityCustomRepository.Select
             .Where(w => w.SysDataAuthorityId == sysDataAuthority.Id)

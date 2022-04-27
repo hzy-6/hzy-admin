@@ -5,16 +5,13 @@ using System.Threading.Tasks;
 using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
-using HZY.Repositories;
-using HZY.Repositories.Framework;
 using HZY.Services.Admin.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;
-using HZY.Services.Upload;
 using Microsoft.AspNetCore.Http;
-using HZY.Repositories.DevelopmentTool.LowCode;
-using HZY.Repositories.DevelopmentTool;
 using HZY.Models.Entities.LowCode;
 using HzyEFCoreRepositories.Extensions;
+using HZY.EFCore.Repositories.DevelopmentTool.LowCode;
+using HZY.EFCore.Repositories.DevelopmentTool;
 
 namespace HZY.Services.Admin
 {
@@ -26,10 +23,10 @@ namespace HZY.Services.Admin
         private readonly Low_Code_TableRepository _low_Code_TableRepository;
         private readonly DatabaseTablesRepository _databaseTablesRepository;
 
-        public Low_Code_Table_InfoService(Low_Code_Table_InfoRepository repository,
+        public Low_Code_Table_InfoService(Low_Code_Table_InfoRepository defaultRepository,
             Low_Code_TableRepository low_Code_TableRepository,
             DatabaseTablesRepository databaseTablesRepository)
-            : base(repository)
+            : base(defaultRepository)
         {
             _low_Code_TableRepository = low_Code_TableRepository;
             _databaseTablesRepository = databaseTablesRepository;
@@ -44,7 +41,7 @@ namespace HZY.Services.Admin
         /// <returns></returns>
         public async Task<PagingViewModel> FindListAsync(int page, int size, Low_Code_Table_Info search)
         {
-            var query = this.Repository.Select
+            var query = this._defaultRepository.Select
                     .WhereIf(search.Low_Code_TableId != Guid.Empty, w => w.Low_Code_TableId == search.Low_Code_TableId)
                     .WhereIf(!string.IsNullOrWhiteSpace(search.ColumnName), w => w.ColumnName.Contains(search.ColumnName))
                     .WhereIf(!string.IsNullOrWhiteSpace(search.Describe), w => w.Describe.Contains(search.Describe))
@@ -67,7 +64,7 @@ namespace HZY.Services.Admin
                     })
                 ;
 
-            return await this.Repository.AsPagingViewModelAsync(query, page, size);
+            return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
         }
 
         /// <summary>
@@ -77,7 +74,7 @@ namespace HZY.Services.Admin
         /// <returns></returns>
         public Task DeleteListAsync(List<Guid> ids)
         {
-            return this.Repository.DeleteByIdsAsync(ids);
+            return this._defaultRepository.DeleteByIdsAsync(ids);
         }
 
         /// <summary>
@@ -92,7 +89,7 @@ namespace HZY.Services.Admin
             var tableInfo = allTables.Find(w => w.Name == table.TableName);
 
             //
-            await this.Repository.DeleteAsync(w => w.Low_Code_TableId == table.Id);
+            await this._defaultRepository.DeleteAsync(w => w.Low_Code_TableId == table.Id);
             var list = new List<Low_Code_Table_Info>();
             foreach (var item in tableInfo.Columns)
             {
@@ -110,7 +107,7 @@ namespace HZY.Services.Admin
                 list.Add(model);
             }
 
-            await this.Repository.InsertRangeAsync(list);
+            await this._defaultRepository.InsertRangeAsync(list);
         }
 
         /// <summary>
@@ -120,7 +117,7 @@ namespace HZY.Services.Admin
         /// <returns></returns>
         public Task ChangeAsync(List<Low_Code_Table_Info> low_Code_Table_Infos)
         {
-            return this.Repository.UpdateRangeAsync(low_Code_Table_Infos);
+            return this._defaultRepository.UpdateRangeAsync(low_Code_Table_Infos);
         }
 
 

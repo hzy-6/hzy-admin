@@ -1,10 +1,10 @@
 ﻿using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -21,14 +21,16 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 角色服务
 /// </summary>
-public class SysRoleService : AdminBaseService<SysRoleRepository>
+public class SysRoleService : AdminBaseService<IRepository<SysRole>>
 {
-    private readonly SysUserRoleRepository _sysUserRoleRepository;
-    private readonly SysDataAuthorityRepository _sysDataAuthorityRepository;
-    private readonly SysDataAuthorityCustomRepository _sysDataAuthorityCustomRepository;
+    private readonly IRepository<SysUserRole> _sysUserRoleRepository;
+    private readonly IRepository<SysDataAuthority> _sysDataAuthorityRepository;
+    private readonly IRepository<SysDataAuthorityCustom> _sysDataAuthorityCustomRepository;
 
-    public SysRoleService(SysRoleRepository repository, SysUserRoleRepository sysUserRoleRepository, SysDataAuthorityRepository sysDataAuthorityRepository, SysDataAuthorityCustomRepository sysDataAuthorityCustomRepository) : base(
-        repository)
+    public SysRoleService(IRepository<SysRole> defaultRepository, 
+        IRepository<SysUserRole> sysUserRoleRepository, 
+        IRepository<SysDataAuthority> sysDataAuthorityRepository, 
+        IRepository<SysDataAuthorityCustom> sysDataAuthorityCustomRepository) : base(defaultRepository)
     {
         _sysUserRoleRepository = sysUserRoleRepository;
         _sysDataAuthorityRepository = sysDataAuthorityRepository;
@@ -44,8 +46,8 @@ public class SysRoleService : AdminBaseService<SysRoleRepository>
     /// <returns></returns>
     public async Task<PagingViewModel> FindListAsync(int page, int size, SysRole search)
     {
-        var query = (from sysRole in this.Repository.Select
-                     from sysDataAuthority in this.Repository.Orm.SysDataAuthority
+        var query = (from sysRole in this._defaultRepository.Select
+                     from sysDataAuthority in this._defaultRepository.Orm.SysDataAuthority
                      .Where(w => w.RoleId == sysRole.Id)
                      .DefaultIfEmpty()
                      select new
@@ -68,7 +70,7 @@ public class SysRoleService : AdminBaseService<SysRoleRepository>
                     })
                     ;
 
-        return await this.Repository.AsPagingViewModelAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
     }
 
     /// <summary>
@@ -80,9 +82,9 @@ public class SysRoleService : AdminBaseService<SysRoleRepository>
     {
         foreach (var item in ids)
         {
-            var role = await this.Repository.FindByIdAsync(item);
+            var role = await this._defaultRepository.FindByIdAsync(item);
             if (role.DeleteLock) MessageBox.Show("该信息已被锁定不能删除！");
-            await this.Repository.DeleteAsync(role);
+            await this._defaultRepository.DeleteAsync(role);
             await this._sysUserRoleRepository.DeleteAsync(w => w.RoleId == item);
             var list = await this._sysDataAuthorityRepository.ToListAsync(w => w.RoleId == item);
             await this._sysDataAuthorityCustomRepository.DeleteAsync(w => list.Select(w => w.Id).Contains(w.SysDataAuthorityId.Value));
@@ -98,12 +100,12 @@ public class SysRoleService : AdminBaseService<SysRoleRepository>
     public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
     {
         var res = new Dictionary<string, object>();
-        var form = await this.Repository.FindByIdAsync(id);
+        var form = await this._defaultRepository.FindByIdAsync(id);
         form = form.NullSafe();
 
         if (id == Guid.Empty)
         {
-            var maxNum = await this.Repository.Select.MaxAsync(w => w.Number);
+            var maxNum = await this._defaultRepository.Select.MaxAsync(w => w.Number);
             form.Number = maxNum + 1;
         }
 
@@ -119,7 +121,7 @@ public class SysRoleService : AdminBaseService<SysRoleRepository>
     /// <returns></returns>
     public async Task<SysRole> SaveFormAsync(SysRole form)
     {
-        return await this.Repository.InsertOrUpdateAsync(form);
+        return await this._defaultRepository.InsertOrUpdateAsync(form);
     }
 
     /// <summary>

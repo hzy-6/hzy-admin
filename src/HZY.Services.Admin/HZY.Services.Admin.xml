@@ -108,11 +108,6 @@
             <param name="ignore"></param>
             <returns></returns>
         </member>
-        <member name="T:HZY.Services.Admin.BaseServicesAdmin.ServicesAdminConsts">
-            <summary>
-            app 常量定义类
-            </summary>
-        </member>
         <member name="T:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService">
             <summary>
             代码生成服务

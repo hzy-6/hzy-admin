@@ -1,7 +1,7 @@
 ﻿using HZY.Controllers.Admin.ControllersAdmin;
+using HZY.Domain.Services.Quartz;
+using HZY.Domain.Services.Quartz.Models;
 using HZY.Infrastructure.Permission.Attributes;
-using HZY.Infrastructure.Quartz;
-using HZY.Quartz.Entitys;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -29,7 +29,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// <param name="filter"></param>
         /// <returns></returns>
         [HttpPost("FindList/{filter?}")]
-        public async Task<List<Tasks>> FindListAsync([FromRoute] string filter) => (await DefaultService.FindListAsync(filter))?.ToList();
+        public async Task<List<Tasks>> FindListAsync([FromRoute] string filter) => (await _defaultService.FindListAsync(filter))?.ToList();
 
         /// <summary>
         /// 保存数据
@@ -37,7 +37,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// <param name="form"></param>
         /// <returns></returns>
         [HttpPost("SaveForm")]
-        public async Task<Tasks> SaveFormAsync([FromBody] Tasks form) => await DefaultService.SaveAsync(form);
+        public async Task<Tasks> SaveFormAsync([FromBody] Tasks form) => await _defaultService.SaveAsync(form);
 
         /// <summary>
         /// 删除数据
@@ -45,7 +45,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// <param name="ids"></param>
         /// <returns></returns>
         [HttpPost("DeleteList")]
-        public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids) => await DefaultService.DeleteAsync(ids);
+        public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids) => await _defaultService.DeleteAsync(ids);
 
         /// <summary>
         /// 根据Id 查询表单数据
@@ -53,7 +53,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// <param name="id"></param>
         /// <returns></returns>
         [HttpGet("FindForm/{id?}")]
-        public async Task<Tasks> FindFormAsync([FromRoute] Guid id) => await DefaultService.FindByIdAsync(id);
+        public async Task<Tasks> FindFormAsync([FromRoute] Guid id) => await _defaultService.FindByIdAsync(id);
 
         /// <summary>
         /// 根据任务id 运行任务调度
@@ -65,7 +65,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         {
             foreach (var item in ids)
             {
-                await DefaultService.RunByIdAsync(item);
+                await _defaultService.RunByIdAsync(item);
             }
             return true;
         }
@@ -80,7 +80,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         {
             foreach (var item in ids)
             {
-                await DefaultService.CloseByIdAsync(item);
+                await _defaultService.CloseByIdAsync(item);
             }
             return true;
         }

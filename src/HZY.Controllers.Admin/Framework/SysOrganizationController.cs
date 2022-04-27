@@ -1,12 +1,11 @@
 ﻿using HZY.Controllers.Admin.ControllersAdmin;
 using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
@@ -23,9 +22,9 @@ namespace HZY.Controllers.Admin.Framework;
 /// </summary>
 public class SysOrganizationController : AdminBaseController<SysOrganizationService>
 {
-    private readonly SysOrganizationRepository _sysOrganizationRepository;
+    private readonly IRepository<SysOrganization> _sysOrganizationRepository;
 
-    public SysOrganizationController(SysOrganizationService defaultService, SysOrganizationRepository sysOrganizationRepository) : base("21", defaultService)
+    public SysOrganizationController(SysOrganizationService defaultService, IRepository<SysOrganization> sysOrganizationRepository) : base("21", defaultService)
     {
         _sysOrganizationRepository = sysOrganizationRepository;
         this.SetMenuName("组织机构");
@@ -39,7 +38,7 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     [HttpPost("FindList")]
     public async Task<List<SysOrganization>> FindListAsync([FromBody] SysOrganization search)
     {
-        return await this.DefaultService.FindListAsync(search);
+        return await this._defaultService.FindListAsync(search);
     }
 
     /// <summary>
@@ -50,7 +49,7 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     [HttpPost("DeleteList")]
     public async Task<bool> DeleteListAsync([FromBody] List<int> ids)
     {
-        await this.DefaultService.DeleteListAsync(ids);
+        await this._defaultService.DeleteListAsync(ids);
         return true;
     }
 
@@ -63,7 +62,7 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     [HttpGet("FindForm/{id?}/{parentId?}")]
     public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] int id, int parentId)
     {
-        return await this.DefaultService.FindFormAsync(id, parentId);
+        return await this._defaultService.FindFormAsync(id, parentId);
     }
 
     /// <summary>
@@ -74,7 +73,7 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     [HttpPost("SaveForm")]
     public async Task<SysOrganization> SaveFormAsync([FromBody] SysOrganization form)
     {
-        return await this.DefaultService.SaveFormAsync(form);
+        return await this._defaultService.SaveFormAsync(form);
     }
 
     /// <summary>
@@ -85,13 +84,13 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     public async Task<dynamic> GetSysOrganizationTreeAsync()
     {
         var expandedRowKeys = new List<int>();
-        var data = await this.DefaultService.GetSysOrganizationTreeAsync(expandedRowKeys, null, null);
+        var data = await this._defaultService.GetSysOrganizationTreeAsync(expandedRowKeys, null, null);
 
         return new
         {
             expandedRowKeys,
             allKeys = await this._sysOrganizationRepository.Select.OrderBy(w => w.OrderNumber).Select(w => w.Id).ToListAsync(),
-            rows = await this.DefaultService.GetSysOrganizationTreeAsync(data)
+            rows = await this._defaultService.GetSysOrganizationTreeAsync(data)
         };
     }
 

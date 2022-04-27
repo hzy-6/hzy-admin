@@ -1,10 +1,10 @@
 ﻿using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -18,9 +18,9 @@ using System.Threading.Tasks;
 
 namespace HZY.Services.Admin.Framework;
 
-public class SysOrganizationService : AdminBaseService<SysOrganizationRepository>
+public class SysOrganizationService : AdminBaseService<IRepository<SysOrganization>>
 {
-    public SysOrganizationService(SysOrganizationRepository repository) : base(repository)
+    public SysOrganizationService(IRepository<SysOrganization> defaultRepository) : base(defaultRepository)
     {
 
     }
@@ -32,7 +32,7 @@ public class SysOrganizationService : AdminBaseService<SysOrganizationRepository
     /// <returns></returns>
     public async Task<List<SysOrganization>> FindListAsync(SysOrganization search)
     {
-        var query = this.Repository.Select
+        var query = this._defaultRepository.Select
             .WhereIf(search?.State == null, w => w.State == StateEnum.正常)
             .WhereIf(search?.State != null, w => w.State == search.State)
             .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), w => w.Name.Contains(search.Name))
@@ -57,10 +57,10 @@ public class SysOrganizationService : AdminBaseService<SysOrganizationRepository
         foreach (var item in ids)
         {
             //删除当前菜单及一下的子集菜单
-            var sysOrganization = await this.Repository.FindByIdAsync(item);
-            var sysOrganizations = await this.Repository
+            var sysOrganization = await this._defaultRepository.FindByIdAsync(item);
+            var sysOrganizations = await this._defaultRepository
                 .ToListAsync(w => w.LevelCode == sysOrganization.LevelCode || w.LevelCode.StartsWith(sysOrganization.LevelCode + "."));
-            await this.Repository.DeleteAsync(sysOrganizations);
+            await this._defaultRepository.DeleteAsync(sysOrganizations);
         }
     }
 
@@ -73,12 +73,12 @@ public class SysOrganizationService : AdminBaseService<SysOrganizationRepository
     public async Task<Dictionary<string, object>> FindFormAsync(int id, int parentId)
     {
         var res = new Dictionary<string, object>();
-        var form = await this.Repository.FindByIdAsync(id);
+        var form = await this._defaultRepository.FindByIdAsync(id);
         form = form.NullSafe();
 
         if (id == 0)
         {
-            var maxNum = await this.Repository.Select
+            var maxNum = await this._defaultRepository.Select
                 .WhereIf(parentId == 0, w => w.ParentId == null)
                 .WhereIf(parentId != 0, w => w.ParentId == parentId)
                 .MaxAsync(w => w.OrderNumber);
@@ -97,7 +97,7 @@ public class SysOrganizationService : AdminBaseService<SysOrganizationRepository
     /// <returns></returns>
     public async Task<SysOrganization> SaveFormAsync(SysOrganization form)
     {
-        var model = await this.Repository.InsertOrUpdateAsync(form);
+        var model = await this._defaultRepository.InsertOrUpdateAsync(form);
 
         #region 更新级别码
 
@@ -107,11 +107,11 @@ public class SysOrganizationService : AdminBaseService<SysOrganizationRepository
         }
         else
         {
-            var parent = await this.Repository.FindByIdAsync(model.ParentId);
+            var parent = await this._defaultRepository.FindByIdAsync(model.ParentId);
             model.LevelCode = parent.LevelCode + "." + model.Id;
         }
 
-        model = await this.Repository.InsertOrUpdateAsync(model);
+        model = await this._defaultRepository.InsertOrUpdateAsync(model);
 
         #endregion
 
@@ -132,7 +132,7 @@ public class SysOrganizationService : AdminBaseService<SysOrganizationRepository
         var isFirst = (sysOrganizations == null || sysOrganizations.Count == 0) && sysOrganization == null;
         if (isFirst)
         {
-            sysOrganizations = await this.Repository.Select.OrderBy(w => w.OrderNumber).ToListAsync();
+            sysOrganizations = await this._defaultRepository.Select.OrderBy(w => w.OrderNumber).ToListAsync();
 
             foreach (var item in sysOrganizations.Where(w => w.ParentId == null || w.ParentId == 0))
             {

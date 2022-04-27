@@ -1,10 +1,10 @@
 ﻿using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
@@ -21,9 +21,9 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 数据字典服务
 /// </summary>
-public class SysDictionaryService : AdminBaseService<SysDictionaryRepository>
+public class SysDictionaryService : AdminBaseService<IRepository<SysDictionary>>
 {
-    public SysDictionaryService(SysDictionaryRepository repository) : base(repository)
+    public SysDictionaryService(IRepository<SysDictionary> defaultRepository) : base(defaultRepository)
     {
 
     }
@@ -37,8 +37,8 @@ public class SysDictionaryService : AdminBaseService<SysDictionaryRepository>
     /// <returns></returns>
     public async Task<PagingViewModel> FindListAsync(int page, int size, SysDictionary search)
     {
-        var query = (from sysDictionary in this.Repository.Orm.SysDictionary
-                     from sysDictionaryParent in this.Repository.Orm.SysDictionary.Where(w => w.Id == sysDictionary.ParentId).DefaultIfEmpty()
+        var query = (from sysDictionary in this._defaultRepository.Orm.SysDictionary
+                     from sysDictionaryParent in this._defaultRepository.Orm.SysDictionary.Where(w => w.Id == sysDictionary.ParentId).DefaultIfEmpty()
                      select new { t1 = sysDictionary, t2 = sysDictionaryParent })
               .WhereIf(search?.ParentId == 0 || search?.ParentId == null, w => w.t1.ParentId == null || w.t1.ParentId == 0)
               .WhereIf(search?.ParentId != 0 && search?.ParentId != null, w => w.t1.ParentId == search.ParentId)
@@ -57,7 +57,7 @@ public class SysDictionaryService : AdminBaseService<SysDictionaryRepository>
               })
           ;
 
-        return await this.Repository.AsPagingViewModelAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
     }
 
     /// <summary>
@@ -67,7 +67,7 @@ public class SysDictionaryService : AdminBaseService<SysDictionaryRepository>
     /// <returns></returns>
     public async Task DeleteListAsync(List<Guid> ids)
     {
-        await this.Repository.DeleteByIdsAsync(ids);
+        await this._defaultRepository.DeleteByIdsAsync(ids);
     }
 
     /// <summary>
@@ -79,7 +79,7 @@ public class SysDictionaryService : AdminBaseService<SysDictionaryRepository>
     {
         var res = new Dictionary<string, object>();
 
-        var form = await this.Repository.FindByIdAsync(id);
+        var form = await this._defaultRepository.FindByIdAsync(id);
 
         res[nameof(id)] = id == 0 ? "" : id;
         res[nameof(form)] = form.NullSafe();
@@ -93,7 +93,7 @@ public class SysDictionaryService : AdminBaseService<SysDictionaryRepository>
     /// <returns></returns>
     public async Task<SysDictionary> SaveFormAsync(SysDictionary form)
     {
-        return await this.Repository.InsertOrUpdateAsync(form);
+        return await this._defaultRepository.InsertOrUpdateAsync(form);
     }
 
     /// <summary>
@@ -113,7 +113,7 @@ public class SysDictionaryService : AdminBaseService<SysDictionaryRepository>
     /// <returns></returns>
     public async Task<List<SysDictionaryDto>> GetDictionaryTreeAsync()
     {
-        var allDictionary = await this.Repository.ToListAllAsync();
+        var allDictionary = await this._defaultRepository.ToListAllAsync();
         return this.CreateDictionaryTree(0, allDictionary);
     }
 
@@ -163,9 +163,9 @@ public class SysDictionaryService : AdminBaseService<SysDictionaryRepository>
             MessageBox.Show("参数Code是空!");
         }
 
-        var dictionary = await this.Repository.FindAsync(w => w.Code == code);
+        var dictionary = await this._defaultRepository.FindAsync(w => w.Code == code);
         if (dictionary == null) return default;
-        var dictionarys = await this.Repository.Select.Where(w => w.ParentId == dictionary.Id).ToListAsync();
+        var dictionarys = await this._defaultRepository.Select.Where(w => w.ParentId == dictionary.Id).ToListAsync();
         if (dictionarys.Any()) return default;
         var result = new List<SysDictionaryDto>();
         return this.CreateDictionaryTree(dictionary.Id, dictionarys);

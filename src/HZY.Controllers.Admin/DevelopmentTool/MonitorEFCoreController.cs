@@ -27,7 +27,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         [HttpPost("GetEFCoreMonitorContext")]
         public EFCoreMonitorContext GetEFCoreMonitorContext()
         {
-            return DefaultService.GetEFCoreMonitorContext();
+            return _defaultService.GetEFCoreMonitorContext();
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         [HttpPost("GetTimeConsumingRanking")]
         public List<EFCoreMonitorSqlContext> GetTimeConsumingRanking()
         {
-            return DefaultService.GetTimeConsumingRanking();
+            return _defaultService.GetTimeConsumingRanking();
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         [HttpPost("GetNewest")]
         public List<EFCoreMonitorSqlContext> GetNewest()
         {
-            return DefaultService.GetNewest();
+            return _defaultService.GetNewest();
         }
 
 

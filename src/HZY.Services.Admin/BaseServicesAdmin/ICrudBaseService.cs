@@ -1,5 +1,5 @@
 ﻿using HZY.EFCore.Models;
-using HZY.Repositories.BaseRepositories;
+using HZY.EFCore.Repositories.Base;
 using HzyScanDiService.Interface;
 using System;
 using System.Collections.Generic;
@@ -9,8 +9,8 @@ using System.Threading.Tasks;
 
 namespace HZY.Services.Admin.BaseServicesAdmin
 {
-    public interface ICrudBaseService<TRepository, TSearchDto, TFormDto, TEntity, TKey> : IDiTransientSelf
-        where TRepository : IAdminEfCoreBaseRepository<TEntity>
+    public interface ICrudBaseService<TRepository, TSearchDto, TFormDto, TEntity, TKey> : IDiScopedSelf
+        where TRepository : IRepository<TEntity>
         where TSearchDto : class
         where TFormDto : class, new()
         where TEntity : class, new()

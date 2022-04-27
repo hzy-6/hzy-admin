@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Linq;
 using System.Linq.Expressions;
-using HZY.EFCore.CacheEntity;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Token;
 using HZY.Models.Entities;
@@ -73,19 +72,6 @@ public class AdminBaseDbContext : BaseDbContext<AdminBaseDbContext>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        try
-        {
-            //缓存实体信息
-            using var scope = ServiceProviderExtensions.CreateScope();
-            var _cacheEntity = scope.ServiceProvider.GetService<ICacheEntity>();
-            //扫描表 并 缓存 属性 xml 信息
-            _cacheEntity.Set(modelBuilder.Model.GetEntityTypes().Select(item => item.ClrType));
-        }
-        catch (Exception)
-        {
-
-        }
-
         #region 过滤软删除
 
         foreach (var entityType in modelBuilder.Model

@@ -1,11 +1,7 @@
-﻿using HZY.EFCore.CacheEntity;
-using HZY.EFCore.CacheEntity.Impl;
-using HZY.EFCore.DbContexts;
+﻿using HZY.EFCore.DbContexts;
 using HZY.EFCore.Interceptor;
 using HZY.Infrastructure;
 using HzyEFCoreRepositories.Extensions;
-using HzyEFCoreRepositories.Interceptor;
-using HzyScanDiService.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;

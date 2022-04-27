@@ -12,8 +12,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\HZY.Repositories\HZY.Repositories.csproj" />
-		<ProjectReference Include="..\HZY.Services\HZY.Services.csproj" />
+	  <ProjectReference Include="..\HZY.Domain.Services\HZY.Domain.Services.csproj" />
+	  <ProjectReference Include="..\HZY.EFCore\HZY.EFCore.csproj" />
 	</ItemGroup>
 
 </Project>

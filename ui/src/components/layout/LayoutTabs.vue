@@ -96,8 +96,6 @@ export default defineComponent({
 
   .ant-tabs-tab {
     border: 0 !important;
-    height: 32px;
-    padding: 4px 15px;
     background: #ffffff !important;
 
     .close {

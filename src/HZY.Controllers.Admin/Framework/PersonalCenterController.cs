@@ -1,9 +1,8 @@
 ﻿using HZY.Controllers.Admin.ControllersAdmin;
+using HZY.Domain.Services.Accounts;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -15,14 +14,12 @@ namespace HZY.Controllers.Admin.Framework;
 /// </summary>
 public class PersonalCenterController : AdminBaseController<SysUserService>
 {
-    private readonly IAccountService _accountService;
-    private readonly SysUserRepository _sysUserRepository;
+    private readonly IAccountDomainService _accountService;
 
-    public PersonalCenterController(SysUserService defaultService, IAccountService accountService, SysUserRepository sysUserRepository)
+    public PersonalCenterController(SysUserService defaultService, IAccountDomainService accountService)
         : base("19", defaultService)
     {
         _accountService = accountService;
-        _sysUserRepository = sysUserRepository;
     }
 
     /// <summary>

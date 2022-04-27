@@ -8,11 +8,11 @@ public class ApiBaseController<TDefaultService> : ApiBaseController where TDefau
     /// <summary>
     /// 默认服务
     /// </summary>
-    protected readonly TDefaultService DefaultService;
+    protected readonly TDefaultService _defaultService;
 
     public ApiBaseController(TDefaultService defaultService)
     {
-        this.DefaultService = defaultService;
+        this._defaultService = defaultService;
     }
 
 }

@@ -7,12 +7,9 @@ using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
 using HZY.Models.Entities.LowCode;
-using HZY.Repositories.Framework;
-using HZY.Services.Accounts;
 using HZY.Services.Admin;
 using HZY.Services.Admin.Framework;
 using HZY.Services.Admin.Memebers;
-using HZY.Services.Consts;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -40,7 +37,7 @@ namespace HZY.Controllers.Admin
         [HttpPost("FindList/{size}/{page}")]
         public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] Low_Code_Table_Info search)
         {
-            return await this.DefaultService.FindListAsync(page, size, search);
+            return await this._defaultService.FindListAsync(page, size, search);
         }
 
         /// <summary>
@@ -51,7 +48,7 @@ namespace HZY.Controllers.Admin
         [HttpPost("DeleteList")]
         public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
         {
-            await this.DefaultService.DeleteListAsync(ids);
+            await this._defaultService.DeleteListAsync(ids);
             return true;
         }
 
@@ -62,7 +59,7 @@ namespace HZY.Controllers.Admin
         [HttpPost("Synchronization/{tableId}")]
         public Task SynchronizationAsync([FromRoute] Guid tableId)
         {
-            return this.DefaultService.SynchronizationColumnByTableIdAsync(tableId);
+            return this._defaultService.SynchronizationColumnByTableIdAsync(tableId);
         }
 
         /// <summary>
@@ -73,7 +70,7 @@ namespace HZY.Controllers.Admin
         [HttpPost("Change")]
         public Task ChangeAsync([FromBody] List<Low_Code_Table_Info> low_Code_Table_Infos)
         {
-            return this.DefaultService.ChangeAsync(low_Code_Table_Infos);
+            return this._defaultService.ChangeAsync(low_Code_Table_Infos);
         }
 
     }

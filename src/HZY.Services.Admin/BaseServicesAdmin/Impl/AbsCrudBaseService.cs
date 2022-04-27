@@ -1,6 +1,6 @@
 ﻿using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
-using HZY.Repositories.BaseRepositories;
 using NPOI.HSSF.UserModel;
 using System;
 using System.Collections.Generic;
@@ -20,16 +20,16 @@ namespace HZY.Services.Admin.BaseServicesAdmin.Impl;
 /// <typeparam name="TEntity">实体模型</typeparam>
 /// <typeparam name="TKey">主键类型</typeparam>
 public abstract class AbsCrudBaseService<TRepository, TSearchDto, TFormDto, TEntity, TKey> : ICrudBaseService<TRepository, TSearchDto, TFormDto, TEntity, TKey>
-        where TRepository : IAdminEfCoreBaseRepository<TEntity>
+        where TRepository : IRepository<TEntity>
         where TSearchDto : class
         where TFormDto : class, new()
         where TEntity : class, new()
 {
-    protected readonly TRepository Repository;
+    protected readonly TRepository _repository;
 
     protected AbsCrudBaseService(TRepository repository)
     {
-        Repository = repository;
+        _repository = repository;
     }
 
     /// <summary>
@@ -39,7 +39,7 @@ public abstract class AbsCrudBaseService<TRepository, TSearchDto, TFormDto, TEnt
     /// <returns></returns>
     public virtual Task DeleteListAsync(List<TKey> ids)
     {
-        return this.Repository.DeleteByIdsAsync(ids);
+        return this._repository.DeleteByIdsAsync(ids);
     }
 
     /// <summary>
@@ -61,7 +61,7 @@ public abstract class AbsCrudBaseService<TRepository, TSearchDto, TFormDto, TEnt
     public virtual async Task<Dictionary<string, object>> FindFormAsync(TKey id)
     {
         var res = new Dictionary<string, object>();
-        var form = await this.Repository.FindByIdAsync(id);
+        var form = await this._repository.FindByIdAsync(id);
         form = form.NullSafe();
 
         if (id is Guid)
@@ -101,7 +101,7 @@ public abstract class AbsCrudBaseService<TRepository, TSearchDto, TFormDto, TEnt
     {
         if (form is TEntity)
         {
-            return (await this.Repository.InsertOrUpdateAsync(form as TEntity)) as TFormDto;
+            return (await this._repository.InsertOrUpdateAsync(form as TEntity)) as TFormDto;
         }
 
         throw new NotImplementedException("在 HZY.Services.Admin 服务层 TFormDto 与 TEntity 类型不一致 需要 重写 函数 SaveFormAsync ");

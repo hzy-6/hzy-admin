@@ -6,16 +6,16 @@ namespace HZY.Infrastructure.Services;
 /// 服务层 基类
 /// </summary>
 /// <typeparam name="TRepository">默认仓储 类型</typeparam>
-public class FrameworkBaseService<TRepository> : IDiTransientSelf where TRepository : class
+public class FrameworkBaseService<TRepository> : IDiScopedSelf where TRepository : class
 {
     /// <summary>
     /// 默认 仓储
     /// </summary>
-    protected readonly TRepository Repository;
+    protected readonly TRepository _defaultRepository;
 
-    public FrameworkBaseService(TRepository repository)
+    public FrameworkBaseService(TRepository defaultRepository)
     {
-        Repository = repository;
+        _defaultRepository = defaultRepository;
     }
 
 

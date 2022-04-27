@@ -17,12 +17,12 @@
 		<PackageReference Include="Flurl.Http" Version="3.2.2" />
 		<PackageReference Include="Quartz" Version="3.4.0" />
 		<PackageReference Include="SharpZipLib" Version="1.3.3" />
-		<PackageReference Include="NLog.Web.AspNetCore" Version="5.0.0-rc1" />
 		<PackageReference Include="StackExchange.Redis" Version="2.5.61" />
 		<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.17.0" />
 		<PackageReference Include="UAParser" Version="3.1.47" />
 		<PackageReference Include="NPOI" Version="2.5.5" />
 		<PackageReference Include="HzyScanDiService" Version="1.0.2" />
+		<PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

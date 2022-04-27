@@ -3,14 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HZY.EFCore.Models;
+using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
-using HZY.Repositories;
-using HZY.Repositories.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;
 using HZY.Services.Admin.Framework;
-using HZY.Services.Upload;
 using Microsoft.AspNetCore.Http;
 
 namespace HZY.Services.Admin.Framework
@@ -18,10 +16,10 @@ namespace HZY.Services.Admin.Framework
     /// <summary>
     /// 服务 SysDataAuthorityCustomService
     /// </summary>
-    public class SysDataAuthorityCustomService : AdminBaseService<SysDataAuthorityCustomRepository>
+    public class SysDataAuthorityCustomService : AdminBaseService<IRepository<SysDataAuthorityCustom>>
     {
-        public SysDataAuthorityCustomService(SysDataAuthorityCustomRepository repository)
-            : base(repository)
+        public SysDataAuthorityCustomService(IRepository<SysDataAuthorityCustom> defaultRepository)
+            : base(defaultRepository)
         {
 
         }
@@ -35,7 +33,7 @@ namespace HZY.Services.Admin.Framework
         /// <returns></returns>
         public async Task<PagingViewModel> FindListAsync(int page, int size, SysDataAuthorityCustom search)
         {
-            var query = this.Repository.Select
+            var query = this._defaultRepository.Select
                     .OrderByDescending(w => w.CreationTime)
                     .Select(w => new
                     {
@@ -47,7 +45,7 @@ namespace HZY.Services.Admin.Framework
                     })
                 ;
 
-            return await this.Repository.AsPagingViewModelAsync(query, page, size);
+            return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
         }
 
         /// <summary>
@@ -57,7 +55,7 @@ namespace HZY.Services.Admin.Framework
         /// <returns></returns>
         public async Task DeleteListAsync(List<Guid> ids)
         {
-            await this.Repository.DeleteByIdsAsync(ids);
+            await this._defaultRepository.DeleteByIdsAsync(ids);
         }
 
         /// <summary>
@@ -68,7 +66,7 @@ namespace HZY.Services.Admin.Framework
         public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
         {
             var res = new Dictionary<string, object>();
-            var form = await this.Repository.FindByIdAsync(id);
+            var form = await this._defaultRepository.FindByIdAsync(id);
             form = form.NullSafe();
 
             res[nameof(id)] = id == Guid.Empty ? "" : id;
@@ -83,7 +81,7 @@ namespace HZY.Services.Admin.Framework
         /// <returns></returns>
         public async Task<SysDataAuthorityCustom> SaveFormAsync(SysDataAuthorityCustom form)
         {
-            return await this.Repository.InsertOrUpdateAsync(form);
+            return await this._defaultRepository.InsertOrUpdateAsync(form);
         }
 
         /// <summary>

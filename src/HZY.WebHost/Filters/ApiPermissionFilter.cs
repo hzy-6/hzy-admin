@@ -7,7 +7,6 @@ using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.Permission;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Services.Admin.Framework;
-using HzyScanDiService.Extensions;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -19,10 +18,12 @@ namespace HZY.WebHost.Filters
     public class ApiPermissionFilter : IActionFilter
     {
         private readonly SysMenuService _sysMenuService;
+        private readonly AppConfiguration _appConfiguration;
 
-        public ApiPermissionFilter(SysMenuService sysMenuService)
+        public ApiPermissionFilter(SysMenuService sysMenuService, AppConfiguration appConfiguration)
         {
             _sysMenuService = sysMenuService;
+            _appConfiguration = appConfiguration;
         }
 
         /// <summary>
@@ -39,10 +40,8 @@ namespace HZY.WebHost.Filters
             var actionName = routeValues["action"];
 
             #region 拦截操作数据库的 接口 方便发布线上演示
-            var appConfiguration = httpContext.RequestServices.GetRequiredService<AppConfiguration>();
-
             //拦截操作数据库的 接口
-            if (appConfiguration.IsInterceptEdit)
+            if (_appConfiguration.IsInterceptEdit)
             {
                 var actionList = new[] { "SaveForm", "DeleteList", "ChangePassword" };
                 if (actionList.Any(w => w.ToLower() == actionName.ToLower()))

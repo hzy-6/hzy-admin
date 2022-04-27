@@ -16,12 +16,12 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
-using HZY.Repositories.Redis;
 using Quartz;
 using Quartz.Impl;
-using HZY.Infrastructure.Quartz;
 using Microsoft.AspNetCore.Authorization;
 using HzyScanDiService.Extensions;
+using HZY.Infrastructure.Redis;
+using HZY.Domain.Services.Quartz;
 
 namespace HZY.WebHost.Configure;
 
@@ -77,7 +77,7 @@ public class AppConfigureServices
         //配置freesql
         FreeSqlCoreModule.RegisterFreeSql(services, configuration, $"{prefixString}Repositories");
         //配置redis
-        RepositoryRedisModule.RegisterRedisRepository(services, appConfig.ConnectionStringRedis);
+        RedisServiceExtensions.RegisterRedisRepository(services, appConfig.ConnectionStringRedis);
         //添加中间件
         services.AddScoped<TakeUpTimeMiddleware>();
 

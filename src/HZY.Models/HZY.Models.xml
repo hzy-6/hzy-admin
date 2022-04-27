@@ -39,6 +39,51 @@
             菜单功能集合
             </summary>
         </member>
+        <member name="T:HZY.Models.Consts.AdminFunctionConsts">
+            <summary>
+            权限功能定义
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Consts.AdminFunctionConsts.Function_Insert">
+            <summary>
+            功能常量 添加
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Consts.AdminFunctionConsts.Function_Update">
+            <summary>
+            功能常量 修改
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Consts.AdminFunctionConsts.Function_Save">
+            <summary>
+            功能常量 保存
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Consts.AdminFunctionConsts.Function_Delete">
+            <summary>
+            功能常量 删除
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Consts.AdminFunctionConsts.Function_Display">
+            <summary>
+            功能常量 是否拥有菜单
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Consts.AdminFunctionConsts.Function_Search">
+            <summary>
+            功能常量 检索
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Consts.AdminFunctionConsts.Function_Export">
+            <summary>
+            功能常量 导出
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Consts.AdminFunctionConsts.Function_Print">
+            <summary>
+            功能常量 打印
+            </summary>
+        </member>
         <member name="P:HZY.Models.DTO.AuthUserFormDto.UserName">
             <summary>
             用户名称

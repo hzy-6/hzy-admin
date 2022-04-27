@@ -1,5 +1,5 @@
 ﻿using HZY.Infrastructure;
-using HZY.Infrastructure.NLogService;
+using HZY.Infrastructure.SerilogUtil;
 using HzyScanDiService.Extensions;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -82,7 +82,7 @@ public static class FreeSqlCoreModule
                 stringBuilder.Append($"\r\n{curdAfter.Sql}");
                 stringBuilder.Append($"\r\n====[Sql End 线程Id:{Environment.CurrentManagedThreadId}]=========");
                 Console.WriteLine(stringBuilder);
-                NLogUtil.Write(stringBuilder.ToString());
+                LogUtil.Log.Warning(stringBuilder.ToString());
             }
         };
 

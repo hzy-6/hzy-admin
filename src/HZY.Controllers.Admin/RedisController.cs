@@ -1,7 +1,6 @@
 ﻿using HZY.Controllers.Admin.ControllersAdmin;
 using HZY.Controllers.Admin.Framework;
 using HZY.Infrastructure.Filters;
-using HZY.Repositories.Redis;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HZY.Controllers.Admin;
