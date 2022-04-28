@@ -1,7 +1,8 @@
-﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.EFCore.Models;
+﻿using HZY.EFCore.Models;
 using HZY.Infrastructure;
+using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
+using HZY.Infrastructure.Permission;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.Consts;
 using HZY.Models.DTO;
@@ -18,12 +19,13 @@ using System.Threading.Tasks;
 
 namespace HZY.Controllers.Admin.Framework
 {
+    [ControllerDescriptor(MenuId = "请设置菜单Id 系统菜单表中查找", DisplayName = "自定义数据权限")]
     public class SysDataAuthorityCustomController : AdminBaseController<SysDataAuthorityCustomService>
     {
         public SysDataAuthorityCustomController(SysDataAuthorityCustomService defaultService)
-            : base("", defaultService)
+            : base(defaultService)
         {
-            this.SetMenuName("自定义数据权限");
+
         }
 
 
@@ -35,7 +37,7 @@ namespace HZY.Controllers.Admin.Framework
         /// <param name="search">search</param>
         /// <returns></returns>
         [ApiResourceCacheFilter(1)]
-        [ActionDescriptor(AdminFunctionConsts.Function_Display)]
+        [ActionDescriptor(AdminFunctionConsts.Function_Display, DisplayName = "查看列表")]
         [HttpPost("FindList/{size}/{page}")]
         public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysDataAuthorityCustom search)
         {
@@ -47,7 +49,7 @@ namespace HZY.Controllers.Admin.Framework
         /// </summary>
         /// <param name="ids">ids</param>
         /// <returns></returns>
-        [ActionDescriptor(AdminFunctionConsts.Function_Delete)]
+        [ActionDescriptor(AdminFunctionConsts.Function_Delete, DisplayName = "删除数据")]
         [HttpPost("DeleteList")]
         public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
         {
@@ -60,7 +62,7 @@ namespace HZY.Controllers.Admin.Framework
         /// </summary>
         /// <param name="id">id</param>
         /// <returns></returns>
-        [ActionDescriptor(AdminFunctionConsts.Function_Display)]
+        [ActionDescriptor(AdminFunctionConsts.Function_Display, DisplayName = "查看表单数据")]
         [HttpGet("FindForm/{id?}")]
         public Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
         {
@@ -72,7 +74,7 @@ namespace HZY.Controllers.Admin.Framework
         /// </summary>
         /// <param name="form">form</param>
         /// <returns></returns>
-        [ActionDescriptor(AdminFunctionConsts.Function_Save)]
+        [ActionDescriptor(AdminFunctionConsts.Function_Save, DisplayName = "保存/编辑表单")]
         [ApiCheckModel]
         [HttpPost("SaveForm")]
         public Task<SysDataAuthorityCustom> SaveFormAsync([FromBody] SysDataAuthorityCustom form)
@@ -86,11 +88,11 @@ namespace HZY.Controllers.Admin.Framework
         /// <param name="search"></param>
         /// <returns></returns>
         [ApiResourceCacheFilter(5)]
-        [ActionDescriptor(AdminFunctionConsts.Function_Export)]
+        [ActionDescriptor(AdminFunctionConsts.Function_Export, DisplayName = "导出数据")]
         [HttpPost("ExportExcel")]
         public async Task ExportExcelAsync([FromBody] SysDataAuthorityCustom search)
         => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
+            $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
 
 

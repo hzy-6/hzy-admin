@@ -28,7 +28,7 @@ try
     //builder.WebHost.UseUrls("http://*:5600", "http://localhost:5600");
     //builder.WebHost.UseUrls("http://*:5600");
 
-    LogUtil.Log.Information("Web 主机开始启动...");
+    LogUtil.Log.Warning("Web 主机开始启动...");
 
     // log 日志配置
     builder.Host.UseSerilog();

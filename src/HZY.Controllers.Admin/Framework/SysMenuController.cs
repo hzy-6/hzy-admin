@@ -1,8 +1,9 @@
-﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.Domain.Services.Accounts;
+﻿using HZY.Domain.Services.Accounts;
 using HZY.EFCore.Models;
 using HZY.Infrastructure;
+using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
+using HZY.Infrastructure.Permission;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Model.BO;
 using HZY.Models.DTO;
@@ -20,14 +21,14 @@ namespace HZY.Controllers.Admin.Framework;
 /// <summary>
 /// 菜单控制器
 /// </summary>
+[ControllerDescriptor(MenuId = "25", DisplayName = "菜单")]
 public class SysMenuController : AdminBaseController<SysMenuService>
 {
     private readonly AccountInfo _accountInfo;
 
-    public SysMenuController(SysMenuService defaultService, IAccountDomainService accountService) : base("25", defaultService)
+    public SysMenuController(SysMenuService defaultService, IAccountDomainService accountService) : base(defaultService)
     {
         this._accountInfo = accountService.GetAccountInfo();
-        this.SetMenuName("菜单");
     }
 
     /// <summary>
@@ -38,6 +39,7 @@ public class SysMenuController : AdminBaseController<SysMenuService>
     /// <param name="search"></param>
     /// <returns></returns>
     //[ApiResourceCacheFilter(1)]
+    [ActionDescriptor(DisplayName = "查询列表")]
     [HttpPost("FindList/{size}/{page}")]
     public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysMenu search)
     {
@@ -49,6 +51,7 @@ public class SysMenuController : AdminBaseController<SysMenuService>
     /// </summary>
     /// <param name="ids"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "删除数据")]
     [HttpPost("DeleteList")]
     public async Task<bool> DeleteListAsync([FromBody] List<int> ids)
     {
@@ -61,6 +64,7 @@ public class SysMenuController : AdminBaseController<SysMenuService>
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查看表单")]
     [HttpGet("FindForm/{id?}")]
     public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] int id)
     {
@@ -72,6 +76,7 @@ public class SysMenuController : AdminBaseController<SysMenuService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "保存/编辑表单")]
     [HttpPost("SaveForm")]
     public async Task<SysMenu> SaveFormAsync([FromBody] SysMenuFormDto form)
     {
@@ -83,17 +88,19 @@ public class SysMenuController : AdminBaseController<SysMenuService>
     /// </summary>
     /// <param name="search"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "导出数据")]
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
     public async Task ExportExcelAsync([FromBody] SysMenu search)
         => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
+            $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
     /// <summary>
     /// 获取所有菜单
     /// </summary>
     /// <param name="search"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "获取所有的菜单")]
     [HttpPost("GetAll")]
     public async Task<List<SysMenuTreeDto>> GetAllAsync([FromBody] SysMenu search)
     {

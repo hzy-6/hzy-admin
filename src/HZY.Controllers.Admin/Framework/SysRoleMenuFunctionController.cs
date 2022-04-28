@@ -1,6 +1,6 @@
-﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.EFCore.Models;
+﻿using HZY.EFCore.Models;
 using HZY.Infrastructure;
+using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
@@ -18,12 +18,13 @@ namespace HZY.Controllers.Admin.Framework;
 /// <summary>
 /// 角色菜单功能控制器
 /// </summary>
+[ControllerDescriptor(MenuId = "18", DisplayName = "")]
 public class SysRoleMenuFunctionController : AdminBaseController<SysRoleMenuFunctionService>
 {
     private readonly SysRoleService _sysRoleService;
 
     public SysRoleMenuFunctionController(SysRoleMenuFunctionService defaultService, SysRoleService sysRoleService)
-        : base("18", defaultService)
+        : base(defaultService)
     {
         _sysRoleService = sysRoleService;
     }
@@ -35,6 +36,7 @@ public class SysRoleMenuFunctionController : AdminBaseController<SysRoleMenuFunc
     /// <param name="page"></param>
     /// <param name="search"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查询数据")]
     [HttpPost("FindList/{size}/{page}")]
     public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysRole search)
     {
@@ -47,6 +49,7 @@ public class SysRoleMenuFunctionController : AdminBaseController<SysRoleMenuFunc
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "保存/编辑数据")]
     [HttpPost("SaveForm")]
     public async Task<Guid> SaveFormAsync([FromBody] List<SysRoleMenuFunctionFormDto> form)
     {
@@ -59,6 +62,7 @@ public class SysRoleMenuFunctionController : AdminBaseController<SysRoleMenuFunc
     /// 获取菜单功能树
     /// </summary>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查看菜单树")]
     [HttpGet("GetRoleMenuFunctionByRoleId/{RoleId}")]
     public async Task<List<Dictionary<string, object>>> GetRoleMenuFunctionByRoleId(Guid roleId)
     {

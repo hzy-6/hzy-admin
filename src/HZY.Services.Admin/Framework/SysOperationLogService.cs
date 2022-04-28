@@ -4,6 +4,7 @@ using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.MessageQueue;
+using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
@@ -51,7 +52,7 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
     /// 写入操作日志
     /// </summary>
     /// <returns></returns>
-    public async Task WriteInLogAsync(long time, string bodyString)
+    public async Task WriteInLogAsync(long time, string bodyString, Endpoint endpoint)
     {
         var queryString = _httpContext.Request.QueryString.ToString();
         var apiUrl = _httpContext.Request.Path;
@@ -73,25 +74,27 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
         var formString = string.Empty;
 
         //form
-        //try
-        //{
-        //    //读取 表单 信息
-        //    var form = await _httpContext.Request.ReadFormAsync();
-        //    if (form != null)
-        //    {
-        //        var _Dictionary = new Dictionary<string, object>();
-        //        foreach (var key in form.Keys)
-        //        {
-        //            _Dictionary[key] = form[key];
-        //        }
+        try
+        {
+            if (_httpContext.Request.HasFormContentType)
+            {
+                //读取 表单 信息
+                var form = await _httpContext.Request.ReadFormAsync();
+                if (form != null)
+                {
+                    var _Dictionary = new Dictionary<string, object>();
+                    foreach (var key in form.Keys)
+                    {
+                        _Dictionary[key] = form[key];
+                    }
 
-        //        formString = JsonConvert.SerializeObject(_Dictionary);
-        //    }
-        //}
-        //catch (Exception) { }
+                    formString = JsonConvert.SerializeObject(_Dictionary);
+                }
+            }
+        }
+        catch (Exception) { }
 
         var userInfo = _accountService.GetAccountInfo();
-
         var sysOperationLog = new SysOperationLog
         {
             Api = apiUrl,
@@ -105,8 +108,19 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
             OS = os,
         };
 
+        //
+        if (endpoint != null)
+        {
+            var controllerDescriptorAttribute = endpoint.Metadata.GetMetadata<ControllerDescriptorAttribute>();
+            var actionDescriptorAttribute = endpoint.Metadata.GetMetadata<ActionDescriptorAttribute>();
+            sysOperationLog.ControllerDisplayName = controllerDescriptorAttribute?.DisplayName;
+            sysOperationLog.ActionDisplayName = actionDescriptorAttribute?.DisplayName;
+        }
+
+        //发布消息
         await _messageQueueProvider.SendMessageQueueAsync("WriteInLogAsync", sysOperationLog, (value, serviceProvider) =>
         {
+            //消费消息
             using var scope = ServiceProviderExtensions.CreateScope();
             var repository = scope.ServiceProvider.GetRequiredService<IRepository<SysOperationLog>>();
             repository.InsertAsync((SysOperationLog)value).Wait();
@@ -134,6 +148,8 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
                          log.TakeUpTime,
                          UserName = use.Name,
                          use.LoginName,
+                         log.ControllerDisplayName,
+                         log.ActionDisplayName,
                          CreationTime = log.CreationTime.ToString("yyyy-MM-dd hh:mm:ss")
                      })
                      .WhereIf(!string.IsNullOrWhiteSpace(search.Api), w => w.Api.Contains(search.Api))
@@ -151,12 +167,7 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
     /// <returns></returns>
     public async Task<bool> DeletedAllData()
     {
-        int i = await _defaultRepository.DeleteAsync(w => 1 == 1);
-        if (i >= 0)
-        {
-            return await Task.FromResult(true);
-        }
-        return await Task.FromResult(false);
+        return await _defaultRepository.DeleteAsync(w => 1 == 1) >= 0;
     }
 
     /// <summary>

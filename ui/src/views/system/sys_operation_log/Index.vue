@@ -55,9 +55,21 @@
       <!-- 表格 -->
       <template #table-col>
         <vxe-column field="api" title="接口地址" show-overflow min-width="300"></vxe-column>
-        <vxe-column field="browser" title="浏览器" width="120"></vxe-column>
-        <vxe-column field="ip" title="ip地址" width="120"></vxe-column>
         <vxe-column field="os" title="操作系统" width="120"></vxe-column>
+        <vxe-column field="browser" title="浏览器" width="120"></vxe-column>
+        <vxe-column field="ip" title="ip地址" width="100"></vxe-column>
+        <vxe-column title="接口描述" width="300">
+          <template #default="{ row }">
+            <!-- <a-tag>
+              {{ row.controllerDisplayName }}
+              <template v-if="row.controllerDisplayName && row.actionDisplayName"> - </template>
+              {{ row.actionDisplayName }}
+            </a-tag> -->
+            {{ row.controllerDisplayName }}
+            <template v-if="row.controllerDisplayName && row.actionDisplayName"> - </template>
+            {{ row.actionDisplayName }}
+          </template>
+        </vxe-column>
         <vxe-column field="takeUpTime" title="接口耗时" width="100">
           <template #default="{ row }">
             <a-tag v-if="row.takeUpTime >= 1000" color="orange">{{ row.takeUpTime }}(毫秒)</a-tag>

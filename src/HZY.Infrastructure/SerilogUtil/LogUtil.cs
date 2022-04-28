@@ -25,9 +25,9 @@ namespace HZY.Infrastructure.SerilogUtil
                 .Enrich.With(new DateTimeNowEnricher())
                 .MinimumLevel.Debug()//最小记录级别
                 .Enrich.FromLogContext()//记录相关上下文信息 
-                .MinimumLevel.Override("Microsoft", LogEventLevel.Information)//对其他日志进行重写,除此之外,目前框架只有微软自带的日志组件
+                .MinimumLevel.Override(nameof(Microsoft), LogEventLevel.Debug)//对其他日志进行重写,除此之外,目前框架只有微软自带的日志组件
                 .WriteTo.Console()//输出到控制台
-                .WriteTo.File($"{AppDomain.CurrentDomain.BaseDirectory}/AppLogs/{now.Year}/{now.Month}/.log", LogEventLevel.Information, rollingInterval: RollingInterval.Day)
+                .WriteTo.File($"{AppDomain.CurrentDomain.BaseDirectory}/AppLogs/{now.Year}/{now.Month}/.log", LogEventLevel.Debug, rollingInterval: RollingInterval.Day)
                 .CreateLogger();
         }
 

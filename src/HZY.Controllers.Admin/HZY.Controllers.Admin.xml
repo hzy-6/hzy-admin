@@ -46,57 +46,6 @@
             <param name="search"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.ControllersAdmin.AdminBaseController`1.#ctor(System.String,`0)">
-            <summary>
-            管理系统基础控制器构造函数
-            </summary>
-            <param name="menuId">菜单Id</param>
-            <param name="defaultService">默认服务</param>
-        </member>
-        <member name="M:HZY.Controllers.Admin.ControllersAdmin.AdminBaseController`1.GetCurrentMenuId">
-            <summary>
-            获取当前控制器所对应的菜单id
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Controllers.Admin.ControllersAdmin.AdminBaseController`1.GetMenuName">
-            <summary>
-            获取菜单名称
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Controllers.Admin.ControllersAdmin.AdminBaseController`1.SetMenuName(System.String)">
-            <summary>
-            设置菜单名称
-            </summary>
-            <param name="menuName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Controllers.Admin.ControllersAdmin.AdminBaseController.#ctor(System.String)">
-            <summary>
-            管理系统基础控制器构造函数
-            </summary>
-            <param name="menuId">菜单Id</param>
-        </member>
-        <member name="M:HZY.Controllers.Admin.ControllersAdmin.AdminBaseController.GetCurrentMenuId">
-            <summary>
-            获取当前控制器所对应的菜单id
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Controllers.Admin.ControllersAdmin.AdminBaseController.GetMenuName">
-            <summary>
-            获取菜单名称
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Controllers.Admin.ControllersAdmin.AdminBaseController.SetMenuName(System.String)">
-            <summary>
-            设置菜单名称
-            </summary>
-            <param name="menuName"></param>
-            <returns></returns>
-        </member>
         <member name="T:HZY.Controllers.Admin.DevelopmentTool.CodeGenerationController">
             <summary>
             代码生成器控制器

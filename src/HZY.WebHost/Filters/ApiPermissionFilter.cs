@@ -53,15 +53,10 @@ namespace HZY.WebHost.Filters
             #endregion
 
             #region 检查控制器 是否有控制器描述标记 [ControllerDescriptorAttribute]
-
-            if (context.Controller is not IApiPermissionController)
-            {
-                return;
-            }
-
-            var apiPermissionController = (IApiPermissionController)context.Controller;
-            if (apiPermissionController == null) return;
-            var menuId = apiPermissionController.GetCurrentMenuId().ToInt32();
+            var controllerDescriptorAttribute = PermissionUtil.GetControllerDescriptorAttribute((ControllerBase)context.Controller);
+            if (controllerDescriptorAttribute == null) return;
+            if (string.IsNullOrWhiteSpace(controllerDescriptorAttribute.MenuId)) return;
+            var menuId = controllerDescriptorAttribute.MenuId.ToInt32();
             if (menuId == 0) return;
 
             //获取 action 上面的权限编码
@@ -71,6 +66,7 @@ namespace HZY.WebHost.Filters
 
             #region 检查页面权限信息 验证当前用户是否有权限访问该接口
             var functionName = actionDescriptorAttribute.GetFunctionName();
+            if (string.IsNullOrWhiteSpace(functionName)) return;
             //收集用户权限 未授权让他重新登录
             var power = this._sysMenuService.GetPowerStateByMenuIdAsync(menuId).Result;
             //检查当前用户对当前权限码是否有权限

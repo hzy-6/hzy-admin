@@ -1,7 +1,8 @@
-﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.EFCore.Models;
+﻿using HZY.EFCore.Models;
 using HZY.Infrastructure;
+using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
+using HZY.Infrastructure.Permission;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
 using HZY.Models.Entities.Framework;
@@ -18,11 +19,12 @@ namespace HZY.Controllers.Admin.Framework;
 /// <summary>
 /// 数据字典控制器
 /// </summary>
+[ControllerDescriptor(MenuId = "23", DisplayName = "数据字典")]
 public class SysDictionaryController : AdminBaseController<SysDictionaryService>
 {
-    public SysDictionaryController(SysDictionaryService defaultService) : base("23", defaultService)
+    public SysDictionaryController(SysDictionaryService defaultService) : base(defaultService)
     {
-        this.SetMenuName("数据字典");
+
     }
 
     /// <summary>
@@ -32,6 +34,7 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     /// <param name="page"></param>
     /// <param name="search"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查看列表")]
     [HttpPost("FindList/{size}/{page}")]
     public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysDictionary search)
     {
@@ -43,6 +46,7 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     /// </summary>
     /// <param name="ids"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "删除数据")]
     [HttpPost("DeleteList")]
     public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
     {
@@ -55,6 +59,7 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查看表单")]
     [HttpGet("FindForm/{id?}")]
     public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] int id)
     {
@@ -66,6 +71,7 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "保存/编辑表单")]
     [HttpPost("SaveForm")]
     public async Task<SysDictionary> SaveFormAsync([FromBody] SysDictionary form)
     {
@@ -77,16 +83,18 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     /// </summary>
     /// <param name="search"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "导出数据")]
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
     public async Task ExportExcelAsync([FromBody] SysDictionary search)
         => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
+            $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
     /// <summary>
     /// 获取字典树
     /// </summary>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "获取字典树")]
     [HttpGet("GetDictionaryTree")]
     public async Task<List<SysDictionaryDto>> GetDictionaryTreeAsync()
     {

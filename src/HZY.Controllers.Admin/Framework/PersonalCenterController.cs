@@ -1,5 +1,5 @@
-﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.Domain.Services.Accounts;
+﻿using HZY.Domain.Services.Accounts;
+using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
 using HZY.Models.Entities.Framework;
@@ -12,12 +12,13 @@ namespace HZY.Controllers.Admin.Framework;
 /// <summary>
 /// 个人中心
 /// </summary>
+[ControllerDescriptor(MenuId = "19", DisplayName = "个人中心")]
 public class PersonalCenterController : AdminBaseController<SysUserService>
 {
     private readonly IAccountDomainService _accountService;
 
     public PersonalCenterController(SysUserService defaultService, IAccountDomainService accountService)
-        : base("19", defaultService)
+        : base(defaultService)
     {
         _accountService = accountService;
     }
@@ -27,6 +28,7 @@ public class PersonalCenterController : AdminBaseController<SysUserService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "修改密码")]
     [HttpPost("ChangePassword")]
     public async Task<int> ChangePasswordAsync([FromBody] ChangePasswordFormDto form)
         => await this._accountService.ChangePasswordAsync(form.OldPassword, form.NewPassword);
@@ -36,6 +38,7 @@ public class PersonalCenterController : AdminBaseController<SysUserService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "保存/编辑数据")]
     [HttpPost("SaveForm")]
     public async Task<SysUser> SaveFormAsync([FromBody] SysUser form)
     => await this._accountService.ChangeUserAsync(form);

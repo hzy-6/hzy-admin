@@ -248,6 +248,17 @@
             是否拦截编辑 添加、修改、删除
             </summary>
         </member>
+        <member name="M:HZY.Infrastructure.Controllers.AdminBaseController`1.#ctor(`0)">
+            <summary>
+            管理系统基础控制器构造函数
+            </summary>
+            <param name="defaultService">默认服务</param>
+        </member>
+        <member name="M:HZY.Infrastructure.Controllers.AdminBaseController.#ctor">
+            <summary>
+            管理系统基础控制器构造函数
+            </summary>
+        </member>
         <member name="F:HZY.Infrastructure.Controllers.ApiBaseController`1._defaultService">
             <summary>
             默认服务
@@ -532,6 +543,11 @@
             功能名称
             </summary>
         </member>
+        <member name="P:HZY.Infrastructure.Permission.Attributes.ActionDescriptorAttribute.DisplayName">
+            <summary>
+            接口显示名称
+            </summary>
+        </member>
         <member name="M:HZY.Infrastructure.Permission.Attributes.ActionDescriptorAttribute.GetFunctionName">
             <summary>
             获取功能名称
@@ -543,27 +559,53 @@
             控制器 接口 描述
             </summary>
         </member>
-        <member name="F:HZY.Infrastructure.Permission.Attributes.ControllerDescriptorAttribute._menuId">
+        <member name="P:HZY.Infrastructure.Permission.Attributes.ControllerDescriptorAttribute.MenuId">
             <summary>
             用于接口权限鉴定 菜单id
             </summary>
         </member>
-        <member name="M:HZY.Infrastructure.Permission.Attributes.ControllerDescriptorAttribute.#ctor(System.String)">
+        <member name="P:HZY.Infrastructure.Permission.Attributes.ControllerDescriptorAttribute.DisplayName">
+            <summary>
+            控制器显示名称
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Permission.Attributes.ControllerDescriptorAttribute.#ctor">
             <summary>
             控制器描述
             </summary>
-            <param name="menuId">用于接口权限鉴定 菜单id</param>
         </member>
-        <member name="M:HZY.Infrastructure.Permission.Attributes.ControllerDescriptorAttribute.GetMenuId">
+        <member name="T:HZY.Infrastructure.Permission.PermissionUtil">
             <summary>
-            获取菜单 Id
+            权限工具
             </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Permission.PermissionUtil.GetControllerDescriptorAttribute(System.Type)">
+            <summary>
+            获取控制器 的 ControllerDescriptorAttribute 特性
+            </summary>
+            <param name="type"></param>
             <returns></returns>
         </member>
-        <member name="T:HZY.Infrastructure.Permission.IApiPermissionController">
+        <member name="M:HZY.Infrastructure.Permission.PermissionUtil.GetControllerDescriptorAttribute(Microsoft.AspNetCore.Mvc.ControllerBase)">
             <summary>
-            用于获取权限所需要的菜单等一些信息，约束控制器
+            获取控制器 的 ControllerDescriptorAttribute 特性
             </summary>
+            <param name="controllerBase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Permission.PermissionUtil.GetControllerDisplayName(System.Type)">
+            <summary>
+            获取当前控制器的显示名称
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Permission.PermissionUtil.GetControllerDisplayName(Microsoft.AspNetCore.Mvc.ControllerBase)">
+            <summary>
+            获取当前控制器的显示名称
+            </summary>
+            <param name="controllerBase"></param>
+            <returns></returns>
         </member>
         <member name="M:HZY.Infrastructure.RazorView.IRazorViewRender.RenderAsync(System.String,System.Object)">
             <summary>

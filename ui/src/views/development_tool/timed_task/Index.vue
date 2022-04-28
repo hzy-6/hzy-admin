@@ -138,7 +138,7 @@ onMounted(() => {
   methods.findList();
   state.timer = setInterval(() => {
     methods.findList();
-  }, 10 * 1000);
+  }, 60 * 1000);
 });
 
 onBeforeUnmount(() => {

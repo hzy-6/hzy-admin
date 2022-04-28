@@ -17,6 +17,16 @@ public class ActionDescriptorAttribute : Attribute
     /// </summary>
     private readonly string _functionName;
 
+    /// <summary>
+    /// 接口显示名称
+    /// </summary>
+    public string DisplayName { get; set; }
+
+    public ActionDescriptorAttribute()
+    {
+
+    }
+
     public ActionDescriptorAttribute(string functionName)
     {
         _functionName = functionName;

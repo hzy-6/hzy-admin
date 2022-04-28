@@ -28,19 +28,16 @@ public class SysMenuService : AdminBaseService<IRepository<SysMenu>>
     private readonly IRepository<SysMenuFunction> _sysMenuFunctionRepository;
     private readonly IRepository<SysRoleMenuFunction> _sysRoleMenuFunctionRepository;
     private readonly AccountInfo _accountInfo;
-    private readonly AppConfiguration _appConfiguration;
 
     public SysMenuService(IRepository<SysMenu> defaultRepository,
         IRepository<SysFunction> sysFunctionRepository,
         IRepository<SysMenuFunction> sysMenuFunctionRepository,
         IRepository<SysRoleMenuFunction> sysRoleMenuFunctionRepository,
-        IAccountDomainService accountService,
-        AppConfiguration appConfiguration) : base(defaultRepository)
+        IAccountDomainService accountService) : base(defaultRepository)
     {
         _sysFunctionRepository = sysFunctionRepository;
         _sysMenuFunctionRepository = sysMenuFunctionRepository;
         _sysRoleMenuFunctionRepository = sysRoleMenuFunctionRepository;
-        _appConfiguration = appConfiguration;
         this._accountInfo = accountService.GetAccountInfo();
     }
 

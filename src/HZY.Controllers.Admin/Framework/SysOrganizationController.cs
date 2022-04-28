@@ -1,10 +1,6 @@
-﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.EFCore.Models;
-using HZY.EFCore.Repositories.Base;
-using HZY.Infrastructure;
-using HZY.Infrastructure.Filters;
+﻿using HZY.EFCore.Repositories.Base;
+using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
-using HZY.Models.DTO;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Mvc;
@@ -20,14 +16,15 @@ namespace HZY.Controllers.Admin.Framework;
 /// <summary>
 /// 组织机构控制器
 /// </summary>
+[ControllerDescriptor(MenuId = "21", DisplayName = "组织机构")]
 public class SysOrganizationController : AdminBaseController<SysOrganizationService>
 {
     private readonly IRepository<SysOrganization> _sysOrganizationRepository;
 
-    public SysOrganizationController(SysOrganizationService defaultService, IRepository<SysOrganization> sysOrganizationRepository) : base("21", defaultService)
+    public SysOrganizationController(SysOrganizationService defaultService, IRepository<SysOrganization> sysOrganizationRepository) 
+        : base(defaultService)
     {
         _sysOrganizationRepository = sysOrganizationRepository;
-        this.SetMenuName("组织机构");
     }
 
     /// <summary>
@@ -35,6 +32,7 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     /// </summary>
     /// <param name="search"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查看列表")]
     [HttpPost("FindList")]
     public async Task<List<SysOrganization>> FindListAsync([FromBody] SysOrganization search)
     {
@@ -46,6 +44,7 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     /// </summary>
     /// <param name="ids"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "删除数据")]
     [HttpPost("DeleteList")]
     public async Task<bool> DeleteListAsync([FromBody] List<int> ids)
     {
@@ -59,6 +58,7 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     /// <param name="id"></param>
     /// <param name="parentId"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查看表单")]
     [HttpGet("FindForm/{id?}/{parentId?}")]
     public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] int id, int parentId)
     {
@@ -70,6 +70,7 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "保存/编辑表单")]
     [HttpPost("SaveForm")]
     public async Task<SysOrganization> SaveFormAsync([FromBody] SysOrganization form)
     {
@@ -80,6 +81,7 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     /// 获取组织架构树
     /// </summary>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查看组织架构树")]
     [HttpPost("SysOrganizationTree")]
     public async Task<dynamic> GetSysOrganizationTreeAsync()
     {

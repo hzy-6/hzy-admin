@@ -846,6 +846,16 @@
             当前操作人id
             </summary>
         </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOperationLog.ControllerDisplayName">
+            <summary>
+            控制器显示名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysOperationLog.ActionDisplayName">
+            <summary>
+            接口显示名称
+            </summary>
+        </member>
         <member name="T:HZY.Models.Entities.Framework.SysOrganization">
             <summary>
             组织机构

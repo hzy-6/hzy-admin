@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HZY.EFCore.Repositories.Base.Impl
 {
-    public class Repository<T> : RepositoryImpl<T>, IRepository<T>, IDiTransientSelf where T : class, new()
+    public class Repository<T> : RepositoryImpl<T>, IRepository<T>, IDiScopedSelf where T : class, new()
     {
         public Repository(AdminBaseDbContext context, Expression<Func<T, bool>> filter = null) : base(context, filter)
         {

@@ -1,7 +1,8 @@
-﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.EFCore.Models;
+﻿using HZY.EFCore.Models;
 using HZY.Infrastructure;
+using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
+using HZY.Infrastructure.Permission;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
 using HZY.Models.Entities.Framework;
@@ -18,11 +19,12 @@ namespace HZY.Controllers.Admin.Framework;
 /// <summary>
 /// 功能控制器
 /// </summary>
+[ControllerDescriptor(MenuId = "17", DisplayName = "功能")]
 public class SysFunctionController : AdminBaseController<SysFunctionService>
 {
-    public SysFunctionController(SysFunctionService defaultService) : base("17", defaultService)
+    public SysFunctionController(SysFunctionService defaultService) : base(defaultService)
     {
-        this.SetMenuName("功能");
+
     }
 
     /// <summary>
@@ -32,6 +34,7 @@ public class SysFunctionController : AdminBaseController<SysFunctionService>
     /// <param name="page"></param>
     /// <param name="search"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查看数据列表")]
     [ApiResourceCacheFilter(1)]
     [HttpPost("FindList/{size}/{page}")]
     public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysFunction search)
@@ -44,6 +47,7 @@ public class SysFunctionController : AdminBaseController<SysFunctionService>
     /// </summary>
     /// <param name="ids"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "删除数据")]
     [HttpPost("DeleteList")]
     public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
     {
@@ -56,6 +60,7 @@ public class SysFunctionController : AdminBaseController<SysFunctionService>
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查看表单")]
     [HttpGet("FindForm/{id?}")]
     public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
     {
@@ -67,6 +72,7 @@ public class SysFunctionController : AdminBaseController<SysFunctionService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "保存表单")]
     [HttpPost("SaveForm")]
     public async Task<SysFunction> SaveFormAsync([FromBody] SysFunction form)
     {
@@ -78,10 +84,11 @@ public class SysFunctionController : AdminBaseController<SysFunctionService>
     /// </summary>
     /// <param name="search"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "导出数据")]
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
     public async Task ExportExcelAsync([FromBody] SysFunction search)
         => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
+            $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
 }

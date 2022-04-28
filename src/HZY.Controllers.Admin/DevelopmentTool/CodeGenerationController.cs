@@ -1,7 +1,7 @@
 ﻿using FreeSql.DatabaseModel;
-using HZY.Controllers.Admin.ControllersAdmin;
 using HZY.EFCore.Models;
 using HZY.Infrastructure;
+using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO.DevelopmentTool;
 using HZY.Services.Admin.DevelopmentTool.CodeGeneration;
@@ -19,9 +19,10 @@ namespace HZY.Controllers.Admin.DevelopmentTool
     /// <summary>
     /// 代码生成器控制器
     /// </summary>
+    [ControllerDescriptor(MenuId = "31")]
     public class CodeGenerationController : AdminBaseController<ICodeGenerationService>
     {
-        public CodeGenerationController(ICodeGenerationService defaultService) : base("31", defaultService)
+        public CodeGenerationController(ICodeGenerationService defaultService) : base(defaultService)
         {
 
 
@@ -34,6 +35,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// <param name="page"></param>
         /// <param name="search"></param>
         /// <returns></returns>
+        [ActionDescriptor(DisplayName = "查询列表")]
         [HttpPost("findList/{size}/{page}")]
         public PagingViewModel FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] GenFormDto search)
         {
@@ -45,6 +47,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// </summary>
         /// <param name="genFormDto"></param>
         /// <returns></returns>
+        [ActionDescriptor(DisplayName = "获取代码")]
         [HttpPost("getCode")]
         public async Task<dynamic> GetCodeAsync([FromBody] GenFormDto genFormDto)
         {
@@ -83,6 +86,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// </summary>
         /// <param name="genFormDto"></param>
         /// <returns></returns>
+        [ActionDescriptor(DisplayName = "下载当前代码")]
         [HttpPost("download")]
         public async Task DownloadAsync([FromBody] GenFormDto genFormDto)
         {
@@ -95,6 +99,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// </summary>
         /// <param name="genFormDto"></param>
         /// <returns></returns>
+        [ActionDescriptor(DisplayName = "创建代码文件")]
         [HttpPost("downloadAll")]
         public async Task DownloadAllAsync(GenFormDto genFormDto)
         {
@@ -106,6 +111,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// 数据库字典文件
         /// </summary>
         /// <returns></returns>
+        [ActionDescriptor(DisplayName = "生成数据库字典文件")]
         [HttpPost("createDataDictionary")]
         public void CreateDataDictionary()
         {

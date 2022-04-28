@@ -1,6 +1,6 @@
-﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.Domain.Services.Quartz;
+﻿using HZY.Domain.Services.Quartz;
 using HZY.Domain.Services.Quartz.Models;
+using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -14,11 +14,12 @@ namespace HZY.Controllers.Admin.DevelopmentTool
     /// <summary>
     /// 系统账号管理
     /// </summary>
+    [ControllerDescriptor(MenuId = "30")]
     public class QuartzTasksController : AdminBaseController<ITaskService>
     {
         private readonly IJobLoggerService _jobLoggerService;
 
-        public QuartzTasksController(ITaskService defaultService, IJobLoggerService jobLoggerService) : base("30", defaultService)
+        public QuartzTasksController(ITaskService defaultService, IJobLoggerService jobLoggerService) : base(defaultService)
         {
             _jobLoggerService = jobLoggerService;
         }
@@ -28,6 +29,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// </summary>
         /// <param name="filter"></param>
         /// <returns></returns>
+        [ActionDescriptor(DisplayName = "查看列表")]
         [HttpPost("FindList/{filter?}")]
         public async Task<List<Tasks>> FindListAsync([FromRoute] string filter) => (await _defaultService.FindListAsync(filter))?.ToList();
 
@@ -36,6 +38,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
+        [ActionDescriptor(DisplayName = "保存/编辑表单")]
         [HttpPost("SaveForm")]
         public async Task<Tasks> SaveFormAsync([FromBody] Tasks form) => await _defaultService.SaveAsync(form);
 
@@ -44,6 +47,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
+        [ActionDescriptor(DisplayName = "删除数据")]
         [HttpPost("DeleteList")]
         public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids) => await _defaultService.DeleteAsync(ids);
 
@@ -52,6 +56,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
+        [ActionDescriptor(DisplayName = "查看表单")]
         [HttpGet("FindForm/{id?}")]
         public async Task<Tasks> FindFormAsync([FromRoute] Guid id) => await _defaultService.FindByIdAsync(id);
 
@@ -60,6 +65,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
+        [ActionDescriptor(DisplayName = "运行任务")]
         [HttpPost("Run")]
         public async Task<bool> RunAsync([FromBody] List<Guid> ids)
         {
@@ -75,6 +81,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
+        [ActionDescriptor(DisplayName = "关闭任务")]
         [HttpPost("Close")]
         public async Task<bool> CloseAsync([FromBody] List<Guid> ids)
         {
@@ -92,6 +99,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// <param name="page"></param>
         /// <param name="size"></param>
         /// <returns></returns>
+        [ActionDescriptor(DisplayName = "查看运行日志")]
         [HttpGet("GetJobLoggers/{taskId}/{page}/{size}")]
         public List<JobLoggerInfo> GetJobLoggers([FromRoute] Guid taskId, [FromRoute] int page, [FromRoute] int size)
         {

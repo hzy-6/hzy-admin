@@ -53,5 +53,15 @@ public class SysOperationLog : DefaultBaseEntity<Guid>
     /// </summary>
     public Guid? UserId { get; set; }
 
+    /// <summary>
+    /// 控制器显示名称
+    /// </summary>
+    public string ControllerDisplayName { get; set; }
+
+    /// <summary>
+    /// 接口显示名称
+    /// </summary>
+    public string ActionDisplayName { get; set; }
+
 
 }

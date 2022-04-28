@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using HZY.Infrastructure.Controllers;
+using Microsoft.AspNetCore.Mvc;
 
 namespace HZY.Controllers.App;
 

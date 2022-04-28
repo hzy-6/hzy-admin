@@ -1,7 +1,8 @@
-﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.EFCore.Models;
+﻿using HZY.EFCore.Models;
 using HZY.Infrastructure;
+using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
+using HZY.Infrastructure.Permission;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.Consts;
 using HZY.Models.DTO;
@@ -21,11 +22,12 @@ namespace HZY.Controllers.Admin.Base;
 /// <summary>
 /// 会员控制器
 /// </summary>
+[ControllerDescriptor(MenuId = "13", DisplayName = "会员")]
 public class MemberController : AdminBaseController<MemberService>
 {
-    public MemberController(MemberService defaultService) : base("13", defaultService)
+    public MemberController(MemberService defaultService) : base(defaultService)
     {
-        this.SetMenuName("会员");
+
     }
 
     /// <summary>
@@ -36,7 +38,7 @@ public class MemberController : AdminBaseController<MemberService>
     /// <param name="search"></param>
     /// <returns></returns>
     [ApiResourceCacheFilter(1)]
-    [ActionDescriptor(AdminFunctionConsts.Function_Display)]
+    [ActionDescriptor(AdminFunctionConsts.Function_Display, DisplayName = "查看列表")]
     [HttpPost("FindList/{size}/{page}")]
     public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] Member search)
     {
@@ -48,7 +50,7 @@ public class MemberController : AdminBaseController<MemberService>
     /// </summary>
     /// <param name="ids"></param>
     /// <returns></returns>
-    [ActionDescriptor(AdminFunctionConsts.Function_Delete)]
+    [ActionDescriptor(AdminFunctionConsts.Function_Delete, DisplayName = "删除数据")]
     [HttpPost("DeleteList")]
     public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
     {
@@ -61,7 +63,7 @@ public class MemberController : AdminBaseController<MemberService>
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [ActionDescriptor(AdminFunctionConsts.Function_Display)]
+    [ActionDescriptor(AdminFunctionConsts.Function_Display, DisplayName = "查看表单")]
     [HttpGet("FindForm/{id?}")]
     public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
     {
@@ -73,7 +75,7 @@ public class MemberController : AdminBaseController<MemberService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [ActionDescriptor(AdminFunctionConsts.Function_Save)]
+    [ActionDescriptor(AdminFunctionConsts.Function_Save, DisplayName = "保存/编辑表单")]
     [ApiCheckModel]
     [HttpPost("SaveForm")]
     public async Task<Member> SaveFormAsync([FromForm] Member form)
@@ -87,9 +89,9 @@ public class MemberController : AdminBaseController<MemberService>
     /// <param name="search"></param>
     /// <returns></returns>
     [ApiResourceCacheFilter(5)]
-    [ActionDescriptor(AdminFunctionConsts.Function_Export)]
+    [ActionDescriptor(AdminFunctionConsts.Function_Export, DisplayName = "导出数据")]
     [HttpPost("ExportExcel")]
     public async Task ExportExcelAsync([FromBody] Member search)
         => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
+            $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 }

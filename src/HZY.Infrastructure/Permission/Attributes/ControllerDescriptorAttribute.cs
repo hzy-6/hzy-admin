@@ -11,21 +11,20 @@ public class ControllerDescriptorAttribute : Attribute
     /// <summary>
     /// 用于接口权限鉴定 菜单id
     /// </summary>
-    private readonly string _menuId;
+    public string MenuId { get; set; }
+
+    /// <summary>
+    /// 控制器显示名称
+    /// </summary>
+    public string DisplayName { get; set; }
 
     /// <summary>
     /// 控制器描述
     /// </summary>
-    /// <param name="menuId">用于接口权限鉴定 菜单id</param>
-    public ControllerDescriptorAttribute(string menuId)
+    public ControllerDescriptorAttribute()
     {
-        _menuId = menuId;
+
     }
 
-    /// <summary>
-    /// 获取菜单 Id
-    /// </summary>
-    /// <returns></returns>
-    public string GetMenuId() => this._menuId;
 
 }

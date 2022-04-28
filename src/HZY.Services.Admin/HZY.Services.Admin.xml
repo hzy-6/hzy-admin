@@ -699,7 +699,7 @@
             操作日服务
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysOperationLogService.WriteInLogAsync(System.Int64,System.String)">
+        <member name="M:HZY.Services.Admin.Framework.SysOperationLogService.WriteInLogAsync(System.Int64,System.String,Microsoft.AspNetCore.Http.Endpoint)">
             <summary>
             写入操作日志
             </summary>

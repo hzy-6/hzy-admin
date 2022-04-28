@@ -1,7 +1,8 @@
-﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.EFCore.Models;
+﻿using HZY.EFCore.Models;
 using HZY.Infrastructure;
+using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
+using HZY.Infrastructure.Permission;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
 using HZY.Models.Entities.Framework;
@@ -18,11 +19,12 @@ namespace HZY.Controllers.Admin.Framework;
 /// <summary>
 /// 角色控制器
 /// </summary>
+[ControllerDescriptor(MenuId = "16", DisplayName = "角色")]
 public class SysRoleController : AdminBaseController<SysRoleService>
 {
-    public SysRoleController(SysRoleService defaultService) : base("16", defaultService)
+    public SysRoleController(SysRoleService defaultService) : base(defaultService)
     {
-        this.SetMenuName("角色");
+
     }
 
     /// <summary>
@@ -32,6 +34,7 @@ public class SysRoleController : AdminBaseController<SysRoleService>
     /// <param name="page"></param>
     /// <param name="search"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查看表格")]
     [ApiResourceCacheFilter(1)]
     [HttpPost("FindList/{size}/{page}")]
     public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysRole search)
@@ -44,6 +47,7 @@ public class SysRoleController : AdminBaseController<SysRoleService>
     /// </summary>
     /// <param name="ids"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "删除数据")]
     [HttpPost("DeleteList")]
     public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
     {
@@ -56,6 +60,7 @@ public class SysRoleController : AdminBaseController<SysRoleService>
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "获取数据")]
     [HttpGet("FindForm/{id?}")]
     public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
     {
@@ -67,6 +72,7 @@ public class SysRoleController : AdminBaseController<SysRoleService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "保存/编辑数据")]
     [HttpPost("SaveForm")]
     public async Task<SysRole> SaveFormAsync([FromBody] SysRole form)
     {
@@ -78,11 +84,12 @@ public class SysRoleController : AdminBaseController<SysRoleService>
     /// </summary>
     /// <param name="search"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "导出数据")]
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
     public async Task ExportExcelAsync([FromBody] SysRole search)
         => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"{this.GetMenuName()}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
+            $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
 
 

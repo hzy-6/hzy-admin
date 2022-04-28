@@ -1,6 +1,6 @@
-﻿using HZY.Controllers.Admin.ControllersAdmin;
-using HZY.EFCore.Models;
+﻿using HZY.EFCore.Models;
 using HZY.Infrastructure;
+using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
@@ -18,11 +18,12 @@ namespace HZY.Controllers.Admin.Framework;
 /// <summary>
 /// 操作日志控制器
 /// </summary>
+[ControllerDescriptor(MenuId = "24", DisplayName = "操作日志")]
 public class SysOperationLogController : AdminBaseController<SysOperationLogService>
 {
-    public SysOperationLogController(SysOperationLogService defaultService) : base("24", defaultService)
+    public SysOperationLogController(SysOperationLogService defaultService) : base(defaultService)
     {
-        this.SetMenuName("操作日志");
+
     }
 
     /// <summary>
@@ -32,6 +33,7 @@ public class SysOperationLogController : AdminBaseController<SysOperationLogServ
     /// <param name="page"></param>
     /// <param name="search"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查看列表")]
     [HttpPost("FindList/{size}/{page}")]
     public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysOperationLog search)
     {
@@ -42,6 +44,7 @@ public class SysOperationLogController : AdminBaseController<SysOperationLogServ
     /// 删除所有数据
     /// </summary>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "删除数据")]
     [HttpGet("DeleteAllData")]
     public async Task<bool> DeleteAllDataAsync()
     {
@@ -53,6 +56,7 @@ public class SysOperationLogController : AdminBaseController<SysOperationLogServ
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
+    [ActionDescriptor(DisplayName = "查看表单")]
     [HttpGet("FindForm/{id?}")]
     public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
     {

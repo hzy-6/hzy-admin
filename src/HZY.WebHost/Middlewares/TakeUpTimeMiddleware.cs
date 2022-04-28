@@ -20,7 +20,10 @@ public class TakeUpTimeMiddleware : IMiddleware
     private readonly HttpContext _httpContext;
     private readonly AppConfiguration _appConfiguration;
 
-    public TakeUpTimeMiddleware(ILogger<TakeUpTimeMiddleware> logger, SysOperationLogService sysOperationLogService, IHttpContextAccessor iHttpContextAccessor, AppConfiguration appConfiguration)
+    public TakeUpTimeMiddleware(ILogger<TakeUpTimeMiddleware> logger, 
+        SysOperationLogService sysOperationLogService, 
+        IHttpContextAccessor iHttpContextAccessor, 
+        AppConfiguration appConfiguration)
     {
         this._stopwatch ??= new Stopwatch();
         _logger = logger;
@@ -56,7 +59,9 @@ public class TakeUpTimeMiddleware : IMiddleware
             var log = $"{remoteIpAddress} 请求：{path} 耗时：{_stopwatch.ElapsedMilliseconds} 毫秒!";
             _logger.LogInformation(log);
 
-            await _sysOperationLogService.WriteInLogAsync(_stopwatch.ElapsedMilliseconds, bodyString);
+            var endpoint = context.GetEndpoint();
+
+            await _sysOperationLogService.WriteInLogAsync(_stopwatch.ElapsedMilliseconds, bodyString, endpoint);
         }
     }
 
