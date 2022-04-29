@@ -59,6 +59,7 @@ namespace HZY.Services.Admin
                         w.DatabaseColumnType,
                         w.CsType,
                         w.CsField,
+                        w.Low_Code_TableId,
                         LastModificationTime = w.LastModificationTime.ToString("yyyy-MM-dd"),
                         CreationTime = w.CreationTime.ToString("yyyy-MM-dd"),
                     })

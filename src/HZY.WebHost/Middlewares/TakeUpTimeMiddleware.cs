@@ -48,8 +48,7 @@ public class TakeUpTimeMiddleware : IMiddleware
 
         //记录 api 执行耗时
         _stopwatch.Restart();
-
-        await next.Invoke(context);
+                await next.Invoke(context);
 
         _stopwatch.Stop();
 
