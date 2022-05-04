@@ -27,7 +27,7 @@
       <template #toolbar-left>
         <!-- 清空所有数据 -->
         <template v-if="power.delete">
-          <a-popconfirm title="您确定要删除吗?" @confirm="deleteList()" okText="确定" cancelText="取消">
+          <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList()" okText="确定" cancelText="取消">
             <a-button type="danger">
               <template #icon>
                 <AppIcon name="DeleteOutlined" />
@@ -55,9 +55,9 @@
       <!-- 表格 -->
       <template #table-col>
         <vxe-column field="api" title="接口地址" show-overflow min-width="300"></vxe-column>
-        <vxe-column field="os" title="操作系统" width="120"></vxe-column>
-        <vxe-column field="browser" title="浏览器" width="120"></vxe-column>
-        <vxe-column field="ip" title="ip地址" width="100"></vxe-column>
+        <vxe-column field="os" title="操作系统" width="100"></vxe-column>
+        <vxe-column field="browser" title="浏览器" width="100"></vxe-column>
+        <vxe-column field="ip" title="ip地址" width="120"></vxe-column>
         <vxe-column title="接口描述" width="300">
           <template #default="{ row }">
             <!-- <a-tag>

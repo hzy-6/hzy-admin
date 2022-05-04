@@ -109,9 +109,9 @@
               <a-input v-model:value="row.remark" placeholder="备注" />
             </template>
           </vxe-column>
-          <vxe-column field="lastModificationTime" title="更新时间"></vxe-column>
-          <vxe-column field="creationTime" title="创建时间"></vxe-column>
-          <vxe-column field="id" title="操作">
+          <vxe-column field="lastModificationTime" title="更新时间" width="120px"></vxe-column>
+          <vxe-column field="creationTime" title="创建时间" width="120px"></vxe-column>
+          <vxe-column field="id" title="操作" width="120px">
             <template #default="{ row }">
               <a href="javascript:void(0)" @click="methods.loadColumnIndex(row)"> 编辑列 </a>
               <a-divider type="vertical" />
@@ -130,7 +130,7 @@
           :total="state.table.total"
           :page-sizes="state.table.pageSizeOptions"
           :layouts="['PrevJump', 'PrevPage', 'JumpNumber', 'NextPage', 'NextJump', 'Sizes', 'FullJump', 'Total']"
-          @page-change="onChange"
+          @page-change="methods.onChange"
         >
         </vxe-pager>
       </a-spin>
@@ -142,7 +142,7 @@
         <a-button type="primary" @click="onClose">提交</a-button> -->
       </template>
       <!--表单弹层-->
-      <ColumnIndexVue ref="refColumnIndex" class="mt-15" />
+      <ColumnIndexVue ref="refColumnIndex" />
     </a-drawer>
   </div>
 </template>

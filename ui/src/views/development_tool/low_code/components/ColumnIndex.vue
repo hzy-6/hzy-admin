@@ -84,30 +84,35 @@
           :checkbox-config="{ highlight: true }"
           :edit-config="{ trigger: 'click', mode: 'cell' }"
         >
-          <vxe-column type="seq" width="60"></vxe-column>
-          <vxe-column type="checkbox" width="60"></vxe-column>
-          <vxe-column field="columnName" title="列名称" width="120"> </vxe-column>
-          <vxe-column field="describe" title="列显示名称" :edit-render="{}" width="120">
+          <vxe-column type="seq" width="50"></vxe-column>
+          <vxe-column type="checkbox" width="50"></vxe-column>
+          <vxe-column field="columnName" title="列名称"> </vxe-column>
+          <vxe-column field="databaseColumnType" title="数据库类型" width="130px"> </vxe-column>
+          <vxe-column field="csField" title="C#字段名称"> </vxe-column>
+          <vxe-column field="csType" title="C#数据类型" width="100px"> </vxe-column>
+          <vxe-column field="isPrimary" title="是否主键" width="100px">
+            <template #default="{ row }">
+              <a-tag color="success" v-if="row.isPrimary">是</a-tag>
+              <a-tag color="default" v-else>否</a-tag>
+            </template>
+          </vxe-column>
+          <vxe-column field="isIdentity" title="是否自增" width="100px">
+            <template #default="{ row }">
+              <a-tag color="success" v-if="row.isIdentity">是</a-tag>
+              <a-tag color="default" v-else>否</a-tag>
+            </template>
+          </vxe-column>
+          <vxe-column field="describe" title="列显示名称" :edit-render="{}" width="150px">
             <template #default="{ row }">{{ row.describe }}</template>
             <template #edit="{ row }">
               <a-input v-model:value="row.describe" placeholder="列显示名称" />
             </template>
           </vxe-column>
-          <vxe-column field="databaseColumnType" title="数据库字段类型"> </vxe-column>
-          <vxe-column field="csType" title="C#数据类型"> </vxe-column>
-          <vxe-column field="csField" title="C#字段名称"> </vxe-column>
-          <vxe-column field="isPrimary" title="是否主键"> </vxe-column>
-          <vxe-column field="isIdentity" title="是否自增"> </vxe-column>
-          <vxe-column field="isNullable" title="能否为null"> </vxe-column>
-          <vxe-column field="position" title="位置" :edit-render="{}">
-            <template #default="{ row }">{{ row.position }}</template>
-            <template #edit="{ row }">
-              <a-input v-model:value="row.position" placeholder="位置" />
-            </template>
-          </vxe-column>
-          <vxe-column field="lastModificationTime" title="更新时间"></vxe-column>
-          <vxe-column field="creationTime" title="创建时间"></vxe-column>
-          <vxe-column field="id" title="操作">
+          <!-- <vxe-column field="isNullable" title="能否为null" width="100px"> </vxe-column> -->
+          <!-- <vxe-column field="position" title="位置" width="60px"> </vxe-column> -->
+          <vxe-column field="lastModificationTime" title="更新时间" width="120px"></vxe-column>
+          <vxe-column field="creationTime" title="创建时间" width="120px"></vxe-column>
+          <vxe-column field="id" title="操作" width="80px">
             <template #default="{ row }">
               <!-- 
                 <a href="javascript:void(0)" @click="openForm(row.id)">编辑</a>

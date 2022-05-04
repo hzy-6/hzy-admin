@@ -231,10 +231,11 @@ public class SysMenuService : AdminBaseService<IRepository<SysMenu>>
 
         var sysMenuList = await (
             from t1 in this._sysRoleMenuFunctionRepository.Select.Where(w => this._accountInfo.SysRoles.Select(s => s.Id).Contains(w.RoleId))
-            from t2 in this._defaultRepository.Select.Where(w => w.Id == t1.MenuId && w.State).DefaultIfEmpty()
+            from t2 in this._defaultRepository.Select.Where(w => w.Id == t1.MenuId && w.State)
+            //.DefaultIfEmpty()
             from t3 in this._sysMenuFunctionRepository.Select
                 .Where(w => w.Id == t1.MenuFunctionId && w.FunctionCode == AdminFunctionConsts.Function_Display && t2.Id == w.MenuId)
-                .DefaultIfEmpty()
+                //.DefaultIfEmpty()
             select t2
             )
             .ToListAsync()

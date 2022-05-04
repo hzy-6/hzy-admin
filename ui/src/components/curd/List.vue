@@ -36,8 +36,8 @@
             :checkbox-config="{ highlight: true }"
           >
             <slot name="table-col">
-              <vxe-column type="seq" width="60"></vxe-column>
-              <vxe-column type="checkbox" width="60"></vxe-column>
+              <vxe-column type="seq" width="50"></vxe-column>
+              <vxe-column type="checkbox" width="50"></vxe-column>
               <!-- 表格列插槽 -->
               <slot name="table-col-default"></slot>
             </slot>

@@ -43,8 +43,8 @@ namespace HZY.WebHost.Filters
             //拦截操作数据库的 接口
             if (_appConfiguration.IsInterceptEdit)
             {
-                var actionList = new[] { "SaveForm", "DeleteList", "ChangePassword" };
-                if (actionList.Any(w => w.ToLower() == actionName.ToLower()))
+                var actionList = new[] { "SaveForm", "DeleteList", "ChangePassword", "Change", "Delete", "Update", "Insert" };
+                if (actionList.Any(w => actionName.ToLower().Contains(w.ToLower())))
                 {
                     var data = ApiResult.ResultMessage(ApiResultCodeEnum.Warn, "请下载源代码本地运行!");
                     context.Result = new JsonResult(data);
