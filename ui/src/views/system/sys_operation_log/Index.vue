@@ -164,7 +164,7 @@ const methods = {
   //获取列表数据
   findList() {
     state.loading = true;
-    if (state.search.vm.rangeTime.length == 2) {
+    if (state.search.vm.rangeTime && state.search.vm.rangeTime.length == 2) {
       state.search.vm.startTime = state.search.vm.rangeTime[0].format("YYYY-MM-DD");
       state.search.vm.endTime = state.search.vm.rangeTime[1].format("YYYY-MM-DD");
     }
