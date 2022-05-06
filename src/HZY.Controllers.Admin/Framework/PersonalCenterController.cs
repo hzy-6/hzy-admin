@@ -2,6 +2,7 @@
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
+using HZY.Models.DTO.Framework;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Mvc;

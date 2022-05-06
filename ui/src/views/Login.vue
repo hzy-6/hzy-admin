@@ -21,7 +21,7 @@
               </a-input-password>
             </a-form-item>
             <a-form-item>
-              <a-button type="primary" @click="methods.check" :loading="state.loading" size="large" block>登录</a-button>
+              <a-button type="primary" @click="methods.check" :loading="loading" size="large" block>登录</a-button>
             </a-form-item>
           </a-form>
         </div>
@@ -57,10 +57,11 @@ const methods = {
     loginService
       .login(state.userName, state.userPassword)
       .then((res) => {
-        loading.value = false;
         if (res.code !== 1) return;
         tools.setAuthorization(res.data.token);
-        router.push("/");
+        router.push("/").then(() => {
+          loading.value = false;
+        });
       })
       .catch(() => {
         loading.value = false;

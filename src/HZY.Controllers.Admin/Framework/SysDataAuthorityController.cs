@@ -6,6 +6,7 @@ using HZY.Infrastructure.Permission;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.Consts;
 using HZY.Models.DTO;
+using HZY.Models.DTO.Framework;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Framework;

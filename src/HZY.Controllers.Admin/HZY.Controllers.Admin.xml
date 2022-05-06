@@ -240,7 +240,7 @@
             个人中心
             </summary>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.PersonalCenterController.ChangePasswordAsync(HZY.Models.DTO.ChangePasswordFormDto)">
+        <member name="M:HZY.Controllers.Admin.Framework.PersonalCenterController.ChangePasswordAsync(HZY.Models.DTO.Framework.ChangePasswordFormDto)">
             <summary>
             更新密码
             </summary>
@@ -277,7 +277,7 @@
             <param name="id">id</param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityController.SaveFormAsync(HZY.Models.DTO.SysDataAuthorityFormDto)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityController.SaveFormAsync(HZY.Models.DTO.Framework.SysDataAuthorityFormDto)">
             <summary>
             保存
             </summary>
@@ -453,7 +453,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysMenuController.SaveFormAsync(HZY.Models.DTO.SysMenuFormDto)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysMenuController.SaveFormAsync(HZY.Models.DTO.Framework.SysMenuFormDto)">
             <summary>
             保存
             </summary>
@@ -479,7 +479,7 @@
             操作日志控制器
             </summary>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysOperationLogController.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.Framework.SysOperationLog)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysOperationLogController.FindListAsync(System.Int32,System.Int32,HZY.Models.DTO.Framework.SysOperationLogSearchDto)">
             <summary>
             获取表单数据
             </summary>
@@ -639,7 +639,7 @@
             <param name="search"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysRoleMenuFunctionController.SaveFormAsync(System.Collections.Generic.List{HZY.Models.DTO.SysRoleMenuFunctionFormDto})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysRoleMenuFunctionController.SaveFormAsync(System.Collections.Generic.List{HZY.Models.DTO.Framework.SysRoleMenuFunctionFormDto})">
             <summary>
             保存
             </summary>
@@ -680,7 +680,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysUserController.SaveFormAsync(HZY.Models.DTO.SysUserFormDto)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysUserController.SaveFormAsync(HZY.Models.DTO.Framework.SysUserFormDto)">
             <summary>
             保存
             </summary>

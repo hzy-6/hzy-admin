@@ -84,37 +84,6 @@
             功能常量 打印
             </summary>
         </member>
-        <member name="P:HZY.Models.DTO.AuthUserFormDto.UserName">
-            <summary>
-            用户名称
-            </summary>
-        </member>
-        <member name="P:HZY.Models.DTO.AuthUserFormDto.UserPassword">
-            <summary>
-            用户密码
-            </summary>
-        </member>
-        <member name="P:HZY.Models.DTO.AuthUserFormDto.LoginCode">
-            <summary>
-            验证码(不填)
-            </summary>
-        </member>
-        <member name="P:HZY.Models.DTO.ChangePasswordFormDto.OldPassword">
-            <summary>
-            旧密码
-            </summary>
-        </member>
-        <member name="P:HZY.Models.DTO.ChangePasswordFormDto.NewPassword">
-            <summary>
-            新密码
-            </summary>
-        </member>
-        <member name="P:HZY.Models.DTO.ChangePasswordFormDto.QrPassword">
-            <summary>
-            确认密码
-            </summary>
-            <value></value>
-        </member>
         <member name="T:HZY.Models.DTO.DevelopmentTool.GenContextDto">
             <summary>
             生成代码上下文
@@ -145,22 +114,63 @@
             代码文本
             </summary>
         </member>
-        <member name="P:HZY.Models.DTO.SysMenuTreeDto.ParentName">
+        <member name="P:HZY.Models.DTO.Framework.AuthUserFormDto.UserName">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.Framework.AuthUserFormDto.UserPassword">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.Framework.AuthUserFormDto.LoginCode">
+            <summary>
+            验证码(不填)
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.Framework.ChangePasswordFormDto.OldPassword">
+            <summary>
+            旧密码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.Framework.ChangePasswordFormDto.NewPassword">
+            <summary>
+            新密码
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.Framework.ChangePasswordFormDto.QrPassword">
+            <summary>
+            确认密码
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.DTO.Framework.SysMenuTreeDto.ParentName">
             <summary>
             父级菜单名称
             </summary>
         </member>
-        <member name="P:HZY.Models.DTO.SysMenuTreeDto.Children">
+        <member name="P:HZY.Models.DTO.Framework.SysMenuTreeDto.Children">
             <summary>
             子级菜单
             </summary>
         </member>
-        <member name="T:HZY.Models.DTO.SysOrganizationTreeDto">
+        <member name="P:HZY.Models.DTO.Framework.SysOperationLogSearchDto.StartTime">
+            <summary>
+            开始时间
+            </summary>
+        </member>
+        <member name="P:HZY.Models.DTO.Framework.SysOperationLogSearchDto.EndTime">
+            <summary>
+            结束时间
+            </summary>
+        </member>
+        <member name="T:HZY.Models.DTO.Framework.SysOrganizationTreeDto">
             <summary>
             组织机构树
             </summary>
         </member>
-        <member name="T:HZY.Models.DTO.SysUserFormDto">
+        <member name="T:HZY.Models.DTO.Framework.SysUserFormDto">
             <summary>
             系统账户表单
             </summary>

@@ -515,7 +515,7 @@
             <param name="id">id</param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityService.SaveFormAsync(HZY.Models.DTO.SysDataAuthorityFormDto)">
+        <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityService.SaveFormAsync(HZY.Models.DTO.Framework.SysDataAuthorityFormDto)">
             <summary>
             保存数据
             </summary>
@@ -646,7 +646,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysMenuService.SaveFormAsync(HZY.Models.DTO.SysMenuFormDto)">
+        <member name="M:HZY.Services.Admin.Framework.SysMenuService.SaveFormAsync(HZY.Models.DTO.Framework.SysMenuFormDto)">
             <summary>
             保存数据
             </summary>
@@ -705,7 +705,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysOperationLogService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.Framework.SysOperationLog)">
+        <member name="M:HZY.Services.Admin.Framework.SysOperationLogService.FindListAsync(System.Int32,System.Int32,HZY.Models.DTO.Framework.SysOperationLogSearchDto)">
             <summary>
             获取列表数据
             </summary>
@@ -765,7 +765,7 @@
             <param name="sysOrganization"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysOrganizationService.GetSysOrganizationTreeAsync(System.Collections.Generic.IEnumerable{HZY.Models.DTO.SysOrganizationTreeDto})">
+        <member name="M:HZY.Services.Admin.Framework.SysOrganizationService.GetSysOrganizationTreeAsync(System.Collections.Generic.IEnumerable{HZY.Models.DTO.Framework.SysOrganizationTreeDto})">
             <summary>
             对 组织树 加工树结构
             </summary>
@@ -814,7 +814,7 @@
             角色 菜单 功能服务
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysRoleMenuFunctionService.SaveFormAsync(System.Collections.Generic.List{HZY.Models.DTO.SysRoleMenuFunctionFormDto})">
+        <member name="M:HZY.Services.Admin.Framework.SysRoleMenuFunctionService.SaveFormAsync(System.Collections.Generic.List{HZY.Models.DTO.Framework.SysRoleMenuFunctionFormDto})">
             <summary>
             保存数据
             </summary>
@@ -898,7 +898,7 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysUserService.SaveFormAsync(HZY.Models.DTO.SysUserFormDto)">
+        <member name="M:HZY.Services.Admin.Framework.SysUserService.SaveFormAsync(HZY.Models.DTO.Framework.SysUserFormDto)">
             <summary>
             保存数据
             </summary>

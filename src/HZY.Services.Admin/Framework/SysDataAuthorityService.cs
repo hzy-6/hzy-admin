@@ -6,7 +6,7 @@ using HZY.Domain.Services.Accounts;
 using HZY.EFCore.Models;
 using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
-using HZY.Models.DTO;
+using HZY.Models.DTO.Framework;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;

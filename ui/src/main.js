@@ -12,6 +12,8 @@ import { createPinia } from 'pinia';
 import useVXETable from "@/scripts/vxe-table-util";
 //antd icons
 import { useAllIcons } from '@/scripts/icons'
+//打印
+import print from 'vue3-print-nb'
 
 var app = createApp(App);
 app.use(createPinia());
@@ -19,4 +21,5 @@ app.use(router);
 app.use(antd);
 app.use(useVXETable);
 app.use(useAllIcons);
+app.use(print);
 app.mount('#app');

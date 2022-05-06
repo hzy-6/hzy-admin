@@ -6,6 +6,7 @@ using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.MessageQueue;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
+using HZY.Models.DTO.Framework;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;
@@ -134,28 +135,31 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
     /// <param name="size">size</param>
     /// <param name="search">search</param>
     /// <returns></returns>
-    public async Task<PagingViewModel> FindListAsync(int page, int size, SysOperationLog search)
+    public async Task<PagingViewModel> FindListAsync(int page, int size, SysOperationLogSearchDto search)
     {
         var query = (from log in _defaultRepository.Select.OrderByDescending(w => w.CreationTime)
                      from use in _sysUserRepository.Select.Where(w => w.Id == log.UserId).DefaultIfEmpty()
-                     select new
+                     select new { log, use })
+                     .WhereIf(!string.IsNullOrWhiteSpace(search.Api), w => w.log.Api.Contains(search.Api))
+                     .WhereIf(!string.IsNullOrWhiteSpace(search.Browser), w => w.log.Browser.Contains(search.Browser))
+                     .WhereIf(!string.IsNullOrWhiteSpace(search.Ip), w => w.log.Ip.Contains(search.Ip))
+                     .WhereIf(!string.IsNullOrWhiteSpace(search.OS), w => w.log.OS.Contains(search.OS))
+                     .WhereIf(search.StartTime != null, w => w.log.CreationTime.Date >= search.StartTime.Value)
+                     .WhereIf(search.EndTime != null, w => w.log.CreationTime.Date <= search.EndTime.Value)
+                     .Select(w => new
                      {
-                         log.Id,
-                         log.Api,
-                         log.Browser,
-                         log.Ip,
-                         log.OS,
-                         log.TakeUpTime,
-                         UserName = use.Name,
-                         use.LoginName,
-                         log.ControllerDisplayName,
-                         log.ActionDisplayName,
-                         CreationTime = log.CreationTime.ToString("yyyy-MM-dd hh:mm:ss")
+                         w.log.Id,
+                         w.log.Api,
+                         w.log.Browser,
+                         w.log.Ip,
+                         w.log.OS,
+                         w.log.TakeUpTime,
+                         UserName = w.use.Name,
+                         w.use.LoginName,
+                         w.log.ControllerDisplayName,
+                         w.log.ActionDisplayName,
+                         CreationTime = w.log.CreationTime.ToString("yyyy-MM-dd HH:mm:ss")
                      })
-                     .WhereIf(!string.IsNullOrWhiteSpace(search.Api), w => w.Api.Contains(search.Api))
-                     .WhereIf(!string.IsNullOrWhiteSpace(search.Browser), w => w.Browser.Contains(search.Browser))
-                     .WhereIf(!string.IsNullOrWhiteSpace(search.Ip), w => w.Ip.Contains(search.Ip))
-                     .WhereIf(!string.IsNullOrWhiteSpace(search.OS), w => w.OS.Contains(search.OS))
                      ;
 
         return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);

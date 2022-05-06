@@ -4,6 +4,7 @@ using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
+using HZY.Models.DTO.Framework;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Mvc;
@@ -35,7 +36,7 @@ public class SysOperationLogController : AdminBaseController<SysOperationLogServ
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查看列表")]
     [HttpPost("FindList/{size}/{page}")]
-    public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysOperationLog search)
+    public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysOperationLogSearchDto search)
     {
         return await _defaultService.FindListAsync(page, size, search);
     }

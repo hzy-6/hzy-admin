@@ -1,6 +1,7 @@
 ﻿using HZY.Infrastructure;
 using HZY.Infrastructure.Filters;
 using HZY.Models.DTO;
+using HZY.Models.DTO.Framework;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Mvc;
 using System;

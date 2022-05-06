@@ -5,6 +5,7 @@ using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Model.BO;
 using HZY.Models.DTO;
+using HZY.Models.DTO.Framework;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.BaseServicesAdmin;

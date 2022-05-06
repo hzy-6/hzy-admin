@@ -16,10 +16,14 @@
           <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
             <a-input v-model:value="state.search.vm.os" placeholder="操作系统" />
           </a-col>
+          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+            <a-range-picker v-model:value="state.search.vm.rangeTime" />
+          </a-col>
+
           <!--button-->
           <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
-            <a-button type="primary" class="mr-15" @click="findList">查询</a-button>
-            <a-button class="mr-15" @click="onResetSearch">重置</a-button>
+            <a-button type="primary" class="mr-15" @click="methods.findList">查询</a-button>
+            <a-button class="mr-15" @click="methods.onResetSearch">重置</a-button>
           </a-col>
         </a-row>
       </template>
@@ -113,6 +117,13 @@ const state = reactive({
     fieldCount: 2,
     vm: {
       name: null,
+      api: null,
+      browser: null,
+      ip: null,
+      os: null,
+      rangeTime: [],
+      startTime: null,
+      endTime: null,
     },
   },
   loading: false,
@@ -153,6 +164,11 @@ const methods = {
   //获取列表数据
   findList() {
     state.loading = true;
+    if (state.search.vm.rangeTime.length == 2) {
+      state.search.vm.startTime = state.search.vm.rangeTime[0].format("YYYY-MM-DD");
+      state.search.vm.endTime = state.search.vm.rangeTime[1].format("YYYY-MM-DD");
+    }
+
     service.findList(state.rows, state.page, state.search.vm).then((res) => {
       let data = res.data;
       state.loading = false;

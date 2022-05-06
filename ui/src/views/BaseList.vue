@@ -1,12 +1,17 @@
 <template>
   <div>
-    <a-table :row-selection="rowSelection" :columns="state.columns" :data-source="state.data">
-      <template #bodyCell="{ column, text }">
-        <template v-if="column.dataIndex === 'name'">
-          <a>{{ text }}</a>
+    <a-button type="primary" v-print="'#print'" class="mb-15">打印</a-button>
+    x:{{ x }}y:{{ y }}
+    <div id="print">
+      <a-table :row-selection="rowSelection" :columns="state.columns" :data-source="state.data">
+        <template #bodyCell="{ column, text }">
+          <template v-if="column.dataIndex === 'name'">
+            <a>{{ text }}</a>
+          </template>
         </template>
-      </template>
-    </a-table>
+      </a-table>
+    </div>
+    <div ref="el" :style="style" style="position: fixed; background-color: red; width: 100px; height: 100px">快拖动我...</div>
   </div>
 </template>
 
@@ -14,7 +19,8 @@
 export default { name: "BaseListCom" };
 </script>
 <script setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
+import { useDraggable } from "@vueuse/core";
 
 const columns = [
   {
@@ -71,4 +77,11 @@ const rowSelection = {
     name: record.name,
   }),
 };
+
+const el = ref(null);
+
+// `style` will be a helper computed for `left: ?px; top: ?px;`
+const { x, y, style } = useDraggable(el, {
+  initialValue: { x: 500, y: 200 },
+});
 </script>

@@ -1,4 +1,5 @@
 ﻿using HZY.Models.DTO;
+using HZY.Models.DTO.Framework;
 using HZY.Models.Entities.Framework;
 using System;
 using System.Collections.Generic;

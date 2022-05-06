@@ -23,10 +23,10 @@
           <AppIcon name="SettingOutlined" :size="16" />
         </a-tooltip>
       </div>
-      <div class="hzy-header-btn" @click="onFullScreen" v-if="!layoutStoreState.isMobile">
+      <div class="hzy-header-btn" @click="toggle" v-if="!layoutStoreState.isMobile">
         <a-tooltip>
-          <template #title>界面设置</template>
-          <AppIcon :name="fullscreen ? 'FullscreenExitOutlined' : 'FullscreenOutlined'" :size="16" />
+          <template #title>全屏</template>
+          <AppIcon :name="isFullscreen ? 'FullscreenExitOutlined' : 'FullscreenOutlined'" :size="16" />
         </a-tooltip>
       </div>
       <div class="hzy-header-btn">
@@ -53,8 +53,9 @@ import { defineComponent, reactive, toRefs, computed } from "vue";
 import { useLayoutStore, useTabsStore, useMenuStore, useHeaderStore, useAppStore, useSettingsStore } from "@/store";
 import AppIcon from "@/components/AppIcon.vue";
 import router from "@/router";
-import screenfull from "screenfull";
+// import screenfull from "screenfull";
 import LayoutOneLevelMenu from "./menus/LayoutOneLevelMenu.vue";
+import { useFullscreen } from "@vueuse/core";
 
 export default defineComponent({
   name: "LayoutHeaderCom",
@@ -79,22 +80,12 @@ export default defineComponent({
     const settingsStore = useSettingsStore();
     const settingsStoreState = computed(() => settingsStore.state);
 
-    const state = reactive({
-      fullscreen: false,
-    });
+    const { isFullscreen, enter, exit, toggle } = useFullscreen();
 
     const methods = {
       onLogOut() {
         //退出登录
         router.push("/login");
-      },
-      //全屏事件
-      onFullScreen() {
-        if (!screenfull.isEnabled) {
-          return alert("您的浏览器无法使用全屏功能，请更换谷歌浏览器或者请手动点击F11按钮全屏展示！");
-        }
-        screenfull.toggle();
-        state.fullscreen = !screenfull.isFullscreen;
       },
       //刷新当前页面
       onReload() {
@@ -102,7 +93,7 @@ export default defineComponent({
       },
     };
 
-    return { ...toRefs(state), ...methods, layoutStoreState, tabsStoreState, menuStoreState, headerStoreState, menuStore, appStoreState, settingsStore, settingsStoreState };
+    return { ...methods, layoutStoreState, tabsStoreState, menuStoreState, headerStoreState, menuStore, appStoreState, settingsStore, settingsStoreState, isFullscreen, toggle };
   },
 });
 </script>
