@@ -1,129 +1,165 @@
 <template>
-  <div :id="el"></div>
+  <div style="z-index: 99; border: 1px solid #ccc">
+    <div :id="state.toolbarContainer" style="border-bottom: 1px solid #ccc"></div>
+    <div :id="state.editorContainer" :style="{ height: props.height + 'px' }"></div>
+  </div>
 </template>
 
 <script>
-import { defineComponent, onMounted, onUnmounted, ref, watch } from "vue";
-import E from "wangeditor";
+export default { name: "WangEditorCom" };
+</script>
+<script setup>
+import { onMounted, reactive, onBeforeUnmount, watch } from "vue";
+import "@wangeditor/editor/dist/css/style.css";
+import { createEditor, createToolbar } from "@wangeditor/editor";
 
-export default defineComponent({
-  name: "WangEditorCom",
-  props: {
-    //dom 元素的 id 值
-    el: {
-      type: String,
-      required: true,
+const props = defineProps({
+  el: {
+    type: String,
+    default() {
+      return new Date().getTime() + "_" + Math.floor(Math.random() * 1000);
     },
-    //编辑器内容
-    html: String,
-    //编辑器高度
-    height: Number,
-    //文件上传域名
-    domainName: String,
-    //预览域名
-    previewDomainName: String,
-    //
-    // initConfig: Function,
   },
-  setup(props, context) {
-    const editor = ref(null);
-    const htmlData = ref(props.html);
+  //编辑器内容
+  html: String,
+  //编辑器高度
+  height: Number,
+  //文件上传域名
+  domainName: String,
+  //预览域名
+  previewDomainName: String,
+});
 
-    //
-    watch(
-      () => props.html,
-      (value) => {
-        htmlData.value = value;
-        methods.setHtml();
+const emits = defineEmits(["html"]);
+
+const state = reactive({
+  toolbarContainer: "toolbar-container-" + props.el,
+  editorContainer: "editor-container-" + props.el,
+  mode: "default", // 或 'simple' 参考下文
+  editor: null,
+  toolbar: null,
+});
+
+//【注意】下面使用的 typescript 语法。如用 javascript 语法，把类型去掉即可。
+const editorConfig = { onChange: function () {}, MENU_CONF: {} };
+editorConfig.placeholder = "请输入内容";
+//菜单配置 - 上传图片
+editorConfig.MENU_CONF["uploadImage"] = {
+  server: props.domainName ? props.domainName + "/api/Upload/Images" : "",
+  // form-data fieldName ，默认值 'wangeditor-uploaded-image'
+  fieldName: "editorFileImages",
+  // 超时时间，默认为 10 秒
+  timeout: 60 * 1000, // 5 秒
+  // 单个文件的最大体积限制，默认为 2M
+  maxFileSize: 10 * 1024 * 1024, // 1M
+  // 上传之前触发
+  onBeforeUpload(file) {
+    // file 选中的文件，格式如 { key: file }
+    console.log(`${file.name} 上传之前触发`, file);
+    return file;
+
+    // 可以 return
+    // 1. return file 或者 new 一个 file ，接下来将上传
+    // 2. return false ，不上传这个 file
+  },
+  // 上传进度的回调函数
+  onProgress(progress) {
+    // progress 是 0-100 的数字
+    console.log("progress", progress);
+  },
+  // 单个文件上传成功之后
+  onSuccess(file, res) {
+    console.log(`${file.name} 上传成功`, res);
+  },
+  // 单个文件上传失败
+  onFailed(file, res) {
+    console.log(`${file.name} 上传失败`, res);
+  },
+  // 上传错误，或者触发 timeout 超时
+  onError(file, err, res) {
+    console.log(`${file.name} 上传出错`, err, res);
+  },
+  // 自定义插入图片
+  customInsert(res, insertFn) {
+    // res 即服务端的返回结果
+
+    // 从 res 中找到 url alt href ，然后插图图片
+    // insertFn(url, alt, href);
+
+    // result 即服务端返回的接口
+    console.log("res", res);
+    console.log("insertFn", insertFn);
+
+    // insertImgFn 可把图片插入到编辑器，传入图片 src ，执行函数即可
+    let data = res.data;
+    for (let i = 0; i < data.length; i++) {
+      let item = data[i];
+      if (props.previewDomainName) {
+        insertFn(props.previewDomainName + item);
+      } else {
+        insertFn(item);
       }
-    );
-
-    const methods = {
-      init() {
-        editor.value = new E(document.getElementById(props.el));
-        // 设置编辑区域高度为 500px
-        editor.value.config.height = props.height ? props.height : 350;
-
-        // 配置 onchange 回调函数
-        editor.value.config.onchange = function(newHtml) {
-          context.emit("update:html", newHtml);
-        };
-        // 配置触发 onchange 的时间频率，默认为 200ms
-        editor.value.config.onchangeTimeout = 300; // 修改为 500ms
-
-        editor.value.config.zIndex = 0;
-        methods.uploadImageConfig();
-
-        // context.emit("init-config", editor);
-        // props.initConfig(editor);
-        // (editor: any): void => {}
-
-        editor.value.create();
-
-        methods.setHtml();
-      },
-      /**
-       * 上传图片配置
-       */
-      uploadImageConfig() {
-        // 配置 server 接口地址
-        editor.value.config.uploadImgServer = props.domainName ? props.domainName + "/Upload/Images" : "";
-        editor.value.config.uploadFileName = "editorFileImages";
-        editor.value.config.uploadImgTimeout = 60 * 1000;
-        editor.value.config.uploadImgHooks = {
-          // 图片上传并返回了结果，想要自己把图片插入到编辑器中
-          // 例如服务器端返回的不是 { errno: 0, data: [...] } 这种格式，可使用 customInsert
-          customInsert: function(insertImgFn, result) {
-            // result 即服务端返回的接口
-            // console.log('customInsert', result)
-
-            // insertImgFn 可把图片插入到编辑器，传入图片 src ，执行函数即可
-            let data = result.data;
-            for (let i = 0; i < data.length; i++) {
-              let item = data[i];
-              if (props.previewDomainName) {
-                insertImgFn(props.previewDomainName + item);
-              } else {
-                insertImgFn(item);
-              }
-            }
-          },
-        };
-      },
-      /**
-       * 设置值
-       */
-      setHtml() {
-        if (editor.value) {
-          editor.value.txt.html(htmlData.value ? htmlData.value : "");
-        }
-      },
-      /**
-       * 销毁编辑器
-       */
-      destroy() {
-        // 销毁编辑器
-        editor.value.destroy();
-        editor.value = null;
-        htmlData.value = null;
-      },
-    };
-
-    //组件销毁后 钩子函数
-    onUnmounted(() => {
-      // 销毁编辑器
-      methods.destroy();
-    });
-    //组件加载 钩子函数
-    onMounted(() => {
-      methods.init();
-    });
-
-    return {
-      editor,
-      htmlData,
-    };
+    }
   },
+};
+
+watch(
+  () => props.html,
+  (value) => {
+    if (state.editor) {
+      state.editor.clear();
+      state.editor.dangerouslyInsertHtml(props.html);
+    }
+  }
+);
+
+//事件配置
+// editorConfig.onCreated = (editor) => {
+//   // 当编辑器选区、内容变化时，即触发
+//   editor.clear();
+//   editor.dangerouslyInsertHtml(props.html);
+// };
+editorConfig.onChange = (editor) => {
+  // 当编辑器选区、内容变化时，即触发
+  emits("update:html", editor.getHtml());
+};
+
+// 函数
+const methods = {
+  init() {
+    // 创建编辑器
+    state.editor = createEditor({
+      selector: "#" + state.editorContainer,
+      config: editorConfig,
+      mode: state.mode, // 或 'simple' 参考下文
+      html: props.html,
+    });
+    // 创建工具栏
+    state.toolbar = createToolbar({
+      editor: state.editor,
+      selector: "#" + state.toolbarContainer,
+      mode: state.mode, // 或 'simple' 参考下文
+    });
+  },
+  /**
+   * 销毁编辑器
+   */
+  destroy() {
+    // 销毁编辑器
+    state.editor.destroy();
+    state.toolbar.destroy();
+    state.editor = null;
+  },
+};
+
+//组件销毁后 钩子函数
+onBeforeUnmount(() => {
+  // 销毁编辑器
+  methods.destroy();
+});
+
+onMounted(() => {
+  methods.init();
 });
 </script>
 

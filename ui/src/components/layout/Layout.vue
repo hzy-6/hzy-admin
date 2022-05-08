@@ -6,7 +6,10 @@
     <LayoutSettings />
   </div>
 </template>
-<script lang="ts" setup>
+<script>
+export default { name: "LayoutCom" };
+</script>
+<script setup>
 import { computed } from "vue";
 import LayoutMode1 from "./LayoutMode1.vue";
 import LayoutMode2 from "./LayoutMode2.vue";

@@ -85,7 +85,7 @@
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
             <a-form-item label="简介">
-              <WangEditor el="editor" v-model:html="state.vm.form.introduce" :domainName="state.domainName" :previewDomainName="state.domainName" :height="400" ref="editor" />
+              <WangEditor v-model:html="state.vm.form.introduce" :domainName="state.domainName" :previewDomainName="state.domainName" :height="400" />
             </a-form-item>
           </a-col>
         </a-row>

@@ -3,8 +3,8 @@
     <a-divider>头部颜色</a-divider>
     <div class="app-skin-list mb-5 text-center">
       <template v-for="(item, index) in headerStore.state.theme.classList" :key="index">
-        <div class="app-skin-item" :style="{ background: item.color }" @click="onHeaderTheme(item.className)" v-if="index == 0" style="border: 1px solid #f5222d"></div>
-        <div class="app-skin-item" :style="{ background: item.color }" @click="onHeaderTheme(item.className)" v-else></div>
+        <div class="app-skin-item" :style="{ background: item.color }" @click="methods.onHeaderTheme(item.className)" v-if="index == 0" style="border: 1px solid #f5222d"></div>
+        <div class="app-skin-item" :style="{ background: item.color }" @click="methods.onHeaderTheme(item.className)" v-else></div>
       </template>
     </div>
     <a-divider>菜单颜色</a-divider>
@@ -25,50 +25,36 @@
     </div>
   </a-drawer>
 </template>
-<script lang="ts">
-import { defineComponent, watch, computed } from "vue";
+<script>
+export default { name: "LayoutSettingsCom" };
+</script>
+<script setup>
+import { watch, computed } from "vue";
 import { useSettingsStore, useHeaderStore, useMenuStore, useLayoutStore } from "@/store";
 
-export default defineComponent({
-  name: "LayoutSettingsCom",
-  setup(props, context) {
-    const settingsStore = useSettingsStore();
-    const settingsStoreState = computed(() => settingsStore.state);
-    // header
-    const headerStore = useHeaderStore();
-    //
-    const menuStore = useMenuStore();
-    const menuStoreState = computed(() => menuStore.state);
-    //
-    const layoutStore = useLayoutStore();
-    const layoutStoreState = computed(() => layoutStore.state);
+const settingsStore = useSettingsStore();
+const settingsStoreState = computed(() => settingsStore.state);
+// header
+const headerStore = useHeaderStore();
+//
+const menuStore = useMenuStore();
+const menuStoreState = computed(() => menuStore.state);
+//
+const layoutStore = useLayoutStore();
+const layoutStoreState = computed(() => layoutStore.state);
 
-    watch(
-      () => menuStoreState.value.themeType,
-      (value) => {
-        menuStore.onChangeTheme(value);
-      }
-    );
+watch(
+  () => menuStoreState.value.themeType,
+  (value) => {
+    menuStore.onChangeTheme(value);
+  }
+);
 
-    const methods = {
-      setState() {
-        settingsStore.isShow();
-      },
-      onHeaderTheme(value) {
-        headerStore.onChangeThemeClass(value);
-      },
-    };
-
-    return {
-      ...methods,
-      settingsStoreState,
-      headerStore,
-      menuStore,
-      menuStoreState,
-      layoutStoreState,
-    };
+const methods = {
+  onHeaderTheme(value) {
+    headerStore.onChangeThemeClass(value);
   },
-});
+};
 </script>
 <style lang="less" scoped>
 .app-settings {

@@ -11,7 +11,7 @@
         <LayoutOneLevelMenu />
       </div>
       <div style="flex: 1 1 0%" v-else></div>
-      <div class="hzy-header-btn" @click="onReload">
+      <div class="hzy-header-btn" @click="methods.onReload">
         <a-tooltip>
           <template #title>刷新当前选项卡</template>
           <AppIcon name="ReloadOutlined" :size="16" />
@@ -38,7 +38,7 @@
           </div>
           <template #overlay>
             <a-menu>
-              <a-menu-item @click="onLogOut">
+              <a-menu-item @click="methods.onLogOut">
                 <a href="javascript:;"> <AppIcon name="LogoutOutlined" />&nbsp;&nbsp;退出登录 </a>
               </a-menu-item>
             </a-menu>
@@ -49,53 +49,47 @@
   </a-layout-header>
 </template>
 <script>
-import { defineComponent, reactive, toRefs, computed } from "vue";
+export default { name: "LayoutHeaderCom" };
+</script>
+<script setup>
+import { computed } from "vue";
 import { useLayoutStore, useTabsStore, useMenuStore, useHeaderStore, useAppStore, useSettingsStore } from "@/store";
 import AppIcon from "@/components/AppIcon.vue";
 import router from "@/router";
-// import screenfull from "screenfull";
 import LayoutOneLevelMenu from "./menus/LayoutOneLevelMenu.vue";
 import { useFullscreen } from "@vueuse/core";
 
-export default defineComponent({
-  name: "LayoutHeaderCom",
-  components: { AppIcon, LayoutOneLevelMenu },
-  setup(props, context) {
-    //layout
-    const layoutStore = useLayoutStore();
-    const layoutStoreState = computed(() => layoutStore.state);
-    //tabs
-    const tabsStore = useTabsStore();
-    const tabsStoreState = computed(() => tabsStore.state);
-    //menu
-    const menuStore = useMenuStore();
-    const menuStoreState = computed(() => menuStore.state);
-    //header
-    const headerStore = useHeaderStore();
-    const headerStoreState = computed(() => headerStore.state);
-    //app
-    const appStore = useAppStore();
-    const appStoreState = computed(() => appStore.state);
-    // settingsStore
-    const settingsStore = useSettingsStore();
-    const settingsStoreState = computed(() => settingsStore.state);
+//layout
+const layoutStore = useLayoutStore();
+const layoutStoreState = computed(() => layoutStore.state);
+//tabs
+const tabsStore = useTabsStore();
+const tabsStoreState = computed(() => tabsStore.state);
+//menu
+const menuStore = useMenuStore();
+const menuStoreState = computed(() => menuStore.state);
+//header
+const headerStore = useHeaderStore();
+const headerStoreState = computed(() => headerStore.state);
+//app
+const appStore = useAppStore();
+const appStoreState = computed(() => appStore.state);
+// settingsStore
+const settingsStore = useSettingsStore();
+const settingsStoreState = computed(() => settingsStore.state);
 
-    const { isFullscreen, enter, exit, toggle } = useFullscreen();
+const { isFullscreen, enter, exit, toggle } = useFullscreen();
 
-    const methods = {
-      onLogOut() {
-        //退出登录
-        router.push("/login");
-      },
-      //刷新当前页面
-      onReload() {
-        layoutStore.refresh(router.currentRoute.value.fullPath, router.currentRoute.value.name);
-      },
-    };
-
-    return { ...methods, layoutStoreState, tabsStoreState, menuStoreState, headerStoreState, menuStore, appStoreState, settingsStore, settingsStoreState, isFullscreen, toggle };
+const methods = {
+  onLogOut() {
+    //退出登录
+    router.push("/login");
   },
-});
+  //刷新当前页面
+  onReload() {
+    layoutStore.refresh(router.currentRoute.value.fullPath, router.currentRoute.value.name);
+  },
+};
 </script>
 <style lang="less">
 .hzy-layout {

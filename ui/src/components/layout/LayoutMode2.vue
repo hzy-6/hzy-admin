@@ -4,18 +4,12 @@
     <LayoutMode1 />
   </div>
 </template>
-<script lang="ts">
-import { defineComponent } from "vue";
+<script>
+export default { name: "LayoutMode2Vue" };
+</script>
+<script setup>
 import LayoutOneLevelMenuVue from "./menus/LayoutOneLevelMenu.vue";
 import LayoutMode1 from "./LayoutMode1.vue";
-
-export default defineComponent({
-  name: "LayoutMode2Vue",
-  components: { LayoutOneLevelMenuVue, LayoutMode1 },
-  setup() {
-    return {};
-  },
-});
 </script>
 <style lang="less">
 .ant-layout {

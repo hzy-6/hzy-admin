@@ -8,7 +8,7 @@
       <template v-for="item in appStoreState.oneLevels">
         <a-tooltip placement="right">
           <template #title>{{ item.name }}</template>
-          <li :key="getJumpUrl(item)" :class="{ active: getJumpUrl(item) == selectedKey }" @click="onMenuSelected(getJumpUrl(item))">
+          <li :key="methods.getJumpUrl(item)" :class="{ active: methods.getJumpUrl(item) == state.selectedKey }" @click="methods.onMenuSelected(methods.getJumpUrl(item))">
             <AppIcon :name="item.icon" :size="25" />
           </li>
         </a-tooltip>
@@ -17,7 +17,12 @@
   </div>
   <!-- 顶部模式 -->
   <ul class="hzy-one-nav" v-if="menuStoreState.oneLevelMenuMode == 2">
-    <li v-for="item in appStoreState.oneLevels" :key="getJumpUrl(item)" :class="{ active: getJumpUrl(item) == selectedKey }" @click="onMenuSelected(getJumpUrl(item))">
+    <li
+      v-for="item in appStoreState.oneLevels"
+      :key="methods.getJumpUrl(item)"
+      :class="{ active: methods.getJumpUrl(item) == state.selectedKey }"
+      @click="methods.onMenuSelected(methods.getJumpUrl(item))"
+    >
       <div class="menu-item">
         <AppIcon :name="item.icon" :size="16" />
         <div class="ml-5">{{ item.name }}</div>
@@ -27,78 +32,67 @@
 </template>
 
 <script>
-import { defineComponent, onMounted, reactive, toRefs, computed, watch } from "vue";
+export default { name: "LayoutOneLevelMenuVue" };
+</script>
+<script setup>
+import { onMounted, reactive, computed, watch } from "vue";
 import AppIcon from "@/components/AppIcon.vue";
 import { useAppStore, useHeaderStore, useMenuStore } from "@/store";
 import router from "@/router";
 
-export default defineComponent({
-  name: "LayoutOneLevelMenuVue",
-  components: { AppIcon },
-  setup() {
-    const fullPath = computed(() => router.currentRoute.value.fullPath);
-    const appStore = useAppStore();
-    const appStoreState = computed(() => appStore.state);
-    const headerStore = useHeaderStore();
-    const headerStoreState = computed(() => headerStore.state);
-    const menuStore = useMenuStore();
-    const menuStoreState = computed(() => menuStore.state);
-    const topMenuId = computed(() => appStore.getTopMenuIdByCurrentRoute());
-    const state = reactive({
-      selectedKey: fullPath.value,
-    });
+const fullPath = computed(() => router.currentRoute.value.fullPath);
+const appStore = useAppStore();
+const appStoreState = computed(() => appStore.state);
+const headerStore = useHeaderStore();
+const headerStoreState = computed(() => headerStore.state);
+const menuStore = useMenuStore();
+const menuStoreState = computed(() => menuStore.state);
+const topMenuId = computed(() => appStore.getTopMenuIdByCurrentRoute());
+const state = reactive({
+  selectedKey: fullPath.value,
+});
 
-    watch(
-      () => router.currentRoute.value,
-      (value) => {
-        methods.initTopMenu();
+watch(
+  () => router.currentRoute.value,
+  (value) => {
+    methods.initTopMenu();
+  }
+);
+
+const methods = {
+  //初始化 一级菜单
+  initTopMenu() {
+    //如果当前路由 父级菜单 有 则切换到这个菜单上去
+    if (topMenuId.value) {
+      state.selectedKey = topMenuId.value;
+      methods.onMenuSelected(topMenuId.value);
+    } else {
+      if (appStoreState.value.oneLevels.length > 0) {
+        var menu = appStoreState.value.oneLevels[0];
+        state.selectedKey = methods.getJumpUrl(menu);
+        methods.onMenuSelected(state.selectedKey);
       }
-    );
-
-    const methods = {
-      //初始化 一级菜单
-      initTopMenu() {
-        //如果当前路由 父级菜单 有 则切换到这个菜单上去
-        if (topMenuId.value) {
-          state.selectedKey = topMenuId.value;
-          methods.onMenuSelected(topMenuId.value);
-        } else {
-          if (appStoreState.value.oneLevels.length > 0) {
-            var menu = appStoreState.value.oneLevels[0];
-            state.selectedKey = methods.getJumpUrl(menu);
-            methods.onMenuSelected(state.selectedKey);
-          }
-        }
-      },
-      //菜单选中
-      onMenuSelected(urlOrId) {
-        const routeInfo = appStore.getRouterByFullPath(urlOrId);
-        if (routeInfo && router.hasRoute(routeInfo.name)) {
-          router.push({ path: urlOrId });
-        } else {
-          state.selectedKey = urlOrId;
-          appStore.setSubmenu(urlOrId);
-        }
-      },
-      getJumpUrl(item) {
-        return item.jumpUrl ? item.jumpUrl : item.componentName ? item.componentName : item.id;
-      },
-    };
-
-    //页面加载 钩子函数
-    onMounted(() => {
-      appStore.createOneLevelMenu();
-      methods.initTopMenu();
-    });
-
-    return {
-      ...toRefs(state),
-      ...methods,
-      appStoreState,
-      headerStoreState,
-      menuStoreState,
-    };
+    }
   },
+  //菜单选中
+  onMenuSelected(urlOrId) {
+    const routeInfo = appStore.getRouterByFullPath(urlOrId);
+    if (routeInfo && router.hasRoute(routeInfo.name)) {
+      router.push({ path: urlOrId });
+    } else {
+      state.selectedKey = urlOrId;
+      appStore.setSubmenu(urlOrId);
+    }
+  },
+  getJumpUrl(item) {
+    return item.jumpUrl ? item.jumpUrl : item.componentName ? item.componentName : item.id;
+  },
+};
+
+//页面加载 钩子函数
+onMounted(() => {
+  appStore.createOneLevelMenu();
+  methods.initTopMenu();
 });
 </script>
 <style lang="less" scoped>

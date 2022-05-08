@@ -99,7 +99,7 @@
     </List>
 
     <!--表单弹层-->
-    <Info ref="refForm" @onSuccess="() => findList()" />
+    <Info ref="refForm" @onSuccess="() => methods.findList()" />
   </div>
 </template>
 

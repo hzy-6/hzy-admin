@@ -84,5 +84,5 @@ defineExpose({
   table,
 });
 
-const slots = useSlots();
+// const slots = useSlots();
 </script>
