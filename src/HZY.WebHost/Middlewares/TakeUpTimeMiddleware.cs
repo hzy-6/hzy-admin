@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using HZY.Infrastructure;
 using HZY.Services.Admin.Framework;
-using Microsoft.AspNetCore.Http;
-using Microsoft.Extensions.Logging;
 
 namespace HZY.WebHost.Middlewares;
 

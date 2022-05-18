@@ -4,7 +4,7 @@ using HZY.Models.Entities.Framework;
 using System;
 using System.Collections.Generic;
 
-namespace HZY.Model.BO;
+namespace HZY.Models.BO;
 
 /// <summary>
 /// 账户 业务对象

@@ -39,7 +39,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Domain.Services.Accounts.IAccountDomainService.SetCacheByAccountInfo(HZY.Model.BO.AccountInfo)">
+        <member name="M:HZY.Domain.Services.Accounts.IAccountDomainService.SetCacheByAccountInfo(HZY.Models.BO.AccountInfo)">
             <summary>
             根据账户信息缓存
             </summary>
@@ -101,7 +101,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Domain.Services.Accounts.Impl.AccountDomainServiceImpl.SetCacheByAccountInfo(HZY.Model.BO.AccountInfo)">
+        <member name="M:HZY.Domain.Services.Accounts.Impl.AccountDomainServiceImpl.SetCacheByAccountInfo(HZY.Models.BO.AccountInfo)">
             <summary>
             根据账户信息缓存
             </summary>

@@ -9,7 +9,7 @@ using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq.Expressions;
-using HZY.Model.BO;
+using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
 using HzyScanDiService.Extensions;
 using HzyEFCoreRepositories.Repositories;

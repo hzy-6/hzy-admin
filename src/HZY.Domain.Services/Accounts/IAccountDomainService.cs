@@ -1,4 +1,4 @@
-﻿using HZY.Model.BO;
+﻿using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
 using HzyScanDiService.Interface;
 using System.Threading.Tasks;

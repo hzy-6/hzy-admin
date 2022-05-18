@@ -23,7 +23,6 @@ public class ApiAuthorizationFilter : IAsyncAuthorizationFilter
         _accountService = accountService;
     }
 
-
     public async Task OnAuthorizationAsync(AuthorizationFilterContext context)
     {
         await Task.CompletedTask;

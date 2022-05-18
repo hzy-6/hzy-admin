@@ -4,7 +4,7 @@ using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.Permission;
 using HZY.Infrastructure.Permission.Attributes;
-using HZY.Model.BO;
+using HZY.Models.BO;
 using HZY.Models.Consts;
 using HZY.Models.DTO;
 using HZY.Models.DTO.Framework;

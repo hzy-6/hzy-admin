@@ -123,14 +123,14 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Base.Impl.RepositoryImpl`1.GetDataAuthority(HZY.Model.BO.AccountInfo)">
+        <member name="M:HZY.EFCore.Repositories.Base.Impl.RepositoryImpl`1.GetDataAuthority(HZY.Models.BO.AccountInfo)">
             <summary>
             获取数据权限
             </summary>
             <param name="accountInfo"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Base.Impl.RepositoryImpl`1.QueryByDataAuthority(HZY.Model.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+        <member name="M:HZY.EFCore.Repositories.Base.Impl.RepositoryImpl`1.QueryByDataAuthority(HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
             <summary>
             根据数据权限查询 获取 IQueryable 对象
             </summary>
@@ -168,7 +168,7 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Base.IRepository`1.QueryByDataAuthority(HZY.Model.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+        <member name="M:HZY.EFCore.Repositories.Base.IRepository`1.QueryByDataAuthority(HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
             <summary>
             根据组织 获取数据权限
             </summary>

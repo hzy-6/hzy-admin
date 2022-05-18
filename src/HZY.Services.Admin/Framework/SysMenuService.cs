@@ -2,7 +2,7 @@
 using HZY.EFCore.Models;
 using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
-using HZY.Model.BO;
+using HZY.Models.BO;
 using HZY.Models.Consts;
 using HZY.Models.DTO;
 using HZY.Models.DTO.Framework;

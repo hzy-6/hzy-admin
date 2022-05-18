@@ -4,37 +4,37 @@
         <name>HZY.Models</name>
     </assembly>
     <members>
-        <member name="T:HZY.Model.BO.AccountInfo">
+        <member name="T:HZY.Models.BO.AccountInfo">
             <summary>
             账户 业务对象
             </summary>
         </member>
-        <member name="P:HZY.Model.BO.AccountInfo.SysRoles">
+        <member name="P:HZY.Models.BO.AccountInfo.SysRoles">
             <summary>
             角色 集合
             </summary>
         </member>
-        <member name="P:HZY.Model.BO.AccountInfo.SysPosts">
+        <member name="P:HZY.Models.BO.AccountInfo.SysPosts">
             <summary>
             所属岗位
             </summary>
         </member>
-        <member name="P:HZY.Model.BO.AccountInfo.SysOrganization">
+        <member name="P:HZY.Models.BO.AccountInfo.SysOrganization">
             <summary>
             所属组织
             </summary>
         </member>
-        <member name="P:HZY.Model.BO.AccountInfo.IsAdministrator">
+        <member name="P:HZY.Models.BO.AccountInfo.IsAdministrator">
             <summary>
             是否超级管理员
             </summary>
         </member>
-        <member name="P:HZY.Model.BO.AccountInfo.Menus">
+        <member name="P:HZY.Models.BO.AccountInfo.Menus">
             <summary>
             菜单集合
             </summary>
         </member>
-        <member name="P:HZY.Model.BO.AccountInfo.MenuPowers">
+        <member name="P:HZY.Models.BO.AccountInfo.MenuPowers">
             <summary>
             菜单功能集合
             </summary>

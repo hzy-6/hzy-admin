@@ -2,7 +2,7 @@
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.Token;
-using HZY.Model.BO;
+using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
 using Microsoft.Extensions.Caching.Memory;
 using System;
