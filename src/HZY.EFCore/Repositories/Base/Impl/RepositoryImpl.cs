@@ -194,13 +194,15 @@ public class RepositoryImpl<T> : BaseRepository<T, AdminBaseDbContext>, IReposit
             // 获取所有
             if (item.PermissionType == SysDataAuthorityPermissionTypeEnum.All)
             {
-
+                continue;
             }
 
             // 自定义权限
             if (item.PermissionType == SysDataAuthorityPermissionTypeEnum.Custom)
             {
-                var customList = _sysDataAuthorityCustomRepository.Select.Where(w => w.SysDataAuthorityId == item.Id).ToList();
+                var customList = _sysDataAuthorityCustomRepository.Select
+                .Where(w => w.SysDataAuthorityId == item.Id)
+                .ToList();
                 organizationList.AddRange(customList.Select(w => w.SysOrganizationId));
             }
 
