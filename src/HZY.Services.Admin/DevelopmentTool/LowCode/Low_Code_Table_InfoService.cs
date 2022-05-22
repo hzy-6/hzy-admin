@@ -22,14 +22,17 @@ namespace HZY.Services.Admin
     {
         private readonly Low_Code_TableRepository _low_Code_TableRepository;
         private readonly DatabaseTablesRepository _databaseTablesRepository;
+        private readonly IFreeSql _freeSql;
 
         public Low_Code_Table_InfoService(Low_Code_Table_InfoRepository defaultRepository,
             Low_Code_TableRepository low_Code_TableRepository,
-            DatabaseTablesRepository databaseTablesRepository)
+            DatabaseTablesRepository databaseTablesRepository,
+            IFreeSql freeSql)
             : base(defaultRepository)
         {
             _low_Code_TableRepository = low_Code_TableRepository;
             _databaseTablesRepository = databaseTablesRepository;
+            _freeSql = freeSql;
         }
 
         /// <summary>
@@ -85,15 +88,18 @@ namespace HZY.Services.Admin
         /// <returns></returns>
         public async Task SynchronizationColumnByTableIdAsync(Guid tableId)
         {
-            var allTables = _databaseTablesRepository.GetAllTables();
+            var allTables = _freeSql.DbFirst.GetTablesByDatabase();
             var table = await this._low_Code_TableRepository.FindAsync(w => w.Id == tableId);
             var tableInfo = allTables.Find(w => w.Name == table.TableName);
-
-            //
+            //查询出当前表所有的字段
+            // var tableColumns = await this._defaultRepository.ToListAsync(w => w.Low_Code_TableId == table.Id);
             await this._defaultRepository.DeleteAsync(w => w.Low_Code_TableId == table.Id);
+            //操作集合
             var list = new List<Low_Code_Table_Info>();
             foreach (var item in tableInfo.Columns)
             {
+                // if (tableColumns.Any(w => w.ColumnName == item.Name)) continue;
+
                 var model = new Low_Code_Table_Info();
                 model.IsPrimary = item.IsPrimary;
                 model.IsIdentity = item.IsIdentity;
@@ -105,6 +111,7 @@ namespace HZY.Services.Admin
                 model.DatabaseColumnType = item.DbTypeTextFull;
                 model.CsType = item.CsType.Name;
                 model.CsField = item.Name;
+                model.MaxLength = item.MaxLength;
                 list.Add(model);
             }
 

@@ -69,6 +69,14 @@ namespace HZY.WebHost.Filters
             if (string.IsNullOrWhiteSpace(functionName)) return;
             //收集用户权限 未授权让他重新登录
             var power = this._sysMenuService.GetPowerStateByMenuIdAsync(menuId).Result;
+
+            if (power == null)
+            {
+                var data = ApiResult.ResultMessage(ApiResultCodeEnum.Error, "检测不到任何权限信息!");
+                context.Result = new JsonResult(data);
+                return;
+            }
+
             //检查当前用户对当前权限码是否有权限
             if (power.ContainsKey(functionName) && !(bool)power[functionName])
             {

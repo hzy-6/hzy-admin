@@ -2,6 +2,7 @@
 using HZY.EFCore.Models;
 using HZY.EFCore.Repositories.Base;
 using HZY.Infrastructure;
+using HZY.Infrastructure.ApiResultManage;
 using HZY.Models.BO;
 using HZY.Models.Consts;
 using HZY.Models.DTO;
@@ -233,7 +234,7 @@ public class SysMenuService : AdminBaseService<IRepository<SysMenu>>
         var sysMenuList = await (
             from t1 in this._sysRoleMenuFunctionRepository.Select.Where(w => this._accountInfo.SysRoles.Select(s => s.Id).Contains(w.RoleId))
             from t2 in this._defaultRepository.Select.Where(w => w.Id == t1.MenuId && w.State)
-            //.DefaultIfEmpty()
+                //.DefaultIfEmpty()
             from t3 in this._sysMenuFunctionRepository.Select
                 .Where(w => w.Id == t1.MenuFunctionId && w.FunctionCode == AdminFunctionConsts.Function_Display && t2.Id == w.MenuId)
                 //.DefaultIfEmpty()
@@ -361,6 +362,11 @@ public class SysMenuService : AdminBaseService<IRepository<SysMenu>>
     /// <returns></returns>
     public async Task<Dictionary<string, object>> GetPowerStateByMenuIdAsync(int menuId)
     {
+        if (!this._defaultRepository.Select.Any(w => w.Id == menuId))
+        {
+            MessageBox.Show("菜单 id 不存在! 请检查控制器 菜单 id 是否设置正确。");
+        }
+
         var sysMenus = await this._defaultRepository.Select.Where(w => w.Id == menuId).ToListAsync();
         return (await this.GetPowerByMenusAsync(sysMenus)).FirstOrDefault();
     }

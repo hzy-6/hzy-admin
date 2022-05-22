@@ -62,7 +62,7 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
             var result = new List<Dictionary<string, object>>();
 
             var query = _codeGenerationRepository.GetAllTables()
-                .WhereIf(!string.IsNullOrWhiteSpace(search.TableName), w => w.Name.Contains(search.TableName));
+                .WhereIf(!string.IsNullOrWhiteSpace(search.TableName), w => w.TableName.Contains(search.TableName));
 
             var tables = query
                 .Skip((page - 1) * size)
@@ -72,8 +72,8 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
             foreach (var item in tables)
             {
                 var dic = new Dictionary<string, object>();
-                dic.Add(nameof(item.Name), item.Name);
-                dic.Add(nameof(item.Comment), item.Comment);
+                dic.Add(nameof(item.TableName), item.TableName);
+                dic.Add(nameof(item.Remark), item.Remark);
                 dic.Add(nameof(item.Schema), item.Schema);
                 dic.Add(nameof(item.Type), item.Type.ToString());
 
@@ -94,7 +94,7 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
         /// <returns></returns>
         public GenContextDto GetGenContextDtoByTableName(string tableName)
         {
-            return _codeGenerationRepository.GetAllTables().FirstOrDefault(w => w.Name == tableName)?.MapTo<DbTableInfo, GenContextDto>();
+            return _codeGenerationRepository.GetAllTables().FirstOrDefault(w => w.TableName == tableName)?.MapTo<GenDbTableDto, GenContextDto>();
         }
 
         /// <summary>
@@ -108,11 +108,11 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
 
             var tables = _codeGenerationRepository.GetAllTables();
 
-            var tableInfo = tables.FirstOrDefault(w => w.Name == tableName);
+            var tableInfo = tables.FirstOrDefault(w => w.TableName == tableName);
 
             if (tableInfo == null) return null;
 
-            var genContextDto = tableInfo.MapTo<DbTableInfo, GenContextDto>();
+            var genContextDto = tableInfo.MapTo<GenDbTableDto, GenContextDto>();
             genContextDto.Namespace = _appConfiguration.Namespace;
             return genContextDto;
         }
@@ -234,7 +234,7 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
 
             foreach (var item in tables)
             {
-                genFormDto.TableName = item.Name;
+                genFormDto.TableName = item.TableName;
                 await this.CreateCodeFilesAsync(genFormDto);
                 await Task.Delay(25);
             }
@@ -334,7 +334,7 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
 
             foreach (var item in tables)
             {
-                var sheet = workbook.CreateSheet(item.Name + (string.IsNullOrWhiteSpace(item.Comment) ? "" : "_" + item.Comment));
+                var sheet = workbook.CreateSheet(item.TableName + (string.IsNullOrWhiteSpace(item.Remark) ? "" : "_" + item.Remark));
 
                 var i = 0;
 
@@ -366,22 +366,22 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
 
                 #endregion
                 //组装数据
-                foreach (var tableInfo in item.Columns)
+                foreach (var tableInfo in item.TableInfos)
                 {
                     i++;
-                    var index = item.Columns.IndexOf(tableInfo);
+                    var index = item.TableInfos.IndexOf(tableInfo);
                     var row = sheet.CreateRow(i);
                     row.CreateCell(0).SetCellValue(item.Schema);
-                    row.CreateCell(1).SetCellValue(item.Name);
-                    row.CreateCell(2).SetCellValue(item.Comment);
-                    row.CreateCell(3).SetCellValue(tableInfo.Name);
-                    row.CreateCell(4).SetCellValue(tableInfo.Comment);
+                    row.CreateCell(1).SetCellValue(item.TableName);
+                    row.CreateCell(2).SetCellValue(item.Remark);
+                    row.CreateCell(3).SetCellValue(tableInfo.ColumnName);
+                    row.CreateCell(4).SetCellValue(tableInfo.Describe);
                     row.CreateCell(5).SetCellValue(tableInfo.IsPrimary ? "是" : "否");
                     row.CreateCell(6).SetCellValue(tableInfo.IsIdentity ? "是" : "否");
                     row.CreateCell(7).SetCellValue(tableInfo.IsNullable ? "是" : "否");
-                    row.CreateCell(8).SetCellValue(tableInfo.DbTypeTextFull);
-                    row.CreateCell(9).SetCellValue(tableInfo.CsType.Name);
-                    row.CreateCell(10).SetCellValue(tableInfo.MaxLength);
+                    row.CreateCell(8).SetCellValue(tableInfo.DatabaseColumnType);
+                    row.CreateCell(9).SetCellValue(tableInfo.CsType);
+                    row.CreateCell(10).SetCellValue(tableInfo.MaxLength ?? 0);
                 }
 
             }

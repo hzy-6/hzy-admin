@@ -1,5 +1,9 @@
 ﻿using FreeSql;
 using FreeSql.DatabaseModel;
+using HZY.EFCore.Repositories.DevelopmentTool.LowCode;
+using HZY.Infrastructure;
+using HZY.Models.DTO.DevelopmentTool;
+using HZY.Models.Entities.LowCode;
 using HzyScanDiService.Interface;
 using System;
 using System.Collections.Generic;
@@ -14,10 +18,14 @@ namespace HZY.EFCore.Repositories.DevelopmentTool
     /// </summary>
     public class DatabaseTablesRepository : IDiScopedSelf
     {
+        private readonly Low_Code_TableRepository _low_Code_TableRepository;
+        private readonly Low_Code_Table_InfoRepository _low_Code_Table_InfoRepository;
         private readonly IFreeSql _freeSql;
 
-        public DatabaseTablesRepository(IFreeSql freeSql)
+        public DatabaseTablesRepository(Low_Code_TableRepository low_Code_TableRepository, Low_Code_Table_InfoRepository low_Code_Table_InfoRepository, IFreeSql freeSql)
         {
+            _low_Code_TableRepository = low_Code_TableRepository;
+            _low_Code_Table_InfoRepository = low_Code_Table_InfoRepository;
             _freeSql = freeSql;
         }
 
@@ -25,19 +33,30 @@ namespace HZY.EFCore.Repositories.DevelopmentTool
         /// 获取所有的表 包含表下面的列
         /// </summary>
         /// <returns></returns>
-        public List<DbTableInfo> GetAllTables()
+        public List<GenDbTableDto> GetAllTables()
         {
-            return this._freeSql.DbFirst.GetTablesByDatabase();
+            var tables = _low_Code_TableRepository.ToListAll();
+            var tableColumns = _low_Code_Table_InfoRepository.ToListAll();
+
+            var result = new List<GenDbTableDto>();
+            foreach (var item in tables)
+            {
+                var table = item.MapTo<Low_Code_Table, GenDbTableDto>();
+                table.TableInfos = tableColumns.Where(w => w.Low_Code_TableId == item.Id).ToList();
+                result.Add(table);
+            }
+
+            return result;
         }
 
-        /// <summary>
-        /// 获取数据库名称
-        /// </summary>
-        /// <returns></returns>
-        public string GetDataBaseName()
-        {
-            return this._freeSql.DbFirst.GetDatabases().FirstOrDefault();
-        }
+        // /// <summary>
+        // /// 获取数据库名称
+        // /// </summary>
+        // /// <returns></returns>
+        // public string GetDataBaseName()
+        // {
+        //     return this._freeSql.DbFirst.GetDatabases().FirstOrDefault();
+        // }
 
         /// <summary>
         /// 获取连接字符串
@@ -48,14 +67,14 @@ namespace HZY.EFCore.Repositories.DevelopmentTool
             return this._freeSql.Ado.ConnectionString;
         }
 
-        /// <summary>
-        /// 获取数据库类型
-        /// </summary>
-        /// <returns></returns>
-        public DataType GetDataType()
-        {
-            return this._freeSql.Ado.DataType;
-        }
+        // /// <summary>
+        // /// 获取数据库类型
+        // /// </summary>
+        // /// <returns></returns>
+        // public DataType GetDataType()
+        // {
+        //     return this._freeSql.Ado.DataType;
+        // }
 
     }
 }

@@ -94,6 +94,12 @@
             命名空间
             </summary>
         </member>
+        <member name="P:HZY.Models.DTO.DevelopmentTool.GenDbTableDto.TableInfos">
+            <summary>
+            表字段信息
+            </summary>
+            <value></value>
+        </member>
         <member name="T:HZY.Models.DTO.DevelopmentTool.GenFormDto">
             <summary>
             代码生成表单模型
@@ -1086,6 +1092,18 @@
             表名称
             </summary>
         </member>
+        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table.Schema">
+            <summary>
+            表空间
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table.Type">
+            <summary>
+            表类型
+            </summary>
+            <value></value>
+        </member>
         <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table.DisplayName">
             <summary>
             显示名称 描述
@@ -1155,6 +1173,12 @@
             <summary>
             c# 字段
             </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table_Info.MaxLength">
+            <summary>
+            
+            </summary>
+            <value></value>
         </member>
         <member name="T:HZY.Models.Entities.LowCode.CsTypeEnum">
             <summary>

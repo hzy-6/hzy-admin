@@ -177,35 +177,6 @@
             <param name="organizationIdFieldNameExpression"></param>
             <returns></returns>
         </member>
-        <member name="T:HZY.EFCore.Repositories.DevelopmentTool.CodeGenerationRepository">
-            <summary>
-            代码生成仓储
-            </summary>
-        </member>
-        <member name="M:HZY.EFCore.Repositories.DevelopmentTool.CodeGenerationRepository.GetAllTables">
-            <summary>
-            获取所有的表 包含表下面的列
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.EFCore.Repositories.DevelopmentTool.CodeGenerationRepository.GetDataBaseName">
-            <summary>
-            获取数据库名称
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.EFCore.Repositories.DevelopmentTool.CodeGenerationRepository.GetConnectionString">
-            <summary>
-            获取连接字符串
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.EFCore.Repositories.DevelopmentTool.CodeGenerationRepository.GetDataType">
-            <summary>
-            获取数据库类型
-            </summary>
-            <returns></returns>
-        </member>
         <member name="T:HZY.EFCore.Repositories.DevelopmentTool.DatabaseTablesRepository">
             <summary>
             用于获取表信息仓储
@@ -217,21 +188,9 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.DevelopmentTool.DatabaseTablesRepository.GetDataBaseName">
-            <summary>
-            获取数据库名称
-            </summary>
-            <returns></returns>
-        </member>
         <member name="M:HZY.EFCore.Repositories.DevelopmentTool.DatabaseTablesRepository.GetConnectionString">
             <summary>
             获取连接字符串
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.EFCore.Repositories.DevelopmentTool.DatabaseTablesRepository.GetDataType">
-            <summary>
-            获取数据库类型
             </summary>
             <returns></returns>
         </member>

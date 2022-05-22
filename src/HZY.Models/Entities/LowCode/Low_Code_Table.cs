@@ -1,4 +1,5 @@
-﻿using HZY.Models.Entities.BaseEntitys;
+﻿using FreeSql.DatabaseModel;
+using HZY.Models.Entities.BaseEntitys;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,18 @@ namespace HZY.Models.Entities.LowCode
         /// 表名称
         /// </summary>
         public string TableName { get; set; }
+
+        /// <summary>
+        /// 表空间
+        /// </summary>
+        /// <value></value>
+        public string Schema { get; set; }
+
+        /// <summary>
+        /// 表类型
+        /// </summary>
+        /// <value></value>
+        public DbTableType? Type { get; set; }
 
         /// <summary>
         /// 显示名称 描述

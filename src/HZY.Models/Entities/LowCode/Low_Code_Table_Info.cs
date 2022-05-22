@@ -61,6 +61,12 @@ namespace HZY.Models.Entities.LowCode
         /// c# 字段
         /// </summary>
         public string CsField { get; set; }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <value></value>
+        public int? MaxLength { get; set; }
     }
 
     /// <summary>

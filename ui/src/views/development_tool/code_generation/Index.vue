@@ -40,12 +40,12 @@
       <!-- 表格 -->
       <template #table-col-default>
         <vxe-column field="schema" title="数据库空间"></vxe-column>
-        <vxe-column field="name" title="表名称"></vxe-column>
-        <vxe-column field="comment" title="表备注"></vxe-column>
+        <vxe-column field="tableName" title="表名称"></vxe-column>
+        <vxe-column field="remark" title="表备注"></vxe-column>
         <vxe-column field="type" title="表类型"></vxe-column>
         <vxe-column field="id" title="操作">
           <template #default="{ row }">
-            <a href="javascript:void(0)" @click="methods.openForm(row.name)">查看代码</a>
+            <a href="javascript:void(0)" @click="methods.openForm(row.tableName)">查看代码</a>
             <!-- <a-divider type="vertical" /> -->
           </template>
         </vxe-column>

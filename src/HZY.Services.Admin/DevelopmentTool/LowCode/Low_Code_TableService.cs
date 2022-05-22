@@ -17,11 +17,13 @@ namespace HZY.Services.Admin
     public class Low_Code_TableService : AdminBaseService<Low_Code_TableRepository>
     {
         private readonly DatabaseTablesRepository _databaseTablesRepository;
+        private readonly IFreeSql _freeSql;
 
-        public Low_Code_TableService(Low_Code_TableRepository defaultRepository, DatabaseTablesRepository databaseTablesRepository)
+        public Low_Code_TableService(Low_Code_TableRepository defaultRepository, DatabaseTablesRepository databaseTablesRepository, IFreeSql freeSql)
             : base(defaultRepository)
         {
             _databaseTablesRepository = databaseTablesRepository;
+            _freeSql = freeSql;
         }
 
         /// <summary>
@@ -69,12 +71,13 @@ namespace HZY.Services.Admin
         /// </summary>
         public async Task SynchronizationAsync()
         {
-            var allTables = _databaseTablesRepository.GetAllTables();
+            var allTables = _freeSql.DbFirst.GetTablesByDatabase();
             var oldAllTables = await this._defaultRepository.ToListAllAsync();
 
             #region 同步表
 
             var insertList = new List<Low_Code_Table>();
+            var updateList = new List<Low_Code_Table>();
             foreach (var item in allTables)
             {
                 var table = oldAllTables.Find(w => w.TableName == item.Name);
@@ -87,11 +90,26 @@ namespace HZY.Services.Admin
                         DisplayName = item.Comment,
                         TableName = item.Name,
                         EntityName = item.Name,
+                        Schema = item.Schema,
+                        Type = item.Type
                     });
+                }
+                else
+                {
+                    table.Schema = item.Schema;
+                    table.Type = item.Type;
+                    updateList.Add(table);
                 }
             }
 
-            await this._defaultRepository.InsertRangeAsync(insertList);
+            if (insertList.Count > 0)
+            {
+                await this._defaultRepository.InsertRangeAsync(insertList);
+            }
+            if (updateList.Count > 0)
+            {
+                await this._defaultRepository.UpdateRangeAsync(updateList);
+            }
 
             #endregion
 
