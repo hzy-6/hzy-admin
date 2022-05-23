@@ -1,6 +1,7 @@
 ﻿using HZY.EFCore.DbContexts;
 using HZY.EFCore.Interceptor;
 using HZY.Infrastructure;
+using HZY.Models.Consts;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;

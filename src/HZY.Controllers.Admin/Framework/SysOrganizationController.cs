@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Repositories.Base;
+﻿using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.Entities.Framework;

@@ -31,6 +31,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Update="HZY.EFCore.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
 

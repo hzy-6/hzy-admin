@@ -19,10 +19,10 @@ using System.Threading.Tasks;
 
 namespace HZY.Controllers.Admin
 {
-    [ControllerDescriptor(MenuId = "请设置菜单Id 系统菜单表中查找", DisplayName = "Low_Code_Table_Info")]
-    public class Low_Code_Table_InfoController : AdminBaseController<Low_Code_Table_InfoService>
+    [ControllerDescriptor(MenuId = "请设置菜单Id 系统菜单表中查找", DisplayName = nameof(LowCodeTableController))]
+    public class LowCodeTableController : AdminBaseController<LowCodeTableService>
     {
-        public Low_Code_Table_InfoController(Low_Code_Table_InfoService defaultService)
+        public LowCodeTableController(LowCodeTableService defaultService)
             : base(defaultService)
         {
 
@@ -36,7 +36,7 @@ namespace HZY.Controllers.Admin
         /// <param name="search"></param>
         /// <returns></returns>
         [HttpPost("FindList/{size}/{page}")]
-        public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] Low_Code_Table_Info search)
+        public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] LowCodeTable search)
         {
             return await this._defaultService.FindListAsync(page, size, search);
         }
@@ -57,22 +57,23 @@ namespace HZY.Controllers.Admin
         /// 同步表
         /// </summary>
         /// <returns></returns>
-        [HttpPost("Synchronization/{tableId}")]
-        public Task SynchronizationAsync([FromRoute] Guid tableId)
+        [HttpPost("Synchronization")]
+        public Task SynchronizationAsync()
         {
-            return this._defaultService.SynchronizationColumnByTableIdAsync(tableId);
+            return this._defaultService.SynchronizationAsync();
         }
 
         /// <summary>
         /// 变更数据
         /// </summary>
-        /// <param name="low_Code_Table_Infos"></param>
+        /// <param name="lowCodeTables"></param>
         /// <returns></returns>
         [HttpPost("Change")]
-        public Task ChangeAsync([FromBody] List<Low_Code_Table_Info> low_Code_Table_Infos)
+        public Task ChangeAsync([FromBody] List<LowCodeTable> lowCodeTables)
         {
-            return this._defaultService.ChangeAsync(low_Code_Table_Infos);
+            return this._defaultService.ChangeAsync(lowCodeTables);
         }
+
 
     }
 }

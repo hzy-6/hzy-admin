@@ -3,6 +3,7 @@ using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
 using HZY.Infrastructure;
+using HZY.Models.Consts;
 using HZY.Services.Admin.Framework;
 
 namespace HZY.WebHost.Middlewares;
@@ -18,9 +19,9 @@ public class TakeUpTimeMiddleware : IMiddleware
     private readonly HttpContext _httpContext;
     private readonly AppConfiguration _appConfiguration;
 
-    public TakeUpTimeMiddleware(ILogger<TakeUpTimeMiddleware> logger, 
-        SysOperationLogService sysOperationLogService, 
-        IHttpContextAccessor iHttpContextAccessor, 
+    public TakeUpTimeMiddleware(ILogger<TakeUpTimeMiddleware> logger,
+        SysOperationLogService sysOperationLogService,
+        IHttpContextAccessor iHttpContextAccessor,
         AppConfiguration appConfiguration)
     {
         this._stopwatch ??= new Stopwatch();
@@ -46,7 +47,8 @@ public class TakeUpTimeMiddleware : IMiddleware
 
         //记录 api 执行耗时
         _stopwatch.Restart();
-                await next.Invoke(context);
+
+        await next.Invoke(context);
 
         _stopwatch.Stop();
 

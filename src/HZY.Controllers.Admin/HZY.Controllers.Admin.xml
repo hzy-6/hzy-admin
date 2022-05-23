@@ -177,7 +177,7 @@
             <param name="size"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Low_Code_TableController.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.Low_Code_Table)">
+        <member name="M:HZY.Controllers.Admin.LowCodeTableController.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.LowCodeTable)">
             <summary>
             获取列表
             </summary>
@@ -186,27 +186,27 @@
             <param name="search"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Low_Code_TableController.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
+        <member name="M:HZY.Controllers.Admin.LowCodeTableController.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
             <summary>
             根据id数组删除
             </summary>
             <param name="ids"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Low_Code_TableController.SynchronizationAsync">
+        <member name="M:HZY.Controllers.Admin.LowCodeTableController.SynchronizationAsync">
             <summary>
             同步表
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Low_Code_TableController.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.Low_Code_Table})">
+        <member name="M:HZY.Controllers.Admin.LowCodeTableController.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.LowCodeTable})">
             <summary>
             变更数据
             </summary>
-            <param name="low_Code_Tables"></param>
+            <param name="lowCodeTables"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Low_Code_Table_InfoController.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.Low_Code_Table_Info)">
+        <member name="M:HZY.Controllers.Admin.LowCodeTableInfoController.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.LowCodeTableInfo)">
             <summary>
             获取列表
             </summary>
@@ -215,24 +215,24 @@
             <param name="search"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Low_Code_Table_InfoController.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
+        <member name="M:HZY.Controllers.Admin.LowCodeTableInfoController.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
             <summary>
             根据id数组删除
             </summary>
             <param name="ids"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Low_Code_Table_InfoController.SynchronizationAsync(System.Guid)">
+        <member name="M:HZY.Controllers.Admin.LowCodeTableInfoController.SynchronizationAsync(System.Guid)">
             <summary>
             同步表
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Low_Code_Table_InfoController.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.Low_Code_Table_Info})">
+        <member name="M:HZY.Controllers.Admin.LowCodeTableInfoController.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.LowCodeTableInfo})">
             <summary>
             变更数据
             </summary>
-            <param name="low_Code_Table_Infos"></param>
+            <param name="lowCodeTableInfos"></param>
             <returns></returns>
         </member>
         <member name="T:HZY.Controllers.Admin.Framework.PersonalCenterController">

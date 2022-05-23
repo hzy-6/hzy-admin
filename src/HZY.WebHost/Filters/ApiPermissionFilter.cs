@@ -6,7 +6,9 @@ using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.Permission;
 using HZY.Infrastructure.Permission.Attributes;
+using HZY.Models.Consts;
 using HZY.Services.Admin.Framework;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
@@ -52,6 +54,12 @@ namespace HZY.WebHost.Filters
             }
             #endregion
 
+            #region 如果有取消授权标记 则 权限检查失效
+            //如果有 AllowAnonymousAttribute 标记则忽略授权检查
+            var allowAnonymousAttribute = context.ActionDescriptor.EndpointMetadata.Any(w => w is AllowAnonymousAttribute);
+            if (allowAnonymousAttribute) return;
+            #endregion
+
             #region 检查控制器 是否有控制器描述标记 [ControllerDescriptorAttribute]
             var controllerDescriptorAttribute = PermissionUtil.GetControllerDescriptorAttribute((ControllerBase)context.Controller);
             if (controllerDescriptorAttribute == null) return;
@@ -60,8 +68,7 @@ namespace HZY.WebHost.Filters
             if (menuId == 0) return;
 
             //获取 action 上面的权限编码
-            var actionDescriptorAttribute = (ActionDescriptorAttribute)context.ActionDescriptor.EndpointMetadata
-                .FirstOrDefault(w => w is ActionDescriptorAttribute);
+            var actionDescriptorAttribute = PermissionUtil.GetActionDescriptorAttribute(context.ActionDescriptor);
             if (actionDescriptorAttribute == null) return;
 
             #region 检查页面权限信息 验证当前用户是否有权限访问该接口

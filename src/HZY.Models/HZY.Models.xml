@@ -1042,139 +1042,139 @@
             用户与角色绑定
             </summary>
         </member>
-        <member name="T:HZY.Models.Entities.LowCode.Low_Code_List">
+        <member name="T:HZY.Models.Entities.LowCode.LowCodeList">
             <summary>
             低代码 列表配置
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_List.Low_Code_TableId">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeList.Low_Code_TableId">
             <summary>
             表id
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_List.Low_Code_Table_InfoId">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeList.Low_Code_Table_InfoId">
             <summary>
             表字段信息id
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_List.ForeignKeyTableId">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeList.ForeignKeyTableId">
             <summary>
             外键表 Low_Code_TableId
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_List.ForeignKeyTableFieldName">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeList.ForeignKeyTableFieldName">
             <summary>
             外键表 字段 名称
             </summary>
         </member>
-        <member name="T:HZY.Models.Entities.LowCode.Low_Code_Search">
+        <member name="T:HZY.Models.Entities.LowCode.LowCodeSearch">
             <summary>
             低代码 检索配置
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Search.Low_Code_TableId">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeSearch.Low_Code_TableId">
             <summary>
             表id
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Search.Low_Code_Table_InfoId">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeSearch.Low_Code_Table_InfoId">
             <summary>
             表
             </summary>
         </member>
-        <member name="T:HZY.Models.Entities.LowCode.Low_Code_Table">
+        <member name="T:HZY.Models.Entities.LowCode.LowCodeTable">
             <summary>
             低代码表
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table.TableName">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.TableName">
             <summary>
             表名称
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table.Schema">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.Schema">
             <summary>
             表空间
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table.Type">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.Type">
             <summary>
             表类型
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table.DisplayName">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.DisplayName">
             <summary>
             显示名称 描述
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table.EntityName">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.EntityName">
             <summary>
             实体名称
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table.Remark">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.Remark">
             <summary>
             备注
             </summary>
         </member>
-        <member name="T:HZY.Models.Entities.LowCode.Low_Code_Table_Info">
+        <member name="T:HZY.Models.Entities.LowCode.LowCodeTableInfo">
             <summary>
             低代码表信息
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table_Info.Low_Code_TableId">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTableInfo.Low_Code_TableId">
             <summary>
             表 id
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table_Info.IsPrimary">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTableInfo.IsPrimary">
             <summary>
             主键
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table_Info.IsIdentity">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTableInfo.IsIdentity">
             <summary>
             自增标识
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table_Info.IsNullable">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTableInfo.IsNullable">
             <summary>
             是否可DBNull
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table_Info.Position">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTableInfo.Position">
             <summary>
             字段位置
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table_Info.ColumnName">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTableInfo.ColumnName">
             <summary>
             列名
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table_Info.Describe">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTableInfo.Describe">
             <summary>
             列描述
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table_Info.DatabaseColumnType">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTableInfo.DatabaseColumnType">
             <summary>
             数据库列类型
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table_Info.CsType">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTableInfo.CsType">
             <summary>
             c# 数据类型
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table_Info.CsField">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTableInfo.CsField">
             <summary>
             c# 字段
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.Low_Code_Table_Info.MaxLength">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTableInfo.MaxLength">
             <summary>
             
             </summary>

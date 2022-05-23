@@ -4,7 +4,7 @@
         <name>HZY.Services.Admin</name>
     </assembly>
     <members>
-        <member name="M:HZY.Services.Admin.BaseServicesAdmin.AdminBaseService`1.ExportExcelByPagingViewModel(HZY.EFCore.Models.PagingViewModel,System.Collections.Generic.Dictionary{System.String,System.String},System.String[])">
+        <member name="M:HZY.Services.Admin.Core.AdminBaseService`1.ExportExcelByPagingViewModel(HZY.EFCore.Models.PagingViewModel,System.Collections.Generic.Dictionary{System.String,System.String},System.String[])">
             <summary>
             导出 Excel
             </summary>
@@ -13,7 +13,7 @@
             <param name="ignore"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.BaseServicesAdmin.ICrudBaseService`5.FindListAsync(System.Int32,System.Int32,`1)">
+        <member name="M:HZY.Services.Admin.Core.ICrudBaseService`5.FindListAsync(System.Int32,System.Int32,`1)">
             <summary>
             获取列表数据
             </summary>
@@ -22,35 +22,35 @@
             <param name="search"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.BaseServicesAdmin.ICrudBaseService`5.DeleteListAsync(System.Collections.Generic.List{`4})">
+        <member name="M:HZY.Services.Admin.Core.ICrudBaseService`5.DeleteListAsync(System.Collections.Generic.List{`4})">
             <summary>
             根据id数组删除
             </summary>
             <param name="ids"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.BaseServicesAdmin.ICrudBaseService`5.FindFormAsync(`4)">
+        <member name="M:HZY.Services.Admin.Core.ICrudBaseService`5.FindFormAsync(`4)">
             <summary>
             查询表单数据
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.BaseServicesAdmin.ICrudBaseService`5.SaveFormAsync(`2)">
+        <member name="M:HZY.Services.Admin.Core.ICrudBaseService`5.SaveFormAsync(`2)">
             <summary>
             保存数据
             </summary>
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.BaseServicesAdmin.ICrudBaseService`5.ExportExcelAsync(`1)">
+        <member name="M:HZY.Services.Admin.Core.ICrudBaseService`5.ExportExcelAsync(`1)">
             <summary>
             导出Excel
             </summary>
             <param name="search"></param>
             <returns></returns>
         </member>
-        <member name="T:HZY.Services.Admin.BaseServicesAdmin.Impl.AbsCrudBaseService`5">
+        <member name="T:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5">
             <summary>
             集成服务实现类
             </summary>
@@ -60,28 +60,28 @@
             <typeparam name="TEntity">实体模型</typeparam>
             <typeparam name="TKey">主键类型</typeparam>
         </member>
-        <member name="M:HZY.Services.Admin.BaseServicesAdmin.Impl.AbsCrudBaseService`5.DeleteListAsync(System.Collections.Generic.List{`4})">
+        <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.DeleteListAsync(System.Collections.Generic.List{`4})">
             <summary>
             根据 id 集合 删除多个数据
             </summary>
             <param name="ids"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.BaseServicesAdmin.Impl.AbsCrudBaseService`5.ExportExcelAsync(`1)">
+        <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.ExportExcelAsync(`1)">
             <summary>
             导出 excel
             </summary>
             <param name="search"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.BaseServicesAdmin.Impl.AbsCrudBaseService`5.FindFormAsync(`4)">
+        <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.FindFormAsync(`4)">
             <summary>
             根据 id 获取表单数据
             </summary>
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.BaseServicesAdmin.Impl.AbsCrudBaseService`5.FindListAsync(System.Int32,System.Int32,`1)">
+        <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.FindListAsync(System.Int32,System.Int32,`1)">
             <summary>
             列表查询
             </summary>
@@ -91,7 +91,7 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:HZY.Services.Admin.BaseServicesAdmin.Impl.AbsCrudBaseService`5.SaveFormAsync(`2)">
+        <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.SaveFormAsync(`2)">
             <summary>
             保存表单
             </summary>
@@ -99,7 +99,7 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:HZY.Services.Admin.BaseServicesAdmin.Impl.AbsCrudBaseService`5.ExportExcelByPagingViewModel(HZY.EFCore.Models.PagingViewModel,System.Collections.Generic.Dictionary{System.String,System.String},System.String[])">
+        <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.ExportExcelByPagingViewModel(HZY.EFCore.Models.PagingViewModel,System.Collections.Generic.Dictionary{System.String,System.String},System.String[])">
             <summary>
             导出 Excel
             </summary>
@@ -367,55 +367,22 @@
             监控 EFCore 服务
             </summary>
         </member>
-        <member name="T:HZY.Services.Admin.Low_Code_ListService">
+        <member name="T:HZY.Services.Admin.LowCodeListService">
             <summary>
             服务 Low_Code_ListService
             </summary>
         </member>
-        <member name="T:HZY.Services.Admin.Low_Code_SearchService">
+        <member name="T:HZY.Services.Admin.LowCodeSearchService">
             <summary>
             服务 Low_Code_SearchService
             </summary>
         </member>
-        <member name="T:HZY.Services.Admin.Low_Code_TableService">
-            <summary>
-            服务 Low_Code_TableService
-            </summary>
-        </member>
-        <member name="M:HZY.Services.Admin.Low_Code_TableService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.Low_Code_Table)">
-            <summary>
-            获取列表数据
-            </summary>
-            <param name="page"></param>
-            <param name="size"></param>
-            <param name="search"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Services.Admin.Low_Code_TableService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
-            <summary>
-            根据id数组删除
-            </summary>
-            <param name="ids"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Services.Admin.Low_Code_TableService.SynchronizationAsync">
-            <summary>
-            同步表
-            </summary>
-        </member>
-        <member name="M:HZY.Services.Admin.Low_Code_TableService.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.Low_Code_Table})">
-            <summary>
-            变更数据
-            </summary>
-            <param name="low_Code_Tables"></param>
-            <returns></returns>
-        </member>
-        <member name="T:HZY.Services.Admin.Low_Code_Table_InfoService">
+        <member name="T:HZY.Services.Admin.LowCodeTableInfoService">
             <summary>
             服务 Low_Code_Table_InfoService
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.Low_Code_Table_InfoService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.Low_Code_Table_Info)">
+        <member name="M:HZY.Services.Admin.LowCodeTableInfoService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.LowCodeTableInfo)">
             <summary>
             获取列表数据
             </summary>
@@ -424,25 +391,58 @@
             <param name="search"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Low_Code_Table_InfoService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
+        <member name="M:HZY.Services.Admin.LowCodeTableInfoService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
             <summary>
             根据id数组删除
             </summary>
             <param name="ids"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Low_Code_Table_InfoService.SynchronizationColumnByTableIdAsync(System.Guid)">
+        <member name="M:HZY.Services.Admin.LowCodeTableInfoService.SynchronizationColumnByTableIdAsync(System.Guid)">
             <summary>
             根据表名同步列数据
             </summary>
             <param name="tableId"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Low_Code_Table_InfoService.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.Low_Code_Table_Info})">
+        <member name="M:HZY.Services.Admin.LowCodeTableInfoService.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.LowCodeTableInfo})">
             <summary>
             变更数据
             </summary>
-            <param name="low_Code_Table_Infos"></param>
+            <param name="lowCodeTableInfos"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Services.Admin.LowCodeTableService">
+            <summary>
+            服务 Low_Code_TableService
+            </summary>
+        </member>
+        <member name="M:HZY.Services.Admin.LowCodeTableService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.LowCodeTable)">
+            <summary>
+            获取列表数据
+            </summary>
+            <param name="page"></param>
+            <param name="size"></param>
+            <param name="search"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.LowCodeTableService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
+            <summary>
+            根据id数组删除
+            </summary>
+            <param name="ids"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.LowCodeTableService.SynchronizationAsync">
+            <summary>
+            同步表
+            </summary>
+        </member>
+        <member name="M:HZY.Services.Admin.LowCodeTableService.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.LowCodeTable})">
+            <summary>
+            变更数据
+            </summary>
+            <param name="lowCodeTables"></param>
             <returns></returns>
         </member>
         <member name="T:HZY.Services.Admin.Framework.SysDataAuthorityCustomService">

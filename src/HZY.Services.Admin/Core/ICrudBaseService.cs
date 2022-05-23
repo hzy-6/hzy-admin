@@ -1,5 +1,5 @@
 ﻿using HZY.EFCore.Models;
-using HZY.EFCore.Repositories.Base;
+using HZY.EFCore.Repositories.Core;
 using HzyScanDiService.Interface;
 using System;
 using System.Collections.Generic;
@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.Services.Admin.BaseServicesAdmin
+namespace HZY.Services.Admin.Core
 {
     public interface ICrudBaseService<TRepository, TSearchDto, TFormDto, TEntity, TKey> : IDiScopedSelf
         where TRepository : IRepository<TEntity>

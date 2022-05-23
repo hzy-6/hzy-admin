@@ -11,9 +11,9 @@ import { createPinia } from 'pinia';
 //vxe table 
 import useVXETable from "@/scripts/vxe-table-util";
 //antd icons
-import { useAllIcons } from '@/scripts/icons'
+import { useAllIcons } from '@/scripts/icons';
 //打印
-import print from 'vue3-print-nb'
+import print from 'vue3-print-nb';
 
 var app = createApp(App);
 app.use(createPinia());

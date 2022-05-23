@@ -1,5 +1,5 @@
 ﻿using HZY.EFCore.Models;
-using HZY.EFCore.Repositories.Base;
+using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure;
 using NPOI.HSSF.UserModel;
 using System;
@@ -9,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.Services.Admin.BaseServicesAdmin.Impl;
+namespace HZY.Services.Admin.Core.Impl;
 
 /// <summary>
 /// 集成服务实现类

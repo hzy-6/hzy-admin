@@ -18,15 +18,14 @@ using System.Threading.Tasks;
 
 namespace HZY.Controllers.Admin
 {
-    [ControllerDescriptor(MenuId = "请设置菜单Id 系统菜单表中查找", DisplayName = "Low_Code_Search")]
-    public class LowCodeSearchController : AdminBaseController<Low_Code_SearchService>
+    [ControllerDescriptor(MenuId = "请设置菜单Id 系统菜单表中查找", DisplayName = nameof(LowCodeListController))]
+    public class LowCodeListController : AdminBaseController<LowCodeListService>
     {
-        public LowCodeSearchController(Low_Code_SearchService defaultService)
+        public LowCodeListController(LowCodeListService defaultService)
             : base(defaultService)
         {
 
         }
-
 
 
 

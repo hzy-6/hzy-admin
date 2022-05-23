@@ -17,4 +17,10 @@
 	  <ProjectReference Include="..\HZY.EFCore\HZY.EFCore.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="HZY.Services.Admin.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>

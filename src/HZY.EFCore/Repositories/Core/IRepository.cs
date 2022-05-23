@@ -10,7 +10,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.EFCore.Repositories.Base
+namespace HZY.EFCore.Repositories.Core
 {
     /// <summary>
     /// Admin默认基础仓储接口

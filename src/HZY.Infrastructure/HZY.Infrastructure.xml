@@ -593,6 +593,13 @@
             <param name="controllerBase"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Infrastructure.Permission.PermissionUtil.GetActionDescriptorAttribute(Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor)">
+            <summary>
+            获取 Action 描述标记特性
+            </summary>
+            <param name="actionDescriptor"></param>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Infrastructure.Permission.PermissionUtil.GetControllerDisplayName(System.Type)">
             <summary>
             获取当前控制器的显示名称

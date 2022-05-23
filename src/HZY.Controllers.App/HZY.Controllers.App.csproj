@@ -19,4 +19,10 @@
 		<PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.2.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="HZY.Controllers.App.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>

@@ -18,11 +18,11 @@ namespace HZY.EFCore.Repositories.DevelopmentTool
     /// </summary>
     public class DatabaseTablesRepository : IDiScopedSelf
     {
-        private readonly Low_Code_TableRepository _low_Code_TableRepository;
-        private readonly Low_Code_Table_InfoRepository _low_Code_Table_InfoRepository;
+        private readonly LowCodeTableRepository _low_Code_TableRepository;
+        private readonly LowCodeTableInfoRepository _low_Code_Table_InfoRepository;
         private readonly IFreeSql _freeSql;
 
-        public DatabaseTablesRepository(Low_Code_TableRepository low_Code_TableRepository, Low_Code_Table_InfoRepository low_Code_Table_InfoRepository, IFreeSql freeSql)
+        public DatabaseTablesRepository(LowCodeTableRepository low_Code_TableRepository, LowCodeTableInfoRepository low_Code_Table_InfoRepository, IFreeSql freeSql)
         {
             _low_Code_TableRepository = low_Code_TableRepository;
             _low_Code_Table_InfoRepository = low_Code_Table_InfoRepository;
@@ -41,7 +41,7 @@ namespace HZY.EFCore.Repositories.DevelopmentTool
             var result = new List<GenDbTableDto>();
             foreach (var item in tables)
             {
-                var table = item.MapTo<Low_Code_Table, GenDbTableDto>();
+                var table = item.MapTo<LowCodeTable, GenDbTableDto>();
                 table.TableInfos = tableColumns.Where(w => w.Low_Code_TableId == item.Id).ToList();
                 result.Add(table);
             }

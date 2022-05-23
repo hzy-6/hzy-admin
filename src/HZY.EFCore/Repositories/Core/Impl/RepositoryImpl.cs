@@ -17,7 +17,7 @@ using HzyEFCoreRepositories.Extensions;
 using HzyEFCoreRepositories.ExpressionTree;
 using HzyEFCoreRepositories.Repositories.Impl;
 
-namespace HZY.EFCore.Repositories.Base.Impl;
+namespace HZY.EFCore.Repositories.Core.Impl;
 
 /// <summary>
 /// Admin默认基础仓储接口

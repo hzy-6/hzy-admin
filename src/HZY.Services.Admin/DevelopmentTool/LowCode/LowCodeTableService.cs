@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HZY.EFCore.Models;
-using HZY.Services.Admin.BaseServicesAdmin;
+using HZY.Services.Admin.Core;
 using HZY.Models.Entities.LowCode;
 using HzyEFCoreRepositories.Extensions;
 using HZY.EFCore.Repositories.DevelopmentTool.LowCode;
@@ -14,12 +14,12 @@ namespace HZY.Services.Admin
     /// <summary>
     /// 服务 Low_Code_TableService
     /// </summary>
-    public class Low_Code_TableService : AdminBaseService<Low_Code_TableRepository>
+    public class LowCodeTableService : AdminBaseService<LowCodeTableRepository>
     {
         private readonly DatabaseTablesRepository _databaseTablesRepository;
         private readonly IFreeSql _freeSql;
 
-        public Low_Code_TableService(Low_Code_TableRepository defaultRepository, DatabaseTablesRepository databaseTablesRepository, IFreeSql freeSql)
+        public LowCodeTableService(LowCodeTableRepository defaultRepository, DatabaseTablesRepository databaseTablesRepository, IFreeSql freeSql)
             : base(defaultRepository)
         {
             _databaseTablesRepository = databaseTablesRepository;
@@ -33,7 +33,7 @@ namespace HZY.Services.Admin
         /// <param name="size"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        public async Task<PagingViewModel> FindListAsync(int page, int size, Low_Code_Table search)
+        public async Task<PagingViewModel> FindListAsync(int page, int size, LowCodeTable search)
         {
             var query = this._defaultRepository.Select
                     .WhereIf(!string.IsNullOrWhiteSpace(search.TableName), w => w.TableName.Contains(search.TableName))
@@ -76,15 +76,15 @@ namespace HZY.Services.Admin
 
             #region 同步表
 
-            var insertList = new List<Low_Code_Table>();
-            var updateList = new List<Low_Code_Table>();
+            var insertList = new List<LowCodeTable>();
+            var updateList = new List<LowCodeTable>();
             foreach (var item in allTables)
             {
                 var table = oldAllTables.Find(w => w.TableName == item.Name);
 
                 if (table == null)
                 {
-                    insertList.Add(new Low_Code_Table
+                    insertList.Add(new LowCodeTable
                     {
                         Id = Guid.NewGuid(),
                         DisplayName = item.Comment,
@@ -118,11 +118,11 @@ namespace HZY.Services.Admin
         /// <summary>
         /// 变更数据
         /// </summary>
-        /// <param name="low_Code_Tables"></param>
+        /// <param name="lowCodeTables"></param>
         /// <returns></returns>
-        public Task ChangeAsync(List<Low_Code_Table> low_Code_Tables)
+        public Task ChangeAsync(List<LowCodeTable> lowCodeTables)
         {
-            return this._defaultRepository.UpdateRangeAsync(low_Code_Tables);
+            return this._defaultRepository.UpdateRangeAsync(lowCodeTables);
         }
 
 

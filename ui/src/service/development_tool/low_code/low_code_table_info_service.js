@@ -1,7 +1,7 @@
 import { get, post } from '@/scripts/request';
 // import tools from "@/scripts/tools";
 
-const controllerName = "admin/low_code_table_info";
+const controllerName = "admin/LowCodeTableInfo";
 
 export default {
     /**

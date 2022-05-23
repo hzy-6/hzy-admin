@@ -1,6 +1,7 @@
 ﻿using HZY.EFCore.DbContexts;
-using HZY.EFCore.Repositories.Base.Impl;
+using HZY.EFCore.Repositories.Core.Impl;
 using HZY.Models.Entities.LowCode;
+using HzyScanDiService.Interface;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,9 +11,9 @@ using System.Threading.Tasks;
 
 namespace HZY.EFCore.Repositories.DevelopmentTool.LowCode
 {
-    public class Low_Code_SearchRepository : Repository<Low_Code_Search>
+    public class LowCodeSearchRepository : RepositoryImpl<LowCodeSearch>, IDiScopedSelf
     {
-        public Low_Code_SearchRepository(AdminBaseDbContext context, Expression<Func<Low_Code_Search, bool>> filter = null) : base(context, filter)
+        public LowCodeSearchRepository(AdminBaseDbContext context, Expression<Func<LowCodeSearch, bool>> filter = null) : base(context, filter)
         {
 
         }

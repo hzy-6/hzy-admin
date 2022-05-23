@@ -352,6 +352,11 @@
   resolved "https://registry.yarnpkg.com/@types/event-emitter/-/event-emitter-0.3.3.tgz#727032a9fc67565f96bbd78b2e2809275c97d7e7"
   integrity sha512-UfnOK1pIxO7P+EgPRZXD9jMpimd8QEFcEZ5R67R1UhGbv4zghU5+NE7U8M8G9H5Jc8FI51rqDWQs6FtUfq2e/Q==
 
+"@types/marked@^4.0.3":
+  version "4.0.3"
+  resolved "https://registry.yarnpkg.com/@types/marked/-/marked-4.0.3.tgz#2098f4a77adaba9ce881c9e0b6baf29116e5acc4"
+  integrity sha512-HnMWQkLJEf/PnxZIfbm0yGJRRZYYMhb++O9M36UCTA9z53uPvVoSlAwJr3XOpDEryb7Hwl1qAx/MV6YIW1RXxg==
+
 "@types/node@~14.14.31":
   version "14.14.45"
   resolved "https://registry.npmmirror.com/@types/node/-/node-14.14.45.tgz#ec2dfb5566ff814d061aef7e141575aedba245cf"
@@ -563,11 +568,6 @@
     i18next "^20.4.0"
     scroll-into-view-if-needed "^2.2.28"
     slate-history "^0.66.0"
-
-"@wangeditor/editor-for-vue@^5.1.11":
-  version "5.1.11"
-  resolved "https://registry.yarnpkg.com/@wangeditor/editor-for-vue/-/editor-for-vue-5.1.11.tgz#2f2f7ec83c1ebea6c58d30a0e090988528c3924c"
-  integrity sha512-gzo6A9VMWKUVgOTtucNTplb7K1KUvnBoQ76AaB5vmh+9LXv+6jAI4QXADH46PVGwvQJcQ3zqZ/P1pIj/QthjYQ==
 
 "@wangeditor/editor@^5.0.1":
   version "5.0.1"
@@ -1548,10 +1548,12 @@ make-dir@^2.1.0:
     pify "^4.0.1"
     semver "^5.6.0"
 
-md-editor-v3@^1.11.11:
-  version "1.11.12"
-  resolved "https://registry.yarnpkg.com/md-editor-v3/-/md-editor-v3-1.11.12.tgz#95fe559442143680d9da914b0010a2da84a5db54"
-  integrity sha512-LWJ2VjbhYYIJu9tSuoDPgVNkaL9+FSo9bbU1/JlnkOoGwfqE9AFNka5igZ2wL4r3Psu/cjTGPHX/ljs5Rfaqrg==
+md-editor-v3@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/md-editor-v3/-/md-editor-v3-2.0.0.tgz#59e0b07733882667a803fee7d4f17686ff16ca09"
+  integrity sha512-WViU7UnyVVtBB1XzVFIbGqP/Dsuzn5XhDVPWT6RXCIYQD1ECTAIZpvNKY9H/GEaEH7EwNXoNUaMNvsf1ukqqxA==
+  dependencies:
+    "@types/marked" "^4.0.3"
 
 mime-match@^1.0.2:
   version "1.0.2"

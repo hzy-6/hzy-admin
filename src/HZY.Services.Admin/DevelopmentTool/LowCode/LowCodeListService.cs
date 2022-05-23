@@ -6,18 +6,19 @@ using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
 using HZY.Services.Admin.Framework;
-using HZY.Services.Admin.BaseServicesAdmin;
+using HZY.Services.Admin.Core;
 using Microsoft.AspNetCore.Http;
+using HZY.Models.Entities.LowCode;
 using HZY.EFCore.Repositories.DevelopmentTool.LowCode;
 
 namespace HZY.Services.Admin
 {
     /// <summary>
-    /// 服务 Low_Code_SearchService
+    /// 服务 Low_Code_ListService
     /// </summary>
-    public class Low_Code_SearchService : AdminBaseService<Low_Code_SearchRepository>
+    public class LowCodeListService : AdminBaseService<LowCodeListRepository>
     {
-        public Low_Code_SearchService(Low_Code_SearchRepository defaultRepository) 
+        public LowCodeListService(LowCodeListRepository defaultRepository) 
             : base(defaultRepository)
         {
 

@@ -94,13 +94,13 @@
             列宽度
             </summary>
         </member>
-        <member name="T:HZY.EFCore.Repositories.Base.Impl.RepositoryImpl`1">
+        <member name="T:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1">
             <summary>
             Admin默认基础仓储接口
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Base.Impl.RepositoryImpl`1.AsPagingViewModelAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn})">
+        <member name="M:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1.AsPagingViewModelAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn})">
             <summary>
             查询转换为分页视图模型
             </summary>
@@ -111,7 +111,7 @@
             <typeparam name="TModel"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Base.Impl.RepositoryImpl`1.AsPagingViewModelAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn},System.Object[])">
+        <member name="M:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1.AsPagingViewModelAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn},System.Object[])">
             <summary>
             查询转换为分页视图模型 支持 Sql 字符串
             </summary>
@@ -123,14 +123,14 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Base.Impl.RepositoryImpl`1.GetDataAuthority(HZY.Models.BO.AccountInfo)">
+        <member name="M:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1.GetDataAuthority(HZY.Models.BO.AccountInfo)">
             <summary>
             获取数据权限
             </summary>
             <param name="accountInfo"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Base.Impl.RepositoryImpl`1.QueryByDataAuthority(HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+        <member name="M:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1.QueryByDataAuthority(HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
             <summary>
             根据数据权限查询 获取 IQueryable 对象
             </summary>
@@ -139,13 +139,13 @@
             <param name="organizationIdFieldNameExpression">组织id字段 默认：OrganizationId</param>
             <returns></returns>
         </member>
-        <member name="T:HZY.EFCore.Repositories.Base.IRepository`1">
+        <member name="T:HZY.EFCore.Repositories.Core.IRepository`1">
             <summary>
             Admin默认基础仓储接口
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Base.IRepository`1.AsPagingViewModelAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn})">
+        <member name="M:HZY.EFCore.Repositories.Core.IRepository`1.AsPagingViewModelAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn})">
             <summary>
             分页模型构建
             </summary>
@@ -156,7 +156,7 @@
             <param name="columnHeads"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Base.IRepository`1.AsPagingViewModelAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn},System.Object[])">
+        <member name="M:HZY.EFCore.Repositories.Core.IRepository`1.AsPagingViewModelAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn},System.Object[])">
             <summary>
             分页模型构建 用于编写 sql 语句得情况
             </summary>
@@ -168,7 +168,7 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Base.IRepository`1.QueryByDataAuthority(HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+        <member name="M:HZY.EFCore.Repositories.Core.IRepository`1.QueryByDataAuthority(HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
             <summary>
             根据组织 获取数据权限
             </summary>

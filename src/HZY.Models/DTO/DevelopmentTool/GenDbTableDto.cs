@@ -6,12 +6,12 @@ using HZY.Models.Entities.LowCode;
 
 namespace HZY.Models.DTO.DevelopmentTool
 {
-    public class GenDbTableDto : Low_Code_Table
+    public class GenDbTableDto : LowCodeTable
     {
         /// <summary>
         /// 表字段信息
         /// </summary>
         /// <value></value>
-        public List<Low_Code_Table_Info> TableInfos { get; set; }
+        public List<LowCodeTableInfo> TableInfos { get; set; }
     }
 }

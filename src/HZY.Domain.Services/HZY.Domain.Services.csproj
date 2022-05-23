@@ -12,6 +12,12 @@
 		<ProjectReference Include="..\HZY.Models\HZY.Models.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="HZY.Domain.Services.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 	<!--用于生成当前程序集xml描述-->
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
 		<DocumentationFile>HZY.Domain.Services.xml</DocumentationFile>

@@ -1,6 +1,4 @@
-﻿using System;
-using HZY.Infrastructure;
-using HzyScanDiService.Interface;
+﻿using HzyScanDiService.Interface;
 using Microsoft.Extensions.Configuration;
 
 namespace HZY.Infrastructure;
@@ -14,9 +12,9 @@ public class AppConfiguration : IDiSingletonSelf
 
     public AppConfiguration(IConfiguration configuration)
     {
-        this._configuration = configuration;
+        _configuration = configuration;
         //AppConfig 
-        this.Mapping(nameof(AppConfiguration));
+        Mapping(nameof(AppConfiguration));
     }
 
     /// <summary>
@@ -25,7 +23,7 @@ public class AppConfiguration : IDiSingletonSelf
     /// <param name="key"></param>
     private void Mapping(string key)
     {
-        var properties = this.GetType().GetProperties();
+        var properties = GetType().GetProperties();
         foreach (var item in properties)
         {
             var value = _configuration[$"{key}:{item.Name}"];
@@ -105,12 +103,10 @@ public class AppConfiguration : IDiSingletonSelf
     /// Api 白名单
     /// </summary>
     public string ApiWhiteList { get; set; }
-
     /// <summary>
     /// 是否监控EFCore程序
     /// </summary>
     public bool IsMonitorEFCore { get; set; }
-
     /// <summary>
     /// 是否拦截编辑 添加、修改、删除
     /// </summary>

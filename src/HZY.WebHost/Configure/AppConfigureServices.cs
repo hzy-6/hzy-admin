@@ -42,7 +42,8 @@ public class AppConfigureServices
     /// <param name="configuration"></param>
     public static void Build(IServiceCollection services, IConfiguration configuration)
     {
-        var prefixString = configuration.GetSection("AppConfiguration:Namespace").Value + ".";
+        var appConfiguration = new AppConfiguration(configuration);
+        var prefixString = appConfiguration.Namespace + ".";
 
         #region 自动扫描服务注册 、 其他服务注册
 
@@ -69,15 +70,13 @@ public class AppConfigureServices
 
         #endregion
 
-        var appConfig = services.BuildServiceProvider().GetRequiredService<AppConfiguration>();
-
         #region 数据库仓储注册 、 中间件注册
         //配置efcore
-        EFCoreModule.RegisterAdminBaseDbContext(services, configuration, appConfig);
+        EFCoreModule.RegisterAdminBaseDbContext(services, configuration, appConfiguration);
         //配置freesql
         FreeSqlCoreModule.RegisterFreeSql(services, configuration, $"{prefixString}Repositories");
         //配置redis
-        RedisServiceExtensions.RegisterRedisRepository(services, appConfig.ConnectionStringRedis);
+        RedisServiceExtensions.RegisterRedisRepository(services, appConfiguration.ConnectionStringRedis);
         //添加中间件
         services.AddScoped<TakeUpTimeMiddleware>();
 
@@ -111,7 +110,7 @@ public class AppConfigureServices
         #region 此配置可用于自定义 token 的 key name
         services.AddAuthorization(options =>
         {
-            options.AddPolicy("WebHostPolicy", policy => policy.Requirements.Add(new CustomPolicyRequirement(appConfig.AuthorizationKeyName)));
+            options.AddPolicy("WebHostPolicy", policy => policy.Requirements.Add(new CustomPolicyRequirement(appConfiguration.AuthorizationKeyName)));
         });
         services.AddSingleton<IAuthorizationHandler, CustomAuthorizationHandler>();
         #endregion
@@ -124,9 +123,9 @@ public class AppConfigureServices
                 ValidateAudience = true, //是否验证Audience
                 ValidateLifetime = true, //是否验证失效时间
                 ValidateIssuerSigningKey = true, //是否验证SecurityKey
-                ValidAudience = appConfig.JwtValidAudience, //Audience
-                ValidIssuer = appConfig.JwtValidIssuer, //Issuer，这两项和前面签发jwt的设置一致
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appConfig.JwtIssuerSigningKey)) //拿到SecurityKey
+                ValidAudience = appConfiguration.JwtValidAudience, //Audience
+                ValidIssuer = appConfiguration.JwtValidIssuer, //Issuer，这两项和前面签发jwt的设置一致
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appConfiguration.JwtIssuerSigningKey)) //拿到SecurityKey
             };
         });
 
@@ -165,7 +164,7 @@ public class AppConfigureServices
             {
                 Description = "JWT授权(数据将在请求头中进行传输) 直接在下框中输入Bearer {token}（注意两者之间是一个空格）\"",
                 In = ParameterLocation.Header,
-                Name = appConfig.AuthorizationKeyName,
+                Name = appConfiguration.AuthorizationKeyName,
                 Type = SecuritySchemeType.ApiKey,
                 //Scheme = "basic",
             });

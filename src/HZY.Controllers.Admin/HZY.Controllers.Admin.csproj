@@ -20,4 +20,10 @@
 		<ProjectReference Include="..\HZY.Services.Admin\HZY.Services.Admin.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="HZY.Controllers.Admin.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>

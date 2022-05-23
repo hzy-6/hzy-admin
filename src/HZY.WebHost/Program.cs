@@ -2,7 +2,6 @@ using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.MessageQueue;
 using HZY.Infrastructure.SerilogUtil;
 using HZY.Infrastructure.TextJson;
-using HZY.Services.CodeScanner;
 using HZY.WebHost.Configure;
 using HZY.WebHost.Filters;
 using Serilog;
@@ -74,8 +73,6 @@ try
 
     app.UseRouting();
 
-    //app.UseAuthorization();
-
     //配置构建
     AppConfigure.Build(app, app.Environment, app.Services, messageQueueProvider);
 
@@ -84,9 +81,6 @@ try
         endpoints.MapControllers();
     });
 
-    //启动 扫码器 netty
-    var channel = await CodeScannerServer.RunServerAsync();
-
     app.Run();
 
     #endregion
@@ -94,11 +88,9 @@ try
 }
 catch (Exception ex)
 {
-    await CodeScannerServer.CloseAsync();
     LogUtil.Log.Fatal(ex, "主机意外终止...");
 }
 finally
 {
-    await CodeScannerServer.CloseAsync();
     Log.CloseAndFlush();
 }

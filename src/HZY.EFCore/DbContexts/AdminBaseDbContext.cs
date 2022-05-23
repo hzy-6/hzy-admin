@@ -56,10 +56,10 @@ public class AdminBaseDbContext : BaseDbContext<AdminBaseDbContext>
     #endregion
 
     #region 低代码
-    public DbSet<Low_Code_List> Low_Code_List { get; set; }
-    public DbSet<Low_Code_Search> Low_Code_Search { get; set; }
-    public DbSet<Low_Code_Table> Low_Code_Table { get; set; }
-    public DbSet<Low_Code_Table_Info> Low_Code_Table_Info { get; set; }
+    public DbSet<LowCodeList> LowCodeList { get; set; }
+    public DbSet<LowCodeSearch> LowCodeSearch { get; set; }
+    public DbSet<LowCodeTable> LowCodeTable { get; set; }
+    public DbSet<LowCodeTableInfo> LowCodeTableInfo { get; set; }
     #endregion
 
     #region 业务
@@ -72,22 +72,6 @@ public class AdminBaseDbContext : BaseDbContext<AdminBaseDbContext>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        //#region 自动添加 实体到 dbset 条件是：实体必须继承自 IBaseEntity<>
-
-        //var assmblys = DiServiceScanningExtensions.GetAssemblyList(w => !w.IsDynamic);
-
-        //foreach (var item in assmblys)
-        //{
-        //    foreach (var type in item.ExportedTypes)
-        //    {
-        //        if (type.GetInterfaces().Any(w => w.Name != typeof(IBaseEntity<>).Name)) continue;
-
-        //        modelBuilder.Entity(type);
-        //    }
-        //}
-
-        //#endregion
-
         #region 过滤软删除 条件是：实体必须继承自 IDeleteBaseEntity
 
         var deleteBaseEntitys = modelBuilder.Model

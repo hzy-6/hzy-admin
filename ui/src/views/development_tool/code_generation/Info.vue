@@ -19,7 +19,6 @@
       <div class="mb-15">
         <a-radio-group v-model:value="state.activeCode">
           <a-radio-button value="HZY.Models">HZY.Models</a-radio-button>
-          <a-radio-button value="HZY.Repository">HZY.Repository</a-radio-button>
           <a-radio-button value="HZY.Services.Admin">HZY.Services.Admin</a-radio-button>
           <a-radio-button value="HZY.Controllers.Admin">HZY.Controllers.Admin</a-radio-button>
           <a-radio-button value="Index.vue">Index.vue</a-radio-button>
@@ -39,7 +38,7 @@ import MdEditorShowCode from "@/components/MdEditorShowCode.vue";
 import AppIcon from "@/components/AppIcon.vue";
 
 //定义组件事件
-const emits = defineEmits(["onSuccess"]);
+// const emits = defineEmits(["onSuccess"]);
 const state = reactive({
   vm: {
     id: "",
@@ -104,11 +103,6 @@ watch(
   () => state.activeCode,
   (value) => {
     if (value == "HZY.Models") {
-      methods.getCode((res) => {
-        state.code = " ```c# \r\n" + res + " \r\n``` ";
-      });
-    }
-    if (value == "HZY.Repository") {
       methods.getCode((res) => {
         state.code = " ```c# \r\n" + res + " \r\n``` ";
       });

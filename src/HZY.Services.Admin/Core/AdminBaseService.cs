@@ -6,7 +6,7 @@ using HZY.Infrastructure;
 using HZY.Infrastructure.Services;
 using NPOI.HSSF.UserModel;
 
-namespace HZY.Services.Admin.BaseServicesAdmin;
+namespace HZY.Services.Admin.Core;
 
 public class AdminBaseService<TRepository> : FrameworkBaseService<TRepository> where TRepository : class
 {

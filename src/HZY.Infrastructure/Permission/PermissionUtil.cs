@@ -1,5 +1,6 @@
 ﻿using HZY.Infrastructure.Permission.Attributes;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Abstractions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -35,6 +36,16 @@ namespace HZY.Infrastructure.Permission
             if (controllerBase == null) return default;
             var customAttributes = controllerBase.GetType().GetCustomAttributes();
             return (ControllerDescriptorAttribute)customAttributes.FirstOrDefault(w => w is ControllerDescriptorAttribute);
+        }
+
+        /// <summary>
+        /// 获取 Action 描述标记特性
+        /// </summary>
+        /// <param name="actionDescriptor"></param>
+        /// <returns></returns>
+        public static ActionDescriptorAttribute GetActionDescriptorAttribute(ActionDescriptor actionDescriptor)
+        {
+            return (ActionDescriptorAttribute)actionDescriptor.EndpointMetadata.FirstOrDefault(w => w is ActionDescriptorAttribute);
         }
 
         /// <summary>

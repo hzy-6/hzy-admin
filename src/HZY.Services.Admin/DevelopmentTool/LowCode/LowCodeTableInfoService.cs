@@ -6,7 +6,7 @@ using HZY.EFCore.Models;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
 using HZY.Services.Admin.Framework;
-using HZY.Services.Admin.BaseServicesAdmin;
+using HZY.Services.Admin.Core;
 using Microsoft.AspNetCore.Http;
 using HZY.Models.Entities.LowCode;
 using HzyEFCoreRepositories.Extensions;
@@ -18,14 +18,14 @@ namespace HZY.Services.Admin
     /// <summary>
     /// 服务 Low_Code_Table_InfoService
     /// </summary>
-    public class Low_Code_Table_InfoService : AdminBaseService<Low_Code_Table_InfoRepository>
+    public class LowCodeTableInfoService : AdminBaseService<LowCodeTableInfoRepository>
     {
-        private readonly Low_Code_TableRepository _low_Code_TableRepository;
+        private readonly LowCodeTableRepository _low_Code_TableRepository;
         private readonly DatabaseTablesRepository _databaseTablesRepository;
         private readonly IFreeSql _freeSql;
 
-        public Low_Code_Table_InfoService(Low_Code_Table_InfoRepository defaultRepository,
-            Low_Code_TableRepository low_Code_TableRepository,
+        public LowCodeTableInfoService(LowCodeTableInfoRepository defaultRepository,
+            LowCodeTableRepository low_Code_TableRepository,
             DatabaseTablesRepository databaseTablesRepository,
             IFreeSql freeSql)
             : base(defaultRepository)
@@ -42,7 +42,7 @@ namespace HZY.Services.Admin
         /// <param name="size"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        public async Task<PagingViewModel> FindListAsync(int page, int size, Low_Code_Table_Info search)
+        public async Task<PagingViewModel> FindListAsync(int page, int size, LowCodeTableInfo search)
         {
             var query = this._defaultRepository.Select
                     .WhereIf(search.Low_Code_TableId != Guid.Empty, w => w.Low_Code_TableId == search.Low_Code_TableId)
@@ -95,12 +95,12 @@ namespace HZY.Services.Admin
             // var tableColumns = await this._defaultRepository.ToListAsync(w => w.Low_Code_TableId == table.Id);
             await this._defaultRepository.DeleteAsync(w => w.Low_Code_TableId == table.Id);
             //操作集合
-            var list = new List<Low_Code_Table_Info>();
+            var list = new List<LowCodeTableInfo>();
             foreach (var item in tableInfo.Columns)
             {
                 // if (tableColumns.Any(w => w.ColumnName == item.Name)) continue;
 
-                var model = new Low_Code_Table_Info();
+                var model = new LowCodeTableInfo();
                 model.IsPrimary = item.IsPrimary;
                 model.IsIdentity = item.IsIdentity;
                 model.IsNullable = item.IsNullable;
@@ -121,11 +121,11 @@ namespace HZY.Services.Admin
         /// <summary>
         /// 变更数据
         /// </summary>
-        /// <param name="low_Code_Table_Infos"></param>
+        /// <param name="lowCodeTableInfos"></param>
         /// <returns></returns>
-        public Task ChangeAsync(List<Low_Code_Table_Info> low_Code_Table_Infos)
+        public Task ChangeAsync(List<LowCodeTableInfo> lowCodeTableInfos)
         {
-            return this._defaultRepository.UpdateRangeAsync(low_Code_Table_Infos);
+            return this._defaultRepository.UpdateRangeAsync(lowCodeTableInfos);
         }
 
 

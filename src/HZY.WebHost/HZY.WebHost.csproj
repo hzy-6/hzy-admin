@@ -34,7 +34,6 @@
 		<ProjectReference Include="..\HZY.Controllers.App\HZY.Controllers.App.csproj" />
 		<ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
 		<ProjectReference Include="..\HZY.Services.Admin\HZY.Services.Admin.csproj" />
-		<ProjectReference Include="..\HZY.Services.CodeScanner\HZY.Services.CodeScanner.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -66,6 +65,12 @@
 			<UserProperties appsettings_1json__JsonSchema="" />
 		</VisualStudio>
 	</ProjectExtensions>
+
+	<ItemGroup>
+	  <None Update="HZY.WebHost.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />

@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using HZY.EFCore.Models;
-using HZY.EFCore.Repositories.Base;
+using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
-using HZY.Services.Admin.BaseServicesAdmin;
+using HZY.Services.Admin.Core;
 using HZY.Services.Admin.Framework;
 using Microsoft.AspNetCore.Http;
 

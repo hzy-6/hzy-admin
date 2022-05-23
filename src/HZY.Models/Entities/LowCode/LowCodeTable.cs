@@ -11,7 +11,7 @@ namespace HZY.Models.Entities.LowCode
     /// <summary>
     /// 低代码表
     /// </summary>
-    public class Low_Code_Table : DefaultBaseEntity<Guid>
+    public class LowCodeTable : DefaultBaseEntity<Guid>
     {
 
         /// <summary>

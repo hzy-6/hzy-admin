@@ -15,4 +15,10 @@
 		<ProjectReference Include="..\HZY.FreeSqlCore\HZY.FreeSqlCore.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <None Update="HZY.Models.xml">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+	  </None>
+	</ItemGroup>
+
 </Project>

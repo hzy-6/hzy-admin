@@ -1,8 +1,9 @@
-﻿using HZY.EFCore.Repositories.Base;
+﻿using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.Token;
 using HZY.Models.BO;
+using HZY.Models.Consts;
 using HZY.Models.Entities.Framework;
 using Microsoft.Extensions.Caching.Memory;
 using System;
@@ -181,8 +182,8 @@ public class AccountDomainServiceImpl : IAccountDomainService
     /// <returns></returns>
     public virtual AccountInfo SetCacheByAccountInfo(AccountInfo accountInfo)
     {
-        //缓存 30 分钟
-        return _memoryCache.Set(GetCacheKeyById(accountInfo.Id.ToString()), accountInfo, DateTime.Now.AddMinutes(30));
+        //缓存 1 小时
+        return _memoryCache.Set(GetCacheKeyById(accountInfo.Id.ToString()), accountInfo, DateTime.Now.AddHours(1));
     }
 
     /// <summary>
