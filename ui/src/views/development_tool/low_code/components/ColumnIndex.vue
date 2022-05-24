@@ -3,7 +3,10 @@
     <a-card class="mb-15" v-show="state.table.search.state">
       <a-row :gutter="[15, 15]">
         <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-          <a-input v-model:value="state.table.search.vm.name" placeholder="名称" />
+          <a-input v-model:value="state.table.search.vm.columnName" placeholder="名称" />
+        </a-col>
+        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+          <a-input v-model:value="state.table.search.vm.describe" placeholder="显示名称" />
         </a-col>
         <!--button-->
         <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
@@ -136,7 +139,8 @@
         </vxe-pager>
       </a-spin>
     </a-card>
-    <!--表单弹层-->
+    <!--生成代码-->
+    <CodeGenerationVue ref="refCodeGenerationVue" class="mt-15" />
   </div>
 </template>
 
@@ -150,6 +154,7 @@ import AppIcon from "@/components/AppIcon.vue";
 import tools from "@/scripts/tools";
 import service from "@/service/development_tool/low_code/low_code_table_info_service";
 import router from "@/router/index";
+import CodeGenerationVue from "./CodeGeneration.vue";
 
 const appStore = useAppStore();
 const { params } = router.currentRoute.value;
@@ -160,9 +165,10 @@ const state = reactive({
     search: {
       state: false,
       vm: {
-        name: null,
+        columnName: null,
         //父组件传递过来的 表 id
         low_Code_TableId: id,
+        describe: null,
       },
     },
     loading: false,
@@ -178,6 +184,7 @@ const state = reactive({
 //表单 ref 对象
 const refForm = ref(null);
 const refTable = ref(null);
+const refCodeGenerationVue = ref(null);
 
 //权限
 const power = appStore.getPowerByMenuId(router.currentRoute.value.meta.menuId);
@@ -247,6 +254,8 @@ const methods = {
   loadData(row) {
     state.table.search.vm.low_Code_TableId = row.id;
     methods.findList();
+    //
+    refCodeGenerationVue.value.openForm({ key: row.tableName });
   },
 };
 

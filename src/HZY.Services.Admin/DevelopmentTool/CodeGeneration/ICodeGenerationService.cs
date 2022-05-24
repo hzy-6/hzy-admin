@@ -25,14 +25,14 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration
         /// </summary>
         /// <param name="tableName"></param>
         /// <returns></returns>
-        GenContextDto GetGenContextDtoByTableName(string tableName);
+        GenDbTableDto GetGenContextDtoByTableName(string tableName);
 
         /// <summary>
         /// 获取代码生成上下文
         /// </summary>
         /// <param name="genFormDto"></param>
         /// <returns></returns>
-        GenContextDto GetGenContextDto(GenFormDto genFormDto);
+        GenDbTableDto GetGenContextDto(GenFormDto genFormDto);
 
         /// <summary>
         /// 生成 model
@@ -40,13 +40,6 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration
         /// <param name="genFormDto"></param>
         /// <returns></returns>
         Task<string> GenModelAsync(GenFormDto genFormDto);
-
-        /// <summary>
-        /// 生成 repository
-        /// </summary>
-        /// <param name="genFormDto"></param>
-        /// <returns></returns>
-        Task<string> GenRepositoryAsync(GenFormDto genFormDto);
 
         /// <summary>
         /// 生成 service

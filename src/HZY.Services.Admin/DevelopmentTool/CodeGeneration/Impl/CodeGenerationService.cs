@@ -31,7 +31,6 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
 
         //domain 模板文件
         private readonly string templateModel = "tempModel.cshtml";
-        private readonly string templateRepository = "tempRepository.cshtml";
         private readonly string templateService = "tempService.cshtml";
         private readonly string templateController = "tempController.cshtml";
         private readonly string templateServiceJs = "tempServiceJs.cshtml";
@@ -93,9 +92,9 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
         /// 获取所有表集合信息
         /// </summary>
         /// <returns></returns>
-        public GenContextDto GetGenContextDtoByTableName(string tableName)
+        public GenDbTableDto GetGenContextDtoByTableName(string tableName)
         {
-            return _codeGenerationRepository.GetAllTables().FirstOrDefault(w => w.TableName == tableName)?.MapTo<GenDbTableDto, GenContextDto>();
+            return _codeGenerationRepository.GetAllTables().FirstOrDefault(w => w.TableName == tableName);
         }
 
         /// <summary>
@@ -103,7 +102,7 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
         /// </summary>
         /// <param name="genFormDto"></param>
         /// <returns></returns>
-        public GenContextDto GetGenContextDto(GenFormDto genFormDto)
+        public GenDbTableDto GetGenContextDto(GenFormDto genFormDto)
         {
             var tableName = genFormDto.TableName;
 
@@ -112,10 +111,8 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
             var tableInfo = tables.FirstOrDefault(w => w.TableName == tableName);
 
             if (tableInfo == null) return null;
-
-            var genContextDto = tableInfo.MapTo<GenDbTableDto, GenContextDto>();
-            genContextDto.Namespace = _appConfiguration.Namespace;
-            return genContextDto;
+            tableInfo.Namespace = _appConfiguration.Namespace;
+            return tableInfo;
         }
 
         /// <summary>
@@ -128,18 +125,6 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
             var context = this.GetGenContextDto(genFormDto);
 
             return this.ClearSymbol(await this._razorViewRender.RenderAsync(templateRootPath + templateModel, context));
-        }
-
-        /// <summary>
-        /// 生成repository
-        /// </summary>
-        /// <param name="genFormDto"></param>
-        /// <returns></returns>
-        public async Task<string> GenRepositoryAsync(GenFormDto genFormDto)
-        {
-            var context = this.GetGenContextDto(genFormDto);
-
-            return this.ClearSymbol(await this._razorViewRender.RenderAsync(templateRootPath + templateRepository, context));
         }
 
         /// <summary>
@@ -214,7 +199,6 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
             {
                 "HZY.Models" => await this.GenModelAsync(genFormDto),
                 //"HZY.Repository.DbSet" => await this.CreateRepositoryDbSetAsync(),
-                "HZY.Repository" => await this.GenRepositoryAsync(genFormDto),
                 "HZY.Services.Admin" => await this.GenServiceAsync(genFormDto),
                 "HZY.Controllers.Admin" => await this.GenControllerAsync(genFormDto),
                 "Index.vue" => await this.GenIndexVueAsync(genFormDto),
@@ -428,10 +412,10 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 //Index
                 var codeString = await this.GenIndexVueAsync(genFormDto);
-                await File.WriteAllTextAsync($"{path}/index.vue", codeString, Encoding.UTF8);
+                await File.WriteAllTextAsync($"{path}/Index.vue", codeString, Encoding.UTF8);
                 //Info
                 codeString = await this.GenInfoVueAsync(genFormDto);
-                await File.WriteAllTextAsync($"{path}/info.vue", codeString, Encoding.UTF8);
+                await File.WriteAllTextAsync($"{path}/Info.vue", codeString, Encoding.UTF8);
                 return path;
             }
 
@@ -456,7 +440,6 @@ namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
             {
                 "HZY.Models" => $"{genFormDto.TableName}.cs",
                 // "HZY.Repository.DbSet" => ,
-                "HZY.Repository" => $"{genFormDto.TableName}Repository.cs",
                 "HZY.Services.Admin" => $"{genFormDto.TableName}Service.cs",
                 "HZY.Controllers.Admin" => $"{genFormDto.TableName}Controller.cs",
                 "Index.vue" => $"Index.vue",

@@ -111,4 +111,8 @@ public class AppConfiguration : IDiSingletonSelf
     /// 是否拦截编辑 添加、修改、删除
     /// </summary>
     public bool IsInterceptEdit { get; set; }
+    /// <summary>
+    /// 是否运行 Quartz Task
+    /// </summary>
+    public bool IsRunQuartzTask { get; set; }
 }

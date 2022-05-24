@@ -1,41 +1,46 @@
 ﻿@using HZY.Infrastructure;
 @using FreeSql.DatabaseModel;
-@model HZY.Models.DTO.DevelopmentTool.GenContextDto
+@model HZY.Models.DTO.DevelopmentTool.GenDbTableDto
 @{
-    var className = Model.Name;
+    var className = Model.EntityName;
+    var classNameRemark = Model.DisplayName;
 }
 <pre>
-using @(Model.Namespace).Controllers.Admin.ControllersAdmin;
-using @(Model.Namespace).EFCore.Models;
-using @(Model.Namespace).Infrastructure;
-using @(Model.Namespace).Infrastructure.Filters;
-using @(Model.Namespace).Infrastructure.Permission.Attributes;
-using @(Model.Namespace).Models.DTO;
-using @(Model.Namespace).Models.Entities;
-using @(Model.Namespace).Models.Entities.Framework;
-using @(Model.Namespace).Repositories.Framework;
-using @(Model.Namespace).Services.Accounts;
-using @(Model.Namespace).Services.Admin.Framework;
-using @(Model.Namespace).Services.Admin.Memebers;
-using @(Model.Namespace).Services.Consts;
-using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+using Microsoft.AspNetCore.Mvc;
+
+using @(Model.Namespace).EFCore.Models;
+using @(Model.Namespace).Infrastructure;
+using @(Model.Namespace).Infrastructure.Controllers;
+using @(Model.Namespace).Infrastructure.Filters;
+using @(Model.Namespace).Infrastructure.Permission;
+using @(Model.Namespace).Infrastructure.Permission.Attributes;
+using @(Model.Namespace).Models.BO;
+using @(Model.Namespace).Models.Consts;
+using @(Model.Namespace).Models.DTO;
+using @(Model.Namespace).Models.DTO.Framework;
+using @(Model.Namespace).Models.Entities.Framework;
+using @(Model.Namespace).Services.Admin.Framework;
+
 namespace @(Model.Namespace).Controllers.Admin
 {
+    /// <summary>
+    /// @(classNameRemark) 控制器
+    /// </summary>
+    [ControllerDescriptor(MenuId = "请设置菜单Id 系统菜单表中查找", DisplayName = "@(classNameRemark)")]
     public class @(className)Controller : AdminBaseController<@($"{className}Service")>
     {
         public @(className)Controller(@(className)Service defaultService) 
-            : base("请设置菜单Id 系统菜单表中查找",defaultService)
+            : base(defaultService)
         {
-            this.SetMenuName("@(className)");
+
         }
         
-
         /// <summary>
         /// 获取列表
         /// </summary>
@@ -43,12 +48,11 @@ namespace @(Model.Namespace).Controllers.Admin
         /// <param name="page">page</param>
         /// <param name="search">search</param>
         /// <returns></returns>
-        [ApiResourceCacheFilter(1)]
-        [ActionDescriptor(AdminFunctionConsts.Function_Display)]
+        [ActionDescriptor(AdminFunctionConsts.Function_Display, DisplayName = "查看数据")]
         [HttpPost("FindList/{size}/{page}")]
-        public async Task<@("PagingViewModel")> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] @(className) search)
+        public Task<@("PagingViewModel")> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] @(className) search)
         {
-            return await this.DefaultService.FindListAsync(page, size, search);
+            return this._defaultService.FindListAsync(page, size, search);
         }
 
         /// <summary>
@@ -56,11 +60,11 @@ namespace @(Model.Namespace).Controllers.Admin
         /// </summary>
         /// <param name="ids">ids</param>
         /// <returns></returns>
-        [ActionDescriptor(AdminFunctionConsts.Function_Delete)]
+        [ActionDescriptor(AdminFunctionConsts.Function_Delete, DisplayName = "删除数据")]
         [HttpPost("DeleteList")]
         public async Task<@("bool")> DeleteListAsync([FromBody] List<@("Guid")> ids)
         {
-            await this.DefaultService.DeleteListAsync(ids);
+            await this._defaultService.DeleteListAsync(ids);
             return true;
         }
 
@@ -69,11 +73,11 @@ namespace @(Model.Namespace).Controllers.Admin
         /// </summary>
         /// <param name="id">id</param>
         /// <returns></returns>
-        [ActionDescriptor(AdminFunctionConsts.Function_Display)]
+        [ActionDescriptor(DisplayName = "查看表单")]
         [HttpGet("FindForm/{id?}")]
         public Task<@Html.Raw("Dictionary<string, object>")> FindFormAsync([FromRoute] Guid id)
         {
-            return this.DefaultService.FindFormAsync(id);
+            return this._defaultService.FindFormAsync(id);
         }
 
         /// <summary>
@@ -81,12 +85,12 @@ namespace @(Model.Namespace).Controllers.Admin
         /// </summary>
         /// <param name="form">form</param>
         /// <returns></returns>
-        [ActionDescriptor(AdminFunctionConsts.Function_Save)]
+        [ActionDescriptor(DisplayName = "保存/编辑数据")]
         [ApiCheckModel]
         [HttpPost("SaveForm")]
         public Task<@(className)> SaveFormAsync([FromBody] @(className) form)
         {
-            return this.DefaultService.SaveFormAsync(form);
+            return this._defaultService.SaveFormAsync(form);
         }
 
         /// <summary>
@@ -94,12 +98,15 @@ namespace @(Model.Namespace).Controllers.Admin
         /// </summary>
         /// <param name="search"></param>
         /// <returns></returns>
+        [ActionDescriptor(AdminFunctionConsts.Function_Export, DisplayName = "导出数据")]
         [ApiResourceCacheFilter(5)]
-        [ActionDescriptor(AdminFunctionConsts.Function_Export)]
         [HttpPost("ExportExcel")]
         public async Task ExportExcelAsync([FromBody] @(className) search)
-        => base.HttpContext.DownLoadFile(await this.DefaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"用户列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
+        {
+            var data = await this._defaultService.ExportExcelAsync(search);
+            var name = $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls";
+            base.HttpContext.DownLoadFile(data, Tools.GetFileContentType[".xls"].ToStr(), name);
+        }
 
 
 

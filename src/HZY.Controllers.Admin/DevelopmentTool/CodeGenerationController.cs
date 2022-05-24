@@ -4,6 +4,7 @@ using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO.DevelopmentTool;
+using HZY.Models.Entities.LowCode;
 using HZY.Services.Admin.DevelopmentTool.CodeGeneration;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -53,31 +54,31 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         {
             var code = await this._defaultService.GetCodeByTypeAndTableNameAsync(genFormDto);
 
-            var appTableInfos = new List<DbColumnInfo>();
+            var lowCodeTableInfos = new List<LowCodeTableInfo>();
 
             if (!string.IsNullOrWhiteSpace(genFormDto.TableName))
             {
                 var table = this._defaultService.GetGenContextDtoByTableName(genFormDto.TableName);
 
-                appTableInfos = table.Columns;
+                lowCodeTableInfos = table.TableInfos;
             }
 
             return new
             {
                 code,
-                appTableInfos = appTableInfos.Select(w => new
-                {
-                    w.Name,
-                    w.DefaultValue,
-                    w.MaxLength,
-                    w.Position,
-                    w.DbTypeTextFull,
-                    w.Comment,
-                    CsTypeName = w.CsType.Name,
-                    w.IsPrimary,
-                    w.IsIdentity,
-                    w.IsNullable
-                }).ToList()
+                //appTableInfos = lowCodeTableInfos.Select(w => new
+                //{
+                //    w.Name=,
+                //    w.DefaultValue,
+                //    w.MaxLength,
+                //    w.Position,
+                //    w.DbTypeTextFull,
+                //    w.Comment,
+                //    CsTypeName = w.CsType.Name,
+                //    w.IsPrimary,
+                //    w.IsIdentity,
+                //    w.IsNullable
+                //}).ToList()
             };
         }
 

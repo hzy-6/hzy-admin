@@ -140,13 +140,6 @@
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.GenRepositoryAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
-            <summary>
-            生成 repository
-            </summary>
-            <param name="genFormDto"></param>
-            <returns></returns>
-        </member>
         <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.GenServiceAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成 service
@@ -243,13 +236,6 @@
         <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.GenModelAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成model
-            </summary>
-            <param name="genFormDto"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.GenRepositoryAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
-            <summary>
-            生成repository
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
@@ -398,11 +384,12 @@
             <param name="ids"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.LowCodeTableInfoService.SynchronizationColumnByTableIdAsync(System.Guid)">
+        <member name="M:HZY.Services.Admin.LowCodeTableInfoService.SynchronizationColumnByTableIdAsync(System.Guid,System.Boolean)">
             <summary>
             根据表名同步列数据
             </summary>
             <param name="tableId"></param>
+            <param name="isTableSync">是否来自表格同步</param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.LowCodeTableInfoService.ChangeAsync(System.Collections.Generic.List{HZY.Models.Entities.LowCode.LowCodeTableInfo})">

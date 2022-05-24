@@ -248,6 +248,11 @@
             是否拦截编辑 添加、修改、删除
             </summary>
         </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.IsRunQuartzTask">
+            <summary>
+            是否运行 Quartz Task
+            </summary>
+        </member>
         <member name="M:HZY.Infrastructure.Controllers.AdminBaseController`1.#ctor(`0)">
             <summary>
             管理系统基础控制器构造函数

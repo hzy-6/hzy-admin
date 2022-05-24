@@ -1,17 +1,25 @@
 ﻿@using HZY.Infrastructure;
 @using FreeSql.DatabaseModel;
-@model HZY.Models.DTO.DevelopmentTool.GenContextDto
+@model HZY.Models.DTO.DevelopmentTool.GenDbTableDto
 @{
-    var className = Model.Name;
-    var ignores = new string[] {"Id", "CreationTime","CreatorUserId", "LastModificationTime","LastModifierUserId" ,"DeletionTime","DeleterUserId", "IsDeleted" };
-    var tableInfos = Model.Columns
-        .Where(w => !ignores.Contains(w.Name))
+    var className = Model.EntityName;
+    var ignores = new string[] { 
+        "Id", 
+        "CreationTime",
+        "CreatorUserId", 
+        "LastModificationTime",
+        "LastModifierUserId" ,
+        "DeletionTime",
+        "DeleterUserId", 
+        "IsDeleted"
+    };
+
+    var tableInfos = Model.TableInfos
+        .Where(w => !ignores.Contains(w.ColumnName))
+        .OrderBy(w => w.Position)
         .ToList()
         ;
 }
-
-
-
 
 <pre>
 <template>
@@ -25,8 +33,8 @@
         <a-row :gutter="[15, 15]">
           @foreach (var item in tableInfos)
             {
-                var name = item.Name.FirstCharToLower();
-                var title = item.Comment;
+                var name = item.ColumnName.FirstCharToLower();
+                var title = item.Describe;
 
                 <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                     <a-form-item label="@title">

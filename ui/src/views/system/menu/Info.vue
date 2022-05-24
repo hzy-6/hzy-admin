@@ -171,7 +171,7 @@
             </a-table-column>
             <a-table-column key="action" title="操作">
               <template #default="{ index }">
-                <a-popconfirm title="确定要移除吗？" ok-text="是" cancel-text="否" @confirm="removeRow(index)">
+                <a-popconfirm title="确定要移除吗？" ok-text="是" cancel-text="否" @confirm="methods.removeRow(index)">
                   <a-button type="link" danger>移除</a-button>
                 </a-popconfirm>
               </template>

@@ -16,14 +16,14 @@ namespace HZY.Services.Admin
     /// </summary>
     public class LowCodeTableService : AdminBaseService<LowCodeTableRepository>
     {
-        private readonly DatabaseTablesRepository _databaseTablesRepository;
         private readonly IFreeSql _freeSql;
+        private readonly LowCodeTableInfoService _lowCodeTableInfoService;
 
-        public LowCodeTableService(LowCodeTableRepository defaultRepository, DatabaseTablesRepository databaseTablesRepository, IFreeSql freeSql)
+        public LowCodeTableService(LowCodeTableRepository defaultRepository, IFreeSql freeSql, LowCodeTableInfoService lowCodeTableInfoService)
             : base(defaultRepository)
         {
-            _databaseTablesRepository = databaseTablesRepository;
             _freeSql = freeSql;
+            _lowCodeTableInfoService = lowCodeTableInfoService;
         }
 
         /// <summary>
@@ -37,8 +37,8 @@ namespace HZY.Services.Admin
         {
             var query = this._defaultRepository.Select
                     .WhereIf(!string.IsNullOrWhiteSpace(search.TableName), w => w.TableName.Contains(search.TableName))
-                    .WhereIf(!string.IsNullOrWhiteSpace(search.EntityName), w => w.TableName.Contains(search.EntityName))
-                    .WhereIf(!string.IsNullOrWhiteSpace(search.DisplayName), w => w.TableName.Contains(search.DisplayName))
+                    .WhereIf(!string.IsNullOrWhiteSpace(search.EntityName), w => w.EntityName.Contains(search.EntityName))
+                    .WhereIf(!string.IsNullOrWhiteSpace(search.DisplayName), w => w.DisplayName.Contains(search.DisplayName))
                     .OrderByDescending(w => w.TableName)
                     .ThenByDescending(w => w.CreationTime)
                     .Select(w => new
@@ -81,12 +81,12 @@ namespace HZY.Services.Admin
             foreach (var item in allTables)
             {
                 var table = oldAllTables.Find(w => w.TableName == item.Name);
-
+                var id = Guid.NewGuid();
                 if (table == null)
                 {
                     insertList.Add(new LowCodeTable
                     {
-                        Id = Guid.NewGuid(),
+                        Id = id,
                         DisplayName = item.Comment,
                         TableName = item.Name,
                         EntityName = item.Name,
@@ -96,10 +96,14 @@ namespace HZY.Services.Admin
                 }
                 else
                 {
+                    id = table.Id;
+
                     table.Schema = item.Schema;
                     table.Type = item.Type;
                     updateList.Add(table);
                 }
+
+                await _lowCodeTableInfoService.SynchronizationColumnByTableIdAsync(id, true);
             }
 
             if (insertList.Count > 0)

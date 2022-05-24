@@ -1,10 +1,22 @@
 ﻿@using HZY.Infrastructure;
 @using FreeSql.DatabaseModel;
-@model HZY.Models.DTO.DevelopmentTool.GenContextDto
-@{ var className = Model.Name;
-    var ignores = new string[] { "Id", "CreationTime","CreatorUserId", "LastModificationTime","LastModifierUserId" ,"DeletionTime","DeleterUserId", "IsDeleted" };
-    var tableInfos = Model.Columns
-        .Where(w => !ignores.Contains(w.Name))
+@model HZY.Models.DTO.DevelopmentTool.GenDbTableDto
+@{ 
+    var className = Model.EntityName;
+    var ignores = new string[] { 
+        "Id", 
+        "CreationTime",
+        "CreatorUserId", 
+        "LastModificationTime",
+        "LastModifierUserId" ,
+        "DeletionTime",
+        "DeleterUserId", 
+        "IsDeleted"
+    };
+
+    var tableInfos = Model.TableInfos
+        .Where(w => !ignores.Contains(w.ColumnName))
+        .OrderBy(w => w.Position)
         .ToList()
         ;
 
@@ -13,7 +25,7 @@
 
     foreach (var item in searchKeyWords)
     {
-        if (tableInfos.Any(w => w.Name == item))
+        if (tableInfos.Any(w => w.ColumnName == item))
         {
             searchKeyWord = item;
             break;
@@ -26,7 +38,6 @@
 }
 
 <pre>
-
 <template>
   <div>
     <List ref="refList" :tableData="state" @@onChange="methods.onChange">
@@ -85,8 +96,8 @@
       <template #table-col-default>
         @foreach (var item in tableInfos)
         {
-            var name = item.Name.FirstCharToLower();
-            var title = item.Comment;
+            var name = item.ColumnName.FirstCharToLower();
+            var title = item.Describe;
 
             <vxe-column field="@(name)" title="@(title)" width="160"></vxe-column>
         }

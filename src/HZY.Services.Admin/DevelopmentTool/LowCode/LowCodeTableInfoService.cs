@@ -85,34 +85,68 @@ namespace HZY.Services.Admin
         /// 根据表名同步列数据
         /// </summary>
         /// <param name="tableId"></param>
+        /// <param name="isTableSync">是否来自表格同步</param>
         /// <returns></returns>
-        public async Task SynchronizationColumnByTableIdAsync(Guid tableId)
+        public async Task SynchronizationColumnByTableIdAsync(Guid tableId, bool isTableSync = false)
         {
             var allTables = _freeSql.DbFirst.GetTablesByDatabase();
             var table = await this._low_Code_TableRepository.FindAsync(w => w.Id == tableId);
             var tableInfo = allTables.Find(w => w.Name == table.TableName);
+
             //查询出当前表所有的字段
-            // var tableColumns = await this._defaultRepository.ToListAsync(w => w.Low_Code_TableId == table.Id);
-            await this._defaultRepository.DeleteAsync(w => w.Low_Code_TableId == table.Id);
+            var tableColumns = await this._defaultRepository.ToListAsync(w => w.Low_Code_TableId == table.Id);
+
             //操作集合
             var list = new List<LowCodeTableInfo>();
-            foreach (var item in tableInfo.Columns)
-            {
-                // if (tableColumns.Any(w => w.ColumnName == item.Name)) continue;
 
-                var model = new LowCodeTableInfo();
-                model.IsPrimary = item.IsPrimary;
-                model.IsIdentity = item.IsIdentity;
-                model.IsNullable = item.IsNullable;
-                model.Position = item.Position;
-                model.Low_Code_TableId = table.Id;
-                model.ColumnName = item.Name;
-                model.Describe = item.Comment;
-                model.DatabaseColumnType = item.DbTypeTextFull;
-                model.CsType = item.CsType.Name;
-                model.CsField = item.Name;
-                model.MaxLength = item.MaxLength;
-                list.Add(model);
+            if (isTableSync)
+            {
+                if (tableColumns != null && tableColumns.Count == 0)
+                {
+
+                    foreach (var item in tableInfo.Columns)
+                    {
+                        // if (tableColumns.Any(w => w.ColumnName == item.Name)) continue;
+
+                        var model = new LowCodeTableInfo();
+                        model.IsPrimary = item.IsPrimary;
+                        model.IsIdentity = item.IsIdentity;
+                        model.IsNullable = item.IsNullable;
+                        model.Position = item.Position;
+                        model.Low_Code_TableId = table.Id;
+                        model.ColumnName = item.Name;
+                        model.Describe = item.Comment;
+                        model.DatabaseColumnType = item.DbTypeTextFull;
+                        model.CsType = item.CsType.Name;
+                        model.CsField = item.Name;
+                        model.MaxLength = item.MaxLength;
+                        list.Add(model);
+                    }
+                }
+            }
+            else
+            {
+                await this._defaultRepository.DeleteAsync(w => w.Low_Code_TableId == table.Id);
+
+                foreach (var item in tableInfo.Columns)
+                {
+                    // if (tableColumns.Any(w => w.ColumnName == item.Name)) continue;
+
+                    var model = new LowCodeTableInfo();
+                    model.IsPrimary = item.IsPrimary;
+                    model.IsIdentity = item.IsIdentity;
+                    model.IsNullable = item.IsNullable;
+                    model.Position = item.Position;
+                    model.Low_Code_TableId = table.Id;
+                    model.ColumnName = item.Name;
+                    model.Describe = item.Comment;
+                    model.DatabaseColumnType = item.DbTypeTextFull;
+                    model.CsType = item.CsType.Name;
+                    model.CsField = item.Name;
+                    model.MaxLength = item.MaxLength;
+                    list.Add(model);
+                }
+
             }
 
             await this._defaultRepository.InsertRangeAsync(list);

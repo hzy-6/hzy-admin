@@ -13,5 +13,7 @@ namespace HZY.Models.DTO.DevelopmentTool
         /// </summary>
         /// <value></value>
         public List<LowCodeTableInfo> TableInfos { get; set; }
+
+        public string Namespace { get; set; }
     }
 }

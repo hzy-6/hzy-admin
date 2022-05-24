@@ -1,12 +1,25 @@
 ﻿@using HZY.Infrastructure;
 @using FreeSql.DatabaseModel;
-@model HZY.Models.DTO.DevelopmentTool.GenContextDto
+@using HZY.Models.Entities.LowCode
+@model HZY.Models.DTO.DevelopmentTool.GenDbTableDto
 @{
-    var className = Model.Name;
-    var classNameRemark = Model.Comment;
-    var ignores = new string[] { "Id", "CreationTime", "CreatorUserId", "LastModificationTime", "LastModifierUserId", "DeletionTime", "DeleterUserId", "IsDeleted" };
-    var tableInfos = Model.Columns
-        .Where(w => !ignores.Contains(w.Name))
+    var className = Model.EntityName;
+    var classNameRemark = Model.DisplayName;
+
+    var ignores = new string[] {
+        "Id",
+        "CreationTime",
+        "CreatorUserId",
+        "LastModificationTime",
+        "LastModifierUserId" ,
+        "DeletionTime",
+        "DeleterUserId",
+        "IsDeleted"
+    };
+
+    var tableInfos = Model.TableInfos
+        .Where(w => !ignores.Contains(w.ColumnName))
+        .OrderBy(w => w.Position)
         .ToList()
         ;
 }
@@ -35,10 +48,10 @@
         }
     }
     //获取类型 根据 appTableInfo
-    string GetTypeNew(DbColumnInfo appTableInfo)
+    string GetTypeNew(LowCodeTableInfo appTableInfo)
     {
-        if (appTableInfo.CsType.Name.ToLower().Equals("string")) return appTableInfo.CsType.Name;
-        return appTableInfo.IsNullable ? $"{appTableInfo.CsType.Name}?" : appTableInfo.CsType.Name;
+        if (appTableInfo.CsType.ToLower().Equals("string")) return appTableInfo.CsType;
+        return appTableInfo.IsNullable ? $"{appTableInfo.CsType}?" : appTableInfo.CsType;
     }
 }
 
@@ -56,12 +69,12 @@ namespace @(Model.Namespace).Models.Entities
     {
         @foreach (var item in tableInfos)
         {
-        <pre>
-        /// <summary>
-        ///  @item.Name => 备注: @(string.IsNullOrWhiteSpace(item.Comment) ? item.Name: item.Comment)
-        /// </summary>
-        public @(GetTypeNew(item)) @item.Name { get; set; }
-        </pre>
+    <pre>
+            /// <summary>
+            ///  @item.ColumnName => 备注: @(string.IsNullOrWhiteSpace(item.Describe) ? item.ColumnName: item.Describe)
+            /// </summary>
+            public @(GetTypeNew(item)) @item.ColumnName { get; set; }
+            </pre>
         }
 
     }

@@ -3,7 +3,13 @@
     <a-card class="mb-15" v-show="state.table.search.state">
       <a-row :gutter="[15, 15]">
         <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-          <a-input v-model:value="state.table.search.vm.name" placeholder="名称" />
+          <a-input v-model:value="state.table.search.vm.tableName" placeholder="表名称" />
+        </a-col>
+        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+          <a-input v-model:value="state.table.search.vm.entityName" placeholder="实体名称" />
+        </a-col>
+        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+          <a-input v-model:value="state.table.search.vm.displayName" placeholder="显示名称" />
         </a-col>
         <!--button-->
         <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
@@ -57,6 +63,16 @@
                   批量删除
                 </a-button>
               </a-popconfirm>
+            </template>
+
+            <!-- 下载数据库表设计 -->
+            <template v-if="power.search">
+              <a-button @click="methods.createDataDictionary()">
+                <template #icon>
+                  <AppIcon name="DownloadOutlined" />
+                </template>
+                下载数据库表设计
+              </a-button>
             </template>
           </a-space>
         </a-col>
@@ -159,6 +175,7 @@ import tools from "@/scripts/tools";
 import service from "@/service/development_tool/low_code/low_code_table_service";
 import router from "@/router/index";
 import ColumnIndexVue from "./components/ColumnIndex.vue";
+import codeGenerationService from "@/service/development_tool/code_generation_service";
 
 const appStore = useAppStore();
 const state = reactive({
@@ -167,7 +184,9 @@ const state = reactive({
     search: {
       state: false,
       vm: {
-        name: null,
+        tableName: null,
+        entityName: null,
+        displayName: null,
       },
     },
     loading: false,
@@ -255,6 +274,10 @@ const methods = {
     nextTick(() => {
       refColumnIndex.value.loadData(row);
     });
+  },
+  //创建数据库设计
+  createDataDictionary() {
+    codeGenerationService.createDataDictionary();
   },
 };
 

@@ -1,8 +1,9 @@
 ﻿@using HZY.Infrastructure
 @using FreeSql.DatabaseModel;
-@model HZY.Models.DTO.DevelopmentTool.GenContextDto
+@model HZY.Models.DTO.DevelopmentTool.GenDbTableDto
 @{
-    var className = Model.Name;
+    var className = Model.EntityName;
+    var classNameRemark = Model.DisplayName;
 }
 <pre>
 import {get, post, download } from '@@/scripts/request';

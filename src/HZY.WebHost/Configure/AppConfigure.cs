@@ -21,6 +21,8 @@ public class AppConfigure
     /// <param name="messageQueueProvider"></param>
     public static void Build(WebApplication app, IWebHostEnvironment env, IServiceProvider serviceProvider, IMessageQueueProvider messageQueueProvider)
     {
+        var appConfiguration = app.Services.GetRequiredService<AppConfiguration>();
+
         app.UseStaticFiles();
 
         #region 注册服务提供者
@@ -65,7 +67,10 @@ public class AppConfigure
 
         #region 启动定时任务
         var _taskService = app.Services.GetRequiredService<ITaskService>();
-        _taskService.RecoveryTaskAsync().Wait();
+        if (appConfiguration.IsRunQuartzTask)
+        {
+            _taskService.RecoveryTaskAsync().Wait();
+        }
         #endregion
     }
 
