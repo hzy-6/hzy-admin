@@ -17,7 +17,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl
+namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
 {
     /// <summary>
     /// 代码生成服务

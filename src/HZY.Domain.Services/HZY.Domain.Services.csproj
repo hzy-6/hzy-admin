@@ -15,6 +15,7 @@
 	<ItemGroup>
 	  <None Update="HZY.Domain.Services.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  </None>
 	</ItemGroup>
 

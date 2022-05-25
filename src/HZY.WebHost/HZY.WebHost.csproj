@@ -66,6 +66,7 @@
 	<ItemGroup>
 	  <None Update="HZY.WebHost.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  </None>
 	</ItemGroup>
 

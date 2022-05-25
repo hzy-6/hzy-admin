@@ -123,7 +123,7 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
         {
             //消费消息
             using var scope = ServiceProviderExtensions.CreateScope();
-            var repository = scope.ServiceProvider.GetRequiredService<IRepository<SysOperationLog>>();
+            using var repository = scope.ServiceProvider.GetRequiredService<IRepository<SysOperationLog>>();
             repository.InsertAsync((SysOperationLog)value).Wait();
         });
     }

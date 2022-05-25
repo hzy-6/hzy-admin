@@ -5,6 +5,7 @@ using HZY.Infrastructure;
 using HZY.Models.DTO.DevelopmentTool;
 using HZY.Models.Entities.LowCode;
 using HzyScanDiService.Interface;
+using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,15 +19,23 @@ namespace HZY.EFCore.Repositories.DevelopmentTool
     /// </summary>
     public class DatabaseTablesRepository : IDiScopedSelf
     {
-        private readonly LowCodeTableRepository _low_Code_TableRepository;
-        private readonly LowCodeTableInfoRepository _low_Code_Table_InfoRepository;
+        private readonly LowCodeTableRepository _lowCodeTableRepository;
+        private readonly LowCodeTableInfoRepository _lowCodeTableInfoRepository;
         private readonly IFreeSql _freeSql;
+        private readonly IMemoryCache _memoryCache;
 
-        public DatabaseTablesRepository(LowCodeTableRepository low_Code_TableRepository, LowCodeTableInfoRepository low_Code_Table_InfoRepository, IFreeSql freeSql)
+        private readonly string TableInfoKey = "TableInfo:GenDbTableDto";
+        private readonly int CacheTime = 1;
+
+        public DatabaseTablesRepository(LowCodeTableRepository lowCodeTableRepository,
+        LowCodeTableInfoRepository lowCodeTableInfoRepository,
+        IFreeSql freeSql,
+        IMemoryCache memoryCache)
         {
-            _low_Code_TableRepository = low_Code_TableRepository;
-            _low_Code_Table_InfoRepository = low_Code_Table_InfoRepository;
+            _lowCodeTableRepository = lowCodeTableRepository;
+            _lowCodeTableInfoRepository = lowCodeTableInfoRepository;
             _freeSql = freeSql;
+            _memoryCache = memoryCache;
         }
 
         /// <summary>
@@ -35,8 +44,8 @@ namespace HZY.EFCore.Repositories.DevelopmentTool
         /// <returns></returns>
         public List<GenDbTableDto> GetAllTables()
         {
-            var tables = _low_Code_TableRepository.ToListAll();
-            var tableColumns = _low_Code_Table_InfoRepository.ToListAll();
+            var tables = _lowCodeTableRepository.ToListAll();
+            var tableColumns = _lowCodeTableInfoRepository.ToListAll();
 
             var result = new List<GenDbTableDto>();
             foreach (var item in tables)
@@ -46,7 +55,18 @@ namespace HZY.EFCore.Repositories.DevelopmentTool
                 result.Add(table);
             }
 
+            _memoryCache.Set(TableInfoKey, result, DateTime.Now.AddHours(CacheTime));
+
             return result;
+        }
+
+        /// <summary>
+        /// 获取表信息根据缓存
+        /// </summary>
+        /// <returns></returns>
+        public List<GenDbTableDto> GetAllTablesByCache()
+        {
+            return _memoryCache.Get<List<GenDbTableDto>>(TableInfoKey) ?? GetAllTables();
         }
 
         // /// <summary>

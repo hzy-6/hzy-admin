@@ -28,6 +28,7 @@
 	<ItemGroup>
 	  <None Update="HZY.Infrastructure.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  </None>
 	</ItemGroup>
 

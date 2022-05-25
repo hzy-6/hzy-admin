@@ -22,6 +22,7 @@
 	<ItemGroup>
 	  <None Update="HZY.Controllers.App.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  </None>
 	</ItemGroup>
 

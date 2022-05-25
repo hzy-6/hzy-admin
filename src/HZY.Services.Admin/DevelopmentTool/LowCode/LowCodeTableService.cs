@@ -18,12 +18,17 @@ namespace HZY.Services.Admin
     {
         private readonly IFreeSql _freeSql;
         private readonly LowCodeTableInfoService _lowCodeTableInfoService;
+        private readonly DatabaseTablesRepository _databaseTablesRepository;
 
-        public LowCodeTableService(LowCodeTableRepository defaultRepository, IFreeSql freeSql, LowCodeTableInfoService lowCodeTableInfoService)
+        public LowCodeTableService(LowCodeTableRepository defaultRepository,
+        IFreeSql freeSql,
+        LowCodeTableInfoService lowCodeTableInfoService,
+        DatabaseTablesRepository databaseTablesRepository)
             : base(defaultRepository)
         {
             _freeSql = freeSql;
             _lowCodeTableInfoService = lowCodeTableInfoService;
+            _databaseTablesRepository = databaseTablesRepository;
         }
 
         /// <summary>
@@ -52,6 +57,9 @@ namespace HZY.Services.Admin
                         CreationTime = w.CreationTime.ToString("yyyy-MM-dd"),
                     })
                 ;
+
+            //获取一下数据用于缓存
+            _databaseTablesRepository.GetAllTables();
 
             return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
         }
@@ -91,7 +99,7 @@ namespace HZY.Services.Admin
                         TableName = item.Name,
                         EntityName = item.Name,
                         Schema = item.Schema,
-                        Type = item.Type
+                        Type = item.Type.ToString()
                     });
                 }
                 else
@@ -99,7 +107,7 @@ namespace HZY.Services.Admin
                     id = table.Id;
 
                     table.Schema = item.Schema;
-                    table.Type = item.Type;
+                    table.Type = item.Type.ToString();
                     updateList.Add(table);
                 }
 

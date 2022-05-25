@@ -26,6 +26,7 @@
 	<ItemGroup>
 	  <None Update="HZY.FreeSqlCore.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  </None>
 	</ItemGroup>
 

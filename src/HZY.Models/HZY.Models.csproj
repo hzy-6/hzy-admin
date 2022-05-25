@@ -18,6 +18,7 @@
 	<ItemGroup>
 	  <None Update="HZY.Models.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  </None>
 	</ItemGroup>
 

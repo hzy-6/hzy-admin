@@ -1,17 +1,20 @@
-﻿using HZY.Infrastructure.Token;
-using HZY.Models.Entities.BaseEntitys;
-using HzyScanDiService.Extensions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.EntityFrameworkCore.Diagnostics;
-using Microsoft.Extensions.DependencyInjection;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.EFCore.Interceptor
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.ChangeTracking;
+using Microsoft.EntityFrameworkCore.Diagnostics;
+using Microsoft.Extensions.DependencyInjection;
+
+using HzyScanDiService.Extensions;
+
+using HZY.Infrastructure.Token;
+using HZY.Models.Entities.BaseEntitys;
+
+namespace HZY.EFCore.DbContexts.Interceptor
 {
     /// <summary>
     /// 审计 保存拦截器

@@ -9,6 +9,11 @@
             后台权限管理系统 DbContext
             </summary>
         </member>
+        <member name="T:HZY.EFCore.DbContexts.Interceptor.AuditInterceptor">
+            <summary>
+            审计 保存拦截器
+            </summary>
+        </member>
         <member name="T:HZY.EFCore.EFCoreModule">
             <summary>
             仓储模块
@@ -22,11 +27,6 @@
             <param name="configuration"></param>
             <param name="appConfiguration"></param>
             <exception cref="T:System.Exception"></exception>
-        </member>
-        <member name="T:HZY.EFCore.Interceptor.AuditInterceptor">
-            <summary>
-            审计 保存拦截器
-            </summary>
         </member>
         <member name="T:HZY.EFCore.Migrations.ModelBuilderExtensions">
             <summary>
@@ -99,6 +99,14 @@
             Admin默认基础仓储接口
             </summary>
             <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1.CreateColumnHeads(HZY.EFCore.Models.PagingViewModel,System.Collections.Generic.List{System.String},System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn})">
+            <summary>
+            创建列头
+            </summary>
+            <param name="pagingViewModel"></param>
+            <param name="fieldNames"></param>
+            <param name="columnHeads"></param>
         </member>
         <member name="M:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1.AsPagingViewModelAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn})">
             <summary>
@@ -185,6 +193,12 @@
         <member name="M:HZY.EFCore.Repositories.DevelopmentTool.DatabaseTablesRepository.GetAllTables">
             <summary>
             获取所有的表 包含表下面的列
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.DevelopmentTool.DatabaseTablesRepository.GetAllTablesByCache">
+            <summary>
+            获取表信息根据缓存
             </summary>
             <returns></returns>
         </member>

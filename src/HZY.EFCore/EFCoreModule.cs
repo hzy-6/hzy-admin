@@ -1,5 +1,5 @@
 ﻿using HZY.EFCore.DbContexts;
-using HZY.EFCore.Interceptor;
+using HZY.EFCore.DbContexts.Interceptor;
 using HZY.Infrastructure;
 using HZY.Models.Consts;
 using HzyEFCoreRepositories.Extensions;
@@ -75,7 +75,7 @@ public class EFCoreModule
                 #endregion
             }
 
-        }, 100);
+        }, 1000);
 
         #endregion
     }

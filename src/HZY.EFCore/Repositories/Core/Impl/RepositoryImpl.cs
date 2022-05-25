@@ -1,21 +1,22 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Data;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Linq.Expressions;
+
 using Microsoft.EntityFrameworkCore;
-using System;
+using Microsoft.Extensions.DependencyInjection;
+
+using HzyEFCoreRepositories.Extensions;
+using HzyEFCoreRepositories.Repositories.Impl;
+
+using HzyScanDiService.Extensions;
+
 using HZY.EFCore.DbContexts;
 using HZY.EFCore.Models;
 using HZY.Infrastructure;
-using Microsoft.Extensions.DependencyInjection;
-using System.Linq.Expressions;
 using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
-using HzyScanDiService.Extensions;
-using HzyEFCoreRepositories.Repositories;
-using HzyEFCoreRepositories.Extensions;
-using HzyEFCoreRepositories.ExpressionTree;
-using HzyEFCoreRepositories.Repositories.Impl;
+using HZY.EFCore.Repositories.DevelopmentTool;
 
 namespace HZY.EFCore.Repositories.Core.Impl;
 
@@ -30,41 +31,43 @@ public class RepositoryImpl<T> : BaseRepository<T, AdminBaseDbContext>, IReposit
     {
 
     }
-
     /// <summary>
     /// 创建列头
     /// </summary>
     /// <param name="pagingViewModel"></param>
     /// <param name="fieldNames"></param>
     /// <param name="columnHeads"></param>
-    //private void CreateColumnHeads(PagingViewModel pagingViewModel,
-    //    List<string> fieldNames,
-    //    List<TableViewColumn> columnHeads)
-    //{
-    //    using var scope = ServiceProviderExtensions.CreateScope();
-    //    var _cacheEntity = scope.ServiceProvider.GetService<ICacheEntity>();
+    private void CreateColumnHeads(PagingViewModel pagingViewModel,
+       List<string> fieldNames,
+       List<TableViewColumn> columnHeads)
+    {
+        using var scope = ServiceProviderExtensions.CreateScope();
+        var _databaseTablesRepository = scope.ServiceProvider.GetService<DatabaseTablesRepository>();
 
-    //    var entityInfos = _cacheEntity.GetEntityInfos(typeof(T).Name);
+        var tables = _databaseTablesRepository.GetAllTablesByCache()?
+        .Where(w => w.EntityName == typeof(T).Name)
+        .FirstOrDefault()
+        ;
 
-    //    foreach (var item in fieldNames)
-    //    {
-    //        var title = entityInfos.Find(w => w.Name == item)?.Remark ?? item;
-    //        pagingViewModel.Columns.Add(new TableViewColumn(item.FirstCharToLower(), title));
-    //    }
+        foreach (var item in fieldNames)
+        {
+            var title = tables.TableInfos.FirstOrDefault(w => w.ColumnName == item)?.Describe ?? item;
+            pagingViewModel.Columns.Add(new TableViewColumn(item.FirstCharToLower(), title));
+        }
 
-    //    //如果 传入了 头信息 则 覆盖
-    //    if (columnHeads == null) return;
+        //如果 传入了 头信息 则 覆盖
+        if (columnHeads == null) return;
 
-    //    foreach (var item in columnHeads)
-    //    {
-    //        var columnHead =
-    //            pagingViewModel.Columns.Find(w => w.FieldName.ToLower() == item.FieldName.ToLower());
-    //        if (columnHead == null) continue;
-    //        columnHead.Show = item.Show;
-    //        columnHead.Title = item.Title;
-    //        columnHead.Width = item.Width;
-    //    }
-    //}
+        foreach (var item in columnHeads)
+        {
+            var columnHead =
+                pagingViewModel.Columns.Find(w => w.FieldName.ToLower() == item.FieldName.ToLower());
+            if (columnHead == null) continue;
+            columnHead.Show = item.Show;
+            columnHead.Title = item.Title;
+            columnHead.Width = item.Width;
+        }
+    }
 
     /// <summary>
     /// 查询转换为分页视图模型
@@ -83,9 +86,8 @@ public class RepositoryImpl<T> : BaseRepository<T, AdminBaseDbContext>, IReposit
 
         var propertyInfos = typeof(TModel).GetProperties();
         var fieldNames = propertyInfos.Select(item => item.Name).ToList();
-        //.OrderBy(w => w.Name)
 
-        //this.CreateColumnHeads(pagingViewModel, fieldNames, columnHeads);
+        this.CreateColumnHeads(pagingViewModel, fieldNames, columnHeads);
 
         #region 重新将数据 组合 为 List<Dictionary<string,object>> 类型
 

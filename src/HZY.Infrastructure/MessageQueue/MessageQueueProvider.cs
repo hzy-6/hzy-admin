@@ -42,7 +42,6 @@ public class MessageQueueProvider : IMessageQueueProvider
                         {
                             var messageQueueModel = blockingCollection.Take();
                             messageQueueModel.Call?.Invoke(messageQueueModel.Message, _services);
-                            Console.WriteLine("消费:" + messageQueueModel.Key);
                         }
                         catch (Exception ex)
                         {
@@ -51,7 +50,7 @@ public class MessageQueueProvider : IMessageQueueProvider
                         }
                     });
                 }
-                await Task.Delay(5);
+                await Task.Delay(1);
             }
         });
 

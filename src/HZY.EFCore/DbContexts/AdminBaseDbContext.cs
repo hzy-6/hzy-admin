@@ -1,20 +1,13 @@
-﻿using System;
-using System.Linq;
-using System.Linq.Expressions;
-using HZY.Infrastructure;
-using HZY.Infrastructure.Token;
+﻿using Microsoft.EntityFrameworkCore;
+
+using HzyEFCoreRepositories.DbContexts;
+using HzyEFCoreRepositories.Extensions;
+
 using HZY.Models.Entities;
 using HZY.Models.Entities.ApprovalFlow;
 using HZY.Models.Entities.BaseEntitys;
 using HZY.Models.Entities.Framework;
 using HZY.Models.Entities.LowCode;
-using HzyEFCoreRepositories.DbContexts;
-using HzyEFCoreRepositories.ExpressionTree;
-using HzyEFCoreRepositories.Extensions;
-using HzyScanDiService.Extensions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.ChangeTracking;
-using Microsoft.Extensions.DependencyInjection;
 
 namespace HZY.EFCore.DbContexts;
 
@@ -72,6 +65,9 @@ public class AdminBaseDbContext : BaseDbContext<AdminBaseDbContext>
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
+        // 自动迁移种子数据
+        // ModelBuilderExtensions.Seed(modelBuilder);
+
         #region 过滤软删除 条件是：实体必须继承自 IDeleteBaseEntity
 
         var deleteBaseEntitys = modelBuilder.Model

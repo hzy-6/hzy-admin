@@ -29,7 +29,7 @@ namespace HZY.Models.Entities.LowCode
         /// 表类型
         /// </summary>
         /// <value></value>
-        public DbTableType? Type { get; set; }
+        public string Type { get; set; }
 
         /// <summary>
         /// 显示名称 描述

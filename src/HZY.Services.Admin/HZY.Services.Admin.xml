@@ -108,222 +108,222 @@
             <param name="ignore"></param>
             <returns></returns>
         </member>
-        <member name="T:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService">
+        <member name="T:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService">
             <summary>
             代码生成服务
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.GetGenContextDtos(System.Int32,System.Int32,HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GetGenContextDtos(System.Int32,System.Int32,HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成上下文集合
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.GetGenContextDtoByTableName(System.String)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GetGenContextDtoByTableName(System.String)">
             <summary>
             获取表字段集合
             </summary>
             <param name="tableName"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.GetGenContextDto(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GetGenContextDto(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             获取代码生成上下文
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.GenModelAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GenModelAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成 model
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.GenServiceAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GenServiceAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成 service
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.GenControllerAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GenControllerAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成 controller
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.GenServiceJsAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GenServiceJsAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成 serviceJs
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.GenIndexVueAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GenIndexVueAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成 indexVue
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.GenInfoVueAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GenInfoVueAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成 infoVue
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.GetCodeByTypeAndTableNameAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GetCodeByTypeAndTableNameAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             获取代码
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.DownloadAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.DownloadAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             下载
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.DownloadAllAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.DownloadAllAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             根据类型下载类型下所有的代码
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.CreateAllCodeFilesAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.CreateAllCodeFilesAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             创建所有代码文件
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.ICodeGenerationService.CreateDataDictionary">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.CreateDataDictionary">
             <summary>
             创建数据字典文件 excel
             </summary>
             <returns></returns>
         </member>
-        <member name="T:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService">
+        <member name="T:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService">
             <summary>
             代码生成服务
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.GetGenContextDtos(System.Int32,System.Int32,HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GetGenContextDtos(System.Int32,System.Int32,HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成上下文集合
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.GetGenContextDtoByTableName(System.String)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GetGenContextDtoByTableName(System.String)">
             <summary>
             获取所有表集合信息
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.GetGenContextDto(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GetGenContextDto(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             获取代码生成上下文
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.GenModelAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GenModelAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成model
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.GenServiceAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GenServiceAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成service
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.GenControllerAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GenControllerAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成controller
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.GenServiceJsAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GenServiceJsAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成service js
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.GenIndexVueAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GenIndexVueAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成 index vue
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.GenInfoVueAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GenInfoVueAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成 info vue
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.GetCodeByTypeAndTableNameAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GetCodeByTypeAndTableNameAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             获取代码
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.CreateAllCodeFilesAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.CreateAllCodeFilesAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             创建所有代码文件
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.DownloadAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.DownloadAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             获取下载代码信息
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.DownloadAllAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.DownloadAllAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             根据类型下载所有代码
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.CreateDataDictionary">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.CreateDataDictionary">
             <summary>
             创建数据库字典文件
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.ClearSymbol(System.Text.StringBuilder)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.ClearSymbol(System.Text.StringBuilder)">
             <summary>
             清除多余符号
             </summary>
             <param name="code"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.CreateCodeFilesAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.CreateCodeFilesAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             创建代码文件
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.CodeGeneration.Impl.CodeGenerationService.FindCodeFileClassName(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.FindCodeFileClassName(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             获取代码文件名称
             </summary>

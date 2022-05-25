@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.Services.Admin.DevelopmentTool.CodeGeneration
+namespace HZY.Services.Admin.DevelopmentTool.LowCode
 {
     /// <summary>
     /// 代码生成服务
