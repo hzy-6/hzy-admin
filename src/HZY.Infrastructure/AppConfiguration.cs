@@ -10,68 +10,64 @@ public class AppConfiguration : IDiSingletonSelf
 {
     private readonly IConfiguration _configuration;
 
-    public AppConfiguration(IConfiguration configuration)
-    {
-        _configuration = configuration;
-        //AppConfig 
-        Mapping(nameof(AppConfiguration));
-    }
+    /// <summary>
+    /// 程序默认配置项
+    /// </summary>
+    public readonly AppConfigurationOptions Configs;
 
     /// <summary>
-    /// 映射数据 到 属性
+    /// 连接字符串
     /// </summary>
-    /// <param name="key"></param>
-    private void Mapping(string key)
-    {
-        var properties = GetType().GetProperties();
-        foreach (var item in properties)
-        {
-            var value = _configuration[$"{key}:{item.Name}"];
+    public readonly ConnectionStringsOptions ConnectionStrings;
 
-            if (item.PropertyType == typeof(Guid))
-            {
-                item.SetValue(this, value.ToGuid());
-            }
-            else if (item.PropertyType == typeof(int))
-            {
-                item.SetValue(this, value.ToInt32());
-            }
-            else if (item.PropertyType == typeof(bool))
-            {
-                item.SetValue(this, value.ToBool());
-            }
-            else
-            {
-                item.SetValue(this, value);
-            }
-        }
+    public AppConfiguration(IConfiguration configuration)
+    {
+        this._configuration = configuration;
+        //
+        ConnectionStrings = _configuration.GetSection(nameof(ConnectionStrings)).Get<ConnectionStringsOptions>();
+        // 
+        Configs = _configuration.GetSection(nameof(AppConfigurationOptions)).Get<AppConfigurationOptions>();
     }
 
+}
+
+/// <summary>
+/// 连接字符串配置
+/// </summary>
+public class ConnectionStringsOptions
+{
     /// <summary>
     /// 默认数据库类型
     /// </summary>
     /// <value></value>
-    public string DefaultDatabaseType { get; set; }
+    public DefaultDatabaseType DefaultDatabaseType { get; set; }
     /// <summary>
     /// sqlserver
     /// </summary>
     /// <value></value>
-    public string DefaultConnectionString_SqlServer { get; set; }
+    public string DefaultSqlServer { get; set; }
     /// <summary>
     /// mysql
     /// </summary>
     /// <value></value>
-    public string DefaultConnectionString_MySql { get; set; }
+    public string DefaultMySql { get; set; }
     /// <summary>
-    /// pgsql
+    /// PostgreSql
     /// </summary>
     /// <value></value>
-    public string DefaultConnectionString_PgSql { get; set; }
+    public string DefaultPostgreSql { get; set; }
     /// <summary>
     /// redis 地址
     /// </summary>
     /// <value></value>
-    public string ConnectionStringRedis { get; set; }
+    public string Redis { get; set; }
+}
+
+/// <summary>
+/// 应用程序配置
+/// </summary>
+public class AppConfigurationOptions
+{
     /// <summary>
     /// 程序标题
     /// </summary>

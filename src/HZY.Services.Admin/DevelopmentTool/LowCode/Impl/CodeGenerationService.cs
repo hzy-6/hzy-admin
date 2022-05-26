@@ -111,7 +111,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
             var tableInfo = tables.FirstOrDefault(w => w.TableName == tableName);
 
             if (tableInfo == null) return null;
-            tableInfo.Namespace = _appConfiguration.Namespace;
+            tableInfo.Namespace = _appConfiguration.Configs.Namespace;
             return tableInfo;
         }
 

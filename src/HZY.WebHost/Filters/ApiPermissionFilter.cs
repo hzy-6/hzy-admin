@@ -43,7 +43,7 @@ namespace HZY.WebHost.Filters
 
             #region 拦截操作数据库的 接口 方便发布线上演示
             //拦截操作数据库的 接口
-            if (_appConfiguration.IsInterceptEdit)
+            if (_appConfiguration.Configs.IsInterceptEdit)
             {
                 var actionList = new[] { "SaveForm", "DeleteList", "ChangePassword", "Change", "Delete", "Update", "Insert" };
                 if (actionList.Any(w => actionName.ToLower().Contains(w.ToLower())))

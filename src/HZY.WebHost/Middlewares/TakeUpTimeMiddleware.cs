@@ -33,7 +33,7 @@ public class TakeUpTimeMiddleware : IMiddleware
 
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        var apiList = _appConfiguration.ApiWhiteList.Split("|").ToList();
+        var apiList = _appConfiguration.Configs.ApiWhiteList.Split("|").ToList();
         var path = context.Request.Path;
 
         if (apiList.Any(w => path.ToString().ToLower().Contains(w.ToLower())))

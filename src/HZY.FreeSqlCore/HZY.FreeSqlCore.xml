@@ -9,21 +9,21 @@
             FreeSql 模块配置
             </summary>
         </member>
-        <member name="M:HZY.FreeSqlCore.FreeSqlCoreModule.RegisterFreeSql(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration,System.String)">
+        <member name="M:HZY.FreeSqlCore.FreeSqlCoreModule.RegisterFreeSql(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration,System.String)">
             <summary>
             注册 仓储层
             </summary>
             <param name="services"></param>
-            <param name="configuration"></param>
+            <param name="appConfiguration"></param>
             <param name="assemblyFilter"></param>
             <exception cref="T:System.Exception"></exception>
         </member>
-        <member name="M:HZY.FreeSqlCore.FreeSqlCoreModule.CreateFreeSql(System.String,HZY.Infrastructure.DefaultDatabaseType)">
+        <member name="M:HZY.FreeSqlCore.FreeSqlCoreModule.CreateFreeSql(System.String,FreeSql.DataType)">
             <summary>
             创建 free sql 对象
             </summary>
             <param name="connectionString"></param>
-            <param name="defaultDatabaseType"></param>
+            <param name="dataType"></param>
             <returns></returns>
         </member>
     </members>

@@ -66,7 +66,7 @@ public class AppConfigure
         #endregion
 
         #region 启动定时任务
-        if (appConfiguration.IsRunQuartzTask)
+        if (appConfiguration.Configs.IsRunQuartzTask)
         {
             var _taskService = app.Services.GetRequiredService<ITaskService>();
             _taskService.RecoveryTaskAsync().Wait();

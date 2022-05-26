@@ -92,7 +92,7 @@ public class AccountDomainServiceImpl : IAccountDomainService
 
         accountInfo = new AccountInfo();
         accountInfo = sysUser.MapTo<SysUser, AccountInfo>();
-        accountInfo.IsAdministrator = sysRoles.Any(w => w.Id == this._appConfiguration.AdminRoleId);
+        accountInfo.IsAdministrator = sysRoles.Any(w => w.Id == this._appConfiguration.Configs.AdminRoleId);
         accountInfo.SysRoles = sysRoles;
         accountInfo.SysPosts = sysPosts;
         accountInfo.SysOrganization = sysOrganization;

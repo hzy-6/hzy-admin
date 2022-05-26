@@ -168,87 +168,101 @@
             程序配置信息映射类 appsettings.json
             </summary>
         </member>
-        <member name="M:HZY.Infrastructure.AppConfiguration.Mapping(System.String)">
+        <member name="F:HZY.Infrastructure.AppConfiguration.Configs">
             <summary>
-            映射数据 到 属性
+            程序默认配置项
             </summary>
-            <param name="key"></param>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.DefaultDatabaseType">
+        <member name="F:HZY.Infrastructure.AppConfiguration.ConnectionStrings">
+            <summary>
+            连接字符串
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.ConnectionStringsOptions">
+            <summary>
+            连接字符串配置
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.ConnectionStringsOptions.DefaultDatabaseType">
             <summary>
             默认数据库类型
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.DefaultConnectionString_SqlServer">
+        <member name="P:HZY.Infrastructure.ConnectionStringsOptions.DefaultSqlServer">
             <summary>
             sqlserver
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.DefaultConnectionString_MySql">
+        <member name="P:HZY.Infrastructure.ConnectionStringsOptions.DefaultMySql">
             <summary>
             mysql
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.DefaultConnectionString_PgSql">
+        <member name="P:HZY.Infrastructure.ConnectionStringsOptions.DefaultPostgreSql">
             <summary>
-            pgsql
+            PostgreSql
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.ConnectionStringRedis">
+        <member name="P:HZY.Infrastructure.ConnectionStringsOptions.Redis">
             <summary>
             redis 地址
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.AppTitle">
+        <member name="T:HZY.Infrastructure.AppConfigurationOptions">
+            <summary>
+            应用程序配置
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.AppConfigurationOptions.AppTitle">
             <summary>
             程序标题
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.AuthorizationKeyName">
+        <member name="P:HZY.Infrastructure.AppConfigurationOptions.AuthorizationKeyName">
             <summary>
             token 键名
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.AdminRoleId">
+        <member name="P:HZY.Infrastructure.AppConfigurationOptions.AdminRoleId">
             <summary>
             超级管理员角色id
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.SysMenuId">
+        <member name="P:HZY.Infrastructure.AppConfigurationOptions.SysMenuId">
             <summary>
             系统菜单id
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.Namespace">
+        <member name="P:HZY.Infrastructure.AppConfigurationOptions.Namespace">
             <summary>
             命名空间
             </summary>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.ApiWhiteList">
+        <member name="P:HZY.Infrastructure.AppConfigurationOptions.ApiWhiteList">
             <summary>
             Api 白名单
             </summary>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.IsMonitorEFCore">
+        <member name="P:HZY.Infrastructure.AppConfigurationOptions.IsMonitorEFCore">
             <summary>
             是否监控EFCore程序
             </summary>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.IsInterceptEdit">
+        <member name="P:HZY.Infrastructure.AppConfigurationOptions.IsInterceptEdit">
             <summary>
             是否拦截编辑 添加、修改、删除
             </summary>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.IsRunQuartzTask">
+        <member name="P:HZY.Infrastructure.AppConfigurationOptions.IsRunQuartzTask">
             <summary>
             是否运行 Quartz Task
             </summary>

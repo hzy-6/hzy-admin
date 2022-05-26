@@ -1,12 +1,12 @@
-﻿using HZY.EFCore.DbContexts;
-using HZY.EFCore.DbContexts.Interceptor;
-using HZY.Infrastructure;
-using HZY.Models.Consts;
-using HzyEFCoreRepositories.Extensions;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+
+using HzyEFCoreRepositories.Extensions;
+
+using HZY.EFCore.DbContexts;
+using HZY.EFCore.DbContexts.Interceptor;
+using HZY.Infrastructure;
 
 namespace HZY.EFCore;
 
@@ -19,24 +19,11 @@ public class EFCoreModule
     /// 注册 Admin 后台管理数据库
     /// </summary>
     /// <param name="services"></param>
-    /// <param name="configuration"></param>
     /// <param name="appConfiguration"></param>
     /// <exception cref="System.Exception"></exception>
-    public static void RegisterAdminBaseDbContext(IServiceCollection services, IConfiguration configuration, AppConfiguration appConfiguration)
+    public static void RegisterAdminBaseDbContext(IServiceCollection services, AppConfiguration appConfiguration)
     {
-        DefaultDatabaseType defaultDatabaseType = DefaultDatabaseType.SqlServer;
-
-        var databaseType = configuration["AppConfiguration:DefaultDatabaseType"];
-        if (databaseType == "SqlServer")
-            defaultDatabaseType = DefaultDatabaseType.SqlServer;
-        else if (databaseType == "MySql")
-            defaultDatabaseType = DefaultDatabaseType.MySql;
-        else if (databaseType == "PgSql")
-            defaultDatabaseType = DefaultDatabaseType.PostgreSql;
-        else
-            throw new System.Exception("设置了无法识别的数据库类型!");
-
-        var connectionString = configuration[$"AppConfiguration:DefaultConnectionString_{databaseType}"];
+        var databaseType = appConfiguration.ConnectionStrings.DefaultDatabaseType;
 
         #region 后台 管理系统 数据库上下文
 
@@ -49,29 +36,29 @@ public class EFCoreModule
             // 懒加载代理
             //options.UseLazyLoadingProxies();
             //添加 EFCore 监控 和 动态表名
-            options.AddEFCoreInterceptor(appConfiguration.IsMonitorEFCore);
+            options.AddEFCoreInterceptor(appConfiguration.Configs.IsMonitorEFCore);
             options.AddInterceptors(new AuditInterceptor());
 
-            if (defaultDatabaseType == DefaultDatabaseType.SqlServer)
+            if (databaseType == DefaultDatabaseType.SqlServer)
             {
                 #region SqlSever
-                options.UseSqlServer(connectionString, w => w.MinBatchSize(1).MaxBatchSize(1000));
+                options.UseSqlServer(appConfiguration.ConnectionStrings.DefaultSqlServer, w => w.MinBatchSize(1).MaxBatchSize(1000));
                 #endregion
             }
 
-            if (defaultDatabaseType == DefaultDatabaseType.MySql)
+            if (databaseType == DefaultDatabaseType.MySql)
             {
                 #region MySql
-                options.UseMySql(connectionString, MySqlServerVersion.LatestSupportedServerVersion, w => w.MinBatchSize(1).MaxBatchSize(1000));
+                options.UseMySql(appConfiguration.ConnectionStrings.DefaultMySql, MySqlServerVersion.LatestSupportedServerVersion, w => w.MinBatchSize(1).MaxBatchSize(1000));
                 #endregion
             }
 
-            if (defaultDatabaseType == DefaultDatabaseType.PostgreSql)
+            if (databaseType == DefaultDatabaseType.PostgreSql)
             {
                 //EnableLegacyTimestampBehavior 启动旧行为，避免时区问题，存储时间报错
                 System.AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
                 #region Npgsql
-                options.UseNpgsql(connectionString, w => w.MinBatchSize(1).MaxBatchSize(1000));
+                options.UseNpgsql(appConfiguration.ConnectionStrings.DefaultPostgreSql, w => w.MinBatchSize(1).MaxBatchSize(1000));
                 #endregion
             }
 

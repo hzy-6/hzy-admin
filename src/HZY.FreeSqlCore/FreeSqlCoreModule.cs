@@ -21,26 +21,32 @@ public static class FreeSqlCoreModule
     /// 注册 仓储层
     /// </summary>
     /// <param name="services"></param>
-    /// <param name="configuration"></param>
+    /// <param name="appConfiguration"></param>
     /// <param name="assemblyFilter"></param>
     /// <exception cref="System.Exception"></exception>
-    public static void RegisterFreeSql(this IServiceCollection services, IConfiguration configuration, string assemblyFilter = "HZY.Repositories")
+    public static void RegisterFreeSql(this IServiceCollection services, AppConfiguration appConfiguration, string assemblyFilter = "HZY.Repositories")
     {
-        DefaultDatabaseType defaultDatabaseType = DefaultDatabaseType.SqlServer;
+        var databaseType = appConfiguration.ConnectionStrings.DefaultDatabaseType;
+        var dataType = FreeSql.DataType.SqlServer;
+        var connectionString = appConfiguration.ConnectionStrings.DefaultSqlServer;
 
-        var databaseType = configuration["AppConfiguration:DefaultDatabaseType"];
-        if (databaseType == "SqlServer")
-            defaultDatabaseType = DefaultDatabaseType.SqlServer;
-        else if (databaseType == "MySql")
-            defaultDatabaseType = DefaultDatabaseType.MySql;
-        else if (databaseType == "PgSql")
-            defaultDatabaseType = DefaultDatabaseType.PostgreSql;
-        else
-            throw new System.Exception("设置了无法识别的数据库类型!");
+        if (databaseType == DefaultDatabaseType.SqlServer)
+        {
+            connectionString = appConfiguration.ConnectionStrings.DefaultSqlServer;
+            dataType = FreeSql.DataType.SqlServer;
+        }
+        if (databaseType == DefaultDatabaseType.MySql)
+        {
+            connectionString = appConfiguration.ConnectionStrings.DefaultMySql;
+            dataType = FreeSql.DataType.MySql;
+        }
+        if (databaseType == DefaultDatabaseType.PostgreSql)
+        {
+            connectionString = appConfiguration.ConnectionStrings.DefaultPostgreSql;
+            dataType = FreeSql.DataType.PostgreSQL;
+        }
 
-        var connectionString = configuration[$"AppConfiguration:DefaultConnectionString_{databaseType}"];
-
-        var freeSql = CreateFreeSql(connectionString, defaultDatabaseType);
+        var freeSql = CreateFreeSql(connectionString, dataType);
         services.AddSingleton(freeSql);
         //services.AddScoped<UnitOfWorkManager>();
         services.AddFreeRepository(null, DiServiceScanningExtensions.GetAssemblyList(w =>
@@ -54,19 +60,10 @@ public static class FreeSqlCoreModule
     /// 创建 free sql 对象
     /// </summary>
     /// <param name="connectionString"></param>
-    /// <param name="defaultDatabaseType"></param>
+    /// <param name="dataType"></param>
     /// <returns></returns>
-    private static IFreeSql CreateFreeSql(string connectionString, DefaultDatabaseType defaultDatabaseType)
+    private static IFreeSql CreateFreeSql(string connectionString, FreeSql.DataType dataType)
     {
-        var dataType = FreeSql.DataType.SqlServer;
-
-        dataType = defaultDatabaseType switch
-        {
-            DefaultDatabaseType.SqlServer => FreeSql.DataType.SqlServer,
-            DefaultDatabaseType.MySql => FreeSql.DataType.MySql,
-            DefaultDatabaseType.PostgreSql => FreeSql.DataType.PostgreSQL,
-            _ => FreeSql.DataType.SqlServer,
-        };
         var freeSql = new FreeSql.FreeSqlBuilder()
             .UseConnectionString(dataType, connectionString)
             .UseAutoSyncStructure(false) //自动迁移实体的结构到数据库

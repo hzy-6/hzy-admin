@@ -30,7 +30,7 @@ public class TokenService : IDiTransientSelf
     /// <returns></returns>
     public string CreateTokenByAccountId(Guid id)
     {
-        return JwtTokenUtil.CreateToken(id.ToString(), this._appConfiguration.JwtIssuerSigningKey, this._appConfiguration.JwtValidIssuer, this._appConfiguration.JwtValidAudience);
+        return JwtTokenUtil.CreateToken(id.ToString(), this._appConfiguration.Configs.JwtIssuerSigningKey, this._appConfiguration.Configs.JwtValidIssuer, this._appConfiguration.Configs.JwtValidAudience);
     }
 
     /// <summary>
@@ -44,7 +44,7 @@ public class TokenService : IDiTransientSelf
             return false;
         }
 
-        var tokenName = this._appConfiguration.AuthorizationKeyName;
+        var tokenName = this._appConfiguration.Configs.AuthorizationKeyName;
 
         if (!this._httpContext.Request.Headers.ContainsKey(tokenName))
         {
@@ -67,7 +67,7 @@ public class TokenService : IDiTransientSelf
             return string.Empty;
         }
 
-        var tokenName = this._appConfiguration.AuthorizationKeyName;
+        var tokenName = this._appConfiguration.Configs.AuthorizationKeyName;
 
         return this._httpContext.Request.Headers[tokenName].ToString();
     }
