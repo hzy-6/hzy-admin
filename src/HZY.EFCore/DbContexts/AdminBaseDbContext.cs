@@ -8,6 +8,7 @@ using HZY.Models.Entities.ApprovalFlow;
 using HZY.Models.Entities.BaseEntitys;
 using HZY.Models.Entities.Framework;
 using HZY.Models.Entities.LowCode;
+using HZY.EFCore.Migrations.Seeds;
 
 namespace HZY.EFCore.DbContexts;
 
@@ -66,7 +67,7 @@ public class AdminBaseDbContext : BaseDbContext<AdminBaseDbContext>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         // 自动迁移种子数据
-        // ModelBuilderExtensions.Seed(modelBuilder);
+        ModelBuilderExtensions.Seed(modelBuilder);
 
         #region 过滤软删除 条件是：实体必须继承自 IDeleteBaseEntity
 

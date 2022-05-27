@@ -12,11 +12,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="FreeSql" Version="3.2.500" />
-		<PackageReference Include="FreeSql.Provider.MySqlConnector" Version="3.2.500" />
-		<PackageReference Include="FreeSql.Provider.PostgreSQL" Version="3.2.500" />
-		<PackageReference Include="FreeSql.Provider.SqlServer" Version="3.2.500" />
-		<PackageReference Include="FreeSql.Repository" Version="3.2.500" />
+		<PackageReference Include="FreeSql" Version="3.2.651" />
+		<PackageReference Include="FreeSql.Provider.MySqlConnector" Version="3.2.651" />
+		<PackageReference Include="FreeSql.Provider.PostgreSQL" Version="3.2.651" />
+		<PackageReference Include="FreeSql.Provider.SqlServer" Version="3.2.651" />
+		<PackageReference Include="FreeSql.Repository" Version="3.2.651" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -28,6 +28,10 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  </None>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
 
 </Project>

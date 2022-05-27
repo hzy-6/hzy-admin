@@ -98,9 +98,7 @@ public class AccountDomainServiceImpl : IAccountDomainService
         accountInfo.SysOrganization = sysOrganization;
 
         //缓存
-        this.SetCacheByAccountInfo(accountInfo);
-
-        return accountInfo;
+        return this.SetCacheByAccountInfo(accountInfo);
     }
 
     /// <summary>

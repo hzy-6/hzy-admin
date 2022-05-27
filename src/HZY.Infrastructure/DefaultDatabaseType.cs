@@ -13,5 +13,6 @@ public enum DefaultDatabaseType
 {
     SqlServer,
     MySql,
-    PostgreSql
+    PostgreSql,
+    Oracle
 }

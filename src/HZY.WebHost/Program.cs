@@ -1,3 +1,4 @@
+using System;
 using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.MessageQueue;
 using HZY.Infrastructure.SerilogUtil;
@@ -54,11 +55,11 @@ try
     //服务构建
     AppConfigureServices.Build(builder.Services, builder.Configuration);
 
-    var app = builder.Build();
-
     #endregion
 
     #region 应用服务
+
+    var app = builder.Build();
 
     var messageQueueProvider = app.Services.GetRequiredService<IMessageQueueProvider>();
 
@@ -89,6 +90,7 @@ try
 catch (Exception ex)
 {
     LogUtil.Log.Fatal(ex, "主机意外终止...");
+    throw;
 }
 finally
 {

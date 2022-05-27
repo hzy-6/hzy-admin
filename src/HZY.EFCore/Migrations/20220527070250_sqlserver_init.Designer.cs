@@ -4,6 +4,7 @@ using HZY.EFCore.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HZY.EFCore.Migrations
 {
     [DbContext(typeof(AdminBaseDbContext))]
-    partial class AdminBaseDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220527070250_sqlserver_init")]
+    partial class sqlserver_init
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
