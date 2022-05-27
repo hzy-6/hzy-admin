@@ -12,7 +12,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HZY.EFCore.Migrations
 {
     [DbContext(typeof(AdminBaseDbContext))]
-    [Migration("20220527070250_sqlserver_init")]
+    [Migration("20220527130027_sqlserver_init")]
     partial class sqlserver_init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

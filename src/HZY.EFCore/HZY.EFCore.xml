@@ -27,12 +27,12 @@
             <param name="appConfiguration"></param>
             <exception cref="T:System.Exception"></exception>
         </member>
-        <member name="T:HZY.EFCore.Migrations.ModelBuilderExtensions">
+        <member name="T:HZY.EFCore.Migrations.Seeds.ModelBuilderExtensions">
             <summary>
             EFCore 种子数据
             </summary>
         </member>
-        <member name="M:HZY.EFCore.Migrations.ModelBuilderExtensions.Seed(Microsoft.EntityFrameworkCore.ModelBuilder)">
+        <member name="M:HZY.EFCore.Migrations.Seeds.ModelBuilderExtensions.Seed(Microsoft.EntityFrameworkCore.ModelBuilder)">
             <summary>
             种子数据
             </summary>
