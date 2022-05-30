@@ -62,6 +62,16 @@
             检索
           </a-button>
         </template>
+        <!-- 列的隐藏显示 -->
+        <a-popover>
+          <template #content>
+            <div v-for="item in state.columns.filter((w) => w.fieldName.substr(0, 1) != '_')">
+              <a-checkbox v-model:checked="item.show" @change="() => nextTick(() => refList.table.refreshColumn())">{{ item.title }}</a-checkbox>
+            </div>
+          </template>
+          <a-button><AppIcon name="BarsOutlined" /></a-button>
+        </a-popover>
+        <!--  -->
       </template>
 
       <!-- 表格 -->
@@ -81,7 +91,7 @@
           </template>
         </template>
         <!--  v-if="power.update || power.delete" 预防操作列还存在 -->
-        <vxe-column field="id" title="操作" v-if="(power.update || power.delete) && !$props.isFindBack">
+        <vxe-column field="id" title="操作" v-if="(power.update || power.delete)">
           <template #default="{ row }">
             <template v-if="power.update">
               <a href="javascript:void(0)" @click="methods.jumpDetails(row)">详情</a>
@@ -110,7 +120,7 @@
 export default { name: "base_member" };
 </script>
 <script setup>
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, reactive, ref, nextTick } from "vue";
 import { useAppStore } from "@/store";
 import List from "@/components/curd/List.vue";
 import AppIcon from "@/components/AppIcon.vue";

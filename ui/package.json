@@ -16,7 +16,7 @@
     "@highlightjs/vue-plugin": "^2.1.0",
     "@vueuse/core": "^8.4.1",
     "@wangeditor/editor": "^5.0.1",
-    "ant-design-vue": "3.2.3",
+    "ant-design-vue": "3.2.5",
     "axios": "^0.26.1",
     "core-js": "^3.22.2",
     "dayjs": "^1.11.1",
