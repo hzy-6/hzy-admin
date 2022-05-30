@@ -930,6 +930,14 @@
             <param name="fileDownloadName"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Infrastructure.Tools.GetNameByExpression``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            获取名称 根据表达式树
+            </summary>
+            <param name="exp"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Infrastructure.Zip">
             <summary>
             压缩 zip  https://www.cnblogs.com/xielong/p/6165550.html

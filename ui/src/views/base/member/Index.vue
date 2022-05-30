@@ -66,19 +66,22 @@
 
       <!-- 表格 -->
       <template #table-col-default>
-        <vxe-column field="number" title="编号"></vxe-column>
-        <vxe-column field="photo" title="头像">
-          <template #default="{ row }">
-            <img :src="domainName + row.photo" width="35" height="35" />
+        <!-- 动态列 -->
+        <template v-for="item in state.columns">
+          <!-- 头像自定义列 -->
+          <template v-if="item.fieldName == 'photo'">
+            <vxe-column field="photo" title="头像">
+              <template #default="{ row }">
+                <img :src="domainName + row.photo" width="35" height="35" />
+              </template>
+            </vxe-column>
           </template>
-        </vxe-column>
-        <vxe-column field="name" title="名称"></vxe-column>
-        <vxe-column field="phone" title="联系电话"></vxe-column>
-        <vxe-column field="sex" title="性别"></vxe-column>
-        <vxe-column field="birthday" title="生日"></vxe-column>
-        <vxe-column field="lastModificationTime" title="更新时间"></vxe-column>
-        <vxe-column field="creationTime" title="创建时间"></vxe-column>
-        <vxe-column field="id" title="操作">
+          <template v-else>
+            <vxe-column :field="item.fieldName" :title="item.title" :visible="item.show" :key="item.id" v-if="item.fieldName != 'id'"></vxe-column>
+          </template>
+        </template>
+        <!--  v-if="power.update || power.delete" 预防操作列还存在 -->
+        <vxe-column field="id" title="操作" v-if="(power.update || power.delete) && !$props.isFindBack">
           <template #default="{ row }">
             <template v-if="power.update">
               <a href="javascript:void(0)" @click="methods.jumpDetails(row)">详情</a>
@@ -132,6 +135,7 @@ const state = reactive({
   rows: 10,
   page: 1,
   total: 0,
+  columns: [],
   data: [],
   domainName: appConsts.domainName,
 });
@@ -168,6 +172,7 @@ const methods = {
       state.page = data.page;
       state.rows = data.size;
       state.total = data.total;
+      state.columns = data.columns;
       state.data = data.dataSource;
     });
   },

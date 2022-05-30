@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure;
 using NPOI.HSSF.UserModel;
@@ -50,7 +50,7 @@ public abstract class AbsCrudBaseService<TRepository, TSearchDto, TFormDto, TEnt
     public virtual async Task<byte[]> ExportExcelAsync(TSearchDto search)
     {
         var tableViewModel = await this.FindListAsync(1, 999999, search);
-        return this.ExportExcelByPagingViewModel(tableViewModel, null, "Id");
+        return this.ExportExcelByPagingView(tableViewModel, null, "Id");
     }
 
     /// <summary>
@@ -85,7 +85,7 @@ public abstract class AbsCrudBaseService<TRepository, TSearchDto, TFormDto, TEnt
     /// <param name="search"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public virtual Task<PagingViewModel> FindListAsync(int page, int size, TSearchDto search)
+    public virtual Task<PagingView> FindListAsync(int page, int size, TSearchDto search)
     {
         throw new NotImplementedException("在 HZY.Services.Admin 服务层 FindListAsync 请重写 ");
 
@@ -111,18 +111,18 @@ public abstract class AbsCrudBaseService<TRepository, TSearchDto, TFormDto, TEnt
     /// <summary>
     /// 导出 Excel
     /// </summary>
-    /// <param name="pagingViewModel"></param>
+    /// <param name="PagingView"></param>
     /// <param name="byName">别名</param>
     /// <param name="ignore"></param>
     /// <returns></returns>
-    protected virtual byte[] ExportExcelByPagingViewModel(PagingViewModel pagingViewModel, Dictionary<string, string> byName = null, params string[] ignore)
+    protected virtual byte[] ExportExcelByPagingView(PagingView PagingView, Dictionary<string, string> byName = null, params string[] ignore)
     {
         var workbook = new HSSFWorkbook();
         var sheet = workbook.CreateSheet();
         //数据
-        var data = pagingViewModel.DataSource;
-        var cols = ignore == null ? pagingViewModel.Columns :
-            pagingViewModel.Columns.Where(w => !ignore.Any(i => i.ToLower() == w.FieldName.ToLower()))
+        var data = PagingView.DataSource;
+        var cols = ignore == null ? PagingView.Columns :
+            PagingView.Columns.Where(w => !ignore.Any(i => i.ToLower() == w.FieldName.ToLower()))
             .ToList();
 
         //填充表头

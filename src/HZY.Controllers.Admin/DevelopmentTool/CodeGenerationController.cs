@@ -1,5 +1,5 @@
 ﻿using FreeSql.DatabaseModel;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
@@ -37,7 +37,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// <returns></returns>
         [ActionDescriptor(DisplayName = "查询列表")]
         [HttpPost("findList/{size}/{page}")]
-        public PagingViewModel FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] GenFormDto search)
+        public PagingView FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] GenFormDto search)
         {
             return this._defaultService.GetGenContextDtos(page, size, search);
         }

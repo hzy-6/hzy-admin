@@ -12,11 +12,10 @@ using HzyEFCoreRepositories.Repositories.Impl;
 using HzyScanDiService.Extensions;
 
 using HZY.EFCore.DbContexts;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
-using HZY.EFCore.Repositories.DevelopmentTool;
 
 namespace HZY.EFCore.Repositories.Core.Impl;
 
@@ -31,43 +30,6 @@ public class RepositoryImpl<T> : BaseRepository<T, AdminBaseDbContext>, IReposit
     {
 
     }
-    /// <summary>
-    /// 创建列头
-    /// </summary>
-    /// <param name="pagingViewModel"></param>
-    /// <param name="fieldNames"></param>
-    /// <param name="columnHeads"></param>
-    private void CreateColumnHeads(PagingViewModel pagingViewModel,
-       List<string> fieldNames,
-       List<TableViewColumn> columnHeads)
-    {
-        using var scope = ServiceProviderExtensions.CreateScope();
-        var _databaseTablesRepository = scope.ServiceProvider.GetService<DatabaseTablesRepository>();
-
-        var tables = _databaseTablesRepository.GetAllTablesByCache()?
-        .Where(w => w.EntityName == typeof(T).Name)
-        .FirstOrDefault()
-        ;
-
-        foreach (var item in fieldNames)
-        {
-            var title = tables.TableInfos.FirstOrDefault(w => w.ColumnName == item)?.Describe ?? item;
-            pagingViewModel.Columns.Add(new TableViewColumn(item.FirstCharToLower(), title));
-        }
-
-        //如果 传入了 头信息 则 覆盖
-        if (columnHeads == null) return;
-
-        foreach (var item in columnHeads)
-        {
-            var columnHead =
-                pagingViewModel.Columns.Find(w => w.FieldName.ToLower() == item.FieldName.ToLower());
-            if (columnHead == null) continue;
-            columnHead.Show = item.Show;
-            columnHead.Title = item.Title;
-            columnHead.Width = item.Width;
-        }
-    }
 
     /// <summary>
     /// 查询转换为分页视图模型
@@ -78,38 +40,28 @@ public class RepositoryImpl<T> : BaseRepository<T, AdminBaseDbContext>, IReposit
     /// <param name="columnHeads"></param>
     /// <typeparam name="TModel"></typeparam>
     /// <returns></returns>
-    public virtual async Task<PagingViewModel> AsPagingViewModelAsync<TModel>(IQueryable<TModel> query, int page, int size, List<TableViewColumn> columnHeads = default)
+    public virtual async Task<PagingView> AsPagingViewAsync<TModel>(IQueryable<TModel> query, int page, int size, List<TableColumnView> columnHeads = default)
     {
-        var pagingViewModel = new PagingViewModel { Page = page, Size = size, Total = await query.CountAsync() };
-        pagingViewModel.PageCount = (pagingViewModel.Total / size);
-        var data = await query.Page(page, size).ToListAsync();
+        var pagingView = new PagingView { Page = page, Size = size };
+
+        //如果分页码 小于 0 则代表导出 否则代表分页查询
+        if (page > 0)
+        {
+            pagingView.Total = await query.CountAsync();
+            pagingView.PageCount = pagingView.Total / size;
+            query = query.Page(page, size);
+        }
+
+        var data = await query.ToListAsync();
 
         var propertyInfos = typeof(TModel).GetProperties();
         var fieldNames = propertyInfos.Select(item => item.Name).ToList();
 
-        this.CreateColumnHeads(pagingViewModel, fieldNames, columnHeads);
+        pagingView.InitColumns(fieldNames, columnHeads, typeof(T));
+        //
+        pagingView.CreateDataSource(data, fieldNames);
 
-        #region 重新将数据 组合 为 List<Dictionary<string,object>> 类型
-
-        var result = new List<Dictionary<string, object>>();
-        foreach (var item in data)
-        {
-            var type = item.GetType();
-            var dictionary = new Dictionary<string, object>();
-
-            foreach (var fieldName in fieldNames)
-            {
-                dictionary[fieldName] = type.GetProperty(fieldName)?.GetValue(item);
-            }
-
-            result.Add(dictionary);
-        }
-
-        pagingViewModel.DataSource = result;
-
-        #endregion
-
-        return pagingViewModel;
+        return pagingView;
     }
 
     /// <summary>
@@ -122,52 +74,41 @@ public class RepositoryImpl<T> : BaseRepository<T, AdminBaseDbContext>, IReposit
     /// <param name="columnHeads"></param>
     /// <param name="parameters"></param>
     /// <returns></returns>
-    public virtual async Task<PagingViewModel> AsPagingViewModelAsync(string sql, int page, int size, string orderBy = "1", List<TableViewColumn> columnHeads = default, params object[] parameters)
+    public virtual async Task<PagingView> AsPagingViewAsync(string sql, int page, int size, string orderBy = "1", List<TableColumnView> columnHeads = default, params object[] parameters)
     {
-        var count = await this.QuerySingleBySqlAsync<long>($"SELECT COUNT(1) FROM ({sql}) TAB", parameters);
-        var pagingViewModel = new PagingViewModel { Page = page, Size = size, Total = count };
-        pagingViewModel.PageCount = (pagingViewModel.Total / size);
-        var offSet = size * (page - 1);
-        var sqlString = string.Empty;
+        var pagingView = new PagingView { Page = page, Size = size };
 
-        if (Orm.Database.IsSqlServer())
+        //如果分页码 小于 0 则代表导出 否则代表分页查询
+        var sqlString = sql;
+        if (page > 0)
         {
-            sqlString = $"SELECT * FROM ({sql}) TAB ORDER BY {orderBy} OFFSET {offSet} ROWS FETCH NEXT {size} ROWS ONLY";
-        }
-        else if (Orm.Database.IsMySql() || Orm.Database.IsNpgsql())
-        {
-            sqlString = $"SELECT * FROM ({sql}) TAB ORDER BY {orderBy} LIMIT {size} OFFSET {offSet}";
-        }
-        else
-        {
-            throw new Exception("查询数据库类型不支持!");
+            pagingView.Total = await this.QuerySingleBySqlAsync<long>($"SELECT COUNT(1) FROM ({sql}) TAB", parameters);
+            pagingView.PageCount = pagingView.Total / size;
+            var offSet = size * (page - 1);
+            sqlString = string.Empty;
+
+            if (Orm.Database.IsSqlServer())
+            {
+                sqlString = $"SELECT * FROM ({sql}) TAB ORDER BY {orderBy} OFFSET {offSet} ROWS FETCH NEXT {size} ROWS ONLY";
+            }
+            else if (Orm.Database.IsMySql() || Orm.Database.IsNpgsql())
+            {
+                sqlString = $"SELECT * FROM ({sql}) TAB ORDER BY {orderBy} LIMIT {size} OFFSET {offSet}";
+            }
+            else
+            {
+                throw new Exception("查询数据库类型不支持!");
+            }
         }
 
         var data = await this.QueryDataTableBySqlAsync(sqlString, parameters);
-
         var fieldNames = (from DataColumn dc in data.Columns select dc.ColumnName).ToList();
 
-        //this.CreateColumnHeads(pagingViewModel, fieldNames, columnHeads);
+        pagingView.InitColumns(fieldNames, columnHeads, typeof(T));
+        //
+        pagingView.CreateDataSource(data, fieldNames);
 
-        #region 重新将数据 组合 为 List<Dictionary<string,object>> 类型
-
-        var result = new List<Dictionary<string, object>>();
-        foreach (DataRow dr in data.Rows)
-        {
-            var dictionary = new Dictionary<string, object>();
-            foreach (DataColumn dc in data.Columns)
-            {
-                dictionary.Add(dc.ColumnName, dr[dc.ColumnName]);
-            }
-
-            result.Add(dictionary);
-        }
-
-        pagingViewModel.DataSource = result;
-
-        #endregion
-
-        return await Task.FromResult(pagingViewModel);
+        return pagingView;
     }
 
     /// <summary>
@@ -261,28 +202,12 @@ public class RepositoryImpl<T> : BaseRepository<T, AdminBaseDbContext>, IReposit
 
         if (userIdFieldNameExpression != null)
         {
-            if (userIdFieldNameExpression.Body is UnaryExpression)
-            {
-                userIdFieldName = ((MemberExpression)((UnaryExpression)userIdFieldNameExpression.Body).Operand).Member.Name;
-            }
-
-            if (userIdFieldNameExpression.Body is MemberExpression)
-            {
-                userIdFieldName = ((MemberExpression)userIdFieldNameExpression.Body).Member.Name;
-            }
+            userIdFieldName = Tools.GetNameByExpression(userIdFieldNameExpression);
         }
 
         if (organizationIdFieldNameExpression != null)
         {
-            if (userIdFieldNameExpression.Body is UnaryExpression)
-            {
-                organizationIdFieldName = ((MemberExpression)((UnaryExpression)organizationIdFieldNameExpression.Body).Operand).Member.Name;
-            }
-
-            if (userIdFieldNameExpression.Body is MemberExpression)
-            {
-                organizationIdFieldName = ((MemberExpression)organizationIdFieldNameExpression.Body).Member.Name;
-            }
+            organizationIdFieldName = Tools.GetNameByExpression(organizationIdFieldNameExpression);
         }
 
         if (!modelFileds.Any(w => w.Name == userIdFieldName) && !modelFileds.Any(w => w.Name == organizationIdFieldName))

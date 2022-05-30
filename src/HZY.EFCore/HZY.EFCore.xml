@@ -38,60 +38,114 @@
             </summary>
             <param name="modelBuilder"></param>
         </member>
-        <member name="P:HZY.EFCore.Models.PagingViewModel.Columns">
+        <member name="T:HZY.EFCore.PagingViews.PagingView">
+            <summary>
+            分页视图模型
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingView.Columns">
             <summary>
             列信息
             </summary>
         </member>
-        <member name="P:HZY.EFCore.Models.PagingViewModel.DataSource">
+        <member name="P:HZY.EFCore.PagingViews.PagingView.DataSource">
             <summary>
             转换后数据
             </summary>
         </member>
-        <member name="P:HZY.EFCore.Models.PagingViewModel.Total">
+        <member name="P:HZY.EFCore.PagingViews.PagingView.Total">
             <summary>
             总数
             </summary>
         </member>
-        <member name="P:HZY.EFCore.Models.PagingViewModel.PageCount">
+        <member name="P:HZY.EFCore.PagingViews.PagingView.PageCount">
             <summary>
             总页数
             </summary>
         </member>
-        <member name="P:HZY.EFCore.Models.PagingViewModel.Size">
+        <member name="P:HZY.EFCore.PagingViews.PagingView.Size">
             <summary>
             一页显示多少条
             </summary>
         </member>
-        <member name="P:HZY.EFCore.Models.PagingViewModel.Page">
+        <member name="P:HZY.EFCore.PagingViews.PagingView.Page">
             <summary>
             页码
             </summary>
         </member>
-        <member name="T:HZY.EFCore.Models.TableViewColumn">
+        <member name="M:HZY.EFCore.PagingViews.PagingView.InitColumns(System.Collections.Generic.List{System.String},System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},System.Type)">
+            <summary>
+            初始化列头
+            </summary>
+            <param name="fieldNames"></param>
+            <param name="columnHeads"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.PagingView.CreateDataSource``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{System.String})">
+            <summary>
+            创建数据源
+            </summary>
+            <param name="data"></param>
+            <param name="fieldNames"></param>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.PagingView.CreateDataSource(System.Data.DataTable,System.Collections.Generic.List{System.String})">
+            <summary>
+            创建数据源 根据 datatable
+            </summary>
+            <param name="data"></param>
+            <param name="fieldNames"></param>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.PagingView.Column``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            获取指定列
+            </summary>
+            <param name="query"></param>
+            <param name="queryField"></param>
+            <typeparam name="TQuery"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.EFCore.PagingViews.TableColumnView">
             <summary>
             列头信息
             </summary>
         </member>
-        <member name="P:HZY.EFCore.Models.TableViewColumn.FieldName">
+        <member name="P:HZY.EFCore.PagingViews.TableColumnView.FieldName">
             <summary>
             字段名称
             </summary>
         </member>
-        <member name="P:HZY.EFCore.Models.TableViewColumn.Title">
+        <member name="P:HZY.EFCore.PagingViews.TableColumnView.Title">
             <summary>
             标题名称
             </summary>
         </member>
-        <member name="P:HZY.EFCore.Models.TableViewColumn.Show">
+        <member name="P:HZY.EFCore.PagingViews.TableColumnView.Show">
             <summary>
             是否显示
             </summary>
         </member>
-        <member name="P:HZY.EFCore.Models.TableViewColumn.Width">
+        <member name="P:HZY.EFCore.PagingViews.TableColumnView.Width">
             <summary>
             列宽度
             </summary>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.TableColumnView.Mapping(System.String,System.Nullable{System.Boolean},System.String)">
+            <summary>
+            映射字段
+            </summary>
+            <param name="title"></param>
+            <param name="show"></param>
+            <param name="width"></param>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.TableColumnView.Mapping``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Nullable{System.Boolean},System.String)">
+            <summary>
+             映射字段 用于映射字段设置显示名称
+            </summary>
+            <param name="field"></param>
+            <param name="show"></param>
+            <param name="width"></param>
+            <typeparam name="T"></typeparam>
         </member>
         <member name="T:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1">
             <summary>
@@ -99,15 +153,7 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1.CreateColumnHeads(HZY.EFCore.Models.PagingViewModel,System.Collections.Generic.List{System.String},System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn})">
-            <summary>
-            创建列头
-            </summary>
-            <param name="pagingViewModel"></param>
-            <param name="fieldNames"></param>
-            <param name="columnHeads"></param>
-        </member>
-        <member name="M:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1.AsPagingViewModelAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn})">
+        <member name="M:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1.AsPagingViewAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView})">
             <summary>
             查询转换为分页视图模型
             </summary>
@@ -118,7 +164,7 @@
             <typeparam name="TModel"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1.AsPagingViewModelAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn},System.Object[])">
+        <member name="M:HZY.EFCore.Repositories.Core.Impl.RepositoryImpl`1.AsPagingViewAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},System.Object[])">
             <summary>
             查询转换为分页视图模型 支持 Sql 字符串
             </summary>
@@ -152,7 +198,7 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Core.IRepository`1.AsPagingViewModelAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn})">
+        <member name="M:HZY.EFCore.Repositories.Core.IRepository`1.AsPagingViewAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView})">
             <summary>
             分页模型构建
             </summary>
@@ -163,7 +209,7 @@
             <param name="columnHeads"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Core.IRepository`1.AsPagingViewModelAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.Models.TableViewColumn},System.Object[])">
+        <member name="M:HZY.EFCore.Repositories.Core.IRepository`1.AsPagingViewAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},System.Object[])">
             <summary>
             分页模型构建 用于编写 sql 语句得情况
             </summary>
@@ -198,6 +244,12 @@
         <member name="M:HZY.EFCore.Repositories.DevelopmentTool.DatabaseTablesRepository.GetAllTablesByCache">
             <summary>
             获取表信息根据缓存
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.DevelopmentTool.DatabaseTablesRepository.ClearAllTablesByCache">
+            <summary>
+            清空所有表缓存信息
             </summary>
             <returns></returns>
         </member>

@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Services;
 using NPOI.HSSF.UserModel;
@@ -19,18 +19,18 @@ public class AdminBaseService<TRepository> : FrameworkBaseService<TRepository> w
     /// <summary>
     /// 导出 Excel
     /// </summary>
-    /// <param name="pagingViewModel"></param>
+    /// <param name="PagingView"></param>
     /// <param name="byName">别名</param>
     /// <param name="ignore"></param>
     /// <returns></returns>
-    protected virtual byte[] ExportExcelByPagingViewModel(PagingViewModel pagingViewModel, Dictionary<string, string> byName = null, params string[] ignore)
+    protected virtual byte[] ExportExcelByPagingView(PagingView PagingView, Dictionary<string, string> byName = null, params string[] ignore)
     {
         var workbook = new HSSFWorkbook();
         var sheet = workbook.CreateSheet();
         //数据
-        var data = pagingViewModel.DataSource;
-        var cols = ignore == null ? pagingViewModel.Columns :
-            pagingViewModel.Columns.Where(w => !ignore.Any(i => i.ToLower() == w.FieldName.ToLower()))
+        var data = PagingView.DataSource;
+        var cols = ignore == null ? PagingView.Columns :
+            PagingView.Columns.Where(w => !ignore.Any(i => i.ToLower() == w.FieldName.ToLower()))
             .ToList();
 
         //填充表头

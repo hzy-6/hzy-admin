@@ -44,7 +44,7 @@ using HzyEFCoreRepositories.Extensions;
 
 using @(Model.Namespace).Domain.Services.Accounts;
 using @(Model.Namespace).Domain.Services.Upload;
-using @(Model.Namespace).EFCore.Models;
+using @(Model.Namespace).EFCore.PagingViews;
 using @(Model.Namespace).EFCore.Repositories.Core;
 using @(Model.Namespace).Infrastructure;
 using @(Model.Namespace).Models.DTO;
@@ -73,7 +73,7 @@ namespace @(Model.Namespace).Services.Admin
         /// <param name="size">size</param>
         /// <param name="search">search</param>
         /// <returns></returns>
-        public async Task<@("PagingViewModel")> FindListAsync(int page, int size, @(className) search)
+        public async Task<@("PagingView")> FindListAsync(int page, int size, @(className) search)
         {
             var query = this._defaultRepository.Select
                     @if (!string.IsNullOrWhiteSpace(searchKeyWord))
@@ -90,7 +90,10 @@ namespace @(Model.Namespace).Services.Admin
                     })
                 ;
 
-            return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
+            var result = await this._defaultRepository.AsPagingViewAsync(query, page, size);
+            // result.Column(query, w => w.OrganizationName).Mapping<SysOrganization>(w => w.Name);
+            // result.Column(query, w => w.OrganizationName).Mapping(title:"所属组织");
+            return result;
         }
 
         /// <summary>
@@ -136,8 +139,8 @@ namespace @(Model.Namespace).Services.Admin
         /// <returns></returns>
         public async Task<@("byte[]")> ExportExcelAsync(@className search)
         {
-            var tableViewModel = await this.FindListAsync(1, 999999, search);
-            return this.ExportExcelByPagingViewModel(tableViewModel, null, "Id");
+            var tableViewModel = await this.FindListAsync(0, 0, search);
+            return this.ExportExcelByPagingView(tableViewModel, null, "Id");
         }
 
 

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
 using HZY.Services.Admin.Framework;
@@ -42,7 +42,7 @@ namespace HZY.Services.Admin
         /// <param name="size"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        public async Task<PagingViewModel> FindListAsync(int page, int size, LowCodeTableInfo search)
+        public async Task<PagingView> FindListAsync(int page, int size, LowCodeTableInfo search)
         {
             var query = this._defaultRepository.Select
                     .WhereIf(search.Low_Code_TableId != Guid.Empty, w => w.Low_Code_TableId == search.Low_Code_TableId)
@@ -68,7 +68,7 @@ namespace HZY.Services.Admin
                     })
                 ;
 
-            return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
+            return await this._defaultRepository.AsPagingViewAsync(query, page, size);
         }
 
         /// <summary>
@@ -78,6 +78,7 @@ namespace HZY.Services.Admin
         /// <returns></returns>
         public Task DeleteListAsync(List<Guid> ids)
         {
+            _databaseTablesRepository.ClearAllTablesByCache();
             return this._defaultRepository.DeleteByIdsAsync(ids);
         }
 
@@ -150,6 +151,8 @@ namespace HZY.Services.Admin
             }
 
             await this._defaultRepository.InsertRangeAsync(list);
+
+            _databaseTablesRepository.ClearAllTablesByCache();
         }
 
         /// <summary>
@@ -159,6 +162,7 @@ namespace HZY.Services.Admin
         /// <returns></returns>
         public Task ChangeAsync(List<LowCodeTableInfo> lowCodeTableInfos)
         {
+            _databaseTablesRepository.ClearAllTablesByCache();
             return this._defaultRepository.UpdateRangeAsync(lowCodeTableInfos);
         }
 

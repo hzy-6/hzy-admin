@@ -1,5 +1,5 @@
 ﻿using HZY.Domain.Services.Accounts;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
@@ -42,7 +42,7 @@ public class SysMenuController : AdminBaseController<SysMenuService>
     //[ApiResourceCacheFilter(1)]
     [ActionDescriptor(DisplayName = "查询列表")]
     [HttpPost("FindList/{size}/{page}")]
-    public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysMenu search)
+    public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysMenu search)
     {
         return await this._defaultService.FindListAsync(page, size, search);
     }

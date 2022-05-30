@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -1000,6 +1001,31 @@ public static class Tools
         httpContext.Response.Headers.Add("Content-Disposition", "attachment; filename=" + WebUtility.UrlEncode(fileDownloadName));
         httpContext.Response.BodyWriter.WriteAsync(fileContents);
         httpContext.Response.BodyWriter.FlushAsync();
+    }
+
+    /// <summary>
+    /// 获取名称 根据表达式树
+    /// </summary>
+    /// <param name="exp"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static string GetNameByExpression<T>(Expression<Func<T, object>> exp)
+    {
+        var name = string.Empty;
+        if (exp != null)
+        {
+            if (exp.Body is UnaryExpression)
+            {
+                name = ((MemberExpression)((UnaryExpression)exp.Body).Operand).Member.Name;
+            }
+
+            if (exp.Body is MemberExpression)
+            {
+                name = ((MemberExpression)exp.Body).Member.Name;
+            }
+        }
+
+        return name;
     }
 
 }

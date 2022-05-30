@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
@@ -41,7 +41,7 @@ public class SysUserController : AdminBaseController<SysUserService>
     /// <returns></returns>
     [ActionDescriptor(AdminFunctionConsts.Function_Display, DisplayName = "查看数据")]
     [HttpPost("FindList/{size}/{page}")]
-    public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysUser search)
+    public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysUser search)
     {
         return await this._defaultService.FindListAsync(page, size, search);
     }

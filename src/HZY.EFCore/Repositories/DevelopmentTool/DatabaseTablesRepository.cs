@@ -25,7 +25,7 @@ namespace HZY.EFCore.Repositories.DevelopmentTool
         private readonly IMemoryCache _memoryCache;
 
         private readonly string TableInfoKey = "TableInfo:GenDbTableDto";
-        private readonly int CacheTime = 1;
+        private readonly int CacheTime = 12;
 
         public DatabaseTablesRepository(LowCodeTableRepository lowCodeTableRepository,
         LowCodeTableInfoRepository lowCodeTableInfoRepository,
@@ -67,6 +67,17 @@ namespace HZY.EFCore.Repositories.DevelopmentTool
         public List<GenDbTableDto> GetAllTablesByCache()
         {
             return _memoryCache.Get<List<GenDbTableDto>>(TableInfoKey) ?? GetAllTables();
+        }
+
+        /// <summary>
+        /// 清空所有表缓存信息
+        /// </summary>
+        /// <returns></returns>
+        public bool ClearAllTablesByCache()
+        {
+            _memoryCache.Remove(TableInfoKey);
+
+            return true;
         }
 
         // /// <summary>

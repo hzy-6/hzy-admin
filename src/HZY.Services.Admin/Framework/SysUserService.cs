@@ -1,5 +1,5 @@
 using HZY.Domain.Services.Accounts;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
@@ -59,7 +59,7 @@ public class SysUserService : AdminBaseService<IRepository<SysUser>>
     /// <param name="size"></param>
     /// <param name="search"></param>
     /// <returns></returns>
-    public async Task<PagingViewModel> FindListAsync(int page, int size, SysUser search)
+    public async Task<PagingView> FindListAsync(int page, int size, SysUser search)
     {
         var accountInfo = _accountService.GetAccountInfo();
         var query = (from sysUser in this._defaultRepository.QueryByDataAuthority(accountInfo, w => w.Id)
@@ -81,13 +81,15 @@ public class SysUserService : AdminBaseService<IRepository<SysUser>>
                                             select role.Name),
                     OrganizationName = w.t2.Name,
                     w.t1.Phone,
-                    w.t1.Email,
+                    _Email = w.t1.Email,
                     LastModificationTime = w.t1.LastModificationTime.ToString("yyyy-MM-dd"),
                     CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
                 })
             ;
 
-        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
+        var result = await this._defaultRepository.AsPagingViewAsync(query, page, size);
+        result.Column(query, w => w.OrganizationName).Mapping<SysOrganization>(w => w.Name);
+        return result;
     }
 
     /// <summary>
@@ -229,8 +231,8 @@ public class SysUserService : AdminBaseService<IRepository<SysUser>>
     /// <returns></returns>
     public async Task<byte[]> ExportExcelAsync(SysUser search)
     {
-        var tableViewModel = await this.FindListAsync(1, 999999, search);
-        return this.ExportExcelByPagingViewModel(tableViewModel, null, "Id");
+        var tableViewModel = await this.FindListAsync(-1, 0, search);
+        return this.ExportExcelByPagingView(tableViewModel, null, "Id");
     }
 
     /// <summary>

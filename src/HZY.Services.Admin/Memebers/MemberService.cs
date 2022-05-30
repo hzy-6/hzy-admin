@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HZY.Domain.Services.Accounts;
 using HZY.Domain.Services.Upload;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
@@ -43,7 +43,7 @@ public class MemberService : AdminBaseService<IRepository<Member>>
     /// <param name="size"></param>
     /// <param name="search"></param>
     /// <returns></returns>
-    public async Task<PagingViewModel> FindListAsync(int page, int size, Member search)
+    public async Task<PagingView> FindListAsync(int page, int size, Member search)
     {
         var accountInfo = _accountService.GetAccountInfo();
 
@@ -66,12 +66,13 @@ public class MemberService : AdminBaseService<IRepository<Member>>
                     操作人 = w.t2.Name,
                     LastModificationTime = w.t1.LastModificationTime.ToString("yyyy-MM-dd"),
                     CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
-                    //别名 前面包含 _ 则表示忽略该列
+                    //别名 前面包含 _ 则表示界面上会隐藏列
                     _UserId = w.t1.UserId
                 })
             ;
 
-        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
+        var result = await this._defaultRepository.AsPagingViewAsync(query, page, size);
+        return result;
     }
 
     /// <summary>
@@ -141,7 +142,7 @@ public class MemberService : AdminBaseService<IRepository<Member>>
     /// <returns></returns>
     public async Task<byte[]> ExportExcelAsync(Member search)
     {
-        var tableViewModel = await this.FindListAsync(1, 999999, search);
-        return this.ExportExcelByPagingViewModel(tableViewModel);
+        var tableViewModel = await this.FindListAsync(-1, 0, search);
+        return this.ExportExcelByPagingView(tableViewModel);
     }
 }

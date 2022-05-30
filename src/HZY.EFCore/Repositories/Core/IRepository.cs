@@ -1,5 +1,5 @@
 ﻿using HZY.EFCore.DbContexts;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.Models.BO;
 using HzyEFCoreRepositories.Repositories;
 using HzyScanDiService.Interface;
@@ -27,7 +27,7 @@ namespace HZY.EFCore.Repositories.Core
         /// <param name="size"></param>
         /// <param name="columnHeads"></param>
         /// <returns></returns>
-        Task<PagingViewModel> AsPagingViewModelAsync<TModel>(IQueryable<TModel> query, int page, int size, List<TableViewColumn> columnHeads = default);
+        Task<PagingView> AsPagingViewAsync<TModel>(IQueryable<TModel> query, int page, int size, List<TableColumnView> columnHeads = default);
 
         /// <summary>
         /// 分页模型构建 用于编写 sql 语句得情况
@@ -39,7 +39,7 @@ namespace HZY.EFCore.Repositories.Core
         /// <param name="columnHeads"></param>
         /// <param name="parameters"></param>
         /// <returns></returns>
-        Task<PagingViewModel> AsPagingViewModelAsync(string sql, int page, int size, string orderBy = "1", List<TableViewColumn> columnHeads = default, params object[] parameters);
+        Task<PagingView> AsPagingViewAsync(string sql, int page, int size, string orderBy = "1", List<TableColumnView> columnHeads = default, params object[] parameters);
 
         /// <summary>
         /// 根据组织 获取数据权限

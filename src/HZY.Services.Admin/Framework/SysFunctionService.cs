@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Core;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Core;
@@ -29,7 +29,7 @@ public class SysFunctionService : AbsCrudBaseService<IRepository<SysFunction>, S
     /// <param name="size"></param>
     /// <param name="search"></param>
     /// <returns></returns>
-    public override async Task<PagingViewModel> FindListAsync(int page, int size, SysFunction search)
+    public override async Task<PagingView> FindListAsync(int page, int size, SysFunction search)
     {
         var query = this._repository.Select
             .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.Name.Contains(search.Name))
@@ -45,7 +45,7 @@ public class SysFunctionService : AbsCrudBaseService<IRepository<SysFunction>, S
             })
         ;
 
-        return await this._repository.AsPagingViewModelAsync(query, page, size);
+        return await this._repository.AsPagingViewAsync(query, page, size);
     }
 
     /// <summary>

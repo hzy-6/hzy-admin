@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;

@@ -4,11 +4,11 @@
         <name>HZY.Services.Admin</name>
     </assembly>
     <members>
-        <member name="M:HZY.Services.Admin.Core.AdminBaseService`1.ExportExcelByPagingViewModel(HZY.EFCore.Models.PagingViewModel,System.Collections.Generic.Dictionary{System.String,System.String},System.String[])">
+        <member name="M:HZY.Services.Admin.Core.AdminBaseService`1.ExportExcelByPagingView(HZY.EFCore.PagingViews.PagingView,System.Collections.Generic.Dictionary{System.String,System.String},System.String[])">
             <summary>
             导出 Excel
             </summary>
-            <param name="pagingViewModel"></param>
+            <param name="PagingView"></param>
             <param name="byName">别名</param>
             <param name="ignore"></param>
             <returns></returns>
@@ -99,11 +99,11 @@
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
-        <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.ExportExcelByPagingViewModel(HZY.EFCore.Models.PagingViewModel,System.Collections.Generic.Dictionary{System.String,System.String},System.String[])">
+        <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.ExportExcelByPagingView(HZY.EFCore.PagingViews.PagingView,System.Collections.Generic.Dictionary{System.String,System.String},System.String[])">
             <summary>
             导出 Excel
             </summary>
-            <param name="pagingViewModel"></param>
+            <param name="PagingView"></param>
             <param name="byName">别名</param>
             <param name="ignore"></param>
             <returns></returns>

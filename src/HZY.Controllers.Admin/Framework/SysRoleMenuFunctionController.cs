@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
@@ -39,7 +39,7 @@ public class SysRoleMenuFunctionController : AdminBaseController<SysRoleMenuFunc
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查询数据")]
     [HttpPost("FindList/{size}/{page}")]
-    public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysRole search)
+    public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysRole search)
     {
         return await this._sysRoleService.FindListAsync(page, size, search);
     }

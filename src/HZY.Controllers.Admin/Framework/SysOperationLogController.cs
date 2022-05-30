@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
@@ -36,7 +36,7 @@ public class SysOperationLogController : AdminBaseController<SysOperationLogServ
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查看列表")]
     [HttpPost("FindList/{size}/{page}")]
-    public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysOperationLogSearchDto search)
+    public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysOperationLogSearchDto search)
     {
         return await _defaultService.FindListAsync(page, size, search);
     }

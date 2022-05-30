@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
@@ -36,7 +36,7 @@ namespace HZY.Controllers.Admin
         /// <param name="search"></param>
         /// <returns></returns>
         [HttpPost("FindList/{size}/{page}")]
-        public async Task<PagingViewModel> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] LowCodeTable search)
+        public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] LowCodeTable search)
         {
             return await this._defaultService.FindListAsync(page, size, search);
         }

@@ -1,5 +1,5 @@
 ﻿using HZY.Domain.Services.Accounts;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
@@ -135,7 +135,7 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
     /// <param name="size">size</param>
     /// <param name="search">search</param>
     /// <returns></returns>
-    public async Task<PagingViewModel> FindListAsync(int page, int size, SysOperationLogSearchDto search)
+    public async Task<PagingView> FindListAsync(int page, int size, SysOperationLogSearchDto search)
     {
         var query = (from log in _defaultRepository.Select.OrderByDescending(w => w.CreationTime)
                      from use in _sysUserRepository.Select.Where(w => w.Id == log.UserId).DefaultIfEmpty()
@@ -162,7 +162,7 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
                      })
                      ;
 
-        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewAsync(query, page, size);
     }
 
     /// <summary>

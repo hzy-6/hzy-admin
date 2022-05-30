@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.EFCore.PagingViews;
 using HZY.Models.DTO.DevelopmentTool;
 using HzyScanDiService.Interface;
 using System;
@@ -18,7 +18,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode
         /// 生成上下文集合
         /// </summary>
         /// <returns></returns>
-        PagingViewModel GetGenContextDtos(int page, int size, GenFormDto search);
+        PagingView GetGenContextDtos(int page, int size, GenFormDto search);
 
         /// <summary>
         /// 获取表字段集合

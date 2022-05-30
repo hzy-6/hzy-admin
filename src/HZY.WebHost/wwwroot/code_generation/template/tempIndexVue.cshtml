@@ -94,14 +94,12 @@
 
       <!-- 表格 -->
       <template #table-col-default>
-        @foreach (var item in tableInfos)
-        {
-            var name = item.ColumnName.FirstCharToLower();
-            var title = item.Describe;
-
-            <vxe-column field="@(name)" title="@(title)" width="160"></vxe-column>
-        }
-        <vxe-column field="id" title="操作">
+        <!-- 动态列 -->
+        <template v-for="item in state.columns">
+          <vxe-column :field="item.fieldName" :title="item.title" :visible="item.show" :key="item.id" v-if="item.fieldName != 'id'"></vxe-column>
+        </template>
+          <!--  v-if="power.update || power.delete" 预防操作列还存在 -->
+        <vxe-column field="id" title="操作" v-if="(power.update || power.delete)">
           <template #default="{ row }">
             <template v-if="power.update">
               <a href="javascript:void(0)" @@click="methods.openForm(row.id)">编辑</a>
@@ -151,6 +149,7 @@ const state = reactive({
   rows: 10,
   page: 1,
   total: 0,
+  columns: [], //表列头
   data: [],
 });
 
@@ -186,6 +185,7 @@ const methods = {
       state.page = data.page;
       state.rows = data.size;
       state.total = data.total;
+      state.columns = data.columns;
       state.data = data.dataSource;
     });
   },

@@ -1,5 +1,5 @@
 ﻿using HZY.Domain.Services.Accounts;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
@@ -50,7 +50,7 @@ public class SysMenuService : AdminBaseService<IRepository<SysMenu>>
     /// <param name="size"></param>
     /// <param name="search"></param>
     /// <returns></returns>
-    public async Task<PagingViewModel> FindListAsync(int page, int size, SysMenu search)
+    public async Task<PagingView> FindListAsync(int page, int size, SysMenu search)
     {
         var query = (from sysMenu in this._defaultRepository.Select
                      from sysMenuParent in this._defaultRepository.Select.Where(w => w.Id == sysMenu.ParentId).DefaultIfEmpty()
@@ -76,7 +76,7 @@ public class SysMenuService : AdminBaseService<IRepository<SysMenu>>
               })
           ;
 
-        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewAsync(query, page, size);
     }
 
     /// <summary>
@@ -175,8 +175,8 @@ public class SysMenuService : AdminBaseService<IRepository<SysMenu>>
     /// <returns></returns>
     public async Task<byte[]> ExportExcelAsync(SysMenu search)
     {
-        var tableViewModel = await this.FindListAsync(1, 999999, search);
-        return this.ExportExcelByPagingViewModel(tableViewModel, null, "Id");
+        var tableViewModel = await this.FindListAsync(-1, 0, search);
+        return this.ExportExcelByPagingView(tableViewModel, null, "Id");
     }
 
     /// <summary>

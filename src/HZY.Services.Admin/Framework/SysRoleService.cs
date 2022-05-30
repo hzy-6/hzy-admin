@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
@@ -27,9 +27,9 @@ public class SysRoleService : AdminBaseService<IRepository<SysRole>>
     private readonly IRepository<SysDataAuthority> _sysDataAuthorityRepository;
     private readonly IRepository<SysDataAuthorityCustom> _sysDataAuthorityCustomRepository;
 
-    public SysRoleService(IRepository<SysRole> defaultRepository, 
-        IRepository<SysUserRole> sysUserRoleRepository, 
-        IRepository<SysDataAuthority> sysDataAuthorityRepository, 
+    public SysRoleService(IRepository<SysRole> defaultRepository,
+        IRepository<SysUserRole> sysUserRoleRepository,
+        IRepository<SysDataAuthority> sysDataAuthorityRepository,
         IRepository<SysDataAuthorityCustom> sysDataAuthorityCustomRepository) : base(defaultRepository)
     {
         _sysUserRoleRepository = sysUserRoleRepository;
@@ -44,7 +44,7 @@ public class SysRoleService : AdminBaseService<IRepository<SysRole>>
     /// <param name="size"></param>
     /// <param name="search"></param>
     /// <returns></returns>
-    public async Task<PagingViewModel> FindListAsync(int page, int size, SysRole search)
+    public async Task<PagingView> FindListAsync(int page, int size, SysRole search)
     {
         var query = (from sysRole in this._defaultRepository.Select
                      from sysDataAuthority in this._sysDataAuthorityRepository.Select
@@ -70,7 +70,7 @@ public class SysRoleService : AdminBaseService<IRepository<SysRole>>
                     })
                     ;
 
-        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewAsync(query, page, size);
     }
 
     /// <summary>
@@ -131,8 +131,8 @@ public class SysRoleService : AdminBaseService<IRepository<SysRole>>
     /// <returns></returns>
     public async Task<byte[]> ExportExcelAsync(SysRole search)
     {
-        var tableViewModel = await this.FindListAsync(1, 999999, search);
-        return this.ExportExcelByPagingViewModel(tableViewModel, null, "Id");
+        var tableViewModel = await this.FindListAsync(-1, 0, search);
+        return this.ExportExcelByPagingView(tableViewModel, null, "Id");
     }
 
 

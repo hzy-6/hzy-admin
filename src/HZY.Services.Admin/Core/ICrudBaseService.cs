@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Core;
 using HzyScanDiService.Interface;
 using System;
@@ -23,7 +23,7 @@ namespace HZY.Services.Admin.Core
         /// <param name="size"></param>
         /// <param name="search"></param>
         /// <returns></returns>
-        public Task<PagingViewModel> FindListAsync(int page, int size, TSearchDto search);
+        public Task<PagingView> FindListAsync(int page, int size, TSearchDto search);
 
         /// <summary>
         /// 根据id数组删除

@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 
 using Microsoft.AspNetCore.Mvc;
 
-using @(Model.Namespace).EFCore.Models;
+using @(Model.Namespace).EFCore.PagingViews;
 using @(Model.Namespace).Infrastructure;
 using @(Model.Namespace).Infrastructure.Controllers;
 using @(Model.Namespace).Infrastructure.Filters;
@@ -50,7 +50,7 @@ namespace @(Model.Namespace).Controllers.Admin
         /// <returns></returns>
         [ActionDescriptor(AdminFunctionConsts.Function_Display, DisplayName = "查看数据")]
         [HttpPost("FindList/{size}/{page}")]
-        public Task<@("PagingViewModel")> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] @(className) search)
+        public Task<@("PagingView")> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] @(className) search)
         {
             return this._defaultService.FindListAsync(page, size, search);
         }

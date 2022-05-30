@@ -1,5 +1,5 @@
 ﻿using FreeSql.DatabaseModel;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.DevelopmentTool;
 using HZY.Infrastructure;
 using HZY.Infrastructure.RazorView;
@@ -56,9 +56,9 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
         /// 生成上下文集合
         /// </summary>
         /// <returns></returns>
-        public PagingViewModel GetGenContextDtos(int page, int size, GenFormDto search)
+        public PagingView GetGenContextDtos(int page, int size, GenFormDto search)
         {
-            var pagingViewModel = new PagingViewModel();
+            var PagingView = new PagingView();
             var result = new List<Dictionary<string, object>>();
 
             var query = _codeGenerationRepository.GetAllTables()
@@ -80,12 +80,12 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
                 result.Add(dic);
             }
 
-            pagingViewModel.Total = query.LongCount();
-            pagingViewModel.Page = page;
-            pagingViewModel.Size = size;
-            pagingViewModel.DataSource = result;
-            pagingViewModel.PageCount = (pagingViewModel.Total / size);
-            return pagingViewModel;
+            PagingView.Total = query.LongCount();
+            PagingView.Page = page;
+            PagingView.Size = size;
+            PagingView.DataSource = result;
+            PagingView.PageCount = (PagingView.Total / size);
+            return PagingView;
         }
 
         /// <summary>

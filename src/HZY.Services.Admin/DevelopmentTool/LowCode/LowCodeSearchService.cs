@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
 using HZY.Services.Admin.Framework;
@@ -17,7 +17,7 @@ namespace HZY.Services.Admin
     /// </summary>
     public class LowCodeSearchService : AdminBaseService<LowCodeSearchRepository>
     {
-        public LowCodeSearchService(LowCodeSearchRepository defaultRepository) 
+        public LowCodeSearchService(LowCodeSearchRepository defaultRepository)
             : base(defaultRepository)
         {
 

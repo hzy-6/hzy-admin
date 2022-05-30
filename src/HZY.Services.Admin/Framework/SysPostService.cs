@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Models;
+﻿using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
@@ -31,7 +31,7 @@ public class SysPostService : AdminBaseService<IRepository<SysPost>>
     /// <param name="size"></param>
     /// <param name="search"></param>
     /// <returns></returns>
-    public async Task<PagingViewModel> FindListAsync(int page, int size, SysPost search)
+    public async Task<PagingView> FindListAsync(int page, int size, SysPost search)
     {
         var query = this._defaultRepository.Select
                 .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.Name.Contains(search.Name))
@@ -50,7 +50,7 @@ public class SysPostService : AdminBaseService<IRepository<SysPost>>
                 })
             ;
 
-        return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewAsync(query, page, size);
     }
 
     /// <summary>
@@ -102,8 +102,8 @@ public class SysPostService : AdminBaseService<IRepository<SysPost>>
     /// <returns></returns>
     public async Task<byte[]> ExportExcelAsync(SysPost search)
     {
-        var tableViewModel = await this.FindListAsync(1, 999999, search);
-        return this.ExportExcelByPagingViewModel(tableViewModel);
+        var tableViewModel = await this.FindListAsync(-1, 0, search);
+        return this.ExportExcelByPagingView(tableViewModel);
     }
 
 

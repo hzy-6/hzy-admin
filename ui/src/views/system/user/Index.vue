@@ -89,14 +89,10 @@
           </template>
           <!-- 表格 -->
           <template #table-col-default>
-            <vxe-column field="name" title="真实姓名"></vxe-column>
-            <vxe-column field="loginName" title="账号"></vxe-column>
-            <vxe-column field="所属角色" title="所属角色"></vxe-column>
-            <vxe-column field="phone" title="联系电话"></vxe-column>
-            <!-- <vxe-column field="email" title="邮件地址"></vxe-column> -->
-            <vxe-column field="organizationName" title="所属组织"></vxe-column>
-            <vxe-column field="lastModificationTime" title="更新时间"></vxe-column>
-            <vxe-column field="creationTime" title="创建时间"></vxe-column>
+            <!-- 动态列 -->
+            <template v-for="item in state.columns">
+              <vxe-column :field="item.fieldName" :title="item.title" :visible="item.show" :key="item.id" v-if="item.fieldName != 'id'"></vxe-column>
+            </template>
             <!--  v-if="power.update || power.delete" 预防操作列还存在 -->
             <vxe-column field="id" title="操作" v-if="(power.update || power.delete) && !$props.isFindBack">
               <template #default="{ row }">
@@ -171,6 +167,7 @@ const state = reactive({
   rows: 10,
   page: 1,
   total: 0,
+  columns: [], //表列头
   data: [],
   tree: {
     data: [],
@@ -214,6 +211,7 @@ const methods = {
       state.page = data.page;
       state.rows = data.size;
       state.total = data.total;
+      state.columns = data.columns;
       state.data = data.dataSource;
       //设置选中项
       methods.findBack.setCheckboxRow();

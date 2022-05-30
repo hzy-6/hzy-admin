@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HZY.EFCore.Models;
+using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
@@ -31,7 +31,7 @@ namespace HZY.Services.Admin.Framework
         /// <param name="size">size</param>
         /// <param name="search">search</param>
         /// <returns></returns>
-        public async Task<PagingViewModel> FindListAsync(int page, int size, SysDataAuthorityCustom search)
+        public async Task<PagingView> FindListAsync(int page, int size, SysDataAuthorityCustom search)
         {
             var query = this._defaultRepository.Select
                     .OrderByDescending(w => w.CreationTime)
@@ -45,7 +45,7 @@ namespace HZY.Services.Admin.Framework
                     })
                 ;
 
-            return await this._defaultRepository.AsPagingViewModelAsync(query, page, size);
+            return await this._defaultRepository.AsPagingViewAsync(query, page, size);
         }
 
         /// <summary>
@@ -91,8 +91,8 @@ namespace HZY.Services.Admin.Framework
         /// <returns></returns>
         public async Task<byte[]> ExportExcelAsync(SysDataAuthorityCustom search)
         {
-            var tableViewModel = await this.FindListAsync(1, 999999, search);
-            return this.ExportExcelByPagingViewModel(tableViewModel, null, "Id");
+            var tableViewModel = await this.FindListAsync(-1, 0, search);
+            return this.ExportExcelByPagingView(tableViewModel, null, "Id");
         }
 
 
