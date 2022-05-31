@@ -4,6 +4,8 @@
 [https://gitee.com/hzy6/HzyAdmin/tree/MVC/](https://gitee.com/hzy6/HzyAdmin/tree/MVC/)
 
 ####   文档
+https://www.yuque.com/u378909/yidf7v
+
 [https://gitee.com/hzy6/HzyAdmin/wikis/pages](https://gitee.com/hzy6/HzyAdmin/wikis/pages)
 
 [语雀文档 针对 Next 分支](https://www.yuque.com/u378909/yidf7v/xzxe4r)
