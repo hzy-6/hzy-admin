@@ -29,16 +29,20 @@
   </div>
 </template>
 <script setup>
-import { reactive, watch } from "vue";
+import { onMounted, reactive, watch, computed } from "vue";
 import service from "@/service/development_tool/code_generation_service";
 import MdEditorShowCode from "@/components/MdEditorShowCode.vue";
 import AppIcon from "@/components/AppIcon.vue";
 
 //定义组件事件
 // const emits = defineEmits(["onSuccess"]);
+const props = defineProps({
+  tableName: String,
+});
+
 const state = reactive({
   vm: {
-    id: "",
+    id: computed(() => props.tableName),
     form: {},
   },
   saveLoading: false,
@@ -46,10 +50,17 @@ const state = reactive({
   code: "",
 });
 
+watch(
+  () => state.vm.id,
+  (value) => {
+    methods.openForm();
+  }
+);
+
 const methods = {
   //打开表单初始化
-  openForm({ key }) {
-    state.vm.id = key;
+  openForm() {
+    // state.vm.id = key;
     state.activeCode = "HZY.Models";
     methods.getCode((res) => {
       // state.code = "```c# \r\n" + res + " \r\n```";

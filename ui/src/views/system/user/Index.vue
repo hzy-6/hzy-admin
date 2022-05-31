@@ -129,7 +129,7 @@
 export default { name: "system_user" };
 </script>
 <script setup>
-import { onMounted, reactive, ref, watch, computed } from "vue";
+import { onMounted, reactive, ref, watch, computed, nextTick } from "vue";
 import { useAppStore } from "@/store";
 import List from "@/components/curd/List.vue";
 import AppIcon from "@/components/AppIcon.vue";

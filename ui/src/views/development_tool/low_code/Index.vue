@@ -152,7 +152,7 @@
       </a-spin>
     </a-card>
 
-    <a-drawer width="90%" title="列配置" placement="right" :visible="state.visible" @close="state.visible = !state.visible">
+    <a-drawer width="90%" :title="'[ ' + state.row.tableName + ' - ' + state.row.displayName + ' ] 配置列'" placement="right" :visible="state.visible" @close="state.visible = !state.visible">
       <template #extra>
         <!-- <a-button style="margin-right: 8px" @click="onClose">关闭</a-button>
         <a-button type="primary" @click="onClose">提交</a-button> -->
@@ -197,6 +197,8 @@ const state = reactive({
     data: [],
   },
   visible: false,
+  //当前选着的行
+  row: {},
 });
 
 //表单 ref 对象
@@ -271,6 +273,7 @@ const methods = {
   //打开 ColumnIndex 组件
   loadColumnIndex(row) {
     state.visible = true;
+    state.row = row;
     nextTick(() => {
       refColumnIndex.value.loadData(row);
     });
