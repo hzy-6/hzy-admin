@@ -6,9 +6,6 @@
 ####   文档
 [语雀文档 针对 Next 分支](https://www.yuque.com/u378909/yidf7v/xzxe4r)
 
-[https://gitee.com/hzy6/HzyAdmin/wikis/pages](https://gitee.com/hzy6/HzyAdmin/wikis/pages)
-
-
 #### WebApi 任务调度平台
 [https://gitee.com/hzy6/hzy-quartz](https://gitee.com/hzy6/hzy-quartz)
 
