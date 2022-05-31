@@ -92,6 +92,9 @@ public class MemberController : AdminBaseController<MemberService>
     [ActionDescriptor(AdminFunctionConsts.Function_Export, DisplayName = "导出数据")]
     [HttpPost("ExportExcel")]
     public async Task ExportExcelAsync([FromBody] Member search)
-        => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
+    {
+        var data = await this._defaultService.ExportExcelAsync(search);
+        var name = $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls";
+        base.HttpContext.DownLoadFile(data, Tools.GetFileContentType[".xls"].ToStr(), name);
+    }
 }

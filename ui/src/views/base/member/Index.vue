@@ -77,21 +77,21 @@
       <!-- 表格 -->
       <template #table-col-default>
         <!-- 动态列 -->
-        <template v-for="item in state.columns">
+        <template v-for="item in state.columns.filter((w) => w.fieldName != 'id')">
           <!-- 头像自定义列 -->
           <template v-if="item.fieldName == 'photo'">
-            <vxe-column field="photo" title="头像">
+            <vxe-column :field="item.fieldName" :title="item.title" :visible="item.show" :key="item.id">
               <template #default="{ row }">
                 <img :src="domainName + row.photo" width="35" height="35" />
               </template>
             </vxe-column>
           </template>
           <template v-else>
-            <vxe-column :field="item.fieldName" :title="item.title" :visible="item.show" :key="item.id" v-if="item.fieldName != 'id'"></vxe-column>
+            <vxe-column :field="item.fieldName" :title="item.title" :visible="item.show" :key="item.id"></vxe-column>
           </template>
         </template>
         <!--  v-if="power.update || power.delete" 预防操作列还存在 -->
-        <vxe-column field="id" title="操作" v-if="(power.update || power.delete)">
+        <vxe-column field="id" title="操作" v-if="power.update || power.delete">
           <template #default="{ row }">
             <template v-if="power.update">
               <a href="javascript:void(0)" @click="methods.jumpDetails(row)">详情</a>

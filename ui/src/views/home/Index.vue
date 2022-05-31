@@ -5,6 +5,15 @@
       首页
       <a-button type="link" @click="visible = !visible">更多</a-button>
     </h2>
+    <a-alert type="error" show-icon>
+      <template #icon>
+        <!-- <AppIcon name="SmileOutlined" /> -->
+        <smile-outlined />
+      </template>
+      <template #message>
+        <a href="https://www.yuque.com/u378909/yidf7v" target="_blank">HzyAdmin 文档</a>
+      </template>
+    </a-alert>
     <!-- 基础统计数据 -->
     <div class="mt-15">
       <WorkOrder />
@@ -33,7 +42,7 @@
       <a-row :gutter="[15, 15]">
         <a-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8"></a-col>
         <a-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-          <a-card >
+          <a-card>
             <template #cover>
               <img alt="example" :src="homebg" />
             </template>

@@ -100,7 +100,7 @@
           <!-- 表格 -->
           <template #table-col-default>
             <!-- 动态列 -->
-            <template v-for="item in state.columns">
+            <template v-for="item in state.columns.filter((w) => w.fieldName != 'id')">
               <vxe-column :field="item.fieldName" :title="item.title" :visible="item.show" :key="item.id" v-if="item.fieldName != 'id'"></vxe-column>
             </template>
             <!--  v-if="power.update || power.delete" 预防操作列还存在 -->
