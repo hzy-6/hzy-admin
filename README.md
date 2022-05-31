@@ -45,7 +45,7 @@
         数据权限
 
 #### 目录结构
-![输入图片说明](https://images.gitee.com/uploads/images/2021/1111/110155_2e2c13f4_1242080.png "屏幕截图.png")
+![输入图片说明](gitee/images/%E7%9B%AE%E5%BD%95.png)
 
 #### ✨  部分截图
 
