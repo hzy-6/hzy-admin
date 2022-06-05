@@ -87,6 +87,7 @@ namespace HZY.Services.Admin
 
             var insertList = new List<LowCodeTable>();
             var updateList = new List<LowCodeTable>();
+            var ids = new List<Guid>();
             foreach (var item in allTables)
             {
                 var table = oldAllTables.Find(w => w.TableName == item.Name);
@@ -112,7 +113,7 @@ namespace HZY.Services.Admin
                     updateList.Add(table);
                 }
 
-                await _lowCodeTableInfoService.SynchronizationColumnByTableIdAsync(id, true);
+                ids.Add(id);
             }
 
             if (insertList.Count > 0)
@@ -122,6 +123,11 @@ namespace HZY.Services.Admin
             if (updateList.Count > 0)
             {
                 await this._defaultRepository.UpdateRangeAsync(updateList);
+            }
+
+            foreach (var item in ids)
+            {
+                await _lowCodeTableInfoService.SynchronizationColumnByTableIdAsync(item, true);
             }
 
             _databaseTablesRepository.ClearAllTablesByCache();
