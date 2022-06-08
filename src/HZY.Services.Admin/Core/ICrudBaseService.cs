@@ -1,6 +1,6 @@
 ﻿using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Core;
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HZY.Services.Admin.Core
 {
-    public interface ICrudBaseService<TRepository, TSearchDto, TFormDto, TEntity, TKey> : IDiScopedSelf
+    public interface ICrudBaseService<TRepository, TSearchDto, TFormDto, TEntity, TKey> : ITransientSelfDependency
         where TRepository : IRepository<TEntity>
         where TSearchDto : class
         where TFormDto : class, new()

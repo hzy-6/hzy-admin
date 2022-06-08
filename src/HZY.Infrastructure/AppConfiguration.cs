@@ -1,4 +1,4 @@
-﻿using HzyScanDiService.Interface;
+﻿using HzyScanDiService;
 using Microsoft.Extensions.Configuration;
 
 namespace HZY.Infrastructure;
@@ -6,7 +6,7 @@ namespace HZY.Infrastructure;
 /// <summary>
 /// 程序配置信息映射类 appsettings.json
 /// </summary>
-public class AppConfiguration : IDiSingletonSelf
+public class AppConfiguration : ISingletonSelfDependency
 {
     private readonly IConfiguration _configuration;
 

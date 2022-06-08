@@ -1,5 +1,5 @@
 ﻿using HZY.Domain.Services.Quartz.Models;
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -9,7 +9,7 @@ namespace HZY.Domain.Services.Quartz
     /// <summary>
     /// 任务 Job 服务
     /// </summary>
-    public interface ITaskService : IDiTransient
+    public interface ITaskService : ITransientDependency
     {
 
         /// <summary>

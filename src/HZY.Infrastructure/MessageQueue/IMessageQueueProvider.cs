@@ -1,4 +1,4 @@
-﻿using HzyScanDiService.Interface;
+﻿using HzyScanDiService;
 using System;
 using System.Threading.Tasks;
 
@@ -7,7 +7,7 @@ namespace HZY.Infrastructure.MessageQueue;
 /// <summary>
 /// 消息队列提供者
 /// </summary>
-public interface IMessageQueueProvider : IDiSingleton
+public interface IMessageQueueProvider : ISingletonDependency
 {
     /// <summary>
     /// 启动运行

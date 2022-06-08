@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using HZY.EFCore.Repositories.DevelopmentTool;
 using HZY.Infrastructure;
-using HzyScanDiService.Extensions;
+using HzyScanDiService;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HZY.EFCore.PagingViews;
@@ -94,7 +94,7 @@ public class TableColumnView
         //自动获取名称对应的显示名
         var type = typeof(T);
         var name = Tools.GetNameByExpression(field);
-        using var scope = ServiceProviderExtensions.CreateScope();
+        using var scope = IOCUtil.CreateScope();
         var _databaseTablesRepository = scope.ServiceProvider.GetService<DatabaseTablesRepository>();
         var allTables = _databaseTablesRepository.GetAllTablesByCache();
         var table = allTables?

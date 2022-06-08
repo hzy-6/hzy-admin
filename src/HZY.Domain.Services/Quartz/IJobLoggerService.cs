@@ -1,5 +1,5 @@
 ﻿using HZY.Domain.Services.Quartz.Models;
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
@@ -11,7 +11,7 @@ namespace HZY.Domain.Services.Quartz
     /// <summary>
     /// Job 运行 日志
     /// </summary>
-    public interface IJobLoggerService : IDiSingleton
+    public interface IJobLoggerService : ISingletonDependency
     {
 
         void Write(JobLoggerInfo jobLoggerInfo);

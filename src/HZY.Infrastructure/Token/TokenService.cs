@@ -1,5 +1,5 @@
 ﻿using HZY.Infrastructure;
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
@@ -12,7 +12,7 @@ namespace HZY.Infrastructure.Token;
 /// <summary>
 /// token 服务
 /// </summary>
-public class TokenService : IDiTransientSelf
+public class TokenService : ITransientSelfDependency
 {
     private readonly AppConfiguration _appConfiguration;
     private readonly HttpContext _httpContext;

@@ -11,7 +11,7 @@ using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Core;
 using HzyEFCoreRepositories.Extensions;
-using HzyScanDiService.Extensions;
+using HzyScanDiService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
@@ -122,7 +122,7 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
         await _messageQueueProvider.SendMessageQueueAsync("WriteInLogAsync", sysOperationLog, (value, serviceProvider) =>
         {
             //消费消息
-            using var scope = ServiceProviderExtensions.CreateScope();
+            using var scope = IOCUtil.CreateScope();
             using var repository = scope.ServiceProvider.GetRequiredService<IRepository<SysOperationLog>>();
             repository.InsertAsync((SysOperationLog)value).Wait();
         });

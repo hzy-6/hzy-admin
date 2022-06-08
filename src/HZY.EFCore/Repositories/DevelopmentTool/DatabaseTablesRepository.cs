@@ -4,7 +4,7 @@ using HZY.EFCore.Repositories.DevelopmentTool.LowCode;
 using HZY.Infrastructure;
 using HZY.Models.DTO.DevelopmentTool;
 using HZY.Models.Entities.LowCode;
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;
@@ -17,7 +17,7 @@ namespace HZY.EFCore.Repositories.DevelopmentTool
     /// <summary>
     /// 用于获取表信息仓储
     /// </summary>
-    public class DatabaseTablesRepository : IDiScopedSelf
+    public class DatabaseTablesRepository : ITransientSelfDependency
     {
         private readonly LowCodeTableRepository _lowCodeTableRepository;
         private readonly LowCodeTableInfoRepository _lowCodeTableInfoRepository;

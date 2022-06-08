@@ -1,5 +1,5 @@
 ﻿using HZY.Domain.Services.Quartz.Models;
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using Microsoft.Extensions.Logging;
 using Quartz;
 using System;
@@ -14,7 +14,7 @@ namespace HZY.Domain.Services.Quartz.Jobs
     /// Resultful 风格 Api Job
     /// </summary>
     [DisallowConcurrentExecution]
-    public class ResultfulApiJob : IJob, IDiScopedSelf
+    public class ResultfulApiJob : IJob, ITransientSelfDependency
     {
         private readonly IApiRequestService _apiRequestService;
         private readonly ITaskService _taskService;

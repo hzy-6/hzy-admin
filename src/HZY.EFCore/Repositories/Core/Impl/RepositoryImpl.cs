@@ -9,7 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using HzyEFCoreRepositories.Extensions;
 using HzyEFCoreRepositories.Repositories.Impl;
 
-using HzyScanDiService.Extensions;
+using HzyScanDiService;
 
 using HZY.EFCore.DbContexts;
 using HZY.EFCore.PagingViews;
@@ -121,7 +121,7 @@ public class RepositoryImpl<T> : BaseRepository<T, AdminBaseDbContext>, IReposit
         var organizationList = new List<int>();
         var self = false;
 
-        using var serviceScope = ServiceProviderExtensions.CreateScope();
+        using var serviceScope = IOCUtil.CreateScope();
         var _sysDataAuthorityRepository = serviceScope.ServiceProvider.GetRequiredService<IRepository<SysDataAuthority>>();
         var _sysDataAuthorityCustomRepository = serviceScope.ServiceProvider.GetRequiredService<IRepository<SysDataAuthorityCustom>>();
         var _sysOrganizationRepository = serviceScope.ServiceProvider.GetRequiredService<IRepository<SysOrganization>>();

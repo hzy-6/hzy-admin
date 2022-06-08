@@ -7,14 +7,14 @@
  *
  * *******************************************************
  */
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace HZY.Infrastructure.RazorView
 {
-    public interface IRazorViewRender : IDiTransient
+    public interface IRazorViewRender : ITransientDependency
     {
         /// <summary>
         /// 渲染 razor cshtml

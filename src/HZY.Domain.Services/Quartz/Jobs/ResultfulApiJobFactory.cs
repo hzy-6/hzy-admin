@@ -1,6 +1,5 @@
 ﻿using HZY.Infrastructure;
-using HzyScanDiService.Extensions;
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using Quartz;
 using Quartz.Spi;
 using System;
@@ -13,7 +12,7 @@ namespace HZY.Domain.Services.Quartz.Jobs
     /// <summary>
     /// IJob 对象无法构造注入 需要此类实现 返回 注入后得 Job 实例
     /// </summary>
-    public class ResultfulApiJobFactory : IJobFactory, IDiSingletonSelf
+    public class ResultfulApiJobFactory : IJobFactory, ISingletonSelfDependency
     {
         public ResultfulApiJobFactory()
         {
@@ -25,7 +24,7 @@ namespace HZY.Domain.Services.Quartz.Jobs
             //Job类型
             Type jobType = bundle.JobDetail.JobType;
 
-            using var scope = ServiceProviderExtensions.CreateScope();
+            using var scope = IOCUtil.CreateScope();
             return scope.ServiceProvider.GetService(jobType) as IJob;
         }
 

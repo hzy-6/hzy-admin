@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 
-using HzyScanDiService.Extensions;
+using HzyScanDiService;
 
 using HZY.Infrastructure.Token;
 using HZY.Models.Entities.BaseEntitys;
@@ -23,7 +23,7 @@ namespace HZY.EFCore.DbContexts.Interceptor
     {
         public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
         {
-            using var scope = ServiceProviderExtensions.CreateScope();
+            using var scope = IOCUtil.CreateScope();
             var _tokenService = scope.ServiceProvider.GetService<TokenService>();
             var userId = _tokenService.GetAccountIdByToken();
 
@@ -95,7 +95,7 @@ namespace HZY.EFCore.DbContexts.Interceptor
 
         public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
         {
-            using var scope = ServiceProviderExtensions.CreateScope();
+            using var scope = IOCUtil.CreateScope();
             var _tokenService = scope.ServiceProvider.GetService<TokenService>();
             var userId = _tokenService.GetAccountIdByToken();
 

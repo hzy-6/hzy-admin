@@ -2,7 +2,7 @@
 using HZY.Infrastructure;
 using HZY.Infrastructure.MessageQueue;
 using HZY.WebHost.Middlewares;
-using HzyScanDiService.Extensions;
+using HzyScanDiService;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.DependencyInjection;

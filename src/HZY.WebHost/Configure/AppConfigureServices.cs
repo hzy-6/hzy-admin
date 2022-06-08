@@ -19,7 +19,7 @@ using System.Text;
 using Quartz;
 using Quartz.Impl;
 using Microsoft.AspNetCore.Authorization;
-using HzyScanDiService.Extensions;
+using HzyScanDiService;
 using HZY.Infrastructure.Redis;
 using HZY.Domain.Services.Quartz;
 

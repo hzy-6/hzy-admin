@@ -1,6 +1,6 @@
 ﻿using HzyEFCoreRepositories.Monitor;
 using HzyEFCoreRepositories.Monitor.Models;
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HZY.Services.Admin.DevelopmentTool.MonitorEFCore
 {
-    public interface IMonitorEFCoreService : IDiTransient
+    public interface IMonitorEFCoreService : ITransientDependency
     {
         /// <summary>
         /// 获取 EFCore 监控上下文

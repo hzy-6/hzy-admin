@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Text;
 using HZY.EFCore.Repositories.DevelopmentTool;
 using HZY.Infrastructure;
-using HzyScanDiService.Extensions;
+using HzyScanDiService;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq.Expressions;
 using System.Data;
@@ -55,7 +55,7 @@ public class PagingView
     /// <param name="type"></param>
     public void InitColumns(List<string> fieldNames, List<TableColumnView> columnHeads, Type type)
     {
-        using var scope = ServiceProviderExtensions.CreateScope();
+        using var scope = IOCUtil.CreateScope();
         var _databaseTablesRepository = scope.ServiceProvider.GetService<DatabaseTablesRepository>();
 
         var allTables = _databaseTablesRepository.GetAllTablesByCache();

@@ -1,6 +1,6 @@
 ﻿using HZY.EFCore.PagingViews;
 using HZY.Models.DTO.DevelopmentTool;
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +12,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode
     /// <summary>
     /// 代码生成服务
     /// </summary>
-    public interface ICodeGenerationService : IDiTransient
+    public interface ICodeGenerationService : ITransientDependency
     {
         /// <summary>
         /// 生成上下文集合

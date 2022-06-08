@@ -2,7 +2,7 @@
 using HZY.EFCore.PagingViews;
 using HZY.Models.BO;
 using HzyEFCoreRepositories.Repositories;
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +16,7 @@ namespace HZY.EFCore.Repositories.Core
     /// Admin默认基础仓储接口
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IRepository<T> : IBaseRepository<T, AdminBaseDbContext>, IDiScoped where T : class, new()
+    public interface IRepository<T> : IBaseRepository<T, AdminBaseDbContext>, IScopedDependency where T : class, new()
     {
         /// <summary>
         /// 分页模型构建

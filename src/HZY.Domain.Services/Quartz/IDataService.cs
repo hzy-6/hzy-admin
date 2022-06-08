@@ -1,4 +1,4 @@
-﻿using HzyScanDiService.Interface;
+﻿using HzyScanDiService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +9,7 @@ namespace HZY.Domain.Services.Quartz
     /// <summary>
     /// 文件数据服务
     /// </summary>
-    public interface IDataService : IDiTransient
+    public interface IDataService : ITransientDependency
     {
         /// <summary>
         /// 初始化配置

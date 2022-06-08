@@ -1,5 +1,5 @@
 ﻿using HZY.Domain.Services.Quartz.Models;
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace HZY.Domain.Services.Quartz
 {
-    public interface IQuartzJobService : IDiTransient
+    public interface IQuartzJobService : ITransientDependency
     {
         /// <summary>
         /// 开始运行一个任务调度器

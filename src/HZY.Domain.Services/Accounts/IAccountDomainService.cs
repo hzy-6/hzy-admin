@@ -1,6 +1,6 @@
 ﻿using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
-using HzyScanDiService.Interface;
+using HzyScanDiService;
 using System.Threading.Tasks;
 
 namespace HZY.Domain.Services.Accounts;
@@ -8,7 +8,7 @@ namespace HZY.Domain.Services.Accounts;
 /// <summary>
 /// 当前登录账户服务
 /// </summary>
-public interface IAccountDomainService : IDiScoped
+public interface IAccountDomainService : IScopedDependency
 {
     /// <summary>
     /// 获取账户信息
