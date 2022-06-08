@@ -69,9 +69,9 @@ namespace @(Model.Namespace).Models.Entities
     {
         @foreach (var item in tableInfos)
         {
-    <pre>
+            <pre>
             /// <summary>
-            ///  @item.ColumnName => 备注: @(string.IsNullOrWhiteSpace(item.Describe) ? item.ColumnName: item.Describe)
+            ///  @(string.IsNullOrWhiteSpace(item.DisplayName) ? item.ColumnName : item.DisplayName) => 备注: @(string.IsNullOrWhiteSpace(item.Describe) ? item.ColumnName: item.Describe)
             /// </summary>
             public @(GetTypeNew(item)) @item.ColumnName { get; set; }
             </pre>

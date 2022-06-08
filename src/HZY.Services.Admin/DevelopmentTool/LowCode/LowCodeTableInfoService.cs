@@ -62,6 +62,7 @@ namespace HZY.Services.Admin
                         w.DatabaseColumnType,
                         w.CsType,
                         w.CsField,
+                        w.DisplayName,
                         w.Low_Code_TableId,
                         LastModificationTime = w.LastModificationTime.ToString("yyyy-MM-dd"),
                         CreationTime = w.CreationTime.ToString("yyyy-MM-dd"),
@@ -121,6 +122,7 @@ namespace HZY.Services.Admin
                         model.CsType = item.CsType.Name;
                         model.CsField = item.Name;
                         model.MaxLength = item.MaxLength;
+                        model.DisplayName = item.Comment;
                         list.Add(model);
                     }
                 }
@@ -145,6 +147,7 @@ namespace HZY.Services.Admin
                     model.CsType = item.CsType.Name;
                     model.CsField = item.Name;
                     model.MaxLength = item.MaxLength;
+                    model.DisplayName = item.Comment;
                     list.Add(model);
                 }
 

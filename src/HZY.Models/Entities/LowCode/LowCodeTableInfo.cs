@@ -67,6 +67,11 @@ namespace HZY.Models.Entities.LowCode
         /// </summary>
         /// <value></value>
         public int? MaxLength { get; set; }
+
+        /// <summary>
+        /// 显示名称
+        /// </summary>
+        public string DisplayName { get; set; }
     }
 
     /// <summary>

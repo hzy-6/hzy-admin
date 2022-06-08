@@ -101,7 +101,7 @@ public class TableColumnView
         .Where(w => w.EntityName.ToLower() == type.Name.ToLower())
         .FirstOrDefault();
         var tableInfo = table.TableInfos.FirstOrDefault(w => w.CsField.ToLower() == name.ToLower());
-        this.Mapping(tableInfo?.Describe, show, width);
+        this.Mapping(tableInfo?.DisplayName, show, width);
     }
 
 }

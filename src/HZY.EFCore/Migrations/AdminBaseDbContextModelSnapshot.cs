@@ -224,7 +224,7 @@ namespace HZY.EFCore.Migrations
                         {
                             Id = new Guid("d09bf250-c5b0-41cb-237d-08da00442990"),
                             CreationTime = new DateTime(2022, 3, 7, 22, 9, 58, 0, DateTimeKind.Unspecified),
-                            LastModificationTime = new DateTime(2022, 3, 8, 10, 2, 22, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 31, 20, 47, 14, 0, DateTimeKind.Unspecified),
                             PermissionType = 5,
                             RoleId = new Guid("40ff1844-c099-4061-98e0-cd6e544fcfd3")
                         },
@@ -3141,17 +3141,6 @@ namespace HZY.EFCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("c5883367-42aa-43b8-9577-4720a2253efa"),
-                            CreationTime = new DateTime(2022, 4, 28, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DisplayName = "资讯",
-                            EntityName = "News",
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            Schema = "dbo",
-                            TableName = "News",
-                            Type = "TABLE"
-                        },
-                        new
-                        {
                             Id = new Guid("1a8df018-79f8-4e26-b4eb-4b735aae7275"),
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "审批流",
@@ -3383,6 +3372,9 @@ namespace HZY.EFCore.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Describe")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("DisplayName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsIdentity")
@@ -4872,7 +4864,7 @@ namespace HZY.EFCore.Migrations
                         {
                             Id = new Guid("e75b8650-ee49-4f83-d4d2-08da3d8d5a26"),
                             ColumnName = "Id",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Id",
                             CsType = "Guid",
                             DatabaseColumnType = "uniqueidentifier",
@@ -4880,196 +4872,184 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = false,
                             IsPrimary = true,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 17, 4, 36, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            MaxLength = 16,
                             Position = 70
                         },
                         new
                         {
                             Id = new Guid("b7fbb61f-94fc-4242-d4d3-08da3d8d5a26"),
                             ColumnName = "Birthday",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Birthday",
                             CsType = "DateTime",
                             DatabaseColumnType = "datetime2",
-                            Describe = "",
+                            Describe = "生日",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 17, 4, 36, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            MaxLength = 6,
                             Position = 75
                         },
                         new
                         {
                             Id = new Guid("5541e535-7cbe-43d2-d4d4-08da3d8d5a26"),
                             ColumnName = "CreationTime",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "CreationTime",
                             CsType = "DateTime",
                             DatabaseColumnType = "datetime2",
-                            Describe = "",
+                            Describe = "创建时间",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 17, 4, 36, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            MaxLength = 6,
                             Position = 80
                         },
                         new
                         {
                             Id = new Guid("e4245f5f-bffa-43f0-d4d5-08da3d8d5a26"),
                             ColumnName = "FilePath",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "FilePath",
                             CsType = "String",
                             DatabaseColumnType = "nvarchar(255)",
-                            Describe = "",
+                            Describe = "文件地址",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 17, 4, 36, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            MaxLength = 255,
                             Position = 78
                         },
                         new
                         {
                             Id = new Guid("8326ca11-09f1-4c38-d4d6-08da3d8d5a26"),
                             ColumnName = "Introduce",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Introduce",
                             CsType = "String",
                             DatabaseColumnType = "nvarchar(255)",
-                            Describe = "",
+                            Describe = "简介",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 17, 4, 36, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            MaxLength = 255,
                             Position = 77
                         },
                         new
                         {
                             Id = new Guid("897a208c-2e13-46f1-d4d7-08da3d8d5a26"),
                             ColumnName = "LastModificationTime",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "LastModificationTime",
                             CsType = "DateTime",
                             DatabaseColumnType = "datetime2",
-                            Describe = "",
+                            Describe = "更新时间",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 17, 4, 36, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            MaxLength = 6,
                             Position = 81
                         },
                         new
                         {
                             Id = new Guid("d1eb49cf-c053-4226-d4d8-08da3d8d5a26"),
                             ColumnName = "Name",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Name",
                             CsType = "String",
                             DatabaseColumnType = "nvarchar(255)",
-                            Describe = "",
+                            Describe = "会员名称",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 17, 4, 36, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            MaxLength = 255,
                             Position = 72
                         },
                         new
                         {
                             Id = new Guid("bf24a276-6ed0-49d4-d4d9-08da3d8d5a26"),
                             ColumnName = "Number",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Number",
                             CsType = "String",
                             DatabaseColumnType = "nvarchar(255)",
-                            Describe = "",
+                            Describe = "编号",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 17, 4, 36, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            MaxLength = 255,
                             Position = 71
                         },
                         new
                         {
                             Id = new Guid("669b87ce-c694-4c8c-d4da-08da3d8d5a26"),
                             ColumnName = "Phone",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Phone",
                             CsType = "String",
                             DatabaseColumnType = "nvarchar(255)",
-                            Describe = "",
+                            Describe = "联系电话",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 17, 4, 36, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            MaxLength = 255,
                             Position = 73
                         },
                         new
                         {
                             Id = new Guid("f03ac01c-e0cf-4f13-d4db-08da3d8d5a26"),
                             ColumnName = "Photo",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Photo",
                             CsType = "String",
                             DatabaseColumnType = "nvarchar(255)",
-                            Describe = "",
+                            Describe = "头像",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 17, 4, 36, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            MaxLength = 255,
                             Position = 76
                         },
                         new
                         {
                             Id = new Guid("72ac247c-d792-4fee-d4dc-08da3d8d5a26"),
                             ColumnName = "Sex",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Sex",
                             CsType = "String",
                             DatabaseColumnType = "nvarchar(255)",
-                            Describe = "",
+                            Describe = "性别",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 17, 4, 36, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            MaxLength = 255,
                             Position = 74
                         },
                         new
                         {
                             Id = new Guid("837b058b-a88e-4107-d4dd-08da3d8d5a26"),
                             ColumnName = "UserId",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "UserId",
                             CsType = "Guid",
                             DatabaseColumnType = "uniqueidentifier",
-                            Describe = "",
+                            Describe = "所属用户",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 17, 4, 36, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            MaxLength = 16,
                             Position = 79
                         },
                         new
@@ -6273,7 +6253,7 @@ namespace HZY.EFCore.Migrations
                         {
                             Id = new Guid("d6008705-0d21-42ac-d525-08da3d8d5a26"),
                             ColumnName = "Id",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Id",
                             CsType = "Int32",
                             DatabaseColumnType = "int",
@@ -6281,9 +6261,8 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = true,
                             IsNullable = false,
                             IsPrimary = true,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 38, 59, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("d26d07cb-158a-4cb2-8b20-5dfd5181af54"),
-                            MaxLength = 4,
                             Position = 132
                         },
                         new
@@ -6307,7 +6286,7 @@ namespace HZY.EFCore.Migrations
                         {
                             Id = new Guid("ce802713-74f5-4f30-d527-08da3d8d5a26"),
                             ColumnName = "Email",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Email",
                             CsType = "String",
                             DatabaseColumnType = "nvarchar(255)",
@@ -6315,16 +6294,15 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 38, 59, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("d26d07cb-158a-4cb2-8b20-5dfd5181af54"),
-                            MaxLength = 255,
                             Position = 138
                         },
                         new
                         {
                             Id = new Guid("19a7504c-f740-4b49-d528-08da3d8d5a26"),
                             ColumnName = "LastModificationTime",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "LastModificationTime",
                             CsType = "DateTime",
                             DatabaseColumnType = "datetime2",
@@ -6332,16 +6310,15 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 38, 59, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("d26d07cb-158a-4cb2-8b20-5dfd5181af54"),
-                            MaxLength = 6,
                             Position = 141
                         },
                         new
                         {
                             Id = new Guid("cf2e3691-ab88-4420-d529-08da3d8d5a26"),
                             ColumnName = "Leader",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Leader",
                             CsType = "String",
                             DatabaseColumnType = "nvarchar(255)",
@@ -6349,16 +6326,15 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 38, 59, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("d26d07cb-158a-4cb2-8b20-5dfd5181af54"),
-                            MaxLength = 255,
                             Position = 136
                         },
                         new
                         {
                             Id = new Guid("11f3d291-cf7a-4143-d52a-08da3d8d5a26"),
                             ColumnName = "LevelCode",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "LevelCode",
                             CsType = "String",
                             DatabaseColumnType = "varchar(50)",
@@ -6366,33 +6342,31 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 38, 59, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("d26d07cb-158a-4cb2-8b20-5dfd5181af54"),
-                            MaxLength = 50,
                             Position = 135
                         },
                         new
                         {
                             Id = new Guid("1121d642-49e8-4b25-d52b-08da3d8d5a26"),
                             ColumnName = "Name",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Name",
                             CsType = "String",
                             DatabaseColumnType = "nvarchar(255)",
-                            Describe = "",
+                            Describe = "组织名称",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 38, 59, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("d26d07cb-158a-4cb2-8b20-5dfd5181af54"),
-                            MaxLength = 255,
                             Position = 133
                         },
                         new
                         {
                             Id = new Guid("5aed3feb-3d77-4e1e-d52c-08da3d8d5a26"),
                             ColumnName = "OrderNumber",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "OrderNumber",
                             CsType = "Int32",
                             DatabaseColumnType = "int",
@@ -6400,16 +6374,15 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 38, 59, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("d26d07cb-158a-4cb2-8b20-5dfd5181af54"),
-                            MaxLength = 4,
                             Position = 134
                         },
                         new
                         {
                             Id = new Guid("042a59e2-72c1-4c38-d52d-08da3d8d5a26"),
                             ColumnName = "ParentId",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "ParentId",
                             CsType = "Int32",
                             DatabaseColumnType = "int",
@@ -6417,16 +6390,15 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 38, 59, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("d26d07cb-158a-4cb2-8b20-5dfd5181af54"),
-                            MaxLength = 4,
                             Position = 140
                         },
                         new
                         {
                             Id = new Guid("ea63351c-c203-4d40-d52e-08da3d8d5a26"),
                             ColumnName = "Phone",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "Phone",
                             CsType = "String",
                             DatabaseColumnType = "nvarchar(255)",
@@ -6434,16 +6406,15 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 38, 59, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("d26d07cb-158a-4cb2-8b20-5dfd5181af54"),
-                            MaxLength = 255,
                             Position = 137
                         },
                         new
                         {
                             Id = new Guid("b9bfca2e-f72b-4a3f-d52f-08da3d8d5a26"),
                             ColumnName = "State",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            CreationTime = new DateTime(2022, 5, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             CsField = "State",
                             CsType = "Int32",
                             DatabaseColumnType = "int",
@@ -6451,9 +6422,8 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 38, 59, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("d26d07cb-158a-4cb2-8b20-5dfd5181af54"),
-                            MaxLength = 4,
                             Position = 139
                         },
                         new
@@ -6825,7 +6795,7 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = false,
                             IsPrimary = true,
-                            LastModificationTime = new DateTime(2022, 5, 25, 22, 27, 37, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 39, 32, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("6323638b-a45f-4a76-886e-69a9e9be0901"),
                             Position = 164
                         },
@@ -6837,11 +6807,11 @@ namespace HZY.EFCore.Migrations
                             CsField = "CreationTime",
                             CsType = "DateTime",
                             DatabaseColumnType = "datetime2",
-                            Describe = "",
+                            Describe = "创建时间",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 25, 22, 27, 37, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 39, 32, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("6323638b-a45f-4a76-886e-69a9e9be0901"),
                             Position = 166
                         },
@@ -6857,7 +6827,7 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 25, 22, 27, 37, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 39, 32, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("6323638b-a45f-4a76-886e-69a9e9be0901"),
                             Position = 172
                         },
@@ -6873,7 +6843,7 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = false,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 25, 22, 27, 37, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 39, 32, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("6323638b-a45f-4a76-886e-69a9e9be0901"),
                             Position = 171
                         },
@@ -6885,11 +6855,11 @@ namespace HZY.EFCore.Migrations
                             CsField = "LastModificationTime",
                             CsType = "DateTime",
                             DatabaseColumnType = "datetime2",
-                            Describe = "",
+                            Describe = "更新时间",
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 25, 22, 27, 37, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 39, 32, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("6323638b-a45f-4a76-886e-69a9e9be0901"),
                             Position = 165
                         },
@@ -6905,7 +6875,7 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 25, 22, 27, 37, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 39, 32, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("6323638b-a45f-4a76-886e-69a9e9be0901"),
                             Position = 168
                         },
@@ -6921,7 +6891,7 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 25, 22, 27, 37, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 39, 32, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("6323638b-a45f-4a76-886e-69a9e9be0901"),
                             Position = 167
                         },
@@ -6937,7 +6907,7 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 25, 22, 27, 37, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 39, 32, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("6323638b-a45f-4a76-886e-69a9e9be0901"),
                             Position = 173
                         },
@@ -6953,7 +6923,7 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 25, 22, 27, 37, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 39, 32, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("6323638b-a45f-4a76-886e-69a9e9be0901"),
                             Position = 169
                         },
@@ -6969,7 +6939,7 @@ namespace HZY.EFCore.Migrations
                             IsIdentity = false,
                             IsNullable = true,
                             IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 25, 22, 27, 37, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 5, 30, 11, 39, 32, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("6323638b-a45f-4a76-886e-69a9e9be0901"),
                             Position = 170
                         },

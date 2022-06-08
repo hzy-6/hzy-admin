@@ -67,7 +67,7 @@ public class PagingView
         foreach (var item in fieldNames)
         {
             var tableInfo = table.TableInfos.FirstOrDefault(w => w.ColumnName == item);
-            var title = string.IsNullOrWhiteSpace(tableInfo?.Describe) ? item : tableInfo.Describe;
+            var title = string.IsNullOrWhiteSpace(tableInfo?.DisplayName) ? item : tableInfo.DisplayName;
             this.Columns.Add(new TableColumnView(item.FirstCharToLower(), title));
         }
 

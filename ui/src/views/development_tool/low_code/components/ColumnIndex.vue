@@ -107,10 +107,18 @@
                   <a-tag color="default" v-else>否</a-tag>
                 </template>
               </vxe-column>
-              <vxe-column field="describe" title="列显示名称" :edit-render="{}" width="150px">
+              <!-- 显示名称 -->
+              <vxe-column field="displayName" title="显示名称" :edit-render="{}" width="150px">
+                <template #default="{ row }">{{ row.displayName }}</template>
+                <template #edit="{ row }">
+                  <a-input v-model:value="row.displayName" placeholder="显示名称" />
+                </template>
+              </vxe-column>
+              <!-- 列描述 -->
+              <vxe-column field="describe" title="列描述" :edit-render="{}" width="150px">
                 <template #default="{ row }">{{ row.describe }}</template>
                 <template #edit="{ row }">
-                  <a-input v-model:value="row.describe" placeholder="列显示名称" />
+                  <a-input v-model:value="row.describe" placeholder="列描述" />
                 </template>
               </vxe-column>
               <!-- <vxe-column field="isNullable" title="能否为null" width="100px"> </vxe-column> -->
