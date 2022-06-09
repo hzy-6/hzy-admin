@@ -13,20 +13,30 @@ public class AppConfiguration : ISingletonSelfDependency
     /// <summary>
     /// 程序默认配置项
     /// </summary>
-    public readonly AppConfigurationOptions Configs;
+    [AppSettings(nameof(AppConfigurationOptions))]
+    public virtual AppConfigurationOptions Configs { get; }
 
     /// <summary>
     /// 连接字符串
     /// </summary>
-    public readonly ConnectionStringsOptions ConnectionStrings;
+    [AppSettings(nameof(ConnectionStrings))]
+    public virtual ConnectionStringsOptions ConnectionStrings { get; }
 
-    public AppConfiguration(IConfiguration configuration)
+    /// <summary>
+    /// 程序配置信息映射类
+    /// </summary>
+    /// <param name="configuration"></param>
+    /// <param name="isNew"></param>
+    public AppConfiguration(IConfiguration configuration, bool isNew = false)
     {
         this._configuration = configuration;
-        //
-        ConnectionStrings = _configuration.GetSection(nameof(ConnectionStrings)).Get<ConnectionStringsOptions>();
-        // 
-        Configs = _configuration.GetSection(nameof(AppConfigurationOptions)).Get<AppConfigurationOptions>();
+
+        if (isNew)
+        {
+            Configs = _configuration.GetSection(nameof(AppConfigurationOptions)).Get<AppConfigurationOptions>();
+            ConnectionStrings = _configuration.GetSection(nameof(ConnectionStrings)).Get<ConnectionStringsOptions>();
+        }
+
     }
 
 }
