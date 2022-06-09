@@ -42,7 +42,7 @@ public class AppConfigureServices
     /// <param name="configuration"></param>
     public static void Build(IServiceCollection services, IConfiguration configuration)
     {
-        var appConfiguration = new AppConfiguration(configuration, true);
+        var appConfiguration = new AppConfiguration(configuration);
         var prefixString = appConfiguration.Configs.Namespace + ".";
 
         #region 自动扫描服务注册 、 其他服务注册

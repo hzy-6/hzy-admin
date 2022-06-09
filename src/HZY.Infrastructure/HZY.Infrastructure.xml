@@ -168,22 +168,31 @@
             程序配置信息映射类 appsettings.json
             </summary>
         </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration._configuration">
+            <summary>
+            IConfiguration 通过属性注入
+            </summary>
+        </member>
         <member name="P:HZY.Infrastructure.AppConfiguration.Configs">
             <summary>
-            程序默认配置项
+            程序默认配置项 通过属性注入
             </summary>
         </member>
         <member name="P:HZY.Infrastructure.AppConfiguration.ConnectionStrings">
             <summary>
-            连接字符串
+            连接字符串 通过属性注入
             </summary>
         </member>
-        <member name="M:HZY.Infrastructure.AppConfiguration.#ctor(Microsoft.Extensions.Configuration.IConfiguration,System.Boolean)">
+        <member name="M:HZY.Infrastructure.AppConfiguration.#ctor">
+            <summary>
+            程序配置信息映射类
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.AppConfiguration.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
             <summary>
             程序配置信息映射类
             </summary>
             <param name="configuration"></param>
-            <param name="isNew"></param>
         </member>
         <member name="T:HZY.Infrastructure.ConnectionStringsOptions">
             <summary>

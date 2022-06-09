@@ -8,16 +8,20 @@ namespace HZY.Infrastructure;
 /// </summary>
 public class AppConfiguration : ISingletonSelfDependency
 {
-    private readonly IConfiguration _configuration;
+    /// <summary>
+    /// IConfiguration 通过属性注入
+    /// </summary>
+    [Autowired]
+    public virtual IConfiguration _configuration { get; }
 
     /// <summary>
-    /// 程序默认配置项
+    /// 程序默认配置项 通过属性注入
     /// </summary>
     [AppSettings(nameof(AppConfigurationOptions))]
     public virtual AppConfigurationOptions Configs { get; }
 
     /// <summary>
-    /// 连接字符串
+    /// 连接字符串 通过属性注入
     /// </summary>
     [AppSettings(nameof(ConnectionStrings))]
     public virtual ConnectionStringsOptions ConnectionStrings { get; }
@@ -25,17 +29,20 @@ public class AppConfiguration : ISingletonSelfDependency
     /// <summary>
     /// 程序配置信息映射类
     /// </summary>
+    public AppConfiguration()
+    {
+
+    }
+
+    /// <summary>
+    /// 程序配置信息映射类
+    /// </summary>
     /// <param name="configuration"></param>
-    /// <param name="isNew"></param>
-    public AppConfiguration(IConfiguration configuration, bool isNew = false)
+    public AppConfiguration(IConfiguration configuration)
     {
         this._configuration = configuration;
-
-        if (isNew)
-        {
-            Configs = _configuration.GetSection(nameof(AppConfigurationOptions)).Get<AppConfigurationOptions>();
-            ConnectionStrings = _configuration.GetSection(nameof(ConnectionStrings)).Get<ConnectionStringsOptions>();
-        }
+        Configs = _configuration.GetSection(nameof(AppConfigurationOptions)).Get<AppConfigurationOptions>();
+        ConnectionStrings = _configuration.GetSection(nameof(ConnectionStrings)).Get<ConnectionStringsOptions>();
 
     }
 
