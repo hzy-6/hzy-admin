@@ -67,7 +67,9 @@ namespace HZY.Infrastructure.Aop
         /// <summary>
         /// 之后
         /// </summary>
+        /// <typeparam name="TResult"></typeparam>
         /// <param name="aopContext"></param>
+        /// <param name="result"></param>
         public override void After<TResult>(AopContext aopContext, TResult result)
         {
             this.After(aopContext);
