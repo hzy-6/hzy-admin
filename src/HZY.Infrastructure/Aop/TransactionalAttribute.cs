@@ -1,10 +1,9 @@
-﻿using HzyScanDiService;
-using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
+using HzyScanDiService;
+using Microsoft.EntityFrameworkCore;
 
 namespace HZY.Infrastructure.Aop
 {
@@ -57,6 +56,24 @@ namespace HZY.Infrastructure.Aop
         }
 
         /// <summary>
+        /// 之前
+        /// </summary>
+        /// <param name="aopContext"></param>
+        public override void Before<TResult>(AopContext aopContext)
+        {
+            this.Before(aopContext);
+        }
+
+        /// <summary>
+        /// 之后
+        /// </summary>
+        /// <param name="aopContext"></param>
+        public override void After<TResult>(AopContext aopContext, TResult result)
+        {
+            this.After(aopContext);
+        }
+
+        /// <summary>
         /// 异常
         /// </summary>
         /// <param name="aopContext"></param>
@@ -78,4 +95,5 @@ namespace HZY.Infrastructure.Aop
 
 
     }
+
 }
