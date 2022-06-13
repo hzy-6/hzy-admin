@@ -1,18 +1,14 @@
 ﻿using StackExchange.Redis;
-using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace HZY.Infrastructure.Redis
 {
-    public interface IRedisService : IDisposable
+    /// <summary>
+    /// 
+    /// </summary>
+    public interface IRedisService : IBaseRedisService
     {
-        IDatabase Database { get; }
-        IConnectionMultiplexer Multiplexer { get; }
-
 
 
 
     }
 }
-

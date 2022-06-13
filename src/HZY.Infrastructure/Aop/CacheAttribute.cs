@@ -1,3 +1,4 @@
+using System.Reflection;
 using HzyScanDiService;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
@@ -20,12 +21,12 @@ namespace HZY.Infrastructure.Aop
         /// <summary>
         /// Redis 服务类型
         /// </summary>
-        public Type RedisServiceType { get; set; }
+        private Type RedisServiceType { get; }
 
         /// <summary>
-        /// 缓存时长 (秒)
+        /// 缓存时长 (秒) 默认存储 10s 如果0代表永久
         /// </summary>
-        public long CacheDuration { get; set; } = 0;
+        public long CacheDuration { get; set; } = 10;
 
         /// <summary>
         /// 缓存数据
@@ -36,24 +37,27 @@ namespace HZY.Infrastructure.Aop
         }
 
         /// <summary>
+        /// 缓存数据 需要传递 Redis 服务类型
+        /// </summary>
+        /// <param name="redisServiceType">Redis 服务类型</param>
+        public CacheAttribute(Type redisServiceType)
+        {
+            RedisServiceType = redisServiceType;
+        }
+
+        /// <summary>
         /// 之前 开始获取缓存
         /// </summary>
         /// <param name="aopContext"></param>
         public override void Before(AopContext aopContext)
         {
-            var key = GetCacheKey(aopContext);
             if (RedisServiceType == null)
             {
-                var memoryCache = aopContext.ServiceProvider.GetService<IMemoryCache>();
-                aopContext.Invocation.ReturnValue = memoryCache.Get(key);
+                this.GetMemoryCache(aopContext);
                 return;
             }
 
-            var redisCache = (IDatabase)aopContext.ServiceProvider.GetService(RedisServiceType);
-            if (redisCache == null) throw new Exception("请注册 Redis 服务 " + RedisServiceType.FullName);
-            var value = redisCache.StringGet(key);
-            aopContext.Invocation.ReturnValue = string.IsNullOrWhiteSpace(value) ?
-                null : JsonConvert.DeserializeObject(value, aopContext.Invocation.Method.ReturnParameter.ParameterType);
+            GetRedisCache(aopContext);
         }
 
         /// <summary>
@@ -83,18 +87,13 @@ namespace HZY.Infrastructure.Aop
         /// <param name="aopContext"></param>
         public override void Before<TResult>(AopContext aopContext)
         {
-            var key = GetCacheKey(aopContext);
             if (RedisServiceType == null)
             {
-                var memoryCache = aopContext.ServiceProvider.GetService<IMemoryCache>();
-                aopContext.Invocation.ReturnValue = memoryCache.Get(key);
+                this.GetMemoryCache(aopContext);
                 return;
             }
 
-            var redisCache = (IDatabase)aopContext.ServiceProvider.GetService(RedisServiceType);
-            if (redisCache == null) throw new Exception("请注册 Redis 服务 " + RedisServiceType.FullName);
-            var value = redisCache.StringGet(key);
-            aopContext.Invocation.ReturnValue = string.IsNullOrWhiteSpace(value) ? null : JsonConvert.DeserializeObject<TResult>(value);
+            this.GetRedisCache<TResult>(aopContext);
         }
 
         /// <summary>
@@ -156,6 +155,17 @@ namespace HZY.Infrastructure.Aop
         }
 
         /// <summary>
+        /// 获取 MemoryCache 缓存
+        /// </summary>
+        /// <param name="aopContext"></param>
+        private void GetMemoryCache(AopContext aopContext)
+        {
+            var key = GetCacheKey(aopContext);
+            var memoryCache = aopContext.ServiceProvider.GetService<IMemoryCache>();
+            aopContext.Invocation.ReturnValue = memoryCache.Get(key);
+        }
+
+        /// <summary>
         /// 创建 Redis 缓存
         /// </summary>
         /// <param name="aopContext"></param>
@@ -163,11 +173,8 @@ namespace HZY.Infrastructure.Aop
         /// <exception cref="Exception"></exception>
         private void CreateRedisCache(AopContext aopContext, object result)
         {
-            var redisCache = (IDatabase)aopContext.ServiceProvider.GetService(RedisServiceType);
-            if (redisCache == null) throw new Exception("请注册 Redis 服务 " + RedisServiceType.FullName);
-
+            var redisCache = GetDatabase(aopContext);
             var key = GetCacheKey(aopContext);
-
             if (CacheDuration <= 0)
             {
                 redisCache.StringSet(key, JsonConvert.SerializeObject(result));
@@ -178,6 +185,59 @@ namespace HZY.Infrastructure.Aop
             }
         }
 
+        /// <summary>
+        /// 获取 Redis 缓存
+        /// </summary>
+        /// <param name="aopContext"></param>
+        /// <exception cref="Exception"></exception>
+        private void GetRedisCache(AopContext aopContext)
+        {
+            var redisCache = GetDatabase(aopContext);
+            var key = GetCacheKey(aopContext);
+            var value = redisCache.StringGet(key);
+            aopContext.Invocation.ReturnValue = string.IsNullOrWhiteSpace(value) ?
+                null : JsonConvert.DeserializeObject(value, aopContext.Invocation.Method.ReturnParameter.ParameterType);
+        }
+
+        /// <summary>
+        /// 获取 Redis 缓存
+        /// </summary>
+        /// <typeparam name="TResult"></typeparam>
+        /// <param name="aopContext"></param>
+        /// <exception cref="Exception"></exception>
+        private void GetRedisCache<TResult>(AopContext aopContext)
+        {
+            var redisCache = GetDatabase(aopContext);
+            var key = GetCacheKey(aopContext);
+            var value = redisCache.StringGet(key);
+            aopContext.Invocation.ReturnValue = string.IsNullOrWhiteSpace(value) ? null : JsonConvert.DeserializeObject<TResult>(value);
+        }
+
+        /// <summary>
+        /// 获取 Redis Database 对象
+        /// </summary>
+        /// <param name="aopContext"></param>
+        /// <returns></returns>
+        /// <exception cref="Exception"></exception>
+        private IDatabase GetDatabase(AopContext aopContext)
+        {
+            var redisService = aopContext.ServiceProvider.GetService(RedisServiceType);
+            if (redisService == null) throw new Exception("找不到 Redis 服务 " + RedisServiceType.FullName);
+            var propertyInfos = redisService.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
+            var databasePropertyInfo = propertyInfos.FirstOrDefault(w => w.Name == nameof(IDatabase.Database) && w.PropertyType == typeof(IDatabase));
+            if (databasePropertyInfo == null)
+            {
+                throw new Exception($"Redis服务 {RedisServiceType.FullName} 找不到属性 public IDatabase {nameof(IDatabase.Database)} {{get;}}");
+            }
+            // 获取 idatabase
+            var redisCache = (IDatabase)databasePropertyInfo.GetValue(redisService);
+            if (redisCache == null)
+            {
+                throw new Exception($"Redis服务 {RedisServiceType.FullName} 属性 public IDatabase {nameof(IDatabase.Database)} {{get;}} 是 null ");
+            }
+
+            return redisCache;
+        }
 
     }
 }

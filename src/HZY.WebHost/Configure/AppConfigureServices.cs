@@ -77,7 +77,7 @@ public class AppConfigureServices
         //配置freesql
         FreeSqlCoreModule.RegisterFreeSql(services, appConfiguration, $"{prefixString}Repositories");
         //配置redis
-        RedisServiceExtensions.RegisterRedisRepository(services, appConfiguration.ConnectionStrings.Redis);
+        RedisUtil.AddRedisService(services, appConfiguration.ConnectionStrings.Redis);
         //添加中间件
         services.AddScoped<TakeUpTimeMiddleware>();
 

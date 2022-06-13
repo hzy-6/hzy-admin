@@ -21,13 +21,19 @@
         </member>
         <member name="P:HZY.Infrastructure.Aop.CacheAttribute.CacheDuration">
             <summary>
-            缓存时长 (秒)
+            缓存时长 (秒) 默认存储 10s 如果0代表永久
             </summary>
         </member>
         <member name="M:HZY.Infrastructure.Aop.CacheAttribute.#ctor">
             <summary>
             缓存数据
             </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheAttribute.#ctor(System.Type)">
+            <summary>
+            缓存数据 需要传递 Redis 服务类型
+            </summary>
+            <param name="redisServiceType">Redis 服务类型</param>
         </member>
         <member name="M:HZY.Infrastructure.Aop.CacheAttribute.Before(HzyScanDiService.AopContext)">
             <summary>
@@ -71,12 +77,41 @@
             <param name="aopContext"></param>
             <param name="result"></param>
         </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheAttribute.GetMemoryCache(HzyScanDiService.AopContext)">
+            <summary>
+            获取 MemoryCache 缓存
+            </summary>
+            <param name="aopContext"></param>
+        </member>
         <member name="M:HZY.Infrastructure.Aop.CacheAttribute.CreateRedisCache(HzyScanDiService.AopContext,System.Object)">
             <summary>
             创建 Redis 缓存
             </summary>
             <param name="aopContext"></param>
             <param name="result"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheAttribute.GetRedisCache(HzyScanDiService.AopContext)">
+            <summary>
+            获取 Redis 缓存
+            </summary>
+            <param name="aopContext"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheAttribute.GetRedisCache``1(HzyScanDiService.AopContext)">
+            <summary>
+            获取 Redis 缓存
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="aopContext"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheAttribute.GetDatabase(HzyScanDiService.AopContext)">
+            <summary>
+            获取 Redis Database 对象
+            </summary>
+            <param name="aopContext"></param>
+            <returns></returns>
             <exception cref="T:System.Exception"></exception>
         </member>
         <member name="T:HZY.Infrastructure.Aop.TransactionalAttribute">
@@ -117,7 +152,9 @@
             <summary>
             之后
             </summary>
+            <typeparam name="TResult"></typeparam>
             <param name="aopContext"></param>
+            <param name="result"></param>
         </member>
         <member name="M:HZY.Infrastructure.Aop.TransactionalAttribute.OnException(HzyScanDiService.AopContext,System.Exception)">
             <summary>
@@ -806,17 +843,17 @@
             读取 xml 摘要
             </summary>
         </member>
-        <member name="T:HZY.Infrastructure.Redis.RedisService">
-            <summary>
-            Redis 服务类
-            </summary>
-        </member>
-        <member name="P:HZY.Infrastructure.Redis.RedisService.Database">
+        <member name="P:HZY.Infrastructure.Redis.Impl.RedisServiceImpl.Database">
             <summary>
             get database
             </summary>
         </member>
-        <member name="M:HZY.Infrastructure.Redis.RedisServiceExtensions.RegisterRedisRepository(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
+        <member name="T:HZY.Infrastructure.Redis.IRedisService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Redis.RedisUtil.AddRedisService(Microsoft.Extensions.DependencyInjection.IServiceCollection,System.String)">
             <summary>
             注册 Redis 模块
             </summary>
