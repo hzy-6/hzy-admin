@@ -37,6 +37,7 @@ public class MemberController : AdminBaseController<MemberService>
     /// <param name="page"></param>
     /// <param name="search"></param>
     /// <returns></returns>
+    [RequestLimitFilter]
     [ApiResourceCacheFilter(1)]
     [ActionDescriptor(AdminFunctionConsts.Function_Display, DisplayName = "查看列表")]
     [HttpPost("FindList/{size}/{page}")]
