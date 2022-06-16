@@ -34,6 +34,8 @@ public class AppConfigure
 
         app.UseRouting();
 
+        app.UseStaticFiles();
+
         var appConfiguration = app.Services.GetRequiredService<AppConfiguration>();
 
         #region 注册服务提供者
@@ -74,7 +76,7 @@ public class AppConfigure
 
         #region 消息队列启动
         messageQueueProvider.RunAsync().Wait();
-  var memoryMQ = app.Services.GetRequiredService<IMessageConsumer<MessageQueueContext>>();
+
         memoryMQ.StartAsync().Wait();
         #endregion
 
