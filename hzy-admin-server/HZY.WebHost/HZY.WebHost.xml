@@ -4,7 +4,7 @@
         <name>HZY.WebHost</name>
     </assembly>
     <members>
-        <member name="M:HZY.WebHost.Configure.AppConfigure.Build(Microsoft.AspNetCore.Builder.WebApplication,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,System.IServiceProvider,HZY.Infrastructure.MessageQueue.IMessageQueueProvider)">
+        <member name="M:HZY.WebHost.Configure.AppConfigure.Build(Microsoft.AspNetCore.Builder.WebApplication,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,System.IServiceProvider,HZY.Infrastructure.MessageQueue.IMessageQueueProvider,HZY.Infrastructure.MemoryMQ.Interfaces.IMessageConsumer{HZY.Infrastructure.MessageQueue.Models.MessageQueueContext})">
             <summary>
             配置构建
             </summary>
@@ -12,6 +12,7 @@
             <param name="env"></param>
             <param name="serviceProvider"></param>
             <param name="messageQueueProvider"></param>
+            <param name="memoryMQ"></param>
         </member>
         <member name="M:HZY.WebHost.Configure.AppConfigureServices.GetVersionList">
             <summary>
