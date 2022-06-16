@@ -1,5 +1,5 @@
 ﻿using System.Linq.Expressions;
-using HZY.EFCore.Repositories.DevelopmentTool;
+using HZY.EFCore.Repositories.Admin.DevelopmentTool;
 using HZY.Infrastructure;
 using HzyScanDiService;
 using Microsoft.Extensions.DependencyInjection;

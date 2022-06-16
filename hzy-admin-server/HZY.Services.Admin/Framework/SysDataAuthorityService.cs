@@ -4,7 +4,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using HZY.Domain.Services.Accounts;
 using HZY.EFCore.PagingViews;
-using HZY.EFCore.Repositories.Core;
+using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Models.DTO.Framework;
 using HZY.Models.Entities;

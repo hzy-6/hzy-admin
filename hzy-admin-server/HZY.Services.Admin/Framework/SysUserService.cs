@@ -1,7 +1,7 @@
 using HZY.Domain.Services.Accounts;
 using HZY.EFCore.DbContexts;
 using HZY.EFCore.PagingViews;
-using HZY.EFCore.Repositories.Core;
+using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Aop;
 using HZY.Infrastructure.ApiResultManage;

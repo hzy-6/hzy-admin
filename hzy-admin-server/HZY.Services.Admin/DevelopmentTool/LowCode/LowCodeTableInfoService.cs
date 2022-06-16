@@ -10,8 +10,8 @@ using HZY.Services.Admin.Core;
 using Microsoft.AspNetCore.Http;
 using HZY.Models.Entities.LowCode;
 using HzyEFCoreRepositories.Extensions;
-using HZY.EFCore.Repositories.DevelopmentTool.LowCode;
-using HZY.EFCore.Repositories.DevelopmentTool;
+using HZY.EFCore.Repositories.Admin.DevelopmentTool;
+using HZY.EFCore.Repositories.Admin.DevelopmentTool.LowCode;
 
 namespace HZY.Services.Admin
 {

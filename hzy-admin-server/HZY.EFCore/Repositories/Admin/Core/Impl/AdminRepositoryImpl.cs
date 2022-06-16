@@ -16,8 +16,9 @@ using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
+using HZY.EFCore.Repositories.Admin.Core;
 
-namespace HZY.EFCore.Repositories.Core.Impl;
+namespace HZY.EFCore.Repositories.Admin.Core.Impl;
 
 /// <summary>
 /// Admin默认基础仓储接口
@@ -82,16 +83,16 @@ public class AdminRepositoryImpl<T> : AppRepositoryImpl<T, AdminDbContext>, IAdm
         var sqlString = sql;
         if (page > 0)
         {
-            pagingView.Total = await this.QuerySingleBySqlAsync<long>($"SELECT COUNT(1) FROM ({sql}) TAB", parameters);
+            pagingView.Total = await QuerySingleBySqlAsync<long>($"SELECT COUNT(1) FROM ({sql}) TAB", parameters);
             pagingView.PageCount = pagingView.Total / size;
             var offSet = size * (page - 1);
             sqlString = string.Empty;
 
-            if (this.GetDbContext<AdminDbContext>().Database.IsSqlServer())
+            if (GetDbContext<AdminDbContext>().Database.IsSqlServer())
             {
                 sqlString = $"SELECT * FROM ({sql}) TAB ORDER BY {orderBy} OFFSET {offSet} ROWS FETCH NEXT {size} ROWS ONLY";
             }
-            else if (this.GetDbContext<AdminDbContext>().Database.IsMySql() || this.GetDbContext<AdminDbContext>().Database.IsNpgsql())
+            else if (GetDbContext<AdminDbContext>().Database.IsMySql() || GetDbContext<AdminDbContext>().Database.IsNpgsql())
             {
                 sqlString = $"SELECT * FROM ({sql}) TAB ORDER BY {orderBy} LIMIT {size} OFFSET {offSet}";
             }
@@ -101,7 +102,7 @@ public class AdminRepositoryImpl<T> : AppRepositoryImpl<T, AdminDbContext>, IAdm
             }
         }
 
-        var data = await this.QueryDataTableBySqlAsync(sqlString, parameters);
+        var data = await QueryDataTableBySqlAsync(sqlString, parameters);
         var fieldNames = (from DataColumn dc in data.Columns select dc.ColumnName).ToList();
 
         pagingView.InitColumns(fieldNames, columnHeads, typeof(T));
@@ -188,7 +189,7 @@ public class AdminRepositoryImpl<T> : AppRepositoryImpl<T, AdminDbContext>, IAdm
     /// <returns></returns>
     public virtual IQueryable<T> QueryByDataAuthority(AccountInfo accountInfo, Expression<Func<T, object>> userIdFieldNameExpression = null, Expression<Func<T, object>> organizationIdFieldNameExpression = null)
     {
-        var query = this.Query();
+        var query = Query();
 
         if (accountInfo.IsAdministrator)
         {
@@ -215,7 +216,7 @@ public class AdminRepositoryImpl<T> : AppRepositoryImpl<T, AdminDbContext>, IAdm
             throw new Exception($"在模型【{modelType.Name}】中未找到 {userIdFieldName} 或者 {organizationIdFieldName} 字段名称! 请检查设置好对应字段!");
         }
 
-        var data = this.GetDataAuthority(accountInfo);
+        var data = GetDataAuthority(accountInfo);
 
         // 仅看自己处理
         if (data.Self && modelFileds.Any(w => w.Name == userIdFieldName))

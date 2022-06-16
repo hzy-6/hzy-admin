@@ -3,12 +3,12 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Text;
-using HZY.EFCore.Repositories.DevelopmentTool;
 using HZY.Infrastructure;
 using HzyScanDiService;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq.Expressions;
 using System.Data;
+using HZY.EFCore.Repositories.Admin.DevelopmentTool;
 
 namespace HZY.EFCore.PagingViews;
 

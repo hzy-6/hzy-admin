@@ -1,5 +1,5 @@
 ﻿using HZY.EFCore.PagingViews;
-using HZY.EFCore.Repositories.Core;
+using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Core;
 using HZY.Services.Admin.Core.Impl;

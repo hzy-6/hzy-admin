@@ -1,6 +1,6 @@
 ﻿using FreeSql.DatabaseModel;
 using HZY.EFCore.PagingViews;
-using HZY.EFCore.Repositories.DevelopmentTool;
+using HZY.EFCore.Repositories.Admin.DevelopmentTool;
 using HZY.Infrastructure;
 using HZY.Infrastructure.RazorView;
 using HZY.Infrastructure.SerilogUtil;

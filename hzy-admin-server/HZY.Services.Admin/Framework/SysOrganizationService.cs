@@ -1,5 +1,5 @@
 ﻿using HZY.EFCore.PagingViews;
-using HZY.EFCore.Repositories.Core;
+using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Models.DTO;

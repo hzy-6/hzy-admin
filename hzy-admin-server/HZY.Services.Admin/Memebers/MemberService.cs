@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using HZY.Domain.Services.Accounts;
 using HZY.Domain.Services.Upload;
 using HZY.EFCore.PagingViews;
-using HZY.EFCore.Repositories.Core;
+using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
