@@ -7,6 +7,8 @@ using HzyEFCoreRepositories.Extensions;
 using HZY.EFCore.DbContexts;
 using HZY.EFCore.DbContexts.Interceptor;
 using HZY.Infrastructure;
+using HzyEFCoreRepositories;
+using Microsoft.Extensions.Hosting;
 
 namespace HZY.EFCore;
 
@@ -15,19 +17,24 @@ namespace HZY.EFCore;
 /// </summary>
 public class EFCoreModule
 {
+    #region  AdminBaseDbContext 注册配置
+
     /// <summary>
     /// 注册 Admin 后台管理数据库
     /// </summary>
     /// <param name="services"></param>
     /// <param name="appConfiguration"></param>
-    /// <exception cref="System.Exception"></exception>
-    public static void RegisterAdminBaseDbContext(IServiceCollection services, AppConfiguration appConfiguration)
+    /// <param name="hostBuilder"></param>
+    public static void AddAdminDbContext(IServiceCollection services, AppConfiguration appConfiguration, IHostBuilder hostBuilder)
     {
+        //取消域验证
+        hostBuilder.UseDefaultServiceProvider(options => { options.ValidateScopes = false; });
+
         var databaseType = appConfiguration.ConnectionStrings.DefaultDatabaseType;
 
         #region 后台 管理系统 数据库上下文
 
-        services.AddDbContextPool<AdminBaseDbContext>(options =>
+        services.AddDbContextPool<AdminDbContext>(options =>
         {
             // sql 日志写入控制台
             options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
@@ -36,7 +43,7 @@ public class EFCoreModule
             // 懒加载代理
             //options.UseLazyLoadingProxies();
             //添加 EFCore 监控 和 动态表名
-            options.AddEFCoreInterceptor(appConfiguration.Configs.IsMonitorEFCore);
+            options.AddHzyEFCore(appConfiguration.Configs.IsMonitorEFCore);
             options.AddInterceptors(new AuditInterceptor());
 
             if (databaseType == DefaultDatabaseType.SqlServer)
@@ -67,7 +74,15 @@ public class EFCoreModule
         #endregion
     }
 
+    /// <summary>
+    /// 使用 AdminDbContext
+    /// </summary>
+    /// <param name="serviceProvider"></param>
+    public static void UseAdminDbContext(IServiceProvider serviceProvider)
+    {
+        serviceProvider.UseHzyEFCore(typeof(AdminDbContext));
+    }
 
-
+    #endregion
 
 }

@@ -19,9 +19,9 @@ using System.Threading.Tasks;
 
 namespace HZY.Services.Admin.Framework;
 
-public class SysOrganizationService : AdminBaseService<IRepository<SysOrganization>>
+public class SysOrganizationService : AdminBaseService<IAdminRepository<SysOrganization>>
 {
-    public SysOrganizationService(IRepository<SysOrganization> defaultRepository) : base(defaultRepository)
+    public SysOrganizationService(IAdminRepository<SysOrganization> defaultRepository) : base(defaultRepository)
     {
 
     }

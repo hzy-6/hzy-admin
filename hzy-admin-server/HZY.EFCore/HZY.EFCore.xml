@@ -4,7 +4,7 @@
         <name>HZY.EFCore</name>
     </assembly>
     <members>
-        <member name="T:HZY.EFCore.DbContexts.AdminBaseDbContext">
+        <member name="T:HZY.EFCore.DbContexts.AdminDbContext">
             <summary>
             后台权限管理系统 DbContext
             </summary>
@@ -19,13 +19,19 @@
             仓储模块
             </summary>
         </member>
-        <member name="M:HZY.EFCore.EFCoreModule.RegisterAdminBaseDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration)">
+        <member name="M:HZY.EFCore.EFCoreModule.AddAdminDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration,Microsoft.Extensions.Hosting.IHostBuilder)">
             <summary>
             注册 Admin 后台管理数据库
             </summary>
             <param name="services"></param>
             <param name="appConfiguration"></param>
-            <exception cref="T:System.Exception"></exception>
+            <param name="hostBuilder"></param>
+        </member>
+        <member name="M:HZY.EFCore.EFCoreModule.UseAdminDbContext(System.IServiceProvider)">
+            <summary>
+            使用 AdminDbContext
+            </summary>
+            <param name="serviceProvider"></param>
         </member>
         <member name="T:HZY.EFCore.Migrations.Seeds.ModelBuilderExtensions">
             <summary>

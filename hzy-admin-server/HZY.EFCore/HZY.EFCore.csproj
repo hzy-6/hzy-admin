@@ -12,7 +12,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HzyEFCoreRepositories" Version="1.1.9.1" />
+		<PackageReference Include="HzyEFCoreRepositories" Version="1.1.9.4" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>

@@ -21,14 +21,14 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 角色 菜单 功能服务
 /// </summary>
-public class SysRoleMenuFunctionService : AdminBaseService<IRepository<SysRoleMenuFunction>>
+public class SysRoleMenuFunctionService : AdminBaseService<IAdminRepository<SysRoleMenuFunction>>
 {
-    private readonly IRepository<SysMenu> _sysMenuRepository;
-    private readonly IRepository<SysMenuFunction> _sysMenuFunctionRepository;
+    private readonly IAdminRepository<SysMenu> _sysMenuRepository;
+    private readonly IAdminRepository<SysMenuFunction> _sysMenuFunctionRepository;
 
-    public SysRoleMenuFunctionService(IRepository<SysRoleMenuFunction> defaultRepository,
-        IRepository<SysMenu> sysMenuRepository,
-        IRepository<SysMenuFunction> sysMenuFunctionRepository) : base(defaultRepository)
+    public SysRoleMenuFunctionService(IAdminRepository<SysRoleMenuFunction> defaultRepository,
+        IAdminRepository<SysMenu> sysMenuRepository,
+        IAdminRepository<SysMenuFunction> sysMenuFunctionRepository) : base(defaultRepository)
     {
         _sysMenuRepository = sysMenuRepository;
         _sysMenuFunctionRepository = sysMenuFunctionRepository;

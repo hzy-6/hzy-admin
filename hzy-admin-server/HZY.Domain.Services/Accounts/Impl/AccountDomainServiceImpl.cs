@@ -21,23 +21,23 @@ public class AccountDomainServiceImpl : IAccountDomainService
     private readonly AccountInfo _accountInfo;
     private readonly AppConfiguration _appConfiguration;
     private readonly TokenService _tokenService;
-    private readonly IRepository<SysOrganization> _sysOrganizationRepository;
-    private readonly IRepository<SysUser> _sysUserRepository;
+    private readonly IAdminRepository<SysOrganization> _sysOrganizationRepository;
+    private readonly IAdminRepository<SysUser> _sysUserRepository;
     private readonly IMemoryCache _memoryCache;
-    private readonly IRepository<SysUserRole> _sysUserRoleRepository;
-    private readonly IRepository<SysRole> _sysRoleRepository;
-    private readonly IRepository<SysPost> _sysPostRepository;
-    private readonly IRepository<SysUserPost> _sysUserPostRepository;
+    private readonly IAdminRepository<SysUserRole> _sysUserRoleRepository;
+    private readonly IAdminRepository<SysRole> _sysRoleRepository;
+    private readonly IAdminRepository<SysPost> _sysPostRepository;
+    private readonly IAdminRepository<SysUserPost> _sysUserPostRepository;
 
-    public AccountDomainServiceImpl(IRepository<SysUser> sysUserRepository,
-        IRepository<SysOrganization> sysOrganizationRepository,
+    public AccountDomainServiceImpl(IAdminRepository<SysUser> sysUserRepository,
+        IAdminRepository<SysOrganization> sysOrganizationRepository,
         AppConfiguration appConfiguration,
         TokenService tokenService,
         IMemoryCache memoryCache,
-        IRepository<SysUserRole> sysUserRoleRepository,
-        IRepository<SysRole> sysRoleRepository,
-        IRepository<SysPost> sysPostRepository,
-        IRepository<SysUserPost> sysUserPostRepository)
+        IAdminRepository<SysUserRole> sysUserRoleRepository,
+        IAdminRepository<SysRole> sysRoleRepository,
+        IAdminRepository<SysPost> sysPostRepository,
+        IAdminRepository<SysUserPost> sysUserPostRepository)
     {
         _sysUserRepository = sysUserRepository;
         _appConfiguration = appConfiguration;
@@ -105,7 +105,7 @@ public class AccountDomainServiceImpl : IAccountDomainService
     /// 获取当前登录账户信息
     /// </summary>
     /// <returns></returns>
-    public virtual AccountInfo GetAccountInfo() => this._accountInfo;
+    public virtual AccountInfo GetAccountInfo() => this._accountInfo ?? FindAccountInfoByToken();
 
     /// <summary>
     /// 检查账户 登录信息 并返回 token

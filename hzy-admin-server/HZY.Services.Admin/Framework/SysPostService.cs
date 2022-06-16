@@ -18,9 +18,9 @@ using System.Threading.Tasks;
 
 namespace HZY.Services.Admin.Framework;
 
-public class SysPostService : AdminBaseService<IRepository<SysPost>>
+public class SysPostService : AdminBaseService<IAdminRepository<SysPost>>
 {
-    public SysPostService(IRepository<SysPost> defaultRepository) : base(defaultRepository)
+    public SysPostService(IAdminRepository<SysPost> defaultRepository) : base(defaultRepository)
     {
     }
 

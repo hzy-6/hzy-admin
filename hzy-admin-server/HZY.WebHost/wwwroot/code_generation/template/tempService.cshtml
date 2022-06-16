@@ -58,9 +58,9 @@ namespace @(Model.Namespace).Services.Admin
     /// <summary>
     /// @(classNameRemark) 服务 @(className)Service
     /// </summary>
-    public class @(className)Service : AdminBaseService<IRepository<@(className)>>
+    public class @(className)Service : AdminBaseService<IAdminRepository<@(className)>>
     {
-        public @(className)Service(IRepository<@(className)> defaultRepository) 
+        public @(className)Service(IAdminRepository<@(className)> defaultRepository) 
             : base(defaultRepository)
         {
 

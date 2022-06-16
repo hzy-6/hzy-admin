@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HZY.EFCore.Migrations
 {
-    [DbContext(typeof(AdminBaseDbContext))]
+    [DbContext(typeof(AdminDbContext))]
     partial class AdminBaseDbContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)

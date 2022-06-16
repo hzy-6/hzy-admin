@@ -1,4 +1,5 @@
 ﻿using HZY.Domain.Services.Quartz;
+using HZY.EFCore;
 using HZY.Infrastructure;
 using HZY.Infrastructure.MessageQueue;
 using HZY.WebHost.Middlewares;
@@ -16,11 +17,24 @@ public class AppConfigure
     /// 配置构建
     /// </summary>
     /// <param name="app"></param>
-    /// <param name="env"></param>
-    /// <param name="serviceProvider"></param>
-    /// <param name="messageQueueProvider"></param>
-    public static void Build(WebApplication app, IWebHostEnvironment env, IServiceProvider serviceProvider, IMessageQueueProvider messageQueueProvider)
+    public static void Build(WebApplication app)
     {
+        var env = app.Environment;
+        var serviceProvider = app.Services;
+
+        var messageQueueProvider = app.Services.GetRequiredService<IMessageQueueProvider>();
+
+        if (app.Environment.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+            //app.UseSwagger();
+            //app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "HZY.WebHost v1"));
+        }
+
+        app.UseHttpsRedirection();
+
+        app.UseRouting();
+
         var appConfiguration = app.Services.GetRequiredService<AppConfiguration>();
 
         app.UseStaticFiles();
@@ -72,6 +86,15 @@ public class AppConfigure
             _taskService.RecoveryTaskAsync().Wait();
         }
         #endregion
+
+        #region 使用 DbContext
+        EFCoreModule.UseAdminDbContext(serviceProvider);
+        #endregion
+
+        app.UseEndpoints(endpoints =>
+            {
+                endpoints.MapControllers();
+            });
     }
 
 

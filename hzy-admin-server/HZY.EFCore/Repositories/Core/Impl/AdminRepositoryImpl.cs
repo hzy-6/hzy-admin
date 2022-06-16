@@ -23,10 +23,10 @@ namespace HZY.EFCore.Repositories.Core.Impl;
 /// Admin默认基础仓储接口
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class RepositoryImpl<T> : BaseRepository<T, AdminBaseDbContext>, IRepository<T> where T : class, new()
+public class AdminRepositoryImpl<T> : AppRepositoryImpl<T, AdminDbContext>, IAdminRepository<T> where T : class, new()
 {
 
-    public RepositoryImpl(AdminBaseDbContext context, Expression<Func<T, bool>> filter = null) : base(context, filter)
+    public AdminRepositoryImpl(AdminDbContext context, Expression<Func<T, bool>> filter = null) : base(context, filter)
     {
 
     }
@@ -87,11 +87,11 @@ public class RepositoryImpl<T> : BaseRepository<T, AdminBaseDbContext>, IReposit
             var offSet = size * (page - 1);
             sqlString = string.Empty;
 
-            if (Orm.Database.IsSqlServer())
+            if (this.GetDbContext<AdminDbContext>().Database.IsSqlServer())
             {
                 sqlString = $"SELECT * FROM ({sql}) TAB ORDER BY {orderBy} OFFSET {offSet} ROWS FETCH NEXT {size} ROWS ONLY";
             }
-            else if (Orm.Database.IsMySql() || Orm.Database.IsNpgsql())
+            else if (this.GetDbContext<AdminDbContext>().Database.IsMySql() || this.GetDbContext<AdminDbContext>().Database.IsNpgsql())
             {
                 sqlString = $"SELECT * FROM ({sql}) TAB ORDER BY {orderBy} LIMIT {size} OFFSET {offSet}";
             }
@@ -122,9 +122,9 @@ public class RepositoryImpl<T> : BaseRepository<T, AdminBaseDbContext>, IReposit
         var self = false;
 
         using var serviceScope = IOCUtil.CreateScope();
-        var _sysDataAuthorityRepository = serviceScope.ServiceProvider.GetRequiredService<IRepository<SysDataAuthority>>();
-        var _sysDataAuthorityCustomRepository = serviceScope.ServiceProvider.GetRequiredService<IRepository<SysDataAuthorityCustom>>();
-        var _sysOrganizationRepository = serviceScope.ServiceProvider.GetRequiredService<IRepository<SysOrganization>>();
+        var _sysDataAuthorityRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysDataAuthority>>();
+        var _sysDataAuthorityCustomRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysDataAuthorityCustom>>();
+        var _sysOrganizationRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysOrganization>>();
 
         //获取当前用户角色 配置的数据权限类型
         var sysDataAuthorityList = _sysDataAuthorityRepository.Select

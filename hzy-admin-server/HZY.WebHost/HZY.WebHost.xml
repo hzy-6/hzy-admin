@@ -4,14 +4,11 @@
         <name>HZY.WebHost</name>
     </assembly>
     <members>
-        <member name="M:HZY.WebHost.Configure.AppConfigure.Build(Microsoft.AspNetCore.Builder.WebApplication,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,System.IServiceProvider,HZY.Infrastructure.MessageQueue.IMessageQueueProvider)">
+        <member name="M:HZY.WebHost.Configure.AppConfigure.Build(Microsoft.AspNetCore.Builder.WebApplication)">
             <summary>
             配置构建
             </summary>
             <param name="app"></param>
-            <param name="env"></param>
-            <param name="serviceProvider"></param>
-            <param name="messageQueueProvider"></param>
         </member>
         <member name="M:HZY.WebHost.Configure.AppConfigureServices.GetVersionList">
             <summary>
@@ -19,12 +16,11 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.WebHost.Configure.AppConfigureServices.Build(Microsoft.Extensions.DependencyInjection.IServiceCollection,Microsoft.Extensions.Configuration.IConfiguration)">
+        <member name="M:HZY.WebHost.Configure.AppConfigureServices.Build(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
             <summary>
             配置服务
             </summary>
-            <param name="services"></param>
-            <param name="configuration"></param>
+            <param name="builder"></param>
         </member>
         <member name="P:HZY.WebHost.Configure.CustomPolicyRequirement.AuthKey">
             <summary>

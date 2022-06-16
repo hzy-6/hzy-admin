@@ -21,16 +21,16 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 角色服务
 /// </summary>
-public class SysRoleService : AdminBaseService<IRepository<SysRole>>
+public class SysRoleService : AdminBaseService<IAdminRepository<SysRole>>
 {
-    private readonly IRepository<SysUserRole> _sysUserRoleRepository;
-    private readonly IRepository<SysDataAuthority> _sysDataAuthorityRepository;
-    private readonly IRepository<SysDataAuthorityCustom> _sysDataAuthorityCustomRepository;
+    private readonly IAdminRepository<SysUserRole> _sysUserRoleRepository;
+    private readonly IAdminRepository<SysDataAuthority> _sysDataAuthorityRepository;
+    private readonly IAdminRepository<SysDataAuthorityCustom> _sysDataAuthorityCustomRepository;
 
-    public SysRoleService(IRepository<SysRole> defaultRepository,
-        IRepository<SysUserRole> sysUserRoleRepository,
-        IRepository<SysDataAuthority> sysDataAuthorityRepository,
-        IRepository<SysDataAuthorityCustom> sysDataAuthorityCustomRepository) : base(defaultRepository)
+    public SysRoleService(IAdminRepository<SysRole> defaultRepository,
+        IAdminRepository<SysUserRole> sysUserRoleRepository,
+        IAdminRepository<SysDataAuthority> sysDataAuthorityRepository,
+        IAdminRepository<SysDataAuthorityCustom> sysDataAuthorityCustomRepository) : base(defaultRepository)
     {
         _sysUserRoleRepository = sysUserRoleRepository;
         _sysDataAuthorityRepository = sysDataAuthorityRepository;

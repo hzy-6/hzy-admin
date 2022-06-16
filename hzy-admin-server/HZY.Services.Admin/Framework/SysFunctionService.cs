@@ -15,10 +15,10 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 功能服务
 /// </summary>
-public class SysFunctionService : AbsCrudBaseService<IRepository<SysFunction>, SysFunction, SysFunction, SysFunction, Guid>,
-    ICrudBaseService<IRepository<SysFunction>, SysFunction, SysFunction, SysFunction, Guid>
+public class SysFunctionService : AbsCrudBaseService<IAdminRepository<SysFunction>, SysFunction, SysFunction, SysFunction, Guid>,
+    ICrudBaseService<IAdminRepository<SysFunction>, SysFunction, SysFunction, SysFunction, Guid>
 {
-    public SysFunctionService(IRepository<SysFunction> defaultRepository) : base(defaultRepository)
+    public SysFunctionService(IAdminRepository<SysFunction> defaultRepository) : base(defaultRepository)
     {
     }
 

@@ -26,24 +26,24 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 系统账号服务
 /// </summary>
-public class SysUserService : AdminBaseService<IRepository<SysUser>>
+public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
 {
-    private readonly IRepository<SysUserRole> _sysUserRoleRepository;
-    private readonly IRepository<SysRole> _sysRoleRepository;
-    private readonly IRepository<SysUserPost> _sysUserPostRepository;
-    private readonly IRepository<SysPost> _sysPostRepository;
+    private readonly IAdminRepository<SysUserRole> _sysUserRoleRepository;
+    private readonly IAdminRepository<SysRole> _sysRoleRepository;
+    private readonly IAdminRepository<SysUserPost> _sysUserPostRepository;
+    private readonly IAdminRepository<SysPost> _sysPostRepository;
     private readonly IAccountDomainService _accountService;
     private readonly SysMenuService _sysMenuService;
-    private readonly IRepository<SysOrganization> _sysOrganizationRepository;
+    private readonly IAdminRepository<SysOrganization> _sysOrganizationRepository;
 
-    public SysUserService(IRepository<SysUser> defaultRepository,
-        IRepository<SysUserRole> sysUserRoleRepository,
-        IRepository<SysRole> sysRoleRepository,
-        IRepository<SysUserPost> sysUserPostRepository,
-        IRepository<SysPost> sysPostRepository,
+    public SysUserService(IAdminRepository<SysUser> defaultRepository,
+        IAdminRepository<SysUserRole> sysUserRoleRepository,
+        IAdminRepository<SysRole> sysRoleRepository,
+        IAdminRepository<SysUserPost> sysUserPostRepository,
+        IAdminRepository<SysPost> sysPostRepository,
         IAccountDomainService accountService,
         SysMenuService sysMenuService,
-        IRepository<SysOrganization> sysOrganizationRepository) : base(defaultRepository)
+        IAdminRepository<SysOrganization> sysOrganizationRepository) : base(defaultRepository)
     {
         _sysUserRoleRepository = sysUserRoleRepository;
         _sysRoleRepository = sysRoleRepository;
@@ -151,7 +151,7 @@ public class SysUserService : AdminBaseService<IRepository<SysUser>>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [Transactional(typeof(AdminBaseDbContext))]
+    [Transactional(typeof(AdminDbContext))]
     public virtual async Task<SysUser> SaveFormAsync(SysUserFormDto form)
     {
         var model = form.Form;

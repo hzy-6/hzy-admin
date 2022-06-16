@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace HZY.Services.Admin.Core
 {
     public interface ICrudBaseService<TRepository, TSearchDto, TFormDto, TEntity, TKey> : ITransientSelfDependency
-        where TRepository : IRepository<TEntity>
+        where TRepository : IAdminRepository<TEntity>
         where TSearchDto : class
         where TFormDto : class, new()
         where TEntity : class, new()

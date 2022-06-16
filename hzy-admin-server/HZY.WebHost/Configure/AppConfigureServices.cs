@@ -22,6 +22,13 @@ using Microsoft.AspNetCore.Authorization;
 using HzyScanDiService;
 using HZY.Infrastructure.Redis;
 using HZY.Domain.Services.Quartz;
+using Serilog;
+using System.Text.Encodings.Web;
+using System.Text.Unicode;
+using HZY.Infrastructure.Filters;
+using HZY.WebHost.Filters;
+using System.Text.Json;
+using HZY.Infrastructure.TextJson;
 
 namespace HZY.WebHost.Configure;
 
@@ -38,10 +45,42 @@ public class AppConfigureServices
     /// <summary>
     /// 配置服务
     /// </summary>
-    /// <param name="services"></param>
-    /// <param name="configuration"></param>
-    public static void Build(IServiceCollection services, IConfiguration configuration)
+    /// <param name="builder"></param>
+    public static void Build(WebApplicationBuilder builder)
     {
+        var services = builder.Services;
+        var configuration = builder.Configuration;
+
+        // log 日志配置
+        builder.Host.UseSerilog();
+
+        #region razor page 处理
+        //代码生成器需要开启 razor page 引擎
+        builder.Services.AddRazorPages();
+        //razor 解决中文被编码
+        builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));
+        #endregion
+
+        // Add services to the container.
+        builder.Services.AddControllers(options =>
+        {
+            options.Filters.Add<ApiExceptionFilter>();
+            options.Filters.Add<ApiAuthorizationFilter>();
+            options.Filters.Add<ApiPermissionFilter>();
+        })
+        .AddControllersAsServices()
+        .AddJsonOptions(options =>
+        {
+            //设置 如果是 Dictionary 那么 在 json 序列化 是 key 的字符 采用 小驼峰 命名
+            options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+            options.JsonSerializerOptions.Converters.Add(new DateTimeJsonConverter());
+            options.JsonSerializerOptions.Converters.Add(new DateTimeNullJsonConverter());
+            //防止json中带有中文被 unicode 编码
+            options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
+        })
+        ;
+
+
         var appConfiguration = new AppConfiguration(configuration);
         var prefixString = appConfiguration.Configs.Namespace + ".";
 
@@ -73,7 +112,7 @@ public class AppConfigureServices
         #region 数据库仓储注册 、 中间件注册
 
         //配置efcore
-        EFCoreModule.RegisterAdminBaseDbContext(services, appConfiguration);
+        EFCoreModule.AddAdminDbContext(services, appConfiguration, builder.Host);
         //配置freesql
         FreeSqlCoreModule.RegisterFreeSql(services, appConfiguration, $"{prefixString}Repositories");
         //配置redis

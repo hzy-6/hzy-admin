@@ -19,14 +19,14 @@ namespace HZY.Services.Admin.Memebers;
 /// <summary>
 /// 会员服务
 /// </summary>
-public class MemberService : AdminBaseService<IRepository<Member>>
+public class MemberService : AdminBaseService<IAdminRepository<Member>>
 {
-    private readonly IRepository<SysUser> _sysUserRepository;
+    private readonly IAdminRepository<SysUser> _sysUserRepository;
     private readonly IUploadDomainService _uploadService;
     private readonly IAccountDomainService _accountService;
 
-    public MemberService(IRepository<Member> defaultRepository,
-        IRepository<SysUser> sysUserRepository,
+    public MemberService(IAdminRepository<Member> defaultRepository,
+        IAdminRepository<SysUser> sysUserRepository,
         IUploadDomainService uploadService,
         IAccountDomainService accountService)
         : base(defaultRepository)

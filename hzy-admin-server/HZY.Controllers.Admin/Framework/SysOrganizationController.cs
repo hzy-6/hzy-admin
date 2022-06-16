@@ -19,9 +19,9 @@ namespace HZY.Controllers.Admin.Framework;
 [ControllerDescriptor(MenuId = "21", DisplayName = "组织机构")]
 public class SysOrganizationController : AdminBaseController<SysOrganizationService>
 {
-    private readonly IRepository<SysOrganization> _sysOrganizationRepository;
+    private readonly IAdminRepository<SysOrganization> _sysOrganizationRepository;
 
-    public SysOrganizationController(SysOrganizationService defaultService, IRepository<SysOrganization> sysOrganizationRepository) 
+    public SysOrganizationController(SysOrganizationService defaultService, IAdminRepository<SysOrganization> sysOrganizationRepository)
         : base(defaultService)
     {
         _sysOrganizationRepository = sysOrganizationRepository;

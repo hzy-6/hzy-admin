@@ -24,17 +24,17 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 菜单服务
 /// </summary>
-public class SysMenuService : AdminBaseService<IRepository<SysMenu>>
+public class SysMenuService : AdminBaseService<IAdminRepository<SysMenu>>
 {
-    private readonly IRepository<SysFunction> _sysFunctionRepository;
-    private readonly IRepository<SysMenuFunction> _sysMenuFunctionRepository;
-    private readonly IRepository<SysRoleMenuFunction> _sysRoleMenuFunctionRepository;
+    private readonly IAdminRepository<SysFunction> _sysFunctionRepository;
+    private readonly IAdminRepository<SysMenuFunction> _sysMenuFunctionRepository;
+    private readonly IAdminRepository<SysRoleMenuFunction> _sysRoleMenuFunctionRepository;
     private readonly AccountInfo _accountInfo;
 
-    public SysMenuService(IRepository<SysMenu> defaultRepository,
-        IRepository<SysFunction> sysFunctionRepository,
-        IRepository<SysMenuFunction> sysMenuFunctionRepository,
-        IRepository<SysRoleMenuFunction> sysRoleMenuFunctionRepository,
+    public SysMenuService(IAdminRepository<SysMenu> defaultRepository,
+        IAdminRepository<SysFunction> sysFunctionRepository,
+        IAdminRepository<SysMenuFunction> sysMenuFunctionRepository,
+        IAdminRepository<SysRoleMenuFunction> sysRoleMenuFunctionRepository,
         IAccountDomainService accountService) : base(defaultRepository)
     {
         _sysFunctionRepository = sysFunctionRepository;

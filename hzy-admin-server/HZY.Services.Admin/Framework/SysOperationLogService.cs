@@ -29,18 +29,18 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 操作日服务
 /// </summary>
-public class SysOperationLogService : AdminBaseService<IRepository<SysOperationLog>>
+public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOperationLog>>
 {
     private readonly HttpContext _httpContext;
     private readonly IAccountDomainService _accountService;
     private readonly IMessageQueueProvider _messageQueueProvider;
-    private readonly IRepository<SysUser> _sysUserRepository;
+    private readonly IAdminRepository<SysUser> _sysUserRepository;
 
-    public SysOperationLogService(IRepository<SysOperationLog> defaultRepository,
+    public SysOperationLogService(IAdminRepository<SysOperationLog> defaultRepository,
         IHttpContextAccessor iHttpContextAccessor,
         IAccountDomainService accountService,
         IMessageQueueProvider messageQueueProvider,
-        IRepository<SysUser> sysUserRepository
+        IAdminRepository<SysUser> sysUserRepository
         ) : base(defaultRepository)
     {
         this._httpContext = iHttpContextAccessor.HttpContext;
@@ -123,7 +123,7 @@ public class SysOperationLogService : AdminBaseService<IRepository<SysOperationL
         {
             //消费消息
             using var scope = IOCUtil.CreateScope();
-            using var repository = scope.ServiceProvider.GetRequiredService<IRepository<SysOperationLog>>();
+            using var repository = scope.ServiceProvider.GetRequiredService<IAdminRepository<SysOperationLog>>();
             repository.InsertAsync((SysOperationLog)value).Wait();
         });
     }

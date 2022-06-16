@@ -16,9 +16,9 @@ namespace HZY.Services.Admin.Framework
     /// <summary>
     /// 服务 SysDataAuthorityCustomService
     /// </summary>
-    public class SysDataAuthorityCustomService : AdminBaseService<IRepository<SysDataAuthorityCustom>>
+    public class SysDataAuthorityCustomService : AdminBaseService<IAdminRepository<SysDataAuthorityCustom>>
     {
-        public SysDataAuthorityCustomService(IRepository<SysDataAuthorityCustom> defaultRepository)
+        public SysDataAuthorityCustomService(IAdminRepository<SysDataAuthorityCustom> defaultRepository)
             : base(defaultRepository)
         {
 

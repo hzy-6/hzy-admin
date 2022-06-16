@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace HZY.EFCore.Migrations
 {
-    [DbContext(typeof(AdminBaseDbContext))]
+    [DbContext(typeof(AdminDbContext))]
     [Migration("20220608131125_SqlServer_init")]
     partial class SqlServer_init
     {

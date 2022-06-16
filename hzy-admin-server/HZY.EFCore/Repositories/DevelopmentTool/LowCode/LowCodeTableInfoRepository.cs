@@ -11,9 +11,10 @@ using System.Threading.Tasks;
 
 namespace HZY.EFCore.Repositories.DevelopmentTool.LowCode
 {
-    public class LowCodeTableInfoRepository : RepositoryImpl<LowCodeTableInfo>, ITransientSelfDependency
+    public class LowCodeTableInfoRepository : AdminRepositoryImpl<LowCodeTableInfo>, ITransientSelfDependency
     {
-        public LowCodeTableInfoRepository(AdminBaseDbContext context, Expression<Func<LowCodeTableInfo, bool>> filter = null) : base(context, filter)
+        public LowCodeTableInfoRepository(AdminDbContext context, Expression<Func<LowCodeTableInfo, bool>> filter = null)
+            : base(context, filter)
         {
 
         }

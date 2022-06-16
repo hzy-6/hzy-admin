@@ -20,7 +20,7 @@ namespace HZY.Services.Admin.Core.Impl;
 /// <typeparam name="TEntity">实体模型</typeparam>
 /// <typeparam name="TKey">主键类型</typeparam>
 public abstract class AbsCrudBaseService<TRepository, TSearchDto, TFormDto, TEntity, TKey> : ICrudBaseService<TRepository, TSearchDto, TFormDto, TEntity, TKey>
-        where TRepository : IRepository<TEntity>
+        where TRepository : IAdminRepository<TEntity>
         where TSearchDto : class
         where TFormDto : class, new()
         where TEntity : class, new()

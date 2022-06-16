@@ -19,14 +19,14 @@ namespace HZY.Services.Admin.Framework
     /// <summary>
     /// 服务 SysDataAuthorityService
     /// </summary>
-    public class SysDataAuthorityService : AdminBaseService<IRepository<SysDataAuthority>>
+    public class SysDataAuthorityService : AdminBaseService<IAdminRepository<SysDataAuthority>>
     {
         private readonly IAccountDomainService _accountService;
-        private readonly IRepository<SysDataAuthorityCustom> _sysDataAuthorityCustomRepository;
+        private readonly IAdminRepository<SysDataAuthorityCustom> _sysDataAuthorityCustomRepository;
 
-        public SysDataAuthorityService(IRepository<SysDataAuthority> defaultRepository,
+        public SysDataAuthorityService(IAdminRepository<SysDataAuthority> defaultRepository,
         IAccountDomainService accountService,
-        IRepository<SysDataAuthorityCustom> sysDataAuthorityCustomRepository)
+        IAdminRepository<SysDataAuthorityCustom> sysDataAuthorityCustomRepository)
             : base(defaultRepository)
         {
             _accountService = accountService;

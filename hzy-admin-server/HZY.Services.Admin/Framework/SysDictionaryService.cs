@@ -22,9 +22,9 @@ namespace HZY.Services.Admin.Framework;
 /// <summary>
 /// 数据字典服务
 /// </summary>
-public class SysDictionaryService : AdminBaseService<IRepository<SysDictionary>>
+public class SysDictionaryService : AdminBaseService<IAdminRepository<SysDictionary>>
 {
-    public SysDictionaryService(IRepository<SysDictionary> defaultRepository) : base(defaultRepository)
+    public SysDictionaryService(IAdminRepository<SysDictionary> defaultRepository) : base(defaultRepository)
     {
 
     }
