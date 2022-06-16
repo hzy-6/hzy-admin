@@ -20,6 +20,7 @@ namespace HZY.Domain.Services.Quartz.Jobs
         private readonly ITaskService _taskService;
         private readonly ILogger<ResultfulApiJob> _logger;
         private readonly IJobLoggerService _jobLogger;
+        private readonly Stopwatch _stopwatch;
 
         public ResultfulApiJob(IApiRequestService apiRequestService, ITaskService taskService, ILogger<ResultfulApiJob> logger, IJobLoggerService jobLogger)
         {
@@ -27,13 +28,13 @@ namespace HZY.Domain.Services.Quartz.Jobs
             _taskService = taskService;
             _logger = logger;
             _jobLogger = jobLogger;
+            _stopwatch = new Stopwatch();
         }
 
         public async Task Execute(IJobExecutionContext context)
         {
             try
             {
-                Stopwatch _stopwatch = new Stopwatch();
                 _stopwatch.Restart();
 
                 var tasksId = context.MergedJobDataMap.GetString("TasksId")?.ToString();
@@ -64,6 +65,8 @@ namespace HZY.Domain.Services.Quartz.Jobs
                 var time = DateTime.Now;
                 var taskId = tasks?.Id ?? Guid.Empty;
 
+                var text = $"任务={tasks.Name}|组={tasks.GroupName}|{time:yyyy-MM-dd}|StartTime={time: HH:mm:ss:fff}|";
+
                 var result = await _apiRequestService.RequestAsync(tasks.RequsetMode, tasks.ApiUrl, tasks.HeaderToken);
 
                 if (result.IsSuccess)
@@ -77,10 +80,10 @@ namespace HZY.Domain.Services.Quartz.Jobs
 
                 _stopwatch.Stop();
 
+                var endTime = $"{DateTime.Now:HH:mm:ss:fff}";
+
                 //运行结束记录
-                var text = $"{time.ToString("yyyy-MM-dd HH:mm:ss:fff")} [{tasks.Name} 耗时：{_stopwatch.ElapsedMilliseconds} 毫秒]";
-                text += $" 分组 = {tasks.GroupName}、";
-                text += $"结果 = {result.Message}";
+                text += $"EndTime={endTime}|耗时={_stopwatch.ElapsedMilliseconds} 毫秒|结果={result.Message}";
                 _jobLogger.Write(new JobLoggerInfo()
                 {
                     Id = Guid.NewGuid(),
