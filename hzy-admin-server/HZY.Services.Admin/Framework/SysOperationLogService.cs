@@ -3,7 +3,6 @@ using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.MemoryMQ.Interfaces;
-using HZY.Infrastructure.MessageQueue;
 using HZY.Infrastructure.MessageQueue.Models;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO.Framework;
@@ -24,21 +23,18 @@ public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOpera
 {
     private readonly HttpContext _httpContext;
     private readonly IAccountDomainService _accountService;
-    private readonly IMessageQueueProvider _messageQueueProvider;
     private readonly IAdminRepository<SysUser> _sysUserRepository;
     private readonly IMessageProducer<MessageQueueContext> messageProducer;
 
     public SysOperationLogService(IAdminRepository<SysOperationLog> defaultRepository,
           IHttpContextAccessor iHttpContextAccessor,
           IAccountDomainService accountService,
-          IMessageQueueProvider messageQueueProvider,
           IAdminRepository<SysUser> sysUserRepository,
           IMessageProducer<MessageQueueContext> messageProducer
           ) : base(defaultRepository)
     {
         this._httpContext = iHttpContextAccessor.HttpContext;
         _accountService = accountService;
-        this._messageQueueProvider = messageQueueProvider;
         _sysUserRepository = sysUserRepository;
         this.messageProducer = messageProducer;
     }
@@ -122,14 +118,6 @@ public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOpera
             repository.InsertAsync((SysOperationLog)value).Wait();
         });
 
-        //发布消息
-        // await _messageQueueProvider.SendMessageQueueAsync("WriteInLogAsync", sysOperationLog, (value, serviceProvider) =>
-        // {
-        //     //消费消息
-        //     using var scope = IOCUtil.CreateScope();
-        //     using var repository = scope.ServiceProvider.GetRequiredService<IAdminRepository<SysOperationLog>>();
-        //     repository.InsertAsync((SysOperationLog)value).Wait();
-        // });
     }
 
     /// <summary>

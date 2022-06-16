@@ -16,7 +16,6 @@ try
 
     LogUtil.Log.Warning("Web 主机开始启动...");
 
-    LogUtil.Log.Warning("Web 主机开始启动...");
     //服务构建
     AppConfigureServices.Build(builder);
     #endregion

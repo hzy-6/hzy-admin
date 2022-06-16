@@ -1,11 +1,10 @@
-﻿using HZY.Infrastructure;
-using HZY.Infrastructure.Controllers;
-using HZY.Infrastructure.Permission;
+﻿using HZY.Infrastructure.Filters;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace HZY.Infrastructure.Controllers;
 
+[RequestLimitFilter]
 [Authorize(Policy = "WebHostPolicy")]//是否授权 Authorize
 [ApiExplorerSettings(GroupName = nameof(ApiVersions.Admin))]
 [Route("api/admin/[controller]")]
@@ -21,6 +20,7 @@ public class AdminBaseController<TDefaultService> : ApiBaseController<TDefaultSe
     }
 }
 
+[RequestLimitFilter]
 [Authorize(Policy = "WebHostPolicy")]//是否授权 Authorize
 [ApiExplorerSettings(GroupName = nameof(ApiVersions.Admin))]
 [Route("api/admin/[controller]")]

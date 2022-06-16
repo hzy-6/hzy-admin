@@ -147,6 +147,11 @@ public class ApiResult
 public enum ApiResultCodeEnum
 {
     /// <summary>
+    /// 请求限制
+    /// </summary>
+    RequestLimit = -4,
+
+    /// <summary>
     /// 接口不存在
     /// </summary>
     NotFount = -3,

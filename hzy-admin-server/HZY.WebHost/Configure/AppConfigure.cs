@@ -20,7 +20,6 @@ public class AppConfigure
         var env = app.Environment;
         var serviceProvider = app.Services;
 
-        var messageQueueProvider = app.Services.GetRequiredService<IMessageQueueProvider>();
         var memoryMQ = app.Services.GetRequiredService<IMessageConsumer<MessageQueueContext>>();
 
         if (app.Environment.IsDevelopment())
@@ -75,8 +74,6 @@ public class AppConfigure
         #endregion
 
         #region 消息队列启动
-        messageQueueProvider.RunAsync().Wait();
-
         memoryMQ.StartAsync().Wait();
         #endregion
 

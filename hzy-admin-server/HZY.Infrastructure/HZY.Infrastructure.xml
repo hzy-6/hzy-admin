@@ -267,6 +267,11 @@
             消息返回码
             </summary>
         </member>
+        <member name="F:HZY.Infrastructure.ApiResultManage.ApiResultCodeEnum.RequestLimit">
+            <summary>
+            请求限制
+            </summary>
+        </member>
         <member name="F:HZY.Infrastructure.ApiResultManage.ApiResultCodeEnum.NotFount">
             <summary>
             接口不存在
@@ -666,6 +671,65 @@
             返回结果后
             </summary>
             <param name="context"></param>
+        </member>
+        <member name="T:HZY.Infrastructure.Filters.Models.RequestLimitContext">
+            <summary>
+            请求限制上下文
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.Filters.Models.RequestLimitContext.LimitCount">
+            <summary>
+            限制次数
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.Filters.Models.RequestLimitContext.ActiveTime">
+            <summary>
+            最后活跃时间
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.Filters.RequestLimitFilterAttribute">
+            <summary>
+            请求限制
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.Filters.RequestLimitFilterAttribute.Duration">
+            <summary>
+            请求范围内 单位：秒
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.Filters.RequestLimitFilterAttribute.LimitCount">
+            <summary>
+            请求次数
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.Filters.RequestLimitFilterAttribute.Message">
+            <summary>
+            消息提醒内容
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Filters.RequestLimitFilterAttribute.#ctor">
+            <summary>
+            请求限制
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Filters.RequestLimitFilterAttribute.OnResourceExecuting(Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext)">
+            <summary>
+            资源加载之前
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Filters.RequestLimitFilterAttribute.OnResourceExecuted(Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext)">
+            <summary>
+            资源加载之后
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Filters.RequestLimitFilterAttribute.GetCacheKey(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取每个唯一请求的缓存 key
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
         </member>
         <member name="T:HZY.Infrastructure.MessageQueue.IMessageQueueProvider">
             <summary>
