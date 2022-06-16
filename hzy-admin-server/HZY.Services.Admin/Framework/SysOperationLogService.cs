@@ -2,27 +2,18 @@
 using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Core;
 using HZY.Infrastructure;
-using HZY.Infrastructure.ApiResultManage;
+using HZY.Infrastructure.MemoryMQ.Interfaces;
 using HZY.Infrastructure.MessageQueue;
+using HZY.Infrastructure.MessageQueue.Models;
 using HZY.Infrastructure.Permission.Attributes;
-using HZY.Models.DTO;
 using HZY.Models.DTO.Framework;
-using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Core;
 using HzyEFCoreRepositories.Extensions;
 using HzyScanDiService;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HZY.Services.Admin.Framework;
 
@@ -35,18 +26,21 @@ public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOpera
     private readonly IAccountDomainService _accountService;
     private readonly IMessageQueueProvider _messageQueueProvider;
     private readonly IAdminRepository<SysUser> _sysUserRepository;
+    private readonly IMessageProducer<MessageQueueContext> messageProducer;
 
     public SysOperationLogService(IAdminRepository<SysOperationLog> defaultRepository,
-        IHttpContextAccessor iHttpContextAccessor,
-        IAccountDomainService accountService,
-        IMessageQueueProvider messageQueueProvider,
-        IAdminRepository<SysUser> sysUserRepository
-        ) : base(defaultRepository)
+          IHttpContextAccessor iHttpContextAccessor,
+          IAccountDomainService accountService,
+          IMessageQueueProvider messageQueueProvider,
+          IAdminRepository<SysUser> sysUserRepository,
+          IMessageProducer<MessageQueueContext> messageProducer
+          ) : base(defaultRepository)
     {
         this._httpContext = iHttpContextAccessor.HttpContext;
         _accountService = accountService;
         this._messageQueueProvider = messageQueueProvider;
         _sysUserRepository = sysUserRepository;
+        this.messageProducer = messageProducer;
     }
 
     /// <summary>
@@ -91,6 +85,7 @@ public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOpera
 
                     formString = JsonConvert.SerializeObject(_Dictionary);
                 }
+
             }
         }
         catch (Exception) { }
@@ -118,14 +113,23 @@ public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOpera
             sysOperationLog.ActionDisplayName = actionDescriptorAttribute?.DisplayName;
         }
 
-        //发布消息
-        await _messageQueueProvider.SendMessageQueueAsync("WriteInLogAsync", sysOperationLog, (value, serviceProvider) =>
+        // 发布消息
+        await messageProducer.ProduceAsync("WriteInLogAsync", sysOperationLog, (value, serviceProvider) =>
         {
             //消费消息
             using var scope = IOCUtil.CreateScope();
             using var repository = scope.ServiceProvider.GetRequiredService<IAdminRepository<SysOperationLog>>();
             repository.InsertAsync((SysOperationLog)value).Wait();
         });
+
+        //发布消息
+        // await _messageQueueProvider.SendMessageQueueAsync("WriteInLogAsync", sysOperationLog, (value, serviceProvider) =>
+        // {
+        //     //消费消息
+        //     using var scope = IOCUtil.CreateScope();
+        //     using var repository = scope.ServiceProvider.GetRequiredService<IAdminRepository<SysOperationLog>>();
+        //     repository.InsertAsync((SysOperationLog)value).Wait();
+        // });
     }
 
     /// <summary>

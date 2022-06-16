@@ -1,27 +1,19 @@
-﻿using HZY.FreeSqlCore;
+﻿using System.Text;
+using HZY.Domain.Services.Quartz;
 using HZY.EFCore;
+using HZY.FreeSqlCore;
 using HZY.Infrastructure;
+using HZY.Infrastructure.MemoryMQ;
+using HZY.Infrastructure.Redis;
 using HZY.WebHost.Middlewares;
+using HzyScanDiService;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
-using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Swashbuckle.AspNetCore.Filters;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
 using Quartz;
 using Quartz.Impl;
-using Microsoft.AspNetCore.Authorization;
-using HzyScanDiService;
-using HZY.Infrastructure.Redis;
-using HZY.Domain.Services.Quartz;
 using Serilog;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
@@ -29,6 +21,7 @@ using HZY.Infrastructure.Filters;
 using HZY.WebHost.Filters;
 using System.Text.Json;
 using HZY.Infrastructure.TextJson;
+using Swashbuckle.AspNetCore.Filters;
 
 namespace HZY.WebHost.Configure;
 
@@ -54,6 +47,18 @@ public class AppConfigureServices
         // log 日志配置
         builder.Host.UseSerilog();
 
+        var appConfiguration = new AppConfiguration(configuration);
+        var prefixString = appConfiguration.Configs.Namespace + ".";
+
+        #region 自动扫描服务注册 、 其他服务注册
+
+        //扫描服务自动化注册
+        services.AddHzyScanDiService(prefixString);
+
+        services.AddSingleton<IHostedService, LifetimeEventsHostedService>();
+
+        #endregion;
+
         #region razor page 处理
         //代码生成器需要开启 razor page 引擎
         builder.Services.AddRazorPages();
@@ -77,24 +82,15 @@ public class AppConfigureServices
             options.JsonSerializerOptions.Converters.Add(new DateTimeNullJsonConverter());
             //防止json中带有中文被 unicode 编码
             options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
-        })
-        ;
-
-
-        var appConfiguration = new AppConfiguration(configuration);
-        var prefixString = appConfiguration.Configs.Namespace + ".";
-
-        #region 自动扫描服务注册 、 其他服务注册
-
-        //扫描服务自动化注册
-        services.AddHzyScanDiService(prefixString);
-
-        services.AddSingleton<IHostedService, LifetimeEventsHostedService>();
+        });
 
         #region HttpContext、IMemoryCache
 
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddMemoryCache();
+
+        // 本地消息队列
+        services.AddMemoryMQ();
 
         #endregion
 
@@ -104,8 +100,6 @@ public class AppConfigureServices
         services.AddAutoMapper(typeof(AutoMapperConfig));
         //注册ISchedulerFactory的实例。
         services.AddTransient<ISchedulerFactory, StdSchedulerFactory>();
-
-        #endregion
 
         #endregion
 
@@ -214,8 +208,8 @@ public class AppConfigureServices
 
         #endregion
 
+        // 本地消息队列
+        services.AddMemoryMQ();
+
     }
-
-
-
 }

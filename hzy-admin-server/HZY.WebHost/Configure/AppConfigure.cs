@@ -1,13 +1,11 @@
 ﻿using HZY.Domain.Services.Quartz;
 using HZY.EFCore;
 using HZY.Infrastructure;
+using HZY.Infrastructure.MemoryMQ.Interfaces;
 using HZY.Infrastructure.MessageQueue;
+using HZY.Infrastructure.MessageQueue.Models;
 using HZY.WebHost.Middlewares;
 using HzyScanDiService;
-using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.DependencyInjection;
-using System;
 
 namespace HZY.WebHost.Configure;
 
@@ -23,6 +21,7 @@ public class AppConfigure
         var serviceProvider = app.Services;
 
         var messageQueueProvider = app.Services.GetRequiredService<IMessageQueueProvider>();
+        var memoryMQ = app.Services.GetRequiredService<IMessageConsumer<MessageQueueContext>>();
 
         if (app.Environment.IsDevelopment())
         {
@@ -36,8 +35,6 @@ public class AppConfigure
         app.UseRouting();
 
         var appConfiguration = app.Services.GetRequiredService<AppConfiguration>();
-
-        app.UseStaticFiles();
 
         #region 注册服务提供者
 
@@ -77,6 +74,8 @@ public class AppConfigure
 
         #region 消息队列启动
         messageQueueProvider.RunAsync().Wait();
+  var memoryMQ = app.Services.GetRequiredService<IMessageConsumer<MessageQueueContext>>();
+        memoryMQ.StartAsync().Wait();
         #endregion
 
         #region 启动定时任务
@@ -96,6 +95,5 @@ public class AppConfigure
                 endpoints.MapControllers();
             });
     }
-
 
 }
