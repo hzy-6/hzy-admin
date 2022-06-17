@@ -67,14 +67,14 @@
           <a-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8">
             <a-form-item label="头像">
               <div>
-                <input type="file" @change="handlePhoto" />
+                <input type="file" @change="methods.handlePhoto" />
               </div>
               <a-avatar shape="square" v-if="state.vm.form.photo" :size="100" :src="state.vm.form.photo" />
             </a-form-item>
           </a-col>
           <a-col :xs="24" :sm="12" :md="12" :lg="8" :xl="8">
             <a-form-item label="文件">
-              <input type="file" @change="handleFiles" multiple="multiple" />
+              <input type="file" @change="methods.handleFiles" multiple="multiple" />
               <ul v-if="state.vm.form.filePath">
                 <li v-for="(item, index) in state.vm.form.filePath.split(',')" :key="index">
                   <a v-if="state.vm.id" :href="state.domainName + item" target="_blank">{{ item }}</a>

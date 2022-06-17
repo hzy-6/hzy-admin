@@ -647,10 +647,10 @@ ansi-styles@^2.2.1:
   resolved "https://registry.yarnpkg.com/ansi-styles/-/ansi-styles-2.2.1.tgz#b432dd3358b634cf75e1e4664368240533c1ddbe"
   integrity sha1-tDLdM1i2NM914eRmQ2gkBTPB3b4=
 
-ant-design-vue@3.2.3:
-  version "3.2.3"
-  resolved "https://registry.yarnpkg.com/ant-design-vue/-/ant-design-vue-3.2.3.tgz#adcee802fea8c4a10bae2fcd829cb82ecd9228c3"
-  integrity sha512-yjb+YKfh+61zrdY2DSLzrcGkU9ICn9NKWZJa4PzeA+xaZu/f+tjmaUFbI0K0FZgLQANoVM3FZKP/r/IaFlhlmg==
+ant-design-vue@3.2.5:
+  version "3.2.5"
+  resolved "https://registry.yarnpkg.com/ant-design-vue/-/ant-design-vue-3.2.5.tgz#caca06fdba370fc351f3408cb16d36c0baac9513"
+  integrity sha512-O6nxTHkRgqI3zIZ702hfBM4pamsYJs5ey63DY3BAq5zy1thLxcjjx4K4V2Zf9QtVQgsD8bgf6qb605P14GIqAw==
   dependencies:
     "@ant-design/colors" "^6.0.0"
     "@ant-design/icons-vue" "^6.1.0"
@@ -2112,10 +2112,10 @@ vue@^3.0.5, vue@^3.2.33:
     "@vue/server-renderer" "3.2.33"
     "@vue/shared" "3.2.33"
 
-vxe-table@^4.2.3:
-  version "4.2.3"
-  resolved "https://registry.yarnpkg.com/vxe-table/-/vxe-table-4.2.3.tgz#48e8cc26e5492f35522e218f064760e1a02d60a0"
-  integrity sha512-sbW9yZ763/ArOpJXRyBJwPKShU0za4lq5WJYdzF+O73yqdhmSUJ/cFuf3E/JJ/DxD/rk3BdV7/jDaFR6YBDyIQ==
+vxe-table@^4.2.4:
+  version "4.2.6"
+  resolved "https://registry.yarnpkg.com/vxe-table/-/vxe-table-4.2.6.tgz#26ffb4f608d6e1ce752a9ad2578fb72fb6e63591"
+  integrity sha512-hxjwJIanUn9KWU0+twHQ12YHZhjrWLTFwJos8m2RSrA9YV3UfHg15dmQYSsvDE9/x5NDDCoDOxpQi/dhp7aZvQ==
 
 warning@^4.0.0:
   version "4.0.3"

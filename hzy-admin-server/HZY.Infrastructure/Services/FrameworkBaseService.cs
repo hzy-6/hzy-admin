@@ -6,7 +6,7 @@ namespace HZY.Infrastructure.Services;
 /// 服务层 基类
 /// </summary>
 /// <typeparam name="TRepository">默认仓储 类型</typeparam>
-public class FrameworkBaseService<TRepository> : ITransientSelfDependency where TRepository : class
+public class FrameworkBaseService<TRepository> : IScopedSelfDependency where TRepository : class
 {
     /// <summary>
     /// 默认 仓储
