@@ -69,7 +69,9 @@
               <a-checkbox v-model:checked="item.show" @change="() => nextTick(() => refList.table.refreshColumn())">{{ item.title }}</a-checkbox>
             </div>
           </template>
-          <a-button><AppIcon name="BarsOutlined" /></a-button>
+          <a-button>
+            <AppIcon name="BarsOutlined" />
+          </a-button>
         </a-popover>
         <!--  -->
       </template>
@@ -82,7 +84,8 @@
           <template v-if="item.fieldName == 'photo'">
             <vxe-column :field="item.fieldName" :title="item.title" :visible="item.show" :key="item.id">
               <template #default="{ row }">
-                <img :src="domainName + row.photo" width="35" height="35" />
+                <!-- <img :src="row.photo" width="35" height="35" /> -->
+                <img :src="state.domainName + row.photo" width="35" height="35" />
               </template>
             </vxe-column>
           </template>
@@ -175,8 +178,10 @@ const methods = {
   },
   //获取列表数据
   findList() {
+
     state.loading = true;
     service.findList(state.rows, state.page, state.search.vm).then((res) => {
+      debugger;
       let data = res.data;
       state.loading = false;
       state.page = data.page;
