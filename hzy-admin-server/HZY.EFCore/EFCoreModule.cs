@@ -9,6 +9,7 @@ using HZY.EFCore.DbContexts.Interceptor;
 using HZY.Infrastructure;
 using HzyEFCoreRepositories;
 using Microsoft.Extensions.Hosting;
+using Microsoft.AspNetCore.Builder;
 
 namespace HZY.EFCore;
 
@@ -25,10 +26,10 @@ public class EFCoreModule
     /// <param name="services"></param>
     /// <param name="appConfiguration"></param>
     /// <param name="hostBuilder"></param>
-    public static void AddAdminDbContext(IServiceCollection services, AppConfiguration appConfiguration, IHostBuilder hostBuilder)
+    public static void AddAdminDbContext(IServiceCollection services, AppConfiguration appConfiguration, WebApplicationBuilder hostBuilder)
     {
         //取消域验证
-        hostBuilder.UseDefaultServiceProvider(options => { options.ValidateScopes = false; });
+        hostBuilder.Host.UseDefaultServiceProvider(options => { options.ValidateScopes = false; });
 
         var databaseType = appConfiguration.ConnectionStrings.DefaultDatabaseType;
 
@@ -36,8 +37,13 @@ public class EFCoreModule
 
         services.AddDbContextPool<AdminDbContext>(options =>
         {
-            // sql 日志写入控制台
-            options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+            var env= hostBuilder.Environment.EnvironmentName;
+            if(env== "Development")
+            {
+                // sql 日志写入控制台
+                options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+
+            }
             // 无跟踪
             // options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             // 懒加载代理
