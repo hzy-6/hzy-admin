@@ -82,7 +82,7 @@
           <template v-if="item.fieldName == 'photo'">
             <vxe-column :field="item.fieldName" :title="item.title" :visible="item.show" :key="item.id">
               <template #default="{ row }">
-                <img :src="domainName + row.photo" width="35" height="35" />
+                <img :src="state.domainName + row.photo" width="35" height="35" />
               </template>
             </vxe-column>
           </template>
