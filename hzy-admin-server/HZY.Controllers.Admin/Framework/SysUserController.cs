@@ -70,6 +70,7 @@ public class SysUserController : AdminBaseController<SysUserService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
+    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
     [ActionDescriptor(DisplayName = "保存/编辑数据")]
     [HttpPost("SaveForm")]
     [ApiCheckModel]
