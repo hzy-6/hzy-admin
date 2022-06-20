@@ -1,5 +1,0 @@
-<<<<<<< HEAD:hzy-admin-client/dist/static/js/ExternalJump-de519038.js
-import{_ as s,i as _,j as r,d as o,e as n,k as c,l as t}from"./index-7cc8a30f.js";const p={class:"p-15 text-center"},u=["href"],l={name:"ExternalJumpCom"},d=Object.assign(l,{setup(i){const{params:a}=_.currentRoute.value,{path:e}=a;return setTimeout(()=>{window.open(e,"_black")},1e3),(m,f)=>(r(),o("div",p,[n("a",{target:"_black",href:t(e)},c(t(e)),9,u)]))}});var v=s(d,[["__scopeId","data-v-10922df6"]]);export{v as default};
-=======
-import{_ as s,i as _,j as r,d as o,e as n,k as c,l as t}from"./index-cf6b0133.js";const p={class:"p-15 text-center"},u=["href"],l={name:"ExternalJumpCom"},d=Object.assign(l,{setup(i){const{params:a}=_.currentRoute.value,{path:e}=a;return setTimeout(()=>{window.open(e,"_black")},1e3),(f,m)=>(r(),o("div",p,[n("a",{target:"_black",href:t(e)},c(t(e)),9,u)]))}});var v=s(d,[["__scopeId","data-v-10922df6"]]);export{v as default};
->>>>>>> 4fd5c710ecf554dd60b7bc14f37334793723ca35:hzy-admin-client/dist/static/js/ExternalJump-62ecd436.js
