@@ -4,16 +4,18 @@ using Serilog;
 
 try
 {
-    LogUtil.Build();
+  
 
     #region 创建主机
 
     var builder = WebApplication.CreateBuilder(args);
 
+    LogUtil.Build(builder);
+
     //地址
     //builder.WebHost.UseUrls("http://*:5600", "http://localhost:5600");
     //builder.WebHost.UseUrls("http://*:5600");
-
+    Console.WriteLine("Web 主机开始启动...");
     LogUtil.Log.Warning("Web 主机开始启动...");
 
     //服务构建
@@ -22,6 +24,7 @@ try
 
     #region 服务构建
     var app = builder.Build();
+    
     //配置构建
     AppConfigure.Build(app);
     app.Run();

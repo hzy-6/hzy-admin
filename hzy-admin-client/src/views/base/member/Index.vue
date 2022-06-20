@@ -69,7 +69,9 @@
               <a-checkbox v-model:checked="item.show" @change="() => nextTick(() => refList.table.refreshColumn())">{{ item.title }}</a-checkbox>
             </div>
           </template>
-          <a-button><AppIcon name="BarsOutlined" /></a-button>
+          <a-button>
+            <AppIcon name="BarsOutlined" />
+          </a-button>
         </a-popover>
         <!--  -->
       </template>
@@ -175,8 +177,10 @@ const methods = {
   },
   //获取列表数据
   findList() {
+
     state.loading = true;
     service.findList(state.rows, state.page, state.search.vm).then((res) => {
+      debugger;
       let data = res.data;
       state.loading = false;
       state.page = data.page;

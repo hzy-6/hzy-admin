@@ -1,4 +1,5 @@
-﻿using Serilog;
+﻿using Microsoft.AspNetCore.Builder;
+using Serilog;
 using Serilog.Core;
 using Serilog.Events;
 using System;
@@ -20,11 +21,14 @@ namespace HZY.Infrastructure.SerilogUtil
         /// <summary>
         /// 启动
         /// </summary>
-        public static void Build()
+        public static void Build(WebApplicationBuilder builder)
         {
             var now = DateTime.Now;
 
-            Serilog.Log.Logger = new LoggerConfiguration()
+            var env = builder.Environment.EnvironmentName;
+            if(env== "Development")
+            {
+                Serilog.Log.Logger = new LoggerConfiguration()
                 .Enrich.With(new DateTimeNowEnricher())
                 .MinimumLevel.Debug()//最小记录级别
                 .Enrich.FromLogContext()//记录相关上下文信息 
@@ -62,6 +66,42 @@ namespace HZY.Infrastructure.SerilogUtil
                     .WriteTo.File(LogFilePath(nameof(LogEventLevel.Fatal)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
                 })
                 .CreateLogger();
+            }
+            else
+            {
+                Serilog.Log.Logger = new LoggerConfiguration()
+               .Enrich.With(new DateTimeNowEnricher())
+               .MinimumLevel.Information()//最小记录级别
+               .Enrich.FromLogContext()//记录相关上下文信息 
+               .MinimumLevel.Override("Microsoft", LogEventLevel.Information)//对其他日志进行重写,除此之外,目前框架只有微软自带的日志组件          // .WriteTo.File($"{AppDomain.CurrentDomain.BaseDirectory}/AppLogs/{now.Year}/{now.Month}/.log", LogEventLevel.Debug, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true)
+               .WriteTo.Logger(lg =>
+               {
+                   lg.Filter
+                   .ByIncludingOnly(p => p.Level == LogEventLevel.Information)
+                   .WriteTo.File(LogFilePath(nameof(LogEventLevel.Information)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
+               })
+               .WriteTo.Logger(lg =>
+               {
+                   lg.Filter
+                   .ByIncludingOnly(p => p.Level == LogEventLevel.Warning)
+                   .WriteTo.File(LogFilePath(nameof(LogEventLevel.Warning)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
+               })
+               .WriteTo.Logger(lg =>
+               {
+                   lg.Filter
+                   .ByIncludingOnly(p => p.Level == LogEventLevel.Error)
+                   .WriteTo.File(LogFilePath(nameof(LogEventLevel.Error)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
+               })
+               .WriteTo.Logger(lg =>
+               {
+                   lg.Filter
+                   .ByIncludingOnly(p => p.Level == LogEventLevel.Fatal)
+                   .WriteTo.File(LogFilePath(nameof(LogEventLevel.Fatal)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
+               })
+               .CreateLogger();
+            }
+
+            
         }
 
         /// <summary>

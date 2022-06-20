@@ -19,7 +19,7 @@
             仓储模块
             </summary>
         </member>
-        <member name="M:HZY.EFCore.EFCoreModule.AddAdminDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration,Microsoft.Extensions.Hosting.IHostBuilder)">
+        <member name="M:HZY.EFCore.EFCoreModule.AddAdminDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
             <summary>
             注册 Admin 后台管理数据库
             </summary>
