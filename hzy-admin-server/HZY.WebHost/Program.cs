@@ -15,7 +15,6 @@ try
     //地址
     //builder.WebHost.UseUrls("http://*:5600", "http://localhost:5600");
     //builder.WebHost.UseUrls("http://*:5600");
-    Console.WriteLine("Web 主机开始启动...");
     LogUtil.Log.Warning("Web 主机开始启动...");
 
     //服务构建

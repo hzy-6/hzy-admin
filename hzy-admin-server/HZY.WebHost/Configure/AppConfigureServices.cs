@@ -22,6 +22,7 @@ using HZY.WebHost.Filters;
 using System.Text.Json;
 using HZY.Infrastructure.TextJson;
 using Swashbuckle.AspNetCore.Filters;
+using Newtonsoft.Json.Serialization;
 
 namespace HZY.WebHost.Configure;
 
@@ -74,15 +75,24 @@ public class AppConfigureServices
             options.Filters.Add<ApiPermissionFilter>();
         })
         .AddControllersAsServices()
-        .AddJsonOptions(options =>
+        //.AddJsonOptions(options =>
+        //{
+        //    //设置 如果是 Dictionary 那么 在 json 序列化 是 key 的字符 采用 小驼峰 命名
+        //    options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
+        //    options.JsonSerializerOptions.Converters.Add(new DateTimeJsonConverter());
+        //    options.JsonSerializerOptions.Converters.Add(new DateTimeNullJsonConverter());
+        //    //防止json中带有中文被 unicode 编码
+        //    options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
+        //})
+        .AddNewtonsoftJson(options =>
         {
-            //设置 如果是 Dictionary 那么 在 json 序列化 是 key 的字符 采用 小驼峰 命名
-            options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
-            options.JsonSerializerOptions.Converters.Add(new DateTimeJsonConverter());
-            options.JsonSerializerOptions.Converters.Add(new DateTimeNullJsonConverter());
-            //防止json中带有中文被 unicode 编码
-            options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
-        });
+            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
+            //小驼峰命名
+            options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+            //忽略循环引用
+            //    option.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
+        })
+        ;
 
         #region HttpContext、IMemoryCache
 
