@@ -70,10 +70,13 @@ const state = reactive({
 const methods = {
   findForm() {
     state.saveLoading = true;
-    service.findForm(state.vm.id).then((res) => {
-      state.saveLoading = false;
-      if (res.code != 1) return;
-      state.vm = res.data;
+    return new Promise((resolve) => {
+      service.findForm(state.vm.id).then((res) => {
+        state.saveLoading = false;
+        if (res.code != 1) return;
+        state.vm = res.data;
+        resolve(res);
+      });
     });
   },
   saveForm() {
@@ -87,11 +90,14 @@ const methods = {
     });
   },
   //打开表单初始化
-  openForm({ visible, key }) {
+  openForm({ visible, key, parentId }) {
     state.visible = visible;
     if (visible) {
       state.vm.id = key;
-      methods.findForm();
+      methods.findForm().then((res) => {
+        //对列表页传递过来的父级id 处理
+        if (parentId) state.vm.form.parentId = parentId;
+      });
     }
   },
 };
