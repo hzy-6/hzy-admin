@@ -89,9 +89,6 @@ public class AppConfigureServices
         services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
         services.AddMemoryCache();
 
-        // 本地消息队列
-        services.AddMemoryMQ();
-
         #endregion
 
         #region Quartz

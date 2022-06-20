@@ -1,9 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-
-using HzyEFCoreRepositories.Extensions;
-
 using HZY.EFCore.DbContexts;
 using HZY.EFCore.DbContexts.Interceptor;
 using HZY.Infrastructure;
@@ -37,13 +34,12 @@ public class EFCoreModule
 
         services.AddDbContextPool<AdminDbContext>(options =>
         {
-            var env= hostBuilder.Environment.EnvironmentName;
-            if(env== "Development")
+            if (hostBuilder.Environment.IsDevelopment())
             {
                 // sql 日志写入控制台
                 options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
-
             }
+
             // 无跟踪
             // options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             // 懒加载代理
