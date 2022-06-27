@@ -114,55 +114,6 @@
             <returns></returns>
             <exception cref="T:System.Exception"></exception>
         </member>
-        <member name="T:HZY.Infrastructure.Aop.TransactionalAttribute">
-            <summary>
-            事务拦截
-            </summary>
-        </member>
-        <member name="P:HZY.Infrastructure.Aop.TransactionalAttribute.DbContextTypes">
-            <summary>
-            指定 数据上下文
-            </summary>
-        </member>
-        <member name="M:HZY.Infrastructure.Aop.TransactionalAttribute.#ctor(System.Type[])">
-            <summary>
-            事务拦截
-            </summary>
-            <param name="dbContextTypes">数据上下文</param>
-        </member>
-        <member name="M:HZY.Infrastructure.Aop.TransactionalAttribute.Before(HzyScanDiService.AopContext)">
-            <summary>
-            之前
-            </summary>
-            <param name="aopContext"></param>
-        </member>
-        <member name="M:HZY.Infrastructure.Aop.TransactionalAttribute.After(HzyScanDiService.AopContext)">
-            <summary>
-            之后
-            </summary>
-            <param name="aopContext"></param>
-        </member>
-        <member name="M:HZY.Infrastructure.Aop.TransactionalAttribute.Before``1(HzyScanDiService.AopContext)">
-            <summary>
-            之前
-            </summary>
-            <param name="aopContext"></param>
-        </member>
-        <member name="M:HZY.Infrastructure.Aop.TransactionalAttribute.After``1(HzyScanDiService.AopContext,``0)">
-            <summary>
-            之后
-            </summary>
-            <typeparam name="TResult"></typeparam>
-            <param name="aopContext"></param>
-            <param name="result"></param>
-        </member>
-        <member name="M:HZY.Infrastructure.Aop.TransactionalAttribute.OnException(HzyScanDiService.AopContext,System.Exception)">
-            <summary>
-            异常
-            </summary>
-            <param name="aopContext"></param>
-            <param name="exception"></param>
-        </member>
         <member name="T:HZY.Infrastructure.ApiResultManage.ApiResult">
             <summary>
             Api 消息返回类

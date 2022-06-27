@@ -1,4 +1,5 @@
 using HZY.Domain.Services.Accounts;
+using HZY.EFCore.Aop;
 using HZY.EFCore.DbContexts;
 using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Admin.Core;
@@ -151,7 +152,7 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [Transactional(typeof(AdminDbContext))]
+    [Transactional]
     public virtual async Task<SysUser> SaveFormAsync(SysUserFormDto form)
     {
         var model = form.Form;
