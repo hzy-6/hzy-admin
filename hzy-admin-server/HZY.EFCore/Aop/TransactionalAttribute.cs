@@ -22,6 +22,12 @@ namespace HZY.EFCore.Aop
         public TransactionalAttribute()
         {
             _dbContextTypes = HzyEFCoreUtil.GetAllDbContextType().ToArray();
+
+            if (_dbContextTypes == null || _dbContextTypes.Length == 0)
+            {
+                throw new Exception("请在程序启动前注册 程序中所有的 dbcontext 类型。例如： serviceProvider.UseHzyEFCore(typeof(AdminDbContext));");
+            }
+
             ExceptionEvent = OnException;
         }
 
