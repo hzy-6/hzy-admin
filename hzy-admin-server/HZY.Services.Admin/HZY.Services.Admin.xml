@@ -537,7 +537,7 @@
             <param name="search"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysDictionaryService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
+        <member name="M:HZY.Services.Admin.Framework.SysDictionaryService.DeleteListAsync(System.Collections.Generic.List{System.Int32})">
             <summary>
             根据id数组删除
             </summary>

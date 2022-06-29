@@ -66,7 +66,7 @@ public class SysDictionaryService : AdminBaseService<IAdminRepository<SysDiction
     /// </summary>
     /// <param name="ids"></param>
     /// <returns></returns>
-    public async Task DeleteListAsync(List<Guid> ids)
+    public async Task DeleteListAsync(List<int> ids)
     {
         await this._defaultRepository.DeleteByIdsAsync(ids);
     }

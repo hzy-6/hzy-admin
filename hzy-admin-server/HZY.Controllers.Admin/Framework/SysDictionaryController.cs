@@ -49,7 +49,7 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "删除数据")]
     [HttpPost("DeleteList")]
-    public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids)
+    public async Task<bool> DeleteListAsync([FromBody] List<int> ids)
     {
         await this._defaultService.DeleteListAsync(ids);
         return true;
