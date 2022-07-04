@@ -18,51 +18,51 @@
           </a-row>
         </a-card>
 
-        <a-card>
-          <a-row :gutter="[15, 15]">
-            <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <a-space :size="15">
-                <!-- 检索 -->
-                <template v-if="power.search">
-                  <a-button @click="state.table.search.state = !state.table.search.state">
-                    <template #icon>
-                      <AppIcon :name="state.table.search.state ? 'UpOutlined' : 'DownOutlined'" />
-                    </template>
-                    检索
-                  </a-button>
-                </template>
+        <!-- <a-card> -->
+        <a-row :gutter="[15, 15]">
+          <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
+            <a-space :size="15">
+              <!-- 检索 -->
+              <template v-if="power.search">
+                <a-button @click="state.table.search.state = !state.table.search.state">
+                  <template #icon>
+                    <AppIcon :name="state.table.search.state ? 'UpOutlined' : 'DownOutlined'" />
+                  </template>
+                  检索
+                </a-button>
+              </template>
 
-                <!-- 同步表 -->
-                <a-popconfirm title="您确定要更新表吗?可能会导致数据丢失" @confirm="methods.synchronization()" okText="确定" cancelText="取消">
-                  <a-button type="primary">
-                    <template #icon>
-                      <AppIcon name="ReloadOutlined" />
-                    </template>
-                    同步字段
-                  </a-button>
-                </a-popconfirm>
-                <!-- 提交更改 -->
-                <a-popconfirm title="您确定要提交更改?" @confirm="methods.change()" okText="确定" cancelText="取消">
-                  <a-button type="primary">
-                    <template #icon>
-                      <AppIcon name="PlusOutlined" />
-                    </template>
-                    提交更改
-                  </a-button>
-                </a-popconfirm>
-                <!-- 删除 -->
-                <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList()" okText="确定" cancelText="取消">
-                  <a-button type="danger">
-                    <template #icon>
-                      <AppIcon name="DeleteOutlined" />
-                    </template>
-                    批量删除
-                  </a-button>
-                </a-popconfirm>
-              </a-space>
-            </a-col>
-            <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="text-right">
-              <!-- <a-dropdown>
+              <!-- 同步表 -->
+              <a-popconfirm title="您确定要更新表吗?可能会导致数据丢失" @confirm="methods.synchronization()" okText="确定" cancelText="取消">
+                <a-button type="primary">
+                  <template #icon>
+                    <AppIcon name="ReloadOutlined" />
+                  </template>
+                  同步字段
+                </a-button>
+              </a-popconfirm>
+              <!-- 提交更改 -->
+              <a-popconfirm title="您确定要提交更改?" @confirm="methods.change()" okText="确定" cancelText="取消">
+                <a-button type="primary">
+                  <template #icon>
+                    <AppIcon name="PlusOutlined" />
+                  </template>
+                  提交更改
+                </a-button>
+              </a-popconfirm>
+              <!-- 删除 -->
+              <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList()" okText="确定" cancelText="取消">
+                <a-button type="danger">
+                  <template #icon>
+                    <AppIcon name="DeleteOutlined" />
+                  </template>
+                  批量删除
+                </a-button>
+              </a-popconfirm>
+            </a-space>
+          </a-col>
+          <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="text-right">
+            <!-- <a-dropdown>
             <template #overlay>
               <a-menu>
                 <a-menu-item key="1" @click="exportExcel">导出 Excel</a-menu-item>
@@ -73,88 +73,91 @@
               <AppIcon name="DownOutlined" />
             </a-button>
           </a-dropdown> -->
-            </a-col>
-          </a-row>
-          <!-- 表格 -->
-          <a-spin :spinning="state.table.loading">
-            <vxe-table
-              class="mt-15"
-              ref="refTable"
-              size="medium"
-              border
-              stripe
-              :data="state.table.data"
-              :row-config="{ isCurrent: true, isHover: true }"
-              :column-config="{ isCurrent: true, resizable: true }"
-              :checkbox-config="{ highlight: true }"
-              :edit-config="{ trigger: 'click', mode: 'cell' }"
-            >
-              <vxe-column type="seq" width="50"></vxe-column>
-              <vxe-column type="checkbox" width="50"></vxe-column>
-              <vxe-column field="columnName" title="列名称"> </vxe-column>
-              <vxe-column field="databaseColumnType" title="数据库类型" width="130px"> </vxe-column>
-              <vxe-column field="csField" title="C#字段名称"> </vxe-column>
-              <vxe-column field="csType" title="C#数据类型" width="100px"> </vxe-column>
-              <vxe-column field="isPrimary" title="是否主键" width="100px">
-                <template #default="{ row }">
-                  <a-tag color="success" v-if="row.isPrimary">是</a-tag>
-                  <a-tag color="default" v-else>否</a-tag>
-                </template>
-              </vxe-column>
-              <vxe-column field="isIdentity" title="是否自增" width="100px">
-                <template #default="{ row }">
-                  <a-tag color="success" v-if="row.isIdentity">是</a-tag>
-                  <a-tag color="default" v-else>否</a-tag>
-                </template>
-              </vxe-column>
-              <!-- 显示名称 -->
-              <vxe-column field="displayName" title="显示名称" :edit-render="{}" width="150px">
-                <template #default="{ row }">{{ row.displayName }}</template>
-                <template #edit="{ row }">
-                  <a-input v-model:value="row.displayName" placeholder="显示名称" />
-                </template>
-              </vxe-column>
-              <!-- 列描述 -->
-              <vxe-column field="describe" title="列描述" :edit-render="{}" width="150px">
-                <template #default="{ row }">{{ row.describe }}</template>
-                <template #edit="{ row }">
-                  <a-input v-model:value="row.describe" placeholder="列描述" />
-                </template>
-              </vxe-column>
-              <!-- <vxe-column field="isNullable" title="能否为null" width="100px"> </vxe-column> -->
-              <!-- <vxe-column field="position" title="位置" width="60px"> </vxe-column> -->
-              <vxe-column field="lastModificationTime" title="更新时间" width="120px"></vxe-column>
-              <vxe-column field="creationTime" title="创建时间" width="120px"></vxe-column>
-              <vxe-column field="id" title="操作" width="80px">
-                <template #default="{ row }">
-                  <!-- 
+          </a-col>
+        </a-row>
+        <!-- 表格 -->
+        <a-spin :spinning="state.table.loading">
+          <vxe-table
+            class="mt-15"
+            ref="refTable"
+            size="medium"
+            border
+            stripe
+            :data="state.table.data"
+            :row-config="{ isCurrent: true, isHover: true }"
+            :column-config="{ isCurrent: true, resizable: true }"
+            :checkbox-config="{ highlight: true }"
+            :edit-config="{ trigger: 'click', mode: 'cell' }"
+          >
+            <vxe-column type="seq" width="50"></vxe-column>
+            <vxe-column type="checkbox" width="50"></vxe-column>
+            <vxe-column field="columnName" title="列名称"> </vxe-column>
+            <vxe-column field="databaseColumnType" title="数据库类型" width="130px"> </vxe-column>
+            <vxe-column field="csField" title="C#字段名称"> </vxe-column>
+            <vxe-column field="csType" title="C#数据类型" width="100px"> </vxe-column>
+            <vxe-column field="isPrimary" title="是否主键" width="100px">
+              <template #default="{ row }">
+                <a-tag color="success" v-if="row.isPrimary">是</a-tag>
+                <a-tag color="default" v-else>否</a-tag>
+              </template>
+            </vxe-column>
+            <vxe-column field="isIdentity" title="是否自增" width="100px">
+              <template #default="{ row }">
+                <a-tag color="success" v-if="row.isIdentity">是</a-tag>
+                <a-tag color="default" v-else>否</a-tag>
+              </template>
+            </vxe-column>
+            <!-- 显示名称 -->
+            <vxe-column field="displayName" title="显示名称" :edit-render="{}" width="150px">
+              <template #default="{ row }">{{ row.displayName }}</template>
+              <template #edit="{ row }">
+                <a-input v-model:value="row.displayName" placeholder="显示名称" />
+              </template>
+            </vxe-column>
+            <!-- 列描述 -->
+            <vxe-column field="describe" title="列描述" :edit-render="{}" width="150px">
+              <template #default="{ row }">{{ row.describe }}</template>
+              <template #edit="{ row }">
+                <a-input v-model:value="row.describe" placeholder="列描述" />
+              </template>
+            </vxe-column>
+            <!-- <vxe-column field="isNullable" title="能否为null" width="100px"> </vxe-column> -->
+            <!-- <vxe-column field="position" title="位置" width="60px"> </vxe-column> -->
+            <vxe-column field="lastModificationTime" title="更新时间" width="120px"></vxe-column>
+            <vxe-column field="creationTime" title="创建时间" width="120px"></vxe-column>
+            <vxe-column field="id" title="操作" width="80px">
+              <template #default="{ row }">
+                <!-- 
                 <a href="javascript:void(0)" @click="openForm(row.id)">编辑</a>
      
               <a-divider type="vertical" /> -->
-                  <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList(row.id)" okText="确定" cancelText="取消">
-                    <a class="text-danger">删除</a>
-                  </a-popconfirm>
-                </template>
-              </vxe-column>
-            </vxe-table>
-            <vxe-pager
-              background
-              v-model:current-page="state.table.page"
-              v-model:page-size="state.table.rows"
-              :total="state.table.total"
-              :page-sizes="state.table.pageSizeOptions"
-              :layouts="['PrevJump', 'PrevPage', 'JumpNumber', 'NextPage', 'NextJump', 'Sizes', 'FullJump', 'Total']"
-              @page-change="methods.onChange"
-            >
-            </vxe-pager>
-          </a-spin>
-        </a-card>
+                <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList(row.id)" okText="确定" cancelText="取消">
+                  <a class="text-danger">删除</a>
+                </a-popconfirm>
+              </template>
+            </vxe-column>
+          </vxe-table>
+          <vxe-pager
+            background
+            v-model:current-page="state.table.page"
+            v-model:page-size="state.table.rows"
+            :total="state.table.total"
+            :page-sizes="state.table.pageSizeOptions"
+            :layouts="['PrevJump', 'PrevPage', 'JumpNumber', 'NextPage', 'NextJump', 'Sizes', 'FullJump', 'Total']"
+            @page-change="methods.onChange"
+          >
+          </vxe-pager>
+        </a-spin>
+        <!-- </a-card> -->
       </div>
     </a-tab-pane>
     <!-- <a-tab-pane key="2" tab="多表配置"> 多表配置 </a-tab-pane> -->
-    <a-tab-pane key="3" tab="代码生成">
+    <a-tab-pane key="3" tab="代码预览">
       <!--生成代码-->
-      <CodeGenerationVue ref="refCodeGenerationVue" class="mt-15" v-model:tableName="state.row.tableName" />
+      <CodeGenerationVue ref="refCodeGenerationVue" v-model:tableName="state.row.tableName" />
+    </a-tab-pane>
+    <a-tab-pane key="4" tab="代码载入项目">
+      <CodeLoadToProjectVue ref="refCodeLoadToProjectVue" v-model:tableName="state.row.tableName" />
     </a-tab-pane>
   </a-tabs>
 </template>
@@ -170,6 +173,7 @@ import tools from "@/scripts/tools";
 import service from "@/service/development_tool/low_code/low_code_table_info_service";
 import router from "@/router/index";
 import CodeGenerationVue from "./CodeGeneration.vue";
+import CodeLoadToProjectVue from "./CodeLoadToProject.vue";
 
 const appStore = useAppStore();
 const state = reactive({
@@ -200,6 +204,7 @@ const state = reactive({
 const refForm = ref(null);
 const refTable = ref(null);
 const refCodeGenerationVue = ref(null);
+const refCodeLoadToProjectVue = ref(null);
 
 //权限
 const power = appStore.getPowerByMenuId(router.currentRoute.value.meta.menuId);

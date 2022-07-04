@@ -1119,6 +1119,31 @@
             备注
             </summary>
         </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.RootPath">
+            <summary>
+            生成根地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ModelsPath">
+            <summary>
+            模型地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ServicesPath">
+            <summary>
+            服务地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ControllersPath">
+            <summary>
+            控制器地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ClientPath">
+            <summary>
+            客户端地址
+            </summary>
+        </member>
         <member name="T:HZY.Models.Entities.LowCode.LowCodeTableInfo">
             <summary>
             低代码表信息

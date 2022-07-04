@@ -3,12 +3,12 @@
     <a-spin :spinning="state.saveLoading">
       <div class="mb-15">
         <a-radio-group v-model:value="state.activeCode">
-          <a-radio-button value="HZY.Models">HZY.Models</a-radio-button>
-          <a-radio-button value="HZY.Services.Admin">HZY.Services.Admin</a-radio-button>
-          <a-radio-button value="HZY.Controllers.Admin">HZY.Controllers.Admin</a-radio-button>
-          <a-radio-button value="Index.vue">Index.vue</a-radio-button>
-          <a-radio-button value="Info.vue">Info.vue</a-radio-button>
-          <a-radio-button value="Service.js">Service.js</a-radio-button>
+          <a-radio-button value="HZY.Models">实体</a-radio-button>
+          <a-radio-button value="HZY.Services.Admin">服务</a-radio-button>
+          <a-radio-button value="HZY.Controllers.Admin">控制器</a-radio-button>
+          <a-radio-button value="Index.vue">列表页</a-radio-button>
+          <a-radio-button value="Info.vue">表单页</a-radio-button>
+          <a-radio-button value="Service.js">前端服务</a-radio-button>
           <a-button type="primary" @click="methods.download()" class="ml-15" :loading="state.saveLoading">
             <template #icon>
               <AppIcon name="DownloadOutlined" />
@@ -29,7 +29,7 @@
   </div>
 </template>
 <script setup>
-import { onMounted, reactive, watch, computed } from "vue";
+import { reactive, watch, computed } from "vue";
 import service from "@/service/development_tool/code_generation_service";
 import MdEditorShowCode from "@/components/MdEditorShowCode.vue";
 import AppIcon from "@/components/AppIcon.vue";

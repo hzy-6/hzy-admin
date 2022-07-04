@@ -129,7 +129,7 @@
           <vxe-column field="creationTime" title="创建时间" width="120px"></vxe-column>
           <vxe-column field="id" title="操作" width="120px">
             <template #default="{ row }">
-              <a href="javascript:void(0)" @click="methods.loadColumnIndex(row)"> 编辑列 </a>
+              <a href="javascript:void(0)" @click="methods.loadColumnIndex(row)"> 配置 </a>
               <a-divider type="vertical" />
               <template v-if="power.delete">
                 <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList(row.id)" okText="确定" cancelText="取消">
@@ -151,12 +151,8 @@
         </vxe-pager>
       </a-spin>
     </a-card>
-
-    <a-drawer width="90%" :title="'[ ' + state.row.tableName + ' - ' + state.row.displayName + ' ] 配置列'" placement="right" :visible="state.visible" @close="state.visible = !state.visible">
-      <template #extra>
-        <!-- <a-button style="margin-right: 8px" @click="onClose">关闭</a-button>
-        <a-button type="primary" @click="onClose">提交</a-button> -->
-      </template>
+    <!-- 配置 -->
+    <a-drawer width="90%" :title="'[ ' + state.row.tableName + ' - ' + state.row.displayName + ' ] 配置'" placement="right" :visible="state.visible" @close="state.visible = !state.visible">
       <!--表单弹层-->
       <ColumnIndexVue ref="refColumnIndex" />
     </a-drawer>
