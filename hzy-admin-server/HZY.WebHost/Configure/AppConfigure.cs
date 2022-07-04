@@ -86,7 +86,7 @@ public class AppConfigure
         #endregion
 
         #region 使用 DbContext
-        EFCoreModule.UseAdminDbContext(serviceProvider);
+        app.UseEfCore();
         #endregion
 
         app.UseEndpoints(endpoints =>

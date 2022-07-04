@@ -24,7 +24,7 @@ namespace HZY.EFCore.Repositories.Admin.Core.Impl;
 /// Admin默认基础仓储接口
 /// </summary>
 /// <typeparam name="T"></typeparam>
-public class AdminRepositoryImpl<T> : AppRepositoryImpl<T, AdminDbContext>, IAdminRepository<T> where T : class, new()
+public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAdminRepository<T> where T : class, new()
 {
 
     public AdminRepositoryImpl(AdminDbContext context, Expression<Func<T, bool>> filter = null) : base(context, filter)

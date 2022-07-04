@@ -68,19 +68,19 @@
             仓储模块
             </summary>
         </member>
-        <member name="M:HZY.EFCore.EFCoreModule.AddAdminDbContext(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+        <member name="M:HZY.EFCore.EFCoreModule.UseEfCore(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用 DbContext
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:HZY.EFCore.EFCoreModule.AddEfCore(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
             <summary>
             注册 Admin 后台管理数据库
             </summary>
             <param name="services"></param>
             <param name="appConfiguration"></param>
             <param name="hostBuilder"></param>
-        </member>
-        <member name="M:HZY.EFCore.EFCoreModule.UseAdminDbContext(System.IServiceProvider)">
-            <summary>
-            使用 AdminDbContext
-            </summary>
-            <param name="serviceProvider"></param>
         </member>
         <member name="T:HZY.EFCore.Migrations.Seeds.ModelBuilderExtensions">
             <summary>

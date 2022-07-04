@@ -19,8 +19,6 @@ using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using HZY.Infrastructure.Filters;
 using HZY.WebHost.Filters;
-using System.Text.Json;
-using HZY.Infrastructure.TextJson;
 using Swashbuckle.AspNetCore.Filters;
 using Newtonsoft.Json.Serialization;
 
@@ -113,7 +111,7 @@ public class AppConfigureServices
         #region 数据库仓储注册 、 中间件注册
 
         //配置efcore
-        EFCoreModule.AddAdminDbContext(services, appConfiguration, builder);
+        services.AddEfCore(appConfiguration, builder);
         //配置freesql
         FreeSqlCoreModule.RegisterFreeSql(services, appConfiguration, $"{prefixString}Repositories");
         //配置redis

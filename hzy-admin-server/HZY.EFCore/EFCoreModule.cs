@@ -7,15 +7,25 @@ using HZY.Infrastructure;
 using HzyEFCoreRepositories;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Builder;
+using HzyScanDiService;
+using Microsoft.AspNetCore.Hosting;
 
 namespace HZY.EFCore;
 
 /// <summary>
 /// 仓储模块
 /// </summary>
-public class EFCoreModule
+public static class EFCoreModule
 {
-    #region  AdminBaseDbContext 注册配置
+
+    /// <summary>
+    /// 使用 DbContext
+    /// </summary>
+    /// <param name="app"></param>
+    public static void UseEfCore(this IApplicationBuilder app)
+    {
+        app.UseHzyEFCoreRepository(typeof(AdminDbContext));
+    }
 
     /// <summary>
     /// 注册 Admin 后台管理数据库
@@ -23,29 +33,28 @@ public class EFCoreModule
     /// <param name="services"></param>
     /// <param name="appConfiguration"></param>
     /// <param name="hostBuilder"></param>
-    public static void AddAdminDbContext(IServiceCollection services, AppConfiguration appConfiguration, WebApplicationBuilder hostBuilder)
+    public static void AddEfCore(this IServiceCollection services, AppConfiguration appConfiguration, WebApplicationBuilder hostBuilder)
     {
         //取消域验证
         hostBuilder.Host.UseDefaultServiceProvider(options => { options.ValidateScopes = false; });
 
+        #region AdminDbContext 注册配置
+
         var databaseType = appConfiguration.ConnectionStrings.DefaultDatabaseType;
-
-        #region 后台 管理系统 数据库上下文
-
         services.AddDbContextPool<AdminDbContext>(options =>
         {
-            if (hostBuilder.Environment.IsDevelopment())
+            using var scope = IOCUtil.CreateScope();
+            var webHostEnvironment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
+            if (webHostEnvironment.IsDevelopment())
             {
                 // sql 日志写入控制台
                 options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
             }
 
-            // 无跟踪
-            // options.UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
             // 懒加载代理
             //options.UseLazyLoadingProxies();
             //添加 EFCore 监控 和 动态表名
-            options.AddHzyEFCore(appConfiguration.Configs.IsMonitorEFCore);
+            options.AddHzyEFCoreRepository(appConfiguration.Configs.IsMonitorEFCore);
             options.AddInterceptors(new AuditInterceptor());
 
             if (databaseType == DefaultDatabaseType.SqlServer)
@@ -75,16 +84,5 @@ public class EFCoreModule
 
         #endregion
     }
-
-    /// <summary>
-    /// 使用 AdminDbContext
-    /// </summary>
-    /// <param name="serviceProvider"></param>
-    public static void UseAdminDbContext(IServiceProvider serviceProvider)
-    {
-        serviceProvider.UseHzyEFCore(typeof(AdminDbContext));
-    }
-
-    #endregion
 
 }

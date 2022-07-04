@@ -16,7 +16,7 @@ namespace HZY.EFCore.Repositories.Admin.Core
     /// Admin默认基础仓储接口
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public interface IAdminRepository<T> : IAppRepository<T, AdminDbContext>, IScopedDependency where T : class, new()
+    public interface IAdminRepository<T> : IRepositoryBase<T, AdminDbContext>, IScopedDependency where T : class, new()
     {
         /// <summary>
         /// 分页模型构建
