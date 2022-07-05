@@ -11,6 +11,10 @@ namespace HZY.EFCore.PagingViews;
 /// </summary>
 public class TableColumnView
 {
+    public TableColumnView()
+    {
+    }
+
     public TableColumnView(string fieldName, string title)
     {
         this.FieldName = fieldName;
