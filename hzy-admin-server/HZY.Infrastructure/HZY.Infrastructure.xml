@@ -320,6 +320,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:HZY.Infrastructure.ConnectionStringsOptions.Redis">
+            <summary>
+            redis 地址
+            </summary>
+            <value></value>
+        </member>
         <member name="P:HZY.Infrastructure.ConnectionStringsOptions.DefaultSqlServer">
             <summary>
             sqlserver
@@ -338,9 +344,9 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.ConnectionStringsOptions.Redis">
+        <member name="P:HZY.Infrastructure.ConnectionStringsOptions.DefaultOracle">
             <summary>
-            redis 地址
+            Oracle
             </summary>
             <value></value>
         </member>

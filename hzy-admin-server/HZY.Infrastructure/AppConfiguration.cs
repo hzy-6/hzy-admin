@@ -59,6 +59,11 @@ public class ConnectionStringsOptions
     /// <value></value>
     public DefaultDatabaseType DefaultDatabaseType { get; set; }
     /// <summary>
+    /// redis 地址
+    /// </summary>
+    /// <value></value>
+    public string Redis { get; set; }
+    /// <summary>
     /// sqlserver
     /// </summary>
     /// <value></value>
@@ -74,10 +79,10 @@ public class ConnectionStringsOptions
     /// <value></value>
     public string DefaultPostgreSql { get; set; }
     /// <summary>
-    /// redis 地址
+    /// Oracle
     /// </summary>
     /// <value></value>
-    public string Redis { get; set; }
+    public string DefaultOracle { get; set; }
 }
 
 /// <summary>

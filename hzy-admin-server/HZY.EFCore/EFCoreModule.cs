@@ -43,13 +43,17 @@ public static class EFCoreModule
         var databaseType = appConfiguration.ConnectionStrings.DefaultDatabaseType;
         services.AddDbContextPool<AdminDbContext>(options =>
         {
-            using var scope = IOCUtil.CreateScope();
-            var webHostEnvironment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
-            if (webHostEnvironment.IsDevelopment())
+            try
             {
-                // sql 日志写入控制台
-                options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+                using var scope = IOCUtil.CreateScope();
+                var webHostEnvironment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
+                if (webHostEnvironment.IsDevelopment())
+                {
+                    // sql 日志写入控制台
+                    options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
+                }
             }
+            catch (Exception) { }
 
             // 懒加载代理
             //options.UseLazyLoadingProxies();
@@ -59,28 +63,27 @@ public static class EFCoreModule
 
             if (databaseType == DefaultDatabaseType.SqlServer)
             {
-                #region SqlSever
                 options.UseSqlServer(appConfiguration.ConnectionStrings.DefaultSqlServer, w => w.MinBatchSize(1).MaxBatchSize(1000));
-                #endregion
             }
 
             if (databaseType == DefaultDatabaseType.MySql)
             {
-                #region MySql
                 options.UseMySql(appConfiguration.ConnectionStrings.DefaultMySql, MySqlServerVersion.LatestSupportedServerVersion, w => w.MinBatchSize(1).MaxBatchSize(1000));
-                #endregion
             }
 
             if (databaseType == DefaultDatabaseType.PostgreSql)
             {
                 //EnableLegacyTimestampBehavior 启动旧行为，避免时区问题，存储时间报错
                 System.AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-                #region Npgsql
                 options.UseNpgsql(appConfiguration.ConnectionStrings.DefaultPostgreSql, w => w.MinBatchSize(1).MaxBatchSize(1000));
-                #endregion
             }
 
-        }, 1000);
+            if (databaseType == DefaultDatabaseType.Oracle)
+            {
+                options.UseOracle(appConfiguration.ConnectionStrings.DefaultOracle, w => w.MinBatchSize(1).MaxBatchSize(1000));
+            }
+
+        }, 2048);
 
         #endregion
     }
