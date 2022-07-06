@@ -1,4 +1,4 @@
-﻿import {get, post, download } from '@/scripts/request';
+﻿import { get, post, download } from '@/scripts/request';
 import tools from "@/scripts/tools";
 
 const controllerName = "admin/SysDataAuthorityCustom";
@@ -36,10 +36,13 @@ export default {
     /**
      * 保存表单
      * 
-     * @param {表单数据} form 
+     * @param {表单数据} vm 
      */
-    saveForm(form) {
-        return post(`${controllerName}/saveForm`, form);
+    saveForm(vm) {
+        if (vm.id) {
+            return post(`${controllerName}/update`, vm);
+        }
+        return post(`${controllerName}/create`, vm);
     },
     /**
      * 导出 excel

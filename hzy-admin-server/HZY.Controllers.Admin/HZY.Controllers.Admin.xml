@@ -32,9 +32,16 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Base.MemberController.SaveFormAsync(HZY.Models.Entities.Member)">
+        <member name="M:HZY.Controllers.Admin.Base.MemberController.CreateAsync(HZY.Models.Entities.Member)">
             <summary>
-            保存
+            添加
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Base.MemberController.UpdateAsync(HZY.Models.Entities.Member)">
+            <summary>
+            编辑
             </summary>
             <param name="form"></param>
             <returns></returns>
@@ -277,11 +284,18 @@
             <param name="id">id</param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityController.SaveFormAsync(HZY.Models.DTO.Framework.SysDataAuthorityFormDto)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityController.CreateAsync(HZY.Models.DTO.Framework.SysDataAuthorityFormDto)">
             <summary>
-            保存
+            添加
             </summary>
-            <param name="form">form</param>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityController.UpdateAsync(HZY.Models.DTO.Framework.SysDataAuthorityFormDto)">
+            <summary>
+            编辑
+            </summary>
+            <param name="form"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityController.ExportExcelAsync(HZY.Models.Entities.Framework.SysDataAuthority)">
@@ -321,11 +335,18 @@
             <param name="id">id</param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityCustomController.SaveFormAsync(HZY.Models.Entities.Framework.SysDataAuthorityCustom)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityCustomController.CreateAsync(HZY.Models.Entities.Framework.SysDataAuthorityCustom)">
             <summary>
-            保存
+            添加
             </summary>
-            <param name="form">form</param>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityCustomController.UpdateAsync(HZY.Models.Entities.Framework.SysDataAuthorityCustom)">
+            <summary>
+            编辑
+            </summary>
+            <param name="form"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityCustomController.ExportExcelAsync(HZY.Models.Entities.Framework.SysDataAuthorityCustom)">
@@ -363,9 +384,16 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysDictionaryController.SaveFormAsync(HZY.Models.Entities.Framework.SysDictionary)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysDictionaryController.CreateAsync(HZY.Models.Entities.Framework.SysDictionary)">
             <summary>
-            保存
+            添加
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Framework.SysDictionaryController.UpdateAsync(HZY.Models.Entities.Framework.SysDictionary)">
+            <summary>
+            编辑
             </summary>
             <param name="form"></param>
             <returns></returns>
@@ -411,9 +439,16 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysFunctionController.SaveFormAsync(HZY.Models.Entities.Framework.SysFunction)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysFunctionController.CreateAsync(HZY.Models.Entities.Framework.SysFunction)">
             <summary>
-            保存
+            添加
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Framework.SysFunctionController.UpdateAsync(HZY.Models.Entities.Framework.SysFunction)">
+            <summary>
+            编辑
             </summary>
             <param name="form"></param>
             <returns></returns>
@@ -453,9 +488,16 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysMenuController.SaveFormAsync(HZY.Models.DTO.Framework.SysMenuFormDto)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysMenuController.CreateAsync(HZY.Models.DTO.Framework.SysMenuFormDto)">
             <summary>
-            保存
+            添加
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Framework.SysMenuController.UpdateAsync(HZY.Models.DTO.Framework.SysMenuFormDto)">
+            <summary>
+            编辑
             </summary>
             <param name="form"></param>
             <returns></returns>
@@ -528,9 +570,16 @@
             <param name="parentId"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysOrganizationController.SaveFormAsync(HZY.Models.Entities.Framework.SysOrganization)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysOrganizationController.CreateAsync(HZY.Models.Entities.Framework.SysOrganization)">
             <summary>
-            保存
+            添加
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Framework.SysOrganizationController.UpdateAsync(HZY.Models.Entities.Framework.SysOrganization)">
+            <summary>
+            编辑
             </summary>
             <param name="form"></param>
             <returns></returns>
@@ -569,9 +618,16 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysPostController.SaveFormAsync(HZY.Models.Entities.Framework.SysPost)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysPostController.CreateAsync(HZY.Models.Entities.Framework.SysPost)">
             <summary>
-            保存
+            添加
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Framework.SysPostController.UpdateAsync(HZY.Models.Entities.Framework.SysPost)">
+            <summary>
+            编辑
             </summary>
             <param name="form"></param>
             <returns></returns>
@@ -611,9 +667,16 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysRoleController.SaveFormAsync(HZY.Models.Entities.Framework.SysRole)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysRoleController.CreateAsync(HZY.Models.Entities.Framework.SysRole)">
             <summary>
-            保存
+            添加
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Framework.SysRoleController.UpdateAsync(HZY.Models.Entities.Framework.SysRole)">
+            <summary>
+            编辑
             </summary>
             <param name="form"></param>
             <returns></returns>
@@ -639,9 +702,9 @@
             <param name="search"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysRoleMenuFunctionController.SaveFormAsync(System.Collections.Generic.List{HZY.Models.DTO.Framework.SysRoleMenuFunctionFormDto})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysRoleMenuFunctionController.CreateAsync(System.Collections.Generic.List{HZY.Models.DTO.Framework.SysRoleMenuFunctionFormDto})">
             <summary>
-            保存
+            添加
             </summary>
             <param name="form"></param>
             <returns></returns>
@@ -680,9 +743,16 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysUserController.SaveFormAsync(HZY.Models.DTO.Framework.SysUserFormDto)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysUserController.CreateAsync(HZY.Models.DTO.Framework.SysUserFormDto)">
             <summary>
-            保存
+            添加
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.Framework.SysUserController.UpdateAsync(HZY.Models.DTO.Framework.SysUserFormDto)">
+            <summary>
+            编辑
             </summary>
             <param name="form"></param>
             <returns></returns>

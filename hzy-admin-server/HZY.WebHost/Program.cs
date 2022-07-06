@@ -1,35 +1,22 @@
 using HZY.Infrastructure.SerilogUtil;
 using HZY.WebHost.Configure;
+using HZY.WebHost.Endpoints;
 using Serilog;
 
 try
 {
-  
-
-    #region 创建主机
-
-    var builder = WebApplication.CreateBuilder(args);
-
-    LogUtil.Build(builder);
-
-    //地址
-    //builder.WebHost.UseUrls("http://*:5600", "http://localhost:5600");
-    //builder.WebHost.UseUrls("http://*:5600");
-    LogUtil.Log.Warning("Web 主机开始启动...");
-
-    //服务构建
-    AppConfigureServices.Build(builder);
-    #endregion
-
-    #region 服务构建
-    var app = builder.Build();
-    
-    //配置构建
-    AppConfigure.Build(app);
-    app.Run();
-
-    #endregion
-
+    WebApplication.CreateBuilder(args)
+        // 日志配置
+        .LogUtilBuild()
+        // 服务构建
+        .AppConfigureServicesBuild()
+        // 使用服务
+        .AppConfigureBuild()
+        // 启动主端点 miniapi
+        .MapMainEndpoints()
+        //启动运行
+        .Run()
+    ;
 }
 catch (Exception ex)
 {

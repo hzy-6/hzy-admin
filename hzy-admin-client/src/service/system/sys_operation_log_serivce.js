@@ -1,4 +1,4 @@
-import { get,post } from '@/scripts/request';
+import { get, post } from '@/scripts/request';
 
 
 const controllerName = "admin/SysOperationLog";
@@ -13,8 +13,7 @@ export default {
     findList(rows, page, search = {}) {
         return post(`${controllerName}/findList/${rows}/${page}`, search, false);
     },
-
-    deleteAllData(){
+    deleteAllData() {
         return get(`${controllerName}/deleteAllData`);
     },
     /**
@@ -22,8 +21,8 @@ export default {
      * 
      * @param {*} id 
      */
-     findForm(id) {
+    findForm(id) {
         return get(`${controllerName}/findForm${(id ? '/' + id : '')}`);
     },
-    
+
 };

@@ -55,7 +55,7 @@ const methods = {
   },
   saveForm() {
     state.saveLoading = true;
-    service.saveForm(state.vm.form).then((res) => {
+    service.saveForm(state.vm).then((res) => {
       state.saveLoading = false;
       if (res.code != 1) return;
       tools.message("操作成功!", "成功");

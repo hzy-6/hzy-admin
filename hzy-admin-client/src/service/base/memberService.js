@@ -35,11 +35,14 @@ export default {
     },
     /**
      * 保存表单
-     *
-     * @param {表单数据} form
+     * 
+     * @param {表单数据} vm 
      */
-    saveForm(form) {
-        return upload(`${controllerName}/saveForm`, form);
+    saveForm(vm, id) {
+        if (id) {
+            return upload(`${controllerName}/update`, vm);
+        }
+        return upload(`${controllerName}/create`, vm);
     },
     /**
      * 导出 excel

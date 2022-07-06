@@ -22,7 +22,7 @@ namespace HZY.Infrastructure.SerilogUtil
         /// <summary>
         /// 启动
         /// </summary>
-        public static void Build(WebApplicationBuilder builder)
+        public static WebApplicationBuilder LogUtilBuild(this WebApplicationBuilder builder)
         {
             var now = DateTime.Now;
 
@@ -70,6 +70,8 @@ namespace HZY.Infrastructure.SerilogUtil
                     .WriteTo.File(LogFilePath(nameof(LogEventLevel.Fatal)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
                 })
                 .CreateLogger();
+
+            return builder;
         }
 
         /// <summary>

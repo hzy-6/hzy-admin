@@ -44,6 +44,13 @@ public class ApiResultFilterAttribute : Attribute, IResultFilter
             return;
         }
 
+        if (context.Result is EmptyResult)
+        {
+            var result = context.Result as ContentResult;
+            context.Result = new JsonResult(ApiResult.Ok("success", null));
+            return;
+        }
+
     }
 
     /// <summary>

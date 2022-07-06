@@ -128,7 +128,7 @@ public class SysMenuService : AdminBaseService<IAdminRepository<SysMenu>>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    public async Task<SysMenu> SaveFormAsync(SysMenuFormDto form)
+    public async Task SaveFormAsync(SysMenuFormDto form)
     {
         var model = form.Form;
         var menuFunctionList = form.MenuFunctionList;
@@ -154,7 +154,7 @@ public class SysMenuService : AdminBaseService<IAdminRepository<SysMenu>>
         #region 处理菜单功能绑定表
 
         await this._sysMenuFunctionRepository.DeleteAsync(w => w.MenuId == model.Id);
-        if (menuFunctionList.Count <= 0) return model;
+        if (menuFunctionList.Count <= 0) return;
 
         foreach (var item in menuFunctionList)
         {
@@ -165,7 +165,6 @@ public class SysMenuService : AdminBaseService<IAdminRepository<SysMenu>>
 
         #endregion
 
-        return model;
     }
 
     /// <summary>

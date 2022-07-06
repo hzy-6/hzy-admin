@@ -4,6 +4,7 @@ using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.Permission;
 using HZY.Infrastructure.Permission.Attributes;
+using HZY.Models.Consts;
 using HZY.Models.DTO;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Framework;
@@ -67,15 +68,31 @@ public class SysPostController : AdminBaseController<SysPostService>
     }
 
     /// <summary>
-    /// 保存
+    /// 添加
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [ActionDescriptor(DisplayName = "保存/编辑表单")]
-    [HttpPost("SaveForm")]
-    public async Task<SysPost> SaveFormAsync([FromBody] SysPost form)
+    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
+    [HttpPost("Create")]
+    [ApiCheckModel]
+    public Task CreateAsync([FromBody] SysPost form)
     {
-        return await this._defaultService.SaveFormAsync(form);
+        return this._defaultService.SaveFormAsync(form);
+    }
+
+    /// <summary>
+    /// 编辑
+    /// </summary>
+    /// <param name="form"></param>
+    /// <returns></returns>
+    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [ActionDescriptor(AdminFunctionConsts.Function_Update, DisplayName = "编辑表单")]
+    [HttpPost("Update")]
+    [ApiCheckModel]
+    public Task UpdateAsync([FromBody] SysPost form)
+    {
+        return this._defaultService.SaveFormAsync(form);
     }
 
     /// <summary>

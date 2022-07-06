@@ -4,23 +4,28 @@
         <name>HZY.WebHost</name>
     </assembly>
     <members>
-        <member name="M:HZY.WebHost.Configure.AppConfigure.Build(Microsoft.AspNetCore.Builder.WebApplication)">
+        <member name="T:HZY.WebHost.Configure.AppBuilder">
             <summary>
-            配置构建
+            程序构建类
             </summary>
-            <param name="app"></param>
         </member>
-        <member name="M:HZY.WebHost.Configure.AppConfigureServices.GetVersionList">
+        <member name="M:HZY.WebHost.Configure.AppBuilder.GetVersionList">
             <summary>
             获取 Swagger 版本集合
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.WebHost.Configure.AppConfigureServices.Build(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+        <member name="M:HZY.WebHost.Configure.AppBuilder.AppConfigureServicesBuild(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
             <summary>
             配置服务
             </summary>
             <param name="builder"></param>
+        </member>
+        <member name="M:HZY.WebHost.Configure.AppBuilder.AppConfigureBuild(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            配置构建
+            </summary>
+            <param name="app"></param>
         </member>
         <member name="P:HZY.WebHost.Configure.CustomPolicyRequirement.AuthKey">
             <summary>
@@ -32,45 +37,45 @@
             生命周期监听
             </summary>
         </member>
-        <member name="T:HZY.WebHost.Controllers.JumpClientController">
-            <summary>
-            跳转客户端
-            </summary>
-        </member>
-        <member name="T:HZY.WebHost.Controllers.Public.AccountController">
+        <member name="T:HZY.WebHost.Controllers.AccountController">
             <summary>
             账户控制器
             </summary>
         </member>
-        <member name="M:HZY.WebHost.Controllers.Public.AccountController.CheckAsync(HZY.Models.DTO.Framework.AuthUserFormDto)">
+        <member name="M:HZY.WebHost.Controllers.AccountController.CheckAsync(HZY.Models.DTO.Framework.AuthUserFormDto)">
             <summary>
             检查帐户并获取 token
             </summary>
             <param name="authUserDto">Dto</param>
             <returns></returns>
         </member>
-        <member name="T:HZY.WebHost.Controllers.Public.PublicController">
+        <member name="T:HZY.WebHost.Controllers.PublicController">
             <summary>
             公共接口控制器
             </summary>
         </member>
-        <member name="M:HZY.WebHost.Controllers.Public.PublicController.GetDictionaryByCodeAsync(System.String)">
+        <member name="M:HZY.WebHost.Controllers.PublicController.GetDictionaryByCodeAsync(System.String)">
             <summary>
             根据编码获取 字典集合
             </summary>
             <param name="code"></param>
             <returns></returns>
         </member>
-        <member name="T:HZY.WebHost.Controllers.Public.UploadController">
+        <member name="T:HZY.WebHost.Controllers.UploadController">
             <summary>
             上传文件控制器
             </summary>
         </member>
-        <member name="M:HZY.WebHost.Controllers.Public.UploadController.Images">
+        <member name="M:HZY.WebHost.Controllers.UploadController.Images">
             <summary>
             上传图片
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:HZY.WebHost.Endpoints.MainEndpoints">
+            <summary>
+            主端点 miniapi
+            </summary>
         </member>
         <member name="T:HZY.WebHost.Filters.ApiAuthorizationFilter">
             <summary>

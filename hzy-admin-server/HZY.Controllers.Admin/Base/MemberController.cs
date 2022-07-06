@@ -72,16 +72,31 @@ public class MemberController : AdminBaseController<MemberService>
     }
 
     /// <summary>
-    /// 保存
+    /// 添加
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [ActionDescriptor(AdminFunctionConsts.Function_Save, DisplayName = "保存/编辑表单")]
+    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
+    [HttpPost("Create")]
     [ApiCheckModel]
-    [HttpPost("SaveForm")]
-    public async Task<Member> SaveFormAsync([FromForm] Member form)
+    public Task CreateAsync([FromForm] Member form)
     {
-        return await this._defaultService.SaveFormAsync(form, Request.Form.Files);
+        return this._defaultService.SaveFormAsync(form, Request.Form.Files);
+    }
+
+    /// <summary>
+    /// 编辑
+    /// </summary>
+    /// <param name="form"></param>
+    /// <returns></returns>
+    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [ActionDescriptor(AdminFunctionConsts.Function_Update, DisplayName = "编辑表单")]
+    [HttpPost("Update")]
+    [ApiCheckModel]
+    public Task UpdateAsync([FromForm] Member form)
+    {
+        return this._defaultService.SaveFormAsync(form, Request.Form.Files);
     }
 
     /// <summary>

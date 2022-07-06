@@ -123,6 +123,7 @@ const methods = {
       if (res.code != 1) {
         return tools.message("保存失败!", "错误");
       }
+      state.visible = false;
       tools.message("保存成功!", "成功");
     });
   },

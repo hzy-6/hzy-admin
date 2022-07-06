@@ -886,7 +886,7 @@
             日志工具
             </summary>
         </member>
-        <member name="M:HZY.Infrastructure.SerilogUtil.LogUtil.Build(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+        <member name="M:HZY.Infrastructure.SerilogUtil.LogUtil.LogUtilBuild(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
             <summary>
             启动
             </summary>

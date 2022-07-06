@@ -90,9 +90,9 @@ public class SysPostService : AdminBaseService<IAdminRepository<SysPost>>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    public async Task<SysPost> SaveFormAsync(SysPost form)
+    public async Task SaveFormAsync(SysPost form)
     {
-        return await this._defaultRepository.InsertOrUpdateAsync(form);
+        await this._defaultRepository.InsertOrUpdateAsync(form);
     }
 
     /// <summary>

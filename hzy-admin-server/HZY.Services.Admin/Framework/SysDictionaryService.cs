@@ -92,9 +92,9 @@ public class SysDictionaryService : AdminBaseService<IAdminRepository<SysDiction
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    public async Task<SysDictionary> SaveFormAsync(SysDictionary form)
+    public async Task SaveFormAsync(SysDictionary form)
     {
-        return await this._defaultRepository.InsertOrUpdateAsync(form);
+        await this._defaultRepository.InsertOrUpdateAsync(form);
     }
 
     /// <summary>

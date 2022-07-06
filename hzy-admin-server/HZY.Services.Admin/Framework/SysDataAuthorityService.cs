@@ -88,7 +88,7 @@ namespace HZY.Services.Admin.Framework
         /// </summary>
         /// <param name="form">form</param>
         /// <returns></returns>
-        public async Task<SysDataAuthority> SaveFormAsync(SysDataAuthorityFormDto form)
+        public async Task SaveFormAsync(SysDataAuthorityFormDto form)
         {
             var sysDataAuthority = await this._defaultRepository.InsertOrUpdateAsync(form.SysDataAuthority);
 
@@ -101,7 +101,6 @@ namespace HZY.Services.Admin.Framework
 
             await this._sysDataAuthorityCustomRepository.InsertRangeAsync(form.SysDataAuthorityCustomList);
 
-            return sysDataAuthority;
         }
 
         /// <summary>

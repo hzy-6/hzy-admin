@@ -11,7 +11,12 @@ export default {
     changePassword(form) {
         return post(`${controllerName}/changePassword`, form);
     },
-    saveForm(form) {
-        return post(`${controllerName}/saveForm`, form);
-    }
+    /**
+     * 保存表单
+     * 
+     * @param {表单数据} vm 
+     */
+    saveForm(vm) {
+        return post(`${controllerName}/saveForm`, vm);
+    },
 };

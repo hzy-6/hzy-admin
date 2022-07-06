@@ -1,4 +1,5 @@
-﻿using HZY.EFCore.PagingViews;
+﻿using HZY.EFCore.Aop;
+using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
@@ -40,43 +41,29 @@ public class SysRoleMenuFunctionService : AdminBaseService<IAdminRepository<SysR
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    public async Task<Guid> SaveFormAsync(List<SysRoleMenuFunctionFormDto> form)
+    [Transactional]
+    public async Task SaveFormAsync(List<SysRoleMenuFunctionFormDto> form)
     {
         var sysRoleMenuFunctions = new List<SysRoleMenuFunction>();
         var roleId = form.Count > 0 ? form[0].RoleId : default;
 
-        if (roleId == Guid.Empty) return default;
+        if (roleId == Guid.Empty) return;
 
-        //开启事务
-        using var tran = await this._defaultRepository.UnitOfWork.BeginTransactionAsync();
+        await this._defaultRepository.DeleteAsync(w => w.RoleId == roleId && form.Select(w => w.MenuId).Contains(w.MenuId));
 
-        try
+        foreach (var item in form)
         {
-            await this._defaultRepository.DeleteAsync(w => w.RoleId == roleId && form.Select(w => w.MenuId).Contains(w.MenuId));
+            var menuId = item.MenuId;
+            var menuFuncionList = item.MenuFunctionIdList;
 
-            foreach (var item in form)
-            {
-                var menuId = item.MenuId;
-                var menuFuncionList = item.MenuFunctionIdList;
+            var list = menuFuncionList
+                .Select(item => new SysRoleMenuFunction { MenuId = menuId, RoleId = roleId, MenuFunctionId = item })
+                .ToList();
 
-                var list = menuFuncionList
-                    .Select(item => new SysRoleMenuFunction { MenuId = menuId, RoleId = roleId, MenuFunctionId = item })
-                    .ToList();
-
-                sysRoleMenuFunctions.AddRange(list);
-            }
-
-            await this._defaultRepository.InsertRangeAsync(sysRoleMenuFunctions);
-
-            await tran.CommitAsync();
-        }
-        catch (Exception)
-        {
-            await tran.RollbackAsync();
-            throw;
+            sysRoleMenuFunctions.AddRange(list);
         }
 
-        return roleId;
+        await this._defaultRepository.InsertRangeAsync(sysRoleMenuFunctions);
     }
 
     /// <summary>

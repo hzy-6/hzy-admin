@@ -96,7 +96,7 @@ public class SysOrganizationService : AdminBaseService<IAdminRepository<SysOrgan
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    public async Task<SysOrganization> SaveFormAsync(SysOrganization form)
+    public async Task SaveFormAsync(SysOrganization form)
     {
         var model = await this._defaultRepository.InsertOrUpdateAsync(form);
 
@@ -116,7 +116,6 @@ public class SysOrganizationService : AdminBaseService<IAdminRepository<SysOrgan
 
         #endregion
 
-        return model;
     }
 
     /// <summary>

@@ -119,9 +119,9 @@ public class SysRoleService : AdminBaseService<IAdminRepository<SysRole>>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    public async Task<SysRole> SaveFormAsync(SysRole form)
+    public async Task SaveFormAsync(SysRole form)
     {
-        return await this._defaultRepository.InsertOrUpdateAsync(form);
+        await this._defaultRepository.InsertOrUpdateAsync(form);
     }
 
     /// <summary>

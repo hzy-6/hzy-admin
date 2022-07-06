@@ -153,7 +153,7 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
     /// <param name="form"></param>
     /// <returns></returns>
     [Transactional]
-    public virtual async Task<SysUser> SaveFormAsync(SysUserFormDto form)
+    public virtual async Task SaveFormAsync(SysUserFormDto form)
     {
         var model = form.Form;
         //if (string.IsNullOrWhiteSpace(model.Password))
@@ -224,8 +224,6 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
 
         //清除缓存
         _accountService.DeleteCacheAccountInfoById(model.Id.ToString());
-
-        return model;
     }
 
     /// <summary>

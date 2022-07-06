@@ -3,6 +3,7 @@ using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.Permission.Attributes;
+using HZY.Models.Consts;
 using HZY.Models.DTO;
 using HZY.Models.DTO.Framework;
 using HZY.Models.Entities.Framework;
@@ -19,7 +20,7 @@ namespace HZY.Controllers.Admin.Framework;
 /// <summary>
 /// 角色菜单功能控制器
 /// </summary>
-[ControllerDescriptor(MenuId = "18", DisplayName = "")]
+//[ControllerDescriptor(MenuId = "16", DisplayName = "")]
 public class SysRoleMenuFunctionController : AdminBaseController<SysRoleMenuFunctionService>
 {
     private readonly SysRoleService _sysRoleService;
@@ -39,22 +40,23 @@ public class SysRoleMenuFunctionController : AdminBaseController<SysRoleMenuFunc
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查询数据")]
     [HttpPost("FindList/{size}/{page}")]
-    public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysRole search)
+    public Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysRole search)
     {
-        return await this._sysRoleService.FindListAsync(page, size, search);
+        return this._sysRoleService.FindListAsync(page, size, search);
     }
 
-
     /// <summary>
-    /// 保存
+    /// 添加
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [ActionDescriptor(DisplayName = "保存/编辑数据")]
-    [HttpPost("SaveForm")]
-    public async Task<Guid> SaveFormAsync([FromBody] List<SysRoleMenuFunctionFormDto> form)
+    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
+    [HttpPost("Create")]
+    [ApiCheckModel]
+    public Task CreateAsync([FromBody] List<SysRoleMenuFunctionFormDto> form)
     {
-        return await this._defaultService.SaveFormAsync(form);
+        return this._defaultService.SaveFormAsync(form);
     }
 
     #region 角色菜单功能 Tree
@@ -65,9 +67,9 @@ public class SysRoleMenuFunctionController : AdminBaseController<SysRoleMenuFunc
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查看菜单树")]
     [HttpGet("GetRoleMenuFunctionByRoleId/{RoleId}")]
-    public async Task<List<Dictionary<string, object>>> GetRoleMenuFunctionByRoleId(Guid roleId)
+    public Task<List<Dictionary<string, object>>> GetRoleMenuFunctionByRoleId(Guid roleId)
     {
-        return await this._defaultService.GetRoleMenuFunctionByRoleIdAsync(roleId);
+        return this._defaultService.GetRoleMenuFunctionByRoleIdAsync(roleId);
     }
 
     #endregion

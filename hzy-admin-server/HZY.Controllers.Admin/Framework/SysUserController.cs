@@ -35,9 +35,9 @@ public class SysUserController : AdminBaseController<SysUserService>
     /// <returns></returns>
     [ActionDescriptor(AdminFunctionConsts.Function_Display, DisplayName = "查看数据")]
     [HttpPost("FindList/{size}/{page}")]
-    public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysUser search)
+    public Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysUser search)
     {
-        return await this._defaultService.FindListAsync(page, size, search);
+        return this._defaultService.FindListAsync(page, size, search);
     }
 
     /// <summary>
@@ -60,23 +60,37 @@ public class SysUserController : AdminBaseController<SysUserService>
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查询数据")]
     [HttpGet("FindForm/{id?}")]
-    public async Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
+    public Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
     {
-        return await this._defaultService.FindFormAsync(id);
+        return this._defaultService.FindFormAsync(id);
     }
 
     /// <summary>
-    /// 保存
+    /// 添加
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
     [RequestLimitFilter(Duration = 1, LimitCount = 1)]
-    [ActionDescriptor(DisplayName = "保存/编辑数据")]
-    [HttpPost("SaveForm")]
+    [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
+    [HttpPost("Create")]
     [ApiCheckModel]
-    public async Task<SysUser> SaveFormAsync([FromBody] SysUserFormDto form)
+    public Task CreateAsync([FromBody] SysUserFormDto form)
     {
-        return await this._defaultService.SaveFormAsync(form);
+        return this._defaultService.SaveFormAsync(form);
+    }
+
+    /// <summary>
+    /// 编辑
+    /// </summary>
+    /// <param name="form"></param>
+    /// <returns></returns>
+    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [ActionDescriptor(AdminFunctionConsts.Function_Update, DisplayName = "编辑表单")]
+    [HttpPost("Update")]
+    [ApiCheckModel]
+    public Task UpdateAsync([FromBody] SysUserFormDto form)
+    {
+        return this._defaultService.SaveFormAsync(form);
     }
 
     /// <summary>

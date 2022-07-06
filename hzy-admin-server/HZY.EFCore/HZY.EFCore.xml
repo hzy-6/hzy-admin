@@ -63,6 +63,12 @@
             审计 保存拦截器
             </summary>
         </member>
+        <member name="M:HZY.EFCore.DbContexts.Interceptor.AuditInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData)">
+            <summary>
+            添加 、 修改 、删除 拦截
+            </summary>
+            <param name="eventData"></param>
+        </member>
         <member name="T:HZY.EFCore.EFCoreModule">
             <summary>
             仓储模块

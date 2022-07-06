@@ -110,7 +110,7 @@ public class MemberService : AdminBaseService<IAdminRepository<Member>>
     /// <param name="form"></param>
     /// <param name="formFileCollection"></param>
     /// <returns></returns>
-    public async Task<Member> SaveFormAsync(Member form, IFormFileCollection formFileCollection)
+    public async Task SaveFormAsync(Member form, IFormFileCollection formFileCollection)
     {
         var files = new List<IFormFile>();
         IFormFile photo = null;
@@ -132,7 +132,7 @@ public class MemberService : AdminBaseService<IAdminRepository<Member>>
             if (path.Count > 0) form.FilePath = string.Join(",", path);
         }
 
-        return await this._defaultRepository.InsertOrUpdateAsync(form);
+        await this._defaultRepository.InsertOrUpdateAsync(form);
     }
 
     /// <summary>

@@ -84,6 +84,24 @@
                   </a-modal>
                 </a-form-item>
               </a-col>
+              <!-- <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
+                <a-form-item label="所属菜单">
+                  <a-tree-select
+                    v-model:value="state.vm.form.parentId"
+                    :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
+                    placeholder="所属菜单"
+                    allow-clear
+                    tree-default-expand-all
+                    :tree-data="state.organizationTree"
+                    :field-names="{
+                      children: 'children',
+                      label: 'title',
+                      key: 'key',
+                      value: 'key',
+                    }"
+                  ></a-tree-select>
+                </a-form-item>
+              </a-col> -->
 
               <a-col :xs="24" v-if="state.vm.form.type == 2">
                 <a-row style="width: 100%">
