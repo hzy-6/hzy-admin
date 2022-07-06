@@ -5,14 +5,14 @@
  Source Server Type    : SQL Server
  Source Server Version : 14001000
  Source Host           : .:1433
- Source Catalog        : hzy_admin_sqlserver_20220526
+ Source Catalog        : hzy_admin_sqlserver_20220705
  Source Schema         : dbo
 
  Target Server Type    : SQL Server
  Target Server Version : 14001000
  File Encoding         : 65001
 
- Date: 05/07/2022 21:09:22
+ Date: 06/07/2022 10:50:24
 */
 
 
@@ -409,76 +409,76 @@ GO
 -- ----------------------------
 -- Records of low_code_table
 -- ----------------------------
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'69B24F04-0ED3-45FC-91D9-0DC929175A57', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysUserPost', N'dbo', N'TABLE', N'用户与岗位', N'SysUserPost', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'69B24F04-0ED3-45FC-91D9-0DC929175A57', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_user_post', N'dbo', N'TABLE', N'用户与岗位', N'SysUserPost', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'6BA9805C-916E-4D2C-99D0-216FCBC361CC', N'2022-05-24 21:57:34.433', N'2022-05-23 00:00:00.000', N'LowCodeTable', N'dbo', N'TABLE', N'低代码表', N'LowCodeTable', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'6BA9805C-916E-4D2C-99D0-216FCBC361CC', N'2022-05-24 21:57:34.433', N'2022-05-23 00:00:00.000', N'low_code_table', N'dbo', N'TABLE', N'低代码表', N'LowCodeTable', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'651BB982-1130-4E1C-9070-36B90DCF2324', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'FlowApprovalStep', N'dbo', N'TABLE', N'工作流审批步骤配置', N'FlowApprovalStep', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'651BB982-1130-4E1C-9070-36B90DCF2324', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'flow_approval_step', N'dbo', N'TABLE', N'工作流审批步骤配置', N'FlowApprovalStep', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'524E71B4-CBF7-4248-8B29-3F99B43F2EB2', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysDataAuthorityCustom', N'dbo', N'TABLE', N'自定义数据权限', N'SysDataAuthorityCustom', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'524E71B4-CBF7-4248-8B29-3F99B43F2EB2', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_data_authority_custom', N'dbo', N'TABLE', N'自定义数据权限', N'SysDataAuthorityCustom', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'7AD3B915-F0BD-443A-89CD-42D41DD6C554', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'FlowApprovalStepUser', N'dbo', N'TABLE', N'工作流用户审批步骤', N'FlowApprovalStepUser', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'7AD3B915-F0BD-443A-89CD-42D41DD6C554', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'flow_approval_step_user', N'dbo', N'TABLE', N'工作流用户审批步骤', N'FlowApprovalStepUser', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'1A8DF018-79F8-4E26-B4EB-4B735AAE7275', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'Flow', N'dbo', N'TABLE', N'审批流', N'Flow', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'1A8DF018-79F8-4E26-B4EB-4B735AAE7275', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'flow', N'dbo', N'TABLE', N'审批流', N'Flow', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'60CCEBA1-28BF-4D1D-B603-4EDF95D512B8', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysOperationLog', N'dbo', N'TABLE', N'操作日志', N'SysOperationLog', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'60CCEBA1-28BF-4D1D-B603-4EDF95D512B8', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_operation_log', N'dbo', N'TABLE', N'操作日志', N'SysOperationLog', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'2AE9E532-7D9A-474B-B629-50A39945C44D', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysMenuFunction', N'dbo', N'TABLE', N'菜单功能', N'SysMenuFunction', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'2AE9E532-7D9A-474B-B629-50A39945C44D', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_menu_function', N'dbo', N'TABLE', N'菜单功能', N'SysMenuFunction', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'D8948C56-C5BD-4061-B272-5417375F38F0', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'FlowApproval', N'dbo', N'TABLE', N'审批流审批', N'FlowApproval', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'D8948C56-C5BD-4061-B272-5417375F38F0', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'flow_approval', N'dbo', N'TABLE', N'审批流审批', N'FlowApproval', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'D26D07CB-158A-4CB2-8B20-5DFD5181AF54', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysOrganization', N'dbo', N'TABLE', N'组织', N'SysOrganization', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'D26D07CB-158A-4CB2-8B20-5DFD5181AF54', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_organization', N'dbo', N'TABLE', N'组织', N'SysOrganization', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'6323638B-A45F-4A76-886E-69A9E9BE0901', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysUser', N'dbo', N'TABLE', N'用户', N'SysUser', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'6323638B-A45F-4A76-886E-69A9E9BE0901', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_user', N'dbo', N'TABLE', N'用户', N'SysUser', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'79FBD4EC-9F4E-45DC-8065-70F2EB422CDF', N'2022-05-24 21:57:34.433', N'2022-05-23 00:00:00.000', N'LowCodeTableInfo', N'dbo', N'TABLE', N'低代码表信息', N'LowCodeTableInfo', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'79FBD4EC-9F4E-45DC-8065-70F2EB422CDF', N'2022-05-24 21:57:34.433', N'2022-05-23 00:00:00.000', N'low_code_table_info', N'dbo', N'TABLE', N'低代码表信息', N'LowCodeTableInfo', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'AF37F705-7BA0-4883-B1BE-8A274EA4C026', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysDictionary', N'dbo', N'TABLE', N'数据字典', N'SysDictionary', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'AF37F705-7BA0-4883-B1BE-8A274EA4C026', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_dictionary', N'dbo', N'TABLE', N'数据字典', N'SysDictionary', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'73C97832-4E7F-4758-86D2-94327971B5FD', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'Member', N'dbo', N'TABLE', N'会员', N'Member', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'73C97832-4E7F-4758-86D2-94327971B5FD', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'member', N'dbo', N'TABLE', N'会员', N'Member', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'D2600250-6F32-4D7D-8395-96CC9FA36DB4', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysMenu', N'dbo', N'TABLE', N'菜单', N'SysMenu', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'D2600250-6F32-4D7D-8395-96CC9FA36DB4', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_menu', N'dbo', N'TABLE', N'菜单', N'SysMenu', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'F3D7BBB3-C1FB-4D61-92A4-9BC101811335', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysRole', N'dbo', N'TABLE', N'角色', N'SysRole', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'F3D7BBB3-C1FB-4D61-92A4-9BC101811335', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_role', N'dbo', N'TABLE', N'角色', N'SysRole', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'852F53FF-0D00-4C32-AA55-A9C11993751B', N'2022-05-24 21:57:34.433', N'2022-05-23 00:00:00.000', N'LowCodeList', N'dbo', N'TABLE', N'低代码列表', N'LowCodeList', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'852F53FF-0D00-4C32-AA55-A9C11993751B', N'2022-05-24 21:57:34.433', N'2022-05-23 00:00:00.000', N'low_code_list', N'dbo', N'TABLE', N'低代码列表', N'LowCodeList', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'AE6D94D8-6A15-4348-B600-AA17E4B61718', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'FlowNode', N'dbo', N'TABLE', N'工作流节点', N'FlowNode', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'AE6D94D8-6A15-4348-B600-AA17E4B61718', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'flow_node', N'dbo', N'TABLE', N'工作流节点', N'FlowNode', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'69EDD8A8-1D24-478C-A909-B82039EDCEC0', N'2022-05-24 21:57:34.433', N'2022-05-23 00:00:00.000', N'LowCodeSearch', N'dbo', N'TABLE', N'低代码检索表', N'LowCodeSearch', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'69EDD8A8-1D24-478C-A909-B82039EDCEC0', N'2022-05-24 21:57:34.433', N'2022-05-23 00:00:00.000', N'low_code_search', N'dbo', N'TABLE', N'低代码检索表', N'LowCodeSearch', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'6FABC67A-8B48-49A6-8BA1-C8A32C499D36', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysFunction', N'dbo', N'TABLE', N'功能', N'SysFunction', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'6FABC67A-8B48-49A6-8BA1-C8A32C499D36', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_function', N'dbo', N'TABLE', N'功能', N'SysFunction', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'0A8BDB18-758A-4798-9FFC-E7031DCBF262', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysPost', N'dbo', N'TABLE', N'岗位', N'SysPost', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'0A8BDB18-758A-4798-9FFC-E7031DCBF262', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_post', N'dbo', N'TABLE', N'岗位', N'SysPost', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'8DA38D20-8A09-4E81-8DD8-ED6702AEE380', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysRoleMenuFunction', N'dbo', N'TABLE', N'角色菜单功能关联', N'SysRoleMenuFunction', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'8DA38D20-8A09-4E81-8DD8-ED6702AEE380', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_role_menu_function', N'dbo', N'TABLE', N'角色菜单功能关联', N'SysRoleMenuFunction', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'E79DB53B-7162-4669-9B5E-F860501475AC', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysDataAuthority', N'dbo', N'TABLE', N'数据权限', N'SysDataAuthority', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'E79DB53B-7162-4669-9B5E-F860501475AC', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_data_authority', N'dbo', N'TABLE', N'数据权限', N'SysDataAuthority', NULL)
 GO
 
-INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'3DA5D264-2E8D-460C-A10C-FF9A6BB57A60', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'SysUserRole', N'dbo', N'TABLE', N'用户与角色', N'SysUserRole', NULL)
+INSERT INTO [dbo].[low_code_table] ([Id], [LastModificationTime], [CreationTime], [TableName], [Schema], [Type], [DisplayName], [EntityName], [Remark]) VALUES (N'3DA5D264-2E8D-460C-A10C-FF9A6BB57A60', N'2022-05-24 21:57:34.433', N'2022-04-17 00:00:00.000', N'sys_user_role', N'dbo', N'TABLE', N'用户与角色', N'SysUserRole', NULL)
 GO
 
 
@@ -2899,6 +2899,78 @@ INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTi
 GO
 
 INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D874CBDF-A44B-46EA-73C2-08DA5E87152F', N'2022-07-05 21:08:36', N'2022-07-05 21:08:36', N'/api/admin/SysUser/findList/10/1', N'0.0.0.1', N'', N'{"name":null,"loginName":null,"organizationId":null}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'364', N'系统账号', N'查看数据')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'34277187-A98B-4310-89B2-08DA5E8BCC11', N'2022-07-05 21:39:35', N'2022-07-05 21:39:35', N'/', N'0.0.0.1', N'', N'', N'', N'Edge103', N'Windows10', NULL, N'41', NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E3A82609-8FA5-4231-89B3-08DA5E8BCC11', N'2022-07-05 21:39:36', N'2022-07-05 21:39:36', N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'430', N'系统账号', N'获取用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7019442C-66BC-4D23-89B4-08DA5E8BCC11', N'2022-07-05 21:39:59', N'2022-07-05 21:39:59', N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'83', N'系统账号', N'获取用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B6C11183-1A7D-43D9-89B5-08DA5E8BCC11', N'2022-07-05 21:40:04', N'2022-07-05 21:40:04', N'/api/admin/SysOrganization/sysOrganizationTree', N'0.0.0.1', N'', N'{}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'84', N'组织机构', N'查看组织架构树')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'73AFDE0C-5CCB-47F9-89B6-08DA5E8BCC11', N'2022-07-05 21:40:05', N'2022-07-05 21:40:05', N'/api/admin/SysUser/findList/10/1', N'0.0.0.1', N'', N'{"name":null,"loginName":null,"organizationId":null}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'365', N'系统账号', N'查看数据')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'116DC9E2-7C11-4D12-89B7-08DA5E8BCC11', N'2022-07-05 21:40:40', N'2022-07-05 21:40:40', N'/api/admin/SysOrganization/sysOrganizationTree', N'0.0.0.1', N'', N'{}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'60', N'组织机构', N'查看组织架构树')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1DFDFC8F-9F76-4725-89B8-08DA5E8BCC11', N'2022-07-05 21:40:40', N'2022-07-05 21:40:40', N'/api/admin/SysUser/findList/10/1', N'0.0.0.1', N'', N'{"name":null,"loginName":null,"organizationId":null}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'77', N'系统账号', N'查看数据')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D3D981F6-9D8C-44A8-89B9-08DA5E8BCC11', N'2022-07-05 21:41:13', N'2022-07-05 21:41:13', N'/api/admin/SysRole/findList/10/1', N'0.0.0.1', N'', N'{"name":null}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'93', N'角色', N'查看表格')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2DBE887C-1C2B-433A-89BA-08DA5E8BCC11', N'2022-07-05 21:41:15', N'2022-07-05 21:41:15', N'/api/admin/SysDataAuthority/getDataAuthorityByRoleId/40ff1844-c099-4061-98e0-cd6e544fcfd3', N'0.0.0.1', N'', N'', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'96', N'数据权限', N'获取数据权限信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BAF62A70-6182-4055-89BB-08DA5E8BCC11', N'2022-07-05 21:41:15', N'2022-07-05 21:41:15', N'/api/admin/SysOrganization/sysOrganizationTree', N'0.0.0.1', N'', N'{}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'58', N'组织机构', N'查看组织架构树')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BC9D5B6F-3C6C-4896-89BC-08DA5E8BCC11', N'2022-07-05 21:41:18', N'2022-07-05 21:41:18', N'/api/admin/SysFunction/findList/10/1', N'0.0.0.1', N'', N'{"name":null}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'81', N'功能', N'查看数据列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'564AA11F-5B6F-4EE0-89BD-08DA5E8BCC11', N'2022-07-05 21:41:19', N'2022-07-05 21:41:19', N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{"name":null}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'58', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1F6FF599-17BD-433F-89BE-08DA5E8BCC11', N'2022-07-05 21:41:21', N'2022-07-05 21:41:21', N'/api/admin/SysPost/findList/10/1', N'0.0.0.1', N'', N'{"name":null}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'80', N'岗位', N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A78DF6A9-E2AD-4A2A-89BF-08DA5E8BCC11', N'2022-07-05 21:41:22', N'2022-07-05 21:41:22', N'/api/admin/SysOrganization/findList/', N'0.0.0.1', N'', N'{"name":null,"state":1}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'75', N'组织机构', N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8BDA3209-CF97-454D-89C0-08DA5E8BCC11', N'2022-07-05 21:41:23', N'2022-07-05 21:41:23', N'/api/admin/SysDictionary/getDictionaryTree', N'0.0.0.1', N'', N'', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'90', N'数据字典', N'获取字典树')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D8D25EAA-A210-420B-89C1-08DA5E8BCC11', N'2022-07-05 21:41:23', N'2022-07-05 21:41:23', N'/api/admin/SysDictionary/findList/10/1', N'0.0.0.1', N'', N'{"name":null,"parentId":null}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'178', N'数据字典', N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6586A7B7-E9AC-49E5-336E-08DA5E8D7025', N'2022-07-05 21:51:19', N'2022-07-05 21:51:19', N'/', N'0.0.0.1', N'', N'', N'', N'Edge103', N'Windows10', NULL, N'44', NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'39FB560E-436E-4231-336F-08DA5E8D7025', N'2022-07-05 21:51:21', N'2022-07-05 21:51:21', N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'429', N'系统账号', N'获取用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A4A38DBA-63FE-4AEE-3370-08DA5E8D7025', N'2022-07-05 21:52:56', N'2022-07-05 21:52:56', N'/api/admin/LowCodeTable/findList/10/1', N'0.0.0.1', N'', N'{"tableName":null,"entityName":null,"displayName":null}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'305', N'LowCodeTableController', NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2CEEBDE6-A261-41A6-3371-08DA5E8D7025', N'2022-07-05 21:53:00', N'2022-07-05 21:53:00', N'/api/admin/LowCodeTableInfo/findList/20/1', N'0.0.0.1', N'', N'{"columnName":null,"describe":null,"low_Code_TableId":"69b24f04-0ed3-45fc-91d9-0dc929175a57"}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'86', N'LowCodeSearchController', NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4E8E71AA-E832-4E96-1BFB-08DA5EF79F26', N'2022-07-06 10:31:26', N'2022-07-06 10:31:26', N'/', N'0.0.0.1', N'', N'', N'', N'Edge103', N'Windows10', NULL, N'43', NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1218EF9C-7628-4E55-1BFC-08DA5EF79F26', N'2022-07-06 10:33:34', N'2022-07-06 10:33:34', N'/api/account/check', N'0.0.0.1', N'', N'{"userName":"admin","userPassword":"123456"}', N'', N'Edge103', N'Windows10', NULL, N'1048', NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'03DD8D0A-2713-4F38-1BFD-08DA5EF79F26', N'2022-07-06 10:33:35', N'2022-07-06 10:33:35', N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'393', N'系统账号', N'获取用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [LastModificationTime], [CreationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [Browser], [OS], [UserId], [TakeUpTime], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E6AA8613-4BD3-4608-1BFE-08DA5EF79F26', N'2022-07-06 10:33:46', N'2022-07-06 10:33:46', N'/api/admin/LowCodeTable/findList/10/1', N'0.0.0.1', N'', N'{"tableName":null,"entityName":null,"displayName":null}', N'', N'Edge103', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'242', N'LowCodeTableController', NULL)
 GO
 
 

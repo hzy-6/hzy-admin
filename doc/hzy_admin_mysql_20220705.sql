@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 05/07/2022 21:19:57
+ Date: 06/07/2022 10:51:51
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `__efmigrationshistory`  (
 -- ----------------------------
 -- Records of __efmigrationshistory
 -- ----------------------------
-INSERT INTO `__efmigrationshistory` VALUES ('20220705131718_mysql_init', '6.0.6');
+INSERT INTO `__efmigrationshistory` VALUES ('20220706024357_mysql_init', '6.0.6');
 
 -- ----------------------------
 -- Table structure for flow
@@ -193,30 +193,30 @@ CREATE TABLE `low_code_table`  (
 -- ----------------------------
 -- Records of low_code_table
 -- ----------------------------
-INSERT INTO `low_code_table` VALUES ('0a8bdb18-758a-4798-9ffc-e7031dcbf262', 'SysPost', 'dbo', 'TABLE', '岗位', 'SysPost', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('1a8df018-79f8-4e26-b4eb-4b735aae7275', 'Flow', 'dbo', 'TABLE', '审批流', 'Flow', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('2ae9e532-7d9a-474b-b629-50a39945c44d', 'SysMenuFunction', 'dbo', 'TABLE', '菜单功能', 'SysMenuFunction', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('3da5d264-2e8d-460c-a10c-ff9a6bb57a60', 'SysUserRole', 'dbo', 'TABLE', '用户与角色', 'SysUserRole', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('524e71b4-cbf7-4248-8b29-3f99b43f2eb2', 'SysDataAuthorityCustom', 'dbo', 'TABLE', '自定义数据权限', 'SysDataAuthorityCustom', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('60cceba1-28bf-4d1d-b603-4edf95d512b8', 'SysOperationLog', 'dbo', 'TABLE', '操作日志', 'SysOperationLog', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('6323638b-a45f-4a76-886e-69a9e9be0901', 'SysUser', 'dbo', 'TABLE', '用户', 'SysUser', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('651bb982-1130-4e1c-9070-36b90dcf2324', 'FlowApprovalStep', 'dbo', 'TABLE', '工作流审批步骤配置', 'FlowApprovalStep', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('69b24f04-0ed3-45fc-91d9-0dc929175a57', 'SysUserPost', 'dbo', 'TABLE', '用户与岗位', 'SysUserPost', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('69edd8a8-1d24-478c-a909-b82039edcec0', 'LowCodeSearch', 'dbo', 'TABLE', '低代码检索表', 'LowCodeSearch', NULL, '2022-05-24 21:57:34.000000', '2022-05-23 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('6ba9805c-916e-4d2c-99d0-216fcbc361cc', 'LowCodeTable', 'dbo', 'TABLE', '低代码表', 'LowCodeTable', NULL, '2022-05-24 21:57:34.000000', '2022-05-23 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('6fabc67a-8b48-49a6-8ba1-c8a32c499d36', 'SysFunction', 'dbo', 'TABLE', '功能', 'SysFunction', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('73c97832-4e7f-4758-86d2-94327971b5fd', 'Member', 'dbo', 'TABLE', '会员', 'Member', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('79fbd4ec-9f4e-45dc-8065-70f2eb422cdf', 'LowCodeTableInfo', 'dbo', 'TABLE', '低代码表信息', 'LowCodeTableInfo', NULL, '2022-05-24 21:57:34.000000', '2022-05-23 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('7ad3b915-f0bd-443a-89cd-42d41dd6c554', 'FlowApprovalStepUser', 'dbo', 'TABLE', '工作流用户审批步骤', 'FlowApprovalStepUser', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('852f53ff-0d00-4c32-aa55-a9c11993751b', 'LowCodeList', 'dbo', 'TABLE', '低代码列表', 'LowCodeList', NULL, '2022-05-24 21:57:34.000000', '2022-05-23 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('8da38d20-8a09-4e81-8dd8-ed6702aee380', 'SysRoleMenuFunction', 'dbo', 'TABLE', '角色菜单功能关联', 'SysRoleMenuFunction', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('ae6d94d8-6a15-4348-b600-aa17e4b61718', 'FlowNode', 'dbo', 'TABLE', '工作流节点', 'FlowNode', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('af37f705-7ba0-4883-b1be-8a274ea4c026', 'SysDictionary', 'dbo', 'TABLE', '数据字典', 'SysDictionary', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('d2600250-6f32-4d7d-8395-96cc9fa36db4', 'SysMenu', 'dbo', 'TABLE', '菜单', 'SysMenu', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('d26d07cb-158a-4cb2-8b20-5dfd5181af54', 'SysOrganization', 'dbo', 'TABLE', '组织', 'SysOrganization', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('d8948c56-c5bd-4061-b272-5417375f38f0', 'FlowApproval', 'dbo', 'TABLE', '审批流审批', 'FlowApproval', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('e79db53b-7162-4669-9b5e-f860501475ac', 'SysDataAuthority', 'dbo', 'TABLE', '数据权限', 'SysDataAuthority', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
-INSERT INTO `low_code_table` VALUES ('f3d7bbb3-c1fb-4d61-92a4-9bc101811335', 'SysRole', 'dbo', 'TABLE', '角色', 'SysRole', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('0a8bdb18-758a-4798-9ffc-e7031dcbf262', 'sys_post', 'dbo', 'TABLE', '岗位', 'SysPost', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('1a8df018-79f8-4e26-b4eb-4b735aae7275', 'flow', 'dbo', 'TABLE', '审批流', 'Flow', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('2ae9e532-7d9a-474b-b629-50a39945c44d', 'sys_menu_function', 'dbo', 'TABLE', '菜单功能', 'SysMenuFunction', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('3da5d264-2e8d-460c-a10c-ff9a6bb57a60', 'sys_user_role', 'dbo', 'TABLE', '用户与角色', 'SysUserRole', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('524e71b4-cbf7-4248-8b29-3f99b43f2eb2', 'sys_data_authority_custom', 'dbo', 'TABLE', '自定义数据权限', 'SysDataAuthorityCustom', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('60cceba1-28bf-4d1d-b603-4edf95d512b8', 'sys_operation_log', 'dbo', 'TABLE', '操作日志', 'SysOperationLog', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('6323638b-a45f-4a76-886e-69a9e9be0901', 'sys_user', 'dbo', 'TABLE', '用户', 'SysUser', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('651bb982-1130-4e1c-9070-36b90dcf2324', 'flow_approval_step', 'dbo', 'TABLE', '工作流审批步骤配置', 'FlowApprovalStep', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('69b24f04-0ed3-45fc-91d9-0dc929175a57', 'sys_user_post', 'dbo', 'TABLE', '用户与岗位', 'SysUserPost', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('69edd8a8-1d24-478c-a909-b82039edcec0', 'low_code_search', 'dbo', 'TABLE', '低代码检索表', 'LowCodeSearch', NULL, '2022-05-24 21:57:34.000000', '2022-05-23 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('6ba9805c-916e-4d2c-99d0-216fcbc361cc', 'low_code_table', 'dbo', 'TABLE', '低代码表', 'LowCodeTable', NULL, '2022-05-24 21:57:34.000000', '2022-05-23 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('6fabc67a-8b48-49a6-8ba1-c8a32c499d36', 'sys_function', 'dbo', 'TABLE', '功能', 'SysFunction', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('73c97832-4e7f-4758-86d2-94327971b5fd', 'member', 'dbo', 'TABLE', '会员', 'Member', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('79fbd4ec-9f4e-45dc-8065-70f2eb422cdf', 'low_code_table_info', 'dbo', 'TABLE', '低代码表信息', 'LowCodeTableInfo', NULL, '2022-05-24 21:57:34.000000', '2022-05-23 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('7ad3b915-f0bd-443a-89cd-42d41dd6c554', 'flow_approval_step_user', 'dbo', 'TABLE', '工作流用户审批步骤', 'FlowApprovalStepUser', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('852f53ff-0d00-4c32-aa55-a9c11993751b', 'low_code_list', 'dbo', 'TABLE', '低代码列表', 'LowCodeList', NULL, '2022-05-24 21:57:34.000000', '2022-05-23 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('8da38d20-8a09-4e81-8dd8-ed6702aee380', 'sys_role_menu_function', 'dbo', 'TABLE', '角色菜单功能关联', 'SysRoleMenuFunction', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('ae6d94d8-6a15-4348-b600-aa17e4b61718', 'flow_node', 'dbo', 'TABLE', '工作流节点', 'FlowNode', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('af37f705-7ba0-4883-b1be-8a274ea4c026', 'sys_dictionary', 'dbo', 'TABLE', '数据字典', 'SysDictionary', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('d2600250-6f32-4d7d-8395-96cc9fa36db4', 'sys_menu', 'dbo', 'TABLE', '菜单', 'SysMenu', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('d26d07cb-158a-4cb2-8b20-5dfd5181af54', 'sys_organization', 'dbo', 'TABLE', '组织', 'SysOrganization', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('d8948c56-c5bd-4061-b272-5417375f38f0', 'flow_approval', 'dbo', 'TABLE', '审批流审批', 'FlowApproval', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('e79db53b-7162-4669-9b5e-f860501475ac', 'sys_data_authority', 'dbo', 'TABLE', '数据权限', 'SysDataAuthority', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
+INSERT INTO `low_code_table` VALUES ('f3d7bbb3-c1fb-4d61-92a4-9bc101811335', 'sys_role', 'dbo', 'TABLE', '角色', 'SysRole', NULL, '2022-05-24 21:57:34.000000', '2022-04-17 00:00:00.000000');
 
 -- ----------------------------
 -- Table structure for low_code_table_info
