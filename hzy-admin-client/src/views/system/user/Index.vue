@@ -138,6 +138,7 @@ import tools from "@/scripts/tools";
 import service from "@/service/system/userService";
 import organizationService from "@/service/system/organizationService";
 import router from "@/router/index";
+import appConsts from "@/scripts/app-consts";
 
 //定义组件事件
 const emits = defineEmits(["onChange"]);
@@ -237,14 +238,14 @@ const methods = {
     }
     service.deleteList(ids).then((res) => {
       if (res.code != 1) return;
-      tools.message("删除成功!", "成功");
+      tools.message("删除成功!", appConsts.success);
       methods.findList();
     });
   },
   //打开表单页面
   openForm(id) {
     if (!id && !state.search.vm.organizationId) {
-      return tools.message("请选择组织!", "警告");
+      return tools.message("请选择组织!", appConsts.warn);
     }
     refForm.value.openForm({
       visible: true,
