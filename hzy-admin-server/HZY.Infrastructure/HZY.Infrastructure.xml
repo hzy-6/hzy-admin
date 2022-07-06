@@ -1134,6 +1134,13 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:HZY.Infrastructure.Tools.LineToHump(System.String)">
+            <summary>
+            蛇形命名 转化为 驼峰命名
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Infrastructure.Zip">
             <summary>
             压缩 zip  https://www.cnblogs.com/xielong/p/6165550.html

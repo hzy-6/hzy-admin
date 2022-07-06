@@ -8,6 +8,7 @@ using HZY.Models.Entities.LowCode;
 using HzyEFCoreRepositories.Extensions;
 using HZY.EFCore.Repositories.Admin.DevelopmentTool;
 using HZY.EFCore.Repositories.Admin.DevelopmentTool.LowCode;
+using HZY.Infrastructure;
 
 namespace HZY.Services.Admin
 {
@@ -99,7 +100,7 @@ namespace HZY.Services.Admin
                         Id = id,
                         DisplayName = item.Comment,
                         TableName = item.Name,
-                        EntityName = item.Name,
+                        EntityName = Tools.LineToHump(item.Name),
                         Schema = item.Schema,
                         Type = item.Type.ToString()
                     });
