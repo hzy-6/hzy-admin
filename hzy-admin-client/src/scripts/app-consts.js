@@ -22,6 +22,12 @@ const appConsts = {
      * 用于请求头部授权码key名称
      */
     authorizationKeyName: "Authorization",
+
+    /** 消息类型 **/
+    error: "错误",
+    warn: "警告",
+    success: "成功",
+    info: "info"
 };
 
 export default appConsts;
