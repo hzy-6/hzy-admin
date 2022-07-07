@@ -8,9 +8,11 @@ try
     WebApplication.CreateBuilder(args)
         // 日志配置
         .LogUtilBuild()
-        // 服务构建
+        // 服务注册
         .AppConfigureServicesBuild()
-        // 使用服务
+        // 构建
+        .Build()
+        // 使用服务和配置
         .AppConfigureBuild()
         // 启动主端点 miniapi
         .MapMainEndpoints()

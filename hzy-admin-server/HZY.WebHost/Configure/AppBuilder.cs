@@ -44,7 +44,7 @@ public static class AppBuilder
     /// 配置服务
     /// </summary>
     /// <param name="builder"></param>
-    public static WebApplication AppConfigureServicesBuild(this WebApplicationBuilder builder)
+    public static WebApplicationBuilder AppConfigureServicesBuild(this WebApplicationBuilder builder)
     {
         //地址
         //builder.WebHost.UseUrls("http://*:5600", "http://localhost:5600");
@@ -227,7 +227,7 @@ public static class AppBuilder
         // 本地消息队列
         services.AddMemoryMQ();
 
-        return builder.Build();
+        return builder;
     }
 
     /// <summary>

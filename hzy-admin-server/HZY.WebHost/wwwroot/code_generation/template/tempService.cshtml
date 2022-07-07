@@ -127,7 +127,7 @@ namespace @(Model.Namespace).Services.Admin
         /// </summary>
         /// <param name="form">form</param>
         /// <returns></returns>
-        public Task<@(className)> SaveFormAsync(@className form)
+        public Task SaveFormAsync(@className form)
         {
             return this._defaultRepository.InsertOrUpdateAsync(form);
         }
