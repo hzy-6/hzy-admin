@@ -293,6 +293,9 @@ const methods = {
     onChange() {
       if (!props.isFindBack) return;
       var rows = refList.value.table.getCheckboxRecords();
+      if (rows && rows.length == 0) {
+        return tools.message("请选择一条数据!", "警告");
+      }
       if (props.type && rows.length > 1) {
         return tools.message("只能选择一条数据!", "警告");
       }

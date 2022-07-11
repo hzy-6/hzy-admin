@@ -13,24 +13,25 @@ var props = defineProps({
 var emit = defineEmits(["update:value"]);
 
 const visible = ref(false);
-const defaultCron = "* * * * * ? *";
-const cron = ref(defaultCron);
+const cron = ref(null);
 
-onMounted(() => {
-  cron.value = props.value ? props.value : defaultCron;
-});
+// onMounted(() => {
+//   cron.value = props.value ;
+// });
 
 watch(
   () => cron.value,
   (value) => {
     emit("update:value", value);
+    console.log("cron1", value);
   }
 );
 
 watch(
   () => props.value,
   (value) => {
-    cron.value = value ? value : defaultCron;
+    cron.value = value;
+    console.log("cron", cron.value);
   }
 );
 

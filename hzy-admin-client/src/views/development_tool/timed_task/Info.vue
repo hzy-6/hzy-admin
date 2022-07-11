@@ -65,6 +65,7 @@ const emits = defineEmits(["onSuccess"]);
 const state = reactive({
   vm: {
     id: "",
+    cron: null,
   },
   visible: false,
   saveLoading: false,
@@ -87,6 +88,7 @@ const methods = {
       state.saveLoading = false;
       if (res.code != 1) return;
       state.vm = res.data;
+      state.vm.cron = state.vm.cron ? state.vm.cron : "* * * * * ? *";
     });
   },
   saveForm() {
