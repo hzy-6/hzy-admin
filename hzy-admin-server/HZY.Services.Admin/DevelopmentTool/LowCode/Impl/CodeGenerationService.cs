@@ -436,15 +436,16 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
         /// <returns></returns>
         private string FindCodeFileClassName(GenFormDto genFormDto)
         {
+            var tableName = Tools.LineToHump(genFormDto.TableName);
             return genFormDto.Type switch
             {
-                "HZY.Models" => $"{genFormDto.TableName}.cs",
+                "HZY.Models" => $"{tableName}.cs",
                 // "HZY.Repository.DbSet" => ,
-                "HZY.Services.Admin" => $"{genFormDto.TableName}Service.cs",
-                "HZY.Controllers.Admin" => $"{genFormDto.TableName}Controller.cs",
+                "HZY.Services.Admin" => $"{tableName}Service.cs",
+                "HZY.Controllers.Admin" => $"{tableName}Controller.cs",
                 "Index.vue" => $"Index.vue",
                 "Info.vue" => $"Info.vue",
-                "Service.js" => $"{genFormDto.TableName.FirstCharToLower()}Service.js",
+                "Service.js" => $"{tableName.FirstCharToLower()}Service.js",
                 _ => string.Empty
             };
         }

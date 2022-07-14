@@ -30,6 +30,11 @@ public class ApiResultFilterAttribute : Attribute, IResultFilter
             return;
         }
 
+        if (context.HttpContext.IsDownLoadFile())
+        {
+            return;
+        }
+
         if (context.Result is ObjectResult)
         {
             var result = context.Result as ObjectResult;
@@ -46,7 +51,6 @@ public class ApiResultFilterAttribute : Attribute, IResultFilter
 
         if (context.Result is EmptyResult)
         {
-            var result = context.Result as ContentResult;
             context.Result = new JsonResult(ApiResult.Ok("success", null));
             return;
         }

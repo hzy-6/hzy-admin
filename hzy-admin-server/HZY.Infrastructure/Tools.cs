@@ -1004,6 +1004,16 @@ public static class Tools
     }
 
     /// <summary>
+    /// 验证当前上下文响应内容是否是下载文件
+    /// </summary>
+    /// <param name="httpContext"></param>
+    /// <returns></returns>
+    public static bool IsDownLoadFile(this HttpContext httpContext)
+    {
+        return httpContext.Response.Headers["Content-Disposition"].ToString().StartsWith("attachment; filename=");
+    }
+
+    /// <summary>
     /// 获取名称 根据表达式树
     /// </summary>
     /// <param name="exp"></param>

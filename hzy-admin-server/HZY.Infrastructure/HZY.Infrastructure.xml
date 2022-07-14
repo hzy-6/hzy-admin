@@ -1126,6 +1126,13 @@
             <param name="fileDownloadName"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Infrastructure.Tools.IsDownLoadFile(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            验证当前上下文响应内容是否是下载文件
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Infrastructure.Tools.GetNameByExpression``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
             <summary>
             获取名称 根据表达式树
