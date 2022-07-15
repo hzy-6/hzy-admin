@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.IO;
 using System.Linq;
 using System.Linq.Expressions;
@@ -7,8 +8,11 @@ using System.Net;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.Json;
+using System.Text.RegularExpressions;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using UAParser;
 
 namespace HZY.Infrastructure;
@@ -1059,4 +1063,40 @@ public static class Tools
         return sb.ToString();
     }
 
+    /// <summary>
+    /// 将驼峰命名法改为 下划线 命名法
+    /// </summary>
+    /// <param name="input"></param>
+    /// <returns></returns>
+    public static string ToUnderlineNomenclature(this string input)
+    {
+        if (string.IsNullOrEmpty(input))
+        {
+            return input;
+        }
+
+        return Regex.Replace(input, @"([a-z0-9])([A-Z])", "$1_$2").ToLower();
+    }
+    
+    /// <summary>
+    /// 数据库表名映射
+    /// </summary>
+    /// <param name="modelBuilder"></param>
+    /// <param name="mappingName"></param>
+    public static void TableNameMapping(this ModelBuilder modelBuilder,Func<string,string> mappingName)
+    {
+        foreach (var entity in modelBuilder.Model.GetEntityTypes())
+        {
+            string name = string.Empty;
+            var tableAttr = entity.GetType().GetCustomAttributes(typeof(TableAttribute), false).FirstOrDefault() as TableAttribute;
+            if (tableAttr != null)
+            {
+                name = mappingName(tableAttr.Name);
+                entity.SetTableName(name);
+                continue;
+            }
+            name = mappingName(entity.GetTableName());
+            entity.SetTableName(name);
+        }
+    }
 }

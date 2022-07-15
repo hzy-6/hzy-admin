@@ -1,14 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-
-using HzyEFCoreRepositories.DbContexts;
-using HzyEFCoreRepositories.Extensions;
-
+﻿using HZY.EFCore.Migrations.Seeds;
+using HZY.Infrastructure;
 using HZY.Models.Entities;
 using HZY.Models.Entities.ApprovalFlow;
 using HZY.Models.Entities.BaseEntitys;
 using HZY.Models.Entities.Framework;
 using HZY.Models.Entities.LowCode;
-using HZY.EFCore.Migrations.Seeds;
+using HzyEFCoreRepositories.DbContexts;
+using HzyEFCoreRepositories.Extensions;
+using Microsoft.EntityFrameworkCore;
 
 namespace HZY.EFCore.DbContexts;
 
@@ -42,11 +41,11 @@ public class AdminDbContext : DbContextBase
     #endregion
 
     #region 审批流
-    public DbSet<Flow> Flows { get; set; }
-    public DbSet<FlowNode> FlowNodes { get; set; }
-    public DbSet<FlowApproval> FlowApprovals { get; set; }
-    public DbSet<FlowApprovalStep> FlowApprovalSteps { get; set; }
-    public DbSet<FlowApprovalStepUser> FlowApprovalStepUsers { get; set; }
+    public DbSet<Flow> Flow { get; set; }
+    public DbSet<FlowNode> FlowNode { get; set; }
+    public DbSet<FlowApproval> FlowApproval { get; set; }
+    public DbSet<FlowApprovalStep> FlowApprovalStep { get; set; }
+    public DbSet<FlowApprovalStepUser> FlowApprovalStepUser { get; set; }
     #endregion
 
     #region 低代码
@@ -83,49 +82,79 @@ public class AdminDbContext : DbContextBase
 
         #endregion
 
-        #region 后台系统 基础
+        #region 自动映射表名
+        // 默认是实体的名称 如: DbSet<Flow> Flows 表名就是 Flows
+        // 生成名称与所想不一致请查看实体名称  实体名称请使用驼峰命名法
+        var nameRule = NameRuleType.SnakeCase;
 
-        modelBuilder.Entity<SysFunction>().ToTable("sys_function");
-        modelBuilder.Entity<SysMenu>().ToTable("sys_menu");
-        modelBuilder.Entity<SysMenuFunction>().ToTable("sys_menu_function");
-        modelBuilder.Entity<SysRole>().ToTable("sys_role");
-        modelBuilder.Entity<SysRoleMenuFunction>().ToTable("sys_role_menu_function");
-        modelBuilder.Entity<SysUser>().ToTable("sys_user");
-        modelBuilder.Entity<SysUserRole>().ToTable("sys_user_role");
-        modelBuilder.Entity<SysOrganization>().ToTable("sys_organization");
-        modelBuilder.Entity<SysPost>().ToTable("sys_post");
-        modelBuilder.Entity<SysUserPost>().ToTable("sys_user_post");
-        modelBuilder.Entity<SysDictionary>().ToTable("sys_dictionary");
-        modelBuilder.Entity<SysOperationLog>().ToTable("sys_operation_log");
-        modelBuilder.Entity<SysDataAuthority>().ToTable("sys_data_authority");
-        modelBuilder.Entity<SysDataAuthorityCustom>().ToTable("sys_data_authority_custom");
-
-        #endregion
-
-        #region 审批流
-
-        modelBuilder.Entity<Flow>().ToTable("flow");
-        modelBuilder.Entity<FlowNode>().ToTable("flow_node");
-        modelBuilder.Entity<FlowApproval>().ToTable("flow_approval");
-        modelBuilder.Entity<FlowApprovalStep>().ToTable("flow_approval_step");
-        modelBuilder.Entity<FlowApprovalStepUser>().ToTable("flow_approval_step_user");
-
-        #endregion
-
-        #region 低代码
-
-        modelBuilder.Entity<LowCodeList>().ToTable("low_code_list");
-        modelBuilder.Entity<LowCodeSearch>().ToTable("low_code_search");
-        modelBuilder.Entity<LowCodeTable>().ToTable("low_code_table");
-        modelBuilder.Entity<LowCodeTableInfo>().ToTable("low_code_table_info");
+        if (nameRule == NameRuleType.SnakeCase)
+        {
+            // 蛇形命名法
+            // ToUnderlineNomenclature()  将驼峰命名法改为蛇形命名法  类似: SysFunction => sys_function
+            modelBuilder.TableNameMapping(oldTableName => oldTableName.ToUnderlineNomenclature());
+        }
+        else if(nameRule == NameRuleType.UpperSnakeCase)
+        {
+            // 全大写蛇形命名法
+            //  SysFunction => SYS_FUNCTION
+            modelBuilder.TableNameMapping(oldTableName => oldTableName.ToUnderlineNomenclature().ToUpper());
+        }
+        else if (nameRule == NameRuleType.Upper)
+        {
+            // 表名全大写
+            modelBuilder.TableNameMapping(oldTableName => oldTableName.ToUpper());
+        }
+        else if (nameRule == NameRuleType.Lower)
+        {
+            // 表名全小写
+            modelBuilder.TableNameMapping(oldTableName => oldTableName.ToLower());
+        }
 
         #endregion
 
-        #region 业务
+        // #region 后台系统 基础
 
-        modelBuilder.Entity<Member>().ToTable("member");
+        // modelBuilder.Entity<SysFunction>().ToTable("sys_function");
+        // modelBuilder.Entity<SysMenu>().ToTable("sys_menu");
+        // modelBuilder.Entity<SysMenuFunction>().ToTable("sys_menu_function");
+        // modelBuilder.Entity<SysRole>().ToTable("sys_role");
+        // modelBuilder.Entity<SysRoleMenuFunction>().ToTable("sys_role_menu_function");
+        // modelBuilder.Entity<SysUser>().ToTable("sys_user");
+        // modelBuilder.Entity<SysUserRole>().ToTable("sys_user_role");
+        // modelBuilder.Entity<SysOrganization>().ToTable("sys_organization");
+        // modelBuilder.Entity<SysPost>().ToTable("sys_post");
+        // modelBuilder.Entity<SysUserPost>().ToTable("sys_user_post");
+        // modelBuilder.Entity<SysDictionary>().ToTable("sys_dictionary");
+        // modelBuilder.Entity<SysOperationLog>().ToTable("sys_operation_log");
+        // modelBuilder.Entity<SysDataAuthority>().ToTable("sys_data_authority");
+        // modelBuilder.Entity<SysDataAuthorityCustom>().ToTable("sys_data_authority_custom");
 
-        #endregion
+        // #endregion
+
+        // #region 审批流
+
+        // modelBuilder.Entity<Flow>().ToTable("flow");
+        // modelBuilder.Entity<FlowNode>().ToTable("flow_node");
+        // modelBuilder.Entity<FlowApproval>().ToTable("flow_approval");
+        // modelBuilder.Entity<FlowApprovalStep>().ToTable("flow_approval_step");
+        // modelBuilder.Entity<FlowApprovalStepUser>().ToTable("flow_approval_step_user");
+
+        // #endregion
+
+        // #region 低代码
+
+        // modelBuilder.Entity<LowCodeList>().ToTable("low_code_list");
+        // modelBuilder.Entity<LowCodeSearch>().ToTable("low_code_search");
+        // modelBuilder.Entity<LowCodeTable>().ToTable("low_code_table");
+        // modelBuilder.Entity<LowCodeTableInfo>().ToTable("low_code_table_info");
+
+        // #endregion
+
+        // #region 业务
+
+        // modelBuilder.Entity<Member>().ToTable("member");
+
+        // #endregion
 
     }
 
