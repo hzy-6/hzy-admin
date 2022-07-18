@@ -725,6 +725,36 @@
             队列回调函数
             </summary>
         </member>
+        <member name="T:HZY.Infrastructure.NameRuleType">
+            <summary>
+            命名规则类型
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.NameRuleType.Default">
+            <summary>
+            默认类型  请使用驼峰命名法
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.NameRuleType.SnakeCase">
+            <summary>
+            蛇形命名法 
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.NameRuleType.UpperSnakeCase">
+            <summary>
+            全大写蛇形命名法
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.NameRuleType.Upper">
+            <summary>
+            全大写命名
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.NameRuleType.Lower">
+            <summary>
+            全小写命名
+            </summary>
+        </member>
         <member name="T:HZY.Infrastructure.ObjectMapper">
             <summary>
             对象映射类

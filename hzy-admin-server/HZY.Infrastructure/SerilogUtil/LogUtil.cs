@@ -17,20 +17,21 @@ namespace HZY.Infrastructure.SerilogUtil
     public static class LogUtil
     {
         static string LogFilePath(string LogEvent) =>
-            $@"{AppDomain.CurrentDomain.BaseDirectory}/AppLogs/{DateTime.Now.Year}/{DateTime.Now.Month}/{DateTime.Now.Day}/{LogEvent}/.log";
+            $@"{AppDomain.CurrentDomain.BaseDirectory}/AppLogs/{DateTime.Now.Year}/{DateTime.Now.Month}/{DateTime.Now.Day}/{LogEvent}/{LogEvent}_.log";
 
         /// <summary>
         /// 启动
         /// </summary>
+        /// <param name="builder"></param>
+        /// <returns></returns>
         public static WebApplicationBuilder LogUtilBuild(this WebApplicationBuilder builder)
         {
-            var now = DateTime.Now;
-
             var logger = new LoggerConfiguration()
                 .Enrich.With(new DateTimeNowEnricher())
                 .MinimumLevel.Debug()//最小记录级别
                 .Enrich.FromLogContext()//记录相关上下文信息 
                 .MinimumLevel.Override(nameof(Microsoft), LogEventLevel.Debug)//对其他日志进行重写,除此之外,目前框架只有微软自带的日志组件
+                .WriteTo.File(LogFilePath("All"), LogEventLevel.Debug, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true, fileSizeLimitBytes: ((1 * 1024) * 1024) * 10)
                 ;
 
             if (builder.Environment.IsDevelopment())
@@ -43,31 +44,31 @@ namespace HZY.Infrastructure.SerilogUtil
                 {
                     lg.Filter
                     .ByIncludingOnly(p => p.Level == LogEventLevel.Debug)
-                    .WriteTo.File(LogFilePath(nameof(LogEventLevel.Debug)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
+                    .WriteTo.File(LogFilePath(nameof(LogEventLevel.Debug)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true, fileSizeLimitBytes: ((1 * 1024) * 1024) * 10);
                 })
                 .WriteTo.Logger(lg =>
                 {
                     lg.Filter
                     .ByIncludingOnly(p => p.Level == LogEventLevel.Information)
-                    .WriteTo.File(LogFilePath(nameof(LogEventLevel.Information)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
+                    .WriteTo.File(LogFilePath(nameof(LogEventLevel.Information)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true, fileSizeLimitBytes: ((1 * 1024) * 1024) * 10);
                 })
                 .WriteTo.Logger(lg =>
                 {
                     lg.Filter
                     .ByIncludingOnly(p => p.Level == LogEventLevel.Warning)
-                    .WriteTo.File(LogFilePath(nameof(LogEventLevel.Warning)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
+                    .WriteTo.File(LogFilePath(nameof(LogEventLevel.Warning)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true, fileSizeLimitBytes: ((1 * 1024) * 1024) * 10);
                 })
                 .WriteTo.Logger(lg =>
                 {
                     lg.Filter
                     .ByIncludingOnly(p => p.Level == LogEventLevel.Error)
-                    .WriteTo.File(LogFilePath(nameof(LogEventLevel.Error)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
+                    .WriteTo.File(LogFilePath(nameof(LogEventLevel.Error)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true, fileSizeLimitBytes: ((1 * 1024) * 1024) * 10);
                 })
                 .WriteTo.Logger(lg =>
                 {
                     lg.Filter
                     .ByIncludingOnly(p => p.Level == LogEventLevel.Fatal)
-                    .WriteTo.File(LogFilePath(nameof(LogEventLevel.Fatal)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true);
+                    .WriteTo.File(LogFilePath(nameof(LogEventLevel.Fatal)), rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true, fileSizeLimitBytes: ((1 * 1024) * 1024) * 10);
                 })
                 .CreateLogger();
 
