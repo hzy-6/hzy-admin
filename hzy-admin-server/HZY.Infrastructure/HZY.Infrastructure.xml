@@ -4,6 +4,116 @@
         <name>HZY.Infrastructure</name>
     </assembly>
     <members>
+        <member name="P:HZY.Infrastructure.Aop.BaseCacheAttribute.CacheKey">
+            <summary>
+            缓存Key
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.Aop.BaseCacheAttribute.RedisServiceType">
+            <summary>
+            Redis 服务类型
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.BaseCacheAttribute.GetCacheKey(HzyScanDiService.AopContext)">
+            <summary>
+            获取缓存Key
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.BaseCacheAttribute.ParseCacheKey(HzyScanDiService.AopContext)">
+            <summary>
+            解析缓存主键
+            </summary>
+            <param name="context">拦截器上下文</param>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.BaseCacheAttribute.GetParameterValue(System.Object,System.Collections.Generic.List{System.String})">
+            <summary>
+            递归获取属性值
+            </summary>
+            <param name="obj"></param>
+            <param name="parameterNames"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.BaseCacheAttribute.GetPropertyInfo(System.Object,System.String)">
+            <summary>
+            根据属性名称获取实例里的属性
+            </summary>
+            <param name="obj">实例</param>
+            <param name="name">需要的属性名</param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.BaseCacheAttribute.GetDatabase(HzyScanDiService.AopContext)">
+            <summary>
+            获取Redis数据库
+            </summary>
+            <param name="aopContext"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Infrastructure.Aop.CacheableAttribute">
+            <summary>
+            缓存AOP
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.Aop.CacheableAttribute.CacheDuration">
+            <summary>
+            缓存时长 (秒) 默认存储 10s 如果0代表永久
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheableAttribute.Before(HzyScanDiService.AopContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheableAttribute.Before``1(HzyScanDiService.AopContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheableAttribute.After(HzyScanDiService.AopContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheableAttribute.After``1(HzyScanDiService.AopContext,``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheableAttribute.GetMemoryCache(HzyScanDiService.AopContext)">
+            <summary>
+            获取 MemoryCache 缓存
+            </summary>
+            <param name="aopContext"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheableAttribute.GetRedisCache(HzyScanDiService.AopContext)">
+            <summary>
+            获取 RedisCache 缓存
+            </summary>
+            <param name="aopContext"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheableAttribute.GetRedisCache``1(HzyScanDiService.AopContext)">
+            <summary>
+            获取 RedisCache 缓存
+            </summary>
+            <param name="aopContext"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheableAttribute.CreateCache(HzyScanDiService.AopContext,System.Object)">
+            <summary>
+            创建缓存
+            </summary>
+            <param name="aopContext"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheableAttribute.CreateMemoryCache(HzyScanDiService.AopContext,System.Object)">
+            <summary>
+            创建内存缓存
+            </summary>
+            <param name="aopContext"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheableAttribute.CreateRedisCache(HzyScanDiService.AopContext,System.Object)">
+            <summary>
+            创建Redis缓存
+            </summary>
+            <param name="aopContext"></param>
+            <param name="result"></param>
+        </member>
         <member name="T:HZY.Infrastructure.Aop.CacheAttribute">
             <summary>
             缓存拦截器
@@ -113,6 +223,62 @@
             <param name="aopContext"></param>
             <returns></returns>
             <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="T:HZY.Infrastructure.Aop.CacheEvictAttribute">
+            <summary>
+            清除缓存AOP
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.Aop.CacheEvictAttribute.BeforeRun">
+            <summary>
+            移除时机  默认方法执行完
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheEvictAttribute.Before(HzyScanDiService.AopContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheEvictAttribute.Before``1(HzyScanDiService.AopContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheEvictAttribute.After(HzyScanDiService.AopContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheEvictAttribute.After``1(HzyScanDiService.AopContext,``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheEvictAttribute.RemoveKey(HzyScanDiService.AopContext)">
+            <summary>
+            移除key
+            </summary>
+            <param name="aopContext"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheEvictAttribute.RemoveRedisKey(HzyScanDiService.AopContext)">
+            <summary>
+            移除redis key
+            </summary>
+            <param name="aopContext"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheEvictAttribute.RemoveRedisGroupKey(HzyScanDiService.AopContext,System.String)">
+            <summary>
+            移除Redis分组的key
+            </summary>
+            <param name="aopContext"></param>
+            <param name="cacheKey"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheEvictAttribute.RemoveMemoryKey(HzyScanDiService.AopContext)">
+            <summary>
+            移除内存key
+            </summary>
+            <param name="aopContext"></param>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.CacheEvictAttribute.RemoveMemoryGroupKey(System.String,Microsoft.Extensions.Caching.Memory.IMemoryCache,System.Boolean)">
+            <summary>
+            移除内存缓存分组的 key
+            </summary>
+            <param name="pattern"></param>
+            <param name="memoryCache"></param>
+            <param name="isStart"></param>
         </member>
         <member name="T:HZY.Infrastructure.ApiResultManage.ApiResult">
             <summary>
@@ -920,6 +1086,8 @@
             <summary>
             启动
             </summary>
+            <param name="builder"></param>
+            <returns></returns>
         </member>
         <member name="P:HZY.Infrastructure.SerilogUtil.LogUtil.Log">
             <summary>
