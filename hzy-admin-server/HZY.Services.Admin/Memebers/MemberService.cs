@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HZY.Domain.Services.Accounts;
-using HZY.Domain.Services.Upload;
+using HZY.Managers.Accounts;
+using HZY.Managers.Upload;
 using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
@@ -22,13 +22,13 @@ namespace HZY.Services.Admin.Memebers;
 public class MemberService : AdminBaseService<IAdminRepository<Member>>
 {
     private readonly IAdminRepository<SysUser> _sysUserRepository;
-    private readonly IUploadDomainService _uploadService;
-    private readonly IAccountDomainService _accountService;
+    private readonly IUploadManager _uploadService;
+    private readonly IAccountManager _accountService;
 
     public MemberService(IAdminRepository<Member> defaultRepository,
         IAdminRepository<SysUser> sysUserRepository,
-        IUploadDomainService uploadService,
-        IAccountDomainService accountService)
+        IUploadManager uploadService,
+        IAccountManager accountService)
         : base(defaultRepository)
     {
         _sysUserRepository = sysUserRepository;

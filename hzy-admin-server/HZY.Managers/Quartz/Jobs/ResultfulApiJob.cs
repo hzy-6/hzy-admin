@@ -1,4 +1,4 @@
-﻿using HZY.Domain.Services.Quartz.Models;
+﻿using HZY.Managers.Quartz.Models;
 using HzyScanDiService;
 using Microsoft.Extensions.Logging;
 using Quartz;
@@ -8,7 +8,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HZY.Domain.Services.Quartz.Jobs
+namespace HZY.Managers.Quartz.Jobs
 {
     /// <summary>
     /// Resultful 风格 Api Job

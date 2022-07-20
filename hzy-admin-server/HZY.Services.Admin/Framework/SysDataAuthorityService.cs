@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HZY.Domain.Services.Accounts;
+using HZY.Managers.Accounts;
 using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
@@ -21,11 +21,11 @@ namespace HZY.Services.Admin.Framework
     /// </summary>
     public class SysDataAuthorityService : AdminBaseService<IAdminRepository<SysDataAuthority>>
     {
-        private readonly IAccountDomainService _accountService;
+        private readonly IAccountManager _accountService;
         private readonly IAdminRepository<SysDataAuthorityCustom> _sysDataAuthorityCustomRepository;
 
         public SysDataAuthorityService(IAdminRepository<SysDataAuthority> defaultRepository,
-        IAccountDomainService accountService,
+        IAccountManager accountService,
         IAdminRepository<SysDataAuthorityCustom> sysDataAuthorityCustomRepository)
             : base(defaultRepository)
         {

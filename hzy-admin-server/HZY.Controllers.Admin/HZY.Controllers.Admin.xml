@@ -140,7 +140,7 @@
             <param name="filter"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.DevelopmentTool.QuartzTasksController.SaveFormAsync(HZY.Domain.Services.Quartz.Models.Tasks)">
+        <member name="M:HZY.Controllers.Admin.DevelopmentTool.QuartzTasksController.SaveFormAsync(HZY.Managers.Quartz.Models.Tasks)">
             <summary>
             保存数据
             </summary>

@@ -1,4 +1,4 @@
-﻿using HZY.Domain.Services.Accounts;
+﻿using HZY.Managers.Accounts;
 using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
@@ -22,13 +22,13 @@ namespace HZY.Services.Admin.Framework;
 public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOperationLog>>
 {
     private readonly HttpContext _httpContext;
-    private readonly IAccountDomainService _accountService;
+    private readonly IAccountManager _accountService;
     private readonly IAdminRepository<SysUser> _sysUserRepository;
     private readonly IMessageProducer<MessageQueueContext> messageProducer;
 
     public SysOperationLogService(IAdminRepository<SysOperationLog> defaultRepository,
           IHttpContextAccessor iHttpContextAccessor,
-          IAccountDomainService accountService,
+          IAccountManager accountService,
           IAdminRepository<SysUser> sysUserRepository,
           IMessageProducer<MessageQueueContext> messageProducer
           ) : base(defaultRepository)

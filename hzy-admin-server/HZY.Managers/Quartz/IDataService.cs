@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HZY.Domain.Services.Quartz
+namespace HZY.Managers.Quartz
 {
     /// <summary>
     /// 文件数据服务

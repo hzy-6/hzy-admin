@@ -3,12 +3,12 @@ using HZY.Models.Entities.Framework;
 using HzyScanDiService;
 using System.Threading.Tasks;
 
-namespace HZY.Domain.Services.Accounts;
+namespace HZY.Managers.Accounts;
 
 /// <summary>
 /// 当前登录账户服务
 /// </summary>
-public interface IAccountDomainService : IScopedDependency
+public interface IAccountManager : IScopedDependency
 {
     /// <summary>
     /// 获取账户信息

@@ -13,7 +13,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="HZY.Domain.Services.xml">
+<None Update="HZY.Managers.xml">
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  </None>
@@ -21,7 +21,7 @@
 
 	<!--用于生成当前程序集xml描述-->
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>HZY.Domain.Services.xml</DocumentationFile>
+<DocumentationFile>HZY.Managers.xml</DocumentationFile>
 		<NoWarn>1701;1702;1591</NoWarn>
 	</PropertyGroup>
 

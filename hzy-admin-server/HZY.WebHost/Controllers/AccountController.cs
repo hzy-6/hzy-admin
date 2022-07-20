@@ -1,4 +1,4 @@
-using HZY.Domain.Services.Accounts;
+using HZY.Managers.Accounts;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
@@ -19,9 +19,9 @@ namespace HZY.WebHost.Controllers
     public class AccountController : ApiBaseController
     {
         private const string tokenType = "Bearer ";
-        private readonly IAccountDomainService _accountService;
+        private readonly IAccountManager _accountService;
 
-        public AccountController(IAccountDomainService accountService)
+        public AccountController(IAccountManager accountService)
         {
             _accountService = accountService;
         }

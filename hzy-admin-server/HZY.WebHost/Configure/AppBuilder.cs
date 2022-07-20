@@ -1,4 +1,4 @@
-﻿using HZY.Domain.Services.Quartz;
+﻿using HZY.Managers.Quartz;
 using HZY.EFCore;
 using HZY.Infrastructure;
 using HZY.Infrastructure.MemoryMQ.Interfaces;

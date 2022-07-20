@@ -1,10 +1,10 @@
-﻿using HZY.Domain.Services.Quartz.Models;
+﻿using HZY.Managers.Quartz.Models;
 using HzyScanDiService;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace HZY.Domain.Services.Quartz
+namespace HZY.Managers.Quartz
 {
     /// <summary>
     /// 任务 Job 服务

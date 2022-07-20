@@ -1,4 +1,4 @@
-using HZY.Domain.Services.Upload;
+using HZY.Managers.Upload;
 using HZY.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
@@ -12,9 +12,9 @@ namespace HZY.WebHost.Controllers;
 [ApiExplorerSettings(GroupName = nameof(ApiVersions.Public))]
 public class UploadController : ControllerBase
 {
-    private readonly IUploadDomainService _uploadService;
+    private readonly IUploadManager _uploadService;
 
-    public UploadController(IUploadDomainService uploadService)
+    public UploadController(IUploadManager uploadService)
     {
         _uploadService = uploadService;
     }

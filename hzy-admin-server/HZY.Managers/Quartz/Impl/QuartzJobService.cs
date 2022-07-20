@@ -1,5 +1,5 @@
-﻿using HZY.Domain.Services.Quartz.Jobs;
-using HZY.Domain.Services.Quartz.Models;
+﻿using HZY.Managers.Quartz.Jobs;
+using HZY.Managers.Quartz.Models;
 using HZY.Infrastructure.ApiResultManage;
 using Quartz;
 using Quartz.Impl.Matchers;
@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HZY.Domain.Services.Quartz.Impl
+namespace HZY.Managers.Quartz.Impl
 {
     /// <summary>
     /// 任务调度服务

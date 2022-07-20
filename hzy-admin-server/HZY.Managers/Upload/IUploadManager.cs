@@ -1,9 +1,9 @@
 ﻿using HzyScanDiService;
 using Microsoft.AspNetCore.Http;
 
-namespace HZY.Domain.Services.Upload;
+namespace HZY.Managers.Upload;
 
-public interface IUploadDomainService : ITransientDependency
+public interface IUploadManager : ITransientDependency
 {
     string HandleUploadFile(IFormFile iFormFile, params string[] format);
 

@@ -5,16 +5,16 @@ using HZY.Infrastructure.ApiResultManage;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 
-namespace HZY.Domain.Services.Upload.Impl;
+namespace HZY.Managers.Upload.Impl;
 
 /// <summary>
 /// 上传文件服务
 /// </summary>
-public class UploadDomainServiceImpl : IUploadDomainService
+public class UploadManagerImpl : IUploadManager
 {
     private readonly string _webRootPath;
 
-    public UploadDomainServiceImpl(IWebHostEnvironment webHostEnvironment)
+    public UploadManagerImpl(IWebHostEnvironment webHostEnvironment)
     {
         _webRootPath = webHostEnvironment.WebRootPath;
     }

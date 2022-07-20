@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using HZY.Domain.Services.Quartz.Models;
+using HZY.Managers.Quartz.Models;
 using HZY.Infrastructure.ApiResultManage;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HZY.Domain.Services.Quartz.Impl
+namespace HZY.Managers.Quartz.Impl
 {
     /// <summary>
     /// 任务服务

@@ -1,4 +1,4 @@
-﻿using HZY.Domain.Services.Accounts;
+﻿using HZY.Managers.Accounts;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO;
@@ -16,9 +16,9 @@ namespace HZY.Controllers.Admin.Framework;
 [ControllerDescriptor(MenuId = "19", DisplayName = "个人中心")]
 public class PersonalCenterController : AdminBaseController<SysUserService>
 {
-    private readonly IAccountDomainService _accountService;
+    private readonly IAccountManager _accountService;
 
-    public PersonalCenterController(SysUserService defaultService, IAccountDomainService accountService)
+    public PersonalCenterController(SysUserService defaultService, IAccountManager accountService)
         : base(defaultService)
     {
         _accountService = accountService;

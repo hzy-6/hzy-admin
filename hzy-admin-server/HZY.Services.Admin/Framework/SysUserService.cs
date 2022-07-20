@@ -1,4 +1,4 @@
-using HZY.Domain.Services.Accounts;
+using HZY.Managers.Accounts;
 using HZY.EFCore.Aop;
 using HZY.EFCore.DbContexts;
 using HZY.EFCore.PagingViews;
@@ -33,7 +33,7 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
     private readonly IAdminRepository<SysRole> _sysRoleRepository;
     private readonly IAdminRepository<SysUserPost> _sysUserPostRepository;
     private readonly IAdminRepository<SysPost> _sysPostRepository;
-    private readonly IAccountDomainService _accountService;
+    private readonly IAccountManager _accountService;
     private readonly SysMenuService _sysMenuService;
     private readonly IAdminRepository<SysOrganization> _sysOrganizationRepository;
 
@@ -42,7 +42,7 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
         IAdminRepository<SysRole> sysRoleRepository,
         IAdminRepository<SysUserPost> sysUserPostRepository,
         IAdminRepository<SysPost> sysPostRepository,
-        IAccountDomainService accountService,
+        IAccountManager accountService,
         SysMenuService sysMenuService,
         IAdminRepository<SysOrganization> sysOrganizationRepository) : base(defaultRepository)
     {

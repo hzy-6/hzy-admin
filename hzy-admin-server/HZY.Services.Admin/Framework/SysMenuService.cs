@@ -1,4 +1,4 @@
-﻿using HZY.Domain.Services.Accounts;
+﻿using HZY.Managers.Accounts;
 using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
@@ -35,7 +35,7 @@ public class SysMenuService : AdminBaseService<IAdminRepository<SysMenu>>
         IAdminRepository<SysFunction> sysFunctionRepository,
         IAdminRepository<SysMenuFunction> sysMenuFunctionRepository,
         IAdminRepository<SysRoleMenuFunction> sysRoleMenuFunctionRepository,
-        IAccountDomainService accountService) : base(defaultRepository)
+        IAccountManager accountService) : base(defaultRepository)
     {
         _sysFunctionRepository = sysFunctionRepository;
         _sysMenuFunctionRepository = sysMenuFunctionRepository;

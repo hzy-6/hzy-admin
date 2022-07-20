@@ -1,10 +1,10 @@
 ﻿using Flurl.Http;
-using HZY.Domain.Services.Quartz.Models;
+using HZY.Managers.Quartz.Models;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Threading.Tasks;
 
-namespace HZY.Domain.Services.Quartz.Impl
+namespace HZY.Managers.Quartz.Impl
 {
     /// <summary>
     /// WebApi 请求服务

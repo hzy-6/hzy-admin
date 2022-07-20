@@ -1,4 +1,4 @@
-﻿using HZY.Domain.Services.Quartz.Models;
+﻿using HZY.Managers.Quartz.Models;
 using HZY.Infrastructure.Redis;
 using Newtonsoft.Json;
 using System;
@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HZY.Domain.Services.Quartz.Impl
+namespace HZY.Managers.Quartz.Impl
 {
     /// <summary>
     /// Job 运行 日志

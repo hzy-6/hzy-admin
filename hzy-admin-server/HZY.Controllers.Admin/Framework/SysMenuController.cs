@@ -1,4 +1,4 @@
-﻿using HZY.Domain.Services.Accounts;
+﻿using HZY.Managers.Accounts;
 using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
@@ -28,7 +28,7 @@ public class SysMenuController : AdminBaseController<SysMenuService>
 {
     private readonly AccountInfo _accountInfo;
 
-    public SysMenuController(SysMenuService defaultService, IAccountDomainService accountService) : base(defaultService)
+    public SysMenuController(SysMenuService defaultService, IAccountManager accountService) : base(defaultService)
     {
         this._accountInfo = accountService.GetAccountInfo();
     }

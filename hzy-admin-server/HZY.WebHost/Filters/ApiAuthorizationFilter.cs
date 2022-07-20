@@ -7,7 +7,7 @@ using HZY.Infrastructure.ApiResultManage;
 using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
-using HZY.Domain.Services.Accounts;
+using HZY.Managers.Accounts;
 
 namespace HZY.WebHost.Filters;
 
@@ -16,9 +16,9 @@ namespace HZY.WebHost.Filters;
 /// </summary>
 public class ApiAuthorizationFilter : IAsyncAuthorizationFilter
 {
-    private readonly IAccountDomainService _accountService;
+    private readonly IAccountManager _accountService;
 
-    public ApiAuthorizationFilter(IAccountDomainService accountService)
+    public ApiAuthorizationFilter(IAccountManager accountService)
     {
         _accountService = accountService;
     }

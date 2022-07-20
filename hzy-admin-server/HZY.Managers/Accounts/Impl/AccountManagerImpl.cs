@@ -10,12 +10,12 @@ using System;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HZY.Domain.Services.Accounts.Impl;
+namespace HZY.Managers.Accounts.Impl;
 
 /// <summary>
 /// 当前登录账户服务
 /// </summary>
-public class AccountDomainServiceImpl : IAccountDomainService
+public class AccountManagerImpl : IAccountManager
 {
     private readonly string AccountInfoCacheName = "AccountInfo";
     private readonly AccountInfo _accountInfo;
@@ -29,7 +29,7 @@ public class AccountDomainServiceImpl : IAccountDomainService
     private readonly IAdminRepository<SysPost> _sysPostRepository;
     private readonly IAdminRepository<SysUserPost> _sysUserPostRepository;
 
-    public AccountDomainServiceImpl(IAdminRepository<SysUser> sysUserRepository,
+    public AccountManagerImpl(IAdminRepository<SysUser> sysUserRepository,
         IAdminRepository<SysOrganization> sysOrganizationRepository,
         AppConfiguration appConfiguration,
         TokenService tokenService,

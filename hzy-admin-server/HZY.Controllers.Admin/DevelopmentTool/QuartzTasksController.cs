@@ -1,5 +1,5 @@
-﻿using HZY.Domain.Services.Quartz;
-using HZY.Domain.Services.Quartz.Models;
+﻿using HZY.Managers.Quartz;
+using HZY.Managers.Quartz.Models;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
 using Microsoft.AspNetCore.Mvc;

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HZY.Domain.Services.Quartz.Models
+namespace HZY.Managers.Quartz.Models
 {
     /// <summary>
     /// 任务日志信息

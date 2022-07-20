@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Text.Json.Serialization;
 
-namespace HZY.Domain.Services.Quartz.Models
+namespace HZY.Managers.Quartz.Models
 {
     /// <summary>
     /// 定时任务

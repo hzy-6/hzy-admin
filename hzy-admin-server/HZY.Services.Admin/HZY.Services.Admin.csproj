@@ -13,7 +13,8 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <ProjectReference Include="..\HZY.Domain.Services\HZY.Domain.Services.csproj" />
+<ProjectReference Include="..\HZY.Managers\HZY.Managers.csproj" />
+
 	  <ProjectReference Include="..\HZY.EFCore\HZY.EFCore.csproj" />
 	</ItemGroup>
 

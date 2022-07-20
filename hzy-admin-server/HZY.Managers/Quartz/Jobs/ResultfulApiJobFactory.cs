@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HZY.Domain.Services.Quartz.Jobs
+namespace HZY.Managers.Quartz.Jobs
 {
     /// <summary>
     /// IJob 对象无法构造注入 需要此类实现 返回 注入后得 Job 实例
