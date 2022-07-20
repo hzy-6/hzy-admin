@@ -1,14 +1,5 @@
 # HzyAdmin
 
-#### MVC版本
-[https://gitee.com/hzy6/hzy-admin-mvc](https://gitee.com/hzy6/hzy-admin-mvc)
-
-####   文档
-[语雀文档 针对 Next 分支](https://www.yuque.com/u378909/yidf7v)
-
-#### WebApi 任务调度平台
-[https://gitee.com/hzy6/hzy-quartz](https://gitee.com/hzy6/hzy-quartz)
-
 #### QQ交流群
     534584927
 
@@ -28,20 +19,18 @@
 
     IOC 、Aop : https://www.yuque.com/u378909/yidf7v/paak3i 
     
+#### MVC版本
+[https://gitee.com/hzy6/hzy-admin-mvc](https://gitee.com/hzy6/hzy-admin-mvc)
+
+####   文档
+[语雀文档 针对 Next 分支](https://www.yuque.com/u378909/yidf7v)
+
+#### WebApi 任务调度平台
+[https://gitee.com/hzy6/hzy-quartz](https://gitee.com/hzy6/hzy-quartz)
 
 #### 功能列表
 
-    系统管理            开发工具
-        账户管理            接口文档
-        角色管理            定时任务
-        功能管理            代码生成
-        菜单管理            EFCore监控台
-        个人中心
-        岗位管理
-        组织机构
-        数据字典
-        操作日志
-        数据权限
+![输入图片说明](gitee/images/menu_map.png)
 
 #### 目录结构
 ![输入图片说明](gitee/images/project_map.png)
