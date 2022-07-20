@@ -44,7 +44,7 @@
         数据权限
 
 #### 目录结构
-![输入图片说明](gitee/images/%E7%9B%AE%E5%BD%95.png)
+![输入图片说明](gitee/images/project_dic.png)
 
 #### ✨  部分截图
 
