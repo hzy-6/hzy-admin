@@ -57,7 +57,10 @@ const methods = {
     loginService
       .login(state.userName, state.userPassword)
       .then((res) => {
-        if (res.code !== 1) return;
+        if (res.code !== 1) {
+          loading.value = false;
+          return;
+        }
         tools.setAuthorization(res.data.token);
         router.push("/").then(() => {
           loading.value = false;

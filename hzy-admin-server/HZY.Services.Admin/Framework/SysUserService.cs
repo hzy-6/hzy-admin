@@ -65,7 +65,13 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
     public async Task<PagingView> FindListAsync(int page, int size, SysUser search)
     {
         var accountInfo = _accountService.GetAccountInfo();
-        var query = (from sysUser in this._defaultRepository.QueryByDataAuthority(accountInfo, w => w.Id)
+
+        //被数据权限处理的 query 对象
+        var querySysUser = this._defaultRepository
+        .DataPermission(this._defaultRepository.Select, accountInfo, w => w.Id, w => w.OrganizationId)
+        ;
+
+        var query = (from sysUser in querySysUser
                      from sysOrganization in this._sysOrganizationRepository.Select.Where(w => w.Id == sysUser.OrganizationId).DefaultIfEmpty()
                      select new { t1 = sysUser, t2 = sysOrganization })
                 .WhereIf(search.OrganizationId != null, w => w.t1.OrganizationId == search.OrganizationId)

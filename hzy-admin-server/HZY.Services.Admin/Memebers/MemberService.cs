@@ -10,7 +10,6 @@ using HZY.Infrastructure;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Core;
-using HZY.Services.Admin.Framework;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.AspNetCore.Http;
 
@@ -48,7 +47,7 @@ public class MemberService : AdminBaseService<IAdminRepository<Member>>
         var accountInfo = _accountService.GetAccountInfo();
 
         var query = (
-                    from member in this._defaultRepository.QueryByDataAuthority(accountInfo)
+                    from member in this._defaultRepository.Select
                     from user in this._sysUserRepository.Select.Where(w => w.Id == member.UserId).DefaultIfEmpty()
                     select new { t1 = member, t2 = user }
                 )
@@ -67,11 +66,13 @@ public class MemberService : AdminBaseService<IAdminRepository<Member>>
                     LastModificationTime = w.t1.LastModificationTime.ToString("yyyy-MM-dd"),
                     CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
                     //别名 前面包含 _ 则表示界面上会隐藏列
-                    _UserId = w.t1.UserId
+                    _UserId = w.t1.UserId,
+                    _OrganizationId = w.t2.OrganizationId,
                 })
             ;
 
-        var result = await this._defaultRepository.AsPagingViewAsync(query, page, size);
+        var result = await this._defaultRepository
+        .AsPagingViewAsync(query, page, size, null, accountInfo, w => w._UserId, w => w._OrganizationId);
         return result;
     }
 

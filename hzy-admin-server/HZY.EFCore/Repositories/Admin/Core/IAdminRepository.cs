@@ -21,13 +21,16 @@ namespace HZY.EFCore.Repositories.Admin.Core
         /// <summary>
         /// 分页模型构建
         /// </summary>
-        /// <typeparam name="TModel"></typeparam>
         /// <param name="query"></param>
         /// <param name="page"></param>
         /// <param name="size"></param>
         /// <param name="columnHeads"></param>
+        /// <param name="accountInfo"></param>
+        /// <param name="userIdFieldNameExpression"></param>
+        /// <param name="organizationIdFieldNameExpression"></param>
+        /// <typeparam name="TModel"></typeparam>
         /// <returns></returns>
-        Task<PagingView> AsPagingViewAsync<TModel>(IQueryable<TModel> query, int page, int size, List<TableColumnView> columnHeads = default);
+        Task<PagingView> AsPagingViewAsync<TModel>(IQueryable<TModel> query, int page, int size, List<TableColumnView> columnHeads = default, AccountInfo accountInfo = default, Expression<Func<TModel, object>> userIdFieldNameExpression = null, Expression<Func<TModel, object>> organizationIdFieldNameExpression = null);
 
         /// <summary>
         /// 分页模型构建 用于编写 sql 语句得情况
@@ -45,10 +48,18 @@ namespace HZY.EFCore.Repositories.Admin.Core
         /// 根据组织 获取数据权限
         /// </summary>
         /// <param name="accountInfo"></param>
+        /// <returns></returns>
+        IQueryable<T> DataPermission(AccountInfo accountInfo);
+
+        /// <summary>
+        /// 根据组织 获取数据权限
+        /// </summary>
+        /// <param name="query"></param>
+        /// <param name="accountInfo"></param>
         /// <param name="userIdFieldNameExpression"></param>
         /// <param name="organizationIdFieldNameExpression"></param>
         /// <returns></returns>
-        IQueryable<T> QueryByDataAuthority(AccountInfo accountInfo, Expression<Func<T, object>> userIdFieldNameExpression = null, Expression<Func<T, object>> organizationIdFieldNameExpression = null);
+        IQueryable<TModel> DataPermission<TModel>(IQueryable<TModel> query, AccountInfo accountInfo, Expression<Func<TModel, object>> userIdFieldNameExpression = null, Expression<Func<TModel, object>> organizationIdFieldNameExpression = null);
 
     }
 }

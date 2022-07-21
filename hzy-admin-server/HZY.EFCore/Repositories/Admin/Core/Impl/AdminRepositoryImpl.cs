@@ -16,6 +16,7 @@ using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
+using HZY.Models.Entities.BaseEntitys;
 
 namespace HZY.EFCore.Repositories.Admin.Core.Impl;
 
@@ -38,10 +39,19 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
     /// <param name="page"></param>
     /// <param name="size"></param>
     /// <param name="columnHeads"></param>
+    /// <param name="accountInfo"></param>
+    /// <param name="userIdFieldNameExpression"></param>
+    /// <param name="organizationIdFieldNameExpression"></param>
     /// <typeparam name="TModel"></typeparam>
     /// <returns></returns>
-    public virtual async Task<PagingView> AsPagingViewAsync<TModel>(IQueryable<TModel> query, int page, int size, List<TableColumnView> columnHeads = default)
+    public virtual async Task<PagingView> AsPagingViewAsync<TModel>(IQueryable<TModel> query, int page, int size, List<TableColumnView> columnHeads = default, AccountInfo accountInfo = default, Expression<Func<TModel, object>> userIdFieldNameExpression = null, Expression<Func<TModel, object>> organizationIdFieldNameExpression = null)
     {
+        //验证是否需要数据权限筛选
+        if (accountInfo != null)
+        {
+            query = this.DataPermission(query, accountInfo, userIdFieldNameExpression, organizationIdFieldNameExpression);
+        }
+
         var pagingView = new PagingView { Page = page, Size = size };
 
         //如果分页码 小于 0 则代表导出 否则代表分页查询
@@ -116,15 +126,15 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
     /// </summary>
     /// <param name="accountInfo"></param>
     /// <returns></returns>
-    protected virtual (bool Self, List<int> OrganizationList) GetDataAuthority(AccountInfo accountInfo)
+    protected virtual (bool Self, List<int> OrganizationList) GetOrganizations(AccountInfo accountInfo)
     {
         var organizationList = new List<int>();
         var self = false;
 
         using var serviceScope = IOCUtil.CreateScope();
-        var _sysDataAuthorityRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysDataAuthority>>();
-        var _sysDataAuthorityCustomRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysDataAuthorityCustom>>();
-        var _sysOrganizationRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysOrganization>>();
+        using var _sysDataAuthorityRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysDataAuthority>>();
+        using var _sysDataAuthorityCustomRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysDataAuthorityCustom>>();
+        using var _sysOrganizationRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysOrganization>>();
 
         //获取当前用户角色 配置的数据权限类型
         var sysDataAuthorityList = _sysDataAuthorityRepository.Select
@@ -183,22 +193,49 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
     /// 根据数据权限查询 获取 IQueryable 对象
     /// </summary>
     /// <param name="accountInfo">当前用户账户信息</param>
-    /// <param name="userIdFieldNameExpression">用户id字段 默认：UserId</param>
-    /// <param name="organizationIdFieldNameExpression">组织id字段 默认：OrganizationId</param>
     /// <returns></returns>
-    public virtual IQueryable<T> QueryByDataAuthority(AccountInfo accountInfo, Expression<Func<T, object>> userIdFieldNameExpression = null, Expression<Func<T, object>> organizationIdFieldNameExpression = null)
+    public virtual IQueryable<T> DataPermission(AccountInfo accountInfo)
     {
-        var query = Query();
+        using var serviceScope = IOCUtil.CreateScope();
+        using var _sysUserRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysUser>>();
 
+        //连表条件
+        var query = from table in Query()
+                    from sysUser in _sysUserRepository.Select.Where(w => w.Id == ((ICreateBaseEntity)table).CreatorUserId)
+                    select new
+                    {
+                        table,
+                        sysUser,
+                        ((ICreateBaseEntity)table).CreatorUserId,
+                        sysUser.OrganizationId
+                    }
+                    ;
+
+        return DataPermission(query, accountInfo)
+        .Select(w => w.table)
+        ;
+    }
+
+    /// <summary>
+    /// 根据数据权限查询 获取 IQueryable 对象
+    /// </summary>
+    /// <param name="query"></param>
+    /// <param name="accountInfo"></param>
+    /// <param name="userIdFieldNameExpression"></param>
+    /// <param name="organizationIdFieldNameExpression"></param>
+    /// <typeparam name="TModel"></typeparam>
+    /// <returns></returns>
+    public virtual IQueryable<TModel> DataPermission<TModel>(IQueryable<TModel> query, AccountInfo accountInfo, Expression<Func<TModel, object>> userIdFieldNameExpression = null, Expression<Func<TModel, object>> organizationIdFieldNameExpression = null)
+    {
         if (accountInfo.IsAdministrator)
         {
             return query;
         }
 
-        var modelType = typeof(T);
+        var modelType = typeof(TModel);
         var modelFileds = modelType.GetPropertyInfos().ToList();
-        string userIdFieldName = "UserId";
-        string organizationIdFieldName = "OrganizationId";
+        string userIdFieldName = nameof(ICreateBaseEntity.CreatorUserId);
+        string organizationIdFieldName = nameof(SysUser.OrganizationId);
 
         if (userIdFieldNameExpression != null)
         {
@@ -210,28 +247,35 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
             organizationIdFieldName = Tools.GetNameByExpression(organizationIdFieldNameExpression);
         }
 
-        if (!modelFileds.Any(w => w.Name == userIdFieldName) && !modelFileds.Any(w => w.Name == organizationIdFieldName))
-        {
-            throw new Exception($"在模型【{modelType.Name}】中未找到 {userIdFieldName} 或者 {organizationIdFieldName} 字段名称! 请检查设置好对应字段!");
-        }
-
-        var data = GetDataAuthority(accountInfo);
+        var data = GetOrganizations(accountInfo);
 
         // 仅看自己处理
         if (data.Self && modelFileds.Any(w => w.Name == userIdFieldName))
         {
-            var where = ExpressionTreeExtensions.Equal<T, Guid>(userIdFieldName, accountInfo.Id);
+            if (!modelFileds.Any(w => w.Name == userIdFieldName))
+            {
+                throw new Exception($"在模型【{modelType.Name}】中未找到 {userIdFieldName}  字段! 请检查设置好对应字段!");
+            }
+
+            var where = ExpressionTreeExtensions.Equal<TModel, Guid>(userIdFieldName, accountInfo.Id);
             query = query.Where(where);
+            return query;
         }
 
         // 组织处理
+        if (!modelFileds.Any(w => w.Name == organizationIdFieldName))
+        {
+            throw new Exception($"在模型【{modelType.Name}】中未找到 {organizationIdFieldName}  字段! 请检查设置好对应字段!");
+        }
+
         if (data.OrganizationList.Count > 0 && modelFileds.Any(w => w.Name == organizationIdFieldName))
         {
-            var where = ExpressionTreeExtensions.Contains<T, int>(organizationIdFieldName, data.OrganizationList);
+            var where = ExpressionTreeExtensions.Contains<TModel, int>(organizationIdFieldName, data.OrganizationList);
             query = query.Where(where);
         }
 
         return query;
+
     }
 
 }
