@@ -94,6 +94,10 @@ public class SysDictionaryService : AdminBaseService<IAdminRepository<SysDiction
     /// <returns></returns>
     public async Task SaveFormAsync(SysDictionary form)
     {
+        if (await this._defaultRepository.AnyAsync(w => w.Code == form.Code && w.Id != form.Id))
+        {
+            MessageBox.Show("编码已存在，请勿重复插入");
+        }
         await this._defaultRepository.InsertOrUpdateAsync(form);
     }
 
