@@ -3,11 +3,6 @@ using HZY.Managers.Quartz.Models;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HZY.Controllers.Admin.DevelopmentTool
 {
@@ -103,10 +98,8 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         [HttpGet("GetJobLoggers/{taskId}/{page}/{size}")]
         public List<JobLoggerInfo> GetJobLoggers([FromRoute] Guid taskId, [FromRoute] int page, [FromRoute] int size)
         {
-            return _jobLoggerService.FindListById(taskId)
+            return _jobLoggerService.FindListById(taskId,page,size)
                 .OrderByDescending(w => w.CreateTime)
-                .Skip((page - 1) * size)
-                .Take(size)
                 .ToList()
                 ;
         }

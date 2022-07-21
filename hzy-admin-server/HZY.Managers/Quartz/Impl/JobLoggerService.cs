@@ -1,11 +1,7 @@
-﻿using HZY.Managers.Quartz.Models;
+﻿using System.Collections.Concurrent;
 using HZY.Infrastructure.Redis;
+using HZY.Managers.Quartz.Models;
 using Newtonsoft.Json;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HZY.Managers.Quartz.Impl
 {
@@ -25,11 +21,23 @@ namespace HZY.Managers.Quartz.Impl
             _redisService = redisService;
         }
 
-        public IEnumerable<JobLoggerInfo> FindListById(Guid tasksId)
+        public IEnumerable<JobLoggerInfo> FindListById(Guid tasksId,int page,int size)
         {
             if (tasksId == Guid.Empty) return new ConcurrentBag<JobLoggerInfo>();
-            var json = _redisService.Database.StringGet($"{JobLoggerKey}:{tasksId}");
-            return string.IsNullOrWhiteSpace(json) ? new List<JobLoggerInfo>() : JsonConvert.DeserializeObject<List<JobLoggerInfo>>(json);
+            int start = (page - 1) * size;
+            int end = page * size;
+            var jobLoggers = _redisService.Database.ListRange($"{JobLoggerKey}:{tasksId}", start, end);
+            List<JobLoggerInfo> jobLoggerInfos = new List<JobLoggerInfo>();
+            foreach (var jobLogger in jobLoggers)
+            {
+                var logger = JsonConvert.DeserializeObject<JobLoggerInfo>(jobLogger);
+                if (logger != null)
+                {
+                    jobLoggerInfos.Add(logger);
+                }
+            }
+
+            return jobLoggerInfos;
         }
 
         public void Write(JobLoggerInfo jobLoggerInfo)
@@ -37,21 +45,19 @@ namespace HZY.Managers.Quartz.Impl
             if (jobLoggerInfo == null) return;
             var tasksId = jobLoggerInfo?.TasksId ?? Guid.Empty;
 
-            var list = this.FindListById(tasksId)?.ToList() ?? new List<JobLoggerInfo>();
-            if (list.Count > ListMaxValue)
+            var key = $"{JobLoggerKey}:{tasksId}";
+            var length = _redisService.Database.ListLength(key);
+            if (ListMaxValue > 0 && length >= ListMaxValue)
             {
-                list.Clear();
-                list ??= new List<JobLoggerInfo>();
+                long count = length - ListMaxValue + 1;
+                for (int i = 0; i < count; i++)
+                {
+                    _redisService.Database.ListRightPop(key);
+                }
             }
 
-            list.Add(jobLoggerInfo);
-
-            _redisService.Database.StringSet($"{JobLoggerKey}:{tasksId}", JsonConvert.SerializeObject(list), TimeSpan.FromDays(1));
+            _redisService.Database.ListLeftPush(key, JsonConvert.SerializeObject(jobLoggerInfo));
+            _redisService.Database.KeyExpire(key, TimeSpan.FromDays(1));
         }
-
-
-
-
-
     }
 }
