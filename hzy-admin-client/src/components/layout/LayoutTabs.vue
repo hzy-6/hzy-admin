@@ -14,8 +14,18 @@
           <AppIcon name="MoreOutlined" class="pl-20 pr-20" style="height: 100%" :size="16" />
           <template #overlay>
             <a-menu>
-              <a-menu-item key="2" @click="methods.closeTabOther()"><AppIcon name="CloseOutlined" /> 关闭其他</a-menu-item>
-              <a-menu-item key="3" @click="methods.closeTabAll()"><AppIcon name="DeleteOutlined" /> 关闭全部</a-menu-item>
+              <a-menu-item key="2" @click="methods.closeTabOther()">
+                <template #icon>
+                  <AppIcon name="CloseOutlined" />
+                </template>
+                关闭其他
+              </a-menu-item>
+              <a-menu-item key="3" @click="methods.closeTabAll()">
+                <template #icon>
+                  <AppIcon name="DeleteOutlined" />
+                </template>
+                关闭全部
+              </a-menu-item>
             </a-menu>
           </template>
         </a-dropdown>

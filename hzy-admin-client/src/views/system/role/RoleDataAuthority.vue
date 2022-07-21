@@ -41,6 +41,9 @@ import tools from "@/scripts/tools";
 import organizationService from "@/service/system/organizationService";
 import sysDataAuthorityService from "@/service/system/sysDataAuthorityService";
 
+//定义组件事件
+const emits = defineEmits(["onSuccess"]);
+
 const state = reactive({
   roleId: "",
   loading: false,
@@ -124,7 +127,9 @@ const methods = {
         return tools.message("保存失败!", "错误");
       }
       state.visible = false;
+      console.log(1231231312);
       tools.message("保存成功!", "成功");
+      emits("onSuccess", res.data);
     });
   },
   /**

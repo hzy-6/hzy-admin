@@ -214,15 +214,18 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.AsPagingViewAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView})">
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.AsPagingViewAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
             <summary>
             分页模型构建
             </summary>
-            <typeparam name="TModel"></typeparam>
             <param name="query"></param>
             <param name="page"></param>
             <param name="size"></param>
             <param name="columnHeads"></param>
+            <param name="accountInfo"></param>
+            <param name="userIdFieldNameExpression"></param>
+            <param name="organizationIdFieldNameExpression"></param>
+            <typeparam name="TModel"></typeparam>
             <returns></returns>
         </member>
         <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.AsPagingViewAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},System.Object[])">
@@ -237,10 +240,18 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.QueryByDataAuthority(HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.DataPermission(HZY.Models.BO.AccountInfo)">
             <summary>
             根据组织 获取数据权限
             </summary>
+            <param name="accountInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.DataPermission``1(System.Linq.IQueryable{``0},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            根据组织 获取数据权限
+            </summary>
+            <param name="query"></param>
             <param name="accountInfo"></param>
             <param name="userIdFieldNameExpression"></param>
             <param name="organizationIdFieldNameExpression"></param>
@@ -252,7 +263,7 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.AsPagingViewAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView})">
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.AsPagingViewAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
             <summary>
             查询转换为分页视图模型
             </summary>
@@ -260,6 +271,9 @@
             <param name="page"></param>
             <param name="size"></param>
             <param name="columnHeads"></param>
+            <param name="accountInfo"></param>
+            <param name="userIdFieldNameExpression"></param>
+            <param name="organizationIdFieldNameExpression"></param>
             <typeparam name="TModel"></typeparam>
             <returns></returns>
         </member>
@@ -275,20 +289,29 @@
             <param name="parameters"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.GetDataAuthority(HZY.Models.BO.AccountInfo)">
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.GetOrganizations(HZY.Models.BO.AccountInfo)">
             <summary>
             获取数据权限
             </summary>
             <param name="accountInfo"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.QueryByDataAuthority(HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{`0,System.Object}},System.Linq.Expressions.Expression{System.Func{`0,System.Object}})">
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.DataPermission(HZY.Models.BO.AccountInfo)">
             <summary>
             根据数据权限查询 获取 IQueryable 对象
             </summary>
             <param name="accountInfo">当前用户账户信息</param>
-            <param name="userIdFieldNameExpression">用户id字段 默认：UserId</param>
-            <param name="organizationIdFieldNameExpression">组织id字段 默认：OrganizationId</param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.DataPermission``1(System.Linq.IQueryable{``0},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            根据数据权限查询 获取 IQueryable 对象
+            </summary>
+            <param name="query"></param>
+            <param name="accountInfo"></param>
+            <param name="userIdFieldNameExpression"></param>
+            <param name="organizationIdFieldNameExpression"></param>
+            <typeparam name="TModel"></typeparam>
             <returns></returns>
         </member>
         <member name="T:HZY.EFCore.Repositories.Admin.DevelopmentTool.DatabaseTablesRepository">

@@ -110,7 +110,7 @@
     <!-- 抽屉 设置权限-->
     <RoleFunction ref="refRoleFunction" />
     <!-- 数据权限设置 -->
-    <RoleDataAuthority ref="refRoleDataAuthority" />
+    <RoleDataAuthority ref="refRoleDataAuthority" @onSuccess="() => methods.findList()" />
   </div>
 </template>
 <script>
