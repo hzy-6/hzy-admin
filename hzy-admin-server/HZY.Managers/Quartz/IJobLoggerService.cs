@@ -1,10 +1,5 @@
 ﻿using HZY.Managers.Quartz.Models;
 using HzyScanDiService;
-using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HZY.Managers.Quartz
 {
@@ -16,7 +11,7 @@ namespace HZY.Managers.Quartz
 
         void Write(JobLoggerInfo jobLoggerInfo);
 
-        IEnumerable<JobLoggerInfo> FindListById(Guid tasksId);
+        IEnumerable<JobLoggerInfo> FindListById(Guid tasksId,int page,int size);
 
     }
 }
