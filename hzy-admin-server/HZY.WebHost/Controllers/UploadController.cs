@@ -24,7 +24,7 @@ public class UploadController : ControllerBase
     /// </summary>
     /// <returns></returns>
     [Route("Images")]
-    [HttpPost, HttpPost]
+    [HttpPost]
     public JsonResult Images()
     {
         var files = Request.Form.Files.Where(w => w.Name.Contains("editorFileImages")).ToList();
