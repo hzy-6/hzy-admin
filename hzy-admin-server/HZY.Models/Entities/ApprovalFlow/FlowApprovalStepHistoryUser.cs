@@ -15,7 +15,7 @@ namespace HZY.Models.Entities.ApprovalFlow
         /// 审批步骤id
         /// </summary>
         /// <value></value>
-        public Guid FlowApprovalStepId { get; set; }
+        public Guid FlowApprovalStepHistoryId { get; set; }
 
         /// <summary>
         /// 流程节点Id

@@ -122,6 +122,34 @@
             <param name="id"></param>
             <returns></returns>
         </member>
+        <member name="T:HZY.Managers.ApprovalFlowCore.IApprovalFlowCore">
+            <summary>
+            审批流程核心接口
+            </summary>
+        </member>
+        <member name="M:HZY.Managers.ApprovalFlowCore.IApprovalFlowCore.CurrentNodeAsync">
+            <summary>
+            当前节点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Managers.ApprovalFlowCore.IApprovalFlowCore.NextNodeAsync">
+            <summary>
+            下一个节点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Managers.ApprovalFlowCore.IApprovalFlowCore.PrevNodeAsync">
+            <summary>
+            上一个节点
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Managers.ApprovalFlowCore.Impl.ApprovalFlowCoreImpl">
+            <summary>
+            审批流程核心实现
+            </summary>
+        </member>
         <member name="T:HZY.Managers.Quartz.IDataService">
             <summary>
             文件数据服务

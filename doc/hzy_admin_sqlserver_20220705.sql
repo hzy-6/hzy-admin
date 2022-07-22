@@ -12,7 +12,7 @@
  Target Server Version : 14001000
  File Encoding         : 65001
 
- Date: 22/07/2022 09:37:16
+ Date: 22/07/2022 20:17:11
 */
 
 
@@ -149,13 +149,13 @@ GO
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for flow_approval_step
+-- Table structure for flow_approval_step_history
 -- ----------------------------
-IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[flow_approval_step]') AND type IN ('U'))
-	DROP TABLE [dbo].[flow_approval_step]
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[flow_approval_step_history]') AND type IN ('U'))
+	DROP TABLE [dbo].[flow_approval_step_history]
 GO
 
-CREATE TABLE [dbo].[flow_approval_step] (
+CREATE TABLE [dbo].[flow_approval_step_history] (
   [Id] uniqueidentifier  NOT NULL,
   [LastModificationTime] datetime  NULL,
   [CreationTime] datetime  NULL,
@@ -171,89 +171,89 @@ CREATE TABLE [dbo].[flow_approval_step] (
 )
 GO
 
-ALTER TABLE [dbo].[flow_approval_step] SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE [dbo].[flow_approval_step_history] SET (LOCK_ESCALATION = TABLE)
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'步骤顺序号',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step',
+'TABLE', N'flow_approval_step_history',
 'COLUMN', N'Sort'
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'审批流节点Id',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step',
+'TABLE', N'flow_approval_step_history',
 'COLUMN', N'FlowNodeId'
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'审批流节点名称',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step',
+'TABLE', N'flow_approval_step_history',
 'COLUMN', N'FlowNodeName'
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'多次审批顺序号（可能是多次审批次数）',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step',
+'TABLE', N'flow_approval_step_history',
 'COLUMN', N'SortMore'
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'步骤状态（待审批、同意、不同意、回退升级审批）',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step',
+'TABLE', N'flow_approval_step_history',
 'COLUMN', N'State'
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'步骤审批意见',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step',
+'TABLE', N'flow_approval_step_history',
 'COLUMN', N'OpinIons'
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'步骤审批人Id',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step',
+'TABLE', N'flow_approval_step_history',
 'COLUMN', N'UserId'
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'步骤审批人名称',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step',
+'TABLE', N'flow_approval_step_history',
 'COLUMN', N'UserName'
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'审批时间',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step',
+'TABLE', N'flow_approval_step_history',
 'COLUMN', N'ApprovalDate'
 GO
 
 
 -- ----------------------------
--- Records of flow_approval_step
+-- Records of flow_approval_step_history
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for flow_approval_step_user
+-- Table structure for flow_approval_step_history_user
 -- ----------------------------
-IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[flow_approval_step_user]') AND type IN ('U'))
-	DROP TABLE [dbo].[flow_approval_step_user]
+IF EXISTS (SELECT * FROM sys.all_objects WHERE object_id = OBJECT_ID(N'[dbo].[flow_approval_step_history_user]') AND type IN ('U'))
+	DROP TABLE [dbo].[flow_approval_step_history_user]
 GO
 
-CREATE TABLE [dbo].[flow_approval_step_user] (
+CREATE TABLE [dbo].[flow_approval_step_history_user] (
   [Id] uniqueidentifier  NOT NULL,
   [LastModificationTime] datetime  NULL,
   [CreationTime] datetime  NULL,
-  [FlowApprovalStepId] uniqueidentifier  NULL,
+  [FlowApprovalStepHistoryId] uniqueidentifier  NULL,
   [FlowNodeId] uniqueidentifier  NULL,
   [FlowNodeName] varchar(500) COLLATE Chinese_PRC_CI_AS  NULL,
   [UserId] uniqueidentifier  NULL,
@@ -261,47 +261,47 @@ CREATE TABLE [dbo].[flow_approval_step_user] (
 )
 GO
 
-ALTER TABLE [dbo].[flow_approval_step_user] SET (LOCK_ESCALATION = TABLE)
+ALTER TABLE [dbo].[flow_approval_step_history_user] SET (LOCK_ESCALATION = TABLE)
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'步骤Id',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step_user',
-'COLUMN', N'FlowApprovalStepId'
+'TABLE', N'flow_approval_step_history_user',
+'COLUMN', N'FlowApprovalStepHistoryId'
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'审批节点Id',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step_user',
+'TABLE', N'flow_approval_step_history_user',
 'COLUMN', N'FlowNodeId'
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'审批节点名称',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step_user',
+'TABLE', N'flow_approval_step_history_user',
 'COLUMN', N'FlowNodeName'
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'审批人Id',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step_user',
+'TABLE', N'flow_approval_step_history_user',
 'COLUMN', N'UserId'
 GO
 
 EXEC sp_addextendedproperty
 'MS_Description', N'审批人名称',
 'SCHEMA', N'dbo',
-'TABLE', N'flow_approval_step_user',
+'TABLE', N'flow_approval_step_history_user',
 'COLUMN', N'UserName'
 GO
 
 
 -- ----------------------------
--- Records of flow_approval_step_user
+-- Records of flow_approval_step_history_user
 -- ----------------------------
 
 -- ----------------------------
@@ -2332,18 +2332,18 @@ GO
 
 
 -- ----------------------------
--- Primary Key structure for table flow_approval_step
+-- Primary Key structure for table flow_approval_step_history
 -- ----------------------------
-ALTER TABLE [dbo].[flow_approval_step] ADD CONSTRAINT [PK__FlowAppr__3214EC0754EDFF34] PRIMARY KEY CLUSTERED ([Id])
+ALTER TABLE [dbo].[flow_approval_step_history] ADD CONSTRAINT [PK__FlowAppr__3214EC0754EDFF34] PRIMARY KEY CLUSTERED ([Id])
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
 ON [PRIMARY]
 GO
 
 
 -- ----------------------------
--- Primary Key structure for table flow_approval_step_user
+-- Primary Key structure for table flow_approval_step_history_user
 -- ----------------------------
-ALTER TABLE [dbo].[flow_approval_step_user] ADD CONSTRAINT [PK_FlowApprovalStepUser] PRIMARY KEY CLUSTERED ([Id])
+ALTER TABLE [dbo].[flow_approval_step_history_user] ADD CONSTRAINT [PK_FlowApprovalStepUser] PRIMARY KEY CLUSTERED ([Id])
 WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON)  
 ON [PRIMARY]
 GO

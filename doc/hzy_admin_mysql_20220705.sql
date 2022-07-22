@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 06/07/2022 10:51:51
+ Date: 22/07/2022 20:20:23
 */
 
 SET NAMES utf8mb4;
@@ -74,10 +74,10 @@ CREATE TABLE `flow_approval`  (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for flow_approval_step
+-- Table structure for flow_approval_step_history
 -- ----------------------------
-DROP TABLE IF EXISTS `flow_approval_step`;
-CREATE TABLE `flow_approval_step`  (
+DROP TABLE IF EXISTS `flow_approval_step_history`;
+CREATE TABLE `flow_approval_step_history`  (
   `Id` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
   `Sort` int(0) NOT NULL,
   `FlowNodeId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
@@ -94,16 +94,16 @@ CREATE TABLE `flow_approval_step`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of flow_approval_step
+-- Records of flow_approval_step_history
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for flow_approval_step_user
+-- Table structure for flow_approval_step_history_user
 -- ----------------------------
-DROP TABLE IF EXISTS `flow_approval_step_user`;
-CREATE TABLE `flow_approval_step_user`  (
+DROP TABLE IF EXISTS `flow_approval_step_history_user`;
+CREATE TABLE `flow_approval_step_history_user`  (
   `Id` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `FlowApprovalStepId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
+  `FlowApprovalStepHistoryId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
   `FlowNodeId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
   `FlowNodeName` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `UserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
@@ -114,7 +114,7 @@ CREATE TABLE `flow_approval_step_user`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of flow_approval_step_user
+-- Records of flow_approval_step_history_user
 -- ----------------------------
 
 -- ----------------------------
@@ -537,7 +537,7 @@ CREATE TABLE `sys_dictionary`  (
   `LastModificationTime` datetime(6) NOT NULL,
   `CreationTime` datetime(6) NOT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dictionary
@@ -597,7 +597,7 @@ CREATE TABLE `sys_menu`  (
   `LastModificationTime` datetime(6) NOT NULL,
   `CreationTime` datetime(6) NOT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 37 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 36 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -782,7 +782,7 @@ CREATE TABLE `sys_organization`  (
   `LastModificationTime` datetime(6) NOT NULL,
   `CreationTime` datetime(6) NOT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_organization

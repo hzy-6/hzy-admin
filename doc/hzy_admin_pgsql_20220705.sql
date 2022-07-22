@@ -12,7 +12,7 @@
  Target Server Version : 130003
  File Encoding         : 65001
 
- Date: 06/07/2022 10:52:05
+ Date: 22/07/2022 20:19:41
 */
 
 
@@ -106,10 +106,10 @@ CREATE TABLE "public"."flow_approval" (
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for flow_approval_step
+-- Table structure for flow_approval_step_history
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."flow_approval_step";
-CREATE TABLE "public"."flow_approval_step" (
+DROP TABLE IF EXISTS "public"."flow_approval_step_history";
+CREATE TABLE "public"."flow_approval_step_history" (
   "Id" uuid NOT NULL,
   "Sort" int4 NOT NULL,
   "FlowNodeId" uuid NOT NULL,
@@ -126,16 +126,16 @@ CREATE TABLE "public"."flow_approval_step" (
 ;
 
 -- ----------------------------
--- Records of flow_approval_step
+-- Records of flow_approval_step_history
 -- ----------------------------
 
 -- ----------------------------
--- Table structure for flow_approval_step_user
+-- Table structure for flow_approval_step_history_user
 -- ----------------------------
-DROP TABLE IF EXISTS "public"."flow_approval_step_user";
-CREATE TABLE "public"."flow_approval_step_user" (
+DROP TABLE IF EXISTS "public"."flow_approval_step_history_user";
+CREATE TABLE "public"."flow_approval_step_history_user" (
   "Id" uuid NOT NULL,
-  "FlowApprovalStepId" uuid NOT NULL,
+  "FlowApprovalStepHistoryId" uuid NOT NULL,
   "FlowNodeId" uuid NOT NULL,
   "FlowNodeName" text COLLATE "pg_catalog"."default",
   "UserId" uuid NOT NULL,
@@ -146,7 +146,7 @@ CREATE TABLE "public"."flow_approval_step_user" (
 ;
 
 -- ----------------------------
--- Records of flow_approval_step_user
+-- Records of flow_approval_step_history_user
 -- ----------------------------
 
 -- ----------------------------
@@ -1053,14 +1053,14 @@ ALTER TABLE "public"."flow" ADD CONSTRAINT "PK_flow" PRIMARY KEY ("Id");
 ALTER TABLE "public"."flow_approval" ADD CONSTRAINT "PK_flow_approval" PRIMARY KEY ("Id");
 
 -- ----------------------------
--- Primary Key structure for table flow_approval_step
+-- Primary Key structure for table flow_approval_step_history
 -- ----------------------------
-ALTER TABLE "public"."flow_approval_step" ADD CONSTRAINT "PK_flow_approval_step" PRIMARY KEY ("Id");
+ALTER TABLE "public"."flow_approval_step_history" ADD CONSTRAINT "PK_flow_approval_step" PRIMARY KEY ("Id");
 
 -- ----------------------------
--- Primary Key structure for table flow_approval_step_user
+-- Primary Key structure for table flow_approval_step_history_user
 -- ----------------------------
-ALTER TABLE "public"."flow_approval_step_user" ADD CONSTRAINT "PK_flow_approval_step_user" PRIMARY KEY ("Id");
+ALTER TABLE "public"."flow_approval_step_history_user" ADD CONSTRAINT "PK_flow_approval_step_user" PRIMARY KEY ("Id");
 
 -- ----------------------------
 -- Primary Key structure for table flow_node

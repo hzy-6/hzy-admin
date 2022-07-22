@@ -394,60 +394,60 @@
             </summary>
             <value></value>
         </member>
-        <member name="T:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep">
+        <member name="T:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistory">
             <summary>
-            流程审批步骤记录表
+            流程审批步骤记录表 审批历史记录
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.Sort">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistory.Sort">
             <summary>
             流程审批顺序
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.FlowNodeId">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistory.FlowNodeId">
             <summary>
             审批流节点id
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.FlowNodeName">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistory.FlowNodeName">
             <summary>
             节点名称
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.SortMore">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistory.SortMore">
             <summary>
             多次审批顺序号
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.State">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistory.State">
             <summary>
             流程审批状态
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.Opinions">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistory.Opinions">
             <summary>
             审批意见
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.UserId">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistory.UserId">
             <summary>
             审批人id
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.UserName">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistory.UserName">
             <summary>
             审批人姓名
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStep.ApprovalDate">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistory.ApprovalDate">
             <summary>
             审批时间
             </summary>
@@ -458,36 +458,36 @@
             流程审批步骤状态
             </summary>
         </member>
-        <member name="T:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepUser">
+        <member name="T:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistoryUser">
             <summary>
             流程步骤可审批人记录表
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepUser.FlowApprovalStepId">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistoryUser.FlowApprovalStepHistoryId">
             <summary>
             审批步骤id
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepUser.FlowNodeId">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistoryUser.FlowNodeId">
             <summary>
             流程节点Id
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepUser.FlowNodeName">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistoryUser.FlowNodeName">
             <summary>
             审批节点名称
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepUser.UserId">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistoryUser.UserId">
             <summary>
             审批人Id
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepUser.UserName">
+        <member name="P:HZY.Models.Entities.ApprovalFlow.FlowApprovalStepHistoryUser.UserName">
             <summary>
             审批人名称
             </summary>
