@@ -20,6 +20,8 @@
 ###   文档
 [语雀文档 针对 Next 分支](https://www.yuque.com/u378909/yidf7v)
 
+[bilibili视频介绍](https://www.bilibili.com/video/BV1tt4y157qH?vd_source=8803f9b05bd0271050a91c6e659a69d0#reply121926607792)
+
 #### MVC版本
 [https://gitee.com/hzy6/hzy-admin-mvc](https://gitee.com/hzy6/hzy-admin-mvc)
 
