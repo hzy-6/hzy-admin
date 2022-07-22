@@ -9,7 +9,7 @@ namespace HZY.Models.Entities.ApprovalFlow
     /// <summary>
     /// 流程步骤可审批人记录表
     /// </summary>
-    public class FlowApprovalStepUser : DefaultBaseEntity<Guid>
+    public class FlowApprovalStepHistoryUser : DefaultBaseEntity<Guid>
     {
         /// <summary>
         /// 审批步骤id

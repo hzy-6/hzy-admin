@@ -88,6 +88,12 @@
             <param name="appConfiguration"></param>
             <param name="hostBuilder"></param>
         </member>
+        <member name="M:HZY.EFCore.EFCoreModule.UseEfCoreLoggerFactory(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            efcore 使用控制台日志
+            </summary>
+            <param name="options"></param>
+        </member>
         <member name="T:HZY.EFCore.Migrations.Seeds.ModelBuilderExtensions">
             <summary>
             EFCore 种子数据

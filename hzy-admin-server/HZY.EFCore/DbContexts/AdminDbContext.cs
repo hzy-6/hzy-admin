@@ -44,8 +44,8 @@ public class AdminDbContext : DbContextBase
     public DbSet<Flow> Flow { get; set; }
     public DbSet<FlowNode> FlowNode { get; set; }
     public DbSet<FlowApproval> FlowApproval { get; set; }
-    public DbSet<FlowApprovalStep> FlowApprovalStep { get; set; }
-    public DbSet<FlowApprovalStepUser> FlowApprovalStepUser { get; set; }
+    public DbSet<FlowApprovalStepHistory> FlowApprovalStep { get; set; }
+    public DbSet<FlowApprovalStepHistoryUser> FlowApprovalStepUser { get; set; }
     #endregion
 
     #region 低代码

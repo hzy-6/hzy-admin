@@ -13,15 +13,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
-<None Update="HZY.Managers.xml">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		  <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	  </None>
+		<None Update="HZY.Managers.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		</None>
 	</ItemGroup>
 
 	<!--用于生成当前程序集xml描述-->
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-<DocumentationFile>HZY.Managers.xml</DocumentationFile>
+		<DocumentationFile>HZY.Managers.xml</DocumentationFile>
 		<NoWarn>1701;1702;1591</NoWarn>
 	</PropertyGroup>
 

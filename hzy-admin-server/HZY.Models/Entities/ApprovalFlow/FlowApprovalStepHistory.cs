@@ -8,9 +8,9 @@ using HZY.Models.Entities.BaseEntitys;
 namespace HZY.Models.Entities.ApprovalFlow
 {
     /// <summary>
-    /// 流程审批步骤记录表
+    /// 流程审批步骤记录表 审批历史记录
     /// </summary>
-    public class FlowApprovalStep : DefaultBaseEntity<Guid>
+    public class FlowApprovalStepHistory : DefaultBaseEntity<Guid>
     {
         /// <summary>
         /// 流程审批顺序
