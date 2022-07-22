@@ -7,7 +7,14 @@ export default defineConfig({
   plugins: [vue()],
   base: process.env.NODE_ENV == "production" ? "/client/" : "/",
   server: {
-    port: 6888
+    port: 6888,
+    // proxy: {
+    //     '/api': {
+    //         target: 'http://localhost:5600/api',
+    //         ws: false,
+    //         changeOrigin: true
+    //     }
+    // }
   },
   resolve: {
     extensions: ['.js', '.json', '.vue', '.scss', '.css', '.less'],
