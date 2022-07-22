@@ -36,24 +36,14 @@ public static class EFCoreModule
     public static void AddEfCore(this IServiceCollection services, AppConfiguration appConfiguration, WebApplicationBuilder hostBuilder)
     {
         //取消域验证
-        hostBuilder.Host.UseDefaultServiceProvider(options => { options.ValidateScopes = false; });
+        // hostBuilder.Host.UseDefaultServiceProvider(options => { options.ValidateScopes = false; });
 
         #region AdminDbContext 注册配置
 
         var databaseType = appConfiguration.ConnectionStrings.DefaultDatabaseType;
         services.AddDbContextPool<AdminDbContext>(options =>
         {
-            try
-            {
-                using var scope = IOCUtil.CreateScope();
-                var webHostEnvironment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
-                if (webHostEnvironment.IsDevelopment())
-                {
-                    // sql 日志写入控制台
-                    options.UseLoggerFactory(LoggerFactory.Create(builder => builder.AddConsole()));
-                }
-            }
-            catch (Exception) { }
+            UseEfCoreLoggerFactory(options);
 
             // 懒加载代理
             //options.UseLazyLoadingProxies();
@@ -86,6 +76,26 @@ public static class EFCoreModule
         }, 2048);
 
         #endregion
+    }
+
+    /// <summary>
+    /// efcore 使用控制台日志
+    /// </summary>
+    /// <param name="options"></param>
+    private static void UseEfCoreLoggerFactory(DbContextOptionsBuilder options)
+    {
+        try
+        {
+            using var scope = IOCUtil.CreateScope();
+            var webHostEnvironment = scope.ServiceProvider.GetRequiredService<IWebHostEnvironment>();
+            if (webHostEnvironment.IsDevelopment())
+            {
+                var loggerFactory = LoggerFactory.Create(builder => builder.AddConsole());
+                // sql 日志写入控制台
+                options.UseLoggerFactory(loggerFactory);
+            }
+        }
+        catch (Exception) { }
     }
 
 }
