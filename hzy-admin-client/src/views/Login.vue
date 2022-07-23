@@ -1,33 +1,37 @@
 <template>
-  <div id="login">
-    <div class="login-modal"></div>
-    <div class="login-container">
-      <a-card>
-        <div class="login-title">{{ title }}</div>
-        <div class="p-24">
-          <a-form layout="vertical">
-            <a-form-item>
-              <a-input v-model:value="state.userName" placeholder="请输入" size="large" allow-clear>
-                <template #prefix>
-                  <AppIcon name="UserOutlined" style="color: #1890ff; font-size: 14px" />
-                </template>
-              </a-input>
-            </a-form-item>
-            <a-form-item>
-              <a-input-password type="password" v-model:value="state.userPassword" size="large" ref="inputPassword" @keyup.enter="state.check">
-                <template #prefix>
-                  <AppIcon name="LockOutlined" style="color: #1890ff; font-size: 14px" />
-                </template>
-              </a-input-password>
-            </a-form-item>
-            <a-form-item>
-              <a-button type="primary" @click="methods.check" :loading="loading" size="large" block>登录</a-button>
-            </a-form-item>
-          </a-form>
+  <div>
+    <div class="login">
+      <div class="login-card">
+        <div class="flex-left">
+          <img src="../assets/images/info_service.png" alt="" />
         </div>
-      </a-card>
+        <div class="flex-right p-30">
+          <div class="title">{{ title }}</div>
+
+          <div class="mt-24">
+            <a-input v-model:value="state.userName" placeholder="请输入" size="large" allow-clear>
+              <template #prefix>
+                <AppIcon name="UserOutlined" style="color: #1890ff; font-size: 14px" />
+              </template>
+            </a-input>
+          </div>
+
+          <div class="mt-24">
+            <a-input-password type="password" v-model:value="state.userPassword" size="large" ref="inputPassword" @keyup.enter="methods.check">
+              <template #prefix>
+                <AppIcon name="LockOutlined" style="color: #1890ff; font-size: 14px" />
+              </template>
+            </a-input-password>
+          </div>
+
+          <div class="mt-40">
+            <a-button type="primary" @click="methods.check" :loading="loading" size="large" block>登录</a-button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
+
 </template>
 
 <script setup>
@@ -82,63 +86,89 @@ onMounted(() => {
   inputPassword.value.focus();
 });
 </script>
+
 <style lang="less" scoped>
-#login {
-  text-align: center;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  left: 0;
+body {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.login {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
   //可以解开一下注解 放置一个背景图片
-  background: url("../assets/images/login3.jpg") no-repeat;
+  background: url("../assets/images/login.jpg") no-repeat;
   // background: url("../assets/undraw_Tree_swing_re_pqee.png") no-repeat;
   background-size: cover;
   // background: #f0f2f5 url("../assets/background.svg") no-repeat 50%;
 
-  .login-modal {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    // background-color: #000000;
-    // background: #f0f2f5;
-    margin: 0 auto;
-    // opacity: 0.3;
-  }
-
-  .login-container {
-    position: absolute;
-    width: 26rem;
-    top: 50%;
-    left: 50%;
-    -webkit-transform: translate(-50%, -50%);
-    transform: translate(-50%, -50%);
-
-    .login-title {
-      padding: 20px;
-      font-size: 25px;
-      font-weight: 500;
-      padding-top: 24px;
-      padding-bottom: 24px;
-    }
-
-    .form-title {
-      text-align: left;
-    }
-
-    .ant-card {
-      border: 0;
-    }
-  }
-
-  @media (max-width: 720px) {
-    .login-container {
-      width: 100%;
-
-      .ant-card {
-        padding: 0;
+  .login-card {
+    height: 500px;
+    width: 1000px;
+    box-shadow: 0px 16px 48px 16px rgba(0, 0, 0, 0.72), 0px 12px 32px #000000, 0px 8px 16px -8px #000000;
+    display: flex;
+    border-radius: 5px;
+    .flex-left {
+      flex: 1;
+      img {
+        height: 100%;
       }
     }
+
+    .flex-right {
+      flex: 1;
+      background-color: #ffffff;
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      border-top-right-radius: 5px;
+      border-bottom-right-radius: 5px;
+    }
+
+    .title {
+      text-align: center;
+      font-size: 30px;
+      padding: 20px;
+      font-weight: bold;
+    }
+
+    .el-input-group__append {
+      padding: 0 !important;
+      .login-code {
+        height: 38px;
+      }
+    }
+  }
+}
+
+//小于 1024 像素 选择采用此样式
+@media (max-width: 1024px) {
+  .flex-left {
+    display: none;
+    flex: 0 !important;
+    img {
+      height: auto !important;
+      width: 80% !important;
+    }
+  }
+  .flex-right{
+    border-radius: 5px;
+  }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+  .login-card {
+    width: 70% !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .login-card {
+    // flex-direction: column;
+    width: 100% !important;
   }
 }
 </style>
