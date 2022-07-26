@@ -58,42 +58,6 @@
             后台权限管理系统 DbContext
             </summary>
         </member>
-        <member name="T:HZY.EFCore.DbContexts.Interceptor.AuditInterceptor">
-            <summary>
-            审计 保存拦截器
-            </summary>
-        </member>
-        <member name="M:HZY.EFCore.DbContexts.Interceptor.AuditInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData)">
-            <summary>
-            添加 、 修改 、删除 拦截
-            </summary>
-            <param name="eventData"></param>
-        </member>
-        <member name="T:HZY.EFCore.EFCoreModule">
-            <summary>
-            仓储模块
-            </summary>
-        </member>
-        <member name="M:HZY.EFCore.EFCoreModule.UseEfCore(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
-            <summary>
-            使用 DbContext
-            </summary>
-            <param name="app"></param>
-        </member>
-        <member name="M:HZY.EFCore.EFCoreModule.AddEfCore(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
-            <summary>
-            注册 Admin 后台管理数据库
-            </summary>
-            <param name="services"></param>
-            <param name="appConfiguration"></param>
-            <param name="hostBuilder"></param>
-        </member>
-        <member name="M:HZY.EFCore.EFCoreModule.UseEfCoreLoggerFactory(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
-            <summary>
-            efcore 使用控制台日志
-            </summary>
-            <param name="options"></param>
-        </member>
         <member name="T:HZY.EFCore.Migrations.Seeds.ModelBuilderExtensions">
             <summary>
             EFCore 种子数据

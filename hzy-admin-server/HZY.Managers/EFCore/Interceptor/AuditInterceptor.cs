@@ -8,7 +8,7 @@ using HzyScanDiService;
 using HZY.Infrastructure.Token;
 using HZY.Models.Entities.BaseEntitys;
 
-namespace HZY.EFCore.DbContexts.Interceptor
+namespace HZY.Managers.EFCore.Interceptor
 {
     /// <summary>
     /// 审计 保存拦截器
@@ -17,13 +17,13 @@ namespace HZY.EFCore.DbContexts.Interceptor
     {
         public override InterceptionResult<int> SavingChanges(DbContextEventData eventData, InterceptionResult<int> result)
         {
-            this.SavingChanges(eventData);
+            SavingChanges(eventData);
             return base.SavingChanges(eventData, result);
         }
 
         public override ValueTask<InterceptionResult<int>> SavingChangesAsync(DbContextEventData eventData, InterceptionResult<int> result, CancellationToken cancellationToken = default)
         {
-            this.SavingChanges(eventData);
+            SavingChanges(eventData);
             return base.SavingChangesAsync(eventData, result, cancellationToken);
         }
 

@@ -15,6 +15,11 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="P:HZY.Managers.Accounts.IAccountManager.AccountInfo">
+            <summary>
+            获取账户信息
+            </summary>
+        </member>
         <member name="M:HZY.Managers.Accounts.IAccountManager.CheckAccountAsync(System.String,System.String,System.String)">
             <summary>
             检查账户密码信息
@@ -76,6 +81,11 @@
             获取当前登录账户信息
             </summary>
             <returns></returns>
+        </member>
+        <member name="P:HZY.Managers.Accounts.Impl.AccountManagerImpl.AccountInfo">
+            <summary>
+            获取当前登录账户信息
+            </summary>
         </member>
         <member name="M:HZY.Managers.Accounts.Impl.AccountManagerImpl.CheckAccountAsync(System.String,System.String,System.String)">
             <summary>
@@ -149,6 +159,42 @@
             <summary>
             审批流程核心实现
             </summary>
+        </member>
+        <member name="T:HZY.Managers.EFCore.EFCoreModule">
+            <summary>
+            仓储模块
+            </summary>
+        </member>
+        <member name="M:HZY.Managers.EFCore.EFCoreModule.UseEfCore(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用 DbContext
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:HZY.Managers.EFCore.EFCoreModule.AddEfCore(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            注册 Admin 后台管理数据库
+            </summary>
+            <param name="services"></param>
+            <param name="appConfiguration"></param>
+            <param name="hostBuilder"></param>
+        </member>
+        <member name="M:HZY.Managers.EFCore.EFCoreModule.UseEfCoreLoggerFactory(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+            <summary>
+            efcore 使用控制台日志
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="T:HZY.Managers.EFCore.Interceptor.AuditInterceptor">
+            <summary>
+            审计 保存拦截器
+            </summary>
+        </member>
+        <member name="M:HZY.Managers.EFCore.Interceptor.AuditInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData)">
+            <summary>
+            添加 、 修改 、删除 拦截
+            </summary>
+            <param name="eventData"></param>
         </member>
         <member name="T:HZY.Managers.Quartz.IDataService">
             <summary>

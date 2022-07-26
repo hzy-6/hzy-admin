@@ -24,6 +24,7 @@ using HZY.WebHost.Filters;
 using Swashbuckle.AspNetCore.Filters;
 using Newtonsoft.Json.Serialization;
 using HZY.Infrastructure.SerilogUtil;
+using HZY.Managers.EFCore;
 
 namespace HZY.WebHost.Configure;
 
@@ -124,7 +125,7 @@ public static class AppBuilder
         //配置efcore
         services.AddEfCore(appConfiguration, builder);
         //配置freesql
-        FreeSqlCoreModule.RegisterFreeSql(services, appConfiguration, $"{prefixString}Repositories");
+        FreeSqlUtil.AddFreeSql(services, appConfiguration, $"{prefixString}Repositories");
         //配置redis
         RedisUtil.AddRedisService(services, appConfiguration.ConnectionStrings.Redis);
         //添加中间件

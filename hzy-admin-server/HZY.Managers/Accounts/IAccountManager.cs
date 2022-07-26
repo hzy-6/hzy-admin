@@ -17,6 +17,11 @@ public interface IAccountManager : IScopedDependency
     AccountInfo GetAccountInfo();
 
     /// <summary>
+    /// 获取账户信息
+    /// </summary>
+    AccountInfo AccountInfo => default;
+
+    /// <summary>
     /// 检查账户密码信息
     /// </summary>
     /// <param name="name"></param>

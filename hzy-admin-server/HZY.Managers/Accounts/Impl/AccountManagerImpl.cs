@@ -1,4 +1,5 @@
-﻿using HZY.EFCore.Repositories.Admin.Core;
+﻿using HZY.EFCore;
+using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.Token;
@@ -49,7 +50,7 @@ public class AccountManagerImpl : IAccountManager
         _sysPostRepository = sysPostRepository;
         _sysUserPostRepository = sysUserPostRepository;
 
-        this._accountInfo = this.FindAccountInfoByToken();
+        _accountInfo = FindAccountInfoByToken();
     }
 
     /// <summary>
@@ -65,47 +66,52 @@ public class AccountManagerImpl : IAccountManager
             return default;
         }
 
-        var accountInfo = this.GetCacheAccountInfoById(id.ToString());
+        var accountInfo = GetCacheAccountInfoById(id.ToString());
 
         if (accountInfo != null)
         {
             return accountInfo;
         }
 
-        var sysUser = this._sysUserRepository.FindById(id);
+        var sysUser = _sysUserRepository.FindById(id);
         if (sysUser == null) return default;
         var sysRoles = (
-            from sysUserRole in this._sysUserRoleRepository.Select
-            from sysRole in this._sysRoleRepository.Select.Where(w => w.Id == sysUserRole.RoleId).DefaultIfEmpty()
+            from sysUserRole in _sysUserRoleRepository.Select
+            from sysRole in _sysRoleRepository.Select.Where(w => w.Id == sysUserRole.RoleId).DefaultIfEmpty()
             where sysUserRole.UserId == id
             select sysRole
             ).ToList();
 
         var sysPosts = (
-            from sysUserPost in this._sysUserPostRepository.Select
-            from sysPost in this._sysPostRepository.Select.Where(w => w.Id == sysUserPost.PostId).DefaultIfEmpty()
+            from sysUserPost in _sysUserPostRepository.Select
+            from sysPost in _sysPostRepository.Select.Where(w => w.Id == sysUserPost.PostId).DefaultIfEmpty()
             where sysUserPost.UserId == id
             select sysPost
             ).ToList();
 
-        var sysOrganization = this._sysOrganizationRepository.FindById(sysUser.OrganizationId);
+        var sysOrganization = _sysOrganizationRepository.FindById(sysUser.OrganizationId);
 
         accountInfo = new AccountInfo();
         accountInfo = sysUser.MapTo<SysUser, AccountInfo>();
-        accountInfo.IsAdministrator = sysRoles.Any(w => w.Id == this._appConfiguration.Configs.AdminRoleId);
+        accountInfo.IsAdministrator = sysRoles.Any(w => w.Id == _appConfiguration.Configs.AdminRoleId);
         accountInfo.SysRoles = sysRoles;
         accountInfo.SysPosts = sysPosts;
         accountInfo.SysOrganization = sysOrganization;
 
         //缓存
-        return this.SetCacheByAccountInfo(accountInfo);
+        return SetCacheByAccountInfo(accountInfo);
     }
 
     /// <summary>
     /// 获取当前登录账户信息
     /// </summary>
     /// <returns></returns>
-    public virtual AccountInfo GetAccountInfo() => this._accountInfo ?? FindAccountInfoByToken();
+    public virtual AccountInfo GetAccountInfo() => _accountInfo ?? FindAccountInfoByToken();
+
+    /// <summary>
+    /// 获取当前登录账户信息
+    /// </summary>
+    public virtual AccountInfo AccountInfo => GetAccountInfo();
 
     /// <summary>
     /// 检查账户 登录信息 并返回 token
@@ -122,7 +128,7 @@ public class AccountManagerImpl : IAccountManager
             MessageBox.Show("请输入密码！");
         // if (string.IsNullOrWhiteSpace(code))
         //  MessageBox.Show("请输入验证码!");
-        var sysUser = await this._sysUserRepository.FindAsync(w => w.LoginName == name);
+        var sysUser = await _sysUserRepository.FindAsync(w => w.LoginName == name);
         if (sysUser == null)
         {
             MessageBox.Show("账户或者密码错误!");
@@ -150,11 +156,11 @@ public class AccountManagerImpl : IAccountManager
     {
         if (string.IsNullOrEmpty(oldPassword)) MessageBox.Show("旧密码不能为空！");
         if (string.IsNullOrEmpty(newPassword)) MessageBox.Show("新密码不能为空！");
-        var sysUser = await this._sysUserRepository.FindByIdAsync(this.GetAccountInfo().Id);
+        var sysUser = await _sysUserRepository.FindByIdAsync(GetAccountInfo().Id);
         if (sysUser.Password != oldPassword) MessageBox.Show("旧密码不正确！");
         sysUser.Password = newPassword;
-        this.DeleteCacheAccountInfoById(sysUser.Id.ToString());
-        return await this._sysUserRepository.UpdateAsync(sysUser);
+        DeleteCacheAccountInfoById(sysUser.Id.ToString());
+        return await _sysUserRepository.UpdateAsync(sysUser);
     }
 
     /// <summary>
@@ -169,7 +175,7 @@ public class AccountManagerImpl : IAccountManager
         sysUser.LoginName = form.LoginName;
         sysUser.Email = form.Email;
         sysUser.Phone = form.Phone;
-        this.DeleteCacheAccountInfoById(sysUser.Id.ToString());
+        DeleteCacheAccountInfoById(sysUser.Id.ToString());
         return await _sysUserRepository.InsertOrUpdateAsync(sysUser);
     }
 

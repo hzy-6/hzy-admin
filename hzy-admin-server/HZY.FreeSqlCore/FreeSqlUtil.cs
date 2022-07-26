@@ -15,8 +15,13 @@ namespace HZY.FreeSqlCore;
 /// <summary>
 /// FreeSql 模块配置
 /// </summary>
-public static class FreeSqlCoreModule
+public static class FreeSqlUtil
 {
+    /// <summary>
+    /// Admin IFreeSql
+    /// </summary>
+    private static IFreeSql AdminFreeSql;
+
     /// <summary>
     /// 注册 仓储层
     /// </summary>
@@ -24,8 +29,10 @@ public static class FreeSqlCoreModule
     /// <param name="appConfiguration"></param>
     /// <param name="assemblyFilter"></param>
     /// <exception cref="System.Exception"></exception>
-    public static void RegisterFreeSql(this IServiceCollection services, AppConfiguration appConfiguration, string assemblyFilter = "HZY.Repositories")
+    public static void AddFreeSql(this IServiceCollection services, AppConfiguration appConfiguration, string assemblyFilter = "HZY.Repositories")
     {
+        #region Admin
+
         var databaseType = appConfiguration.ConnectionStrings.DefaultDatabaseType;
         var dataType = FreeSql.DataType.SqlServer;
         var connectionString = appConfiguration.ConnectionStrings.DefaultSqlServer;
@@ -46,33 +53,15 @@ public static class FreeSqlCoreModule
             dataType = FreeSql.DataType.PostgreSQL;
         }
 
-        var freeSql = CreateFreeSql(connectionString, dataType);
-        services.AddSingleton(freeSql);
-        //services.AddScoped<UnitOfWorkManager>();
-        services.AddFreeRepository(null, IOCUtil.GetAssemblyList(w =>
-        {
-            var name = w.GetName().Name;
-            return name != null && name.StartsWith(assemblyFilter);
-        }).ToArray());
-    }
-
-    /// <summary>
-    /// 创建 free sql 对象
-    /// </summary>
-    /// <param name="connectionString"></param>
-    /// <param name="dataType"></param>
-    /// <returns></returns>
-    private static IFreeSql CreateFreeSql(string connectionString, FreeSql.DataType dataType)
-    {
-        var freeSql = new FreeSql.FreeSqlBuilder()
+        FreeSqlUtil.AdminFreeSql = new FreeSql.FreeSqlBuilder()
             .UseConnectionString(dataType, connectionString)
             .UseAutoSyncStructure(false) //自动迁移实体的结构到数据库
             .Build(); //请务必定义成 Singleton 单例模式
 
         // sql执行后
-        freeSql.Aop.CurdAfter += (s, curdAfter) =>
+        AdminFreeSql.Aop.CurdAfter += (s, curdAfter) =>
         {
-            if (curdAfter.ElapsedMilliseconds > 1000)
+            //if (curdAfter.ElapsedMilliseconds > 1000)
             {
                 var stringBuilder = new StringBuilder();
                 stringBuilder.Append($"\r\n====[Sql Start 耗时: {curdAfter.ElapsedMilliseconds} ms]=========");
@@ -113,8 +102,15 @@ public static class FreeSqlCoreModule
         //    }
         //};
 
-        return freeSql;
+        services.AddSingleton(FreeSqlUtil.AdminFreeSql);
+        //services.AddScoped<UnitOfWorkManager>();
+        services.AddFreeRepository(null, IOCUtil.GetAssemblyList(w =>
+        {
+            var name = w.GetName().Name;
+            return name != null && name.StartsWith(assemblyFilter);
+        }).ToArray());
+
+        #endregion
+
     }
-
-
 }

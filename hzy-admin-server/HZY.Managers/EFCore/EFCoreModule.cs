@@ -2,15 +2,15 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using HZY.EFCore.DbContexts;
-using HZY.EFCore.DbContexts.Interceptor;
 using HZY.Infrastructure;
 using HzyEFCoreRepositories;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Builder;
 using HzyScanDiService;
 using Microsoft.AspNetCore.Hosting;
+using HZY.Managers.EFCore.Interceptor;
 
-namespace HZY.EFCore;
+namespace HZY.Managers.EFCore;
 
 /// <summary>
 /// 仓储模块
@@ -64,7 +64,7 @@ public static class EFCoreModule
             if (databaseType == DefaultDatabaseType.PostgreSql)
             {
                 //EnableLegacyTimestampBehavior 启动旧行为，避免时区问题，存储时间报错
-                System.AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+                AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
                 options.UseNpgsql(appConfiguration.ConnectionStrings.DefaultPostgreSql, w => w.MinBatchSize(1).MaxBatchSize(1000));
             }
 
