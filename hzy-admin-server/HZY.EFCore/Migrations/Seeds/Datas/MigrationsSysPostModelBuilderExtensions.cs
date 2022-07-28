@@ -1,7 +1,6 @@
 
 using HZY.Models.Entities;
 using HZY.Models.Entities.LowCode;
-using HZY.Models.Entities.AllPeopleGoGoGo;
 using HZY.Models.Entities.ApprovalFlow;
 using HZY.Models.Entities.Framework;
 using Microsoft.EntityFrameworkCore;

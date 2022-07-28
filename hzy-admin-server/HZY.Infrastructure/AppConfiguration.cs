@@ -133,4 +133,27 @@ public class AppConfigurationOptions
     /// 是否运行 Quartz Task
     /// </summary>
     public bool IsRunQuartzTask { get; set; }
+    /// <summary>
+    /// dbconte 信息配置
+    /// </summary>
+    public DbContextInfoNode DbContextInfo { get; set; }
+}
+
+/// <summary>
+/// dbconte 信息配置
+/// </summary>
+public class DbContextInfoNode
+{
+    /// <summary>
+    /// 数据库实体程序集名称
+    /// </summary>
+    public string DbSetScanDllName { get; set; }
+    /// <summary>
+    /// 数据库实体命名空间
+    /// </summary>
+    public string DbSetScanNamespace { get; set; }
+    /// <summary>
+    /// 数据表命名规则配置
+    /// </summary>
+    public NameRuleType NameRuleType { get; set; }
 }

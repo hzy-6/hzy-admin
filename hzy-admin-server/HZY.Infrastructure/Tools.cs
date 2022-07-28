@@ -1078,25 +1078,5 @@ public static class Tools
         return Regex.Replace(input, @"([a-z0-9])([A-Z])", "$1_$2").ToLower();
     }
     
-    /// <summary>
-    /// 数据库表名映射
-    /// </summary>
-    /// <param name="modelBuilder"></param>
-    /// <param name="mappingName"></param>
-    public static void TableNameMapping(this ModelBuilder modelBuilder,Func<string,string> mappingName)
-    {
-        foreach (var entity in modelBuilder.Model.GetEntityTypes())
-        {
-            string name = string.Empty;
-            var tableAttr = entity.GetType().GetCustomAttributes(typeof(TableAttribute), false).FirstOrDefault() as TableAttribute;
-            if (tableAttr != null)
-            {
-                name = mappingName(tableAttr.Name);
-                entity.SetTableName(name);
-                continue;
-            }
-            name = mappingName(entity.GetTableName());
-            entity.SetTableName(name);
-        }
-    }
+    
 }

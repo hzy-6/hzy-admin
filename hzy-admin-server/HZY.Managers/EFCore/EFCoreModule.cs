@@ -9,6 +9,7 @@ using Microsoft.AspNetCore.Builder;
 using HzyScanDiService;
 using Microsoft.AspNetCore.Hosting;
 using HZY.Managers.EFCore.Interceptor;
+using NPOI.SS.Formula.Functions;
 
 namespace HZY.Managers.EFCore;
 
@@ -40,7 +41,6 @@ public static class EFCoreModule
 
         #region AdminDbContext 注册配置
 
-        var databaseType = appConfiguration.ConnectionStrings.DefaultDatabaseType;
         services.AddDbContextPool<AdminDbContext>(options =>
         {
             UseEfCoreLoggerFactory(options);
@@ -51,26 +51,24 @@ public static class EFCoreModule
             options.AddHzyEFCoreRepository(appConfiguration.Configs.IsMonitorEFCore);
             options.AddInterceptors(new AuditInterceptor());
 
-            if (databaseType == DefaultDatabaseType.SqlServer)
+            switch (appConfiguration.ConnectionStrings.DefaultDatabaseType)
             {
-                options.UseSqlServer(appConfiguration.ConnectionStrings.DefaultSqlServer, w => w.MinBatchSize(1).MaxBatchSize(1000));
-            }
-
-            if (databaseType == DefaultDatabaseType.MySql)
-            {
-                options.UseMySql(appConfiguration.ConnectionStrings.DefaultMySql, MySqlServerVersion.LatestSupportedServerVersion, w => w.MinBatchSize(1).MaxBatchSize(1000));
-            }
-
-            if (databaseType == DefaultDatabaseType.PostgreSql)
-            {
-                //EnableLegacyTimestampBehavior 启动旧行为，避免时区问题，存储时间报错
-                AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
-                options.UseNpgsql(appConfiguration.ConnectionStrings.DefaultPostgreSql, w => w.MinBatchSize(1).MaxBatchSize(1000));
-            }
-
-            if (databaseType == DefaultDatabaseType.Oracle)
-            {
-                options.UseOracle(appConfiguration.ConnectionStrings.DefaultOracle, w => w.MinBatchSize(1).MaxBatchSize(1000));
+                case DefaultDatabaseType.SqlServer:
+                    options.UseSqlServer(appConfiguration.ConnectionStrings.DefaultSqlServer, w => w.MinBatchSize(1).MaxBatchSize(1000));
+                    break;
+                case DefaultDatabaseType.MySql:
+                    options.UseMySql(appConfiguration.ConnectionStrings.DefaultMySql, MySqlServerVersion.LatestSupportedServerVersion, w => w.MinBatchSize(1).MaxBatchSize(1000));
+                    break;
+                case DefaultDatabaseType.PostgreSql:
+                    //EnableLegacyTimestampBehavior 启动旧行为，避免时区问题，存储时间报错
+                    AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
+                    options.UseNpgsql(appConfiguration.ConnectionStrings.DefaultPostgreSql, w => w.MinBatchSize(1).MaxBatchSize(1000));
+                    break;
+                case DefaultDatabaseType.Oracle:
+                    options.UseOracle(appConfiguration.ConnectionStrings.DefaultOracle, w => w.MinBatchSize(1).MaxBatchSize(1000));
+                    break;
+                default:
+                    break;
             }
 
         }, 2048);
@@ -97,5 +95,4 @@ public static class EFCoreModule
         }
         catch (Exception) { }
     }
-
 }

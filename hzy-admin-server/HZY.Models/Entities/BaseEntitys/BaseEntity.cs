@@ -13,7 +13,15 @@ public class BaseEntity<TKey> : IBaseEntity<TKey>
     public virtual TKey Id { get; set; }
 }
 
-public interface IBaseEntity<TKey>
+public interface IBaseEntity<TKey> : IBaseEntity
 {
     TKey Id { get; set; }
+}
+
+/// <summary>
+/// dbset 自动填充标识
+/// </summary>
+public interface IBaseEntity
+{
+
 }

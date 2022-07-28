@@ -460,6 +460,31 @@
             是否运行 Quartz Task
             </summary>
         </member>
+        <member name="P:HZY.Infrastructure.AppConfigurationOptions.DbContextInfo">
+            <summary>
+            dbconte 信息配置
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.DbContextInfoNode">
+            <summary>
+            dbconte 信息配置
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.DbContextInfoNode.DbSetScanDllName">
+            <summary>
+            数据库实体程序集名称
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.DbContextInfoNode.DbSetScanNamespace">
+            <summary>
+            数据库实体命名空间
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.DbContextInfoNode.NameRuleType">
+            <summary>
+            数据表命名规则配置
+            </summary>
+        </member>
         <member name="M:HZY.Infrastructure.Controllers.AdminBaseController`1.#ctor(`0)">
             <summary>
             管理系统基础控制器构造函数
@@ -1242,13 +1267,6 @@
             </summary>
             <param name="input"></param>
             <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.Tools.TableNameMapping(Microsoft.EntityFrameworkCore.ModelBuilder,System.Func{System.String,System.String})">
-            <summary>
-            数据库表名映射
-            </summary>
-            <param name="modelBuilder"></param>
-            <param name="mappingName"></param>
         </member>
         <member name="T:HZY.Infrastructure.Zip">
             <summary>

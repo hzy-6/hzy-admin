@@ -58,6 +58,19 @@
             后台权限管理系统 DbContext
             </summary>
         </member>
+        <member name="M:HZY.EFCore.DbContexts.AdminDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            模型创建
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="M:HZY.EFCore.DbContexts.AdminDbContext.TableNameMapping(Microsoft.EntityFrameworkCore.ModelBuilder,System.Func{System.String,System.String})">
+            <summary>
+            数据库表名映射
+            </summary>
+            <param name="modelBuilder"></param>
+            <param name="mappingName"></param>
+        </member>
         <member name="T:HZY.EFCore.Migrations.Seeds.ModelBuilderExtensions">
             <summary>
             EFCore 种子数据

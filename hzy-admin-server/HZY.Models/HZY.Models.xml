@@ -181,146 +181,6 @@
             系统账户表单
             </summary>
         </member>
-        <member name="T:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer">
-            <summary>
-            游戏玩家
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.Number">
-            <summary>
-            编号
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.Name">
-            <summary>
-            游戏昵称
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.AccountNumber">
-            <summary>
-            账号
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.AccountPassword">
-            <summary>
-            账户密码
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.TeamId">
-            <summary>
-            所属队伍
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.GameCredits">
-            <summary>
-            游戏积分
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.IsOnline">
-            <summary>
-            是否在线
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.GamePlayer.State">
-            <summary>
-            是否停用
-            </summary>
-        </member>
-        <member name="T:HZY.Models.Entities.AllPeopleGoGoGo.Room">
-            <summary>
-            房间
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.Room.Number">
-            <summary>
-            编号
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.Room.Name">
-            <summary>
-            房间名称
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.Room.SecretKey">
-            <summary>
-            房间密钥
-            </summary>
-        </member>
-        <member name="T:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary">
-            <summary>
-            任务库
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Number">
-            <summary>
-            编号
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Title">
-            <summary>
-            任务标题
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Description">
-            <summary>
-            摘要描述
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.CoverPicture">
-            <summary>
-            封面图
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Picture">
-            <summary>
-            图片
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Answer">
-            <summary>
-            答案
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Score">
-            <summary>
-            分值
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.DifficultyLevel">
-            <summary>
-            难度等级
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Type">
-            <summary>
-            任务类型 => 数据字典获取值
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.TaskLibrary.Classify">
-            <summary>
-            任务分类 => 数据字典获取值
-            </summary>
-        </member>
-        <member name="T:HZY.Models.Entities.AllPeopleGoGoGo.Team">
-            <summary>
-            队伍
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.Team.Number">
-            <summary>
-            队伍编号
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.Team.Name">
-            <summary>
-            队伍名称
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.AllPeopleGoGoGo.Team.RoomId">
-            <summary>
-            所属房间Id
-            </summary>
-        </member>
         <member name="T:HZY.Models.Entities.ApprovalFlow.Flow">
             <summary>
             工作流主表
@@ -527,6 +387,11 @@
             备注
             </summary>
             <value></value>
+        </member>
+        <member name="T:HZY.Models.Entities.BaseEntitys.IBaseEntity">
+            <summary>
+            dbset 自动填充标识
+            </summary>
         </member>
         <member name="P:HZY.Models.Entities.BaseEntitys.ICreateBaseEntity.CreatorUserId">
             <summary>

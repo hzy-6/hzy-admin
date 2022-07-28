@@ -1,13 +1,13 @@
 ﻿using HZY.EFCore.Migrations.Seeds;
 using HZY.Infrastructure;
-using HZY.Models.Entities;
-using HZY.Models.Entities.ApprovalFlow;
 using HZY.Models.Entities.BaseEntitys;
-using HZY.Models.Entities.Framework;
-using HZY.Models.Entities.LowCode;
 using HzyEFCoreRepositories.DbContexts;
 using HzyEFCoreRepositories.Extensions;
+using HzyScanDiService;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.Extensions.DependencyInjection;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HZY.EFCore.DbContexts;
 
@@ -18,55 +18,45 @@ public class AdminDbContext : DbContextBase
 {
     public AdminDbContext(DbContextOptions<AdminDbContext> options) : base(options)
     {
-
+        // 自动迁移 （如果迁移文件有变动）
+        if (this.Database.GetPendingMigrations().Count() > 0)
+        {
+            this.Database.Migrate();
+        }
     }
 
-    #region DbSet
-
-    #region 后台系统 基础
-    public DbSet<SysFunction> SysFunction { get; set; }
-    public DbSet<SysMenu> SysMenu { get; set; }
-    public DbSet<SysMenuFunction> SysMenuFunction { get; set; }
-    public DbSet<SysRole> SysRole { get; set; }
-    public DbSet<SysRoleMenuFunction> SysRoleMenuFunction { get; set; }
-    public DbSet<SysUser> SysUser { get; set; }
-    public DbSet<SysUserRole> SysUserRole { get; set; }
-    public DbSet<SysOrganization> SysOrganization { get; set; }
-    public DbSet<SysPost> SysPost { get; set; }
-    public DbSet<SysUserPost> SysUserPost { get; set; }
-    public DbSet<SysDictionary> SysDictionary { get; set; }
-    public DbSet<SysOperationLog> SysOperationLog { get; set; }
-    public DbSet<SysDataAuthority> SysDataAuthority { get; set; }
-    public DbSet<SysDataAuthorityCustom> SysDataAuthorityCustom { get; set; }
-    #endregion
-
-    #region 审批流
-    public DbSet<Flow> Flow { get; set; }
-    public DbSet<FlowNode> FlowNode { get; set; }
-    public DbSet<FlowApproval> FlowApproval { get; set; }
-    public DbSet<FlowApprovalStepHistory> FlowApprovalStep { get; set; }
-    public DbSet<FlowApprovalStepHistoryUser> FlowApprovalStepUser { get; set; }
-    #endregion
-
-    #region 低代码
-    public DbSet<LowCodeList> LowCodeList { get; set; }
-    public DbSet<LowCodeSearch> LowCodeSearch { get; set; }
-    public DbSet<LowCodeTable> LowCodeTable { get; set; }
-    public DbSet<LowCodeTableInfo> LowCodeTableInfo { get; set; }
-    #endregion
-
-    #region 业务
-
-    public DbSet<Member> Member { get; set; }
-
-    #endregion
-
-    #endregion
-
+    /// <summary>
+    /// 模型创建
+    /// </summary>
+    /// <param name="modelBuilder"></param>
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
-        // 自动迁移种子数据
+        var appConfiguration = this.GetService<AppConfiguration>();
+
+        #region 自动扫描 dbset
+
+        var assemblies = IOCUtil.GetAssemblyList(w => w.GetName().FullName.Contains(appConfiguration.Configs.DbContextInfo.DbSetScanDllName));
+        foreach (var item in assemblies.Where(w => !w.IsDynamic))
+        {
+            var types = from w in item.ExportedTypes
+                        where w.IsClass && w.IsPublic && !w.IsGenericType
+                        where w.GetInterface(nameof(IBaseEntity)) != null
+                        where w.Namespace.Contains(appConfiguration.Configs.DbContextInfo.DbSetScanNamespace)
+                        select w;
+
+            foreach (var type in types)
+            {
+                modelBuilder.Model.AddEntityType(type);
+            }
+        }
+
+        #endregion
+
+        #region 自动迁移种子数据
+
         ModelBuilderExtensions.Seed(modelBuilder);
+
+        #endregion
 
         #region 过滤软删除 条件是：实体必须继承自 IDeleteBaseEntity
 
@@ -83,81 +73,58 @@ public class AdminDbContext : DbContextBase
         #endregion
 
         #region 自动映射表名
-        // 默认是实体的名称 如: DbSet<Flow> Flows 表名就是 Flows
-        // 生成名称与所想不一致请查看实体名称  实体名称请使用驼峰命名法
-        var nameRule = NameRuleType.SnakeCase;
 
-        if (nameRule == NameRuleType.SnakeCase)
+        // 默认是实体的名称 如: DbSet<Flow> Flows 表名就是 Flows 否则会根据 实体名称
+        // 生成名称与所想不一致请查看实体名称  实体名称请使用驼峰命名法
+        switch (appConfiguration.Configs.DbContextInfo.NameRuleType)
         {
-            // 蛇形命名法
-            // ToUnderlineNomenclature()  将驼峰命名法改为蛇形命名法  类似: SysFunction => sys_function
-            modelBuilder.TableNameMapping(oldTableName => oldTableName.ToUnderlineNomenclature());
-        }
-        else if(nameRule == NameRuleType.UpperSnakeCase)
-        {
-            // 全大写蛇形命名法
-            //  SysFunction => SYS_FUNCTION
-            modelBuilder.TableNameMapping(oldTableName => oldTableName.ToUnderlineNomenclature().ToUpper());
-        }
-        else if (nameRule == NameRuleType.Upper)
-        {
-            // 表名全大写
-            modelBuilder.TableNameMapping(oldTableName => oldTableName.ToUpper());
-        }
-        else if (nameRule == NameRuleType.Lower)
-        {
-            // 表名全小写
-            modelBuilder.TableNameMapping(oldTableName => oldTableName.ToLower());
+            case NameRuleType.Default:
+                break;
+            case NameRuleType.SnakeCase:
+                // 蛇形命名法
+                // ToUnderlineNomenclature()  将驼峰命名法改为蛇形命名法  类似: SysFunction => sys_function
+                TableNameMapping(modelBuilder, oldTableName => oldTableName.ToUnderlineNomenclature());
+                break;
+            case NameRuleType.UpperSnakeCase:
+                // 全大写蛇形命名法
+                //  SysFunction => SYS_FUNCTION
+                TableNameMapping(modelBuilder, oldTableName => oldTableName.ToUnderlineNomenclature().ToUpper());
+                break;
+            case NameRuleType.Upper:
+                // 表名全大写
+                TableNameMapping(modelBuilder, oldTableName => oldTableName.ToUpper());
+                break;
+            case NameRuleType.Lower:
+                // 表名全小写
+                TableNameMapping(modelBuilder, oldTableName => oldTableName.ToLower());
+                break;
         }
 
         #endregion
 
-        // #region 后台系统 基础
-
-        // modelBuilder.Entity<SysFunction>().ToTable("sys_function");
-        // modelBuilder.Entity<SysMenu>().ToTable("sys_menu");
-        // modelBuilder.Entity<SysMenuFunction>().ToTable("sys_menu_function");
-        // modelBuilder.Entity<SysRole>().ToTable("sys_role");
-        // modelBuilder.Entity<SysRoleMenuFunction>().ToTable("sys_role_menu_function");
-        // modelBuilder.Entity<SysUser>().ToTable("sys_user");
-        // modelBuilder.Entity<SysUserRole>().ToTable("sys_user_role");
-        // modelBuilder.Entity<SysOrganization>().ToTable("sys_organization");
-        // modelBuilder.Entity<SysPost>().ToTable("sys_post");
-        // modelBuilder.Entity<SysUserPost>().ToTable("sys_user_post");
-        // modelBuilder.Entity<SysDictionary>().ToTable("sys_dictionary");
-        // modelBuilder.Entity<SysOperationLog>().ToTable("sys_operation_log");
-        // modelBuilder.Entity<SysDataAuthority>().ToTable("sys_data_authority");
-        // modelBuilder.Entity<SysDataAuthorityCustom>().ToTable("sys_data_authority_custom");
-
-        // #endregion
-
-        // #region 审批流
-
-        // modelBuilder.Entity<Flow>().ToTable("flow");
-        // modelBuilder.Entity<FlowNode>().ToTable("flow_node");
-        // modelBuilder.Entity<FlowApproval>().ToTable("flow_approval");
-        // modelBuilder.Entity<FlowApprovalStep>().ToTable("flow_approval_step");
-        // modelBuilder.Entity<FlowApprovalStepUser>().ToTable("flow_approval_step_user");
-
-        // #endregion
-
-        // #region 低代码
-
-        // modelBuilder.Entity<LowCodeList>().ToTable("low_code_list");
-        // modelBuilder.Entity<LowCodeSearch>().ToTable("low_code_search");
-        // modelBuilder.Entity<LowCodeTable>().ToTable("low_code_table");
-        // modelBuilder.Entity<LowCodeTableInfo>().ToTable("low_code_table_info");
-
-        // #endregion
-
-        // #region 业务
-
-        // modelBuilder.Entity<Member>().ToTable("member");
-
-        // #endregion
-
     }
 
+    /// <summary>
+    /// 数据库表名映射
+    /// </summary>
+    /// <param name="modelBuilder"></param>
+    /// <param name="mappingName"></param>
+    protected void TableNameMapping(ModelBuilder modelBuilder, Func<string, string> mappingName)
+    {
+        foreach (var entity in modelBuilder.Model.GetEntityTypes())
+        {
+            string name = string.Empty;
+            var tableAttr = entity.GetType().GetCustomAttributes(typeof(TableAttribute), false).FirstOrDefault() as TableAttribute;
+            if (tableAttr != null)
+            {
+                name = mappingName(tableAttr.Name);
+                entity.SetTableName(name);
+                continue;
+            }
+            name = mappingName(entity.GetTableName());
+            entity.SetTableName(name);
+        }
+    }
 
 
 }
