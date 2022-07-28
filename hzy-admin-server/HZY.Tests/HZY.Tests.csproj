@@ -16,14 +16,11 @@
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
 		<PackageReference Include="HzyEFCoreRepositories" Version="1.1.9" />
+		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
 
 </Project>

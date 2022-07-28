@@ -24,6 +24,7 @@
 		<PackageReference Include="HzyScanDiService" Version="1.1.4" />
 		<PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Relational" Version="6.0.5" />
+	  <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -31,10 +32,6 @@
 	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		  <GenerateDocumentationFile>true</GenerateDocumentationFile>
 	  </None>
-	</ItemGroup>
-
-	<ItemGroup>
-	  <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
 
 </Project>
