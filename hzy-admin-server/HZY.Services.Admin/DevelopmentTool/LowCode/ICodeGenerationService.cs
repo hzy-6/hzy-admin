@@ -1,11 +1,6 @@
 ﻿using HZY.EFCore.PagingViews;
 using HZY.Models.DTO.DevelopmentTool;
 using HzyScanDiService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HZY.Services.Admin.DevelopmentTool.LowCode
 {
@@ -109,6 +104,12 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode
         /// </summary>
         /// <returns></returns>
         (byte[] excel, string dataBase) CreateDataDictionary();
-
+        
+        /// <summary>
+        /// 代码生成自动导入项目
+        /// </summary>
+        /// <param name="genFormDto"></param>
+        /// <returns></returns>
+        Task AutoImprotProjectAsync(GenFormDto genFormDto);
     }
 }

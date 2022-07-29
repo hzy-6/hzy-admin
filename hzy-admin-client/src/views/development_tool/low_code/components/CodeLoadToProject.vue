@@ -1,15 +1,11 @@
 <template>
-  <a-form ref="formRef" layout="vertical" :model="state.vm.form">
-    <a-row :gutter="[15, 15]">
-      <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <a-form-item label="真实姓名" ref="name" name="name">
-          <a-input v-model:value="state.vm.form.name" placeholder="请输入" />
-        </a-form-item>
-      </a-col>
-    </a-row>
-  </a-form>
+  <div>
+    <a-button type="primary" @click="methods.autoImport()">开始载入</a-button>
+  </div>
 </template>
 <script setup>
+import tools from "@/scripts/tools";
+import service from "@/service/development_tool/code_generation_service";
 import { reactive } from "vue";
 
 //定义组件事件
@@ -23,4 +19,23 @@ const state = reactive({
     form: {},
   },
 });
+
+const methods = {
+  autoImport() {
+    console.log("执行");
+    service
+      .autoImprotProject({ tableName: props.tableName })
+      .then((res) => {
+        if (res.code === 1) {
+          tools.message("导入成功,请查看!","成功");
+        }
+      })
+      .finally(() => {
+        tools.message("导入结束");
+      });
+  },
+};
+
+// 暴露函数或者属性到外部
+defineExpose({ ...methods });
 </script>

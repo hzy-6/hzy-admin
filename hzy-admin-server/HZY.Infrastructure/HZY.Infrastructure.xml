@@ -465,6 +465,12 @@
             dbconte 信息配置
             </summary>
         </member>
+        <member name="P:HZY.Infrastructure.AppConfigurationOptions.AutoImprot">
+            <summary>
+            代码生成自动导入配置
+            </summary>
+            <value></value>
+        </member>
         <member name="T:HZY.Infrastructure.DbContextInfoNode">
             <summary>
             dbconte 信息配置
@@ -484,6 +490,54 @@
             <summary>
             数据表命名规则配置
             </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.AutoImprotNode.ProjectPath">
+            <summary>
+            项目所在文件夹名
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AutoImprotNode.ModelPath">
+            <summary>
+            实体保存路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AutoImprotNode.ServicePath">
+            <summary>
+            服务保存路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AutoImprotNode.ControllerPath">
+            <summary>
+            控制器保存路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AutoImprotNode.ViewPath">
+            <summary>
+            前端视图保存路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AutoImprotNode.InfoPath">
+            <summary>
+            前端信息弹窗保存位置
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AutoImprotNode.FrontEndServicePath">
+            <summary>
+            前端服务保存位置
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.AutoImprotNode.IsCover">
+            <summary>
+            是否覆盖生成  否的话生成代码重复会加一个时间
+            </summary>
+            <value></value>
         </member>
         <member name="M:HZY.Infrastructure.Controllers.AdminBaseController`1.#ctor(`0)">
             <summary>

@@ -209,6 +209,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.AutoImprotProjectAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+            <summary>
+            代码生成自动导入项目
+            </summary>
+            <param name="genFormDto"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService">
             <summary>
             代码生成服务
@@ -309,6 +316,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.AutoImprotProjectAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+            <summary>
+            自动导入文件到项目
+            </summary>
+            <param name="genFormDto"></param>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.ClearSymbol(System.Text.StringBuilder)">
             <summary>
             清除多余符号
@@ -328,6 +342,53 @@
             获取代码文件名称
             </summary>
             <param name="genFormDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.FindCodeFileName(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+            <summary>
+            获取代码文件名称  不包含尾缀
+            </summary>
+            <param name="genFormDto"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GetProjectAbsolutelyPath(System.String)">
+            <summary>
+            获取自动导入根路径
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GetFileAbsolutelyPath(System.String,HZY.Services.Admin.DevelopmentTool.LowCode.Impl.FileTypeEnum,System.String)">
+            <summary>
+            获取要生成文件的绝对路径
+            </summary>
+            <param name="tableName"></param>
+            <param name="type"></param>
+            <param name="basePath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.FindFileTypeToSuffix(HZY.Services.Admin.DevelopmentTool.LowCode.Impl.FileTypeEnum)">
+            <summary>
+            根据类型获取文件尾缀
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.SaveToFileAsync(System.String,HZY.Services.Admin.DevelopmentTool.LowCode.Impl.FileTypeEnum,System.String,System.String,System.String)">
+            <summary>
+            保存到文件
+            </summary>
+            <param name="tableName"></param>
+            <param name="type"></param>
+            <param name="filePath"></param>
+            <param name="oldName"></param>
+            <param name="replaceName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GetEnumDescription(HZY.Services.Admin.DevelopmentTool.LowCode.Impl.FileTypeEnum)">
+            <summary>
+            获取枚举上的描述特性
+            </summary>
+            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.DevelopmentTool.MonitorEFCore.IMonitorEFCoreService.GetEFCoreMonitorContext">

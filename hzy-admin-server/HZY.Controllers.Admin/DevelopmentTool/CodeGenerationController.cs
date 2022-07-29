@@ -1,5 +1,4 @@
-﻿using FreeSql.DatabaseModel;
-using HZY.EFCore.PagingViews;
+﻿using HZY.EFCore.PagingViews;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
@@ -7,12 +6,6 @@ using HZY.Models.DTO.DevelopmentTool;
 using HZY.Models.Entities.LowCode;
 using HZY.Services.Admin.DevelopmentTool.LowCode;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HZY.Controllers.Admin.DevelopmentTool
 {
@@ -122,6 +115,17 @@ namespace HZY.Controllers.Admin.DevelopmentTool
 
         }
 
-
+        /// <summary>
+        /// 生成代码并自动导入项目
+        /// </summary>
+        /// <param name="genFormDto"></param>
+        /// <returns></returns>
+        [ActionDescriptor(DisplayName = "生成代码并自动导入项目")]
+        [HttpPost("AutoImprotProject")]
+        public async Task<bool> AutoImprotProjectAsync(GenFormDto genFormDto)
+        {
+          await this._defaultService.AutoImprotProjectAsync(genFormDto);
+          return true;
+        }
     }
 }

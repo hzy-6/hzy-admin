@@ -1,4 +1,4 @@
-import { get, post, download } from '@/scripts/request';
+import { download, post } from '@/scripts/request';
 // import tools from "@/scripts/tools";
 
 const controllerName = "admin/CodeGeneration";
@@ -45,6 +45,11 @@ export default {
      */
     createDataDictionary() {
         return download(`${controllerName}/createDataDictionary`, null, false);
+    },
+    /**
+     * 代码生成导入到项目
+     */
+    autoImprotProject(form) {
+      return post(`${controllerName}/AutoImprotProject`, form, false)
     }
-
 };

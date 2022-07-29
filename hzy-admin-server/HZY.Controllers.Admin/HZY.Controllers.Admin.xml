@@ -94,6 +94,13 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:HZY.Controllers.Admin.DevelopmentTool.CodeGenerationController.AutoImprotProjectAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+            <summary>
+            生成代码并自动导入项目
+            </summary>
+            <param name="genFormDto"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Controllers.Admin.DevelopmentTool.JobTestController">
             <summary>
             JobTestController

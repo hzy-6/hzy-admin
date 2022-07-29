@@ -137,6 +137,11 @@ public class AppConfigurationOptions
     /// dbconte 信息配置
     /// </summary>
     public DbContextInfoNode DbContextInfo { get; set; }
+    /// <summary>
+    /// 代码生成自动导入配置
+    /// </summary>
+    /// <value></value>
+    public AutoImprotNode AutoImprot { get; set; }
 }
 
 /// <summary>
@@ -156,4 +161,49 @@ public class DbContextInfoNode
     /// 数据表命名规则配置
     /// </summary>
     public NameRuleType NameRuleType { get; set; }
+}
+
+public class AutoImprotNode
+{
+    /// <summary>
+    /// 项目所在文件夹名
+    /// </summary>
+    /// <value></value>
+    public string ProjectPath { get; set; }
+    /// <summary>
+    /// 实体保存路径
+    /// </summary>
+    /// <value></value>
+    public string ModelPath { get; set; }
+    /// <summary>
+    /// 服务保存路径
+    /// </summary>
+    /// <value></value>
+    public string ServicePath { get; set; }
+    /// <summary>
+    /// 控制器保存路径
+    /// </summary>
+    /// <value></value>
+    public string ControllerPath { get; set; }
+    /// <summary>
+    /// 前端视图保存路径
+    /// </summary>
+    /// <value></value>
+    public string ViewPath { get; set; }
+    /// <summary>
+    /// 前端信息弹窗保存位置
+    /// </summary>
+    /// <value></value>
+    public string InfoPath { get; set; }
+    /// <summary>
+    /// 前端服务保存位置
+    /// </summary>
+    /// <value></value>
+    public string FrontEndServicePath { get; set; }
+    
+    /// <summary>
+    /// 是否覆盖生成  否的话生成代码重复会在后面加一个时间
+    /// </summary>
+    /// <value></value>
+    public bool IsCover { get; set; }
 }

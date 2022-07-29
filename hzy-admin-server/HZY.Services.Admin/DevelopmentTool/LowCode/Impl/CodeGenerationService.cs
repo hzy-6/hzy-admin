@@ -1,21 +1,16 @@
-﻿using FreeSql.DatabaseModel;
+﻿using System.ComponentModel;
+using System.Reflection;
+using System.Text;
 using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Admin.DevelopmentTool;
 using HZY.Infrastructure;
+using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.RazorView;
 using HZY.Infrastructure.SerilogUtil;
-using HZY.Models.Consts;
 using HZY.Models.DTO.DevelopmentTool;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.AspNetCore.Hosting;
-using NPOI.HSSF.UserModel;
 using NPOI.XSSF.UserModel;
-using System;
-using System.Collections.Generic;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
 {
@@ -377,6 +372,30 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
             return (ms.ToArray(), dataBaseName);
         }
 
+        /// <summary>
+        /// 自动导入文件到项目
+        /// </summary>
+        /// <param name="genFormDto"></param>
+        /// <returns></returns>
+        public async Task AutoImprotProjectAsync(GenFormDto genFormDto)
+        {
+            var context = this.GetGenContextDto(genFormDto);
+            if (context == null)
+            {
+                MessageBox.Show("找不到此数据表!");
+            }
+
+            var autoImprot = _appConfiguration.Configs.AutoImprot;
+            var path = this.GetProjectAbsolutelyPath(autoImprot.ProjectPath);
+            var fileTyps = Enum.GetValues<FileTypeEnum>();
+
+            foreach (var fileType in fileTyps)
+            {
+                var (filePath, oldName, replaceName) = GetFileAbsolutelyPath(genFormDto.TableName, fileType, path);
+                await SaveToFileAsync(genFormDto.TableName, fileType, filePath, oldName, replaceName);
+            }
+        }
+
 
         #region 私有方法
 
@@ -391,8 +410,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
                     .ToString()
                     .Replace("<pre>", "")
                     .Replace("</pre>", "")
-                    .Trim()
-                ;
+                    .Trim();
         }
 
         /// <summary>
@@ -450,10 +468,179 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
             };
         }
 
+        /// <summary>
+        /// 获取代码文件名称  不包含尾缀
+        /// </summary>
+        /// <param name="genFormDto"></param>
+        /// <returns></returns>
+        private string FindCodeFileName(GenFormDto genFormDto)
+        {
+            var tableName = Tools.LineToHump(genFormDto.TableName);
+            return genFormDto.Type switch
+            {
+                "HZY.Models" => $"{tableName}",
+                // "HZY.Repository.DbSet" => ,
+                "HZY.Services.Admin" => $"{tableName}Service",
+                "HZY.Controllers.Admin" => $"{tableName}Controller",
+                "Index.vue" => $"Index",
+                "Info.vue" => $"Info",
+                "Service.js" => $"{tableName.FirstCharToLower()}Service",
+                _ => string.Empty
+            };
+        }
 
+        /// <summary>
+        /// 获取自动导入根路径
+        /// </summary>
+        /// <returns></returns>
+        private string GetProjectAbsolutelyPath(string projectPath)
+        {
+            var path = AppDomain.CurrentDomain.BaseDirectory;
+            var count = path.Split("\\").Length - 2;
+            for (int i = 0; i < count; i++)
+            {
+                path = Path.GetFullPath("..", path);
+                var currentPathName = path.Split("\\").LastOrDefault();
+                if (currentPathName == projectPath)
+                {
+                    break;
+                }
+            }
+
+            return path;
+        }
+
+        /// <summary>
+        /// 获取要生成文件的绝对路径
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="type"></param>
+        /// <param name="basePath"></param>
+        /// <returns></returns>
+        private (string, string, string) GetFileAbsolutelyPath(string tableName, FileTypeEnum type, string basePath)
+        {
+            var replaceName = string.Empty;
+            var oldFileName = string.Empty;
+            var dto = new GenFormDto() { TableName = tableName, Type = this.GetEnumDescription(type) };
+            var humpTableName = Tools.LineToHump(tableName);
+            var fileName = FindCodeFileClassName(dto);
+            var path = string.Empty;
+            switch (type)
+            {
+                case FileTypeEnum.Model:
+                    path = _appConfiguration.Configs.AutoImprot.ModelPath + $"/{humpTableName}";
+                    break;
+                case FileTypeEnum.Service:
+                    path = _appConfiguration.Configs.AutoImprot.ServicePath + $"/{humpTableName}";
+                    break;
+                case FileTypeEnum.Controller:
+                    path = _appConfiguration.Configs.AutoImprot.ControllerPath + $"/{humpTableName}";
+                    break;
+                case FileTypeEnum.View:
+                    path = _appConfiguration.Configs.AutoImprot.ViewPath + $"/{tableName}";
+                    break;
+                case FileTypeEnum.Info:
+                    path = _appConfiguration.Configs.AutoImprot.InfoPath + $"/{tableName}";
+                    break;
+                case FileTypeEnum.FrontEndService:
+                    path = _appConfiguration.Configs.AutoImprot.FrontEndServicePath + $"/{tableName}";
+                    break;
+            }
+            var fileDirPath = Path.Combine(basePath, path);
+            if (!Directory.Exists(fileDirPath))
+            {
+                Directory.CreateDirectory(fileDirPath);
+            }
+
+            // 组合成完整路劲
+            var filePath = $"{fileDirPath}/{fileName}";
+            // 判断是否覆盖文件
+            if (!_appConfiguration.Configs.AutoImprot.IsCover)
+            {
+                // 如果文件已存在 加尾缀 重新创建文件夹
+                if (File.Exists(filePath))
+                {
+                    oldFileName = FindCodeFileName(dto);
+                    replaceName = $"{oldFileName}{DateTime.Now.ToString("yyyyMMddHHmmss")}";
+                    filePath = $"{fileDirPath}/{replaceName}{FindFileTypeToSuffix(type)}";
+                }
+            }
+
+            return (filePath, oldFileName, replaceName);
+        }
+
+        /// <summary>
+        /// 根据类型获取文件尾缀
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private string FindFileTypeToSuffix(FileTypeEnum type)
+        {
+            switch (type)
+            {
+                case FileTypeEnum.Model:
+                case FileTypeEnum.Service:
+                case FileTypeEnum.Controller:
+                    return ".cs";
+                case FileTypeEnum.View:
+                case FileTypeEnum.Info:
+                    return ".vue";
+                case FileTypeEnum.FrontEndService:
+                    return ".js";
+            }
+
+            MessageBox.Show("不包含的文件类型");
+            return "";
+        }
+
+        /// <summary>
+        /// 保存到文件
+        /// </summary>
+        /// <param name="tableName"></param>
+        /// <param name="type"></param>
+        /// <param name="filePath"></param>
+        /// <param name="oldName"></param>
+        /// <param name="replaceName"></param>
+        /// <returns></returns>
+        private async Task SaveToFileAsync(string tableName, FileTypeEnum type, string filePath, string oldName, string replaceName)
+        {
+            var dto = new GenFormDto() { TableName = tableName, Type = this.GetEnumDescription(type) };
+            var codeString = await GetCodeByTypeAndTableNameAsync(dto);
+            if (!string.IsNullOrWhiteSpace(replaceName) && !string.IsNullOrWhiteSpace(oldName))
+            {
+                if (type == FileTypeEnum.Model || type == FileTypeEnum.Service || type == FileTypeEnum.Controller)
+                {
+                    codeString = codeString.Replace(oldName, replaceName);
+                }
+            }
+            await File.WriteAllTextAsync(filePath, codeString, Encoding.UTF8);
+        }
+
+        /// <summary>
+        /// 获取枚举上的描述特性
+        /// </summary>
+        /// <param name="type"></param>
+        /// <returns></returns>
+        private string GetEnumDescription(FileTypeEnum type)
+        {
+            return type.GetType().GetField(Enum.GetName(type)).GetCustomAttribute<DescriptionAttribute>().Description;
+        }
         #endregion
+    }
 
-
-
+    public enum FileTypeEnum
+    {
+        [Description("HZY.Models")]
+        Model,
+        [Description("HZY.Services.Admin")]
+        Service,
+        [Description("HZY.Controllers.Admin")]
+        Controller,
+        [Description("Index.vue")]
+        View,
+        [Description("Info.vue")]
+        Info,
+        [Description("Service.js")]
+        FrontEndService
     }
 }
