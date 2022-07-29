@@ -21,7 +21,15 @@ public class AdminDbContext : DbContextBase
         // 自动迁移 （如果迁移文件有变动）
         if (this.Database.GetPendingMigrations().Count() > 0)
         {
-            this.Database.Migrate();
+            try
+            {
+                this.Database.Migrate();
+            }
+            catch (System.Exception)
+            {
+
+            }
+
         }
     }
 

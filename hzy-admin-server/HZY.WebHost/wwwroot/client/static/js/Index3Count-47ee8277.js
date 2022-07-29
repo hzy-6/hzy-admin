@@ -1,0 +1,1 @@
+import{a as e,m as r,q as s,w as o,n,f as u,g as p,aR as c}from"./index-6328b84b.js";const _={setup(l){const t=e(0);return(f,a)=>(r(),s(p(c),{type:"primary",onClick:a[0]||(a[0]=i=>t.value++)},{default:o(()=>[n("\u8BA1\u6570:"+u(t.value),1)]),_:1}))}};export{_ as default};
