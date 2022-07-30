@@ -101,9 +101,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
         {
             var tableName = genFormDto.TableName;
 
-            var tables = _codeGenerationRepository.GetAllTables();
-
-            var tableInfo = tables.FirstOrDefault(w => w.TableName == tableName);
+            var tableInfo = GetGenContextDtoByTableName(tableName);
 
             if (tableInfo == null) return null;
             tableInfo.Namespace = _appConfiguration.Configs.Namespace;
@@ -385,8 +383,11 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
                 MessageBox.Show("找不到此数据表!");
             }
 
-            var autoImprot = _appConfiguration.Configs.AutoImprot;
-            var path = this.GetProjectAbsolutelyPath(autoImprot.ProjectPath);
+            //获取表路径信息
+            var tables = _codeGenerationRepository.GetAllTables();
+            var tableInfo = tables.FirstOrDefault(w => w.TableName == genFormDto.TableName);
+
+            var path = this.GetProjectAbsolutelyPath(tableInfo.ProjectRootPath);
             var fileTyps = Enum.GetValues<FileTypeEnum>();
 
             foreach (var fileType in fileTyps)
@@ -525,25 +526,27 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
             var humpTableName = Tools.LineToHump(tableName);
             var fileName = FindCodeFileClassName(dto);
             var path = string.Empty;
+            //获取表路径信息
+            var tableInfo = GetGenContextDtoByTableName(tableName);
             switch (type)
             {
                 case FileTypeEnum.Model:
-                    path = _appConfiguration.Configs.AutoImprot.ModelPath + $"/{humpTableName}";
+                    path = tableInfo.ModelPath + $"/{humpTableName}";
                     break;
                 case FileTypeEnum.Service:
-                    path = _appConfiguration.Configs.AutoImprot.ServicePath + $"/{humpTableName}";
+                    path = tableInfo.ServicePath + $"/{humpTableName}";
                     break;
                 case FileTypeEnum.Controller:
-                    path = _appConfiguration.Configs.AutoImprot.ControllerPath + $"/{humpTableName}";
+                    path = tableInfo.ControllerPath + $"/{humpTableName}";
                     break;
-                case FileTypeEnum.View:
-                    path = _appConfiguration.Configs.AutoImprot.ViewPath + $"/{tableName}";
+                case FileTypeEnum.IndexVue:
+                    path = tableInfo.IndexVuePath + $"/{tableName}";
                     break;
-                case FileTypeEnum.Info:
-                    path = _appConfiguration.Configs.AutoImprot.InfoPath + $"/{tableName}";
+                case FileTypeEnum.InfoVue:
+                    path = tableInfo.InfoVuePath + $"/{tableName}";
                     break;
-                case FileTypeEnum.FrontEndService:
-                    path = _appConfiguration.Configs.AutoImprot.FrontEndServicePath + $"/{tableName}";
+                case FileTypeEnum.ServiceJS:
+                    path = tableInfo.ServiceJsPath + $"/{tableName}";
                     break;
             }
             var fileDirPath = Path.Combine(basePath, path);
@@ -555,7 +558,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
             // 组合成完整路劲
             var filePath = $"{fileDirPath}/{fileName}";
             // 判断是否覆盖文件
-            if (!_appConfiguration.Configs.AutoImprot.IsCover)
+            if (!(tableInfo.IsCover ?? false))
             {
                 // 如果文件已存在 加尾缀 重新创建文件夹
                 if (File.Exists(filePath))
@@ -582,10 +585,10 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
                 case FileTypeEnum.Service:
                 case FileTypeEnum.Controller:
                     return ".cs";
-                case FileTypeEnum.View:
-                case FileTypeEnum.Info:
+                case FileTypeEnum.IndexVue:
+                case FileTypeEnum.InfoVue:
                     return ".vue";
-                case FileTypeEnum.FrontEndService:
+                case FileTypeEnum.ServiceJS:
                     return ".js";
             }
 
@@ -637,10 +640,10 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
         [Description("HZY.Controllers.Admin")]
         Controller,
         [Description("Index.vue")]
-        View,
+        IndexVue,
         [Description("Info.vue")]
-        Info,
+        InfoVue,
         [Description("Service.js")]
-        FrontEndService
+        ServiceJS
     }
 }

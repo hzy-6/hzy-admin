@@ -1,5 +1,6 @@
 ﻿using HZY.EFCore.Migrations.Seeds;
 using HZY.Infrastructure;
+using HZY.Infrastructure.SerilogUtil;
 using HZY.Models.Entities.BaseEntitys;
 using HzyEFCoreRepositories.DbContexts;
 using HzyEFCoreRepositories.Extensions;
@@ -25,9 +26,9 @@ public class AdminDbContext : DbContextBase
             {
                 this.Database.Migrate();
             }
-            catch (System.Exception)
+            catch (System.Exception ex)
             {
-
+                LogUtil.Log.Error(ex.Message, ex);
             }
 
         }

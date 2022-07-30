@@ -289,6 +289,12 @@ watch(
         refCodeGenerationVue.value.openForm({ key: state.row.tableName });
       });
     }
+    if (value == "4") {
+      nextTick(() => {
+        //代码载入组件数据加载
+        refCodeLoadToProjectVue.value.loadData({ key: state.row.id });
+      });
+    }
   }
 );
 </script>

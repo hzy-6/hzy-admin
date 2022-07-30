@@ -9,6 +9,7 @@ using HzyEFCoreRepositories.Extensions;
 using HZY.EFCore.Repositories.Admin.DevelopmentTool;
 using HZY.EFCore.Repositories.Admin.DevelopmentTool.LowCode;
 using HZY.Infrastructure;
+using HZY.EFCore.Aop;
 
 namespace HZY.Services.Admin
 {
@@ -20,16 +21,20 @@ namespace HZY.Services.Admin
         private readonly IFreeSql _freeSql;
         private readonly LowCodeTableInfoService _lowCodeTableInfoService;
         private readonly DatabaseTablesRepository _databaseTablesRepository;
+        private readonly AppConfiguration _appConfiguration;
+
 
         public LowCodeTableService(LowCodeTableRepository defaultRepository,
         IFreeSql freeSql,
         LowCodeTableInfoService lowCodeTableInfoService,
-        DatabaseTablesRepository databaseTablesRepository)
+        DatabaseTablesRepository databaseTablesRepository,
+        AppConfiguration appConfiguration)
             : base(defaultRepository)
         {
             _freeSql = freeSql;
             _lowCodeTableInfoService = lowCodeTableInfoService;
             _databaseTablesRepository = databaseTablesRepository;
+            _appConfiguration = appConfiguration;
         }
 
         /// <summary>
@@ -95,7 +100,7 @@ namespace HZY.Services.Admin
                 var id = Guid.NewGuid();
                 if (table == null)
                 {
-                    insertList.Add(new LowCodeTable
+                    var lowCodeTable = new LowCodeTable
                     {
                         Id = id,
                         DisplayName = item.Comment,
@@ -103,14 +108,32 @@ namespace HZY.Services.Admin
                         EntityName = Tools.LineToHump(item.Name),
                         Schema = item.Schema,
                         Type = item.Type.ToString()
-                    });
+                    };
+                    //导入代码路径存储
+                    lowCodeTable.ProjectRootPath = _appConfiguration.Configs.AutoImprot.ProjectRootPath;
+                    lowCodeTable.ModelPath = _appConfiguration.Configs.AutoImprot.ModelPath;
+                    lowCodeTable.ServicePath = _appConfiguration.Configs.AutoImprot.ServicePath;
+                    lowCodeTable.ControllerPath = _appConfiguration.Configs.AutoImprot.ControllerPath;
+                    lowCodeTable.IndexVuePath = _appConfiguration.Configs.AutoImprot.IndexVuePath;
+                    lowCodeTable.InfoVuePath = _appConfiguration.Configs.AutoImprot.InfoVuePath;
+                    lowCodeTable.ServiceJsPath = _appConfiguration.Configs.AutoImprot.ServiceJsPath;
+                    lowCodeTable.IsCover = _appConfiguration.Configs.AutoImprot.IsCover;
+                    insertList.Add(lowCodeTable);
                 }
                 else
                 {
                     id = table.Id;
-
                     table.Schema = item.Schema;
                     table.Type = item.Type.ToString();
+                    //导入代码路径存储
+                    table.ProjectRootPath = string.IsNullOrWhiteSpace(table.ProjectRootPath) ? _appConfiguration.Configs.AutoImprot.ProjectRootPath : table.ProjectRootPath;
+                    table.ModelPath = string.IsNullOrWhiteSpace(table.ModelPath) ? _appConfiguration.Configs.AutoImprot.ModelPath : table.ModelPath;
+                    table.ServicePath = string.IsNullOrWhiteSpace(table.ServicePath) ? _appConfiguration.Configs.AutoImprot.ServicePath : table.ServicePath;
+                    table.ControllerPath = string.IsNullOrWhiteSpace(table.ControllerPath) ? _appConfiguration.Configs.AutoImprot.ControllerPath : table.ControllerPath;
+                    table.IndexVuePath = string.IsNullOrWhiteSpace(table.IndexVuePath) ? _appConfiguration.Configs.AutoImprot.IndexVuePath : table.IndexVuePath;
+                    table.InfoVuePath = string.IsNullOrWhiteSpace(table.InfoVuePath) ? _appConfiguration.Configs.AutoImprot.InfoVuePath : table.InfoVuePath;
+                    table.ServiceJsPath = string.IsNullOrWhiteSpace(table.ServiceJsPath) ? _appConfiguration.Configs.AutoImprot.ServiceJsPath : table.ServiceJsPath;
+                    table.IsCover = table.IsCover == null ? _appConfiguration.Configs.AutoImprot.IsCover : table.IsCover;
                     updateList.Add(table);
                 }
 
@@ -145,6 +168,32 @@ namespace HZY.Services.Admin
         {
             _databaseTablesRepository.ClearAllTablesByCache();
             return this._defaultRepository.UpdateRangeAsync(lowCodeTables);
+        }
+
+        /// <summary>
+        /// 查询表单数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
+        {
+            var res = new Dictionary<string, object>();
+            var form = (await this._defaultRepository.FindByIdAsync(id)).NullSafe();
+
+            res[nameof(id)] = id == Guid.Empty ? "" : id;
+            res[nameof(form)] = form;
+            return res;
+        }
+
+        /// <summary>
+        /// 保存数据
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        [Transactional]
+        public virtual async Task SaveFormAsync(LowCodeTable form)
+        {
+            await this._defaultRepository.InsertOrUpdateAsync(form);
         }
 
 

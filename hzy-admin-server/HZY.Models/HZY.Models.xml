@@ -984,6 +984,54 @@
             备注
             </summary>
         </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ProjectRootPath">
+            <summary>
+            项目根地址
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ModelPath">
+            <summary>
+            实体保存路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ServicePath">
+            <summary>
+            服务保存路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ControllerPath">
+            <summary>
+            控制器保存路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.IndexVuePath">
+            <summary>
+            前端视图保存路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.InfoVuePath">
+            <summary>
+            前端信息弹窗保存位置
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ServiceJsPath">
+            <summary>
+            前端服务保存位置
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.IsCover">
+            <summary>
+            是否覆盖生成  否的话生成代码重复会在后面加一个时间
+            </summary>
+            <value></value>
+        </member>
         <member name="T:HZY.Models.Entities.LowCode.LowCodeTableInfo">
             <summary>
             低代码表信息

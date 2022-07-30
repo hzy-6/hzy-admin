@@ -491,7 +491,7 @@
             数据表命名规则配置
             </summary>
         </member>
-        <member name="P:HZY.Infrastructure.AutoImprotNode.ProjectPath">
+        <member name="P:HZY.Infrastructure.AutoImprotNode.ProjectRootPath">
             <summary>
             项目所在文件夹名
             </summary>
@@ -515,19 +515,19 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AutoImprotNode.ViewPath">
+        <member name="P:HZY.Infrastructure.AutoImprotNode.IndexVuePath">
             <summary>
             前端视图保存路径
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AutoImprotNode.InfoPath">
+        <member name="P:HZY.Infrastructure.AutoImprotNode.InfoVuePath">
             <summary>
             前端信息弹窗保存位置
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AutoImprotNode.FrontEndServicePath">
+        <member name="P:HZY.Infrastructure.AutoImprotNode.ServiceJsPath">
             <summary>
             前端服务保存位置
             </summary>

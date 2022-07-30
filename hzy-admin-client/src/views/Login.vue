@@ -106,8 +106,8 @@ body {
   // background: #f0f2f5 url("../assets/background.svg") no-repeat 50%;
 
   .login-card {
-    height: 500px;
-    width: 1000px;
+    height: 450px;
+    width: 900px;
     box-shadow: 0px 16px 48px 16px rgba(0, 0, 0, 0.72), 0px 12px 32px #000000, 0px 8px 16px -8px #000000;
     display: flex;
     border-radius: 5px;

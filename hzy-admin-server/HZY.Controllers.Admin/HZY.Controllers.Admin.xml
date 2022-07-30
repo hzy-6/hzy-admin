@@ -220,6 +220,27 @@
             <param name="lowCodeTables"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Controllers.Admin.LowCodeTableController.FindFormAsync(System.Guid)">
+            <summary>
+            查询表单数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.LowCodeTableController.CreateAsync(HZY.Models.Entities.LowCode.LowCodeTable)">
+            <summary>
+            添加
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Controllers.Admin.LowCodeTableController.UpdateAsync(HZY.Models.Entities.LowCode.LowCodeTable)">
+            <summary>
+            编辑
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Controllers.Admin.LowCodeTableInfoController.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.LowCodeTableInfo)">
             <summary>
             获取列表

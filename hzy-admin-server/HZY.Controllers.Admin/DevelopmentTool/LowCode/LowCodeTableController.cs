@@ -3,6 +3,7 @@ using HZY.Infrastructure;
 using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Filters;
 using HZY.Infrastructure.Permission.Attributes;
+using HZY.Models.Consts;
 using HZY.Models.DTO;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
@@ -73,6 +74,47 @@ namespace HZY.Controllers.Admin
         {
             return this._defaultService.ChangeAsync(lowCodeTables);
         }
+
+        /// <summary>
+        /// 查询表单数据
+        /// </summary>
+        /// <param name="id"></param>
+        /// <returns></returns>
+        [ActionDescriptor(DisplayName = "查询数据")]
+        [HttpGet("FindForm/{id?}")]
+        public Task<Dictionary<string, object>> FindFormAsync([FromRoute] Guid id)
+        {
+            return this._defaultService.FindFormAsync(id);
+        }
+
+        /// <summary>
+        /// 添加
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+        [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
+        [HttpPost("Create")]
+        [ApiCheckModel]
+        public Task CreateAsync([FromBody] LowCodeTable form)
+        {
+            return this._defaultService.SaveFormAsync(form);
+        }
+
+        /// <summary>
+        /// 编辑
+        /// </summary>
+        /// <param name="form"></param>
+        /// <returns></returns>
+        [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+        [ActionDescriptor(AdminFunctionConsts.Function_Update, DisplayName = "编辑表单")]
+        [HttpPost("Update")]
+        [ApiCheckModel]
+        public Task UpdateAsync([FromBody] LowCodeTable form)
+        {
+            return this._defaultService.SaveFormAsync(form);
+        }
+
 
 
     }

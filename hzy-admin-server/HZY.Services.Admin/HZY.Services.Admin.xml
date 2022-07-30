@@ -493,6 +493,20 @@
             <param name="lowCodeTables"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Services.Admin.LowCodeTableService.FindFormAsync(System.Guid)">
+            <summary>
+            查询表单数据
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.LowCodeTableService.SaveFormAsync(HZY.Models.Entities.LowCode.LowCodeTable)">
+            <summary>
+            保存数据
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Services.Admin.Framework.SysDataAuthorityCustomService">
             <summary>
             服务 SysDataAuthorityCustomService

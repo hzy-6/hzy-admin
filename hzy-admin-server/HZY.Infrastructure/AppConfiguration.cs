@@ -169,7 +169,7 @@ public class AutoImprotNode
     /// 项目所在文件夹名
     /// </summary>
     /// <value></value>
-    public string ProjectPath { get; set; }
+    public string ProjectRootPath { get; set; }
     /// <summary>
     /// 实体保存路径
     /// </summary>
@@ -189,18 +189,17 @@ public class AutoImprotNode
     /// 前端视图保存路径
     /// </summary>
     /// <value></value>
-    public string ViewPath { get; set; }
+    public string IndexVuePath { get; set; }
     /// <summary>
     /// 前端信息弹窗保存位置
     /// </summary>
     /// <value></value>
-    public string InfoPath { get; set; }
+    public string InfoVuePath { get; set; }
     /// <summary>
     /// 前端服务保存位置
     /// </summary>
     /// <value></value>
-    public string FrontEndServicePath { get; set; }
-    
+    public string ServiceJsPath { get; set; }
     /// <summary>
     /// 是否覆盖生成  否的话生成代码重复会在后面加一个时间
     /// </summary>
