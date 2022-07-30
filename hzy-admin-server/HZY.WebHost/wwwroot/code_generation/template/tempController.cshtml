@@ -23,18 +23,21 @@ using @(Model.Namespace).Infrastructure.Permission.Attributes;
 using @(Model.Namespace).Models.BO;
 using @(Model.Namespace).Models.Consts;
 using @(Model.Namespace).Models.DTO;
+using @(Model.Namespace).Models.Entities.App;
 using @(Model.Namespace).Services.Admin;
 using @(Model.Namespace).Models.Entities;
 using @(Model.Namespace).Models.DTO.Framework;
 using @(Model.Namespace).Models.Entities.Framework;
 using @(Model.Namespace).Services.Admin.Framework;
+using @(Model.Namespace).Services.Admin.App;
 
-namespace @(Model.Namespace).Controllers.Admin
+
+namespace @(Model.Namespace).Controllers.Admin.App
 {
     /// <summary>
     /// @(classNameRemark) 控制器
     /// </summary>
-    [ControllerDescriptor(MenuId = "请设置菜单Id 系统菜单表中查找", DisplayName = "@(classNameRemark)")]
+    [ControllerDescriptor(MenuId = "请设置菜单Id 系统菜单表中查找,如果不设置不受权限保护!", DisplayName = "@(classNameRemark)")]
     public class @(className)Controller : AdminBaseController<@($"{className}Service")>
     {
         public @(className)Controller(@(className)Service defaultService) 

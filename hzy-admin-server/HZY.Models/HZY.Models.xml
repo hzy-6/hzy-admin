@@ -1153,5 +1153,40 @@
             账户Id
             </summary>
         </member>
+        <member name="T:HZY.Models.VO.Upload.UploadResultVO">
+            <summary>
+            Antd Vue 文件上传返回对象
+            </summary>
+        </member>
+        <member name="P:HZY.Models.VO.Upload.UploadResultVO.Uid">
+            <summary>
+            唯一标识符，不设置时会自动生成 string	-
+            </summary>
+        </member>
+        <member name="P:HZY.Models.VO.Upload.UploadResultVO.Name">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="P:HZY.Models.VO.Upload.UploadResultVO.Percent">
+            <summary>
+            上传进度
+            </summary>
+        </member>
+        <member name="P:HZY.Models.VO.Upload.UploadResultVO.Status">
+            <summary>
+            上传状态，不同状态展示颜色也会有所不同 error | success | done | uploading | removed	-
+            </summary>
+        </member>
+        <member name="P:HZY.Models.VO.Upload.UploadResultVO.ThumbUrl">
+            <summary>
+            缩略图地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.VO.Upload.UploadResultVO.Url">
+            <summary>
+            下载地址
+            </summary>
+        </member>
     </members>
 </doc>

@@ -121,12 +121,11 @@ const methods = {
     service
       .autoImprotProject({ tableName: props.tableName })
       .then((res) => {
-        if (res.code === 1) {
-          tools.message("导入成功,请查看!", "成功");
-        }
+        if (res.code !== 1) return;
+        tools.message("导入成功,请查看!", "成功");
       })
       .finally(() => {
-        tools.message("导入结束");
+        // tools.message("导入结束");
       });
   },
   loadData({ key }) {
@@ -134,14 +133,6 @@ const methods = {
     methods.findForm();
   },
 };
-//如果传入参数 tablename变化 加载表单信息
-// watch(
-//   () => state.tableName,
-//   (value) => {
-//     alert(value);
-//     methods.findForm();
-//   }
-// );
 
 // 暴露函数或者属性到外部
 defineExpose({ ...methods });

@@ -3,6 +3,7 @@
 @model HZY.Models.DTO.DevelopmentTool.GenDbTableDto
 @{
     var className = Model.EntityName;
+    var tableName = Model.TableName;
     var ignores = new string[] { 
         "Id", 
         "CreationTime",
@@ -51,7 +52,7 @@
 <script setup>
 import { reactive } from "vue";
 import tools from "@@/scripts/tools";
-import service from "@@/service/[请完善您的目录]/@(className.FirstCharToLower())Service";
+import service from "@@/service/app/@(tableName)s/@(className.FirstCharToLower())Service";
 
 //定义组件事件
 const emits = defineEmits(["onSuccess"]);

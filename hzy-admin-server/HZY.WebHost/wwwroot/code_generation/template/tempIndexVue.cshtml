@@ -1,8 +1,9 @@
 ﻿@using HZY.Infrastructure;
 @using FreeSql.DatabaseModel;
 @model HZY.Models.DTO.DevelopmentTool.GenDbTableDto
-@{ 
+@{
     var className = Model.EntityName;
+    var tableName = Model.TableName;
     var ignores = new string[] { 
         "Id", 
         "CreationTime",
@@ -141,7 +142,7 @@ import List from "@@/components/curd/List.vue";
 import AppIcon from "@@/components/AppIcon.vue";
 import Info from "./Info.vue";
 import tools from "@@/scripts/tools";
-import service from "@@/service/[请完善您的目录]/@(className.FirstCharToLower())Service";
+import service from "@@/service/app/@(tableName)s/@(className.FirstCharToLower())Service";
 import router from "@@/router";
 
 const appStore = useAppStore();

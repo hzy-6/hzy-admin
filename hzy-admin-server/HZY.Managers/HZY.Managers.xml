@@ -517,5 +517,15 @@
             <param name="folder"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Managers.Upload.Impl.UploadManagerImpl.UploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String[])">
+            <summary>
+            
+            </summary>
+            <param name="formFile"></param>
+            <param name="folder"></param>
+            <param name="format"></param>
+            <returns></returns>
+            <exception cref="T:HZY.Infrastructure.ApiResultManage.MessageBox"></exception>
+        </member>
     </members>
 </doc>

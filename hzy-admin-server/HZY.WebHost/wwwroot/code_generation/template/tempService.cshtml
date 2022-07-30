@@ -5,15 +5,15 @@
     var className = Model.EntityName;
     var classNameRemark = Model.DisplayName;
 
-    var ignores = new string[] { 
-        "Id", 
+    var ignores = new string[] {
+        "Id",
         "CreationTime",
-        "CreatorUserId", 
+        "CreatorUserId",
         "LastModificationTime",
         "LastModifierUserId" ,
         "DeletionTime",
-        "DeleterUserId", 
-        "IsDeleted" 
+        "DeleterUserId",
+        "IsDeleted"
     };
 
     var tableInfos = Model.TableInfos
@@ -21,7 +21,7 @@
         .OrderBy(w => w.Position)
         .ToList()
         ;
-    var searchKeyWords = new[] {"Title", "Name", "Phone", "Address", "Email"};
+    var searchKeyWords = new[] { "Title", "Name", "Phone", "Address", "Email" };
     var searchKeyWord = string.Empty;
     foreach (var item in searchKeyWords)
     {
@@ -52,15 +52,16 @@ using @(Model.Namespace).Models.Entities;
 using @(Model.Namespace).Models.Entities.Framework;
 using @(Model.Namespace).Services.Admin.Core;
 using @(Model.Namespace).Services.Admin.Framework;
+using @(Model.Namespace).Models.Entities.App;
 
-namespace @(Model.Namespace).Services.Admin
+namespace @(Model.Namespace).Services.Admin.App
 {
     /// <summary>
     /// @(classNameRemark) 服务 @(className)Service
     /// </summary>
     public class @(className)Service : AdminBaseService<IAdminRepository<@(className)>>
     {
-        public @(className)Service(IAdminRepository<@(className)> defaultRepository) 
+        public @(className)Service(IAdminRepository<@(className)> defaultRepository)
             : base(defaultRepository)
         {
 
@@ -78,13 +79,13 @@ namespace @(Model.Namespace).Services.Admin
             var query = this._defaultRepository.Select
                     @if (!string.IsNullOrWhiteSpace(searchKeyWord))
                     {
-<pre>.WhereIf(!string.IsNullOrWhiteSpace(search?.@(searchKeyWord)), w => w.@(searchKeyWord).Contains(search.@(searchKeyWord)))</pre>
+    <pre>.WhereIf(!string.IsNullOrWhiteSpace(search?.@(searchKeyWord)), w => w.@(searchKeyWord).Contains(search.@(searchKeyWord)))</pre>
                     }
                     .OrderByDescending(w => w.CreationTime)
                     .Select(w => new
                     {
                         w.Id,
-                        @(string.Join(',', tableInfos.Select(w => "w." + w.ColumnName)))@(",")
+                    @(string.Join(',', tableInfos.Select(w => "w." + w.ColumnName)))@(",")
                         LastModificationTime = w.LastModificationTime.ToString("yyyy-MM-dd"),
                         CreationTime = w.CreationTime.ToString("yyyy-MM-dd")
                     })

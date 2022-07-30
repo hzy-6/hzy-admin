@@ -164,7 +164,7 @@ export default { name: "LowCode" };
 </script>
 
 <script setup>
-import { nextTick, onMounted, reactive, ref } from "vue";
+import { nextTick, onMounted, reactive, ref, watch } from "vue";
 import { useAppStore } from "@/store";
 import AppIcon from "@/components/AppIcon.vue";
 import tools from "@/scripts/tools";
@@ -283,4 +283,9 @@ const methods = {
 onMounted(() => {
   methods.findList();
 });
+
+watch(() => state.visible, value => { 
+    methods.findList();
+})
+
 </script>

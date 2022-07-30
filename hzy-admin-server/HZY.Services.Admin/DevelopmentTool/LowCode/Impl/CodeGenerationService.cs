@@ -531,22 +531,22 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
             switch (type)
             {
                 case FileTypeEnum.Model:
-                    path = tableInfo.ModelPath + $"/{humpTableName}";
+                    path = tableInfo.ModelPath + $"/{humpTableName}s";
                     break;
                 case FileTypeEnum.Service:
-                    path = tableInfo.ServicePath + $"/{humpTableName}";
+                    path = tableInfo.ServicePath + $"/{humpTableName}s";
                     break;
                 case FileTypeEnum.Controller:
-                    path = tableInfo.ControllerPath + $"/{humpTableName}";
+                    path = tableInfo.ControllerPath + $"/{humpTableName}s";
                     break;
                 case FileTypeEnum.IndexVue:
-                    path = tableInfo.IndexVuePath + $"/{tableName}";
+                    path = tableInfo.IndexVuePath + $"/{tableName}s";
                     break;
                 case FileTypeEnum.InfoVue:
-                    path = tableInfo.InfoVuePath + $"/{tableName}";
+                    path = tableInfo.InfoVuePath + $"/{tableName}s";
                     break;
                 case FileTypeEnum.ServiceJS:
-                    path = tableInfo.ServiceJsPath + $"/{tableName}";
+                    path = tableInfo.ServiceJsPath + $"/{tableName}s";
                     break;
             }
             var fileDirPath = Path.Combine(basePath, path);

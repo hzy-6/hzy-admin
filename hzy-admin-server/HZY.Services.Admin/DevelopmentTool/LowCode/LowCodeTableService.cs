@@ -50,8 +50,8 @@ namespace HZY.Services.Admin
                     .WhereIf(!string.IsNullOrWhiteSpace(search.TableName), w => w.TableName.Contains(search.TableName))
                     .WhereIf(!string.IsNullOrWhiteSpace(search.EntityName), w => w.EntityName.Contains(search.EntityName))
                     .WhereIf(!string.IsNullOrWhiteSpace(search.DisplayName), w => w.DisplayName.Contains(search.DisplayName))
-                    .OrderByDescending(w => w.TableName)
-                    .ThenByDescending(w => w.CreationTime)
+                    .OrderByDescending(w => w.CreationTime)
+                    .ThenByDescending(w => w.LastModificationTime)
                     .Select(w => new
                     {
                         w.Id,
@@ -164,10 +164,20 @@ namespace HZY.Services.Admin
         /// </summary>
         /// <param name="lowCodeTables"></param>
         /// <returns></returns>
-        public Task ChangeAsync(List<LowCodeTable> lowCodeTables)
+        public async Task ChangeAsync(List<LowCodeTable> lowCodeTables)
         {
             _databaseTablesRepository.ClearAllTablesByCache();
-            return this._defaultRepository.UpdateRangeAsync(lowCodeTables);
+            var oldLowCodeTables = await this._defaultRepository.ToListAsync(w => lowCodeTables.Select(w => w.Id).Contains(w.Id));
+            var updateList = new List<LowCodeTable>();
+            foreach (var item in lowCodeTables)
+            {
+                var lowCodeTable = oldLowCodeTables.Find(w => w.Id == item.Id);
+                lowCodeTable.DisplayName = item.DisplayName;
+                lowCodeTable.EntityName = item.EntityName;
+                lowCodeTable.Remark = item.Remark;
+                updateList.Add(lowCodeTable);
+            }
+            await this._defaultRepository.UpdateRangeAsync(updateList);
         }
 
         /// <summary>
