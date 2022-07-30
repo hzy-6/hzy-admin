@@ -2,6 +2,8 @@ using HZY.Managers.Upload;
 using HZY.Infrastructure;
 using Microsoft.AspNetCore.Mvc;
 using System.Linq;
+using HZY.Models.VO.Upload;
+using static FreeSql.Internal.GlobalFilter;
 
 namespace HZY.WebHost.Controllers;
 
@@ -20,7 +22,7 @@ public class UploadController : ControllerBase
     }
 
     /// <summary>
-    /// 上传图片
+    /// 上传图片 针对富文本编辑器
     /// </summary>
     /// <returns></returns>
     [Route("Images")]
@@ -36,4 +38,25 @@ public class UploadController : ControllerBase
             data = paths
         });
     }
+
+    /// <summary>
+    /// 上传文件
+    /// </summary>
+    /// <param name="file"></param>
+    /// <returns></returns>
+    [Route("UploadFile")]
+    [HttpPost]
+    public UploadResultVO Upload(IFormFile file)
+    {
+        //IFormFileCollection
+        //var file1 = Request.Form.Files.Where(w => w.Name == "file").FirstOrDefault();
+        var result = _uploadService.HandleUploadFile(file);
+        //result.Url = AppConfiguration.Url + result.Url;
+        return result;
+    }
+
+
+
+
+
 }

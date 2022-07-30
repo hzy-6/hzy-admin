@@ -27,7 +27,7 @@ public class UploadManagerImpl : IUploadManager
     /// <param name="folder"></param>
     /// <param name="format"></param>
     /// <returns></returns>
-    protected virtual string HandleUploadFile(IFormFile formFile, string folder, params string[] format)
+    protected virtual UploadResultVO HandleUploadFile(IFormFile formFile, string folder, params string[] format)
     {
         var extensionName = Path.GetExtension(formFile.FileName)?.ToLower().Trim(); //获取后缀名
 
@@ -52,7 +52,9 @@ public class UploadManagerImpl : IUploadManager
             Directory.CreateDirectory(this._webRootPath + path);
         }
 
-        path += $"/time_{DateTime.Now:HHmmss}_old_name_{formFile.FileName}";
+        var name = $"{DateTime.Now:yyyyMMddHHmmss}_old_name_{formFile.FileName}";
+
+        path += $"/{name}";
 
         // 创建新文件
         using var fs = File.Create(this._webRootPath + path);
@@ -60,7 +62,16 @@ public class UploadManagerImpl : IUploadManager
         // 清空缓冲区数据
         fs.Flush();
 
-        return path;
+        var result = new UploadResultVO();
+
+        result.Status = "done";
+        result.ThumbUrl = path;
+        result.Url = path;
+        result.Percent = 100;
+        result.Uid = Guid.NewGuid();
+        result.Name = name;
+
+        return result;
     }
 
     /// <summary>
@@ -69,7 +80,7 @@ public class UploadManagerImpl : IUploadManager
     /// <param name="iFormFile"></param>
     /// <param name="format"></param>
     /// <returns></returns>
-    public virtual string HandleUploadFile(IFormFile iFormFile, params string[] format)
+    public virtual UploadResultVO HandleUploadFile(IFormFile iFormFile, params string[] format)
         => this.HandleUploadFile(iFormFile, "files", format);
 
     /// <summary>
@@ -78,53 +89,9 @@ public class UploadManagerImpl : IUploadManager
     /// <param name="iFormFile"></param>
     /// <param name="folder"></param>
     /// <returns></returns>
-    public virtual string HandleUploadImageFile(IFormFile iFormFile, string folder = "files")
+    public virtual UploadResultVO HandleUploadImageFile(IFormFile iFormFile, string folder = "files")
         => this.HandleUploadFile(iFormFile, folder, ".jpg", ".jpeg", ".png", ".gif", ".jfif");
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="formFile"></param>
-    /// <param name="folder"></param>
-    /// <param name="format"></param>
-    /// <returns></returns>
-    /// <exception cref="MessageBox"></exception>
-    public virtual List<UploadResultVO> UploadFile(IFormFile formFile, string folder, params string[] format)
-    {
-        var extensionName = Path.GetExtension(formFile.FileName)?.ToLower().Trim(); //获取后缀名
-
-        if (format != null && format.Length > 0 && !format.ToList().Contains(extensionName.ToLower()))
-        {
-            throw new MessageBox("请上传后缀名为：" + string.Join("、", format) + " 格式的文件");
-        }
-
-        if (string.IsNullOrWhiteSpace(folder)) folder = "files";
-
-        var path = $"/upload/{folder}";
-
-        if (!Directory.Exists(this._webRootPath + path))
-        {
-            Directory.CreateDirectory(this._webRootPath + path);
-        }
-
-        path += $"/{DateTime.Now:yyyyMMdd}";
-
-        if (!Directory.Exists(this._webRootPath + path))
-        {
-            Directory.CreateDirectory(this._webRootPath + path);
-        }
-
-        path += $"/time_{DateTime.Now:HHmmss}_old_name_{formFile.FileName}";
-
-        // 创建新文件
-        using var fs = File.Create(this._webRootPath + path);
-        formFile.CopyTo(fs);
-        // 清空缓冲区数据
-        fs.Flush();
-
-        //return path;
-        return default;
-    }
 
 
 

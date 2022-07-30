@@ -40,9 +40,9 @@ export default {
      */
     saveForm(vm, id) {
         if (id) {
-            return upload(`${controllerName}/update`, vm);
+            return post(`${controllerName}/update`, vm.form);
         }
-        return upload(`${controllerName}/create`, vm);
+        return post(`${controllerName}/create`, vm.form);
     },
     /**
      * 导出 excel

@@ -80,9 +80,9 @@ public class MemberController : AdminBaseController<MemberService>
     [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
     [HttpPost("Create")]
     [ApiCheckModel]
-    public Task CreateAsync([FromForm] Member form)
+    public Task CreateAsync([FromBody] Member form)
     {
-        return this._defaultService.SaveFormAsync(form, Request.Form.Files);
+        return this._defaultService.SaveFormAsync(form);
     }
 
     /// <summary>
@@ -94,9 +94,9 @@ public class MemberController : AdminBaseController<MemberService>
     [ActionDescriptor(AdminFunctionConsts.Function_Update, DisplayName = "编辑表单")]
     [HttpPost("Update")]
     [ApiCheckModel]
-    public Task UpdateAsync([FromForm] Member form)
+    public Task UpdateAsync([FromBody] Member form)
     {
-        return this._defaultService.SaveFormAsync(form, Request.Form.Files);
+        return this._defaultService.SaveFormAsync(form);
     }
 
     /// <summary>

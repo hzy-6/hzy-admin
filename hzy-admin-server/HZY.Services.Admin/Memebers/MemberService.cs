@@ -109,30 +109,9 @@ public class MemberService : AdminBaseService<IAdminRepository<Member>>
     /// 保存数据
     /// </summary>
     /// <param name="form"></param>
-    /// <param name="formFileCollection"></param>
     /// <returns></returns>
-    public async Task SaveFormAsync(Member form, IFormFileCollection formFileCollection)
+    public async Task SaveFormAsync(Member form)
     {
-        var files = new List<IFormFile>();
-        IFormFile photo = null;
-        if (formFileCollection.Count > 0)
-        {
-            files = formFileCollection.Where(w => w.Name.Contains("Files")).ToList();
-            photo = formFileCollection.FirstOrDefault(w => w.Name == "Photo");
-        }
-
-        if (photo != null)
-        {
-            form.Photo = this._uploadService.HandleUploadImageFile(photo);
-        }
-
-        if (files.Count > 0)
-        {
-            var path = files.Select(item => this._uploadService.HandleUploadFile(item)).ToList();
-
-            if (path.Count > 0) form.FilePath = string.Join(",", path);
-        }
-
         await this._defaultRepository.InsertOrUpdateAsync(form);
     }
 

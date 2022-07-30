@@ -365,6 +365,16 @@
             </summary>
             <param name="configuration"></param>
         </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.Urls">
+            <summary>
+            host 服务启动地址
+            </summary>
+        </member>
+        <member name="P:HZY.Infrastructure.AppConfiguration.Url">
+            <summary>
+            host 服务启动地址
+            </summary>
+        </member>
         <member name="T:HZY.Infrastructure.ConnectionStringsOptions">
             <summary>
             连接字符串配置

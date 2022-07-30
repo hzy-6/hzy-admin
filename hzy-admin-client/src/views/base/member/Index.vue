@@ -84,7 +84,7 @@
           <template v-if="item.fieldName == 'photo'">
             <vxe-column :field="item.fieldName" :title="item.title" :visible="item.show" :key="item.id">
               <template #default="{ row }">
-                <img :src="state.domainName + row.photo" width="35" height="35" />
+                <img :src="methods.handlePhoto(row.photo)" width="35" height="35" />
               </template>
             </vxe-column>
           </template>
@@ -177,10 +177,8 @@ const methods = {
   },
   //获取列表数据
   findList() {
-
     state.loading = true;
     service.findList(state.rows, state.page, state.search.vm).then((res) => {
-      debugger;
       let data = res.data;
       state.loading = false;
       state.page = data.page;
@@ -214,6 +212,15 @@ const methods = {
   //跳转详情
   jumpDetails(row) {
     router.push(`/base/member/details/${row.id}/${row.name}`);
+  },
+  //处理头像
+  handlePhoto(photo) {
+    if (photo) {
+      var photoArray = JSON.parse(photo);
+      return appConsts.domainName + (photoArray.length > 0 ? photoArray[0].url : "");
+    }
+
+    return null;
   },
 };
 

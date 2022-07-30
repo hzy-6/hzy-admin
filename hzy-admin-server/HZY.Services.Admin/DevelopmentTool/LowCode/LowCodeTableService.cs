@@ -10,6 +10,7 @@ using HZY.EFCore.Repositories.Admin.DevelopmentTool;
 using HZY.EFCore.Repositories.Admin.DevelopmentTool.LowCode;
 using HZY.Infrastructure;
 using HZY.EFCore.Aop;
+using HZY.EFCore.Repositories.Admin.Core;
 
 namespace HZY.Services.Admin
 {
@@ -22,19 +23,22 @@ namespace HZY.Services.Admin
         private readonly LowCodeTableInfoService _lowCodeTableInfoService;
         private readonly DatabaseTablesRepository _databaseTablesRepository;
         private readonly AppConfiguration _appConfiguration;
+        private readonly IAdminRepository<LowCodeTableInfo> _lowCodeTableInfoRepository;
 
 
         public LowCodeTableService(LowCodeTableRepository defaultRepository,
         IFreeSql freeSql,
         LowCodeTableInfoService lowCodeTableInfoService,
         DatabaseTablesRepository databaseTablesRepository,
-        AppConfiguration appConfiguration)
+        AppConfiguration appConfiguration,
+        IAdminRepository<LowCodeTableInfo> lowCodeTableInfoRepository)
             : base(defaultRepository)
         {
             _freeSql = freeSql;
             _lowCodeTableInfoService = lowCodeTableInfoService;
             _databaseTablesRepository = databaseTablesRepository;
             _appConfiguration = appConfiguration;
+            _lowCodeTableInfoRepository = lowCodeTableInfoRepository;
         }
 
         /// <summary>
@@ -75,10 +79,13 @@ namespace HZY.Services.Admin
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
-        public Task DeleteListAsync(List<Guid> ids)
+        public async Task DeleteListAsync(List<Guid> ids)
         {
             _databaseTablesRepository.ClearAllTablesByCache();
-            return this._defaultRepository.DeleteByIdsAsync(ids);
+            //删除子表
+            await this._lowCodeTableInfoRepository.DeleteBulkAsync(w => ids.Contains(w.Low_Code_TableId));
+            //删除主表
+            await this._defaultRepository.DeleteByIdsAsync(ids);
         }
 
         /// <summary>

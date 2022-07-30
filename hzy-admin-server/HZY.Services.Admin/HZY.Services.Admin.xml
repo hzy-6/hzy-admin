@@ -1008,12 +1008,11 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Memebers.MemberService.SaveFormAsync(HZY.Models.Entities.Member,Microsoft.AspNetCore.Http.IFormFileCollection)">
+        <member name="M:HZY.Services.Admin.Memebers.MemberService.SaveFormAsync(HZY.Models.Entities.Member)">
             <summary>
             保存数据
             </summary>
             <param name="form"></param>
-            <param name="formFileCollection"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Memebers.MemberService.ExportExcelAsync(HZY.Models.Entities.Member)">

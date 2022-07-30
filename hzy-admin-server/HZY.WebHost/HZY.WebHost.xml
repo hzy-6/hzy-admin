@@ -68,8 +68,15 @@
         </member>
         <member name="M:HZY.WebHost.Controllers.UploadController.Images">
             <summary>
-            上传图片
+            上传图片 针对富文本编辑器
             </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.WebHost.Controllers.UploadController.Upload(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传文件
+            </summary>
+            <param name="file"></param>
             <returns></returns>
         </member>
         <member name="T:HZY.WebHost.Endpoints.MainEndpoints">

@@ -3,8 +3,8 @@ using System;
 using HZY.EFCore.DbContexts;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 #nullable disable
 
@@ -18,33 +18,33 @@ namespace HZY.EFCore.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "6.0.6")
-                .HasAnnotation("Relational:MaxIdentifierLength", 63);
+                .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
-            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+            SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
             modelBuilder.Entity("HZY.Models.Entities.ApprovalFlow.Flow", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Code")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Number")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Remark")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -55,34 +55,34 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FlowCode")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("FlowId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FlowName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("FormId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LaunchTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -93,40 +93,40 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("ApprovalDate")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("FlowNodeId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FlowNodeName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Opinions")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Sort")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("SortMore")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("State")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -137,28 +137,28 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("FlowApprovalStepHistoryId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("FlowNodeId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FlowNodeName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("UserName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -169,28 +169,28 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("FlowId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Remark")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("RoleId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("Sort")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -201,19 +201,19 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("PermissionType")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<Guid>("RoleId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -242,19 +242,19 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid?>("SysDataAuthorityId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("SysOrganizationId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -265,30 +265,30 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<string>("Code")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("ParentId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("Sort")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Value")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -343,25 +343,25 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ByName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Number")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Remark")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -454,57 +454,57 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<bool>("Close")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("ComponentName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Icon")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("JumpUrl")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("KeepAlive")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LevelCode")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Number")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int?>("ParentId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Router")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Show")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("State")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<int>("Type")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Url")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -1074,44 +1074,6 @@ namespace HZY.EFCore.Migrations
                             State = true,
                             Type = 2,
                             Url = "views/base/member/components/Details.vue"
-                        },
-                        new
-                        {
-                            Id = 37,
-                            Close = true,
-                            ComponentName = "classIndex",
-                            CreationTime = new DateTime(2022, 7, 29, 22, 5, 23, 0, DateTimeKind.Unspecified),
-                            Icon = "ContactsFilled",
-                            KeepAlive = true,
-                            LastModificationTime = new DateTime(2022, 7, 29, 22, 35, 8, 0, DateTimeKind.Unspecified),
-                            LevelCode = "12.37",
-                            Name = "班级管理",
-                            Number = 20,
-                            ParentId = 12,
-                            Router = "/class",
-                            Show = true,
-                            State = true,
-                            Type = 2,
-                            Url = "views/my/class/Index.vue"
-                        },
-                        new
-                        {
-                            Id = 38,
-                            Close = true,
-                            ComponentName = "studentIndex",
-                            CreationTime = new DateTime(2022, 7, 29, 22, 13, 33, 0, DateTimeKind.Unspecified),
-                            Icon = "AndroidFilled",
-                            KeepAlive = true,
-                            LastModificationTime = new DateTime(2022, 7, 29, 22, 16, 34, 0, DateTimeKind.Unspecified),
-                            LevelCode = "12.38",
-                            Name = "学生管理",
-                            Number = 30,
-                            ParentId = 12,
-                            Router = "/student",
-                            Show = true,
-                            State = true,
-                            Type = 2,
-                            Url = "views/my/student/Index.vue"
                         });
                 });
 
@@ -1119,28 +1081,28 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FunctionCode")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FunctionName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<int>("MenuId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int?>("Number")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Remark")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -2264,46 +2226,46 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ActionDisplayName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Api")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Browser")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ControllerDisplayName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Form")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FormBody")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Ip")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("OS")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("QueryString")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<long>("TakeUpTime")
                         .HasColumnType("bigint");
 
                     b.Property<Guid?>("UserId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -2314,39 +2276,39 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Email")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Leader")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("LevelCode")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("OrderNumber")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int?>("ParentId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("State")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -2484,28 +2446,28 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Code")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Number")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Remarks")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("State")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -2568,25 +2530,25 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("DeleteLock")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("Number")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Remark")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -2619,22 +2581,22 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("MenuFunctionId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("MenuId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<Guid>("RoleId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -2827,37 +2789,37 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<bool>("DeleteLock")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<string>("Email")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("LoginName")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
                         .IsRequired()
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int?>("OrganizationId")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<string>("Password")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -3000,19 +2962,19 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("PostId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -3121,19 +3083,19 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("RoleId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -3226,25 +3188,25 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ForeignKeyTableFieldName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ForeignKeyTableId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("Low_Code_TableId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Low_Code_Table_InfoId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -3255,19 +3217,19 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("Low_Code_TableId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Low_Code_Table_InfoId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
@@ -3278,55 +3240,55 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ControllerPath")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("DisplayName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("EntityName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("IndexVuePath")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InfoVuePath")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool?>("IsCover")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("ModelPath")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProjectRootPath")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Remark")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Schema")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ServiceJsPath")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ServicePath")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("TableName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Type")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id");
 
@@ -3336,495 +3298,507 @@ namespace HZY.EFCore.Migrations
                         new
                         {
                             Id = new Guid("69b24f04-0ed3-45fc-91d9-0dc929175a57"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "用户与岗位",
                             EntityName = "SysUserPost",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_user_post",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("a9e68076-84d2-449f-a7c2-134f09984dfb"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "",
                             EntityName = "Efmigrationshistory",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "__EFMigrationsHistory",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("7f94e0db-fc63-40dc-bfe3-18c5aad75975"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "",
                             EntityName = "FlowApprovalStepHistoryUser",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "flow_approval_step_history_user",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("6ba9805c-916e-4d2c-99d0-216fcbc361cc"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "低代码表",
                             EntityName = "LowCodeTable",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "low_code_table",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("651bb982-1130-4e1c-9070-36b90dcf2324"),
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "工作流审批步骤配置",
                             EntityName = "FlowApprovalStep",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
                             LastModificationTime = new DateTime(2022, 7, 29, 21, 59, 11, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "flow_approval_step"
                         },
                         new
                         {
                             Id = new Guid("524e71b4-cbf7-4248-8b29-3f99b43f2eb2"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "自定义数据权限",
                             EntityName = "SysDataAuthorityCustom",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_data_authority_custom",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("7ad3b915-f0bd-443a-89cd-42d41dd6c554"),
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "工作流用户审批步骤",
                             EntityName = "FlowApprovalStepUser",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
                             LastModificationTime = new DateTime(2022, 7, 29, 21, 59, 11, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "flow_approval_step_user"
                         },
                         new
                         {
                             Id = new Guid("1a8df018-79f8-4e26-b4eb-4b735aae7275"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "审批流",
                             EntityName = "Flow",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "flow",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("60cceba1-28bf-4d1d-b603-4edf95d512b8"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "操作日志",
                             EntityName = "SysOperationLog",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_operation_log",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("2ae9e532-7d9a-474b-b629-50a39945c44d"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "菜单功能",
                             EntityName = "SysMenuFunction",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_menu_function",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("d8948c56-c5bd-4061-b272-5417375f38f0"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "审批流审批",
                             EntityName = "FlowApproval",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "flow_approval",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("d26d07cb-158a-4cb2-8b20-5dfd5181af54"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "组织",
                             EntityName = "SysOrganization",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_organization",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("6323638b-a45f-4a76-886e-69a9e9be0901"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "用户",
                             EntityName = "SysUser",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 48, 34, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_user",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("79fbd4ec-9f4e-45dc-8065-70f2eb422cdf"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "低代码表信息",
                             EntityName = "LowCodeTableInfo",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "low_code_table_info",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("af37f705-7ba0-4883-b1be-8a274ea4c026"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "数据字典",
                             EntityName = "SysDictionary",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_dictionary",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "会员",
                             EntityName = "Member",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "member",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("d2600250-6f32-4d7d-8395-96cc9fa36db4"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "菜单",
                             EntityName = "SysMenu",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_menu",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("f3d7bbb3-c1fb-4d61-92a4-9bc101811335"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "角色",
                             EntityName = "SysRole",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_role",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("852f53ff-0d00-4c32-aa55-a9c11993751b"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "低代码列表",
                             EntityName = "LowCodeList",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "low_code_list",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("ae6d94d8-6a15-4348-b600-aa17e4b61718"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "工作流节点",
                             EntityName = "FlowNode",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "flow_node",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("69edd8a8-1d24-478c-a909-b82039edcec0"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 5, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "低代码检索表",
                             EntityName = "LowCodeSearch",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "low_code_search",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("18fbb18e-cb29-45d8-a5f3-c0121c57680a"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "",
                             EntityName = "FlowApprovalStepHistory",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "flow_approval_step_history",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("6fabc67a-8b48-49a6-8ba1-c8a32c499d36"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "功能",
                             EntityName = "SysFunction",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_function",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("0a8bdb18-758a-4798-9ffc-e7031dcbf262"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "岗位",
                             EntityName = "SysPost",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_post",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("8da38d20-8a09-4e81-8dd8-ed6702aee380"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "角色菜单功能关联",
                             EntityName = "SysRoleMenuFunction",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_role_menu_function",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("e79db53b-7162-4669-9b5e-f860501475ac"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "数据权限",
                             EntityName = "SysDataAuthority",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_data_authority",
                             Type = "TABLE"
                         },
                         new
                         {
                             Id = new Guid("3da5d264-2e8d-460c-a10c-ff9a6bb57a60"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/",
+                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
                             CreationTime = new DateTime(2022, 4, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             DisplayName = "用户与角色",
                             EntityName = "SysUserRole",
-                            IndexVuePath = "hzy-admin-client/src/views/my/",
-                            InfoVuePath = "hzy-admin-client/src/views/my/",
+                            IndexVuePath = "hzy-admin-client/src/views/app/",
+                            InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 12, 46, 41, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/",
+                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/my/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/",
+                            ServiceJsPath = "hzy-admin-client/src/service/app/",
+                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_user_role",
                             Type = "TABLE"
                         });
@@ -3834,49 +3808,49 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ColumnName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("CsField")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CsType")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DatabaseColumnType")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Describe")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("DisplayName")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("IsIdentity")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsNullable")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<bool>("IsPrimary")
-                        .HasColumnType("boolean");
+                        .HasColumnType("bit");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<Guid>("Low_Code_TableId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int?>("MaxLength")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.Property<int>("Position")
-                        .HasColumnType("integer");
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -5389,125 +5363,6 @@ namespace HZY.EFCore.Migrations
                             LastModificationTime = new DateTime(2022, 6, 8, 21, 20, 4, 0, DateTimeKind.Unspecified),
                             Low_Code_TableId = new Guid("73c97832-4e7f-4758-86d2-94327971b5fd"),
                             Position = 79
-                        },
-                        new
-                        {
-                            Id = new Guid("bfec557a-1223-49ec-d4de-08da3d8d5a26"),
-                            ColumnName = "Id",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            CsField = "Id",
-                            CsType = "Guid",
-                            DatabaseColumnType = "uniqueidentifier",
-                            Describe = "",
-                            IsIdentity = false,
-                            IsNullable = false,
-                            IsPrimary = true,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("c5883367-42aa-43b8-9577-4720a2253efa"),
-                            MaxLength = 16,
-                            Position = 210
-                        },
-                        new
-                        {
-                            Id = new Guid("31f56d34-2216-45b0-d4df-08da3d8d5a26"),
-                            ColumnName = "Author",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            CsField = "Author",
-                            CsType = "String",
-                            DatabaseColumnType = "varchar(50)",
-                            Describe = "",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("c5883367-42aa-43b8-9577-4720a2253efa"),
-                            MaxLength = 50,
-                            Position = 214
-                        },
-                        new
-                        {
-                            Id = new Guid("6fe5687c-bfaf-4e2f-d4e0-08da3d8d5a26"),
-                            ColumnName = "Content",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            CsField = "Content",
-                            CsType = "String",
-                            DatabaseColumnType = "varchar(MAX)",
-                            Describe = "",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("c5883367-42aa-43b8-9577-4720a2253efa"),
-                            MaxLength = -1,
-                            Position = 216
-                        },
-                        new
-                        {
-                            Id = new Guid("be86a4ee-e843-4c2a-d4e1-08da3d8d5a26"),
-                            ColumnName = "CreationTime",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            CsField = "CreationTime",
-                            CsType = "DateTime",
-                            DatabaseColumnType = "datetime2",
-                            Describe = "",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("c5883367-42aa-43b8-9577-4720a2253efa"),
-                            MaxLength = 6,
-                            Position = 212
-                        },
-                        new
-                        {
-                            Id = new Guid("c03ba636-abb2-43f7-d4e2-08da3d8d5a26"),
-                            ColumnName = "LastModificationTime",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            CsField = "LastModificationTime",
-                            CsType = "DateTime",
-                            DatabaseColumnType = "datetime2",
-                            Describe = "",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("c5883367-42aa-43b8-9577-4720a2253efa"),
-                            MaxLength = 6,
-                            Position = 211
-                        },
-                        new
-                        {
-                            Id = new Guid("5f28be90-e415-46dd-d4e3-08da3d8d5a26"),
-                            ColumnName = "Time",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            CsField = "Time",
-                            CsType = "DateTime",
-                            DatabaseColumnType = "datetime",
-                            Describe = "",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("c5883367-42aa-43b8-9577-4720a2253efa"),
-                            MaxLength = 8,
-                            Position = 215
-                        },
-                        new
-                        {
-                            Id = new Guid("804e418f-3206-4090-d4e4-08da3d8d5a26"),
-                            ColumnName = "Title",
-                            CreationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            CsField = "Title",
-                            CsType = "String",
-                            DatabaseColumnType = "varchar(50)",
-                            Describe = "",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 5, 24, 21, 57, 34, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("c5883367-42aa-43b8-9577-4720a2253efa"),
-                            MaxLength = 50,
-                            Position = 213
                         },
                         new
                         {
@@ -7413,74 +7268,6 @@ namespace HZY.EFCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("a105f05f-c1be-4883-3383-08da716a5c08"),
-                            ColumnName = "Id",
-                            CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CsField = "Id",
-                            CsType = "Guid",
-                            DatabaseColumnType = "uniqueidentifier",
-                            Describe = "",
-                            DisplayName = "",
-                            IsIdentity = false,
-                            IsNullable = false,
-                            IsPrimary = true,
-                            LastModificationTime = new DateTime(2022, 7, 29, 22, 9, 7, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("181eef0c-8d00-4b6c-a3dd-59761cdb88d7"),
-                            Position = 212
-                        },
-                        new
-                        {
-                            Id = new Guid("656c384c-5ae8-4d4a-3384-08da716a5c08"),
-                            ColumnName = "CreationTime",
-                            CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CsField = "CreationTime",
-                            CsType = "DateTime",
-                            DatabaseColumnType = "datetime2",
-                            Describe = "",
-                            DisplayName = "创建时间",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 7, 29, 22, 9, 7, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("181eef0c-8d00-4b6c-a3dd-59761cdb88d7"),
-                            Position = 214
-                        },
-                        new
-                        {
-                            Id = new Guid("0f1a8b93-eb7b-4a86-3385-08da716a5c08"),
-                            ColumnName = "LastModificationTime",
-                            CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CsField = "LastModificationTime",
-                            CsType = "DateTime",
-                            DatabaseColumnType = "datetime2",
-                            Describe = "",
-                            DisplayName = "更新时间",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 7, 29, 22, 9, 7, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("181eef0c-8d00-4b6c-a3dd-59761cdb88d7"),
-                            Position = 215
-                        },
-                        new
-                        {
-                            Id = new Guid("f7cd8c2a-ab7f-42a4-3386-08da716a5c08"),
-                            ColumnName = "Name",
-                            CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CsField = "Name",
-                            CsType = "String",
-                            DatabaseColumnType = "varchar(255)",
-                            Describe = "班级名称",
-                            DisplayName = "班级名称",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 7, 29, 22, 9, 7, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("181eef0c-8d00-4b6c-a3dd-59761cdb88d7"),
-                            Position = 213
-                        },
-                        new
-                        {
                             Id = new Guid("51d2eb90-7ab9-4763-3387-08da716a5c08"),
                             ColumnName = "Id",
                             CreationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
@@ -7841,181 +7628,6 @@ namespace HZY.EFCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("5b37ee9f-fe5d-48f3-339b-08da716a5c08"),
-                            ColumnName = "Id",
-                            CreationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            CsField = "Id",
-                            CsType = "Guid",
-                            DatabaseColumnType = "uniqueidentifier",
-                            Describe = "",
-                            DisplayName = "",
-                            IsIdentity = false,
-                            IsNullable = false,
-                            IsPrimary = true,
-                            LastModificationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("7727e0c1-28a4-4112-8cd1-bc69dd5e57ad"),
-                            MaxLength = 16,
-                            Position = 216
-                        },
-                        new
-                        {
-                            Id = new Guid("e98a9b6c-1592-43f7-339c-08da716a5c08"),
-                            ColumnName = "ClassId",
-                            CreationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            CsField = "ClassId",
-                            CsType = "Guid",
-                            DatabaseColumnType = "uniqueidentifier",
-                            Describe = "班级Id",
-                            DisplayName = "班级Id",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("7727e0c1-28a4-4112-8cd1-bc69dd5e57ad"),
-                            MaxLength = 16,
-                            Position = 218
-                        },
-                        new
-                        {
-                            Id = new Guid("ef33189a-e074-42e0-339d-08da716a5c08"),
-                            ColumnName = "CreationTime",
-                            CreationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            CsField = "CreationTime",
-                            CsType = "DateTime",
-                            DatabaseColumnType = "datetime2",
-                            Describe = "",
-                            DisplayName = "",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("7727e0c1-28a4-4112-8cd1-bc69dd5e57ad"),
-                            MaxLength = 6,
-                            Position = 219
-                        },
-                        new
-                        {
-                            Id = new Guid("30a89871-1833-4ab4-339e-08da716a5c08"),
-                            ColumnName = "LastModificationTime",
-                            CreationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            CsField = "LastModificationTime",
-                            CsType = "DateTime",
-                            DatabaseColumnType = "datetime2",
-                            Describe = "",
-                            DisplayName = "",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("7727e0c1-28a4-4112-8cd1-bc69dd5e57ad"),
-                            MaxLength = 6,
-                            Position = 220
-                        },
-                        new
-                        {
-                            Id = new Guid("3dc28fb4-11cf-4b52-339f-08da716a5c08"),
-                            ColumnName = "Name",
-                            CreationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            CsField = "Name",
-                            CsType = "String",
-                            DatabaseColumnType = "varchar(255)",
-                            Describe = "学生名称",
-                            DisplayName = "学生名称",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("7727e0c1-28a4-4112-8cd1-bc69dd5e57ad"),
-                            MaxLength = 255,
-                            Position = 217
-                        },
-                        new
-                        {
-                            Id = new Guid("b9e8adb6-3790-4690-33a0-08da716a5c08"),
-                            ColumnName = "Id",
-                            CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CsField = "Id",
-                            CsType = "Guid",
-                            DatabaseColumnType = "uniqueidentifier",
-                            Describe = "",
-                            DisplayName = "",
-                            IsIdentity = false,
-                            IsNullable = false,
-                            IsPrimary = true,
-                            LastModificationTime = new DateTime(2022, 7, 29, 22, 11, 14, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("a896fe8b-b3e1-4227-95b4-defc56ceb98b"),
-                            Position = 216
-                        },
-                        new
-                        {
-                            Id = new Guid("8e260d55-f309-4fb2-33a1-08da716a5c08"),
-                            ColumnName = "ClassId",
-                            CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CsField = "ClassId",
-                            CsType = "Guid",
-                            DatabaseColumnType = "uniqueidentifier",
-                            Describe = "班级Id",
-                            DisplayName = "班级Id",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 7, 29, 22, 11, 14, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("a896fe8b-b3e1-4227-95b4-defc56ceb98b"),
-                            Position = 218
-                        },
-                        new
-                        {
-                            Id = new Guid("55242f55-b8e4-469a-33a2-08da716a5c08"),
-                            ColumnName = "CreationTime",
-                            CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CsField = "CreationTime",
-                            CsType = "DateTime",
-                            DatabaseColumnType = "datetime2",
-                            Describe = "",
-                            DisplayName = "创建时间",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 7, 29, 22, 11, 14, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("a896fe8b-b3e1-4227-95b4-defc56ceb98b"),
-                            Position = 219
-                        },
-                        new
-                        {
-                            Id = new Guid("fe287d7a-67c7-4ed2-33a3-08da716a5c08"),
-                            ColumnName = "LastModificationTime",
-                            CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CsField = "LastModificationTime",
-                            CsType = "DateTime",
-                            DatabaseColumnType = "datetime2",
-                            Describe = "",
-                            DisplayName = "更新时间",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 7, 29, 22, 11, 14, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("a896fe8b-b3e1-4227-95b4-defc56ceb98b"),
-                            Position = 220
-                        },
-                        new
-                        {
-                            Id = new Guid("2250683d-eb83-401b-33a4-08da716a5c08"),
-                            ColumnName = "Name",
-                            CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            CsField = "Name",
-                            CsType = "String",
-                            DatabaseColumnType = "varchar(255)",
-                            Describe = "学生名称",
-                            DisplayName = "学生名称",
-                            IsIdentity = false,
-                            IsNullable = true,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 7, 29, 22, 11, 14, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("a896fe8b-b3e1-4227-95b4-defc56ceb98b"),
-                            Position = 217
-                        },
-                        new
-                        {
                             Id = new Guid("1fbf9cea-3e4c-401b-243f-08da717dbcaa"),
                             ColumnName = "Id",
                             CreationTime = new DateTime(2022, 7, 30, 0, 16, 47, 0, DateTimeKind.Unspecified),
@@ -8326,40 +7938,40 @@ namespace HZY.EFCore.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("Birthday")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<DateTime>("CreationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("FilePath")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Introduce")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("LastModificationTime")
-                        .HasColumnType("timestamp without time zone");
+                        .HasColumnType("datetime2");
 
                     b.Property<string>("Name")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Number")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Phone")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Photo")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Sex")
-                        .HasColumnType("text");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("UserId")
-                        .HasColumnType("uuid");
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Id");
 
