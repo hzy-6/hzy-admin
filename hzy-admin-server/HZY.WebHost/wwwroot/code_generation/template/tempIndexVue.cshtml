@@ -135,7 +135,7 @@ export default { name: "@(className.FirstCharToLower())Index" };
 </script>
 
 <script setup>
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, reactive, ref, nextTick } from "vue";
 import { useAppStore } from "@@/store";
 import List from "@@/components/curd/List.vue";
 import AppIcon from "@@/components/AppIcon.vue";
