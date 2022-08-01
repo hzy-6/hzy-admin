@@ -210,6 +210,8 @@ public static class AppBuilder
             options.OperationFilter<AppendAuthorizeToSummaryOperationFilter>();
             //很重要！这里配置安全校验，和之前的版本不一样
             options.OperationFilter<SecurityRequirementsOperationFilter>();
+            //
+            options.OperationFilter<FileUploadOperation>();
             //开启 oauth2 安全描述
             options.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
             {
