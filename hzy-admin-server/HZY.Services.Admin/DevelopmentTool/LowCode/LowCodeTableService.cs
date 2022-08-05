@@ -83,7 +83,8 @@ namespace HZY.Services.Admin
         {
             _databaseTablesRepository.ClearAllTablesByCache();
             //删除子表
-            await this._lowCodeTableInfoRepository.DeleteBulkAsync(w => ids.Contains(w.Low_Code_TableId));
+            //await this._lowCodeTableInfoRepository.DeleteBulkAsync(w => ids.Contains(w.Low_Code_TableId));
+            await this._lowCodeTableInfoRepository.DeleteAsync(w => ids.Contains(w.Low_Code_TableId));
             //删除主表
             await this._defaultRepository.DeleteByIdsAsync(ids);
         }
