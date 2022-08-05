@@ -11,7 +11,7 @@
         :visible="!menuStoreState.isCollapse"
         :bodyStyle="{ padding: 0 }"
         :drawerStyle="{ background: menuStoreState.themeType == 'dark' ? '#001529' : '' }"
-        width="80%"
+        width="250px"
         v-if="layoutStoreState.isMobile"
       >
         <div class="hzy-logo" :style="{ color: menuStoreState.themeType == 'dark' ? '#ffffff' : '' }">
