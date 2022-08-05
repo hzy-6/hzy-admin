@@ -13,7 +13,7 @@ const layoutStore = defineStore("layout-store", () => {
         title: 'hzy-admin-spa-ui',
         isMobile: false,
         // 鉴定是否移动设备分界值
-        demarcation: 1080
+        demarcation: 576
     });
 
     //页面加载 钩子函数
