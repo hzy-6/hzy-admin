@@ -11,6 +11,13 @@
         <LayoutOneLevelMenu />
       </div>
       <div style="flex: 1 1 0%" v-else></div>
+
+      <!-- 实时消息 -->
+      <div class="hzy-header-btn" @click="() => (state.visible = !state.visible)">
+        <a-badge count="5">
+          <AppIcon name="notification-outlined" :size="16" />
+        </a-badge>
+      </div>
       <div class="hzy-header-btn" @click="methods.onReload">
         <a-tooltip>
           <template #title>刷新当前选项卡</template>
@@ -46,18 +53,20 @@
         </a-dropdown>
       </div>
     </div>
+    <MessageVue v-model:visible="state.visible" />
   </a-layout-header>
 </template>
 <script>
 export default { name: "LayoutHeaderCom" };
 </script>
 <script setup>
-import { computed } from "vue";
+import { computed, reactive } from "vue";
 import { useLayoutStore, useTabsStore, useMenuStore, useHeaderStore, useAppStore, useSettingsStore } from "@/store";
 import AppIcon from "@/components/AppIcon.vue";
 import router from "@/router";
 import LayoutOneLevelMenu from "./menus/LayoutOneLevelMenu.vue";
 import { useFullscreen } from "@vueuse/core";
+import MessageVue from "../Message.vue";
 
 //layout
 const layoutStore = useLayoutStore();
@@ -79,6 +88,10 @@ const settingsStore = useSettingsStore();
 const settingsStoreState = computed(() => settingsStore.state);
 
 const { isFullscreen, enter, exit, toggle } = useFullscreen();
+
+const state = reactive({
+  visible: false,
+});
 
 const methods = {
   onLogOut() {
@@ -128,6 +141,10 @@ const methods = {
       display: inline-flex;
       justify-content: center;
       align-items: center;
+
+      .ant-scroll-number-only-unit {
+        color: #ffffff !important;
+      }
     }
 
     .hzy-header-btn:hover {

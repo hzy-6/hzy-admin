@@ -25,6 +25,7 @@ using Swashbuckle.AspNetCore.Filters;
 using Newtonsoft.Json.Serialization;
 using HZY.Infrastructure.SerilogUtil;
 using HZY.Managers.EFCore;
+using HZY.Managers.SignalRs;
 
 namespace HZY.WebHost.Configure;
 
@@ -143,14 +144,13 @@ public static class AppBuilder
 
         services.AddCors(options =>
         {
-            options.AddPolicy("WebHostCors", builder =>
+            options.AddDefaultPolicy(builder =>
             {
-                builder.WithOrigins("*")
+                builder
+                    .SetIsOriginAllowed(_ => true)
                     .AllowAnyMethod()
-                    .AllowAnyHeader();
-                //.AllowAnyOrigin()
-                //.AllowCredentials();
-                //6877
+                    .AllowAnyHeader()
+                    .AllowCredentials();
             });
         });
 
@@ -230,6 +230,9 @@ public static class AppBuilder
         // 本地消息队列
         services.AddMemoryMQ();
 
+        //SignalR
+        services.AddSignalR();
+
         return builder;
     }
 
@@ -287,7 +290,7 @@ public static class AppBuilder
 
         #region 使用跨域 警告: 通过终结点路由，CORS 中间件必须配置为在对UseRouting和UseEndpoints的调用之间执行。 配置不正确将导致中间件停止正常运行。
 
-        app.UseCors("WebHostCors");
+        app.UseCors();
 
         #endregion
 
@@ -315,6 +318,8 @@ public static class AppBuilder
             {
                 endpoints.MapControllers();
             });
+
+        app.AddSignalRHubs();
 
         return app;
     }

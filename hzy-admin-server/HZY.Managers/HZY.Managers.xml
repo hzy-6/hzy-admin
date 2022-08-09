@@ -487,6 +487,26 @@
             状态情况
             </summary>
         </member>
+        <member name="M:HZY.Managers.SignalRs.Hubs.ChatHub.Login(System.String)">
+            <summary>
+            登录
+            </summary>
+            <param name="userName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Managers.SignalRs.Hubs.ChatHub.Say(System.String,System.String)">
+            <summary>
+            说
+            </summary>
+            <param name="userName"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Managers.SignalRs.SignalRUtils">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:HZY.Managers.Upload.Impl.UploadManagerImpl">
             <summary>
             上传文件服务
