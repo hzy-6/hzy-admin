@@ -65,7 +65,7 @@ public static class AppBuilder
         #region 自动扫描服务注册 、 其他服务注册
 
         //扫描服务自动化注册
-        services.AddHzyScanDiService(prefixString);
+        services.AddHzyScanDiService(prefixString);//, "Hzy","FreeSql."
 
         services.AddSingleton<IHostedService, LifetimeEventsHostedService>();
 

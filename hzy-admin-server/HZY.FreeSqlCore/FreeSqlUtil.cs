@@ -104,7 +104,7 @@ public static class FreeSqlUtil
 
         services.AddSingleton(FreeSqlUtil.AdminFreeSql);
         //services.AddScoped<UnitOfWorkManager>();
-        services.AddFreeRepository(null, IOCUtil.GetAssemblyList(w =>
+        services.AddFreeRepository(null, IOCUtil.AssemblyList().Where(w =>
         {
             var name = w.GetName().Name;
             return name != null && name.StartsWith(assemblyFilter);

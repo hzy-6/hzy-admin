@@ -44,7 +44,9 @@ public class AdminDbContext : DbContextBase
 
         #region 自动扫描 dbset
 
-        var assemblies = IOCUtil.GetAssemblyList(w => w.GetName().FullName.Contains(appConfiguration.Configs.DbContextInfo.DbSetScanDllName));
+        var assemblies = IOCUtil.AssemblyList()
+            .Where(w => w.GetName().FullName.Contains(appConfiguration.Configs.DbContextInfo.DbSetScanDllName))
+            ;
         foreach (var item in assemblies.Where(w => !w.IsDynamic))
         {
             var types = from w in item.ExportedTypes
