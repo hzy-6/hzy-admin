@@ -1,6 +1,7 @@
 ﻿using HZY.EFCore.DbContexts;
 using HZY.EFCore.PagingViews;
 using HZY.Models.BO;
+using HZY.Models.Entities.Framework;
 using HzyEFCoreRepositories.Repositories;
 using HzyScanDiService;
 using System;
@@ -49,7 +50,7 @@ namespace HZY.EFCore.Repositories.Admin.Core
         /// </summary>
         /// <param name="accountInfo"></param>
         /// <returns></returns>
-        IQueryable<T> DataPermission(AccountInfo accountInfo);
+        IQueryable<T> DataPermission(AccountInfo accountInfo, IAdminRepository<SysUser> _sysUserRepository);
 
         /// <summary>
         /// 根据组织 获取数据权限

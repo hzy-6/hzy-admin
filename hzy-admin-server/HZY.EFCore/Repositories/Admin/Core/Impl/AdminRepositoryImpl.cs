@@ -192,12 +192,14 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
     /// <summary>
     /// 根据数据权限查询 获取 IQueryable 对象
     /// </summary>
-    /// <param name="accountInfo">当前用户账户信息</param>
+    /// <param name="accountInfo">当前账户信息</param>
+    /// <param name="_sysUserRepository"></param>
     /// <returns></returns>
-    public virtual IQueryable<T> DataPermission(AccountInfo accountInfo)
+    public virtual IQueryable<T> DataPermission(AccountInfo accountInfo, IAdminRepository<SysUser> _sysUserRepository)
     {
-        using var serviceScope = IOCUtil.CreateScope();
-        using var _sysUserRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysUser>>();
+        //作用域会被释放
+        //using var serviceScope = IOCUtil.CreateScope();
+        //using var _sysUserRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysUser>>();
 
         //连表条件
         var query = from table in Query()
