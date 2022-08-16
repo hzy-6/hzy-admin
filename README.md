@@ -59,5 +59,6 @@
 | ![输入图片说明](gitee/images/login.png) | ![输入图片说明](gitee/images/Efcore%20%E7%9B%91%E6%8E%A7.png)  |
 |-----------------------------------|---|
 
+![输入图片说明](gitee/images/home1.png)
 
  
