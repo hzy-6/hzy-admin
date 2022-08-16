@@ -16,12 +16,12 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HzyEFCoreRepositories" Version="1.2.1.8" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.6">
+		<PackageReference Include="HzyEFCoreRepositories" Version="1.2.1.9" />
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.7">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.6">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.7">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

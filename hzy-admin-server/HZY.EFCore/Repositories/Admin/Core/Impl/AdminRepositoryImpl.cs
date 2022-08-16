@@ -97,11 +97,11 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
             var offSet = size * (page - 1);
             sqlString = string.Empty;
 
-            if (GetDbContext<AdminDbContext>().Database.IsSqlServer())
+            if (base.GetContext<AdminDbContext>().Database.IsSqlServer())
             {
                 sqlString = $"SELECT * FROM ({sql}) TAB ORDER BY {orderBy} OFFSET {offSet} ROWS FETCH NEXT {size} ROWS ONLY";
             }
-            else if (GetDbContext<AdminDbContext>().Database.IsMySql() || GetDbContext<AdminDbContext>().Database.IsNpgsql())
+            else if (base.GetContext<AdminDbContext>().Database.IsMySql() || base.GetContext<AdminDbContext>().Database.IsNpgsql())
             {
                 sqlString = $"SELECT * FROM ({sql}) TAB ORDER BY {orderBy} LIMIT {size} OFFSET {offSet}";
             }

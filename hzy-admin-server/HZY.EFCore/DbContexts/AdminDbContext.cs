@@ -2,7 +2,6 @@
 using HZY.Infrastructure;
 using HZY.Infrastructure.SerilogUtil;
 using HZY.Models.Entities.BaseEntitys;
-using HzyEFCoreRepositories.DbContexts;
 using HzyEFCoreRepositories.Extensions;
 using HzyScanDiService;
 using Microsoft.EntityFrameworkCore;
@@ -15,7 +14,7 @@ namespace HZY.EFCore.DbContexts;
 /// <summary>
 /// 后台权限管理系统 DbContext
 /// </summary>
-public class AdminDbContext : DbContextBase
+public class AdminDbContext : DbContext
 {
     public AdminDbContext(DbContextOptions<AdminDbContext> options) : base(options)
     {
