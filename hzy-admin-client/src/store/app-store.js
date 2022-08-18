@@ -131,6 +131,7 @@ const appStore = defineStore("app-store", () => {
         setUserInfo(defaultUserInfo);
         tabsStore.state.tabs = [];
         tabsStore.delCacheViewAll();
+        tabsStore.clearTabsCache();
     }
 
     return {

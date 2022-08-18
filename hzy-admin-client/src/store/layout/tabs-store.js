@@ -1,8 +1,22 @@
 import { defineStore } from "pinia";
-import { reactive } from "vue";
+import { reactive, watch } from "vue";
 import router from "@/router";
+import appConsts from "@/scripts/app-consts";
+
+let defaultTabs = [{
+    fullPath: "/home",
+    path: "/home",
+    name: "HomeIndexCom",
+    meta: { title: '首页', close: false, keepAlive: true }
+}];
 
 const layoutStore = defineStore("tabs-store", () => {
+
+    const tabsString = localStorage.getItem(appConsts.appPrefix + "-Tabs");
+
+    if (tabsString) {
+        defaultTabs = JSON.parse(tabsString);
+    }
 
     //定义状态
     let state = reactive({
@@ -10,15 +24,18 @@ const layoutStore = defineStore("tabs-store", () => {
         bgColor: '#ffffff',
         activeBgColor: '#f0f2f5',
         activeTextColor: '#409eff',
-        tabs: [{
-            fullPath: "/home",
-            path: "/home",
-            name: "HomeIndexCom",
-            meta: { title: '首页', close: false, keepAlive: true }
-        }],
+        tabs: defaultTabs,
         //缓存视图 视图缓存只能通过组件名称来
         cacheViews: ["HomeIndexCom"],
     });
+
+    //让选项卡有记忆功能
+    watch(() => state.tabs, value => {
+        console.log(value);
+        if (value.length > 0) {
+            localStorage.setItem(appConsts.appPrefix + "-Tabs", JSON.stringify(value));
+        }
+    }, { deep: true })
 
     /**
      * 缓存处理函数
@@ -83,7 +100,7 @@ const layoutStore = defineStore("tabs-store", () => {
         const { hidden, meta, fullPath } = routeInfo;
 
         if (hidden) return;
-        
+
         if (!Object.prototype.hasOwnProperty.call(meta, 'close')) return;
 
         //检查是否存在
@@ -168,6 +185,14 @@ const layoutStore = defineStore("tabs-store", () => {
         router.push(fullPath);
     }
 
+    /**
+     * 清理tabs缓存
+     */
+    function clearTabsCache() {
+        localStorage.setItem(appConsts.appPrefix + "-Tabs", "");
+        state.tabs = defaultTabs;
+    }
+
 
     return {
         state,
@@ -177,6 +202,7 @@ const layoutStore = defineStore("tabs-store", () => {
         closeTabOther,
         closeTabAll,
         tabClick,
+        clearTabsCache
     }
 
 });
