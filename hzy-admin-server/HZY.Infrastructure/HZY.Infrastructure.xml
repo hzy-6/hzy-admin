@@ -64,16 +64,31 @@
             <value></value>
         </member>
         <member name="M:HZY.Infrastructure.Aop.Cache.CacheableAttribute.Before(HzyScanDiService.AopContext)">
-            <inheritdoc/>
+            <summary>
+            Before
+            </summary>
+            <param name="aopContext"></param>
         </member>
         <member name="M:HZY.Infrastructure.Aop.Cache.CacheableAttribute.Before``1(HzyScanDiService.AopContext)">
-            <inheritdoc/>
+            <summary>
+            Before~TResult
+            </summary>
+            <param name="aopContext"></param>
+            <typeparam name="TResult"></typeparam>
         </member>
         <member name="M:HZY.Infrastructure.Aop.Cache.CacheableAttribute.After(HzyScanDiService.AopContext)">
-            <inheritdoc/>
+            <summary>
+            After
+            </summary>
+            <param name="aopContext"></param>
         </member>
         <member name="M:HZY.Infrastructure.Aop.Cache.CacheableAttribute.After``1(HzyScanDiService.AopContext,``0)">
-            <inheritdoc/>
+            <summary>
+            After TResult
+            </summary>
+            <param name="aopContext"></param>
+            <param name="result"></param>
+            <typeparam name="TResult"></typeparam>
         </member>
         <member name="M:HZY.Infrastructure.Aop.Cache.CacheableAttribute.GetMemoryCache(HzyScanDiService.AopContext)">
             <summary>

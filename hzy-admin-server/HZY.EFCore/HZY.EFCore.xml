@@ -228,6 +228,7 @@
             根据组织 获取数据权限
             </summary>
             <param name="accountInfo"></param>
+            <param name="_sysUserRepository"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.DataPermission``1(System.Linq.IQueryable{``0},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">

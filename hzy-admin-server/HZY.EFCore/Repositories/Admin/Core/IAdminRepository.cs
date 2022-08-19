@@ -49,6 +49,7 @@ namespace HZY.EFCore.Repositories.Admin.Core
         /// 根据组织 获取数据权限
         /// </summary>
         /// <param name="accountInfo"></param>
+        /// <param name="_sysUserRepository"></param>
         /// <returns></returns>
         IQueryable<T> DataPermission(AccountInfo accountInfo, IAdminRepository<SysUser> _sysUserRepository);
 

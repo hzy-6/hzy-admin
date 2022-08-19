@@ -10,13 +10,13 @@ namespace HZY.Infrastructure.Aop.Cache
     public abstract class BaseCacheAttribute : AopBaseAttribute
     {
         /// <summary>
-        /// 缓存Key
+        /// 缓存Key 不填默认是 函数的命名空间.函数名称
         /// </summary>
         /// <value></value>
         public string CacheKey { get; set; }
 
         /// <summary>
-        /// Redis 服务类型
+        /// Redis 服务类型 不传递默认 走内存缓存
         /// </summary>
         /// <value></value>
         public Type RedisServiceType { get; set; }

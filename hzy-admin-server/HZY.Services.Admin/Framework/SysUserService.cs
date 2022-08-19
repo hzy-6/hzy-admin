@@ -21,6 +21,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HZY.Infrastructure.Aop.Cache;
 
 namespace HZY.Services.Admin.Framework;
 
@@ -124,7 +125,7 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public async Task<Dictionary<string, object>> FindFormAsync(Guid id)
+    public virtual async Task<Dictionary<string, object>> FindFormAsync(Guid id)
     {
         var res = new Dictionary<string, object>();
 

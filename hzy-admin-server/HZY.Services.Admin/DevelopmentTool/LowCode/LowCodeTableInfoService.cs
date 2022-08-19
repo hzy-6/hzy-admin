@@ -105,7 +105,6 @@ namespace HZY.Services.Admin
             {
                 if (tableColumns != null && tableColumns.Count == 0)
                 {
-
                     foreach (var item in tableInfo.Columns)
                     {
                         // if (tableColumns.Any(w => w.ColumnName == item.Name)) continue;
@@ -117,12 +116,15 @@ namespace HZY.Services.Admin
                         model.Position = item.Position;
                         model.Low_Code_TableId = table.Id;
                         model.ColumnName = item.Name;
-                        model.Describe = item.Comment;
                         model.DatabaseColumnType = item.DbTypeTextFull;
                         model.CsType = item.CsType.Name;
                         model.CsField = item.Name;
                         model.MaxLength = item.MaxLength;
-                        model.DisplayName = item.Comment;
+                        if (!string.IsNullOrWhiteSpace(item.Comment))
+                        {
+                            model.Describe = item.Comment;
+                            model.DisplayName = item.Comment;
+                        }
                         list.Add(model);
                     }
                 }
@@ -142,15 +144,17 @@ namespace HZY.Services.Admin
                     model.Position = item.Position;
                     model.Low_Code_TableId = table.Id;
                     model.ColumnName = item.Name;
-                    model.Describe = item.Comment;
                     model.DatabaseColumnType = item.DbTypeTextFull;
                     model.CsType = item.CsType.Name;
                     model.CsField = item.Name;
                     model.MaxLength = item.MaxLength;
-                    model.DisplayName = item.Comment;
+                    if (!string.IsNullOrWhiteSpace(item.Comment))
+                    {
+                        model.Describe = item.Comment;
+                        model.DisplayName = item.Comment;
+                    }
                     list.Add(model);
                 }
-
             }
 
             await this._defaultRepository.InsertRangeAsync(list);
