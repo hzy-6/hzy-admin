@@ -889,6 +889,12 @@ public static class Tools
     {
         if (string.IsNullOrEmpty(input))
             return input;
+
+        //if (input.Length == input.Count(w => char.IsUpper(w)))
+        //{
+        //    return input.ToLower();
+        //}
+
         return input.First().ToString().ToLower() + input.Substring(1);
     }
 
@@ -1077,6 +1083,6 @@ public static class Tools
 
         return Regex.Replace(input, @"([a-z0-9])([A-Z])", "$1_$2").ToLower();
     }
-    
-    
+
+
 }
