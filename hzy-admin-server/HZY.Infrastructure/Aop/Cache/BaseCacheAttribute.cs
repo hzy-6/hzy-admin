@@ -26,7 +26,7 @@ namespace HZY.Infrastructure.Aop.Cache
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
-        protected string GetCacheKey(AopContext context)
+        protected virtual string GetCacheKey(AopContext context)
         {
             if (!string.IsNullOrWhiteSpace(CacheKey))
             {
