@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq.Expressions;
@@ -59,7 +59,8 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
         {
             pagingView.Total = await query.CountAsync();
             pagingView.PageCount = pagingView.Total / size;
-            query = query.Page(page, size);
+            pagingView.Page = pagingView.Page > pagingView.PageCount ? 1 : pagingView.Page;
+            query = query.Page(pagingView.Page, size);
         }
 
         var data = await query.ToListAsync();
@@ -94,7 +95,8 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
         {
             pagingView.Total = await QuerySingleBySqlAsync<long>($"SELECT COUNT(1) FROM ({sql}) TAB", parameters);
             pagingView.PageCount = pagingView.Total / size;
-            var offSet = size * (page - 1);
+            pagingView.Page = pagingView.Page > pagingView.PageCount ? 1 : pagingView.Page;
+            var offSet = size * (pagingView.Page - 1);
             sqlString = string.Empty;
 
             if (base.GetContext<AdminDbContext>().Database.IsSqlServer())
