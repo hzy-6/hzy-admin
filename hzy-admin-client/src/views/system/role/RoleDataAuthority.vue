@@ -4,7 +4,7 @@
       <a-button type="primary" @click="methods.saveForm()" :loading="state.saveLoading">提交</a-button>
       <a-button type="danger" ghost @click="state.visible = false" class="ml-15">关闭</a-button>
     </template>
-    <a-spin :spinning="state.loading">
+    <a-spin v-drag :spinning="state.loading">
       <!-- <a-divider>数据权限类型</a-divider> -->
       <a-radio-group v-model:value="state.form.sysDataAuthority.permissionType">
         <a-radio :style="{ display: 'flex', height: '30px', lineHeight: '30px' }" :value="1">自定义权限</a-radio>
@@ -36,10 +36,10 @@
 </template>
 
 <script setup>
-import { reactive, watch } from "vue";
 import tools from "@/scripts/tools";
 import organizationService from "@/service/system/organizationService";
 import sysDataAuthorityService from "@/service/system/sysDataAuthorityService";
+import { reactive, watch } from "vue";
 
 //定义组件事件
 const emits = defineEmits(["onSuccess"]);

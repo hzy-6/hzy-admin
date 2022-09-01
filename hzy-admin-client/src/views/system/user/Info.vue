@@ -4,7 +4,7 @@
       <a-button type="primary" @click="methods.saveForm()" :loading="state.saveLoading">提交</a-button>
       <a-button type="danger" ghost @click="state.visible = false" class="ml-15">关闭</a-button>
     </template>
-    <a-spin :spinning="state.saveLoading">
+    <a-spin v-drag :spinning="state.saveLoading">
       <a-form ref="formRef" layout="vertical" :model="state.vm.form" :rules="rules">
         <a-row :gutter="[15, 15]">
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
@@ -91,10 +91,10 @@
   </a-modal>
 </template>
 <script setup>
-import { reactive, ref, nextTick } from "vue";
 import tools from "@/scripts/tools";
-import service from "@/service/system/userService";
 import organizationService from "@/service/system/organizationService";
+import service from "@/service/system/userService";
+import { nextTick, reactive, ref } from "vue";
 
 //定义组件事件
 const emits = defineEmits(["onSuccess"]);

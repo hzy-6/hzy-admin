@@ -4,7 +4,7 @@
       <a-button type="primary" @click="methods.saveForm()" :loading="state.saveLoading">提交</a-button>
       <a-button type="danger" ghost @click="state.visible = false" class="ml-15">关闭</a-button>
     </template>
-    <a-spin :spinning="state.saveLoading">
+    <a-spin v-drag :spinning="state.saveLoading">
       <a-tabs v-model:activeKey="state.activeKey">
         <a-tab-pane key="1" tab="基础数据设置">
           <a-form layout="vertical" :model="state.vm.form">
@@ -206,11 +206,11 @@
   </a-modal>
 </template>
 <script setup>
-import { reactive, watch, ref } from "vue";
-import tools from "@/scripts/tools";
-import service from "@/service/system/menuService";
 import AppIcon from "@/components/AppIcon.vue";
 import AppIconList from "@/components/AppIconList.vue";
+import tools from "@/scripts/tools";
+import service from "@/service/system/menuService";
+import { reactive, ref, watch } from "vue";
 
 //定义组件事件
 const emits = defineEmits(["onSuccess"]);

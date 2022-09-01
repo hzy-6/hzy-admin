@@ -3,7 +3,7 @@
     <template #footer>
       <a-button type="danger" ghost @click="state.visible = false" class="ml-15">关闭</a-button>
     </template>
-    <a-spin :spinning="state.saveLoading">
+    <a-spin v-drag :spinning="state.saveLoading">
       <a-row :gutter="[15, 15]">
         <a-descriptions bordered class="text-Center w100">
           <!-- :column="{ xxl: 3, xl: 3, lg: 3, md: 3, sm: 1, xs: 1 }" -->
@@ -46,8 +46,8 @@
   </a-modal>
 </template>
 <script setup>
-import { reactive } from "vue";
 import service from "@/service/system/sys_operation_log_serivce";
+import { reactive } from "vue";
 
 const state = reactive({
   vm: {

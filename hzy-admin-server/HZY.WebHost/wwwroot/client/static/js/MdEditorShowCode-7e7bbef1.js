@@ -1,0 +1,1 @@
+import{r as s,K as n,j as a,k as r,c as l,g as p}from"./index-3c68c560.js";const m={__name:"MdEditorShowCode",props:{text:String},setup(t){const e=t,o=s({text:n(()=>e.text)});return(d,i)=>{const c=a("highlightjs");return r(),l("div",null,[p(c,{autodetect:"",code:o.text},null,8,["code"])])}}};export{m as default};

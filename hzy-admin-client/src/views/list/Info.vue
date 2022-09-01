@@ -4,7 +4,7 @@
       <a-button type="primary" :loading="state.saveLoading" @click="methods.save"> 提交</a-button>
       <a-button type="primary" danger ghost @click="state.visible = false">关闭</a-button>
     </template>
-    <a-row :gutter="[15, 15]">
+    <a-row  v-drag :gutter="[15, 15]">
       <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <h4>用户名:</h4>
         <a-input v-model:value="state.vm.form.value" placeholder="请输入" />
@@ -49,8 +49,8 @@
   </a-modal>
 </template>
 <script setup>
-import { reactive } from "vue";
 import tools from "@/scripts/tools";
+import { reactive } from "vue";
 
 //定义组件事件
 const emits = defineEmits(["onSuccess"]);

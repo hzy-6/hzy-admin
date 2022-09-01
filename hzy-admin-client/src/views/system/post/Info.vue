@@ -4,7 +4,7 @@
       <a-button type="primary" @click="methods.saveForm()" :loading="state.saveLoading">提交</a-button>
       <a-button type="danger" ghost @click="state.visible = false" class="ml-15">关闭</a-button>
     </template>
-    <a-spin :spinning="state.saveLoading">
+    <a-spin v-drag :spinning="state.saveLoading">
       <a-form layout="vertical" :model="state.vm.form">
         <a-row :gutter="[15, 15]">
           <a-col :xs="24">
@@ -42,9 +42,9 @@
   </a-modal>
 </template>
 <script setup>
-import { reactive } from "vue";
 import tools from "@/scripts/tools";
 import service from "@/service/system/postService";
+import { reactive } from "vue";
 
 //定义组件事件
 const emits = defineEmits(["onSuccess"]);

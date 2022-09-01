@@ -4,7 +4,7 @@
       <span class="mr-15">角色功能设置</span>
       <a-button type="primary" @click="methods.save">保存/提交</a-button>
     </template>
-    <a-spin :spinning="state.loading">
+    <a-spin v-drag :spinning="state.loading">
       <vxe-table ref="refTable" resizable :data="state.data" :row-config="{ isHover: true }" :tree-config="{ transform: true, rowField: 'id', parentField: 'parentId' }" size="small">
         <vxe-column field="name" title="菜单名称" tree-node width="250">
           <template #default="{ row }">
@@ -29,9 +29,9 @@
 </template>
 
 <script setup>
-import { nextTick, reactive, ref } from "vue";
-import service from "@/service/system/rolefunctionService";
 import tools from "@/scripts/tools";
+import service from "@/service/system/rolefunctionService";
+import { nextTick, reactive, ref } from "vue";
 
 const state = reactive({
   roleId: "",

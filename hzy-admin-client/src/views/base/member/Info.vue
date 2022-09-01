@@ -4,7 +4,7 @@
       <a-button type="primary" @click="methods.saveForm()" :loading="state.saveLoading">提交</a-button>
       <a-button type="danger" ghost @click="state.visible = false" class="ml-15">关闭</a-button>
     </template>
-    <a-spin :spinning="state.saveLoading">
+    <a-spin v-drag :spinning="state.saveLoading">
       <!-- 上传 -->
       <a-form layout="vertical" :model="state.vm.form">
         <a-row :gutter="[15, 15]">
@@ -99,11 +99,11 @@
   </a-modal>
 </template>
 <script setup>
-import { reactive, ref, watch } from "vue";
-import tools from "@/scripts/tools";
-import service from "@/service/base/memberService";
 import WangEditor from "@/components/WangEditor.vue";
 import appConsts from "@/scripts/app-consts";
+import tools from "@/scripts/tools";
+import service from "@/service/base/memberService";
+import { reactive, ref, watch } from "vue";
 // import dayjs from 'dayjs';
 //
 // const dateFormat = 'YYYY-MM-DD';
