@@ -6,13 +6,13 @@
     <members>
         <member name="P:HZY.Infrastructure.Aop.Cache.BaseCacheAttribute.CacheKey">
             <summary>
-            缓存Key
+            缓存Key 不填默认是 函数的命名空间.函数名称
             </summary>
             <value></value>
         </member>
         <member name="P:HZY.Infrastructure.Aop.Cache.BaseCacheAttribute.RedisServiceType">
             <summary>
-            Redis 服务类型
+            Redis 服务类型 不传递默认 走内存缓存
             </summary>
             <value></value>
         </member>
@@ -133,6 +133,13 @@
             <summary>
             清除缓存AOP
             </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Aop.Cache.CacheEvictAttribute.#ctor(System.Type,System.String)">
+            <summary>
+            用于设置 默认 缓存key 需要 ，自动组合默认缓存名称
+            </summary>
+            <param name="cacheClassType">缓存 类 类型</param>
+            <param name="actionName">缓存函数名称</param>
         </member>
         <member name="P:HZY.Infrastructure.Aop.Cache.CacheEvictAttribute.BeforeRun">
             <summary>
