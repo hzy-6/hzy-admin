@@ -2,20 +2,11 @@
 using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
-using HZY.Models.DTO;
 using HZY.Models.DTO.Framework;
-using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Core;
 using HzyEFCoreRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HZY.Services.Admin.Framework;
 
@@ -171,7 +162,7 @@ public class SysDictionaryService : AdminBaseService<IAdminRepository<SysDiction
         var dictionary = await this._defaultRepository.FindAsync(w => w.Code == code);
         if (dictionary == null) return default;
         var dictionarys = await this._defaultRepository.Select.Where(w => w.ParentId == dictionary.Id).ToListAsync();
-        if (dictionarys.Any()) return default;
+        if (!dictionarys.Any()) return default;
         var result = new List<SysDictionaryDto>();
         return this.CreateDictionaryTree(dictionary.Id, dictionarys);
     }
