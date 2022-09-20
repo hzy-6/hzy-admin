@@ -65,7 +65,7 @@ namespace @(Model.Namespace).Models.Entities.App
     /// <summary>
     /// @(string.IsNullOrWhiteSpace(classNameRemark) ? className : classNameRemark)
     /// </summary>
-    public class @className : DefaultBaseEntity<@("Guid")>
+    public class @className : DefaultBaseEntityGuidKey
     {
         @foreach (var item in tableInfos)
         {

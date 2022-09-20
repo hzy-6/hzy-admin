@@ -56,28 +56,6 @@ namespace HZY.Managers.EFCore.Interceptor
 
             #endregion
 
-            #region 处理 DefaultBaseEntity
-
-            //Update
-            var updateEntries_BaseModel = entityEntries
-                .Where(w => w.Entity is DefaultBaseEntity && w.State == EntityState.Modified) // || w.State == EntityState.Unchanged
-                .Select(item => (DefaultBaseEntity)item.Entity)
-                .ToList();
-            updateEntries_BaseModel.ForEach(w => w.LastModificationTime = DateTime.Now);
-
-            //Insert
-            var insertEntries_BaseModel = entityEntries
-                .Where(w => w.Entity is DefaultBaseEntity && w.State == EntityState.Added)
-                .Select(item => (DefaultBaseEntity)item.Entity)
-                .ToList();
-            foreach (var entity in insertEntries_BaseModel)
-            {
-                entity.CreationTime = DateTime.Now;
-                entity.LastModificationTime = DateTime.Now;
-            }
-
-            #endregion
-
             #region 处理 BaseEntity
 
             //Insert

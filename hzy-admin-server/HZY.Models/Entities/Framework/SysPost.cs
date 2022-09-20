@@ -8,7 +8,7 @@ namespace HZY.Models.Entities.Framework;
 /// <summary>
 /// 岗位
 /// </summary>
-public class SysPost : DefaultBaseEntity<Guid>
+public class SysPost : DefaultBaseEntityGuidKey
 {
     /// <summary>
     /// 编号

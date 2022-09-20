@@ -6,7 +6,7 @@ namespace HZY.Models.Entities.Framework;
 /// <summary>
 /// 操作日志
 /// </summary>
-public class SysOperationLog : DefaultBaseEntity<Guid>
+public class SysOperationLog : DefaultBaseEntityGuidKey
 {
     /// <summary>
     /// 接口地址

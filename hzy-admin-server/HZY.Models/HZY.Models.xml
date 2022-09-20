@@ -403,26 +403,28 @@
             创建时间
             </summary>
         </member>
-        <member name="T:HZY.Models.Entities.BaseEntitys.DefaultBaseEntity">
+        <member name="T:HZY.Models.Entities.BaseEntitys.DefaultBaseEntityGuidKey">
             <summary>
-            基础模型
-            包含属性 LastModificationTime、CreationTime
+            基础模型 主键为 Guid
+            包含属性 LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.BaseEntitys.DefaultBaseEntity.LastModificationTime">
+        <member name="T:HZY.Models.Entities.BaseEntitys.DefaultBaseEntityIdentityIntKey">
             <summary>
-            更新时间
+            基础模型 主键为 int 自增
+            包含属性 LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.BaseEntitys.DefaultBaseEntity.CreationTime">
+        <member name="T:HZY.Models.Entities.BaseEntitys.DefaultBaseEntityStringKey">
             <summary>
-            创建时间
+            基础模型 主键为 string
+            包含属性 LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id
             </summary>
         </member>
         <member name="T:HZY.Models.Entities.BaseEntitys.DefaultBaseEntity`1">
             <summary>
-            基础模型
-            包含属性 Id、UpdateTime、CreateTime
+            基础模型 主键为 自己定义传入
+            包含属性 LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id
             </summary>
             <typeparam name="TKey"></typeparam>
         </member>

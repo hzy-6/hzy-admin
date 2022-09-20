@@ -7,7 +7,7 @@ namespace HZY.Models.Entities.Framework
     /// <summary>
     /// 数据权限子表
     /// </summary>
-    public class SysDataAuthorityCustom : DefaultBaseEntity<Guid>
+    public class SysDataAuthorityCustom : DefaultBaseEntityGuidKey
     {
 
         /// <summary>

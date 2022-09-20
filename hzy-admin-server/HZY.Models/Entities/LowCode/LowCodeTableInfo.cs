@@ -10,7 +10,7 @@ namespace HZY.Models.Entities.LowCode
     /// <summary>
     /// 低代码表信息
     /// </summary>
-    public class LowCodeTableInfo : DefaultBaseEntity<Guid>
+    public class LowCodeTableInfo : DefaultBaseEntityGuidKey
     {
         /// <summary>
         /// 表 id

@@ -8,7 +8,7 @@ namespace HZY.Models.Entities.Framework;
 /// <summary>
 /// 功能
 /// </summary>
-public class SysFunction : DefaultBaseEntity<Guid>
+public class SysFunction : DefaultBaseEntityGuidKey
 {
     /// <summary>
     /// 编号

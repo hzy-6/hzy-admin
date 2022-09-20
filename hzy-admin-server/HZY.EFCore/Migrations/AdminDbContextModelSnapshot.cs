@@ -17,7 +17,7 @@ namespace HZY.EFCore.Migrations
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "6.0.6")
+                .HasAnnotation("ProductVersion", "6.0.8")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
@@ -34,8 +34,14 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -60,6 +66,9 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("FlowCode")
                         .HasColumnType("nvarchar(max)");
 
@@ -72,8 +81,11 @@ namespace HZY.EFCore.Migrations
                     b.Property<Guid>("FormId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("LaunchTime")
                         .HasColumnType("datetime2");
@@ -101,14 +113,20 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("FlowNodeId")
                         .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("FlowNodeName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Opinions")
                         .HasColumnType("nvarchar(max)");
@@ -142,6 +160,9 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("FlowApprovalStepHistoryId")
                         .HasColumnType("uniqueidentifier");
 
@@ -151,8 +172,11 @@ namespace HZY.EFCore.Migrations
                     b.Property<string>("FlowNodeName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("UserId")
                         .HasColumnType("uniqueidentifier");
@@ -174,11 +198,17 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<Guid>("FlowId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -206,8 +236,14 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("PermissionType")
                         .HasColumnType("int");
@@ -247,8 +283,14 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid?>("SysDataAuthorityId")
                         .HasColumnType("uniqueidentifier");
@@ -275,8 +317,14 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -351,8 +399,14 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -467,6 +521,9 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
 
@@ -476,8 +533,11 @@ namespace HZY.EFCore.Migrations
                     b.Property<bool>("KeepAlive")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LevelCode")
                         .HasColumnType("nvarchar(max)");
@@ -1086,14 +1146,20 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("FunctionCode")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("FunctionName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("MenuId")
                         .HasColumnType("int");
@@ -2243,6 +2309,9 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Form")
                         .HasColumnType("nvarchar(max)");
 
@@ -2252,8 +2321,11 @@ namespace HZY.EFCore.Migrations
                     b.Property<string>("Ip")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("OS")
                         .HasColumnType("nvarchar(max)");
@@ -2283,11 +2355,17 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("Email")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Leader")
                         .HasColumnType("nvarchar(max)");
@@ -2454,8 +2532,14 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -2535,11 +2619,17 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("DeleteLock")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -2586,8 +2676,14 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("MenuFunctionId")
                         .HasColumnType("uniqueidentifier");
@@ -2794,6 +2890,9 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<bool>("DeleteLock")
                         .HasColumnType("bit");
 
@@ -2801,8 +2900,11 @@ namespace HZY.EFCore.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("LoginName")
                         .IsRequired()
@@ -2967,8 +3069,14 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("PostId")
                         .HasColumnType("uniqueidentifier");
@@ -3088,8 +3196,14 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("RoleId")
                         .HasColumnType("uniqueidentifier");
@@ -3193,14 +3307,20 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("ForeignKeyTableFieldName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<Guid>("ForeignKeyTableId")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Low_Code_TableId")
                         .HasColumnType("uniqueidentifier");
@@ -3222,8 +3342,14 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Low_Code_TableId")
                         .HasColumnType("uniqueidentifier");
@@ -3248,6 +3374,9 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("DisplayName")
                         .HasColumnType("nvarchar(max)");
 
@@ -3263,8 +3392,11 @@ namespace HZY.EFCore.Migrations
                     b.Property<bool?>("IsCover")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("ModelPath")
                         .HasColumnType("nvarchar(max)");
@@ -3305,32 +3437,13 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
                             ServiceJsPath = "hzy-admin-client/src/service/app/",
                             ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
                             TableName = "sys_user_post",
-                            Type = "TABLE"
-                        },
-                        new
-                        {
-                            Id = new Guid("a9e68076-84d2-449f-a7c2-134f09984dfb"),
-                            ControllerPath = "hzy-admin-server/HZY.Controllers.Admin/App/",
-                            CreationTime = new DateTime(2022, 7, 29, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            DisplayName = "",
-                            EntityName = "Efmigrationshistory",
-                            IndexVuePath = "hzy-admin-client/src/views/app/",
-                            InfoVuePath = "hzy-admin-client/src/views/app/",
-                            IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
-                            ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
-                            ProjectRootPath = "HzyAdmin",
-                            Schema = "dbo",
-                            ServiceJsPath = "hzy-admin-client/src/service/app/",
-                            ServicePath = "hzy-admin-server/HZY.Services.Admin/App/",
-                            TableName = "__EFMigrationsHistory",
                             Type = "TABLE"
                         },
                         new
@@ -3343,7 +3456,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3362,7 +3475,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3397,7 +3510,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3432,7 +3545,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3451,7 +3564,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3470,7 +3583,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3489,7 +3602,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3508,7 +3621,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3527,7 +3640,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3546,7 +3659,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3565,7 +3678,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3584,7 +3697,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3603,7 +3716,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3622,7 +3735,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3641,7 +3754,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3660,7 +3773,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3679,7 +3792,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3698,7 +3811,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3717,7 +3830,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3736,7 +3849,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3755,7 +3868,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3774,7 +3887,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 3, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3793,7 +3906,7 @@ namespace HZY.EFCore.Migrations
                             IndexVuePath = "hzy-admin-client/src/views/app/",
                             InfoVuePath = "hzy-admin-client/src/views/app/",
                             IsCover = false,
-                            LastModificationTime = new DateTime(2022, 7, 30, 20, 42, 27, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 8, 1, 20, 32, 25, 0, DateTimeKind.Unspecified),
                             ModelPath = "hzy-admin-server/HZY.Models/Entities/App/",
                             ProjectRootPath = "HzyAdmin",
                             Schema = "dbo",
@@ -3815,6 +3928,9 @@ namespace HZY.EFCore.Migrations
 
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("CsField")
                         .HasColumnType("nvarchar(max)");
@@ -3840,8 +3956,11 @@ namespace HZY.EFCore.Migrations
                     b.Property<bool>("IsPrimary")
                         .HasColumnType("bit");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<Guid>("Low_Code_TableId")
                         .HasColumnType("uniqueidentifier");
@@ -7232,42 +7351,6 @@ namespace HZY.EFCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("92da4c9a-a430-493e-3381-08da716a5c08"),
-                            ColumnName = "MigrationId",
-                            CreationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            CsField = "MigrationId",
-                            CsType = "String",
-                            DatabaseColumnType = "nvarchar(150)",
-                            Describe = "",
-                            DisplayName = "",
-                            IsIdentity = false,
-                            IsNullable = false,
-                            IsPrimary = true,
-                            LastModificationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("a9e68076-84d2-449f-a7c2-134f09984dfb"),
-                            MaxLength = 150,
-                            Position = 1
-                        },
-                        new
-                        {
-                            Id = new Guid("70e3ad35-4ffa-4a96-3382-08da716a5c08"),
-                            ColumnName = "ProductVersion",
-                            CreationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            CsField = "ProductVersion",
-                            CsType = "String",
-                            DatabaseColumnType = "nvarchar(32)",
-                            Describe = "",
-                            DisplayName = "",
-                            IsIdentity = false,
-                            IsNullable = false,
-                            IsPrimary = false,
-                            LastModificationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
-                            Low_Code_TableId = new Guid("a9e68076-84d2-449f-a7c2-134f09984dfb"),
-                            MaxLength = 32,
-                            Position = 2
-                        },
-                        new
-                        {
                             Id = new Guid("51d2eb90-7ab9-4763-3387-08da716a5c08"),
                             ColumnName = "Id",
                             CreationTime = new DateTime(2022, 7, 29, 21, 58, 5, 0, DateTimeKind.Unspecified),
@@ -7946,14 +8029,20 @@ namespace HZY.EFCore.Migrations
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("datetime2");
 
+                    b.Property<Guid?>("CreatorUserId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<string>("FilePath")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Introduce")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<DateTime>("LastModificationTime")
+                    b.Property<DateTime?>("LastModificationTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<Guid?>("LastModifierUserId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -7983,11 +8072,13 @@ namespace HZY.EFCore.Migrations
                             Id = new Guid("96a1aa3d-a61a-42d0-954a-c71753fb2065"),
                             Birthday = new DateTime(2018, 4, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
                             CreationTime = new DateTime(2020, 10, 24, 0, 7, 42, 0, DateTimeKind.Unspecified),
+                            FilePath = "[{\"uid\":\"a6778e9d-6c2e-4d23-91c9-d0d10756d177\",\"name\":\"time_000345_old_name_hzy.png\",\"percent\":100,\"status\":\"done\",\"thumbUrl\":\"/upload/files/20220731/time_000345_old_name_hzy.png\",\"url\":\"/upload/files/20220731/time_000345_old_name_hzy.png\"}]",
                             Introduce = "<p>123</p>",
-                            LastModificationTime = new DateTime(2021, 4, 18, 22, 8, 6, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 7, 31, 0, 3, 48, 0, DateTimeKind.Unspecified),
                             Name = "123",
                             Number = "123",
                             Phone = "123",
+                            Photo = "[{\"uid\":\"d80bbe3d-7296-4eb9-965a-cb3f03d3def7\",\"name\":\"time_000335_old_name_微信图片_20200413162625.jpg\",\"percent\":100,\"status\":\"done\",\"thumbUrl\":\"/upload/files/20220731/time_000335_old_name_微信图片_20200413162625.jpg\",\"url\":\"/upload/files/20220731/time_000335_old_name_微信图片_20200413162625.jpg\"}]",
                             Sex = "女",
                             UserId = new Guid("ac18f496-e93d-42f0-b59e-e321acc85335")
                         },
@@ -7996,13 +8087,13 @@ namespace HZY.EFCore.Migrations
                             Id = new Guid("9a604aa2-9ae6-4a2f-8ddb-d9e0289ead9e"),
                             Birthday = new DateTime(2019, 7, 8, 11, 47, 24, 0, DateTimeKind.Unspecified),
                             CreationTime = new DateTime(2018, 4, 25, 23, 0, 0, 0, DateTimeKind.Unspecified),
-                            FilePath = "/upload/files/20210118/time_233310_old_name_hzy.png",
+                            FilePath = "[{\"uid\":\"35828ad6-cbba-4bcb-9c97-141d5b31acc7\",\"name\":\"time_000320_old_name_Ko.js增删改查例子.txt\",\"percent\":100,\"status\":\"done\",\"thumbUrl\":\"/upload/files/20220731/time_000320_old_name_Ko.js增删改查例子.txt\",\"url\":\"/upload/files/20220731/time_000320_old_name_Ko.js增删改查例子.txt\"}]",
                             Introduce = "<p>999888</p>",
-                            LastModificationTime = new DateTime(2022, 5, 8, 16, 46, 21, 0, DateTimeKind.Unspecified),
+                            LastModificationTime = new DateTime(2022, 7, 31, 0, 3, 23, 0, DateTimeKind.Unspecified),
                             Name = "测试会员",
                             Number = "1",
                             Phone = "18510912123",
-                            Photo = "http://localhost:5600http://localhost:5600http://localhost:5600/upload/files/20210118/time_232747_old_name_hzy.png",
+                            Photo = "[{\"uid\":\"6f5aed63-0fdc-4752-9c2b-3f66cbfa77bf\",\"name\":\"time_000222_old_name_微信图片_20200521081252.jpg\",\"percent\":100,\"status\":\"done\",\"thumbUrl\":\"/upload/files/20220731/time_000222_old_name_微信图片_20200521081252.jpg\",\"url\":\"/upload/files/20220731/time_000222_old_name_微信图片_20200521081252.jpg\"}]",
                             Sex = "男",
                             UserId = new Guid("ac18f496-e93d-42f0-b59e-e321acc85335")
                         });

@@ -71,7 +71,7 @@ public class SysMenuService : AdminBaseService<IAdminRepository<SysMenu>>
                   w.t1.Icon,
                   w.t1.Close,
                   w.t1.Show,
-                  LastModificationTime = w.t1.LastModificationTime.ToString("yyyy-MM-dd"),
+                  LastModificationTime = w.t1.LastModificationTime == null ? "" : w.t1.LastModificationTime.Value.ToString("yyyy-MM-dd"),
                   CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
               })
           ;

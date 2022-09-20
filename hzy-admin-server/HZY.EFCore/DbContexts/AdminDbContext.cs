@@ -52,6 +52,7 @@ public class AdminDbContext : DbContext
                         where w.IsClass && w.IsPublic && !w.IsGenericType
                         where w.GetInterface(nameof(IBaseEntity)) != null
                         where w.Namespace.Contains(appConfiguration.Configs.DbContextInfo.DbSetScanNamespace)
+                        where !w.Name.StartsWith("DefaultBaseEntity")
                         select w;
 
             foreach (var type in types)

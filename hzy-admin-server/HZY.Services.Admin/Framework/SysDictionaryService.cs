@@ -44,7 +44,7 @@ public class SysDictionaryService : AdminBaseService<IAdminRepository<SysDiction
                   w.t1.Name,
                   w.t1.Value,
                   父级菜单 = w.t2.Name,
-                  LastModificationTime = w.t1.LastModificationTime.ToString("yyyy-MM-dd"),
+                  LastModificationTime = w.t1.LastModificationTime == null ? "" : w.t1.LastModificationTime.Value.ToString("yyyy-MM-dd"),
                   CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
               })
           ;

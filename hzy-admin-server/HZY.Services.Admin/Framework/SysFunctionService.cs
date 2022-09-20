@@ -40,7 +40,7 @@ public class SysFunctionService : AbsCrudBaseService<IAdminRepository<SysFunctio
                 w.Number,
                 w.Name,
                 w.ByName,
-                LastModificationTime = w.LastModificationTime.ToString("yyyy-MM-dd"),
+                LastModificationTime = w.LastModificationTime == null ? "" : w.LastModificationTime.Value.ToString("yyyy-MM-dd"),
                 CreationTime = w.CreationTime.ToString("yyyy-MM-dd"),
             })
         ;

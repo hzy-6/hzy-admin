@@ -92,7 +92,7 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
                     OrganizationName = w.t2.Name,
                     w.t1.Phone,
                     _Email = w.t1.Email,
-                    LastModificationTime = w.t1.LastModificationTime.ToString("yyyy-MM-dd"),
+                    LastModificationTime = w.t1.LastModificationTime == null ? "" : w.t1.LastModificationTime.Value.ToString("yyyy-MM-dd"),
                     CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
                 })
             ;

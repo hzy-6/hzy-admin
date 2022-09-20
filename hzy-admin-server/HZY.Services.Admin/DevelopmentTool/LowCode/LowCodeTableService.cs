@@ -63,7 +63,7 @@ namespace HZY.Services.Admin
                         w.DisplayName,
                         w.EntityName,
                         w.Remark,
-                        LastModificationTime = w.LastModificationTime.ToString("yyyy-MM-dd"),
+                        LastModificationTime = w.LastModificationTime == null ? "" : w.LastModificationTime.Value.ToString("yyyy-MM-dd"),
                         CreationTime = w.CreationTime.ToString("yyyy-MM-dd"),
                     })
                 ;

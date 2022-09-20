@@ -64,7 +64,7 @@ namespace HZY.Services.Admin
                         w.CsField,
                         w.DisplayName,
                         w.Low_Code_TableId,
-                        LastModificationTime = w.LastModificationTime.ToString("yyyy-MM-dd"),
+                        LastModificationTime = w.LastModificationTime == null ? "" : w.LastModificationTime.Value.ToString("yyyy-MM-dd"),
                         CreationTime = w.CreationTime.ToString("yyyy-MM-dd"),
                     })
                 ;

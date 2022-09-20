@@ -49,7 +49,7 @@ namespace HZY.Services.Admin.Framework
                         w.Id,
                         w.PermissionType,
                         w.RoleId,
-                        LastModificationTime = w.LastModificationTime.ToString("yyyy-MM-dd"),
+                        LastModificationTime = w.LastModificationTime.Value.ToString("yyyy-MM-dd"),
                         CreationTime = w.CreationTime.ToString("yyyy-MM-dd")
                     })
                 ;

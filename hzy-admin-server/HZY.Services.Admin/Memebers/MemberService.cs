@@ -63,7 +63,7 @@ public class MemberService : AdminBaseService<IAdminRepository<Member>>
                     w.t1.Sex,
                     Birthday = w.t1.Birthday.ToString("yyyy-MM-dd"),
                     操作人 = w.t2.Name,
-                    LastModificationTime = w.t1.LastModificationTime.ToString("yyyy-MM-dd"),
+                    LastModificationTime = w.t1.LastModificationTime == null ? "" : w.t1.LastModificationTime.Value.ToString("yyyy-MM-dd"),
                     CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
                     //别名 前面包含 _ 则表示界面上会隐藏列
                     _UserId = w.t1.UserId,

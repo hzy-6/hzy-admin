@@ -8,12 +8,8 @@ namespace HZY.Models.Entities.Framework;
 /// <summary>
 /// 数据字典
 /// </summary>
-public class SysDictionary : DefaultBaseEntity<int>
+public class SysDictionary : DefaultBaseEntityIdentityIntKey
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public override int Id { get; set; }
-
     /// <summary>
     /// 排序号
     /// </summary>

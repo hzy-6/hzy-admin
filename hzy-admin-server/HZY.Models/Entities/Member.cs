@@ -6,7 +6,7 @@ namespace HZY.Models.Entities;
 /// <summary>
 /// member
 /// </summary>
-public class Member : DefaultBaseEntity<Guid>
+public class Member : DefaultBaseEntityGuidKey
 {
     /// <summary>
     /// 编号

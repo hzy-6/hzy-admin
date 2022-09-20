@@ -6,7 +6,7 @@ namespace HZY.Models.Entities.Framework;
 /// <summary>
 /// 菜单与功能绑定
 /// </summary>
-public class SysMenuFunction : DefaultBaseEntity<Guid>
+public class SysMenuFunction : DefaultBaseEntityGuidKey
 {
     /// <summary>
     /// 序号

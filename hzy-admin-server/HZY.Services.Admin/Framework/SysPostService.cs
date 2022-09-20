@@ -45,7 +45,7 @@ public class SysPostService : AdminBaseService<IAdminRepository<SysPost>>
                     //State = w.State == StateEnum.正常 ? "正常" : "停用",
                     w.State,
                     //State=w.State.ToString(),
-                    LastModificationTime = w.LastModificationTime.ToString("yyyy-MM-dd"),
+                    LastModificationTime = w.LastModificationTime == null ? "" : w.LastModificationTime.Value.ToString("yyyy-MM-dd"),
                     CreationTime = w.CreationTime.ToString("yyyy-MM-dd"),
                 })
             ;

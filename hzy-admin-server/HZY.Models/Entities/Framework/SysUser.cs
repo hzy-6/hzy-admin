@@ -7,7 +7,7 @@ namespace HZY.Models.Entities.Framework;
 /// <summary>
 /// 系统账号
 /// </summary>
-public class SysUser : DefaultBaseEntity<Guid>
+public class SysUser : DefaultBaseEntityGuidKey
 {
     /// <summary>
     /// 账户名称

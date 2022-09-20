@@ -9,12 +9,8 @@ namespace HZY.Models.Entities.Framework;
 /// <summary>
 /// 组织机构
 /// </summary>
-public class SysOrganization : DefaultBaseEntity<int>
+public class SysOrganization : DefaultBaseEntityIdentityIntKey
 {
-    [Key]
-    [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-    public override int Id { get; set; }
-
     /// <summary>
     /// 组织名称
     /// </summary>
