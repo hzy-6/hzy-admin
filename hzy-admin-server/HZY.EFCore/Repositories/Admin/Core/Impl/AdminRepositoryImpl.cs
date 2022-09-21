@@ -93,7 +93,7 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
         var sqlString = sql;
         if (page > 0)
         {
-            pagingView.Total = await QuerySingleBySqlAsync<long>($"SELECT COUNT(1) FROM ({sql}) TAB", parameters);
+            pagingView.Total = await QuerySingleBySqlAsync<int>($"SELECT COUNT(1) FROM ({sql}) TAB", parameters);
             pagingView.PageCount = pagingView.Total % size > 0 ? (pagingView.Total / size) + 1 : (pagingView.Total / size);//无法整除有余,则增加一页
             pagingView.Page = pagingView.Page > pagingView.PageCount ? 1 : pagingView.Page;
             var offSet = size * (pagingView.Page - 1);
