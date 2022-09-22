@@ -12,6 +12,14 @@
       </div>
       <div style="flex: 1 1 0%" v-else></div>
 
+      <div class="hzy-header-btn" @click="methods.jumpDoc()">
+        <a-tooltip>
+          <template #title>文档地址</template>
+          <a-badge status="success" dot>
+            <AppIcon name="RocketOutlined" :size="16" />
+          </a-badge>
+        </a-tooltip>
+      </div>
       <!-- 实时消息 -->
       <div class="hzy-header-btn" @click="() => (state.visible = !state.visible)">
         <a-badge count="5">
@@ -101,6 +109,9 @@ const methods = {
   //刷新当前页面
   onReload() {
     layoutStore.refresh(router.currentRoute.value.fullPath, router.currentRoute.value.name);
+  },
+  jumpDoc() {
+    window.open("https://www.yuque.com/u378909/yidf7v", "_blank");
   },
 };
 </script>

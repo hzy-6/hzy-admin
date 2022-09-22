@@ -1,1 +1,0 @@
-import{a,k as n,q as o,w as r,n as s,e as u,f as p,aR as c}from"./index-3c68c560.js";const m={__name:"Index3Count",setup(l){const t=a(0);return(f,e)=>(n(),o(p(c),{type:"primary",onClick:e[0]||(e[0]=i=>t.value++)},{default:r(()=>[s("\u8BA1\u6570:"+u(t.value),1)]),_:1}))}};export{m as default};
