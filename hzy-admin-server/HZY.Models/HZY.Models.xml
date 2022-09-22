@@ -406,25 +406,25 @@
         <member name="T:HZY.Models.Entities.BaseEntitys.DefaultBaseEntityGuidKey">
             <summary>
             基础模型 主键为 Guid
-            包含属性 LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id
+            包含属性 Id=主键、LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id
             </summary>
         </member>
         <member name="T:HZY.Models.Entities.BaseEntitys.DefaultBaseEntityIdentityIntKey">
             <summary>
             基础模型 主键为 int 自增
-            包含属性 LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id
+            包含属性 Id=主键、LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id
             </summary>
         </member>
         <member name="T:HZY.Models.Entities.BaseEntitys.DefaultBaseEntityStringKey">
             <summary>
             基础模型 主键为 string
-            包含属性 LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id
+            包含属性 Id=主键、LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id
             </summary>
         </member>
         <member name="T:HZY.Models.Entities.BaseEntitys.DefaultBaseEntity`1">
             <summary>
             基础模型 主键为 自己定义传入
-            包含属性 LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id
+            包含属性 Id=主键、LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id
             </summary>
             <typeparam name="TKey"></typeparam>
         </member>
@@ -442,6 +442,31 @@
             <summary>
             删除时间
             </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.BaseEntitys.FullBaseEntityGuidKey">
+            <summary>
+            全量模型 主键为 Guid
+            包含属性 Id=主键、LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id、IsDeleted=是否删除、DeleterUserId=删除人、DeletionTime=删除时间
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.BaseEntitys.FullBaseEntityIdentityIntKey">
+            <summary>
+            全量模型 主键为 int 自增
+            包含属性 Id=主键、LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id、IsDeleted=是否删除、DeleterUserId=删除人、DeletionTime=删除时间
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.BaseEntitys.FullBaseEntityStringKey">
+            <summary>
+            基础模型 主键为 string
+            包含属性 Id=主键、LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id、IsDeleted=是否删除、DeleterUserId=删除人、DeletionTime=删除时间
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.BaseEntitys.FullBaseEntity`1">
+            <summary>
+            全量模型 主键为 自己定义传入
+            包含属性 Id=主键、LastModificationTime=最后更新时间 、LastModifierUserId=最后更新人Id、CreationTime=创建时间 、CreatorUserId=创建人Id、IsDeleted=是否删除、DeleterUserId=删除人、DeletionTime=删除时间
+            </summary>
+            <typeparam name="TKey"></typeparam>
         </member>
         <member name="P:HZY.Models.Entities.BaseEntitys.IUpdateBaseEntity.LastModifierUserId">
             <summary>
