@@ -4,9 +4,11 @@ using HZY.Infrastructure.SerilogUtil;
 using HZY.Models.Entities.BaseEntitys;
 using HzyEFCoreRepositories.Extensions;
 using HzyScanDiService;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Hosting;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HZY.EFCore.DbContexts;
@@ -18,19 +20,27 @@ public class AdminDbContext : DbContext
 {
     public AdminDbContext(DbContextOptions<AdminDbContext> options) : base(options)
     {
-        // 自动迁移 （如果迁移文件有变动）
-        if (this.Database.GetPendingMigrations().Count() > 0)
-        {
-            try
-            {
-                this.Database.Migrate();
-            }
-            catch (System.Exception ex)
-            {
-                LogUtil.Log.Error(ex.Message, ex);
-            }
+        #region 开发环境检测是否需要数据库迁移
 
+        var webHostEnvironment = this.GetService<IWebHostEnvironment>();
+        if (webHostEnvironment.IsDevelopment())
+        {
+            // 自动迁移 （如果迁移文件有变动）
+            if (this.Database.GetPendingMigrations().Count() > 0)
+            {
+                try
+                {
+                    this.Database.Migrate();
+                }
+                catch (Exception ex)
+                {
+                    LogUtil.Log.Error(ex.Message, ex);
+                }
+            }
         }
+
+        #endregion
+
     }
 
     /// <summary>
