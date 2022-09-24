@@ -1,8 +1,9 @@
 import Http from '@/infrastructure/scripts/Http';
 
-const controllerName = "admin/CodeGeneration";
+class CodeGenerationService {
 
-export default {
+    private controllerName: string = "admin/LowCodeTableInfo";
+
     /**
      * 查询列表
      * 
@@ -10,16 +11,16 @@ export default {
      * @param {当前页码} page 
      */
     findList(rows, page, search = {}) {
-        return Http.post(`${controllerName}/findList/${rows}/${page}`, search, false);
-    },
+        return Http.post(`${this.controllerName}/findList/${rows}/${page}`, search, false);
+    }
 
     /**
      * 获取 code
      * @returns 
      */
     getCode(form) {
-        return Http.post(`${controllerName}/getCode`, form, false);
-    },
+        return Http.post(`${this.controllerName}/getCode`, form, false);
+    }
 
     /**
      * 下载当前代码
@@ -27,8 +28,8 @@ export default {
      * @returns 
      */
     download(form) {
-        return Http.download(`${controllerName}/download`, form, false);
-    },
+        return Http.download(`${this.controllerName}/download`, form, false);
+    }
 
     /**
      * 下载当前代码
@@ -36,19 +37,22 @@ export default {
      * @returns 
      */
     downloadAll(form) {
-        return Http.download(`${controllerName}/downloadAll`, form, false);
-    },
+        return Http.download(`${this.controllerName}/downloadAll`, form, false);
+    }
 
     /**
      * 创建数据字典
      */
     createDataDictionary() {
-        return Http.download(`${controllerName}/createDataDictionary`, null, false);
-    },
+        return Http.download(`${this.controllerName}/createDataDictionary`, null, false);
+    }
     /**
      * 代码生成导入到项目
      */
     autoImprotProject(form) {
-        return Http.post(`${controllerName}/AutoImprotProject`, form, false)
+        return Http.post(`${this.controllerName}/AutoImprotProject`, form, false)
     }
-};
+
+}
+
+export default new CodeGenerationService();

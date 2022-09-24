@@ -1,9 +1,10 @@
 import Http from '@/infrastructure/scripts/Http';
 import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
 
-const controllerName = "admin/SysOperationLog";
+class SysOperationLogSerivce {
 
-export default {
+    private controllerName: string = "admin/SysOperationLog";
+
     /**
      * 查询列表
      * 
@@ -11,18 +12,21 @@ export default {
      * @param {当前页码} page 
      */
     findList(rows, page, search = {}) {
-        return Http.post(`${controllerName}/findList/${rows}/${page}`, search, false);
-    },
+        return Http.post(`${this.controllerName}/findList/${rows}/${page}`, search, false);
+    }
+
     deleteAllData() {
-        return Http.get(`${controllerName}/deleteAllData`);
-    },
+        return Http.get(`${this.controllerName}/deleteAllData`);
+    }
+
     /**
      * 获取表单数据
      * 
      * @param {*} id 
      */
     findForm(id) {
-        return Http.get(`${controllerName}/findForm${(id ? '/' + id : '')}`);
-    },
+        return Http.get(`${this.controllerName}/findForm${(id ? '/' + id : '')}`);
+    }
+}
 
-};
+export default new SysOperationLogSerivce()

@@ -1,9 +1,10 @@
 import Http from '@/infrastructure/scripts/Http';
 import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
 
-const controllerName = "admin/SysRoleMenuFunction";
+class RoleFunctionService {
 
-export default {
+    private controllerName: string = "admin/SysRoleMenuFunction";
+
     /**
      * 查询列表
      * 
@@ -11,8 +12,9 @@ export default {
      * @param {当前页码} page 
      */
     findList(rows, page, search = {}) {
-        return Http.post(`${controllerName}/findList/${rows}/${page}`, search, false);
-    },
+        return Http.post(`${this.controllerName}/findList/${rows}/${page}`, search, false);
+    }
+
     /**
      * 保存表单
      * 
@@ -20,15 +22,19 @@ export default {
      */
     saveForm(vm) {
         if (vm.id) {
-            return Http.post(`${controllerName}/update`, vm);
+            return Http.post(`${this.controllerName}/update`, vm);
         }
-        return Http.post(`${controllerName}/create`, vm);
-    },
+        return Http.post(`${this.controllerName}/create`, vm);
+    }
+
     /**
      * 获取角色菜单功能树
      * @param {角色Id} roleId 
      */
     getRoleMenuFunctionByRoleId(roleId) {
-        return Http.get(`${controllerName}/getRoleMenuFunctionByRoleId/${roleId}`);
+        return Http.get(`${this.controllerName}/getRoleMenuFunctionByRoleId/${roleId}`);
     }
-};
+
+}
+
+export default new RoleFunctionService();

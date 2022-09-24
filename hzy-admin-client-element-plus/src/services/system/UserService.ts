@@ -1,17 +1,19 @@
 import Http from '@/infrastructure/scripts/Http';
 import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
 
-const controllerName = "admin/SysUser";
+class UserService {
 
-export default {
+    private controllerName: string = "admin/SysUser";
+
     /**
      * 获取用户和菜单信息
      *
      * @returns {Promise}
      */
     getUserInfo() {
-        return Http.get(`${controllerName}/info`);
-    },
+        return Http.get(`${this.controllerName}/info`);
+    }
+
     /**
      * 查询列表
      * 
@@ -19,8 +21,9 @@ export default {
      * @param {当前页码} page 
      */
     findList(rows, page, search = {}) {
-        return Http.post(`${controllerName}/findList/${rows}/${page}`, search, false);
-    },
+        return Http.post(`${this.controllerName}/findList/${rows}/${page}`, search, false);
+    }
+
     /**
      * 删除数据
      * 
@@ -31,16 +34,18 @@ export default {
         if (ids && ids.length === 0) {
             return Tools.message("请选择要删除的数据!", EMessageType.警告);
         }
-        return Http.post(`${controllerName}/deleteList`, ids, false);
-    },
+        return Http.post(`${this.controllerName}/deleteList`, ids, false);
+    }
+
     /**
      * 获取表单数据
      * 
      * @param {*} id 
      */
     findForm(id) {
-        return Http.get(`${controllerName}/findForm${(id ? '/' + id : '')}`);
-    },
+        return Http.get(`${this.controllerName}/findForm${(id ? '/' + id : '')}`);
+    }
+
     /**
      * 保存表单
      * 
@@ -48,16 +53,18 @@ export default {
      */
     saveForm(vm) {
         if (vm.id) {
-            return Http.post(`${controllerName}/update`, vm);
+            return Http.post(`${this.controllerName}/update`, vm);
         }
-        return Http.post(`${controllerName}/create`, vm);
-    },
+        return Http.post(`${this.controllerName}/create`, vm);
+    }
+
     /**
      * 导出 excel
      * @param {*} search 
      */
     exportExcel(search) {
-        return Http.download(`${controllerName}/exportExcel`, search);
-    },
+        return Http.download(`${this.controllerName}/exportExcel`, search);
+    }
+}
 
-};
+export default new UserService()

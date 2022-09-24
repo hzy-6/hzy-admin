@@ -1,28 +1,34 @@
 import Http from '@/infrastructure/scripts/Http';
 
-const controllerName = "admin/MonitorEFCore";
+class MonitorEfCoreService {
 
-export default {
+    private controllerName: string = "admin/MonitorEFCore";
+
     /**
      * 获取 EFCore 监控上下文
      *
      */
     getEFCoreMonitorContext() {
-        return Http.post(`${controllerName}/GetEFCoreMonitorContext/`, null, false);
-    },
+        return Http.post(`${this.controllerName}/GetEFCoreMonitorContext/`, null, false);
+    }
+
     /**
      * 获取 EFCore Sql 监控上下文 耗时排行榜
      *
      */
     getTimeConsumingRanking() {
-        return Http.post(`${controllerName}/GetTimeConsumingRanking/`, null, false);
-    },
+        return Http.post(`${this.controllerName}/GetTimeConsumingRanking/`, null, false);
+    }
+
     /**
     * 获取 EFCore Sql 监控上下文 最新数据
     *
     */
     getNewest() {
-        return Http.post(`${controllerName}/GetNewest/`, null, false);
-    },
+        return Http.post(`${this.controllerName}/GetNewest/`, null, false);
+    }
 
-};
+}
+
+
+export default new MonitorEfCoreService();

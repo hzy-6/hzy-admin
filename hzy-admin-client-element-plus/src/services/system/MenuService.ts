@@ -1,17 +1,19 @@
 import Http from '@/infrastructure/scripts/Http';
 import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
 
-const controllerName = "admin/SysMenu";
+class MenuService {
 
-export default {
+    private controllerName: string = "admin/SysMenu";
+
     /**
      * 获取菜单
      *
      * @returns {Promise}
      */
     getMenus() {
-        return Http.get(`${controllerName}/getMenus`);
-    },
+        return Http.get(`${this.controllerName}/getMenus`);
+    }
+
     /**
      * 查询列表
      * 
@@ -19,8 +21,9 @@ export default {
      * @param {当前页码} page 
      */
     findList(rows, page, search = {}) {
-        return Http.post(`${controllerName}/findList/${rows}/${page}`, search, false);
-    },
+        return Http.post(`${this.controllerName}/findList/${rows}/${page}`, search, false);
+    }
+
     /**
      * 删除数据
      * 
@@ -31,16 +34,18 @@ export default {
         if (ids && ids.length === 0) {
             return Tools.message("请选择要删除的数据!", EMessageType.警告);
         }
-        return Http.post(`${controllerName}/deleteList`, ids, false);
-    },
+        return Http.post(`${this.controllerName}/deleteList`, ids, false);
+    }
+
     /**
      * 获取表单数据
      * 
      * @param {*} id 
      */
     findForm(id) {
-        return Http.get(`${controllerName}/findForm${(id ? '/' + id : '')}`);
-    },
+        return Http.get(`${this.controllerName}/findForm${(id ? '/' + id : '')}`);
+    }
+
     /**
      * 保存表单
      * 
@@ -48,23 +53,28 @@ export default {
      */
     saveForm(vm) {
         if (vm.id) {
-            return Http.post(`${controllerName}/update`, vm);
+            return Http.post(`${this.controllerName}/update`, vm);
         }
-        return Http.post(`${controllerName}/create`, vm);
-    },
+        return Http.post(`${this.controllerName}/create`, vm);
+    }
+
     /**
      * 获取菜单树
      *
      */
     getMenusFunctionTree() {
-        return Http.get(`${controllerName}/getMenusFunctionTree`);
-    },
+        return Http.get(`${this.controllerName}/getMenusFunctionTree`);
+    }
+
     /**
      * 获取所有菜单集合
      * @param {*} search 
      * @returns 
      */
     getAll(search = {}) {
-        return Http.post(`${controllerName}/getAll`, search, false);
+        return Http.post(`${this.controllerName}/getAll`, search, false);
     }
+
 }
+
+export default new MenuService()

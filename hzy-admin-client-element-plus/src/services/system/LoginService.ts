@@ -1,7 +1,8 @@
 import Http from '@/infrastructure/scripts/Http';
 import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
 
-export default {
+class LoginService {
+
     /**
      * 登录账户
      * 
@@ -23,3 +24,5 @@ export default {
         });
     }
 }
+
+export default new LoginService()

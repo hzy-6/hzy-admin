@@ -1,9 +1,10 @@
 import Http from "@/infrastructure/scripts/Http";
 import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
 
-const controllerName = "admin/LowCodeTable";
+class LowCodeTableService {
 
-export default {
+    private controllerName: string = "admin/LowCodeTableInfo";
+
     /**
      * 查询列表
      *
@@ -11,8 +12,8 @@ export default {
      * @param {当前页码} page
      */
     findList(rows, page, search = {}) {
-        return Http.post(`${controllerName}/findList/${rows}/${page}`, search, false);
-    },
+        return Http.post(`${this.controllerName}/findList/${rows}/${page}`, search, false);
+    }
 
     /**
      * 删除数据
@@ -23,24 +24,24 @@ export default {
         if (ids && ids.length === 0) {
             return Tools.message("请选择要删除的数据!", EMessageType.警告);
         }
-        return Http.post(`${controllerName}/deleteList`, ids, false);
-    },
+        return Http.post(`${this.controllerName}/deleteList`, ids, false);
+    }
 
     /**
      * 同步表
      * @returns
      */
     synchronization() {
-        return Http.post(`${controllerName}/synchronization`, null, false);
-    },
+        return Http.post(`${this.controllerName}/synchronization`, null, false);
+    }
 
     /**
      * 变更数据
      * @returns
      */
     change(list) {
-        return Http.post(`${controllerName}/change`, list, false);
-    },
+        return Http.post(`${this.controllerName}/change`, list, false);
+    }
 
     /**
      * 获取表单数据
@@ -48,8 +49,8 @@ export default {
      * @param {*} id
      */
     findForm(id) {
-        return Http.get(`${controllerName}/findForm${id ? "/" + id : ""}`);
-    },
+        return Http.get(`${this.controllerName}/findForm${id ? "/" + id : ""}`);
+    }
 
     /**
      * 保存表单
@@ -58,8 +59,11 @@ export default {
      */
     saveForm(vm) {
         if (vm.id) {
-            return Http.post(`${controllerName}/update`, vm.form);
+            return Http.post(`${this.controllerName}/update`, vm.form);
         }
-        return Http.post(`${controllerName}/create`, vm.form);
-    },
-};
+        return Http.post(`${this.controllerName}/create`, vm.form);
+    }
+
+}
+
+export default new LowCodeTableService()
