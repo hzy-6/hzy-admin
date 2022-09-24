@@ -1,47 +1,43 @@
 <template>
   <div>
-    <a-card class="mb-15" v-show="tableData.search.state">
-      <!-- 检索插槽 -->
-      <slot name="search"></slot>
-    </a-card>
     <a-card :bodyStyle="{ paddingBottom: 0 }">
-      <a-row :gutter="[15, 15]">
-        <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-          <a-space :size="15">
-            <!-- 工具栏左侧插槽 -->
-            <slot name="toolbar-left"></slot>
-          </a-space>
-        </a-col>
-        <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="text-right" style="display: inline-flex; justify-content: end">
-          <a-space :size="15">
-            <!-- 工具栏右侧插槽 -->
-            <slot name="toolbar-right"></slot>
-          </a-space>
-        </a-col>
-      </a-row>
+      <!-- 工具栏插槽 -->
+      <div>
+        <a-space :size="15">
+          <slot name="toolbar"></slot>
+        </a-space>
+        <transition name="fade-transform" mode="out-in">
+          <a-card class="mb-15 mt-15 search-card" v-show="tableData.search.state">
+            <!-- 检索插槽 -->
+            <slot name="search"></slot>
+          </a-card>
+        </transition>
+      </div>
       <!-- 表格 -->
       <a-spin :spinning="tableData.loading">
         <!-- size="medium" -->
         <div style="overflow: hidden; height: calc(100vh - 250px); display: initial">
-          <vxe-table
-            class="mt-15"
-            ref="table"
-            auto-resize
-            height="auto"
-            border
-            stripe
-            :data="tableData.data"
-            :row-config="{ isCurrent: true, isHover: true }"
-            :column-config="{ isCurrent: true, resizable: true }"
-            :checkbox-config="{ highlight: true }"
-          >
-            <slot name="table-col">
-              <vxe-column type="seq" width="50"></vxe-column>
-              <vxe-column type="checkbox" width="50"></vxe-column>
-              <!-- 表格列插槽 -->
-              <slot name="table-col-default"></slot>
-            </slot>
-          </vxe-table>
+          <slot name="table">
+            <vxe-table
+              class="mt-15"
+              ref="table"
+              auto-resize
+              height="auto"
+              border
+              stripe
+              :data="tableData.data"
+              :row-config="{ isCurrent: true, isHover: true }"
+              :column-config="{ isCurrent: true, resizable: true }"
+              :checkbox-config="{ highlight: true }"
+            >
+              <slot name="table-col">
+                <vxe-column type="seq" width="50"></vxe-column>
+                <vxe-column type="checkbox" width="50"></vxe-column>
+                <!-- 表格列插槽 -->
+                <slot name="table-col-default"></slot>
+              </slot>
+            </vxe-table>
+          </slot>
         </div>
         <!-- 分页插件 -->
         <vxe-pager
@@ -86,3 +82,17 @@ defineExpose({
 
 // const slots = useSlots();
 </script>
+
+<style scoped lang="less">
+.search-card {
+  position: absolute;
+  z-index: 12;
+  // margin-right: 15px;
+  right: 0;
+  left: 0;
+  backdrop-filter: saturate(50%) blur(10px);
+  -webkit-backdrop-filter: saturate(50%) blur(10px);
+  background-color: initial;
+  box-shadow: 0px 0px 12px rgba(0, 0, 0, 0.12);
+}
+</style>

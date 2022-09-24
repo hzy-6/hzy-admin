@@ -15,7 +15,29 @@
         </a-row>
       </template>
       <!-- 工具栏左侧插槽 -->
-      <template #toolbar-left>
+      <template #toolbar>
+        <!-- 列的隐藏显示 -->
+        <a-popover>
+          <template #content>
+            <div v-for="item in state.columns.filter((w) => w.fieldName.substr(0, 1) != '_')">
+              <a-checkbox v-model:checked="item.show" @change="() => nextTick(() => refList.table.refreshColumn())">{{ item.title }}</a-checkbox>
+            </div>
+          </template>
+          <a-button>
+            <AppIcon name="BarsOutlined" />
+          </a-button>
+        </a-popover>
+        <!-- 快捷检索 -->
+        <a-input v-model:value="state.search.vm.name" placeholder="名称" @keyup="methods.findList" />
+        <!-- 高级检索 -->
+        <template v-if="power.search">
+          <a-button @click="state.search.state = !state.search.state">
+            <template #icon>
+              <AppIcon :name="state.search.state ? 'UpOutlined' : 'DownOutlined'" />
+            </template>
+            高级检索
+          </a-button>
+        </template>
         <!-- 新建 -->
         <template v-if="power.insert">
           <a-button type="primary" @click="methods.openForm()">
@@ -49,33 +71,6 @@
           </a-button>
         </a-dropdown>
       </template>
-      <!-- 工具栏左侧插槽 -->
-      <template #toolbar-right>
-        <a-input v-model:value="state.search.vm.name" placeholder="名称" @keyup="methods.findList" />
-        <a-button @click="methods.onResetSearch">重置</a-button>
-        <!-- 检索 -->
-        <template v-if="power.search">
-          <a-button @click="state.search.state = !state.search.state">
-            <template #icon>
-              <AppIcon :name="state.search.state ? 'UpOutlined' : 'DownOutlined'" />
-            </template>
-            检索
-          </a-button>
-        </template>
-        <!-- 列的隐藏显示 -->
-        <a-popover>
-          <template #content>
-            <div v-for="item in state.columns.filter((w) => w.fieldName.substr(0, 1) != '_')">
-              <a-checkbox v-model:checked="item.show" @change="() => nextTick(() => refList.table.refreshColumn())">{{ item.title }}</a-checkbox>
-            </div>
-          </template>
-          <a-button>
-            <AppIcon name="BarsOutlined" />
-          </a-button>
-        </a-popover>
-        <!--  -->
-      </template>
-
       <!-- 表格 -->
       <template #table-col-default>
         <!-- 动态列 -->

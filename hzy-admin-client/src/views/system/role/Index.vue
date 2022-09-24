@@ -15,7 +15,18 @@
         </a-row>
       </template>
       <!-- 工具栏左侧插槽 -->
-      <template #toolbar-left>
+      <template #toolbar>
+        <!-- 快捷检索 -->
+        <a-input v-model:value="state.search.vm.name" placeholder="名称" @keyup="methods.findList" />
+        <!-- 高级检索 -->
+        <template v-if="power.search">
+          <a-button @click="state.search.state = !state.search.state">
+            <template #icon>
+              <AppIcon :name="state.search.state ? 'UpOutlined' : 'DownOutlined'" />
+            </template>
+            高级检索
+          </a-button>
+        </template>
         <!-- 新建 -->
         <template v-if="power.insert">
           <a-button type="primary" @click="methods.openForm()">
@@ -47,20 +58,6 @@
             <AppIcon name="DownOutlined" />
           </a-button>
         </a-dropdown>
-      </template>
-      <!-- 工具栏左侧插槽 -->
-      <template #toolbar-right>
-        <a-input v-model:value="state.search.vm.name" placeholder="名称" @keyup="methods.findList" />
-        <a-button @click="methods.onResetSearch">重置</a-button>
-        <!-- 检索 -->
-        <template v-if="power.search">
-          <a-button @click="state.search.state = !state.search.state">
-            <template #icon>
-              <AppIcon :name="state.search.state ? 'UpOutlined' : 'DownOutlined'" />
-            </template>
-            检索
-          </a-button>
-        </template>
       </template>
 
       <!-- 表格 -->
@@ -144,6 +141,7 @@ const state = reactive({
   page: 1,
   total: 0,
   data: [],
+  columns: [], //表列头
 });
 
 //表单 ref 对象

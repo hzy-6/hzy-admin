@@ -1,6 +1,6 @@
 <template>
   <a-layout style="min-height: 100vh">
-    <a-layout-sider hasSider v-model:collapsed="menuStoreState.isCollapse" :collapsedWidth="menuStoreState.width" :theme="menuStoreState.themeType" :width="menuStoreState.width">
+    <a-layout-sider hasSider v-model:collapsed="menuStoreState.isCollapse" :collapsedWidth="menuStoreState.width" :theme="menuStoreState.themeType" :width="menuStoreState.width" style="z-index: 99">
       <div class="hzy-logo" :style="{ color: menuStoreState.themeType == 'dark' ? '#ffffff' : '' }" v-show="!layoutStoreState.isMobile && !menuStoreState.isCollapse">
         {{ layoutStoreState.title }}
       </div>

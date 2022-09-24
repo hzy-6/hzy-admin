@@ -28,7 +28,18 @@
         </a-row>
       </template>
       <!-- 工具栏左侧插槽 -->
-      <template #toolbar-left>
+      <template #toolbar>
+        <!-- 快捷检索 -->
+        <a-input v-model:value="state.search.vm.name" placeholder="接口地址" @keyup="methods.findList" />
+        <!-- 高级检索 -->
+        <template v-if="power.search">
+          <a-button @click="state.search.state = !state.search.state">
+            <template #icon>
+              <AppIcon :name="state.search.state ? 'UpOutlined' : 'DownOutlined'" />
+            </template>
+            高级检索
+          </a-button>
+        </template>
         <!-- 清空所有数据 -->
         <template v-if="power.delete">
           <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList()" okText="确定" cancelText="取消">
@@ -41,21 +52,6 @@
           </a-popconfirm>
         </template>
       </template>
-      <!-- 工具栏左侧插槽 -->
-      <template #toolbar-right>
-        <a-input v-model:value="state.search.vm.api" placeholder="接口地址" @keyup="methods.findList" />
-        <a-button @click="methods.onResetSearch">重置</a-button>
-        <!-- 检索 -->
-        <template v-if="power.search">
-          <a-button @click="state.search.state = !state.search.state">
-            <template #icon>
-              <AppIcon :name="state.search.state ? 'UpOutlined' : 'DownOutlined'" />
-            </template>
-            检索
-          </a-button>
-        </template>
-      </template>
-
       <!-- 表格 -->
       <template #table-col>
         <vxe-column field="api" title="接口地址" show-overflow min-width="300"></vxe-column>

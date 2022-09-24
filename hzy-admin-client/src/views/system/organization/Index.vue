@@ -1,98 +1,111 @@
 <template>
   <div>
-    <a-card class="mb-15" v-show="state.search.state">
-      <a-row :gutter="[15, 15]">
-        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-          <a-input v-model:value="state.search.vm.name" placeholder="名称" />
-        </a-col>
-        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-          <a-radio-group v-model:value="state.search.vm.state">
-            <a-radio :value="1"> 正常 </a-radio>
-            <a-radio :value="2"> 停用 </a-radio>
-          </a-radio-group>
-        </a-col>
-        <!--button-->
-        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
-          <a-button type="primary" class="mr-15" @click="methods.findList">查询</a-button>
-          <a-button class="mr-15" @click="methods.onResetSearch">重置</a-button>
-        </a-col>
-      </a-row>
-    </a-card>
-    <a-card>
-      <a-row :gutter="[15, 15]">
-        <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-          <a-space :size="15">
-            <!-- 检索 -->
-            <template v-if="power.search">
-              <a-button @click="state.search.state = !state.search.state">
-                <template #icon>
-                  <AppIcon :name="state.search.state ? 'UpOutlined' : 'DownOutlined'" />
-                </template>
-                检索
-              </a-button>
+    <List ref="refList" :tableData="state" @onChange="methods.onChange">
+      <!-- 检索插槽 -->
+      <template #search>
+        <a-row :gutter="[15, 15]">
+          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+            <a-input v-model:value="state.search.vm.name" placeholder="名称" />
+          </a-col>
+          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
+            <a-radio-group v-model:value="state.search.vm.state">
+              <a-radio :value="1"> 正常 </a-radio>
+              <a-radio :value="2"> 停用 </a-radio>
+            </a-radio-group>
+          </a-col>
+          <!--button-->
+          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
+            <a-button type="primary" class="mr-15" @click="methods.findList">查询</a-button>
+            <a-button class="mr-15" @click="methods.onResetSearch">重置</a-button>
+          </a-col>
+        </a-row>
+      </template>
+      <!-- 工具栏左侧插槽 -->
+      <template #toolbar>
+        <!-- 快捷检索 -->
+        <a-input v-model:value="state.search.vm.name" placeholder="名称" @keyup="methods.findList" />
+        <!-- 高级检索 -->
+        <template v-if="power.search">
+          <a-button @click="state.search.state = !state.search.state">
+            <template #icon>
+              <AppIcon :name="state.search.state ? 'UpOutlined' : 'DownOutlined'" />
             </template>
-            <!-- 新建 -->
-            <template v-if="power.insert">
-              <a-button type="primary" @click="methods.openForm()">
-                <template #icon>
-                  <AppIcon name="PlusOutlined" />
-                </template>
-                新建
-              </a-button>
+            高级检索
+          </a-button>
+        </template>
+        <!-- 新建 -->
+        <template v-if="power.insert">
+          <a-button type="primary" @click="methods.openForm()">
+            <template #icon>
+              <AppIcon name="PlusOutlined" />
             </template>
-          </a-space>
-        </a-col>
-      </a-row>
-
-      <vxe-table
-        class="mt-15"
-        ref="refTable"
-        border
-        stripe
-        :data="state.data"
-        :row-config="{ isCurrent: true, isHover: true }"
-        :column-config="{ isCurrent: true, resizable: true }"
-        :checkbox-config="{ highlight: true }"
-        :tree-config="{ transform: true, rowField: 'id', parentField: 'parentId' }"
-      >
-        <vxe-column field="name" title="部门名称" tree-node></vxe-column>
-        <vxe-column field="orderNumber" title="排序号"></vxe-column>
-        <vxe-column field="levelCode" title="级别码"></vxe-column>
-        <vxe-column field="state" title="状态">
-          <template #default="{ row }">
-            <a-tag color="success" v-if="row.state == 1">正常</a-tag>
-            <a-tag color="warning" v-else>停用</a-tag>
-          </template>
-        </vxe-column>
-        <vxe-column field="lastModificationTime" title="更新时间">
-          <template #default="{ row }">
-            {{ methods.formatDate(row.lastModificationTime) }}
-          </template>
-        </vxe-column>
-        <vxe-column field="creationTime" title="创建时间">
-          <template #default="{ row }">
-            {{ methods.formatDate(row.creationTime) }}
-          </template>
-        </vxe-column>
-        <vxe-column field="id" title="操作">
-          <template #default="{ row }">
-            <template v-if="power.insert">
-              <a href="javascript:void(0)" @click="methods.openForm(null, row.id)">新建</a>
+            新建
+          </a-button>
+        </template>
+        <!-- 批量删除 -->
+        <!-- <template v-if="power.delete">
+          <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList()" okText="确定" cancelText="取消">
+            <a-button type="danger">
+              <template #icon>
+                <AppIcon name="DeleteOutlined" />
+              </template>
+              批量删除
+            </a-button>
+          </a-popconfirm>
+        </template> -->
+      </template>
+      <!-- 表格 -->
+      <template #table>
+        <vxe-table
+          class="mt-15"
+          ref="refTable"
+          border
+          stripe
+          :data="state.data"
+          :row-config="{ isCurrent: true, isHover: true }"
+          :column-config="{ isCurrent: true, resizable: true }"
+          :checkbox-config="{ highlight: true }"
+          :tree-config="{ transform: true, rowField: 'id', parentField: 'parentId' }"
+        >
+          <vxe-column field="name" title="部门名称" tree-node></vxe-column>
+          <vxe-column field="orderNumber" title="排序号"></vxe-column>
+          <vxe-column field="levelCode" title="级别码"></vxe-column>
+          <vxe-column field="state" title="状态">
+            <template #default="{ row }">
+              <a-tag color="success" v-if="row.state == 1">正常</a-tag>
+              <a-tag color="warning" v-else>停用</a-tag>
             </template>
-            <a-divider type="vertical" />
-            <template v-if="power.update">
-              <a href="javascript:void(0)" @click="methods.openForm(row.id)">编辑</a>
+          </vxe-column>
+          <vxe-column field="lastModificationTime" title="更新时间">
+            <template #default="{ row }">
+              {{ methods.formatDate(row.lastModificationTime) }}
             </template>
-            <a-divider type="vertical" />
-            <template v-if="power.delete">
-              <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList(row.id)" okText="确定" cancelText="取消">
-                <a class="text-danger">删除</a>
-              </a-popconfirm>
+          </vxe-column>
+          <vxe-column field="creationTime" title="创建时间">
+            <template #default="{ row }">
+              {{ methods.formatDate(row.creationTime) }}
             </template>
-          </template>
-        </vxe-column>
-      </vxe-table>
-    </a-card>
+          </vxe-column>
+          <vxe-column field="id" title="操作">
+            <template #default="{ row }">
+              <template v-if="power.insert">
+                <a href="javascript:void(0)" @click="methods.openForm(null, row.id)">新建</a>
+              </template>
+              <a-divider type="vertical" />
+              <template v-if="power.update">
+                <a href="javascript:void(0)" @click="methods.openForm(row.id)">编辑</a>
+              </template>
+              <a-divider type="vertical" />
+              <template v-if="power.delete">
+                <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList(row.id)" okText="确定" cancelText="取消">
+                  <a class="text-danger">删除</a>
+                </a-popconfirm>
+              </template>
+            </template>
+          </vxe-column>
+        </vxe-table>
+      </template>
+    </List>
 
     <!--表单弹层-->
     <Info ref="formRef" @onSuccess="() => methods.findList()" />
@@ -105,6 +118,7 @@ export default { name: "system_organization" };
 <script setup>
 import { onMounted, reactive, ref, nextTick } from "vue";
 import { useAppStore } from "@/store";
+import List from "@/components/curd/List.vue";
 import AppIcon from "@/components/AppIcon.vue";
 import Info from "./Info.vue";
 import tools from "@/scripts/tools";
