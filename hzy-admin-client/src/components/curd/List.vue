@@ -3,15 +3,15 @@
     <a-card :bodyStyle="{ paddingBottom: 0 }">
       <!-- 工具栏插槽 -->
       <div>
-        <a-space :size="15">
-          <slot name="toolbar"></slot>
-        </a-space>
         <transition name="fade-transform" mode="out-in">
           <a-card class="mb-15 mt-15 search-card" v-show="tableData.search.state">
             <!-- 检索插槽 -->
             <slot name="search"></slot>
           </a-card>
         </transition>
+        <a-space :size="15">
+          <slot name="toolbar"></slot>
+        </a-space>
       </div>
       <!-- 表格 -->
       <a-spin :spinning="tableData.loading">
@@ -90,6 +90,7 @@ defineExpose({
   // margin-right: 15px;
   right: 0;
   left: 0;
+  top: -15px;
   backdrop-filter: saturate(50%) blur(10px);
   -webkit-backdrop-filter: saturate(50%) blur(10px);
   background-color: initial;

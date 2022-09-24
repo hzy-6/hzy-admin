@@ -11,6 +11,7 @@
           <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
             <a-button type="primary" class="mr-15" @click="methods.findList">查询</a-button>
             <a-button class="mr-15" @click="methods.onResetSearch">重置</a-button>
+            <a-button type="danger" class="mr-15" @click="state.search.state = false">关闭</a-button>
           </a-col>
         </a-row>
       </template>
