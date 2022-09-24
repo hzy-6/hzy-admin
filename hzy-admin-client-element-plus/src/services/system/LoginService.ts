@@ -9,7 +9,7 @@ class LoginService {
      * @param {*} userName 
      * @param {*} userPassword 
      */
-    login(userName, userPassword) {
+    login(userName: string, userPassword: string): Promise<unknown> | void {
         if (!userName) {
             return Tools.message("用户名不能为空!", EMessageType.警告);
         }

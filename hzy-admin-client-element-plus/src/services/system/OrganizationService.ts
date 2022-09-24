@@ -9,7 +9,7 @@ class OrganizationService {
      * 查询列表
      * 
      */
-    findList(search = {}) {
+    findList(search = {}): Promise<unknown> {
         return Http.post(`${this.controllerName}/findList/`, search, false);
     }
 
@@ -18,7 +18,7 @@ class OrganizationService {
      * 
      * @param {要删除的id 数组} ids 
      */
-    deleteList(ids) {
+    deleteList(ids: string[]): Promise<unknown> | void {
         console.log(ids);
         if (ids && ids.length === 0) {
             return Tools.message("请选择要删除的数据!", EMessageType.警告);
@@ -31,7 +31,7 @@ class OrganizationService {
      * 
      * @param {*} id 
      */
-    findForm(id, parentId) {
+    findForm(id: string, parentId: string): Promise<unknown> {
         return Http.get(`${this.controllerName}/findForm/${(id ? id : Tools.guidEmpty)}/${(parentId ? parentId : '')}`);
     }
 
@@ -40,7 +40,7 @@ class OrganizationService {
      * 
      * @param {表单数据} vm 
      */
-    saveForm(vm) {
+    saveForm(vm: { form: any, id: string }): Promise<unknown> {
         if (vm.id) {
             return Http.post(`${this.controllerName}/update`, vm.form);
         }
@@ -51,15 +51,14 @@ class OrganizationService {
      * 导出 excel
      * @param {*} search 
      */
-    exportExcel(search) {
+    exportExcel(search: any): Promise<unknown> {
         return Http.download(`${this.controllerName}/exportExcel`, search);
     }
 
     /**
      * sysOrganizationTree
-     * @param {*} search 
      */
-    sysOrganizationTree() {
+    sysOrganizationTree(): Promise<unknown> {
         return Http.post(`${this.controllerName}/sysOrganizationTree`);
     }
 }

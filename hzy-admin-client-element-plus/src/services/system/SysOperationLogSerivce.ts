@@ -11,11 +11,15 @@ class SysOperationLogSerivce {
      * @param {一页显示多少行} rows 
      * @param {当前页码} page 
      */
-    findList(rows, page, search = {}) {
+    findList(rows: number, page: number, search = {}): Promise<unknown> {
         return Http.post(`${this.controllerName}/findList/${rows}/${page}`, search, false);
     }
 
-    deleteAllData() {
+    /**
+     * 删除所有数据
+     * @returns 
+     */
+    deleteAllData(): Promise<unknown> {
         return Http.get(`${this.controllerName}/deleteAllData`);
     }
 
@@ -24,7 +28,7 @@ class SysOperationLogSerivce {
      * 
      * @param {*} id 
      */
-    findForm(id) {
+    findForm(id: string): Promise<unknown> {
         return Http.get(`${this.controllerName}/findForm${(id ? '/' + id : '')}`);
     }
 }

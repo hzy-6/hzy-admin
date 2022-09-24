@@ -10,7 +10,7 @@ class PersonalCenterService {
      *
      * @param {表单数据} form
      */
-    changePassword(form) {
+    changePassword(form: any): Promise<unknown> {
         return Http.post(`${this.controllerName}/changePassword`, form);
     }
 
@@ -19,7 +19,7 @@ class PersonalCenterService {
      * 
      * @param {表单数据} vm 
      */
-    saveForm(vm) {
+    saveForm(vm: any): Promise<unknown> {
         return Http.post(`${this.controllerName}/saveForm`, vm);
     }
 }

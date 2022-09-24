@@ -10,7 +10,7 @@ class UserService {
      *
      * @returns {Promise}
      */
-    getUserInfo() {
+    getUserInfo(): Promise<unknown> {
         return Http.get(`${this.controllerName}/info`);
     }
 
@@ -20,7 +20,7 @@ class UserService {
      * @param {一页显示多少行} rows 
      * @param {当前页码} page 
      */
-    findList(rows, page, search = {}) {
+    findList(rows: number, page: number, search = {}): Promise<unknown> {
         return Http.post(`${this.controllerName}/findList/${rows}/${page}`, search, false);
     }
 
@@ -29,7 +29,7 @@ class UserService {
      * 
      * @param {要删除的id 数组} ids 
      */
-    deleteList(ids) {
+    deleteList(ids: string[]): Promise<unknown> | void {
         console.log(ids);
         if (ids && ids.length === 0) {
             return Tools.message("请选择要删除的数据!", EMessageType.警告);
@@ -42,7 +42,7 @@ class UserService {
      * 
      * @param {*} id 
      */
-    findForm(id) {
+    findForm(id: string): Promise<unknown> {
         return Http.get(`${this.controllerName}/findForm${(id ? '/' + id : '')}`);
     }
 
@@ -51,7 +51,7 @@ class UserService {
      * 
      * @param {表单数据} vm 
      */
-    saveForm(vm) {
+    saveForm(vm: any): Promise<unknown> {
         if (vm.id) {
             return Http.post(`${this.controllerName}/update`, vm);
         }
@@ -62,7 +62,7 @@ class UserService {
      * 导出 excel
      * @param {*} search 
      */
-    exportExcel(search) {
+    exportExcel(search: any): Promise<unknown> {
         return Http.download(`${this.controllerName}/exportExcel`, search);
     }
 }

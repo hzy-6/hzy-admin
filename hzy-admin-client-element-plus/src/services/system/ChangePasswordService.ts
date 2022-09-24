@@ -9,7 +9,7 @@ class ChangePasswordService {
         *
         * @param {表单数据} form
         */
-    saveForm(form) {
+    saveForm(form: any): Promise<unknown> {
         return Http.post(`${this.controllerName}/saveForm`, form);
     }
 }

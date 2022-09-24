@@ -10,7 +10,7 @@ class CodeGenerationService {
      * @param {一页显示多少行} rows 
      * @param {当前页码} page 
      */
-    findList(rows, page, search = {}) {
+    findList(rows: number, page: number, search = {}): Promise<unknown> {
         return Http.post(`${this.controllerName}/findList/${rows}/${page}`, search, false);
     }
 
@@ -18,7 +18,7 @@ class CodeGenerationService {
      * 获取 code
      * @returns 
      */
-    getCode(form) {
+    getCode(form: any): Promise<unknown> {
         return Http.post(`${this.controllerName}/getCode`, form, false);
     }
 
@@ -27,7 +27,7 @@ class CodeGenerationService {
      * @param {*} form 
      * @returns 
      */
-    download(form) {
+    download(form: any): Promise<unknown> {
         return Http.download(`${this.controllerName}/download`, form, false);
     }
 
@@ -36,20 +36,21 @@ class CodeGenerationService {
      * @param {*} form 
      * @returns 
      */
-    downloadAll(form) {
+    downloadAll(form: any): Promise<unknown> {
         return Http.download(`${this.controllerName}/downloadAll`, form, false);
     }
 
     /**
      * 创建数据字典
      */
-    createDataDictionary() {
+    createDataDictionary(): Promise<unknown> {
         return Http.download(`${this.controllerName}/createDataDictionary`, null, false);
     }
+
     /**
      * 代码生成导入到项目
      */
-    autoImprotProject(form) {
+    autoImprotProject(form: any): Promise<unknown> {
         return Http.post(`${this.controllerName}/AutoImprotProject`, form, false)
     }
 

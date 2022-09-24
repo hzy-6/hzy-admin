@@ -8,7 +8,7 @@ class MonitorEfCoreService {
      * 获取 EFCore 监控上下文
      *
      */
-    getEFCoreMonitorContext() {
+    getEFCoreMonitorContext(): Promise<unknown> {
         return Http.post(`${this.controllerName}/GetEFCoreMonitorContext/`, null, false);
     }
 
@@ -16,7 +16,7 @@ class MonitorEfCoreService {
      * 获取 EFCore Sql 监控上下文 耗时排行榜
      *
      */
-    getTimeConsumingRanking() {
+    getTimeConsumingRanking(): Promise<unknown> {
         return Http.post(`${this.controllerName}/GetTimeConsumingRanking/`, null, false);
     }
 
@@ -24,7 +24,7 @@ class MonitorEfCoreService {
     * 获取 EFCore Sql 监控上下文 最新数据
     *
     */
-    getNewest() {
+    getNewest(): Promise<unknown> {
         return Http.post(`${this.controllerName}/GetNewest/`, null, false);
     }
 

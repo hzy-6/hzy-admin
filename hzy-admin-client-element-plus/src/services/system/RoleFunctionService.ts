@@ -11,7 +11,7 @@ class RoleFunctionService {
      * @param {一页显示多少行} rows 
      * @param {当前页码} page 
      */
-    findList(rows, page, search = {}) {
+    findList(rows: number, page: number, search = {}): Promise<unknown> {
         return Http.post(`${this.controllerName}/findList/${rows}/${page}`, search, false);
     }
 
@@ -20,7 +20,7 @@ class RoleFunctionService {
      * 
      * @param {表单数据} vm 
      */
-    saveForm(vm) {
+    saveForm(vm: any): Promise<unknown> {
         if (vm.id) {
             return Http.post(`${this.controllerName}/update`, vm);
         }
@@ -31,7 +31,7 @@ class RoleFunctionService {
      * 获取角色菜单功能树
      * @param {角色Id} roleId 
      */
-    getRoleMenuFunctionByRoleId(roleId) {
+    getRoleMenuFunctionByRoleId(roleId: string): Promise<unknown> {
         return Http.get(`${this.controllerName}/getRoleMenuFunctionByRoleId/${roleId}`);
     }
 
