@@ -1,5 +1,6 @@
 import Http from '@/infrastructure/scripts/Http';
 import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
+import { ApiResult } from '@/infrastructure/typings/ApiResult';
 
 class OrganizationService {
 
@@ -9,7 +10,7 @@ class OrganizationService {
      * 查询列表
      * 
      */
-    findList(search = {}): Promise<unknown> {
+    findList(search = {}): Promise<ApiResult<any>> {
         return Http.post(`${this.controllerName}/findList/`, search, false);
     }
 
@@ -18,7 +19,7 @@ class OrganizationService {
      * 
      * @param {要删除的id 数组} ids 
      */
-    deleteList(ids: string[]): Promise<unknown> | void {
+    deleteList(ids: string[]): Promise<ApiResult<any>> | void {
         console.log(ids);
         if (ids && ids.length === 0) {
             return Tools.message("请选择要删除的数据!", EMessageType.警告);
@@ -31,7 +32,7 @@ class OrganizationService {
      * 
      * @param {*} id 
      */
-    findForm(id: string, parentId: string): Promise<unknown> {
+    findForm(id: string, parentId: string): Promise<ApiResult<any>> {
         return Http.get(`${this.controllerName}/findForm/${(id ? id : Tools.guidEmpty)}/${(parentId ? parentId : '')}`);
     }
 
@@ -40,7 +41,7 @@ class OrganizationService {
      * 
      * @param {表单数据} vm 
      */
-    saveForm(vm: { form: any, id: string }): Promise<unknown> {
+    saveForm(vm: { form: any, id: string }): Promise<ApiResult<any>> {
         if (vm.id) {
             return Http.post(`${this.controllerName}/update`, vm.form);
         }
@@ -51,14 +52,14 @@ class OrganizationService {
      * 导出 excel
      * @param {*} search 
      */
-    exportExcel(search: any): Promise<unknown> {
+    exportExcel(search: any): Promise<ApiResult<any>> {
         return Http.download(`${this.controllerName}/exportExcel`, search);
     }
 
     /**
      * sysOrganizationTree
      */
-    sysOrganizationTree(): Promise<unknown> {
+    sysOrganizationTree(): Promise<ApiResult<any>> {
         return Http.post(`${this.controllerName}/sysOrganizationTree`);
     }
 }

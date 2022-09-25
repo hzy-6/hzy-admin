@@ -1,5 +1,5 @@
 import { ComponentInternalInstance, getCurrentInstance } from "vue";
-import * as iconsVue from "@vicons/antd";
+import * as iconsVue from "@ant-design/icons-vue";
 
 const iconsKeyName = "$AntdIcons";
 const iconNameKeyName = "$AntdIconsNames";

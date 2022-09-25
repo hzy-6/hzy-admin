@@ -2,6 +2,7 @@ import { defineStore } from "pinia";
 import { reactive } from "vue";
 import router from "@/infrastructure/router";
 import TabsStore, { ITabsItem } from "./layouts/TabsStore";
+import UserService from "@/services/system/UserService";
 
 interface IDefaultUserInfo {
     name: string
@@ -106,7 +107,7 @@ export default defineStore("AppStore", () => {
      * 
      * @returns 
      */
-    function getUserInfo() {
+    function getUserInfo(): Promise<any> {
         return new Promise((resolve) => {
             if (state.userInfo.loadOver) {
                 return resolve(state.userInfo);
@@ -126,17 +127,17 @@ export default defineStore("AppStore", () => {
     function refreshUserInfo() {
         state.loading = true;
         return new Promise((resolve) => {
-            // userService
-            //     .getUserInfo()
-            //     .then((res) => {
-            //         let data = res.data;
-            //         setUserInfo(data);
-            //         state.loading = false;
-            //         resolve(data);
-            //     })
-            //     .catch(() => {
-            //         state.loading = false;
-            //     });
+            UserService
+                .getUserInfo()
+                .then((res) => {
+                    let data = res.data;
+                    setUserInfo(data);
+                    state.loading = false;
+                    resolve(data);
+                })
+                .catch(() => {
+                    state.loading = false;
+                });
         });
     }
 

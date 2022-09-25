@@ -59,4 +59,14 @@ export default class AppConsts {
      */
     static loginPath: string = "/login";
 
+    /**
+     * 页面白名单地址 不受登录限制
+     */
+    static pageWhiteList: string[] = [AppConsts.loginPath];
+
+    /**
+     * 无查看权限提示信息
+     */
+    static noPowerMessage: string = "界面显示权限不足！请配置菜单显示权限.";
+
 }

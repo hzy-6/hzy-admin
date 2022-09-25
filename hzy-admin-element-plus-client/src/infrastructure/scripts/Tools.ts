@@ -2,6 +2,7 @@ import { Action, ElMessage, ElMessageBox, ElNotification } from 'element-plus';
 import NProgress from 'nprogress';
 import { useCookies } from '@vueuse/integrations/useCookies'
 import AppConsts from './AppConsts';
+import { RouteMeta } from 'vue-router';
 
 /**
  * 消息类型
@@ -272,6 +273,30 @@ class Tools {
         cookies.remove(AppConsts.tokenKey);
         return true;
     }
+
+    /**
+     * 检查页面地址白名单
+     * @param fullPath 
+     * @returns 
+     */
+    checkPageWhiteList(fullPath: string): boolean {
+        return AppConsts.pageWhiteList.indexOf(fullPath) > -1;
+    }
+
+    /**
+     * 获取权限
+     */
+    getAuthority(data: any, meta: RouteMeta): boolean {
+        let menuId = meta.menuId;
+        if (!menuId) return true;
+        if (!data.menuPowers) return true;
+        let power = data.menuPowers.find(w => w.menuId == menuId);
+        if (!power) return true;
+        // console.log('getAuthority=>', data, 'menuid=>', menuId, 'userId=>', userId, power.display);
+        //检查页面是否有 display 权限
+        return power.display;
+    }
+
 
 }
 

@@ -2,6 +2,7 @@ import axios from "axios";
 import AppConsts from "./AppConsts";
 import Tools, { EMessageType } from "./Tools";
 import router from "@/infrastructure/router";
+import { ApiResult } from "../typings/ApiResult";
 
 /**
  * 网络请求客户端
@@ -114,7 +115,7 @@ class Http {
      * @param config 其他配置信息
      * @returns Promise 对象
      */
-    static get(url: string, data = {}, loading: boolean = true, config = {}): Promise<unknown> {
+    static get(url: string, data = {}, loading: boolean = true, config = {}): Promise<ApiResult<any>> {
         Http.isLoading = loading;
         config["params"] = data;
         return new Promise((resolve, reject) => {
@@ -137,7 +138,7 @@ class Http {
      * @param config config信息
      * @returns {Promise}
      */
-    static post(url: string, data = {}, loading: boolean = true, config = {}): Promise<unknown> {
+    static post(url: string, data = {}, loading: boolean = true, config = {}): Promise<ApiResult<any>> {
         Http.isLoading = loading;
         return new Promise((resolve, reject) => {
             axios.post(url, data, config).then(
@@ -159,7 +160,7 @@ class Http {
      * @param config config信息
      * @returns {Promise}
      */
-    static upload(url: string, data: any = {}, loading: boolean = true, config = {}): Promise<unknown> {
+    static upload(url: string, data: any = {}, loading: boolean = true, config = {}): Promise<ApiResult<any>> {
         Http.isLoading = loading;
         if (!data) data = {};
         data.isUpload = true;
@@ -183,7 +184,7 @@ class Http {
      * @param config config信息
      * @returns {Promise}
      */
-    static patch(url: string, data = {}, loading: boolean = true, config = {}): Promise<unknown> {
+    static patch(url: string, data = {}, loading: boolean = true, config = {}): Promise<ApiResult<any>> {
         Http.isLoading = loading;
         return new Promise((resolve, reject) => {
             axios.patch(url, data, config).then(
@@ -205,7 +206,7 @@ class Http {
      * @param config config信息
      * @returns {Promise}
      */
-    static put(url: string, data = {}, loading: boolean = true, config = {}): Promise<unknown> {
+    static put(url: string, data = {}, loading: boolean = true, config = {}): Promise<ApiResult<any>> {
         Http.isLoading = loading;
         return new Promise((resolve, reject) => {
             axios.put(url, data, config).then(
@@ -227,7 +228,7 @@ class Http {
      * @param fileName 
      * @returns 
      */
-    static download(url: string, data = {}, loading: boolean = true, fileName: string = null): Promise<unknown> {
+    static download(url: string, data = {}, loading: boolean = true, fileName: string = null): Promise<ApiResult<any>> {
         Http.isLoading = loading;
         return new Promise((resolve, reject) => {
             axios.post(url, data, { responseType: "blob" }).then(
@@ -272,7 +273,7 @@ class Http {
      * @param loading 
      * @returns 
      */
-    static getFileStream(url: string, data = {}, loading: boolean = true): Promise<unknown> {
+    static getFileStream(url: string, data = {}, loading: boolean = true): Promise<ApiResult<any>> {
         return new Promise((resolve, reject) => {
             Http.get(url, data, loading, { responseType: "blob" }).then(
                 (res) => {

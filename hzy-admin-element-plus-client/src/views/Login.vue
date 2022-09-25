@@ -1,23 +1,54 @@
 <script setup lang="ts">
 import router from "@/infrastructure/router";
-import { reactive, ref } from "vue";
-import { useDark, useToggle } from "@vueuse/core";
+import { onMounted, reactive } from "vue";
+import { useDark } from "@vueuse/core";
 import AppConsts from "@/infrastructure/scripts/AppConsts";
-
-const jumpHome = () => {
-  router.push(AppConsts.defaultHomePageInfo.jumpUrl);
-};
+import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
+import LoginService from "@/services/system/LoginService";
+import AppStore from "@/infrastructure/store/AppStore";
 
 const state = reactive({
+  loading: false,
   userName: "admin",
   userPassword: "123456",
   code: 12,
 });
 
 const isDark = useDark();
-const toggleDark = useToggle(isDark);
+const appStore = AppStore();
 
-const windowWidth = ref(window.innerWidth);
+/**
+ * 检查账户信息登录
+ */
+const checkLogin = () => {
+  if (!state.userName) return Tools.message("用户名不能为空!", EMessageType.警告);
+  if (!state.userPassword) return Tools.message("密码不能为空!", EMessageType.警告);
+  state.loading = true;
+  LoginService.login(state.userName, state.userPassword)
+    .then((res) => {
+      if (res.code !== 1) {
+        state.loading = false;
+        return;
+      }
+      Tools.setAuthorization(res.data.token);
+      router.push("/").then(() => {
+        state.loading = false;
+      });
+    })
+    .catch(() => {
+      state.loading = false;
+    });
+};
+
+// 重置系统信息
+const reset = () => {
+  Tools.removeAuthorization();
+  appStore.resetInfo();
+};
+
+onMounted(() => {
+  reset();
+});
 </script>
 
 <template>
@@ -70,8 +101,8 @@ const windowWidth = ref(window.innerWidth);
 
           <div class="mt-40">
             <!-- 暗色按钮样式处理 -->
-            <el-button @click="jumpHome()" type="primary" text bg size="large" class="w100" v-if="isDark">登录 </el-button>
-            <el-button @click="jumpHome()" type="primary" size="large" class="w100" v-else>登录 </el-button>
+            <el-button @click="checkLogin()" type="primary" text bg size="large" class="w100" v-if="isDark" :loading="state.loading">登录 </el-button>
+            <el-button @click="checkLogin()" type="primary" size="large" class="w100" v-else :loading="state.loading">登录 </el-button>
           </div>
         </div>
       </div>

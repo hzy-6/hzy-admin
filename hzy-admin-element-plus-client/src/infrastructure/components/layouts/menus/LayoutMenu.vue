@@ -39,18 +39,20 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
     <!-- 动态生成 topnav-->
     <template v-if="menuStore.state.menuMode != EMenuMode.default">
       <template v-for="item in appStore.state.subMenus">
-        <el-menu-item v-if="item.children.length === 0" :index="item.jumpUrl ? item.jumpUrl : item.id + ''" :title="item.name">
-          <AppIcon :name="item.icon" v-if="item.icon" />
-          <span style="font-weight: 400">{{ item.name }}</span>
+        <el-menu-item v-if="item.children.filter((w) => w.show).length == 0 && item.type == 2" :index="item.jumpUrl ? item.jumpUrl : item.id + ''" :title="item.name">
+          <i class="el-icon">
+            <AppIcon :name="item.icon" v-if="item.icon" class="el-icon" />
+          </i>
+          <span style="font-weight: 400" class="el-menu-title">{{ item.name }}</span>
         </el-menu-item>
         <LayoutMenuSubVue v-else :menu-info="item" />
       </template>
     </template>
     <template v-else>
       <template v-for="item in appStore.state.userInfo.menus">
-        <el-menu-item v-if="item.children.length === 0" :index="item.jumpUrl ? item.jumpUrl : item.id + ''" :title="item.name">
-          <AppIcon :name="item.icon" v-if="item.icon" />
-          <span style="font-weight: 400">{{ item.name }}</span>
+        <el-menu-item v-if="item.children.filter((w) => w.show).length == 0 && item.type == 2" :index="item.jumpUrl ? item.jumpUrl : item.id + ''" :title="item.name">
+          <i class="el-icon"> <AppIcon :name="item.icon" v-if="item.icon" class="el-icon" /></i>
+          <span style="font-weight: 400" class="el-menu-title">{{ item.name }}</span>
         </el-menu-item>
         <LayoutMenuSubVue v-else :menu-info="item" />
       </template>
@@ -73,6 +75,7 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
 
 .el-aside {
   overflow-x: hidden;
+  height: calc(100vh);
 }
 
 .hzy-layout-menu-dark {
@@ -87,6 +90,24 @@ function onSelectedMenuItem(index: string, indexPath: string[], item: MenuItemCl
   .el-menu-item.is-active {
     background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].activeBgColor");
     // color: #fff;
+  }
+
+  .el-menu--collapse > .el-menu-item > span,
+  .el-menu--collapse > .el-sub-menu > .el-sub-menu__title > span {
+    height: auto;
+    width: auto;
+    overflow: hidden;
+    visibility: visible;
+    display: inline-block;
+  }
+
+  .el-menu--collapse > .el-menu-item > .el-menu-title,
+  .el-menu--collapse > .el-sub-menu > .el-sub-menu__title > .el-menu-title {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    visibility: hidden;
+    display: inline-block;
   }
 }
 </style>

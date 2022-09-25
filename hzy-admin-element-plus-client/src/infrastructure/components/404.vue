@@ -18,7 +18,7 @@ const backHome = () => {
 <template>
   <el-result title="404" sub-title="找不到页面">
     <template #icon>
-      <el-image src="../assets/images/404.png" />
+      <img src="../../assets/images/404.png" />
     </template>
     <template #extra>
       <el-button type="primary" @click="backHome">回到首页</el-button>

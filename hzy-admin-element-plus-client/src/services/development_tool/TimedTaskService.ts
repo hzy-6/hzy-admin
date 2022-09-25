@@ -1,5 +1,6 @@
 import Http from '@/infrastructure/scripts/Http';
 import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
+import { ApiResult } from '@/infrastructure/typings/ApiResult';
 
 class TimedTaskService {
 
@@ -11,7 +12,7 @@ class TimedTaskService {
      * @param {一页显示多少行} rows
      * @param {当前页码} page
      */
-    findList(filter: any): Promise<unknown> {
+    findList(filter: any): Promise<ApiResult<any>> {
         return Http.post(`${this.controllerName}/findList/${(filter ? filter : '')}`, null, false);
     }
 
@@ -20,7 +21,7 @@ class TimedTaskService {
      *
      * @param {要删除的id 数组} ids
      */
-    deleteList(ids: string[]): Promise<unknown> | void {
+    deleteList(ids: string[]): Promise<ApiResult<any>> | void {
         console.log(ids);
         if (ids && ids.length === 0) {
             return Tools.message("请选择要删除的数据!", EMessageType.警告);
@@ -33,7 +34,7 @@ class TimedTaskService {
      *
      * @param {*} id
      */
-    findForm(id: string): Promise<unknown> {
+    findForm(id: string): Promise<ApiResult<any>> {
         return Http.get(`${this.controllerName}/findForm${(id ? '/' + id : '')}`);
     }
 
@@ -42,28 +43,28 @@ class TimedTaskService {
      *
      * @param {表单数据} form
      */
-    saveForm(form: any): Promise<unknown> {
+    saveForm(form: any): Promise<ApiResult<any>> {
         return Http.post(`${this.controllerName}/saveForm`, form);
     }
 
     /**
      * 运行
      */
-    run(ids: string[]): Promise<unknown> {
+    run(ids: string[]): Promise<ApiResult<any>> {
         return Http.post(`${this.controllerName}/run`, ids, false);
     }
 
     /**
      * 关闭
      */
-    close(ids: string[]): Promise<unknown> {
+    close(ids: string[]): Promise<ApiResult<any>> {
         return Http.post(`${this.controllerName}/close`, ids, false);
     }
 
     /**
      * 获取日志记录列表
      */
-    getJobLoggers(id: string, page: number, size: number = 15): Promise<unknown> {
+    getJobLoggers(id: string, page: number, size: number = 15): Promise<ApiResult<any>> {
         return Http.get(`${this.controllerName}/getJobLoggers/${id}/${page}/${size}`);
     }
 }

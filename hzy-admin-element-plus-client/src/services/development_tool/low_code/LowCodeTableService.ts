@@ -1,5 +1,6 @@
 import Http from "@/infrastructure/scripts/Http";
 import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
+import { ApiResult } from "@/infrastructure/typings/ApiResult";
 
 class LowCodeTableService {
 
@@ -11,7 +12,7 @@ class LowCodeTableService {
      * @param {一页显示多少行} rows
      * @param {当前页码} page
      */
-    findList(rows: number, page: number, search = {}): Promise<unknown> {
+    findList(rows: number, page: number, search = {}): Promise<ApiResult<any>> {
         return Http.post(`${this.controllerName}/findList/${rows}/${page}`, search, false);
     }
 
@@ -20,7 +21,7 @@ class LowCodeTableService {
      *
      * @param {要删除的id 数组} ids
      */
-    deleteList(ids: string[]): Promise<unknown> | void {
+    deleteList(ids: string[]): Promise<ApiResult<any>> | void {
         if (ids && ids.length === 0) {
             return Tools.message("请选择要删除的数据!", EMessageType.警告);
         }
@@ -31,7 +32,7 @@ class LowCodeTableService {
      * 同步表
      * @returns
      */
-    synchronization(): Promise<unknown> {
+    synchronization(): Promise<ApiResult<any>> {
         return Http.post(`${this.controllerName}/synchronization`, null, false);
     }
 
@@ -39,7 +40,7 @@ class LowCodeTableService {
      * 变更数据
      * @returns
      */
-    change(list: any[]): Promise<unknown> {
+    change(list: any[]): Promise<ApiResult<any>> {
         return Http.post(`${this.controllerName}/change`, list, false);
     }
 
@@ -48,7 +49,7 @@ class LowCodeTableService {
      *
      * @param {*} id
      */
-    findForm(id: string): Promise<unknown> {
+    findForm(id: string): Promise<ApiResult<any>> {
         return Http.get(`${this.controllerName}/findForm${id ? "/" + id : ""}`);
     }
 
@@ -57,7 +58,7 @@ class LowCodeTableService {
      *
      * @param {表单数据} vm
      */
-    saveForm(vm: { form: any, id: string }): Promise<unknown> {
+    saveForm(vm: { form: any, id: string }): Promise<ApiResult<any>> {
         if (vm.id) {
             return Http.post(`${this.controllerName}/update`, vm.form);
         }

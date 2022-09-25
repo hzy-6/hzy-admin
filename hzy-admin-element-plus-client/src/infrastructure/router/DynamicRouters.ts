@@ -55,14 +55,14 @@ export function genDynamicRouters(menuTreeList: any[]): boolean {
 function createDynamicRouters(data: any[]) {
     for (let i = 0; i < data.length; i++) {
         let item = data[i];
-        let path = item.router ? item.router : (item.url ? item.url : '/NotFoundComponent');
-
         //如果是菜单类型
         if (item.type == 2) {
+            let path = item.router ? item.router : (item.url ? item.url : '/404');
+
             var route: RouteRecordRaw = {
                 path: path,
                 name: item.componentName ? item.componentName : item.id,
-                redirect: path && path === '/NotFoundComponent' ? '/NotFoundComponent' : undefined,
+                redirect: path && path === '/404' ? '/404' : undefined,
                 meta: {
                     title: item.name,
                     keepAlive: item.keepAlive ?? true,
@@ -76,8 +76,8 @@ function createDynamicRouters(data: any[]) {
                 } as RouteMeta,
             } as RouteRecordRaw;
 
-            if (path && path === '/NotFoundComponent') {
-                route.redirect = '/NotFoundComponent';
+            if (path && path === '/404') {
+                route.redirect = '/404';
             } else {
                 route.component = modules['../../' + item.url];
             }
@@ -85,9 +85,9 @@ function createDynamicRouters(data: any[]) {
             dynamicRouters.push(route);
             allRouters.push(route);
 
-        } else {
-            //只要有 children 则需要往下递归
-            createDynamicRouters(item.children);
         }
+
+        //只要有 children 则需要往下递归
+        createDynamicRouters(item.children);
     }
 }

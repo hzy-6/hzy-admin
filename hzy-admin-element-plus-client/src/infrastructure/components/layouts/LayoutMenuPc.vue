@@ -47,6 +47,7 @@ const isDark = ref(useDark());
 .el-aside {
   overflow-x: hidden;
   z-index: 7;
+  height: calc(100vh);
 }
 
 .hzy-layout-menu-dark {

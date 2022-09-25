@@ -1,8 +1,6 @@
-import AppConsts from '@/infrastructure/scripts/AppConsts';
 import { RouteRecordRaw } from 'vue-router';
 
 const layout = () => import("@/infrastructure/components/layouts/Layout.vue");
-const vues = import.meta.glob(['../views/**/**.vue']);
 
 //路由配置
 const routes: Array<RouteRecordRaw> = [
@@ -14,7 +12,7 @@ const routes: Array<RouteRecordRaw> = [
     },
     {
         //找不到地址
-        path: '/:pathMatch(.*)*',
+        path: '/:pathMatch(.*)',
         name: '404',
         component: () => import('@/infrastructure/components/404.vue')
     },

@@ -1,5 +1,6 @@
 import Http from '@/infrastructure/scripts/Http';
 import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
+import { ApiResult } from '@/infrastructure/typings/ApiResult';
 
 class LoginService {
 
@@ -9,13 +10,15 @@ class LoginService {
      * @param {*} userName 
      * @param {*} userPassword 
      */
-    login(userName: string, userPassword: string): Promise<unknown> | void {
+    login(userName: string, userPassword: string): Promise<ApiResult<any>> {
         if (!userName) {
-            return Tools.message("用户名不能为空!", EMessageType.警告);
+            Tools.message("用户名不能为空!", EMessageType.警告);
+            return;
         }
 
         if (!userPassword) {
-            return Tools.message("密码不能为空!", EMessageType.警告);
+            Tools.message("密码不能为空!", EMessageType.警告);
+            return;
         }
 
         return Http.post('account/check', {

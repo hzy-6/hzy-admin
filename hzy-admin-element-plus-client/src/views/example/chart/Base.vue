@@ -4,8 +4,8 @@ export default { name: "ChartBaseCom" };
 </script>
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
-import Char1 from "@/infrastructure/components/Chart1.vue";
-import Char2 from "@/infrastructure/components/Chart2.vue";
+import Char1 from "./components/Chart1.vue";
+import Char2 from "./components/Chart2.vue";
 </script>
 
 <template>

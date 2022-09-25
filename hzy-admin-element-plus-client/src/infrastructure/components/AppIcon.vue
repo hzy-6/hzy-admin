@@ -3,7 +3,6 @@
 import { getCurrentInstance, ref, watch } from "vue";
 // icons
 import { getAllNameByElementPlus } from "@/infrastructure/scripts/icons";
-import { Icon } from "@vicons/utils";
 
 //定义属性
 const props = defineProps<{
@@ -35,7 +34,5 @@ watch(
   <el-icon :size="props.size ? props.size : 18" :color="props.color" v-if="isDefaultIcon">
     <component :is="props.name" />
   </el-icon>
-  <Icon :size="props.size ? props.size : 18" :color="props.color" v-else>
-    <component :is="props.name" />
-  </Icon>
+  <component :is="props.name" :size="props.size ? props.size : 18" :color="props.color" v-else />
 </template>

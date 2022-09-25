@@ -1,9 +1,11 @@
 import { createRouter, createWebHashHistory, Router, useRouter as appRouter, useRoute as appRoute } from 'vue-router'
 import defaultRouters from '@/infrastructure/router/DefaultRouters';
 import { genDynamicRouters } from '@/infrastructure/router/DynamicRouters';
-import Tools from '@/infrastructure/scripts/Tools';
+import Tools, { EMessageType } from '@/infrastructure/scripts/Tools';
 //菜单数据
-import menuTreeList from "@/infrastructure/mock/MenuData";
+// import menuTreeList from "@/infrastructure/mock/MenuData";
+import AppConsts from '../scripts/AppConsts';
+import AppStore from '../store/AppStore';
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -16,20 +18,32 @@ router.beforeEach((to, from, next) => {
   console.log('路由拦截器=>', to, from);
   Tools.loadingStart();
 
-  // if (to.fullPath === "/login") {
-  //   return next();
-  // }
-
-  //动态路由
-  var hasRoute = genDynamicRouters(menuTreeList);
-  if (!hasRoute) {
-    //
-    console.log('router-cmd', router.getRoutes(), router.options.routes, to.fullPath);
-    //如果初次add路由需要一下代码重新加载
-    return next(to.fullPath);
+  if (Tools.checkPageWhiteList(to.fullPath)) {
+    return next();
   }
 
-  next();
+  if (!Tools.getAuthorization()) {
+    return next(AppConsts.loginPath);
+  }
+
+  //动态路由，和权限验证
+  const appStore = AppStore();
+  appStore.getUserInfo().then(data => {
+    //创建动态路由
+    let hasRouteLayout = genDynamicRouters(data.menus);
+
+    appStore.state.userInfo.menus = data.menus;
+    if (hasRouteLayout) {
+      if (Tools.getAuthority(data, to.meta)) {
+        next()
+      } else {
+        Tools.notice(AppConsts.noPowerMessage, EMessageType.错误);
+        next(from.fullPath);
+      }
+    } else {
+      next(to.fullPath);
+    }
+  });
 });
 
 router.afterEach(() => {
