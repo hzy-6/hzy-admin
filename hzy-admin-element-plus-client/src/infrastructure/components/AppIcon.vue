@@ -34,5 +34,5 @@ watch(
   <el-icon :size="props.size ? props.size : 18" :color="props.color" v-if="isDefaultIcon">
     <component :is="props.name" />
   </el-icon>
-  <component :is="props.name" :size="props.size ? props.size : 18" :color="props.color" v-else />
+  <component :is="props.name" :style="{ fontSize: (props.size ? props.size : 18) + 'px', color: props.color }" v-else />
 </template>
