@@ -16,11 +16,10 @@ import image3 from "@/assets/images/抗疫必胜.png";
 import AppConsts from "@/infrastructure/scripts/AppConsts";
 
 var now = new Date();
-let visible = ref(false);
 </script>
 
 <template>
-  <div class="p-20" style="background-color: var(--el-fill-color-light)">
+  <div class="p-20 bg-color">
     <!-- 基础统计数据 -->
     <div><WorkOrder /></div>
     <!-- 近一年设备销售量 -->

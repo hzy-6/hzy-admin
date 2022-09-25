@@ -5,7 +5,7 @@ import { useDark, useToggle } from "@vueuse/core";
 import AppConsts from "@/infrastructure/scripts/AppConsts";
 
 const jumpHome = () => {
-  router.push("/home");
+  router.push(AppConsts.defaultHomePageInfo.jumpUrl);
 };
 
 const state = reactive({
