@@ -77,6 +77,9 @@ const jumpDoc = () => {
           </el-icon>
         </div>
       </el-tooltip>
+      <!-- <div class="hzy-header-btn" @click="coreStore.toggleDark()">
+        <el-switch v-model="coreStore.state.isDark" inline-prompt active-icon="Sunny" inactive-icon="Moon" style="--el-switch-on-color: var(--bg-color-mute)" />
+      </div> -->
       <!-- 全屏 -->
       <el-tooltip :content="coreStore.state.isFullscreen ? '退出全屏' : '全屏'" placement="bottom" v-if="!coreStore.state.isMobile">
         <div class="hzy-header-btn" @click="coreStore.toggleFullscreen()">
