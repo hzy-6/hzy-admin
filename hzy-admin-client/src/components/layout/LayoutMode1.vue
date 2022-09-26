@@ -23,8 +23,8 @@
     </a-layout-sider>
     <a-layout>
       <LayoutHeader :style="{ position: 'relative', zIndex: 1 }" />
-      <a-layout-content>
-        <LayoutTabs />
+      <LayoutTabs />
+      <a-layout-content>        
         <div style="min-height: calc(100vh - 180px)" class="p-15">
           <!-- 由于必须要输出 cacheViews 才能不让缓存页面丢失事件 所以用了下面隐藏的input组件 来激活cacheViews变化-->
           <input type="hidden" :value="tabsStoreState.cacheViews" />
@@ -69,6 +69,7 @@ const year = new Date().getFullYear();
 
 <style lang="less">
 .ant-layout {
+  height: calc(100vh);
   background-color: #ffffff;
 
   .ant-layout-sider {
@@ -79,6 +80,8 @@ const year = new Date().getFullYear();
   }
 
   .ant-layout-content {
+    overflow: hidden;
+    overflow-y: auto;
     position: relative;
     background-color: #f0f2f5;
   }

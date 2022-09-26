@@ -27,7 +27,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-card header="基础条形图" shadow="never">
+  <el-card header="基础条形图" shadow="hover">
     <template #extra>
       <a href="https://g2plot.antv.vision/zh/docs/manual/getting-started" target="_black"> 组件地址</a>
     </template>

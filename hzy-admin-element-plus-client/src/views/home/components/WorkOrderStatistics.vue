@@ -108,7 +108,7 @@ onBeforeUnmount(() => {
 </script>
 
 <template>
-  <el-card shadow="never">
+  <el-card shadow="hover">
     <div id="WorkOrderStatisticsContainer"></div>
   </el-card>
 </template>

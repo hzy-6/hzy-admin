@@ -14,7 +14,10 @@ import LayoutMode1 from "./LayoutMode1.vue";
 <style lang="less">
 .ant-layout {
   background-color: #ffffff;
+  height: calc(100vh);
   .ant-layout-content {
+    overflow: hidden;
+    overflow-y: auto;
     position: relative;
     background-color: #f0f2f5;
   }

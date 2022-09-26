@@ -28,7 +28,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <el-card header="带缩略轴的折线" shadow="never">
+  <el-card header="带缩略轴的折线" shadow="hover">
     <template #extra>
       <a href="https://g2plot.antv.vision/zh/docs/manual/getting-started" target="_black"> 组件地址</a>
     </template>

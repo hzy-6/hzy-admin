@@ -24,7 +24,7 @@ onBeforeUnmount(() => {
 <template>
   <el-row class="work-order" :gutter="20">
     <el-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6" class="mb-20">
-      <el-card :bordered="false" hoverable :bodyStyle="{ background: '#5b8ff9', padding: 0 }">
+      <el-card  shadow="hover" :bodyStyle="{ background: '#5b8ff9', padding: 0 }">
         <el-row :gutter="20" class="text-center">
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" style="display: flex; justify-content: center; align-items: center">
             <AppIcon name="DashboardOutlined" :size="50" style="color: #fff" />
@@ -37,7 +37,7 @@ onBeforeUnmount(() => {
       </el-card>
     </el-col>
     <el-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6" class="mb-20">
-      <el-card :bordered="false" hoverable :bodyStyle="{ background: '#61ddaa', padding: 0 }">
+      <el-card shadow="hover" :bodyStyle="{ background: '#61ddaa', padding: 0 }">
         <el-row :gutter="20" class="text-center">
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" style="display: flex; justify-content: center; align-items: center">
             <AppIcon name="CloudServerOutlined" :size="50" style="color: #fff" />
@@ -50,7 +50,7 @@ onBeforeUnmount(() => {
       </el-card>
     </el-col>
     <el-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6" class="mb-20">
-      <el-card :bordered="false" hoverable :bodyStyle="{ background: '#85ce61', padding: 0 }">
+      <el-card shadow="hover" :bodyStyle="{ background: '#85ce61', padding: 0 }">
         <el-row :gutter="20" class="text-center">
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" style="display: flex; justify-content: center; align-items: center">
             <AppIcon name="LinkOutlined" :size="50" style="color: #fff" />
@@ -63,7 +63,7 @@ onBeforeUnmount(() => {
       </el-card>
     </el-col>
     <el-col :xs="12" :sm="12" :md="12" :lg="6" :xl="6" class="mb-20">
-      <el-card :bordered="false" hoverable :bodyStyle="{ background: '#ff7875', padding: 0 }">
+      <el-card shadow="hover" :bodyStyle="{ background: '#ff7875', padding: 0 }">
         <el-row :gutter="20" class="text-center">
           <el-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" style="display: flex; justify-content: center; align-items: center">
             <AppIcon name="DisconnectOutlined" :size="50" style="color: #fff" />
