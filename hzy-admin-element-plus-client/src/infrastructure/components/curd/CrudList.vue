@@ -2,6 +2,7 @@
 <script lang="ts" setup>
 import { ref, computed } from "vue";
 import ICrudITableData from "@/infrastructure/typings/ICrudITableData";
+import { ElTable } from "element-plus";
 
 //定义 props
 const props = defineProps<{
@@ -14,7 +15,7 @@ const emits = defineEmits<{
 }>();
 
 const tableData = computed(() => props.tableData);
-const table = ref<any>(null);
+const table = ref<InstanceType<typeof ElTable>>();
 const pageSizeOptions = ref([15, 20, 500, 1000]);
 
 const onCurrentChange = (currentPage: number) => {
@@ -52,7 +53,7 @@ defineExpose({
     </div>
     <!-- 表格 -->
     <slot>
-      <el-table :data="tableData.data" border stripe height="calc(100vh - 250px)" class="mb-20" table-layout="fixed" highlight-current-row>
+      <el-table ref="table" :data="tableData.data" border stripe height="calc(100vh - 250px)" class="mb-20" table-layout="fixed" highlight-current-row>
         <slot name="table-col-default">
           <el-table-column type="index" width="50" />
           <el-table-column type="selection" width="50" />

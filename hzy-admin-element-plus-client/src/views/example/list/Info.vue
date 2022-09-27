@@ -18,34 +18,35 @@ const state = reactive({
   saveLoading: false,
 });
 
-const methods = {
-  //打开表单初始化
-  openForm({ visible, key }: { visible: boolean; key: string }) {
-    state.visible = visible;
-    if (visible) {
-      state.vm.id = key;
-      state.vm.id = key;
-    }
-  },
-  save() {
-    state.saveLoading = true;
-    setTimeout(() => {
-      state.saveLoading = false;
-      emits("onSuccess", 1);
-      Tools.message("提交成功!", EMessageType.成功);
-      state.visible = false;
-    }, 1000);
-  },
-};
+/**
+ * 打开表单初始化
+ */
+function openForm({ visible, key }: { visible: boolean; key: string }) {
+  state.visible = visible;
+  if (visible) {
+    state.vm.id = key;
+    state.vm.id = key;
+  }
+}
+
+function save() {
+  state.saveLoading = true;
+  setTimeout(() => {
+    state.saveLoading = false;
+    emits("onSuccess", 1);
+    Tools.message("提交成功!", EMessageType.成功);
+    state.visible = false;
+  }, 1000);
+}
 
 //向父级导出 函数
-defineExpose({ ...methods });
+defineExpose({ openForm });
 </script>
 
 <template>
   <el-dialog v-model="state.visible" title="编辑" centered @ok="state.visible = false" :width="800">
     <template #footer>
-      <el-button plain type="primary" v-loading="state.saveLoading" @click="methods.save"> 提交</el-button>
+      <el-button plain type="primary" v-loading="state.saveLoading" @click="save()"> 提交</el-button>
       <el-button plain type="danger" @click="state.visible = false">关闭</el-button>
     </template>
     <el-row :gutter="20">

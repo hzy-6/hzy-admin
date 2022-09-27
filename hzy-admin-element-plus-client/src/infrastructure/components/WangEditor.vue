@@ -1,8 +1,4 @@
-<script lang="ts" setup>
-import { onMounted, reactive, onBeforeUnmount, watch } from "vue";
-import "@wangeditor/editor/dist/css/style.css";
-import { createEditor, createToolbar, IDomEditor, Toolbar } from "@wangeditor/editor";
-
+<script lang="ts">
 interface IProps {
   el: string;
   //编辑器内容
@@ -14,6 +10,12 @@ interface IProps {
   //预览域名
   previewDomainName: string;
 }
+</script>
+<script lang="ts" setup>
+import { onMounted, reactive, onBeforeUnmount, watch } from "vue";
+import "@wangeditor/editor/dist/css/style.css";
+import { createEditor, createToolbar, IDomEditor, Toolbar } from "@wangeditor/editor";
+
 //定义 props
 const props = withDefaults(defineProps<IProps>(), {
   el: new Date().getTime() + "_" + Math.floor(Math.random() * 1000),

@@ -21,9 +21,10 @@ class LowCodeTableService {
      *
      * @param {要删除的id 数组} ids
      */
-    deleteList(ids: string[]): Promise<ApiResult<any>> | void {
+    deleteList(ids: string[]): Promise<ApiResult<any>> {
         if (ids && ids.length === 0) {
-            return Tools.message("请选择要删除的数据!", EMessageType.警告);
+            Tools.message("请选择要删除的数据!", EMessageType.警告);
+            return;
         }
         return Http.post(`${this.controllerName}/deleteList`, ids, false);
     }

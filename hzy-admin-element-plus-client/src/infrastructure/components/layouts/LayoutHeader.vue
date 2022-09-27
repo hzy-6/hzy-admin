@@ -86,8 +86,13 @@ const jumpDoc = () => {
       </el-tooltip>
       <!-- 黑白主题切换 -->
       <div class="hzy-header-btn" @click="coreStore.toggleDark()">
-        <ThemeSwitch :state="coreStore.state.isDark" :iconSize="iconSize" />
+        <!-- <ThemeSwitch :state="coreStore.state.isDark" :iconSize="iconSize" /> -->
+        <el-icon :size="iconSize" class="is-loading">
+          <Moon v-if="coreStore.state.isDark" />
+          <Sunny v-else />
+        </el-icon>
       </div>
+
       <!-- 当前登陆人 -->
       <el-dropdown>
         <div class="hzy-header-btn">

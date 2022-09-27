@@ -29,48 +29,60 @@ const state = reactive<any>({
 const refInfo = ref<InstanceType<typeof Info>>();
 
 onMounted(() => {
-  methods.findList();
+  findList();
+});
+
+/**
+ * 获取列表数据
+ */
+function findList() {
+  state.loading = true;
+  setTimeout(() => {
+    const data = [];
+    for (let i = 0; i < 15; i++) {
+      data.push({
+        key: i + 1,
+        name: `Hzy ${i + 1}`,
+        age: 18 + i,
+        address: `addr. ${i + 1}`,
+        column1: `London Park no1. ${i}`,
+        column2: `London Park no2. ${i}`,
+        column3: `London Park no3. ${i}`,
+        column4: `London Park no4. ${i}`,
+        column5: `London Park no5. ${i}`,
+        id: i,
+      });
+    }
+    state.total = 290;
+    state.data = data;
+    state.loading = false;
+  }, 1 * 1000);
   // HttpClient.get("/app/AppTest").then(res => {
   //   console.log(res);
   // });
-});
+}
 
-const methods = {
-  findList() {
-    state.loading = true;
-    setTimeout(() => {
-      const data = [];
-      for (let i = 0; i < 15; i++) {
-        data.push({
-          key: i + 1,
-          name: `Hzy ${i + 1}`,
-          age: 18 + i,
-          address: `addr. ${i + 1}`,
-          column1: `London Park no1. ${i}`,
-          column2: `London Park no2. ${i}`,
-          column3: `London Park no3. ${i}`,
-          column4: `London Park no4. ${i}`,
-          column5: `London Park no5. ${i}`,
-          id: i,
-        });
-      }
-      state.total = 290;
-      state.data = data;
-      state.loading = false;
-    }, 1 * 1000);
-  },
-  exportExcel() {
-    tools.notice("导出Excel成功!", EMessageType.警告, "提醒");
-  },
-  confirm() {
-    tools.message("删除成功!", EMessageType.成功);
-    methods.findList();
-  },
-  //打开表单页面
-  openForm(id: string) {
-    refInfo.value!.openForm({ visible: true, key: id });
-  },
-};
+/**
+ * 导出数据
+ */
+function exportExcel() {
+  tools.notice("导出Excel成功!", EMessageType.警告, "提醒");
+}
+
+/**
+ * 是否删除
+ */
+function confirm() {
+  tools.message("删除成功!", EMessageType.成功);
+  findList();
+}
+
+/**
+ * 打开表单页面
+ */
+function openForm(id: string) {
+  refInfo.value!.openForm({ visible: true, key: id });
+}
 </script>
 
 <template>
@@ -86,8 +98,8 @@ const methods = {
         <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
           <!--button-->
           <el-form-item>
-            <el-button plain type="primary" @click="methods.findList">检索</el-button>
-            <el-button plain @click="methods.findList()">重置</el-button>
+            <el-button plain type="primary" @click="findList">检索</el-button>
+            <el-button plain @click="findList()">重置</el-button>
             <el-button plain type="danger" @click="state.search.state = false">关闭</el-button>
           </el-form-item>
         </el-col>
@@ -99,15 +111,15 @@ const methods = {
           <!-- 检索 -->
           <el-input v-model="state.search.vm.value" placeholder="请输入姓名">
             <template #append>
-              <el-button icon="Search" type="primary" @click="methods.findList()" />
+              <el-button icon="Search" type="primary" @click="findList()" />
             </template>
           </el-input>
           <!-- 高级检索 -->
           <el-button plain icon="Filter" @click="state.search.state = !state.search.state"> 高级检索 </el-button>
           <!-- 新建 -->
-          <el-button plain icon="PlusOutlined" type="primary" @click="methods.openForm('')"> 新建 </el-button>
+          <el-button plain icon="PlusOutlined" type="primary" @click="openForm('')"> 新建 </el-button>
           <!-- 批量删除 -->
-          <el-popconfirm title="您确定要删除?" @confirm="methods.confirm()">
+          <el-popconfirm title="您确定要删除?" @confirm="confirm()">
             <template #reference>
               <el-button plain type="danger" icon="DeleteOutlined"> 批量删除 </el-button>
             </template>
@@ -117,9 +129,9 @@ const methods = {
             <el-button plain icon="DownOutlined"> 更多操作 </el-button>
             <template #dropdown>
               <el-dropdown-menu>
-                <el-dropdown-item @click="methods.exportExcel">导出 Excel</el-dropdown-item>
-                <el-dropdown-item @click="methods.exportExcel">下载 导入模板</el-dropdown-item>
-                <el-dropdown-item @click="methods.exportExcel">导入 Excel</el-dropdown-item>
+                <el-dropdown-item @click="exportExcel()">导出 Excel</el-dropdown-item>
+                <el-dropdown-item @click="exportExcel()">下载 导入模板</el-dropdown-item>
+                <el-dropdown-item @click="exportExcel()">导入 Excel</el-dropdown-item>
               </el-dropdown-menu>
             </template>
           </el-dropdown>
@@ -137,13 +149,13 @@ const methods = {
         <el-table-column prop="column5" label="列5" />
         <el-table-column prop="action" label="操作">
           <template #default>
-            <el-button link type="primary" @click="methods.openForm('')">编辑</el-button>
-            <el-button link type="danger" @click="methods.confirm()">删除</el-button>
+            <el-button link type="primary" @click="openForm('')">编辑</el-button>
+            <el-button link type="danger" @click="confirm()">删除</el-button>
           </template>
         </el-table-column>
       </template>
     </CrudList>
 
-    <Info ref="refInfo" @onSuccess="() => methods.findList()" />
+    <Info ref="refInfo" @onSuccess="() => findList()" />
   </div>
 </template>
