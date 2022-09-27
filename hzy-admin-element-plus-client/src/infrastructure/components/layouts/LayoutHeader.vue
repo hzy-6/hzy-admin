@@ -7,6 +7,7 @@ import SettingsStore from "@/infrastructure/store/layouts/SettingsStore";
 import HeaderStore from "@/infrastructure/store/layouts/HeaderStore";
 import MenuStore, { EMenuMode } from "@/infrastructure/store/layouts/MenuStore";
 import Tools from "@/infrastructure/scripts/Tools";
+import ThemeSwitch from "@/infrastructure/components/ThemeSwitch.vue";
 //
 const coreStore = CoreStore();
 const settingsStore = SettingsStore();
@@ -68,18 +69,6 @@ const jumpDoc = () => {
           <el-icon :size="iconSize"><RefreshRight /></el-icon>
         </div>
       </el-tooltip>
-      <!-- 黑白主题切换 -->
-      <el-tooltip :content="coreStore.state.isDark ? '白昼' : '夜晚'" placement="bottom">
-        <div class="hzy-header-btn" @click="coreStore.toggleDark()">
-          <el-icon :size="iconSize">
-            <Sunny v-if="coreStore.state.isDark" />
-            <Moon v-else />
-          </el-icon>
-        </div>
-      </el-tooltip>
-      <!-- <div class="hzy-header-btn" @click="coreStore.toggleDark()">
-        <el-switch v-model="coreStore.state.isDark" inline-prompt active-icon="Sunny" inactive-icon="Moon" style="--el-switch-on-color: var(--bg-color-mute)" />
-      </div> -->
       <!-- 全屏 -->
       <el-tooltip :content="coreStore.state.isFullscreen ? '退出全屏' : '全屏'" placement="bottom" v-if="!coreStore.state.isMobile">
         <div class="hzy-header-btn" @click="coreStore.toggleFullscreen()">
@@ -95,18 +84,26 @@ const jumpDoc = () => {
           <el-icon :size="iconSize"><Setting /></el-icon>
         </div>
       </el-tooltip>
-      <!-- 退出登录 -->
-      <el-tooltip content="退出登录" placement="bottom">
-        <div class="hzy-header-btn" @click="logOut()">
-          <el-icon :size="iconSize"><SwitchButton /></el-icon>
-        </div>
-      </el-tooltip>
+      <!-- 黑白主题切换 -->
+      <div class="hzy-header-btn" @click="coreStore.toggleDark()">
+        <ThemeSwitch :state="coreStore.state.isDark" :iconSize="iconSize" />
+      </div>
       <!-- 当前登陆人 -->
-      <el-tooltip content="当前登陆人" placement="bottom">
+      <el-dropdown>
         <div class="hzy-header-btn">
           <el-icon :size="iconSize"><User /></el-icon>&nbsp;超级管理员
         </div>
-      </el-tooltip>
+        <template #dropdown>
+          <el-dropdown-menu>
+            <el-dropdown-item @click="logOut()">
+              <el-icon :size="16">
+                <SwitchButton />
+              </el-icon>
+              退出登录
+            </el-dropdown-item>
+          </el-dropdown-menu>
+        </template>
+      </el-dropdown>
     </div>
   </el-header>
 </template>

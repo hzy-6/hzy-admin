@@ -2,7 +2,6 @@
 import { onMounted, reactive, computed, watch } from "vue";
 import AppIcon from "@/infrastructure/components/AppIcon.vue";
 import router from "@/infrastructure/router";
-import AppConsts from "@/infrastructure/scripts/AppConsts";
 
 import MenuStore, { EMenuMode } from "@/infrastructure/store/layouts/MenuStore";
 import AppStore from "@/infrastructure/store/AppStore";

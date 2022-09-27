@@ -1,19 +1,11 @@
 <!-- 脚本 -->
 <script lang="ts" setup>
 import { ref, computed } from "vue";
-
-interface ITableData {
-  search: any;
-  loading: boolean;
-  page: number;
-  rows: number;
-  total: number;
-  data: any[];
-}
+import ICrudITableData from "@/infrastructure/typings/ICrudITableData";
 
 //定义 props
 const props = defineProps<{
-  tableData: ITableData;
+  tableData: ICrudITableData;
 }>();
 //定义事件
 const emits = defineEmits<{
@@ -61,11 +53,11 @@ defineExpose({
     <!-- 表格 -->
     <slot>
       <el-table :data="tableData.data" border stripe height="calc(100vh - 250px)" class="mb-20" table-layout="fixed" highlight-current-row>
-        <slot name="table-col">
+        <slot name="table-col-default">
           <el-table-column type="index" width="50" />
           <el-table-column type="selection" width="50" />
           <!-- 表格列插槽 -->
-          <slot name="table-col-default"></slot>
+          <slot name="table-col"></slot>
         </slot>
         <template #empty>
           <el-empty description="暂无数据" />

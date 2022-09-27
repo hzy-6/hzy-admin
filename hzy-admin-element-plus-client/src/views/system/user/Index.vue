@@ -1,14 +1,14 @@
 <script lang="ts">
 // 组件命名
-export default { name: "ListIndexCom" };
+export default { name: "system_user" };
 </script>
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
 import { reactive, ref, onMounted } from "vue";
 import CrudList from "@/infrastructure/components/curd/CrudList.vue";
 import tools, { EMessageType } from "@/infrastructure/scripts/tools";
-import HttpClient from "@/infrastructure/scripts/Http";
 import Info from "./Info.vue";
+import service from "@/services/system/UserService";
 
 const state = reactive<any>({
   search: {
@@ -38,26 +38,15 @@ onMounted(() => {
 const methods = {
   findList() {
     state.loading = true;
-    setTimeout(() => {
-      const data = [];
-      for (let i = 0; i < 15; i++) {
-        data.push({
-          key: i + 1,
-          name: `Hzy ${i + 1}`,
-          age: 18 + i,
-          address: `addr. ${i + 1}`,
-          column1: `London Park no1. ${i}`,
-          column2: `London Park no2. ${i}`,
-          column3: `London Park no3. ${i}`,
-          column4: `London Park no4. ${i}`,
-          column5: `London Park no5. ${i}`,
-          id: i,
-        });
-      }
-      state.total = 290;
-      state.data = data;
+    service.findList(state.rows, state.page, state.search.vm).then((res) => {
+      let data = res.data;
       state.loading = false;
-    }, 1 * 1000);
+      state.page = data.page;
+      state.rows = data.size;
+      state.total = data.total;
+      state.columns = data.columns;
+      state.data = data.dataSource;
+    });
   },
   exportExcel() {
     tools.notice("导出Excel成功!", EMessageType.警告, "提醒");
@@ -125,16 +114,12 @@ const methods = {
           </el-dropdown>
         </el-space>
       </template>
-      <!-- 表格 表列头 -->
+      <!-- 表格 表列头-->
       <template #table-col>
-        <el-table-column prop="name" label="姓名" width="180" />
-        <el-table-column prop="age" label="年龄" width="180" />
-        <el-table-column prop="address" label="家庭地址" />
-        <el-table-column prop="column1" label="列1" />
-        <el-table-column prop="column2" label="列2" />
-        <el-table-column prop="column3" label="列3" />
-        <el-table-column prop="column4" label="列4" />
-        <el-table-column prop="column5" label="列5" />
+        <!-- 动态列 -->
+        <template v-for="item in state.columns.filter((w) => w.fieldName != 'id' && w.show)" :key="item.id">
+          <el-table-column :prop="item.fieldName" :label="item.title" />
+        </template>
         <el-table-column prop="action" label="操作">
           <template #default>
             <el-button link type="primary" @click="methods.openForm('')">编辑</el-button>
