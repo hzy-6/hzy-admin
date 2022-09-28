@@ -30,7 +30,7 @@ export default class AppConsts {
      * 生产环境默认：client 文件夹包起来
      * 开发环境默认：/
      */
-    static packDirectoryPrefix: string = process.env.NODE_ENV == "production" ? "/client/" : "/";
+    static packDirectoryPrefix: string = process.env.NODE_ENV == "production" ? "/client_element_plus/" : "/";
 
     /**
      * 系统标题
