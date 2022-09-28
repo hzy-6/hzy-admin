@@ -147,66 +147,88 @@ const jumpDoc = () => {
 <style lang="less">
 //=======// 头部 蓝色
 .hzy-layout-header-0 {
-  // background-color: #096dd9;
-  // color: #ffffff;
   background: #2173dc;
   background: -webkit-gradient(linear, left top, right top, from(#1d42ab), color-stop(#2173dc), to(#1e93ff));
   background: linear-gradient(90deg, #1d42ab, #2173dc, #1e93ff);
-  color: #ffffff;
+  * {
+    color: #ffffff;
+  }
 }
 
 .hzy-layout-header-1 {
   background-color: #8d6658;
-  color: #ffffff;
+  * {
+    color: #ffffff;
+  }
 }
 
 .hzy-layout-header-2 {
   background-color: #57c7d4;
-  color: #ffffff;
+  * {
+    color: #ffffff;
+  }
 }
 
 .hzy-layout-header-3 {
   background-color: #46be8a;
-  color: #ffffff;
+  * {
+    color: #ffffff;
+  }
 }
 
 .hzy-layout-header-4 {
   background-color: #757575;
-  color: #ffffff;
+  * {
+    color: #ffffff;
+  }
 }
 
 .hzy-layout-header-5 {
   background-color: #677ae4;
-  color: #ffffff;
+  * {
+    color: #ffffff;
+  }
 }
 
 .hzy-layout-header-6 {
   background-color: #f2a654;
-  color: #ffffff;
+  * {
+    color: #ffffff;
+  }
 }
 
 .hzy-layout-header-7 {
   background-color: #f96197;
-  color: #ffffff;
+  * {
+    color: #ffffff;
+  }
 }
 
 .hzy-layout-header-8 {
   background-color: #926dde;
-  color: #ffffff;
+  * {
+    color: #ffffff;
+  }
 }
 
 .hzy-layout-header-9 {
   background-color: #f96868;
-  color: #ffffff;
+  * {
+    color: #ffffff;
+  }
 }
 
 .hzy-layout-header-10 {
   background-color: #3aa99e;
-  color: #ffffff;
+  * {
+    color: #ffffff;
+  }
 }
 
 .hzy-layout-header-11 {
   background-color: #f9cd48;
-  color: #ffffff;
+  * {
+    color: #ffffff;
+  }
 }
 </style>

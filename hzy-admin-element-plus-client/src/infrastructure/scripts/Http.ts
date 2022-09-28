@@ -1,8 +1,8 @@
-import axios from "axios";
+import axios, { AxiosRequestConfig } from "axios";
 import AppConsts from "./AppConsts";
 import Tools, { EMessageType } from "./Tools";
 import router from "@/infrastructure/router";
-import { ApiResult } from "../typings/ApiResult";
+import ApiResult from "../typings/ApiResult";
 
 /**
  * 网络请求客户端
@@ -22,21 +22,21 @@ class Http {
 
         //http request 拦截器
         axios.interceptors.request.use(
-            (config) => {
+            (config: AxiosRequestConfig<any>) => {
                 if (Http.isLoading) {
                     Tools.loadingStart();
                 }
 
                 let authorization = Tools.getAuthorization();
                 if (authorization) {
-                    config.headers[AppConsts.authorizationKeyName] = authorization;
+                    config!.headers![AppConsts.authorizationKeyName] = authorization;
                 }
-                config.headers["X-Requested-With"] = "XMLHttpRequest";
-                config.headers["Content-Type"] = "application/json; charset=UTF-8";
+                config!.headers!["X-Requested-With"] = "XMLHttpRequest";
+                config!.headers!["Content-Type"] = "application/json; charset=UTF-8";
 
                 if (!config.data) return config;
 
-                if (config.data.isUpload) config.headers["Content-Type"] = "multipart/form-data";
+                if (config.data.isUpload) config!.headers!["Content-Type"] = "multipart/form-data";
 
                 return config;
             },
@@ -115,7 +115,7 @@ class Http {
      * @param config 其他配置信息
      * @returns Promise 对象
      */
-    static get(url: string, data = {}, loading: boolean = true, config = {}): Promise<ApiResult<any>> {
+    static get(url: string, data = {}, loading: boolean = true, config: any = {}): Promise<ApiResult<any>> {
         Http.isLoading = loading;
         config["params"] = data;
         return new Promise((resolve, reject) => {
@@ -228,7 +228,7 @@ class Http {
      * @param fileName 
      * @returns 
      */
-    static download(url: string, data = {}, loading: boolean = true, fileName: string = null): Promise<ApiResult<any>> {
+    static download(url: string, data = {}, loading: boolean = true, fileName: string | null = null): Promise<ApiResult<any>> {
         Http.isLoading = loading;
         return new Promise((resolve, reject) => {
             axios.post(url, data, { responseType: "blob" }).then(
@@ -241,7 +241,7 @@ class Http {
                     if (contentDisposition && contentDisposition.indexOf("filename=") > -1) {
                         let patt = new RegExp('filename=([^;]+\\.[^\\.;]+);*');
                         let result = patt.exec(contentDisposition);
-                        fileName = decodeURI(result[1]);
+                        fileName = decodeURI(result![1]);
                     }
                     console.log(response);
                     var blob = new Blob([res], { type: res.type });

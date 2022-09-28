@@ -31,9 +31,7 @@ const state = reactive<{
   search: {
     state: false,
     vm: {
-      //当前选择的组织 id
-      organizationId: null,
-      value: "",
+      name: "",
     },
   },
 });
@@ -67,6 +65,18 @@ function findList(): void {
 }
 
 /**
+ * 重置检索
+ */
+function onResetSearch(): void {
+  state.page = 1;
+  let searchVm = state.search.vm;
+  for (let key in searchVm) {
+    searchVm[key] = null;
+  }
+  findList();
+}
+
+/**
  * 导出 excel 数据表格
  */
 function exportExcel() {
@@ -95,9 +105,6 @@ function deleteList(id: string | null): void {
  * 打开表单页面
  */
 function openForm(id: string | null) {
-  if (!id && !state.search.vm.organizationId) {
-    return tools.message("请选择组织!", EMessageType.警告);
-  }
   //初始化表单
   nextTick(() => {
     refInfo.value?.init({ id });
@@ -110,16 +117,16 @@ function openForm(id: string | null) {
     <CrudList ref="refCrudList" :tableData="state" @onCurrentChange="() => findList()" @onSizeChange="() => findList()">
       <!-- 高级检索 -->
       <template #search>
-        <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" v-for="item in 10">
-          <el-form-item label-width="80px" label="用户名">
-            <el-input v-model:value="state.search.vm.value" placeholder="用户名" style="width: 250px" />
+        <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
+          <el-form-item label-width="80px" label="岗位名称">
+            <el-input v-model="state.search.vm.name" placeholder="岗位名称" style="width: 250px" />
           </el-form-item>
         </el-col>
         <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
           <!--button-->
           <el-form-item>
             <el-button plain type="primary" @click="findList()">检索</el-button>
-            <el-button plain @click="findList()">重置</el-button>
+            <el-button plain @click="onResetSearch()">重置</el-button>
             <el-button plain type="danger" @click="state.search.state = false">关闭</el-button>
           </el-form-item>
         </el-col>
@@ -129,7 +136,7 @@ function openForm(id: string | null) {
       <template #toolbar>
         <el-space wrap :size="[20, 20]">
           <!-- 检索 -->
-          <el-input v-model="state.search.vm.value" placeholder="请输入姓名">
+          <el-input v-model="state.search.vm.name" placeholder="请输入岗位名称">
             <template #append>
               <el-button icon="Search" type="primary" @click="findList()" />
             </template>
@@ -137,9 +144,9 @@ function openForm(id: string | null) {
           <!-- 高级检索 -->
           <el-button plain icon="Filter" @click="state.search.state = !state.search.state"> 高级检索 </el-button>
           <!-- 新建 -->
-          <el-button plain icon="PlusOutlined" type="primary" @click="openForm(null)"> 新建 </el-button>
+          <el-button plain icon="PlusOutlined" type="primary" @click="openForm(null)" v-power="$router.currentRoute.value.meta.menuId + ':insert'"> 新建 </el-button>
           <!-- 批量删除 -->
-          <el-popconfirm title="您确定要删除?" @confirm="deleteList(null)">
+          <el-popconfirm title="您确定要删除?" @confirm="deleteList(null)" v-power="$router.currentRoute.value.meta.menuId + ':delete'">
             <template #reference>
               <el-button plain type="danger" icon="DeleteOutlined"> 批量删除 </el-button>
             </template>

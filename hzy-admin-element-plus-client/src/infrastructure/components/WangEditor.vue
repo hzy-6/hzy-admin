@@ -1,25 +1,25 @@
-<script lang="ts">
-interface IProps {
-  el: string;
-  //编辑器内容
-  html: string;
-  //编辑器高度
-  height: Number;
-  //文件上传域名
-  domainName: string;
-  //预览域名
-  previewDomainName: string;
-}
-</script>
 <script lang="ts" setup>
 import { onMounted, reactive, onBeforeUnmount, watch } from "vue";
-import "@wangeditor/editor/dist/css/style.css";
 import { createEditor, createToolbar, IDomEditor, Toolbar } from "@wangeditor/editor";
 
 //定义 props
-const props = withDefaults(defineProps<IProps>(), {
-  el: new Date().getTime() + "_" + Math.floor(Math.random() * 1000),
-});
+const props = withDefaults(
+  defineProps<{
+    el: string;
+    //编辑器内容
+    html: string;
+    //编辑器高度
+    height: Number;
+    //文件上传域名
+    domainName: string;
+    //预览域名
+    previewDomainName: string;
+  }>(),
+  {
+    el: new Date().getTime() + "_" + Math.floor(Math.random() * 1000),
+  }
+);
+
 //定义事件
 const emits = defineEmits<{
   (e: "update:html", value: string): void;

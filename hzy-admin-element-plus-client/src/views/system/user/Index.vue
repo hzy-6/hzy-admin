@@ -78,6 +78,18 @@ function findList(): void {
 }
 
 /**
+ * 重置检索
+ */
+function onResetSearch(): void {
+  state.page = 1;
+  let searchVm = state.search.vm;
+  for (let key in searchVm) {
+    searchVm[key] = null;
+  }
+  findList();
+}
+
+/**
  * 导出 excel 数据表格
  */
 function exportExcel() {
@@ -171,19 +183,19 @@ watch(
           <template #search>
             <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <el-form-item label-width="80px" label="真实名称">
-                <el-input v-model:value="state.search.vm.name" placeholder="真实名称" style="width: 250px" />
+                <el-input v-model="state.search.vm.name" placeholder="真实名称" style="width: 250px" />
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <el-form-item label-width="80px" label="账户名称">
-                <el-input v-model:value="state.search.vm.loginName" placeholder="账户名称" style="width: 250px" />
+                <el-input v-model="state.search.vm.loginName" placeholder="账户名称" style="width: 250px" />
               </el-form-item>
             </el-col>
             <el-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <!--button-->
               <el-form-item>
                 <el-button plain type="primary" @click="findList()">检索</el-button>
-                <el-button plain @click="findList()">重置</el-button>
+                <el-button plain @click="onResetSearch()">重置</el-button>
                 <el-button plain type="danger" @click="state.search.state = false">关闭</el-button>
               </el-form-item>
             </el-col>
@@ -193,7 +205,7 @@ watch(
           <template #toolbar>
             <el-space wrap :size="[20, 20]">
               <!-- 检索 -->
-              <el-input v-model="state.search.vm.value" placeholder="请输入姓名">
+              <el-input v-model="state.search.vm.name" placeholder="请输入姓名">
                 <template #append>
                   <el-button icon="Search" type="primary" @click="findList()" />
                 </template>
@@ -203,7 +215,7 @@ watch(
               <!-- 新建 -->
               <el-button plain icon="PlusOutlined" type="primary" @click="openForm(null)" v-power="$router.currentRoute.value.meta.menuId + ':insert'"> 新建 </el-button>
               <!-- 批量删除 -->
-              <el-popconfirm title="您确定要删除?" @confirm="deleteList(null)">
+              <el-popconfirm title="您确定要删除?" @confirm="deleteList(null)" v-power="$router.currentRoute.value.meta.menuId + ':delete'">
                 <template #reference>
                   <el-button plain type="danger" icon="DeleteOutlined"> 批量删除 </el-button>
                 </template>
@@ -228,9 +240,9 @@ watch(
             <el-table-column prop="action" label="操作">
               <template #default="scope">
                 <!-- 编辑 -->
-                <el-button link type="primary" @click="openForm(scope.row.id)">编辑</el-button>
+                <el-button link type="primary" @click="openForm(scope.row.id)" v-power="$router.currentRoute.value.meta.menuId + ':update'">编辑</el-button>
                 <!-- 删除 -->
-                <el-popconfirm title="您确定要删除?" @confirm="deleteList(scope.row.id)">
+                <el-popconfirm title="您确定要删除?" @confirm="deleteList(scope.row.id)" v-power="$router.currentRoute.value.meta.menuId + ':delete'">
                   <template #reference>
                     <el-button link type="danger">删除</el-button>
                   </template>

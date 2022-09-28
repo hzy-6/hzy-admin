@@ -1,5 +1,5 @@
 import Http from '@/infrastructure/scripts/Http';
-import { ApiResult } from '@/infrastructure/typings/ApiResult';
+import ApiResult from '@/infrastructure/typings/ApiResult';
 
 class ChangePasswordService {
 

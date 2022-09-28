@@ -1,6 +1,6 @@
 import Http from '@/infrastructure/scripts/Http';
 import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
-import { ApiResult } from '@/infrastructure/typings/ApiResult';
+import ApiResult from '@/infrastructure/typings/ApiResult';
 
 class RoleService {
 
@@ -44,7 +44,7 @@ class RoleService {
      * 
      * @param {表单数据} vm 
      */
-    saveForm(vm: { form: any, id: string }): Promise<ApiResult<any>> {
+    saveForm(vm: any): Promise<ApiResult<any>> {
         if (vm.id) {
             return Http.post(`${this.controllerName}/update`, vm.form);
         }

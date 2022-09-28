@@ -290,7 +290,7 @@ class Tools {
         let menuId = meta.menuId;
         if (!menuId) return true;
         if (!data.menuPowers) return true;
-        let power = data.menuPowers.find(w => w.menuId == menuId);
+        let power = data.menuPowers.find((w: any) => w.menuId == menuId);
         if (!power) return true;
         // console.log('getAuthority=>', data, 'menuid=>', menuId, 'userId=>', userId, power.display);
         //检查页面是否有 display 权限

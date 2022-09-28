@@ -56,10 +56,6 @@ function findForm() {
  * 保存数据
  */
 function saveForm() {
-  if (!state.vm.form.organizationId) {
-    return tools.message("请选择组织", EMessageType.警告);
-  }
-
   state.loading = true;
   service
     .saveForm(state.vm)

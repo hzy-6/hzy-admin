@@ -74,6 +74,7 @@
 
 	<ItemGroup>
 	  <Folder Include="wwwroot\upload\files\" />
+	  <Folder Include="wwwroot\client_element_plus\" />
 	</ItemGroup>
 
 

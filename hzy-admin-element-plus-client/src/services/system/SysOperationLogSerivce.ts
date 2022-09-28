@@ -1,6 +1,6 @@
 import Http from '@/infrastructure/scripts/Http';
 import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
-import { ApiResult } from '@/infrastructure/typings/ApiResult';
+import ApiResult from '@/infrastructure/typings/ApiResult';
 
 class SysOperationLogSerivce {
 
