@@ -29,7 +29,7 @@ class SysOperationLogSerivce {
      * 
      * @param {*} id 
      */
-    findForm(id: string): Promise<ApiResult<any>> {
+    findForm(id: string | null): Promise<ApiResult<any>> {
         return Http.get(`${this.controllerName}/findForm${(id ? '/' + id : '')}`);
     }
 }

@@ -7,11 +7,11 @@
  * 
  */
 
-import { ComponentInternalInstance } from "vue";
+import { App, ComponentInternalInstance } from "vue";
 import { useAllElementPlusIcons, getAllName as getAllNameElementPlus } from "./ElementPlusIcons";
 import { useAllAntdIcons, getAllName as getAllNameAntd } from "./AntdIcons";
 
-export function useAllIcons(app: any) {
+export function useAllIcons(app: App<Element>) {
     // 注册所有的 element plus 图标
     app.use(useAllElementPlusIcons);
     // 注册所有的 antd 图标

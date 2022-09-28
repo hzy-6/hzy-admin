@@ -21,7 +21,7 @@ class FunctionService {
      * 
      * @param {要删除的id 数组} ids 
      */
-    deleteList(ids: string[]): Promise<ApiResult<any>> {
+    deleteList(ids: string[]): Promise<ApiResult<any>> | undefined {
         console.log(ids);
         if (ids && ids.length === 0) {
             Tools.message("请选择要删除的数据!", EMessageType.警告);
@@ -35,7 +35,7 @@ class FunctionService {
      * 
      * @param {*} id 
      */
-    findForm(id: string): Promise<ApiResult<any>> {
+    findForm(id: string | null): Promise<ApiResult<any>> {
         return Http.get(`${this.controllerName}/findForm${(id ? '/' + id : '')}`);
     }
 

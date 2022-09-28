@@ -87,6 +87,11 @@ export default defineStore("MenuStore", () => {
         backgroundColor: "#191a23",
         activeTextColor: "#fff",
         textColor: "#fff",
+        }, {//vue-element-admin 菜单风格
+            activeBgColor: "#1890ff",// 激活文本背景颜色
+            backgroundColor: "rgb(48, 65, 86)",// 菜单背景色
+            activeTextColor: "#fff",// 文本激活色
+            textColor: "#fff",// 默认文本色
     }];
 
     let state = reactive<IState>({

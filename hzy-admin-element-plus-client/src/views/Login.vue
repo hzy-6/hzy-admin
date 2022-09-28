@@ -3,7 +3,7 @@ import router from "@/infrastructure/router";
 import { onMounted, reactive } from "vue";
 import { useDark } from "@vueuse/core";
 import AppConsts from "@/infrastructure/scripts/AppConsts";
-import Tools, { EMessageType } from "@/infrastructure/scripts/Tools";
+import tools, { EMessageType } from "@/infrastructure/scripts/tools";
 import LoginService from "@/services/system/LoginService";
 import AppStore from "@/infrastructure/store/AppStore";
 
@@ -21,16 +21,16 @@ const appStore = AppStore();
  * 检查账户信息登录
  */
 const checkLogin = () => {
-  if (!state.userName) return Tools.message("用户名不能为空!", EMessageType.警告);
-  if (!state.userPassword) return Tools.message("密码不能为空!", EMessageType.警告);
+  if (!state.userName) return tools.message("用户名不能为空!", EMessageType.警告);
+  if (!state.userPassword) return tools.message("密码不能为空!", EMessageType.警告);
   state.loading = true;
   LoginService.login(state.userName, state.userPassword)
-    .then((res) => {
+    ?.then((res) => {
       if (res.code !== 1) {
         state.loading = false;
         return;
       }
-      Tools.setAuthorization(res.data.token);
+      tools.setAuthorization(res.data.token);
       router.push("/").then(() => {
         state.loading = false;
       });
@@ -42,7 +42,7 @@ const checkLogin = () => {
 
 // 重置系统信息
 const reset = () => {
-  Tools.removeAuthorization();
+  tools.removeAuthorization();
   appStore.resetInfo();
 };
 

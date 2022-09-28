@@ -10,7 +10,7 @@ class LoginService {
      * @param {*} userName 
      * @param {*} userPassword 
      */
-    login(userName: string, userPassword: string): Promise<ApiResult<any>> {
+    login(userName: string, userPassword: string): Promise<ApiResult<any>> | undefined {
         if (!userName) {
             Tools.message("用户名不能为空!", EMessageType.警告);
             return;

@@ -45,7 +45,7 @@ class CodeGenerationService {
      * 创建数据字典
      */
     createDataDictionary(): Promise<ApiResult<any>> {
-        return Http.download(`${this.controllerName}/createDataDictionary`, null, false);
+        return Http.download(`${this.controllerName}/createDataDictionary`, {}, false);
     }
 
     /**

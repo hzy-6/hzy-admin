@@ -66,7 +66,6 @@ defineExpose({
       </el-table>
     </slot>
     <!-- 分页 -->
-    <!-- small -->
     <el-pagination
       v-model:currentPage="tableData.page"
       v-model:page-size="tableData.rows"
@@ -87,5 +86,6 @@ defineExpose({
   backdrop-filter: saturate(50%) blur(20px);
   -webkit-backdrop-filter: saturate(50%) blur(20px);
   background-color: initial;
+  width: 100%;
 }
 </style>

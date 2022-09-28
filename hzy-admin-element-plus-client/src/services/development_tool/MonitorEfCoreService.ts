@@ -10,7 +10,7 @@ class MonitorEfCoreService {
      *
      */
     getEFCoreMonitorContext(): Promise<ApiResult<any>> {
-        return Http.post(`${this.controllerName}/GetEFCoreMonitorContext/`, null, false);
+        return Http.post(`${this.controllerName}/GetEFCoreMonitorContext/`, {}, false);
     }
 
     /**
@@ -18,7 +18,7 @@ class MonitorEfCoreService {
      *
      */
     getTimeConsumingRanking(): Promise<ApiResult<any>> {
-        return Http.post(`${this.controllerName}/GetTimeConsumingRanking/`, null, false);
+        return Http.post(`${this.controllerName}/GetTimeConsumingRanking/`, {}, false);
     }
 
     /**
@@ -26,7 +26,7 @@ class MonitorEfCoreService {
     *
     */
     getNewest(): Promise<ApiResult<any>> {
-        return Http.post(`${this.controllerName}/GetNewest/`, null, false);
+        return Http.post(`${this.controllerName}/GetNewest/`, {}, false);
     }
 
 }

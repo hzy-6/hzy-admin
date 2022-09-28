@@ -4,7 +4,6 @@ export default { name: "HomeIndexCom" };
 </script>
 <!-- 逻辑代码 -->
 <script lang="ts" setup>
-import { ref } from "vue";
 import WorkOrder from "./components/WorkOrder.vue";
 import WorkOrderStatistics from "./components/WorkOrderStatistics.vue";
 import HomeChart1 from "./components/HomeChart1.vue";
@@ -24,11 +23,21 @@ var now = new Date();
     <div><WorkOrder /></div>
     <!-- 近一年设备销售量 -->
     <div>
-      <WorkOrderStatistics />
+      <el-row :gutter="20">
+        <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
+          <div class="mb-15">
+            <a href="https://gitee.com/hzy6/HzyAdmin/stargazers"><img src="https://gitee.com/hzy6/HzyAdmin/badge/star.svg?theme=dark" alt="star" /></a>
+          </div>
+          <img src="https://gitee.com/hzy6/HzyAdmin/widgets/widget_card.svg?colors=eae9d7,2e2f29,272822,484a45,eae9d7,747571" style="width: 100%; height: 320px" />
+        </el-col>
+        <el-col :xs="24" :sm="24" :md="12" :lg="16" :xl="16" class="mb-20">
+          <WorkOrderStatistics />
+        </el-col>
+      </el-row>
     </div>
 
     <!-- 更多图形报表 -->
-    <div class="mt-20">
+    <div>
       <el-row :gutter="20">
         <el-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8" class="mb-20">
           <HomeChart1 />

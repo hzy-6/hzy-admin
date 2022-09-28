@@ -13,6 +13,8 @@ import "./assets/styles/hzy-admin-ui-layout.less";
 import { useAllIcons } from "@/infrastructure/scripts/icons";
 //vxe-table
 import useVXETable from "@/infrastructure/scripts/VxeTableUtil";
+//权限指令注入
+import PowerDirective from "@/infrastructure/scripts/PowerDirective";
 
 createApp(App)
     .use(createPinia())
@@ -20,4 +22,5 @@ createApp(App)
     .use(ElementPlus)
     .use(useAllIcons)
     .use(useVXETable)
+    .use(PowerDirective.usePowerDirective)
     .mount('#app');

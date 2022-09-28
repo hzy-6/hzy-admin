@@ -21,7 +21,7 @@ class LowCodeTableInfoService {
      * 
      * @param {要删除的id 数组} ids 
      */
-    deleteList(ids: string[]): Promise<ApiResult<any>> {
+    deleteList(ids: string[]): Promise<ApiResult<any>> | undefined {
         if (ids && ids.length === 0) {
             Tools.message("请选择要删除的数据!", EMessageType.警告);
             return;
@@ -34,7 +34,7 @@ class LowCodeTableInfoService {
      * @returns 
      */
     synchronization(tableId: string): Promise<ApiResult<any>> {
-        return Http.post(`${this.controllerName}/synchronization/${tableId}`, null, false);
+        return Http.post(`${this.controllerName}/synchronization/${tableId}`, {}, false);
     }
 
     /**
