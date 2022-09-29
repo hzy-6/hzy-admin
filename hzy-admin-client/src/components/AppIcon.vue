@@ -1,14 +1,13 @@
 <template>
-  <component :is="$props.name" :fill="$props.color" :style="style" :class="$props.class" v-if="isAntdIcon" />
-  <!-- xicons -->
-  <Icon :tag="$props.tag ? $props.tag : 'i'" :size="$props.size" :color="$props.color" :style="$props.style" :class="$props.class" v-else>
-    <component :is="$props.name" />
-  </Icon>
+  <component :is="iconName" :fill="$props.color" :style="style" :class="$props.class" v-if="isAntdIcon" />
+  <!-- element plus icon -->
+  <i :style="{ width: $props.size + 'px', height: $props.size + 'px', color: $props.color, ...$props.style }" :color="$props.color" :class="$props.class" v-else>
+    <component :is="iconName" />
+  </i>
 </template>
 
 <script>
 import { defineComponent, getCurrentInstance, ref, watch } from "vue";
-import { Icon } from "@vicons/utils";
 // icons
 import { getAllNameByAntd } from "@/scripts/icons";
 
@@ -25,16 +24,22 @@ export default defineComponent({
     class: Object | String,
     tag: String,
   },
-  components: { Icon },
   setup(props) {
+    const iconName = ref(props.name);
     const currentInstance = getCurrentInstance();
     const allNameByAntds = getAllNameByAntd(currentInstance);
     const isAntdIcon = ref(allNameByAntds.findIndex((w) => w == props.name) > -1);
 
     watch(
       () => props.name,
-      () => {
-        isAntdIcon.value = allNameByAntds.findIndex((w) => w == props.name) > -1;
+      (value) => {
+        isAntdIcon.value = allNameByAntds.findIndex((w) => w == value) > -1;
+        if (isAntdIcon.value) {
+          iconName.value = value;
+        } else {
+          iconName.value = value.indexOf("EP-") > -1 ? value : "EP-" + value;
+          console.log(iconName.value);
+        }
       }
     );
 
@@ -44,7 +49,7 @@ export default defineComponent({
       style["fontSize"] = props.size + "px";
     }
 
-    return { isAntdIcon, style };
+    return { isAntdIcon, style, iconName };
   },
 });
 </script>

@@ -1,5 +1,4 @@
 <script lang="ts" setup>
-//封装组件来自：https://www.xicons.org/#/
 import { getCurrentInstance, ref, watch } from "vue";
 // icons
 import { getAllNameByElementPlus } from "@/infrastructure/scripts/icons";
@@ -22,12 +21,6 @@ watch(
     console.log(isDefaultIcon);
   }
 );
-
-//style 用于兼容 antd 图标
-// let style: any = props.style ? props.style : {};
-// if (isAntdIcon.value) {
-//   style["fontSize"] = props.size + "px";
-// }
 </script>
 
 <template>

@@ -248,10 +248,10 @@
   resolved "https://registry.npmjs.org/@ctrl/tinycolor/-/tinycolor-3.4.1.tgz"
   integrity sha512-ej5oVy6lykXsvieQtqZxCOaLT+xD4+QNarq78cIYISHmZXshCvROLudpQN3lfL8G0NL7plMSSK+zlyvCaIJ4Iw==
 
-"@emotion/hash@~0.8.0":
-  version "0.8.0"
-  resolved "https://registry.npmjs.org/@emotion/hash/-/hash-0.8.0.tgz"
-  integrity sha512-kBJtf7PH6aWwZ6fka3zQ0p6SBYzx4fl1LoZXE2RrnYST9Xljm7WfKJrU4g/Xr3Beg72MLrp1AWNUmuYJTL7Cow==
+"@element-plus/icons-vue@^2.0.9":
+  version "2.0.9"
+  resolved "https://registry.yarnpkg.com/@element-plus/icons-vue/-/icons-vue-2.0.9.tgz#b7777c57534522e387303d194451d50ff549d49a"
+  integrity sha512-okdrwiVeKBmW41Hkl0eMrXDjzJwhQMuKiBOu17rOszqM+LS/yBYpNQNV5Jvoh06Wc+89fMmb/uhzf8NZuDuUaQ==
 
 "@highlightjs/vue-plugin@^2.1.0":
   version "2.1.0"
@@ -291,11 +291,6 @@
   version "0.3.3"
   resolved "https://registry.npmjs.org/@types/event-emitter/-/event-emitter-0.3.3.tgz"
   integrity sha512-UfnOK1pIxO7P+EgPRZXD9jMpimd8QEFcEZ5R67R1UhGbv4zghU5+NE7U8M8G9H5Jc8FI51rqDWQs6FtUfq2e/Q==
-
-"@types/node@~14.14.31":
-  version "14.14.45"
-  resolved "https://registry.npmjs.org/@types/node/-/node-14.14.45.tgz"
-  integrity sha512-DssMqTV9UnnoxDWu959sDLZzfvqCF0qDNRjaWeYSui9xkFe61kKo4l1TWNTQONpuXEm+gLMRvdlzvNHBamzmEw==
 
 "@uppy/companion-client@^2.2.1":
   version "2.2.1"
@@ -339,18 +334,6 @@
     "@uppy/companion-client" "^2.2.1"
     "@uppy/utils" "^4.1.0"
     nanoid "^3.1.25"
-
-"@vicons/ionicons5@^0.12.0":
-  version "0.12.0"
-  resolved "https://registry.npmjs.org/@vicons/ionicons5/-/ionicons5-0.12.0.tgz"
-  integrity sha512-Iy1EUVRpX0WWxeu1VIReR1zsZLMc4fqpt223czR+Rpnrwu7pt46nbnC2ycO7ItI/uqDLJxnbcMC7FujKs9IfFA==
-
-"@vicons/utils@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.npmjs.org/@vicons/utils/-/utils-0.1.4.tgz"
-  integrity sha512-OHI19qVNN6i+uPQ+Y3f2s0dUxwsYnOCcKBW7XOU4yXXO1aU3ZoKpblCc3+4N0qmgoJs5rWKRAaMisipqEXJwAg==
-  dependencies:
-    "@xicons/utils" "^0.1.4"
 
 "@vitejs/plugin-vue@^2.3.1":
   version "2.3.3"
@@ -546,13 +529,6 @@
   resolved "https://registry.npmjs.org/@wangeditor/video-module/-/video-module-1.1.0.tgz"
   integrity sha512-VR6x7Vk9ebvXtxCPwobiNiTGZGgqEzCVc6ViWlNH3v4jlDIeo/s7N7OCgpvELR7X/X7GHecBu7wySDkHIskB5w==
 
-"@xicons/utils@^0.1.4":
-  version "0.1.4"
-  resolved "https://registry.npmjs.org/@xicons/utils/-/utils-0.1.4.tgz"
-  integrity sha512-uXxKDLz9abr80yJC05XSTq6wlyFcdW+N/1IYJkeHjzzXVc4VQ0sEYMoMMTjAH7HQBOyOkzOB4pf5NGF72lwa8Q==
-  dependencies:
-    css-render "^0.13.2"
-
 abort-controller@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/abort-controller/-/abort-controller-3.0.0.tgz#eaf54d53b62bae4138e809ca225c8439a6efb392"
@@ -705,15 +681,6 @@ core-js@^3.15.1, core-js@^3.22.2:
   resolved "https://registry.npmjs.org/core-js/-/core-js-3.23.1.tgz"
   integrity sha512-wfMYHWi1WQjpgZNC9kAlN4ut04TM9fUTdi7CqIoTVM7yaiOUQTklOzfb+oWH3r9edQcT3F887swuVmxrV+CC8w==
 
-css-render@^0.13.2:
-  version "0.13.9"
-  resolved "https://registry.npmjs.org/css-render/-/css-render-0.13.9.tgz"
-  integrity sha512-n3C4ZH59rveBrUlAD7n0Ze9/gUMKa4dlH1C9CWKpGcIHR/xRcIVXzBGy1iw8WWq2ySmn2/ZqOpySQNAK5Pb6sw==
-  dependencies:
-    "@emotion/hash" "~0.8.0"
-    "@types/node" "~14.14.31"
-    csstype "~3.0.5"
-
 csstype@^2.6.8:
   version "2.6.20"
   resolved "https://registry.npmjs.org/csstype/-/csstype-2.6.20.tgz"
@@ -723,11 +690,6 @@ csstype@^3.0.3, csstype@^3.0.8:
   version "3.1.0"
   resolved "https://registry.npmjs.org/csstype/-/csstype-3.1.0.tgz"
   integrity sha512-uX1KG+x9h5hIJsaKR9xHUeUraxf8IODOwq9JLNPq6BwB04a/xgpq3rcx47l5BZu5zBPlgD342tdke3Hom/nJRA==
-
-csstype@~3.0.5:
-  version "3.0.11"
-  resolved "https://registry.npmjs.org/csstype/-/csstype-3.0.11.tgz"
-  integrity sha512-sa6P2wJ+CAbgyy4KFssIb/JNMLxFvKF1pCYCSXS8ZMuqZnMsrxqI2E5sPyoTpxoPU/gVZMzr2zjOfg8GIZOMsw==
 
 d3-color@1:
   version "1.4.1"
@@ -2019,11 +1981,6 @@ utility-types@^3.10.0:
   version "3.10.0"
   resolved "https://registry.npmjs.org/utility-types/-/utility-types-3.10.0.tgz"
   integrity sha512-O11mqxmi7wMKCo6HKFt5AhO4BwY3VV68YU07tgxfz8zJTIxr4BpsezN49Ffwy9j3ZpwwJp4fkRwjRzq3uWE6Rg==
-
-vfonts@^0.0.3:
-  version "0.0.3"
-  resolved "https://registry.npmjs.org/vfonts/-/vfonts-0.0.3.tgz"
-  integrity sha512-nguyw8L6Un8eelg1vQ31vIU2ESxqid7EYmy8V+MDeMaHBqaRSkg3dTBToC1PR00D89UzS/SLkfYPnx0Wf23IQQ==
 
 vite@^2.9.5:
   version "2.9.12"

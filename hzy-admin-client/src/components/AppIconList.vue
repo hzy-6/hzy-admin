@@ -15,8 +15,8 @@
         <template v-if="antdCount > 0"> （数量:{{ antdCount }}个） </template>
       </li>
       <li :class="{ active: active === 2 }" @click="onClickTab(2)">
-        Ionicons5
-        <template v-if="ionicons5Count > 0"> （数量:{{ ionicons5Count }}个） </template>
+        ElementPlus
+        <template v-if="elementPlusCount > 0"> （数量:{{ elementPlusCount }}个） </template>
       </li>
     </ul>
     <!-- list -->
@@ -41,7 +41,7 @@
 
 <script lang="ts">
 import { defineComponent, getCurrentInstance, onMounted, reactive, toRefs } from "vue";
-import { getAllNameByAntd, getAllNameByIonicons5 } from "@/scripts/icons";
+import { getAllNameByAntd, getAllNameByElementPlusIcons } from "@/scripts/icons";
 import AppIcon from "./AppIcon.vue";
 
 export default defineComponent({
@@ -57,7 +57,7 @@ export default defineComponent({
       active: 1,
       names: [],
       antdCount: 0,
-      ionicons5Count: 0,
+      elementPlusCount: 0,
     });
 
     const currentInstance = getCurrentInstance();
@@ -74,8 +74,8 @@ export default defineComponent({
         state.antdCount = state.names.length;
       }
       if (active === 2) {
-        state.names = getAllNameByIonicons5(currentInstance);
-        state.ionicons5Count = state.names.length;
+        state.names = getAllNameByElementPlusIcons(currentInstance);
+        state.elementPlusCount = state.names.length;
       }
     };
 
