@@ -31,7 +31,7 @@ const state = reactive<{
   search: {
     state: false,
     vm: {
-      name: "",
+      name: null,
     },
   },
 });
