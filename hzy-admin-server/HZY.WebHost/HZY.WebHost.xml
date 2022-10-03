@@ -79,6 +79,13 @@
             <param name="file"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.WebHost.Controllers.UploadController.UploadPngAndJpgAsync(Microsoft.AspNetCore.Http.IFormFile)">
+            <summary>
+            上传文件 只能上传 png和jpg 格式
+            </summary>
+            <param name="file"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.WebHost.Endpoints.MainEndpoints">
             <summary>
             主端点 miniapi

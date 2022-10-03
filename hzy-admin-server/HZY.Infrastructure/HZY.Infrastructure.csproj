@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -23,6 +23,7 @@
 		<PackageReference Include="HzyScanDiService" Version="1.2.0" />
 		<PackageReference Include="Serilog.AspNetCore" Version="5.0.0" />
 	  <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
+	  <PackageReference Include="Zyx.MemoryMQ" Version="1.0.3" />
 	</ItemGroup>
 
 	<ItemGroup>

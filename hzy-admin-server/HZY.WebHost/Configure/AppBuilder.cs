@@ -1,13 +1,11 @@
 ﻿using HZY.Managers.Quartz;
 using HZY.EFCore;
 using HZY.Infrastructure;
-using HZY.Infrastructure.MemoryMQ.Interfaces;
 using HZY.Infrastructure.MessageQueue.Models;
 using HZY.WebHost.Middlewares;
 using HzyScanDiService;
 using System.Text;
 using HZY.FreeSqlCore;
-using HZY.Infrastructure.MemoryMQ;
 using HZY.Infrastructure.Redis;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
@@ -26,6 +24,9 @@ using Newtonsoft.Json.Serialization;
 using HZY.Infrastructure.SerilogUtil;
 using HZY.Managers.EFCore;
 using HZY.Managers.SignalRs;
+using Microsoft.AspNetCore.Server.Kestrel.Core;
+using Microsoft.AspNetCore.Http.Features;
+using Zyx.MemoryMQ.Extensions;
 
 namespace HZY.WebHost.Configure;
 
@@ -233,6 +234,16 @@ public static class AppBuilder
         //SignalR
         services.AddSignalR();
 
+        #region 上传文件最大长度
+        services.Configure<KestrelServerOptions>(options => {
+          options.Limits.MaxRequestBodySize = appConfiguration.Configs.FileManager.GetMaxRequestBodySize();
+        });
+
+        services.Configure<FormOptions>(options => {
+          options.MultipartBodyLengthLimit = appConfiguration.Configs.FileManager.GetMaxRequestBodySize();
+        });
+        #endregion
+
         return builder;
     }
 
@@ -244,8 +255,6 @@ public static class AppBuilder
     {
         var env = app.Environment;
         var serviceProvider = app.Services;
-
-        var memoryMQ = app.Services.GetRequiredService<IMessageConsumer<MessageQueueContext>>();
 
         if (app.Environment.IsDevelopment())
         {
@@ -299,7 +308,7 @@ public static class AppBuilder
         #endregion
 
         #region 消息队列启动
-        memoryMQ.StartAsync().Wait();
+        app.UseMemoryMQ();
         #endregion
 
         #region 启动定时任务

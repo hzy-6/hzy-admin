@@ -2,7 +2,6 @@
 using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
-using HZY.Infrastructure.MemoryMQ.Interfaces;
 using HZY.Infrastructure.MessageQueue.Models;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Models.DTO.Framework;
@@ -13,6 +12,7 @@ using HzyScanDiService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using Zyx.MemoryMQ.Interfaces;
 
 namespace HZY.Services.Admin.Framework;
 
@@ -24,19 +24,19 @@ public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOpera
     private readonly HttpContext _httpContext;
     private readonly IAccountManager _accountService;
     private readonly IAdminRepository<SysUser> _sysUserRepository;
-    private readonly IMessageProducer<MessageQueueContext> messageProducer;
+    private readonly IProducer producer;
 
     public SysOperationLogService(IAdminRepository<SysOperationLog> defaultRepository,
           IHttpContextAccessor iHttpContextAccessor,
           IAccountManager accountService,
           IAdminRepository<SysUser> sysUserRepository,
-          IMessageProducer<MessageQueueContext> messageProducer
+          IProducer producer
           ) : base(defaultRepository)
     {
         this._httpContext = iHttpContextAccessor.HttpContext;
         _accountService = accountService;
         _sysUserRepository = sysUserRepository;
-        this.messageProducer = messageProducer;
+        this.producer = producer;
     }
 
     /// <summary>
@@ -110,14 +110,7 @@ public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOpera
         }
 
         // 发布消息
-        await messageProducer.ProduceAsync("WriteInLogAsync", sysOperationLog, (value, serviceProvider) =>
-        {
-            //消费消息
-            using var scope = IOCUtil.CreateScope();
-            using var repository = scope.ServiceProvider.GetRequiredService<IAdminRepository<SysOperationLog>>();
-            repository.InsertAsync((SysOperationLog)value).Wait();
-        });
-
+        await producer.PublishAsync("WriteInLog",sysOperationLog);
     }
 
     /// <summary>

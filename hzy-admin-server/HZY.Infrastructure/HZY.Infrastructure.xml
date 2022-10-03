@@ -503,6 +503,12 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:HZY.Infrastructure.AppConfigurationOptions.FileManager">
+            <summary>
+            上传文件配置
+            </summary>
+            <value></value>
+        </member>
         <member name="T:HZY.Infrastructure.DbContextInfoNode">
             <summary>
             dbconte 信息配置
@@ -570,6 +576,48 @@
             是否覆盖生成  否的话生成代码重复会在后面加一个时间
             </summary>
             <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.FileManagerNode.MaxRequestBodySize">
+            <summary>
+            上传文件大小限制
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.FileManagerNode.ServerUrl">
+            <summary>
+            服务器地址
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.FileManagerNode.DirectoryUrl">
+            <summary>
+            保存文件根路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.FileManagerNode.MaxFileSizeLimit">
+            <summary>
+            上传文件大小
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Infrastructure.FileManagerNode.AllowExtensions">
+            <summary>
+            允许上传格式
+            </summary>
+            <value></value>
+        </member>
+        <member name="M:HZY.Infrastructure.FileManagerNode.GetMaxRequestBodySize">
+            <summary>
+            获取最大请求内容体长度
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.FileManagerNode.GetMaxFileSizeLimit">
+            <summary>
+            获取最大文件长度
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:HZY.Infrastructure.Controllers.AdminBaseController`1.#ctor(`0)">
             <summary>
@@ -738,6 +786,59 @@
             <summary>
             默认数据库类型
             </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Files.FileManager.GetFilePath(System.String)">
+            <summary>
+            获取配置的文件路径
+            </summary>
+            <param name="dir"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Files.FileManager.AddSaveFolder(System.String)">
+            <summary>
+            设置追加目录
+            </summary>
+            <param name="dir"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Files.FileManager.AddMaxLength(System.Int64)">
+            <summary>
+            设置上传最大长度
+            </summary>
+            <param name="maxLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Files.FileManager.AddMaxLength(System.String)">
+            <summary>
+            设置上传最大长度
+            </summary>
+            <param name="maxLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Files.FileManager.AllowAnyFileExtensions">
+            <summary>
+            允许所有文件格式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Files.FileManager.AddFileExtensions(System.String[])">
+            <summary>
+            追加允许文件格式
+            </summary>
+            <param name="fileExtensions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Files.FileManager.ResetFileExtensions">
+            <summary>
+            重置文件格式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Files.FileManager.BuildFileManagerContext">
+            <summary>
+            构建FileManagerContext
+            </summary>
+            <returns></returns>
         </member>
         <member name="T:HZY.Infrastructure.Filters.ApiCheckModelAttribute">
             <summary>
