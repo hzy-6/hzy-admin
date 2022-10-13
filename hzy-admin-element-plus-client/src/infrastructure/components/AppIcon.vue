@@ -18,7 +18,7 @@ watch(
   () => props.name,
   () => {
     isDefaultIcon.value = allNames.findIndex((w: any) => w == props.name) > -1;
-    console.log(isDefaultIcon);
+    // console.log(isDefaultIcon);
   }
 );
 </script>

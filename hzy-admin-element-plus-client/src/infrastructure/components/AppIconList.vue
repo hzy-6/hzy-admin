@@ -5,7 +5,7 @@ import AppIcon from "./AppIcon.vue";
 //定义属性
 const props = defineProps<{
   name: string;
-  height: number;
+  height?: number;
 }>();
 //定义事件
 const emits = defineEmits<{

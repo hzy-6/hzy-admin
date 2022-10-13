@@ -18,7 +18,7 @@ const state = reactive({
       <template #extra>
         <a href="https://next.antdv.com/components/icon-cn" target="_black"> 官方图标</a>
       </template>
-      <AppIconList v-model:name="state.iconName" :height="1000" />
+      <AppIconList v-model:name="state.iconName" />
     </a-card>
   </div>
 </template>
