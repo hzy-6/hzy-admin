@@ -43,6 +43,12 @@ public interface IAccountManager : IScopedDependency
     string RefreshToken();
 
     /// <summary>
+    /// 是否过期
+    /// </summary>
+    /// <returns></returns>
+    bool IsExpire();
+
+    /// <summary>
     /// 修改密码
     /// </summary>
     /// <param name="oldPassword"></param>

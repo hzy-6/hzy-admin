@@ -177,8 +177,22 @@ public static class AppBuilder
                 ValidateIssuerSigningKey = true, //是否验证SecurityKey
                 ValidAudience = appConfiguration.Configs.JwtValidAudience, //Audience
                 ValidIssuer = appConfiguration.Configs.JwtValidIssuer, //Issuer，这两项和前面签发jwt的设置一致
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appConfiguration.Configs.JwtIssuerSigningKey)) //拿到SecurityKey
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(appConfiguration.Configs.JwtIssuerSigningKey)), //拿到SecurityKey
+                RequireExpirationTime = true,
             };
+            options.Events = new JwtBearerEvents
+            {
+                OnAuthenticationFailed = context =>
+                {
+                    //Token expired
+                    if (context.Exception.GetType() == typeof(SecurityTokenExpiredException))
+                    {
+                        context.Response.Headers.Add("Token-Expired", "true");
+                    }
+                    return Task.CompletedTask;
+                }
+            };
+
         });
 
         #endregion
@@ -235,12 +249,14 @@ public static class AppBuilder
         services.AddSignalR();
 
         #region 上传文件最大长度
-        services.Configure<KestrelServerOptions>(options => {
-          options.Limits.MaxRequestBodySize = appConfiguration.Configs.FileManager.GetMaxRequestBodySize();
+        services.Configure<KestrelServerOptions>(options =>
+        {
+            options.Limits.MaxRequestBodySize = appConfiguration.Configs.FileManager.GetMaxRequestBodySize();
         });
 
-        services.Configure<FormOptions>(options => {
-          options.MultipartBodyLengthLimit = appConfiguration.Configs.FileManager.GetMaxRequestBodySize();
+        services.Configure<FormOptions>(options =>
+        {
+            options.MultipartBodyLengthLimit = appConfiguration.Configs.FileManager.GetMaxRequestBodySize();
         });
         #endregion
 

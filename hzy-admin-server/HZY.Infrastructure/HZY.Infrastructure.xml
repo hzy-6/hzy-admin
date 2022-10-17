@@ -1289,6 +1289,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:HZY.Infrastructure.Token.TokenService.IsExpire">
+            <summary>
+            是否过期
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Infrastructure.Tools.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpContext)">
             <summary>
             是否 Ajax 请求

@@ -41,6 +41,12 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:HZY.Managers.Accounts.IAccountManager.IsExpire">
+            <summary>
+            是否过期
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Managers.Accounts.IAccountManager.ChangePasswordAsync(System.String,System.String)">
             <summary>
             修改密码
@@ -117,6 +123,12 @@
         <member name="M:HZY.Managers.Accounts.Impl.AccountManagerImpl.RefreshToken">
             <summary>
             刷新 token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Managers.Accounts.Impl.AccountManagerImpl.IsExpire">
+            <summary>
+            是否过期
             </summary>
             <returns></returns>
         </member>

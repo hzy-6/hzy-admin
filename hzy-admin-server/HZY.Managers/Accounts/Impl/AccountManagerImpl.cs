@@ -165,6 +165,15 @@ public class AccountManagerImpl : IAccountManager
     }
 
     /// <summary>
+    /// 是否过期
+    /// </summary>
+    /// <returns></returns>
+    public virtual bool IsExpire()
+    {
+        return _tokenService.IsExpire();
+    }
+
+    /// <summary>
     /// 修改密码
     /// </summary>
     /// <param name="oldPassword"></param>

@@ -129,13 +129,13 @@ public class TokenService : ITransientSelfDependency
         //var claims = _httpContext.User.Claims;
         var claims = JwtTokenUtil.ReadJwtToken(token);
 
-        var expired = claims.FirstOrDefault(w => w.Type == ClaimTypes.Expired);
+        var expired = claims.FirstOrDefault(w => w.Type == ClaimTypes.Expired)?.Value;
 
-        if (expired == null || string.IsNullOrWhiteSpace(expired.Value)) return false;
+        if (string.IsNullOrWhiteSpace(expired)) return false;
 
-        var totalMinutes = (DateTime.Now - Convert.ToDateTime(expired.Value)).TotalMinutes;
+        var totalMinutes = (Convert.ToDateTime(expired) - DateTime.Now).TotalMinutes;
 
-        return totalMinutes <= TokenValidationParameters.DefaultClockSkew.TotalMinutes;
+        return totalMinutes >= 0 && totalMinutes <= TokenValidationParameters.DefaultClockSkew.TotalMinutes;
     }
 
     /// <summary>
@@ -154,6 +154,36 @@ public class TokenService : ITransientSelfDependency
         return this.CreateTokenByAccountId(id);
     }
 
+    /// <summary>
+    /// 是否过期
+    /// </summary>
+    /// <returns></returns>
+    public bool IsExpire()
+    {
+        if (_httpContext == null)
+        {
+            return false;
+        }
+
+        if (!this.HasTokenString())
+            return default;
+
+        var token = _httpContext.Request.Headers[_appConfiguration.Configs.AuthorizationKeyName].ToString();
+
+        if (string.IsNullOrWhiteSpace(token)) return false;
+
+        //if (_httpContext.User.Identity == null) return false;
+        //var claims = _httpContext.User.Claims;
+        var claims = JwtTokenUtil.ReadJwtToken(token);
+
+        var expired = claims.FirstOrDefault(w => w.Type == ClaimTypes.Expired)?.Value;
+
+        if (string.IsNullOrWhiteSpace(expired)) return false;
+
+        var totalMinutes = (DateTime.Now - Convert.ToDateTime(expired)).TotalMinutes;
+
+        return totalMinutes > 0;
+    }
 
 
 

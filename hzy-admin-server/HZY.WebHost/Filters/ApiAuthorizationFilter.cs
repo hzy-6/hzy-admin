@@ -8,6 +8,7 @@ using System.Linq;
 using Microsoft.AspNetCore.Authorization;
 using System.Threading.Tasks;
 using HZY.Managers.Accounts;
+using NPOI.POIFS.Crypt.Dsig;
 
 namespace HZY.WebHost.Filters;
 
@@ -44,13 +45,13 @@ public class ApiAuthorizationFilter : IAsyncAuthorizationFilter
         var authorizeAttribute = context.ActionDescriptor.EndpointMetadata.Any(w => w is AuthorizeAttribute);
         if (!authorizeAttribute) return;
 
-        //if (this._accountService.IsRefreshToken())
-        //{
-        //    context.Result = new JsonResult(new {
-            
-        //    });
-        //    return;
-        //}
+        //验证 token 是否过期无效
+        if (this._accountService.IsExpire())
+        {
+            context.HttpContext.Response.StatusCode = 401;
+            var data = ApiResult.ResultMessage(ApiResultCodeEnum.UnAuth, unAuthMessage);
+            return;
+        }
 
         //检查 token 是否授权
         if (this._accountService.GetAccountInfo() == null)

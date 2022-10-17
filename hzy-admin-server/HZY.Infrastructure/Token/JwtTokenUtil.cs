@@ -26,7 +26,7 @@ public static class JwtTokenUtil
     /// <returns></returns>
     public static string CreateToken(string id, string securityKey, string jwtValidIssuer, string jwtValidAudience)
     {
-        var expires = DateTime.Now.AddHours(3);
+        var expires = DateTime.Now.AddMinutes(7); //DateTime.Now.AddHours(3);
 
         // push the user’s name into a claim, so we can identify the user later on.
         var claims = new List<Claim>();
@@ -58,6 +58,7 @@ public static class JwtTokenUtil
             issuer: jwtValidIssuer,
             audience: jwtValidAudience,
             claims: claims,
+            notBefore: DateTime.Now,
             expires: expires,
             signingCredentials: creds
         );
@@ -76,7 +77,6 @@ public static class JwtTokenUtil
         {
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var readJwtToken = jwtSecurityTokenHandler.ReadJwtToken(token);
-            var key = string.Empty;
 
             return readJwtToken.Claims;
         }
