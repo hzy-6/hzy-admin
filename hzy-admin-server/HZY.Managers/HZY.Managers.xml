@@ -29,6 +29,18 @@
             <param name="code"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Managers.Accounts.IAccountManager.IsRefreshToken">
+            <summary>
+            是否刷新 token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Managers.Accounts.IAccountManager.RefreshToken">
+            <summary>
+            刷新 token
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Managers.Accounts.IAccountManager.ChangePasswordAsync(System.String,System.String)">
             <summary>
             修改密码
@@ -94,6 +106,18 @@
             <param name="name"></param>
             <param name="password"></param>
             <param name="code"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Managers.Accounts.Impl.AccountManagerImpl.IsRefreshToken">
+            <summary>
+            是否刷新 token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Managers.Accounts.Impl.AccountManagerImpl.RefreshToken">
+            <summary>
+            刷新 token
+            </summary>
             <returns></returns>
         </member>
         <member name="M:HZY.Managers.Accounts.Impl.AccountManagerImpl.ChangePasswordAsync(System.String,System.String)">

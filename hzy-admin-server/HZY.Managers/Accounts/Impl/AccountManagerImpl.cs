@@ -147,6 +147,24 @@ public class AccountManagerImpl : IAccountManager
     }
 
     /// <summary>
+    /// 是否刷新 token
+    /// </summary>
+    /// <returns></returns>
+    public virtual bool IsRefreshToken()
+    {
+        return _tokenService.IsRefreshToken();
+    }
+
+    /// <summary>
+    /// 刷新 token
+    /// </summary>
+    /// <returns></returns>
+    public virtual string RefreshToken()
+    {
+        return _tokenService.RefreshToken();
+    }
+
+    /// <summary>
     /// 修改密码
     /// </summary>
     /// <param name="oldPassword"></param>

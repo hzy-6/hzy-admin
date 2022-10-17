@@ -16,11 +16,22 @@ namespace HZY.Infrastructure.Token;
 /// </summary>
 public static class JwtTokenUtil
 {
+    /// <summary>
+    /// 创建 token
+    /// </summary>
+    /// <param name="id"></param>
+    /// <param name="securityKey"></param>
+    /// <param name="jwtValidIssuer"></param>
+    /// <param name="jwtValidAudience"></param>
+    /// <returns></returns>
     public static string CreateToken(string id, string securityKey, string jwtValidIssuer, string jwtValidAudience)
     {
+        var expires = DateTime.Now.AddHours(3);
+
         // push the user’s name into a claim, so we can identify the user later on.
         var claims = new List<Claim>();
         claims.Add(new Claim(ClaimTypes.Name, id));
+        claims.Add(new Claim(ClaimTypes.Expired, expires.ToString()));
         //var claims = new[]
         //{
         //    new Claim(ClaimTypes.Name, Key),
@@ -47,33 +58,31 @@ public static class JwtTokenUtil
             issuer: jwtValidIssuer,
             audience: jwtValidAudience,
             claims: claims,
-            expires: DateTime.Now.AddHours(12),
+            expires: expires,
             signingCredentials: creds
         );
 
         return new JwtSecurityTokenHandler().WriteToken(token);
     }
 
-    public static string ReadJwtToken(string token)
+    /// <summary>
+    /// 通过 token 字符串读取内容
+    /// </summary>
+    /// <param name="token"></param>
+    /// <returns></returns>
+    public static IEnumerable<Claim> ReadJwtToken(string token)
     {
         try
         {
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var readJwtToken = jwtSecurityTokenHandler.ReadJwtToken(token);
             var key = string.Empty;
-            
-            if (readJwtToken.Claims?.Count() > 0)
-            {
-                key = readJwtToken.Claims.FirstOrDefault()?.Value;
-            }
 
-            return key;
+            return readJwtToken.Claims;
         }
         catch (Exception)
         {
             return null;
         }
-
-
     }
 }

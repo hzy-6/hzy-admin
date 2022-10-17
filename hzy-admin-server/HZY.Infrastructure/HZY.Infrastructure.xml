@@ -1230,6 +1230,23 @@
             签名(Signature)：使用保存在服务端的秘钥对其签名，用来验证发送者的JWT的同时也能确保在期间不被篡改。
             </summary>
         </member>
+        <member name="M:HZY.Infrastructure.Token.JwtTokenUtil.CreateToken(System.String,System.String,System.String,System.String)">
+            <summary>
+            创建 token
+            </summary>
+            <param name="id"></param>
+            <param name="securityKey"></param>
+            <param name="jwtValidIssuer"></param>
+            <param name="jwtValidAudience"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Token.JwtTokenUtil.ReadJwtToken(System.String)">
+            <summary>
+            通过 token 字符串读取内容
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Infrastructure.Token.TokenService">
             <summary>
             token 服务
@@ -1257,6 +1274,18 @@
         <member name="M:HZY.Infrastructure.Token.TokenService.GetAccountIdByToken">
             <summary>
             获取 token 并得到 id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Token.TokenService.IsRefreshToken">
+            <summary>
+            是否刷新token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Token.TokenService.RefreshToken">
+            <summary>
+            刷新Token
             </summary>
             <returns></returns>
         </member>

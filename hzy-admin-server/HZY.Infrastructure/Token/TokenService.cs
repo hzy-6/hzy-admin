@@ -1,9 +1,11 @@
 ﻿using HZY.Infrastructure;
 using HzyScanDiService;
 using Microsoft.AspNetCore.Http;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -87,7 +89,9 @@ public class TokenService : ITransientSelfDependency
 
         if (string.IsNullOrWhiteSpace(token)) return default;
 
-        var id = JwtTokenUtil.ReadJwtToken(token);
+        var claims = JwtTokenUtil.ReadJwtToken(token);
+
+        var id = claims.FirstOrDefault(w => w.Type == ClaimTypes.Name)?.Value;
 
         if (string.IsNullOrWhiteSpace(id)) return default;
 
@@ -102,5 +106,55 @@ public class TokenService : ITransientSelfDependency
 
         // return this._httpContext.User.Identity.Name.ToGuid();
     }
+
+    /// <summary>
+    /// 是否刷新token
+    /// </summary>
+    /// <returns></returns>
+    public bool IsRefreshToken()
+    {
+        if (_httpContext == null)
+        {
+            return false;
+        }
+
+        if (!this.HasTokenString())
+            return default;
+
+        var token = _httpContext.Request.Headers[_appConfiguration.Configs.AuthorizationKeyName].ToString();
+
+        if (string.IsNullOrWhiteSpace(token)) return false;
+
+        //if (_httpContext.User.Identity == null) return false;
+        //var claims = _httpContext.User.Claims;
+        var claims = JwtTokenUtil.ReadJwtToken(token);
+
+        var expired = claims.FirstOrDefault(w => w.Type == ClaimTypes.Expired);
+
+        if (expired == null || string.IsNullOrWhiteSpace(expired.Value)) return false;
+
+        var totalMinutes = (DateTime.Now - Convert.ToDateTime(expired.Value)).TotalMinutes;
+
+        return totalMinutes <= TokenValidationParameters.DefaultClockSkew.TotalMinutes;
+    }
+
+    /// <summary>
+    /// 刷新Token
+    /// </summary>
+    /// <returns></returns>
+    public string RefreshToken()
+    {
+        if (!this.IsRefreshToken())
+        {
+            return default;
+        }
+
+        var id = this.GetAccountIdByToken();
+
+        return this.CreateTokenByAccountId(id);
+    }
+
+
+
 
 }

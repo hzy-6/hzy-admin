@@ -31,6 +31,18 @@ public interface IAccountManager : IScopedDependency
     Task<string> CheckAccountAsync(string name, string password, string code);
 
     /// <summary>
+    /// 是否刷新 token
+    /// </summary>
+    /// <returns></returns>
+    bool IsRefreshToken();
+
+    /// <summary>
+    /// 刷新 token
+    /// </summary>
+    /// <returns></returns>
+    string RefreshToken();
+
+    /// <summary>
     /// 修改密码
     /// </summary>
     /// <param name="oldPassword"></param>

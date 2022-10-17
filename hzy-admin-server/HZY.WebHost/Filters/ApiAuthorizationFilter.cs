@@ -44,6 +44,14 @@ public class ApiAuthorizationFilter : IAsyncAuthorizationFilter
         var authorizeAttribute = context.ActionDescriptor.EndpointMetadata.Any(w => w is AuthorizeAttribute);
         if (!authorizeAttribute) return;
 
+        //if (this._accountService.IsRefreshToken())
+        //{
+        //    context.Result = new JsonResult(new {
+            
+        //    });
+        //    return;
+        //}
+
         //检查 token 是否授权
         if (this._accountService.GetAccountInfo() == null)
         {
