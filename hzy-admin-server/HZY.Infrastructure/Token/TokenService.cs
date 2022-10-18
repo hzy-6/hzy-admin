@@ -129,9 +129,9 @@ public class TokenService : ITransientSelfDependency
         //var claims = _httpContext.User.Claims;
         var claims = JwtTokenUtil.ReadJwtToken(token);
 
-        var expired = claims.FirstOrDefault(w => w.Type == ClaimTypes.Expired)?.Value;
+        var expired = claims?.FirstOrDefault(w => w.Type == ClaimTypes.Expired)?.Value;
 
-        if (string.IsNullOrWhiteSpace(expired)) return false;
+        if (string.IsNullOrWhiteSpace(expired)) return true;
 
         var totalMinutes = (Convert.ToDateTime(expired) - DateTime.Now).TotalMinutes;
 
@@ -176,9 +176,9 @@ public class TokenService : ITransientSelfDependency
         //var claims = _httpContext.User.Claims;
         var claims = JwtTokenUtil.ReadJwtToken(token);
 
-        var expired = claims.FirstOrDefault(w => w.Type == ClaimTypes.Expired)?.Value;
+        var expired = claims?.FirstOrDefault(w => w.Type == ClaimTypes.Expired)?.Value;
 
-        if (string.IsNullOrWhiteSpace(expired)) return false;
+        if (string.IsNullOrWhiteSpace(expired)) return true;
 
         var totalMinutes = (DateTime.Now - Convert.ToDateTime(expired)).TotalMinutes;
 

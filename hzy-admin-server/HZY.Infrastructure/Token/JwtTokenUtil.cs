@@ -77,8 +77,7 @@ public static class JwtTokenUtil
         try
         {
             token = token.Replace($"{JwtBearerDefaults.AuthenticationScheme} ", "");
-
-
+            if (string.IsNullOrWhiteSpace(token)) return default;
 
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var readJwtToken = jwtSecurityTokenHandler.ReadJwtToken(token);

@@ -110,7 +110,7 @@ public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOpera
         }
 
         // 发布消息
-        await producer.PublishAsync("WriteInLog",sysOperationLog);
+        await producer.PublishAsync("WriteInLog", sysOperationLog);
     }
 
     /// <summary>
@@ -176,8 +176,4 @@ public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOpera
         res[nameof(use)] = use;
         return res;
     }
-
-
-
-
 }

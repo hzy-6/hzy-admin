@@ -1022,5 +1022,10 @@
             <param name="search"></param>
             <returns></returns>
         </member>
+        <member name="T:HZY.Services.Admin.MessageHandler.WriteLogHandler">
+            <summary>
+            消费日志
+            </summary>
+        </member>
     </members>
 </doc>

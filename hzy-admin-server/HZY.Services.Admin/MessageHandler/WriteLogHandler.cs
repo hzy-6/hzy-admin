@@ -8,6 +8,9 @@ using Zyx.MemoryMQ.Interfaces;
 
 namespace HZY.Services.Admin.MessageHandler
 {
+    /// <summary>
+    /// 消费日志
+    /// </summary>
     public class WriteLogHandler : IBus<SysOperationLog>
     {
         public string topic => "WriteInLog";
