@@ -91,7 +91,7 @@ public class TokenService : ITransientSelfDependency
 
         var claims = JwtTokenUtil.ReadJwtToken(token);
 
-        var id = claims.FirstOrDefault(w => w.Type == ClaimTypes.Name)?.Value;
+        var id = claims?.FirstOrDefault(w => w.Type == ClaimTypes.Name)?.Value;
 
         if (string.IsNullOrWhiteSpace(id)) return default;
 

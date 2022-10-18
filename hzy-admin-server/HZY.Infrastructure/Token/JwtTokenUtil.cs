@@ -4,6 +4,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
 
 namespace HZY.Infrastructure.Token;
@@ -26,7 +27,7 @@ public static class JwtTokenUtil
     /// <returns></returns>
     public static string CreateToken(string id, string securityKey, string jwtValidIssuer, string jwtValidAudience)
     {
-        var expires = DateTime.Now.AddHours(3);
+        var expires = DateTime.Now.AddHours(12);
 
         // push the user’s name into a claim, so we can identify the user later on.
         var claims = new List<Claim>();
@@ -75,6 +76,10 @@ public static class JwtTokenUtil
     {
         try
         {
+            token = token.Replace($"{JwtBearerDefaults.AuthenticationScheme} ", "");
+
+
+
             var jwtSecurityTokenHandler = new JwtSecurityTokenHandler();
             var readJwtToken = jwtSecurityTokenHandler.ReadJwtToken(token);
 

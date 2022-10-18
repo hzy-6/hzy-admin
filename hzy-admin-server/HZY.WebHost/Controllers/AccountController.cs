@@ -6,6 +6,7 @@ using HZY.Models.DTO;
 using HZY.Models.DTO.Framework;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 
 namespace HZY.WebHost.Controllers
 {
@@ -18,7 +19,7 @@ namespace HZY.WebHost.Controllers
     [ApiExplorerSettings(GroupName = nameof(ApiVersions.Public))]
     public class AccountController : ApiBaseController
     {
-        private const string tokenType = "Bearer ";
+        private const string tokenType = $"{JwtBearerDefaults.AuthenticationScheme} ";
         private readonly IAccountManager _accountService;
 
         public AccountController(IAccountManager accountService)
@@ -36,7 +37,7 @@ namespace HZY.WebHost.Controllers
         {
             var token = await _accountService
                 .CheckAccountAsync(authUserDto.UserName, authUserDto.UserPassword, authUserDto.LoginCode);
-            return new { token, tokenType };
+            return new { token = tokenType + token, tokenType };
         }
     }
 }
