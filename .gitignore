@@ -229,3 +229,5 @@ HC-admin-clientapp/dist/
 .vscode/launch.json
 .gitignore
 .vscode/tasks.json
+
+/dist/

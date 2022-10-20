@@ -1,1 +1,0 @@
-import{i as e,c,g as n,j as r,k as p}from"./index-6281b57b.js";const _={class:"p-15"},u={name:"RedirectCom"},f=Object.assign(u,{setup(i){const{params:t,query:s}=e.currentRoute.value,{path:a}=t;return e.replace({path:"/"+a,query:s}),(l,m)=>{const o=r("a-spin");return p(),c("div",_,[n(o)])}}});export{f as default};

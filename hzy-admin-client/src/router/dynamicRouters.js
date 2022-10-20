@@ -11,7 +11,7 @@ import { useAppStore } from '@/store';
 //导出所有的 vue 模块
 let dynamicRouters = [];
 let allRouters = [];
-const modules = import.meta.glob('../**.vue');
+const modules = import.meta.glob("../**/**.vue");
 const dynamicLayoutName = "dynamicLayout";
 
 /**
