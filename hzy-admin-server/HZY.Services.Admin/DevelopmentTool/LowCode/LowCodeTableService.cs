@@ -134,14 +134,22 @@ namespace HZY.Services.Admin
                     table.Schema = item.Schema;
                     table.Type = item.Type.ToString();
                     //导入代码路径存储
-                    table.ProjectRootPath = string.IsNullOrWhiteSpace(table.ProjectRootPath) ? _appConfiguration.Configs.AutoImprot.ProjectRootPath : table.ProjectRootPath;
-                    table.ModelPath = string.IsNullOrWhiteSpace(table.ModelPath) ? _appConfiguration.Configs.AutoImprot.ModelPath : table.ModelPath;
-                    table.ServicePath = string.IsNullOrWhiteSpace(table.ServicePath) ? _appConfiguration.Configs.AutoImprot.ServicePath : table.ServicePath;
-                    table.ControllerPath = string.IsNullOrWhiteSpace(table.ControllerPath) ? _appConfiguration.Configs.AutoImprot.ControllerPath : table.ControllerPath;
-                    table.IndexVuePath = string.IsNullOrWhiteSpace(table.IndexVuePath) ? _appConfiguration.Configs.AutoImprot.IndexVuePath : table.IndexVuePath;
-                    table.InfoVuePath = string.IsNullOrWhiteSpace(table.InfoVuePath) ? _appConfiguration.Configs.AutoImprot.InfoVuePath : table.InfoVuePath;
-                    table.ServiceJsPath = string.IsNullOrWhiteSpace(table.ServiceJsPath) ? _appConfiguration.Configs.AutoImprot.ServiceJsPath : table.ServiceJsPath;
-                    table.IsCover = table.IsCover == null ? _appConfiguration.Configs.AutoImprot.IsCover : table.IsCover;
+                    table.ProjectRootPath = table.ProjectRootPath != _appConfiguration.Configs.AutoImprot.ProjectRootPath ? _appConfiguration.Configs.AutoImprot.ProjectRootPath : table.ProjectRootPath;
+
+                    table.ModelPath = table.ModelPath != _appConfiguration.Configs.AutoImprot.ModelPath ? _appConfiguration.Configs.AutoImprot.ModelPath : table.ModelPath;
+
+                    table.ServicePath = table.ServicePath != _appConfiguration.Configs.AutoImprot.ServicePath ? _appConfiguration.Configs.AutoImprot.ServicePath : table.ServicePath;
+
+                    table.ControllerPath = table.ControllerPath != _appConfiguration.Configs.AutoImprot.ControllerPath ? _appConfiguration.Configs.AutoImprot.ControllerPath : table.ControllerPath;
+
+                    table.IndexVuePath = table.IndexVuePath != _appConfiguration.Configs.AutoImprot.IndexVuePath ? _appConfiguration.Configs.AutoImprot.IndexVuePath : table.IndexVuePath;
+
+                    table.InfoVuePath = table.InfoVuePath != _appConfiguration.Configs.AutoImprot.InfoVuePath ? _appConfiguration.Configs.AutoImprot.InfoVuePath : table.InfoVuePath;
+
+                    table.ServiceJsPath = table.ServiceJsPath != _appConfiguration.Configs.AutoImprot.ServiceJsPath ? _appConfiguration.Configs.AutoImprot.ServiceJsPath : table.ServiceJsPath;
+
+                    table.IsCover = table.IsCover != _appConfiguration.Configs.AutoImprot.IsCover ? _appConfiguration.Configs.AutoImprot.IsCover : table.IsCover;
+
                     updateList.Add(table);
                 }
 
