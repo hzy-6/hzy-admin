@@ -72,12 +72,6 @@
 	  </None>
 	</ItemGroup>
 
-	<ItemGroup>
-	  <Folder Include="wwwroot\upload\files\" />
-	  <Folder Include="wwwroot\client_element_plus\" />
-	</ItemGroup>
-
-
 	<!--防止发布报多个 xml 问题-->
 	<PropertyGroup>
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
