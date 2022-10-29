@@ -1,4 +1,4 @@
-﻿@using HZY.Infrastructure;
+@using HZY.Infrastructure;
 @using FreeSql.DatabaseModel;
 @model HZY.Models.DTO.DevelopmentTool.GenDbTableDto
 @{
@@ -86,7 +86,7 @@ namespace @(Model.Namespace).Services.Admin.App
                     {
                         w.Id,
                     @(string.Join(',', tableInfos.Select(w => "w." + w.ColumnName)))@(",")
-                        LastModificationTime = w.LastModificationTime.ToString("yyyy-MM-dd"),
+                        LastModificationTime = w.LastModificationTime == null ? "" : w.LastModificationTime.Value.ToString("yyyy-MM-dd"),
                         CreationTime = w.CreationTime.ToString("yyyy-MM-dd")
                     })
                 ;
