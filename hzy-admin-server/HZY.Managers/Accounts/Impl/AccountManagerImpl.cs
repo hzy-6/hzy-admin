@@ -1,4 +1,4 @@
-﻿using HZY.EFCore;
+using HZY.EFCore;
 using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
@@ -184,8 +184,8 @@ public class AccountManagerImpl : IAccountManager
         if (string.IsNullOrEmpty(oldPassword)) MessageBox.Show("旧密码不能为空！");
         if (string.IsNullOrEmpty(newPassword)) MessageBox.Show("新密码不能为空！");
         var sysUser = await _sysUserRepository.FindByIdAsync(GetAccountInfo().Id);
-        if (sysUser.Password != oldPassword) MessageBox.Show("旧密码不正确！");
-        sysUser.Password = newPassword;
+        if (sysUser.Password != Tools.Md5Encrypt(oldPassword) ) MessageBox.Show("旧密码不正确！");
+        sysUser.Password = Tools.Md5Encrypt(newPassword);
         DeleteCacheAccountInfoById(sysUser.Id.ToString());
         return await _sysUserRepository.UpdateAsync(sysUser);
     }
