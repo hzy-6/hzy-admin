@@ -79,8 +79,8 @@ public static class EFCoreModule
         dbContextOptionsBuilder.AddHzyEFCoreRepository(appConfiguration.Configs.IsMonitorEFCore);
         dbContextOptionsBuilder.AddInterceptors(new AuditInterceptor());
         //采用连接池
-        var pooledDbContextFactory = new PooledDbContextFactory<AdminDbContext>(options);
-        services.AddScoped(serviceProvider => pooledDbContextFactory.CreateDbContext());
+        //var pooledDbContextFactory = new PooledDbContextFactory<AdminDbContext>(options);
+        services.AddScoped(serviceProvider => new PooledDbContextFactory<AdminDbContext>(options).CreateDbContext());
         //采用非连接池方式
         //services.AddScoped(serviceProvider => new AdminDbContext(options));
 
