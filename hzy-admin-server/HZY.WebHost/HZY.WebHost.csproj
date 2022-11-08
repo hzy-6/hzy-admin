@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
 		<TargetFramework>net6.0</TargetFramework>
@@ -6,6 +6,9 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<!--<SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>-->
 		<SatelliteResourceLanguages>zh-Hans11</SatelliteResourceLanguages>
+        <!--尝试设置您的 .csproj？在某些情况下，服务器 GC 可能懒得回收内存。ServerGarbageCollection false-->
+		<ServerGarbageCollection>false</ServerGarbageCollection>
+		<ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
