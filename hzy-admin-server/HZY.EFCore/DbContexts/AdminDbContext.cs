@@ -18,10 +18,9 @@ namespace HZY.EFCore.DbContexts;
 /// </summary>
 public class AdminDbContext : DbContext
 {
-    public AdminDbContext(DbContextOptions<AdminDbContext> options) : base(options)
+    public AdminDbContext(DbContextOptions options) : base(options)
     {
         #region 开发环境检测是否需要数据库迁移
-
         var webHostEnvironment = this.GetService<IWebHostEnvironment>();
         if (webHostEnvironment.IsDevelopment())
         {
@@ -38,9 +37,7 @@ public class AdminDbContext : DbContext
                 }
             }
         }
-
         #endregion
-
     }
 
     /// <summary>
@@ -62,7 +59,7 @@ public class AdminDbContext : DbContext
                         where w.IsClass && w.IsPublic && !w.IsGenericType
                         where w.GetInterface(nameof(IBaseEntity)) != null
                         where w.Namespace.Contains(appConfiguration.Configs.DbContextInfo.DbSetScanNamespace)
-                        where !w.Name.StartsWith("DefaultBaseEntity")
+                        where !w.Name.StartsWith("DefaultBaseEntity") && !w.Name.Contains("FullBaseEntity")
                         select w;
 
             foreach (var type in types)
@@ -70,12 +67,6 @@ public class AdminDbContext : DbContext
                 modelBuilder.Model.AddEntityType(type);
             }
         }
-
-        #endregion
-
-        #region 自动迁移种子数据
-
-        ModelBuilderExtensions.Seed(modelBuilder);
 
         #endregion
 
@@ -123,6 +114,11 @@ public class AdminDbContext : DbContext
 
         #endregion
 
+        #region 自动迁移种子数据
+
+        ModelBuilderExtensions.Seed(modelBuilder);
+
+        #endregion
     }
 
     /// <summary>

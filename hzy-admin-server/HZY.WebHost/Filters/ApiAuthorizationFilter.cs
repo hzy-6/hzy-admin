@@ -45,22 +45,13 @@ public class ApiAuthorizationFilter : IAsyncAuthorizationFilter
         var authorizeAttribute = context.ActionDescriptor.EndpointMetadata.Any(w => w is AuthorizeAttribute);
         if (!authorizeAttribute) return;
 
-        //验证 token 是否过期无效
-        if (this._accountService.IsExpire())
-        {
-            context.HttpContext.Response.StatusCode = 401;
-            var data = ApiResult.ResultMessage(ApiResultCodeEnum.UnAuth, unAuthMessage);
-            return;
-        }
-
-        //检查 token 是否授权
-        if (this._accountService.GetAccountInfo() == null)
-        {
-            var data = ApiResult.ResultMessage(ApiResultCodeEnum.UnAuth, unAuthMessage);
-            context.Result = new JsonResult(data);
-        }
-
         #endregion
+
+        //验证 token 是否过期无效 或者 检查 token 是否授权
+        if (_accountService.IsExpire() || _accountService.GetAccountInfo() == null)
+        {
+            context.Result = new JsonResult(ApiResult.ResultMessage(ApiResultCodeEnum.UnAuth, unAuthMessage));
+        }
     }
 
 }

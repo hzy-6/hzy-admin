@@ -215,11 +215,20 @@
             <param name="appConfiguration"></param>
             <param name="hostBuilder"></param>
         </member>
-        <member name="M:HZY.Managers.EFCore.EFCoreModule.UseEfCoreLoggerFactory(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder)">
+        <member name="M:HZY.Managers.EFCore.EFCoreModule.InitAdminDbContext(HZY.Infrastructure.AppConfiguration,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            初始化 AdminDbContext
+            </summary>
+            <param name="appConfiguration"></param>
+            <param name="options"></param>
+            <param name="hostBuilder"></param>
+        </member>
+        <member name="M:HZY.Managers.EFCore.EFCoreModule.UseEfCoreLoggerFactory(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
             efcore 使用控制台日志
             </summary>
             <param name="options"></param>
+            <param name="webHostEnvironment"></param>
         </member>
         <member name="T:HZY.Managers.EFCore.Interceptor.AuditInterceptor">
             <summary>
