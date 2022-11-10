@@ -79,7 +79,7 @@ namespace @(Model.Namespace).Services.Admin.App
             var query = this._defaultRepository.Select
                     @if (!string.IsNullOrWhiteSpace(searchKeyWord))
                     {
-    <pre>.WhereIf(!string.IsNullOrWhiteSpace(search?.@(searchKeyWord)), w => w.@(searchKeyWord).Contains(search.@(searchKeyWord)))</pre>
+        <pre>.WhereIf(!string.IsNullOrWhiteSpace(search?.@(searchKeyWord)), w => w.@(searchKeyWord).Contains(search.@(searchKeyWord)))</pre>
                     }
                     .OrderByDescending(w => w.CreationTime)
                     .Select(w => new
