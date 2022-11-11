@@ -1,7 +1,7 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
+		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
 		<!--<Nullable>enable</Nullable>-->
 		<ImplicitUsings>enable</ImplicitUsings>
 		<!--<SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>-->
@@ -28,11 +28,16 @@
 		</PackageReference>
 		<PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
+
 		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.3" />
 		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
-
+	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.11" />
+	</ItemGroup>
+	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
+		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
+	</ItemGroup>
 	<ItemGroup>
 		<ProjectReference Include="..\HZY.EFCore\HZY.EFCore.csproj" />
 		<ProjectReference Include="..\HZY.Controllers.Admin\HZY.Controllers.Admin.csproj" />
@@ -78,6 +83,7 @@
 	<!--防止发布报多个 xml 问题-->
 	<PropertyGroup>
 		<ErrorOnDuplicatePublishOutputFiles>false</ErrorOnDuplicatePublishOutputFiles>
+		<GenerateDocumentationFile>True</GenerateDocumentationFile>
 	</PropertyGroup>
 
 
