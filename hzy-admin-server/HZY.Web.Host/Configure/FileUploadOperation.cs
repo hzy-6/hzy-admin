@@ -1,7 +1,7 @@
 ﻿using Microsoft.OpenApi.Models;
 using Swashbuckle.AspNetCore.SwaggerGen;
 
-namespace HZY.WebHost.Configure
+namespace HZY.Web.Host.Configure
 {
     public class FileUploadOperation : IOperationFilter
     {

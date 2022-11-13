@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 
-namespace HZY.WebHost.Controllers
+namespace HZY.Web.Host.Controllers
 {
     /// <summary>
     /// 账户控制器

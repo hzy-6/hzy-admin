@@ -9,7 +9,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace HZY.WebHost.Controllers;
+namespace HZY.Web.Host.Controllers;
 
 /// <summary>
 /// 公共接口控制器

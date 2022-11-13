@@ -1,4 +1,4 @@
-﻿namespace HZY.WebHost.Endpoints
+﻿namespace HZY.Web.Host.Endpoints
 {
     /// <summary>
     /// 主端点 miniapi

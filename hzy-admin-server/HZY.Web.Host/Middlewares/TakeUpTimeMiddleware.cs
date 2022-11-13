@@ -6,7 +6,7 @@ using HZY.Infrastructure;
 using HZY.Models.Consts;
 using HZY.Services.Admin.Framework;
 
-namespace HZY.WebHost.Middlewares;
+namespace HZY.Web.Host.Middlewares;
 
 /// <summary>
 /// 统计耗时 并记录日志中 中间件
@@ -24,7 +24,7 @@ public class TakeUpTimeMiddleware : IMiddleware
         IHttpContextAccessor iHttpContextAccessor,
         AppConfiguration appConfiguration)
     {
-        this._stopwatch ??= new Stopwatch();
+        _stopwatch ??= new Stopwatch();
         _logger = logger;
         _sysOperationLogService = sysOperationLogService;
         _httpContext = iHttpContextAccessor.HttpContext;
@@ -43,7 +43,7 @@ public class TakeUpTimeMiddleware : IMiddleware
         }
 
         //获取body
-        var bodyString = await this.ReadBodyAsync();
+        var bodyString = await ReadBodyAsync();
 
         //记录 api 执行耗时
         _stopwatch.Restart();
@@ -52,7 +52,7 @@ public class TakeUpTimeMiddleware : IMiddleware
 
         _stopwatch.Stop();
 
-        if (this.IsApi(context))
+        if (IsApi(context))
         {
             var remoteIpAddress = context.Connection.RemoteIpAddress;
             var log = $"{remoteIpAddress} 请求：{path} 耗时：{_stopwatch.ElapsedMilliseconds} 毫秒!";

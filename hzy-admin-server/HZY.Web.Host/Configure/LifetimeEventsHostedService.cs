@@ -3,7 +3,7 @@ using Microsoft.Extensions.Logging;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace HZY.WebHost.Configure;
+namespace HZY.Web.Host.Configure;
 
 /// <summary>
 /// 生命周期监听

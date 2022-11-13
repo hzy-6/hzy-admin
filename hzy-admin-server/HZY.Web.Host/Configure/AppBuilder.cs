@@ -2,7 +2,6 @@
 using HZY.EFCore;
 using HZY.Infrastructure;
 using HZY.Infrastructure.MessageQueue.Models;
-using HZY.WebHost.Middlewares;
 using HzyScanDiService;
 using System.Text;
 using HZY.FreeSqlCore;
@@ -18,7 +17,6 @@ using Serilog;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using HZY.Infrastructure.Filters;
-using HZY.WebHost.Filters;
 using Swashbuckle.AspNetCore.Filters;
 using Newtonsoft.Json.Serialization;
 using HZY.Infrastructure.SerilogUtil;
@@ -26,9 +24,22 @@ using HZY.Managers.EFCore;
 using HZY.Managers.SignalRs;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Http.Features;
-using Zyx.MemoryMQ.Extensions;
 
-namespace HZY.WebHost.Configure;
+/* 项目“HZY.Web.Host (net7.0)”的未合并的更改
+在此之前:
+using Zyx.MemoryMQ.Extensions;
+在此之后:
+using Zyx.MemoryMQ.Extensions;
+using HZY.Web.Host.Configure;
+using HZY;
+using HZY.WebHost;
+using HZY.WebHost.Configure;
+*/
+using Zyx.MemoryMQ.Extensions;
+using HZY.Web.Host.Filters;
+using HZY.Web.Host.Middlewares;
+
+namespace HZY.Web.Host.Configure;
 
 /// <summary>
 /// 程序构建类
@@ -127,9 +138,9 @@ public static class AppBuilder
         //配置efcore
         services.AddEfCore(appConfiguration, builder);
         //配置freesql
-        FreeSqlUtil.AddFreeSql(services, appConfiguration, $"{prefixString}Repositories");
+        services.AddFreeSql(appConfiguration, $"{prefixString}Repositories");
         //配置redis
-        RedisUtil.AddRedisService(services, appConfiguration.ConnectionStrings.Redis);
+        services.AddRedisService(appConfiguration.ConnectionStrings.Redis);
         //添加中间件
         services.AddScoped<TakeUpTimeMiddleware>();
 
@@ -307,7 +318,7 @@ public static class AppBuilder
         //启用中间件服务对swagger-ui，指定Swagger JSON终结点
         app.UseSwaggerUI(option =>
         {
-            foreach (var item in AppBuilder.GetVersionList()) option.SwaggerEndpoint($"{item}/swagger.json", item);
+            foreach (var item in GetVersionList()) option.SwaggerEndpoint($"{item}/swagger.json", item);
             option.RoutePrefix = "swagger";
         });
 

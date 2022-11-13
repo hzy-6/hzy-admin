@@ -10,7 +10,7 @@
         </a-card>
       </a-col>
       <a-col :xs="24" :sm="12" :md="12" :lg="19" :xl="19">
-        <List ref="refList" :tableData="state" @onChange="methods.onChange">
+        <List ref="refTable" :tableData="state" @onChange="methods.onChange">
           <!-- 检索插槽 -->
           <template #search>
             <a-row :gutter="[15, 15]">

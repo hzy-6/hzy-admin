@@ -8,7 +8,7 @@ using HZY.Models.VO.Upload;
 using Microsoft.AspNetCore.Mvc;
 using static FreeSql.Internal.GlobalFilter;
 
-namespace HZY.WebHost.Controllers;
+namespace HZY.Web.Host.Controllers;
 
 /// <summary>
 /// 上传文件控制器

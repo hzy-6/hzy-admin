@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
 
-namespace HZY.WebHost.Filters
+namespace HZY.Web.Host.Filters
 {
     /// <summary>
     /// 权限 拦截
@@ -75,7 +75,7 @@ namespace HZY.WebHost.Filters
             var functionName = actionDescriptorAttribute.GetFunctionName();
             if (string.IsNullOrWhiteSpace(functionName)) return;
             //收集用户权限 未授权让他重新登录
-            var power = this._sysMenuService.GetPowerStateByMenuIdAsync(menuId).Result;
+            var power = _sysMenuService.GetPowerStateByMenuIdAsync(menuId).Result;
 
             if (power == null)
             {

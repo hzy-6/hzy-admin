@@ -1,7 +1,7 @@
 using HZY.Infrastructure;
 using HZY.Infrastructure.SerilogUtil;
-using HZY.WebHost.Configure;
-using HZY.WebHost.Endpoints;
+using HZY.Web.Host.Configure;
+using HZY.Web.Host.Endpoints;
 using Serilog;
 
 try

@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using HZY.Managers.Accounts;
 using NPOI.POIFS.Crypt.Dsig;
 
-namespace HZY.WebHost.Filters;
+namespace HZY.Web.Host.Filters;
 
 /// <summary>
 /// 授权认证 拦截

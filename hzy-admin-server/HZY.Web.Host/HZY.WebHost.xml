@@ -4,122 +4,122 @@
         <name>HZY.Web.Host</name>
     </assembly>
     <members>
-        <member name="T:HZY.WebHost.Configure.AppBuilder">
+        <member name="T:HZY.Web.Host.Configure.AppBuilder">
             <summary>
             程序构建类
             </summary>
         </member>
-        <member name="M:HZY.WebHost.Configure.AppBuilder.GetVersionList">
+        <member name="M:HZY.Web.Host.Configure.AppBuilder.GetVersionList">
             <summary>
             获取 Swagger 版本集合
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.WebHost.Configure.AppBuilder.AppConfigureServicesBuild(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+        <member name="M:HZY.Web.Host.Configure.AppBuilder.AppConfigureServicesBuild(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
             <summary>
             配置服务
             </summary>
             <param name="builder"></param>
         </member>
-        <member name="M:HZY.WebHost.Configure.AppBuilder.AppConfigureBuild(Microsoft.AspNetCore.Builder.WebApplication)">
+        <member name="M:HZY.Web.Host.Configure.AppBuilder.AppConfigureBuild(Microsoft.AspNetCore.Builder.WebApplication)">
             <summary>
             配置构建
             </summary>
             <param name="app"></param>
         </member>
-        <member name="P:HZY.WebHost.Configure.CustomPolicyRequirement.AuthKey">
+        <member name="P:HZY.Web.Host.Configure.CustomPolicyRequirement.AuthKey">
             <summary>
             权限认证键
             </summary>
         </member>
-        <member name="T:HZY.WebHost.Configure.LifetimeEventsHostedService">
+        <member name="T:HZY.Web.Host.Configure.LifetimeEventsHostedService">
             <summary>
             生命周期监听
             </summary>
         </member>
-        <member name="T:HZY.WebHost.Controllers.AccountController">
+        <member name="T:HZY.Web.Host.Controllers.AccountController">
             <summary>
             账户控制器
             </summary>
         </member>
-        <member name="M:HZY.WebHost.Controllers.AccountController.CheckAsync(HZY.Models.DTO.Framework.AuthUserFormDto)">
+        <member name="M:HZY.Web.Host.Controllers.AccountController.CheckAsync(HZY.Models.DTO.Framework.AuthUserFormDto)">
             <summary>
             检查帐户并获取 token
             </summary>
             <param name="authUserDto">Dto</param>
             <returns></returns>
         </member>
-        <member name="T:HZY.WebHost.Controllers.PublicController">
+        <member name="T:HZY.Web.Host.Controllers.PublicController">
             <summary>
             公共接口控制器
             </summary>
         </member>
-        <member name="M:HZY.WebHost.Controllers.PublicController.GetDictionaryByCodeAsync(System.String)">
+        <member name="M:HZY.Web.Host.Controllers.PublicController.GetDictionaryByCodeAsync(System.String)">
             <summary>
             根据编码获取 字典集合
             </summary>
             <param name="code"></param>
             <returns></returns>
         </member>
-        <member name="T:HZY.WebHost.Controllers.UploadController">
+        <member name="T:HZY.Web.Host.Controllers.UploadController">
             <summary>
             上传文件控制器
             </summary>
         </member>
-        <member name="M:HZY.WebHost.Controllers.UploadController.Images">
+        <member name="M:HZY.Web.Host.Controllers.UploadController.Images">
             <summary>
             上传图片 针对富文本编辑器
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.WebHost.Controllers.UploadController.Upload(Microsoft.AspNetCore.Http.IFormFile)">
+        <member name="M:HZY.Web.Host.Controllers.UploadController.Upload(Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
             上传文件
             </summary>
             <param name="file"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.WebHost.Controllers.UploadController.UploadPngAndJpgAsync(Microsoft.AspNetCore.Http.IFormFile)">
+        <member name="M:HZY.Web.Host.Controllers.UploadController.UploadPngAndJpgAsync(Microsoft.AspNetCore.Http.IFormFile)">
             <summary>
             上传文件 只能上传 png和jpg 格式
             </summary>
             <param name="file"></param>
             <returns></returns>
         </member>
-        <member name="T:HZY.WebHost.Endpoints.MainEndpoints">
+        <member name="T:HZY.Web.Host.Endpoints.MainEndpoints">
             <summary>
             主端点 miniapi
             </summary>
         </member>
-        <member name="T:HZY.WebHost.Filters.ApiAuthorizationFilter">
+        <member name="T:HZY.Web.Host.Filters.ApiAuthorizationFilter">
             <summary>
             授权认证 拦截
             </summary>
         </member>
-        <member name="T:HZY.WebHost.Filters.ApiPermissionFilter">
+        <member name="T:HZY.Web.Host.Filters.ApiPermissionFilter">
             <summary>
             权限 拦截
             </summary>
         </member>
-        <member name="M:HZY.WebHost.Filters.ApiPermissionFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+        <member name="M:HZY.Web.Host.Filters.ApiPermissionFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
             <summary>
             action 执行之前
             </summary>
             <param name="context"></param>
         </member>
-        <member name="T:HZY.WebHost.Middlewares.TakeUpTimeMiddleware">
+        <member name="T:HZY.Web.Host.Middlewares.TakeUpTimeMiddleware">
             <summary>
             统计耗时 并记录日志中 中间件
             </summary>
         </member>
-        <member name="M:HZY.WebHost.Middlewares.TakeUpTimeMiddleware.IsApi(Microsoft.AspNetCore.Http.HttpContext)">
+        <member name="M:HZY.Web.Host.Middlewares.TakeUpTimeMiddleware.IsApi(Microsoft.AspNetCore.Http.HttpContext)">
             <summary>
             判断请求类型 是否 是 api
             </summary>
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.WebHost.Middlewares.TakeUpTimeMiddleware.ReadBodyAsync">
+        <member name="M:HZY.Web.Host.Middlewares.TakeUpTimeMiddleware.ReadBodyAsync">
             <summary>
             读取 body 信息
             </summary>

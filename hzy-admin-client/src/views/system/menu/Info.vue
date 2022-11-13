@@ -242,9 +242,9 @@ const methods = {
       state.vm = res.data;
 
       //如果 vm.menuFunctionList 集合为空则默认将 allFunctions 数据加入进去
-      // if (state.vm.menuFunctionList.length == 0 && state.vm.allFunctions.length > 0) {
-      //   methods.defaultRows();
-      // }
+      if (state.vm.menuFunctionList.length == 0 && state.vm.allFunctions.length > 0) {
+        methods.defaultRows();
+      }
     });
   },
   saveForm() {

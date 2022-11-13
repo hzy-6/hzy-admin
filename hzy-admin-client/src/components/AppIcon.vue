@@ -33,6 +33,7 @@ export default defineComponent({
     watch(
       () => props.name,
       (value) => {
+        if (!value) return;
         isAntdIcon.value = allNameByAntds.findIndex((w) => w == value) > -1;
         if (isAntdIcon.value) {
           iconName.value = value;

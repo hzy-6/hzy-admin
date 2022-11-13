@@ -9,7 +9,7 @@ using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 
-namespace HZY.WebHost.Configure
+namespace HZY.Web.Host.Configure
 {
     public class CustomPolicyRequirement : IAuthorizationRequirement
     {
