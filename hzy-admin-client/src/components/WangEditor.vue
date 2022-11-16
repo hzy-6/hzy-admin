@@ -95,9 +95,9 @@ editorConfig.MENU_CONF["uploadImage"] = {
     for (let i = 0; i < data.length; i++) {
       let item = data[i];
       if (props.previewDomainName) {
-        insertFn(props.previewDomainName + item);
+        insertFn(props.previewDomainName + item.url);
       } else {
-        insertFn(item);
+        insertFn(item.url);
       }
     }
   },
