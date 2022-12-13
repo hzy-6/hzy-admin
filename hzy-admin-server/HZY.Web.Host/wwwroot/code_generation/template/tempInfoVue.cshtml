@@ -1,4 +1,4 @@
-﻿@using HZY.Infrastructure;
+@using HZY.Infrastructure;
 @using FreeSql.DatabaseModel;
 @model HZY.Models.DTO.DevelopmentTool.GenDbTableDto
 @{
@@ -35,7 +35,7 @@
           @foreach (var item in tableInfos)
             {
                 var name = item.ColumnName.FirstCharToLower();
-                var title = item.Describe;
+                var title =item.DisplayName ?? item.Describe;
 
                 <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                     <a-form-item label="@title">
