@@ -63,6 +63,10 @@ export function genDynamicRouters(menuTreeList: any[]): boolean {
 function createDynamicRouters(data: any) {
     for (let i = 0; i < data?.length; i++) {
         let item = data[i];
+
+        //微前端模式跳过路由
+        if (item.mode === 2) continue;
+
         let path = item.router ? item.router : (item.url ?? '/404');
 
         //如果是菜单类型
