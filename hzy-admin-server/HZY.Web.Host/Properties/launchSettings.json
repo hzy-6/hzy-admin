@@ -9,7 +9,7 @@
     }
   },
   "profiles": {
-    "HZY.WebHost": {
+    "HZY.Web.Host": {
       "commandName": "Project",
       "launchBrowser": true,
       "environmentVariables": {

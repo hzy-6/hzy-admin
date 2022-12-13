@@ -553,19 +553,19 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AutoImprotNode.IndexVuePath">
+        <member name="P:HZY.Infrastructure.AutoImprotNode.ClientIndexPath">
             <summary>
             前端视图保存路径
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AutoImprotNode.InfoVuePath">
+        <member name="P:HZY.Infrastructure.AutoImprotNode.ClientInfoPath">
             <summary>
             前端信息弹窗保存位置
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Infrastructure.AutoImprotNode.ServiceJsPath">
+        <member name="P:HZY.Infrastructure.AutoImprotNode.ClientServicePath">
             <summary>
             前端服务保存位置
             </summary>

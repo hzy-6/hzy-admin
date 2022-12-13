@@ -20,24 +20,7 @@ public class AdminDbContext : DbContext
 {
     public AdminDbContext(DbContextOptions options) : base(options)
     {
-        #region 开发环境检测是否需要数据库迁移
-        var webHostEnvironment = this.GetService<IWebHostEnvironment>();
-        if (webHostEnvironment.IsDevelopment())
-        {
-            // 自动迁移 （如果迁移文件有变动）
-            if (this.Database.GetPendingMigrations().Count() > 0)
-            {
-                try
-                {
-                    this.Database.Migrate();
-                }
-                catch (Exception ex)
-                {
-                    LogUtil.Log.Error(ex.Message, ex);
-                }
-            }
-        }
-        #endregion
+        
     }
 
     /// <summary>

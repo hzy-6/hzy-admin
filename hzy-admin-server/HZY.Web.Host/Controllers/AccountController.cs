@@ -39,5 +39,6 @@ namespace HZY.Web.Host.Controllers
                 .CheckAccountAsync(authUserDto.UserName, authUserDto.UserPassword, authUserDto.LoginCode);
             return new { token = tokenType + token, tokenType };
         }
+
     }
 }

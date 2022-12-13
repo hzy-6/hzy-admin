@@ -1,108 +1,28 @@
 body {
-    overflow: hidden;
-    overflow-y: auto;
+  overflow: hidden;
+  overflow-y: auto;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .hzy-logo {
-    text-align: center;
-    font-size: 15px;
-    font-weight: bold;
-    height: 85px;
-    line-height: 85px;
-    overflow: hidden;
+  font-size: 16px;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 50px;
 }
 
 .hzy-layout {
+  display: flex;
 
-    display: flex;
+  .ant-layout-sider-children {
+    overflow-x: hidden;
+  }
 
-    .ant-layout-sider-children {
-        overflow-x: hidden;
-    }
-
-    .ant-menu-inline,
-    .ant-menu-vertical,
-    .ant-menu-vertical-left {
-        border-right: 0;
-    }
-
-    .hzy-logo-img {
-        height: 85px;
-        padding: 18px 0px;
-        text-align: center;
-    }
-
-    //=======// 头部 亮色
-    .hzy-layout-header-light {
-        background-color: #fff;
-
-        .hzy-header-btn:hover {
-            background: rgba(0, 0, 0, 0.025);
-        }
-
-        * {
-            color: rgba(0, 0, 0, 0.85);
-        }
-
-        // 一级菜单样式处理
-        .hzy-one-nav {
-            .active {
-                * {
-                    color: #fff !important;
-                }
-            }
-
-            li:hover {
-                * {
-                    color: #fff !important;
-                }
-            }
-        }
-
-    }
-
-    //=======// 头部 暗色
-    .hzy-layout-header-dark {
-        background-color: #001529;
-    }
-
-    //=======// 头部 蓝色
-    .hzy-layout-header-blue {
-        background-color: #096dd9;
-    }
-
-    //=======// 头部 红色
-    .hzy-layout-header-1 {
-        background-color: #997b71;
-    }
-
-    //=======// 头部 绿色
-    .hzy-layout-header-2 {
-        background-color: #237804;
-    }
-
-    //=======// 头部 淡蓝色
-    .hzy-layout-header-3 {
-        background-color: #667afa;
-    }
-
-    //=======// 头部 粉色
-    .hzy-layout-header-4 {
-        background-color: #f74584;
-    }
-
-    //=======// 头部 紫色
-    .hzy-layout-header-5 {
-        background-color: #9463f7;
-    }
-
-    //=======// 头部 黄色
-    .hzy-layout-header-6 {
-        background-color: #d48806;
-    }
-
-    //=======// 头部 红色
-    .hzy-layout-header-7 {
-        background-color: #ff4c52;
-    }
+  .ant-menu-inline,
+  .ant-menu-vertical,
+  .ant-menu-vertical-left {
+    border-right: 0;
+  }
 }

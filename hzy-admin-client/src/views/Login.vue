@@ -1,3 +1,54 @@
+<script lang="ts" setup>
+import { reactive, ref, onMounted } from "vue";
+import AppIcon from "@/core/components/AppIcon.vue";
+import router from "@/core/router";
+import Tools from "@/core/utils/Tools";
+import AppStore from "@/core/store/AppStore";
+import LoginService from "@/services/LoginService";
+
+const state = reactive({
+  userName: "admin",
+  userPassword: "123456",
+});
+const inputPassword = ref<HTMLElement | null>(null);
+const loading = ref(false);
+
+const appStore = AppStore();
+const title = appStore.state.title;
+
+onMounted(() => {
+  reset();
+  inputPassword.value!.focus();
+});
+
+/**
+ * 检查账户并登录
+ */
+async function check() {
+  if (!state.userName) return Tools.message.warning("用户名不能为空!");
+  if (!state.userPassword) return Tools.message.warning("密码不能为空!");
+
+  loading.value = true;
+
+  const result = await LoginService.login(state.userName, state.userPassword);
+
+  loading.value = false;
+  if (result.code != 1) return;
+
+  Tools.setAuthorization(result.data.token);
+
+  router.push("/");
+}
+
+/**
+ * 重置系统信息
+ */
+function reset() {
+  // tools.delAuthorization();
+  appStore.resetInfo();
+}
+</script>
+
 <template>
   <div>
     <div class="login">
@@ -8,7 +59,7 @@
         <div class="flex-right p-30">
           <div class="title">{{ title }}</div>
 
-          <div class="mt-24">
+          <div class="mt-16">
             <a-input v-model:value="state.userName" placeholder="请输入" size="large" allow-clear>
               <template #prefix>
                 <AppIcon name="UserOutlined" style="color: #1890ff; font-size: 14px" />
@@ -16,8 +67,8 @@
             </a-input>
           </div>
 
-          <div class="mt-24">
-            <a-input-password type="password" v-model:value="state.userPassword" size="large" ref="inputPassword" @keyup.enter="methods.check">
+          <div class="mt-16">
+            <a-input-password type="password" v-model:value="state.userPassword" size="large" ref="inputPassword" @keyup.enter="check()">
               <template #prefix>
                 <AppIcon name="LockOutlined" style="color: #1890ff; font-size: 14px" />
               </template>
@@ -25,67 +76,13 @@
           </div>
 
           <div class="mt-40">
-            <a-button type="primary" @click="methods.check" :loading="loading" size="large" block>登录</a-button>
+            <a-button type="primary" @click="check()" :loading="loading" size="large" block>登录</a-button>
           </div>
         </div>
       </div>
     </div>
   </div>
-
 </template>
-
-<script setup>
-import { reactive, ref, onMounted } from "vue";
-import { useLayoutStore, useAppStore } from "@/store";
-import AppIcon from "@/components/AppIcon.vue";
-import router from "@/router/index";
-import tools from "@/scripts/tools";
-import loginService from "@/service/system/loginService";
-
-const state = reactive({
-  userName: "admin",
-  userPassword: "123456",
-});
-const inputPassword = ref(null);
-const loading = ref(false);
-
-const layoutStore = useLayoutStore();
-const appStore = useAppStore();
-const title = layoutStore.state.title;
-
-const methods = {
-  check() {
-    if (!state.userName) return tools.message("用户名不能为空!", "警告");
-    if (!state.userPassword) return tools.message("密码不能为空!", "警告");
-    loading.value = true;
-    loginService
-      .login(state.userName, state.userPassword)
-      .then((res) => {
-        if (res.code !== 1) {
-          loading.value = false;
-          return;
-        }
-        tools.setAuthorization(res.data.token);
-        router.push("/").then(() => {
-          loading.value = false;
-        });
-      })
-      .catch(() => {
-        loading.value = false;
-      });
-  },
-  // 重置系统信息
-  reset() {
-    tools.delAuthorization();
-    appStore.resetInfo();
-  },
-};
-
-onMounted(() => {
-  methods.reset();
-  inputPassword.value.focus();
-});
-</script>
 
 <style lang="less" scoped>
 body {
@@ -113,7 +110,7 @@ body {
     border-radius: 5px;
     .flex-left {
       flex: 1;
-      width:450px;
+      width: 450px;
       img {
         height: 100%;
       }
@@ -155,7 +152,7 @@ body {
       width: 80% !important;
     }
   }
-  .flex-right{
+  .flex-right {
     border-radius: 5px;
   }
 }

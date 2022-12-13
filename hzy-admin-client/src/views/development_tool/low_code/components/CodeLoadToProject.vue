@@ -1,3 +1,81 @@
+<script lang="ts" setup>
+import { reactive, ref, watchEffect } from "vue";
+import { FormInstance } from "ant-design-vue";
+import Tools from "@/core/utils/Tools";
+import CodeGenerationService from "@/services/development_tool/low_code/CodeGenerationService";
+import LowCodeTableService from "@/services/development_tool/low_code/LowCodeTableService";
+
+//定义组件事件
+const props = defineProps<{ rowData: any }>();
+
+const state = reactive({
+  vm: {
+    id: "",
+    form: {} as any,
+  },
+  saveLoading: false,
+});
+
+const refForm = ref<FormInstance>();
+
+//验证规则
+const rules = {
+  projectRootPath: [{ required: true, message: "请输入项目根地址", trigger: "blur" }],
+  modelPath: [{ required: true, message: "请输入实体保存路径", trigger: "blur" }],
+  servicePath: [{ required: true, message: "请输入服务保存路径", trigger: "blur" }],
+  controllerPath: [{ required: true, message: "请输入控制器保存路径", trigger: "blur" }],
+  indexVuePath: [{ required: true, message: "请输入前端视图保存路径", trigger: "blur" }],
+  infoVuePath: [{ required: true, message: "请输入前端信息弹窗保存位置", trigger: "blur" }],
+  serviceJsPath: [{ required: true, message: "请输入前端服务保存位置", trigger: "blur" }],
+} as any;
+
+watchEffect(() => {
+  if (props.rowData) {
+    findForm();
+  }
+}, props.rowData);
+
+/**
+ * 获取表单信息
+ */
+async function findForm() {
+  state.saveLoading = true;
+  const result = await LowCodeTableService.findForm(props.rowData.id);
+  state.saveLoading = false;
+  if (result.code != 1) return;
+  state.vm = result.data;
+}
+
+/**
+ * 保存表单信息
+ */
+function saveForm() {
+  refForm.value?.validate().then(() => {
+    state.saveLoading = true;
+    LowCodeTableService.saveForm(state.vm.id, state.vm)
+      .then((res) => {
+        state.saveLoading = false;
+        if (res.code != 1) return;
+        Tools.message.success("操作成功!");
+      })
+      .finally(() => {
+        state.saveLoading = false;
+      });
+  });
+}
+
+/**
+ * 导入代码项目工程
+ */
+async function autoImport() {
+  state.saveLoading = true;
+  const result = await CodeGenerationService.autoImprotProject({ tableName: props.rowData.tableName });
+  state.saveLoading = false;
+  if (result.code !== 1) return;
+  Tools.message.success("导入项目工程成功!");
+}
+</script>
+
 <template>
   <div>
     <a-form ref="formRef" layout="vertical" :model="state.vm.form" :rules="rules">
@@ -31,109 +109,26 @@
           </a-form-item>
         </a-col>
         <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-          <a-form-item label="前端视图保存路径" ref="indexVuePath" name="indexVuePath">
-            <a-input v-model:value="state.vm.form.indexVuePath" placeholder="请输入" />
+          <a-form-item label="前端视图保存路径" ref="clientIndexPath" name="clientIndexPath">
+            <a-input v-model:value="state.vm.form.clientIndexPath" placeholder="请输入" />
           </a-form-item>
         </a-col>
         <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-          <a-form-item label="前端信息弹窗保存位置" ref="infoVuePath" name="infoVuePath">
-            <a-input v-model:value="state.vm.form.infoVuePath" placeholder="请输入" />
+          <a-form-item label="前端信息弹窗保存位置" ref="clientInfoPath" name="clientInfoPath">
+            <a-input v-model:value="state.vm.form.clientInfoPath" placeholder="请输入" />
           </a-form-item>
         </a-col>
         <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-          <a-form-item label="前端服务保存位置" ref="serviceJsPath" name="serviceJsPath">
-            <a-input v-model:value="state.vm.form.serviceJsPath" placeholder="请输入" />
+          <a-form-item label="前端服务保存位置" ref="clientServicePath" name="clientServicePath">
+            <a-input v-model:value="state.vm.form.clientServicePath" placeholder="请输入" />
           </a-form-item>
         </a-col>
       </a-row>
     </a-form>
 
-    <div class="text-right">
-      <a-button type="primary" @click="methods.saveForm()" class="mr-24">提交</a-button>
-      <a-button type="primary" @click="methods.autoImport()" danger>代码载入项目</a-button>
+    <div class="text-center mt-48">
+      <a-button @click="saveForm()" class="mr-24">提交</a-button>
+      <a-button type="primary" @click="autoImport()">代码载入项目</a-button>
     </div>
   </div>
 </template>
-<script setup>
-import tools from "@/scripts/tools";
-import service from "@/service/development_tool/code_generation_service";
-import lowCodeTalbeService from "@/service/development_tool/low_code/low_code_table_service";
-import { computed, reactive, ref } from "vue";
-
-//定义组件事件
-// const emits = defineEmits(["onSuccess"]);
-const props = defineProps({
-  tableName: String,
-});
-
-const state = reactive({
-  tableName: computed(() => props.tableName),
-  vm: {
-    id: "",
-    form: {},
-  },
-  saveLoading: false,
-});
-
-const formRef = ref(null);
-
-//验证规则
-const rules = {
-  projectRootPath: [{ required: true, message: "请输入项目根地址", trigger: "blur" }],
-  modelPath: [{ required: true, message: "请输入实体保存路径", trigger: "blur" }],
-  servicePath: [{ required: true, message: "请输入服务保存路径", trigger: "blur" }],
-  controllerPath: [{ required: true, message: "请输入控制器保存路径", trigger: "blur" }],
-  indexVuePath: [{ required: true, message: "请输入前端视图保存路径", trigger: "blur" }],
-  infoVuePath: [{ required: true, message: "请输入前端信息弹窗保存位置", trigger: "blur" }],
-  serviceJsPath: [{ required: true, message: "请输入前端服务保存位置", trigger: "blur" }],
-};
-
-const methods = {
-  findForm() {
-    state.saveLoading = true;
-    return lowCodeTalbeService.findForm(state.vm.id).then((res) => {
-      state.saveLoading = false;
-      if (res.code != 1) return;
-      state.vm = res.data;
-    });
-  },
-  saveForm() {
-    formRef.value.validate().then(() => {
-      state.saveLoading = true;
-      lowCodeTalbeService
-        .saveForm(state.vm)
-        .then((res) => {
-          if (res.code != 1) return;
-          tools.message("操作成功!", "成功");
-          // state.visible = false;
-          state.saveLoading = false;
-        })
-        .finally(() => {
-          state.saveLoading = false;
-        });
-    });
-    // .catch((error) => {
-    //   console.log("error", error);
-    // });
-  },
-  autoImport() {
-    console.log("执行");
-    service
-      .autoImprotProject({ tableName: props.tableName })
-      .then((res) => {
-        if (res.code !== 1) return;
-        tools.message("导入成功,请查看!", "成功");
-      })
-      .finally(() => {
-        // tools.message("导入结束");
-      });
-  },
-  loadData({ key }) {
-    state.vm.id = key;
-    methods.findForm();
-  },
-};
-
-// 暴露函数或者属性到外部
-defineExpose({ ...methods });
-</script>

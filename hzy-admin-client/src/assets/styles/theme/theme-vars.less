@@ -1,0 +1,14 @@
+/*说明：此文件不应该被其他@import，此文件的变量并不是来设置项目的主题（当然，你可以作为加载时的默认主题），主要作用是，这里的变量值只要与项目的原变量值有差别，编译后就会抽取跟随主题色梯度变化的css*/
+
+/*注意（重要）：此文件的内容一旦固定下来就不需要改，在线动态切换主题，调用setCustomTheme方法即可*/
+
+/*注意（强调）：变量值改动会影响 gradientReplacer 和 targetValueReplacer 的可用属性的变化，所以内容一旦固定下来就不需要改（强调）*/
+
+/*主题色，通常与 themePreprocessorPlugin 的 defaultPrimaryColor 相同， 使用setCustomTheme({primaryColor})切换*/
+@primary-color: #512da7;
+
+/*与此颜色对应的样式，默认情况也会跟主色变化的，要切换它对应的梯度颜色，使用setCustomTheme({gradientReplacer:{"#F7D06B"}})切换 */
+@alert-success-bg-color: #F7D06B;
+
+/*圆角值，尽量与原值差别大一点，方便分析 targetValueReplacer 的可用属性，非颜色值的切换，可以使用 setCustomTheme({targetValueReplacer:{"6px"}}) 精准替换*/
+@border-radius-base: 2px;

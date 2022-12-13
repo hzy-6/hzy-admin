@@ -1,46 +1,16 @@
-# hzy-antdv-admin
+# Vue 3 + TypeScript + Vite
 
-### 服务端 实现
+This template should help get you started developing with Vue 3 and TypeScript in Vite. The template uses Vue 3 `<script setup>` SFCs, check out the [script setup docs](https://v3.vuejs.org/api/sfc-script-setup.html#sfc-script-setup) to learn more.
 
-Java:https://gitee.com/hzy6/hzy-admin-spa
+## Recommended IDE Setup
 
-Net5:https://gitee.com/hzy6/HzyAdminSpa
+- [VS Code](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar)
 
-### 框架技术
+## Type Support For `.vue` Imports in TS
 
-```
-Vue3.x | VueRouter | Pinia | Vite | Antd Vue3 | Vxe-Table4
-```
+Since TypeScript cannot handle type information for `.vue` imports, they are shimmed to be a generic Vue component type by default. In most cases this is fine if you don't really care about component prop types outside of templates. However, if you wish to get actual prop types in `.vue` imports (for example to get props validation when using manual `h(...)` calls), you can enable Volar's Take Over mode by following these steps:
 
-## 1、安装插件包
+1. Run `Extensions: Show Built-in Extensions` from VS Code's command palette, look for `TypeScript and JavaScript Language Features`, then right click and select `Disable (Workspace)`. By default, Take Over mode will enable itself if the default TypeScript extension is disabled.
+2. Reload the VS Code window by running `Developer: Reload Window` from the command palette.
 
-```
-npm install 或者 pnpm install 或者 yarn install
-```
-
-### 2、启动运行
-
-```
-npm dev 或者 pnpm dev 或者 yarn dev
-```
-
-### 3、打包项目
-
-```
-npm build 或者 pnpm build 或者 yarn build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
-
-### 自定义配置
-
-查看 [Configuration Reference](https://cli.vuejs.org/config/).
-
-![输入图片说明](src/assets/home.png)
-![输入图片说明](src/assets/list.png)
-![输入图片说明](src/assets/settings.png)
-![输入图片说明](src/assets/home-mobile.png)
+You can learn more about Take Over mode [here](https://github.com/johnsoncodehk/volar/discussions/471).

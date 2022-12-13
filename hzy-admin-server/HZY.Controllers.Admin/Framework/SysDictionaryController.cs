@@ -32,15 +32,13 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     /// <summary>
     /// 获取列表
     /// </summary>
-    /// <param name="size"></param>
-    /// <param name="page"></param>
     /// <param name="search"></param>
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查看列表")]
-    [HttpPost("FindList/{size}/{page}")]
-    public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysDictionary search)
+    [HttpPost("FindList")]
+    public async Task<List<SysDictionaryDto>> FindListAsync([FromBody] SysDictionary search)
     {
-        return await this._defaultService.FindListAsync(page, size, search);
+        return await this._defaultService.FindListAsync(search);
     }
 
     /// <summary>
@@ -101,12 +99,12 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     /// </summary>
     /// <param name="search"></param>
     /// <returns></returns>
-    [ActionDescriptor(DisplayName = "导出数据")]
-    [ApiResourceCacheFilter(10)]
-    [HttpPost("ExportExcel")]
-    public async Task ExportExcelAsync([FromBody] SysDictionary search)
-        => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-            $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
+    //[ActionDescriptor(DisplayName = "导出数据")]
+    //[ApiResourceCacheFilter(10)]
+    //[HttpPost("ExportExcel")]
+    //public async Task ExportExcelAsync([FromBody] SysDictionary search)
+    //    => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+    //        $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
     /// <summary>
     /// 获取字典树

@@ -1,5 +1,13 @@
+<script lang="ts" setup>
+import Char1 from "./components/Chart1.vue";
+import Char2 from "./components/Chart2.vue";
+import PageContainer from "@/core/components/PageContainer.vue";
+defineOptions({ name: "ChartBaseCom" });
+
+</script>
+
 <template>
-  <div>
+  <PageContainer>
     <a-alert message="图表" type="success">
       <template #description>
         <p>
@@ -7,7 +15,7 @@
         </p>
       </template>
     </a-alert>
-    <a-row :gutter="[15, 15]" class="pt-15">
+    <a-row :gutter="[15, 15]" class="pt-16">
       <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <a-card hoverable>
           <Char1 />
@@ -19,13 +27,5 @@
         </a-card>
       </a-col>
     </a-row>
-  </div>
+  </PageContainer>
 </template>
-
-<script>
-export default { name: "ChartBaseCom" };
-</script>
-<script setup>
-import Char1 from "./components/Chart1.vue";
-import Char2 from "./components/Chart2.vue";
-</script>

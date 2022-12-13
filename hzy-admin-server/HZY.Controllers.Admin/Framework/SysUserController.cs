@@ -112,7 +112,7 @@ public class SysUserController : AdminBaseController<SysUserService>
     /// 获取用户信息
     /// </summary>
     /// <returns></returns>
-    [ActionDescriptor(DisplayName = "获取用户信息")]
+    [ActionDescriptor(DisplayName = "获取当前用户信息")]
     [ApiResourceCacheFilter(10)]
     [HttpGet("info")]
     public Task<AccountInfo> GetUserInfoAsync()

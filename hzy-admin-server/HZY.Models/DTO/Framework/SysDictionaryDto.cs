@@ -28,5 +28,10 @@ public class SysDictionaryDto : SysDictionary
 
     public List<SysDictionaryDto> Children { get; set; }
 
+    /// <summary>
+    /// 父级名称
+    /// </summary>
+    public string ParentName { get; set; }
+
 
 }

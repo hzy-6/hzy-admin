@@ -273,31 +273,19 @@ public class SysMenuService : AdminBaseService<IAdminRepository<SysMenu>>
     /// <summary>
     /// 创建菜单
     /// </summary>
-    /// <param name="id"></param>
     /// <param name="sysMenuList"></param>
-    public List<SysMenuTreeDto> CreateMenus(int id, List<SysMenu> sysMenuList)
+    public List<SysMenuTreeDto> CreateMenus(List<SysMenu> sysMenuList)
     {
-        var menus = id == 0
-            ? sysMenuList.Where(w => w.ParentId == null || w.ParentId == 0).ToList()
-            : sysMenuList.Where(w => w.ParentId == id).ToList();
+        var result = new List<SysMenuTreeDto>();
 
-        return menus.Select(item => new SysMenuTreeDto
+        foreach (var item in sysMenuList)
         {
-            Id = item.Id,
-            Name = item.Name,
-            ComponentName = item.ComponentName,
-            Url = item.Url,
-            Router = item.Router,
-            JumpUrl = string.IsNullOrWhiteSpace(item.JumpUrl) ? item.Router : item.JumpUrl,
-            Icon = item.Icon,
-            Close = item.Close,
-            Show = item.Show,
-            KeepAlive = item.KeepAlive,
-            State = item.State,
-            ParentId = item.ParentId,
-            LevelCode = item.LevelCode,
-            Children = this.CreateMenus(item.Id, sysMenuList)
-        }).ToList();
+            var menu = item.MapTo<SysMenu, SysMenuTreeDto>();
+            menu.JumpUrl = string.IsNullOrWhiteSpace(item.JumpUrl) ? item.Router : item.JumpUrl;
+            result.Add(menu);
+        }
+
+        return result;
     }
 
     /// <summary>

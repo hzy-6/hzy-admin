@@ -1,15 +1,7 @@
-<template>
-  <div>
-    <a-spin v-if="loading" />
-    <iframe src="https://next.antdv.com/components/icon-cn" frameborder="0" id="iframe_antd_vue" v-show="!loading"></iframe>
-  </div>
-</template>
-
-<script>
-export default { name: "AppComponentsCom" };
-</script>
-<script setup>
+<script lang="ts" setup>
 import { onMounted, ref } from "vue";
+import PageContainer from "@/core/components/PageContainer.vue";
+defineOptions({ name: "AppComponentsCom" });
 
 const loading = ref(true);
 
@@ -32,6 +24,13 @@ onMounted(() => {
   }
 });
 </script>
+
+<template>
+  <PageContainer>
+    <a-spin v-if="loading" />
+    <iframe src="https://next.antdv.com/components/icon-cn" frameborder="0" id="iframe_antd_vue" v-show="!loading"></iframe>
+  </PageContainer>
+</template>
 
 <style lang="less" scoped>
 iframe {

@@ -1,7 +1,22 @@
+<script lang="ts" setup>
+import { reactive } from "vue";
+import AppIcon from "@/core/components/AppIcon.vue";
+import hzyImg from "@/assets/hzy.jpg";
+
+const state = reactive({
+  imgPath: hzyImg,
+  deadline: Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30,
+});
+
+function onFinish() {
+  console.log("over");
+}
+</script>
+
 <template>
   <div>
-    <a-card style="width: 100%; border: 0" class="mb-15">
-      <a-row :gutter="[15, 15]">
+    <a-card style="width: 100%; border: 0" class="mb-16">
+      <a-row :gutter="[16, 16]">
         <a-col :xs="24" :sm="24" :md="8" :lg="8" :xl="8">
           <a-row type="flex">
             <a-col :span="8" :order="1">
@@ -10,36 +25,36 @@
               </a-badge>
             </a-col>
             <a-col :span="16" :order="2">
-              <div class="fs-15">
+              <div class="fs-16">
                 <a target="_black" href="https://gitee.com/hzy6" class="text-cyan">HZY</a>
               </div>
-              <div class="fs-15">
+              <div class="fs-16">
                 <a target="_black" href="https://gitee.com/hzy6/hzy-admin-spa-ui" class="text-blue">源码</a>
               </div>
-              <div class="fs-15">
+              <div class="fs-16">
                 <a target="_black" href="https://next.antdv.com/components/overview-cn" class="text-danger">组件官网：Ant Design Vue</a>
               </div>
             </a-col>
           </a-row>
         </a-col>
         <a-col :xs="24" :sm="24" :md="16" :lg="16" :xl="16">
-          <a-row :gutter="[15, 15]">
+          <a-row :gutter="[16, 16]">
             <a-col :span="8" class="text-center">
-              <a-statistic title="Stars" :value="532">
+              <a-statistic title="Stars" :value="747">
                 <template #suffix>
                   <AppIcon name="StarOutlined" />
                 </template>
               </a-statistic>
             </a-col>
             <a-col :span="8" class="text-center">
-              <a-statistic title="Watch" :value="149">
+              <a-statistic title="Watch" :value="172">
                 <template #suffix>
                   <AppIcon name="EyeOutlined" />
                 </template>
               </a-statistic>
             </a-col>
             <a-col :span="8" class="text-center">
-              <a-statistic title="Fork" :value="167">
+              <a-statistic title="Fork" :value="234">
                 <template #suffix>
                   <AppIcon name="BranchesOutlined" />
                 </template>
@@ -50,13 +65,13 @@
       </a-row>
     </a-card>
 
-    <a-row :gutter="[15, 15]">
+    <a-row :gutter="[16, 16]">
       <a-col :span="24">
         <a-card>
           <a-row>
             <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
               <a-card-grid style="width: 100%; text-align: 'center'">
-                <a-statistic-countdown title="Countdown" :value="state.deadline" @finish="methods.onFinish" style="margin-right: 50px" />
+                <a-statistic-countdown title="Countdown" :value="state.deadline" @finish="onFinish()" style="margin-right: 50px" />
               </a-card-grid>
             </a-col>
             <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
@@ -79,22 +94,18 @@
               </a-card-grid>
             </a-col>
           </a-row>
-          <a-card-grid style="width: 25%; text-align: 'center'">Content</a-card-grid>
-          <a-card-grid style="width: 25%; text-align: 'center'">Content</a-card-grid>
-          <a-card-grid style="width: 25%; text-align: 'center'">Content</a-card-grid>
-          <a-card-grid style="width: 25%; text-align: 'center'">Content</a-card-grid>
         </a-card>
       </a-col>
     </a-row>
 
-    <a-row :gutter="[15, 15]" class="mt-15">
+    <a-row :gutter="[16, 16]" class="mt-16">
       <a-col :span="24">
         <a-card hoverable>
-          <a-row :gutter="20" class="mt-15">
+          <a-row :gutter="16" class="mt-16">
             <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-              <a-progress type="circle" :percent="75" :format="(percent) => `${percent} Days`" class="mr-15" />
-              <a-progress type="circle" :percent="100" :format="() => 'Done'" class="mr-15" />
-              <a-progress type="circle" :percent="75" class="mr-15">
+              <a-progress type="circle" :percent="75" :format="(percent:any) => `${percent} Days`" class="mr-16" />
+              <a-progress type="circle" :percent="100" :format="() => 'Done'" class="mr-16" />
+              <a-progress type="circle" :percent="75" class="mr-16">
                 <template #format="percent">
                   <span style="color: red">{{ percent }}</span>
                 </template>
@@ -112,7 +123,7 @@
       </a-col>
     </a-row>
 
-    <a-row :gutter="[15, 15]" class="mt-15">
+    <a-row :gutter="[16, 16]" class="mt-16">
       <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
         <a-card hoverable>
           <a-timeline mode="alternate">
@@ -138,7 +149,7 @@
       </a-col>
     </a-row>
 
-    <a-row :gutter="[15, 15]" class="mt-15">
+    <a-row :gutter="[16, 16]" class="mt-16">
       <a-col :xs="24" :sm="8" :md="8" :lg="6" :xl="6" v-for="(item, index) in 8" :key="index">
         <a-card hoverable>
           <template #cover>
@@ -159,19 +170,3 @@
     </a-row>
   </div>
 </template>
-<script setup>
-import { reactive } from "vue";
-import AppIcon from "@/components/AppIcon.vue";
-import hzyImg from "@/assets/hzy.jpg";
-
-const state = reactive({
-  imgPath: hzyImg,
-  deadline: Date.now() + 1000 * 60 * 60 * 24 * 2 + 1000 * 30,
-});
-
-const methods = {
-  onFinish() {
-    console.log("over");
-  },
-};
-</script>

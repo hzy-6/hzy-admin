@@ -122,9 +122,9 @@ namespace HZY.Services.Admin
                     lowCodeTable.ModelPath = _appConfiguration.Configs.AutoImprot.ModelPath;
                     lowCodeTable.ServicePath = _appConfiguration.Configs.AutoImprot.ServicePath;
                     lowCodeTable.ControllerPath = _appConfiguration.Configs.AutoImprot.ControllerPath;
-                    lowCodeTable.IndexVuePath = _appConfiguration.Configs.AutoImprot.IndexVuePath;
-                    lowCodeTable.InfoVuePath = _appConfiguration.Configs.AutoImprot.InfoVuePath;
-                    lowCodeTable.ServiceJsPath = _appConfiguration.Configs.AutoImprot.ServiceJsPath;
+                    lowCodeTable.ClientIndexPath = _appConfiguration.Configs.AutoImprot.ClientIndexPath;
+                    lowCodeTable.ClientIndexPath = _appConfiguration.Configs.AutoImprot.ClientInfoPath;
+                    lowCodeTable.ClientServicePath = _appConfiguration.Configs.AutoImprot.ClientServicePath;
                     lowCodeTable.IsCover = _appConfiguration.Configs.AutoImprot.IsCover;
                     insertList.Add(lowCodeTable);
                 }
@@ -142,11 +142,11 @@ namespace HZY.Services.Admin
 
                     table.ControllerPath = table.ControllerPath != _appConfiguration.Configs.AutoImprot.ControllerPath ? _appConfiguration.Configs.AutoImprot.ControllerPath : table.ControllerPath;
 
-                    table.IndexVuePath = table.IndexVuePath != _appConfiguration.Configs.AutoImprot.IndexVuePath ? _appConfiguration.Configs.AutoImprot.IndexVuePath : table.IndexVuePath;
+                    table.ClientIndexPath = table.ClientIndexPath != _appConfiguration.Configs.AutoImprot.ClientIndexPath ? _appConfiguration.Configs.AutoImprot.ClientIndexPath : table.ClientIndexPath;
 
-                    table.InfoVuePath = table.InfoVuePath != _appConfiguration.Configs.AutoImprot.InfoVuePath ? _appConfiguration.Configs.AutoImprot.InfoVuePath : table.InfoVuePath;
+                    table.ClientInfoPath = table.ClientInfoPath != _appConfiguration.Configs.AutoImprot.ClientInfoPath ? _appConfiguration.Configs.AutoImprot.ClientInfoPath : table.ClientInfoPath;
 
-                    table.ServiceJsPath = table.ServiceJsPath != _appConfiguration.Configs.AutoImprot.ServiceJsPath ? _appConfiguration.Configs.AutoImprot.ServiceJsPath : table.ServiceJsPath;
+                    table.ClientServicePath = table.ClientServicePath != _appConfiguration.Configs.AutoImprot.ClientServicePath ? _appConfiguration.Configs.AutoImprot.ClientServicePath : table.ClientServicePath;
 
                     table.IsCover = table.IsCover != _appConfiguration.Configs.AutoImprot.IsCover ? _appConfiguration.Configs.AutoImprot.IsCover : table.IsCover;
 

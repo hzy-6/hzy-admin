@@ -253,7 +253,7 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
         var userInfo = this._accountService.GetAccountInfo();
         var sysMenus = await this._sysMenuService.GetMenusByCurrentRoleAsync();
         //设置菜单 Map
-        var sysMenusMap = this._sysMenuService.CreateMenus(0, sysMenus);
+        var sysMenusMap = this._sysMenuService.CreateMenus(sysMenus);
         userInfo.Menus = sysMenusMap;
         //设置菜单权限
         userInfo.MenuPowers = await this._sysMenuService.GetPowerByMenusAsync(sysMenus);

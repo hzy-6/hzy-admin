@@ -1,198 +1,246 @@
-<template>
-  <div>
-    <List ref="refList" :tableData="state" @onChange="methods.onChange">
-      <!-- 检索插槽 -->
-      <template #search>
-        <a-row :gutter="[15, 15]">
-          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-            <a-input v-model:value="state.search.vm.api" placeholder="接口地址" />
-          </a-col>
-          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-            <a-input v-model:value="state.search.vm.browser" placeholder="浏览器" />
-          </a-col>
-          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-            <a-input v-model:value="state.search.vm.ip" placeholder="ip地址" />
-          </a-col>
-          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-            <a-input v-model:value="state.search.vm.os" placeholder="操作系统" />
-          </a-col>
-          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-            <a-range-picker v-model:value="state.search.vm.rangeTime" />
-          </a-col>
-
-          <!--button-->
-          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
-            <a-button type="primary" class="mr-15" @click="methods.findList">查询</a-button>
-            <a-button class="mr-15" @click="methods.onResetSearch">重置</a-button>
-            <a-button type="danger" class="mr-15" @click="state.search.state = false">关闭</a-button>
-          </a-col>
-        </a-row>
-      </template>
-      <!-- 工具栏左侧插槽 -->
-      <template #toolbar>
-        <!-- 快捷检索 -->
-        <a-input v-model:value="state.search.vm.name" placeholder="接口地址" @keyup="methods.findList" />
-        <!-- 高级检索 -->
-        <template v-if="power.search">
-          <a-button @click="state.search.state = !state.search.state">
-            <template #icon>
-              <AppIcon :name="state.search.state ? 'UpOutlined' : 'DownOutlined'" />
-            </template>
-            高级检索
-          </a-button>
-        </template>
-        <!-- 清空所有数据 -->
-        <template v-if="power.delete">
-          <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList()" okText="确定" cancelText="取消">
-            <a-button type="danger">
-              <template #icon>
-                <AppIcon name="DeleteOutlined" />
-              </template>
-              清空所有数据
-            </a-button>
-          </a-popconfirm>
-        </template>
-      </template>
-      <!-- 表格 -->
-      <template #table-col>
-        <vxe-column field="api" title="接口地址" show-overflow min-width="300"></vxe-column>
-        <vxe-column field="os" title="操作系统" width="100"></vxe-column>
-        <vxe-column field="browser" title="浏览器" width="100"></vxe-column>
-        <vxe-column field="ip" title="ip地址" width="120"></vxe-column>
-        <vxe-column title="接口描述" width="300">
-          <template #default="{ row }">
-            <!-- <a-tag>
-              {{ row.controllerDisplayName }}
-              <template v-if="row.controllerDisplayName && row.actionDisplayName"> - </template>
-              {{ row.actionDisplayName }}
-            </a-tag> -->
-            {{ row.controllerDisplayName }}
-            <template v-if="row.controllerDisplayName && row.actionDisplayName"> - </template>
-            {{ row.actionDisplayName }}
-          </template>
-        </vxe-column>
-        <vxe-column field="takeUpTime" title="接口耗时" width="100">
-          <template #default="{ row }">
-            <a-tag v-if="row.takeUpTime >= 1000" color="orange">{{ row.takeUpTime }}(毫秒)</a-tag>
-            <a-tag v-else-if="row.takeUpTime >= 2000" color="red">{{ row.takeUpTime }}(毫秒)</a-tag>
-            <a-tag v-else color="#87d068">{{ row.takeUpTime }}(毫秒)</a-tag>
-          </template>
-        </vxe-column>
-        <vxe-column field="userName" title="操作人姓名" width="120"></vxe-column>
-        <vxe-column field="loginName" title="操作人账号" width="120"></vxe-column>
-        <vxe-column field="creationTime" title="创建时间" width="180"></vxe-column>
-        <vxe-column field="id" title="操作" width="100">
-          <template #default="{ row }">
-            <a href="javascript:void(0)" @click="methods.openForm(row.id)">详情</a>
-          </template>
-        </vxe-column>
-      </template>
-    </List>
-
-    <!--表单弹层-->
-    <Info ref="refForm" @onSuccess="() => methods.findList()" />
-  </div>
-</template>
-<script>
-export default { name: "sys_operation_log" };
-</script>
-<script setup>
-import { onMounted, reactive, ref } from "vue";
-import { useAppStore } from "@/store";
-import AppIcon from "@/components/AppIcon.vue";
-import List from "@/components/curd/List.vue";
+<script lang="ts" setup>
+import { reactive, ref, onMounted } from "vue";
+import { FormInstance } from "ant-design-vue";
+import { useAuthority } from "@/utils/Authority";
+import AppIcon from "@/core/components/AppIcon.vue";
 import Info from "./Info.vue";
-import tools from "@/scripts/tools";
-import service from "@/service/system/sys_operation_log_serivce";
-import router from "@/router/index";
+import Tools from "@/core/utils/Tools";
+import PageContainer from "@/core/components/PageContainer.vue";
+import TableCurd from "@/core/components/curd/TableCurd.vue";
+import SysOperationLogService from "@/services/system/SysOperationLogService";
 
-const appStore = useAppStore();
+defineOptions({ name: "system_function" });
+
 const state = reactive({
-  //检索
   search: {
     state: false,
-    fieldCount: 2,
     vm: {
-      name: null,
-      api: null,
-      browser: null,
-      ip: null,
-      os: null,
-      rangeTime: [],
-      startTime: null,
-      endTime: null,
+      api: undefined,
+      browser: undefined,
+      ip: undefined,
+      os: undefined,
+      rangeTime: [] as any,
+      startTime: undefined,
+      endTime: undefined,
     },
   },
   loading: false,
-  pageSizeOptions: [10, 20, 50, 100, 500, 1000],
-  rows: 10,
   page: 1,
-  total: 0,
-  data: [],
-  form: {
-    visible: false,
-    key: "",
-  },
+  size: 10,
+  total: 100,
+  columns: [] as any,
+  data: [] as any,
 });
-//表单 ref 对象
-const refForm = ref(null);
-const refList = ref(null);
 
 //权限
-const power = appStore.getPowerByMenuId(router.currentRoute.value.meta.menuId);
+const power = useAuthority();
+//表格
+const refTableCurd = ref<InstanceType<typeof TableCurd>>();
+//表单操作对象
+const refInfo = ref<InstanceType<typeof Info>>();
+//检索表单
+const refSearchForm = ref<FormInstance>();
 
-//事件 函数
-const methods = {
-  onChange(info) {
-    const { currentPage, pageSize } = info;
-    state.page = currentPage == 0 ? 1 : currentPage;
-    state.rows = pageSize;
-    methods.findList();
-  },
-  //重置检索条件
-  onResetSearch() {
-    state.page = 1;
-    let searchVm = state.search.vm;
-    for (let key in searchVm) {
-      searchVm[key] = null;
-    }
-    methods.findList();
-  },
-  //获取列表数据
-  findList() {
-    state.loading = true;
-    if (state.search.vm.rangeTime && state.search.vm.rangeTime.length == 2) {
-      state.search.vm.startTime = state.search.vm.rangeTime[0].format("YYYY-MM-DD");
-      state.search.vm.endTime = state.search.vm.rangeTime[1].format("YYYY-MM-DD");
-    }
-
-    service.findList(state.rows, state.page, state.search.vm).then((res) => {
-      let data = res.data;
-      state.loading = false;
-      state.page = data.page;
-      state.rows = data.size;
-      state.total = data.total;
-      state.data = data.dataSource;
-    });
-  },
-  //删除数据
-  deleteList() {
-    service.deleteAllData().then((res) => {
-      if (res.code != 1) return;
-      tools.message("删除成功!", "成功");
-      methods.findList();
-    });
-  },
-  //打开表单页面
-  openForm(id) {
-    refForm.value.openForm({ visible: true, key: id });
-  },
-  exportExcel() {
-    service.exportExcel(state.search.vm);
-  },
-};
-
+/**
+ * 初始化
+ */
 onMounted(() => {
-  methods.findList();
+  findList();
 });
+
+/**
+ *获取数据
+ */
+async function findList() {
+  state.loading = true;
+  const result = await SysOperationLogService.findList(state.page, state.size, state.search.vm);
+  state.loading = false;
+  if (result.code != 1) return;
+  state.page = result.data.page;
+  state.size = result.data.size;
+  state.total = result.data.total;
+  state.columns = result.data.columns;
+  state.data = result.data.dataSource;
+}
+
+/**
+ * 删除数据
+ * @param id
+ */
+async function deleteList(id?: string) {
+  let ids: string[] = [];
+  if (id) {
+    ids.push(id);
+  } else {
+    ids = refTableCurd.value?.getSelectedRowKeys() ?? [];
+  }
+
+  if (ids.length == 0) return Tools.message.error("请选择要删除的行!");
+
+  state.loading = true;
+  const result = await SysOperationLogService.deleteList(ids);
+  state.loading = false;
+  if (result.code != 1) return;
+  Tools.message.success("删除成功!");
+  findList();
+}
 </script>
+
+<template>
+  <PageContainer>
+    <TableCurd
+      ref="refTableCurd"
+      :config="state"
+      @change="
+        ({ page, pageSize }) => {
+          state.page = page == 0 ? 1 : page;
+          state.size = pageSize;
+          findList();
+        }
+      "
+      @show-size-change="
+        ({ current, size }) => {
+          state.page = current == 0 ? 1 : current;
+          state.size = size;
+          findList();
+        }
+      "
+    >
+      <!-- search -->
+      <template #search>
+        <a-form ref="refSearchForm" :model="state.search.vm" v-if="power.search">
+          <a-row :gutter="[16, 0]">
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
+              <a-form-item name="api" label="接口地址">
+                <a-input v-model:value="state.search.vm.api" placeholder="接口地址" />
+              </a-form-item>
+            </a-col>
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
+              <a-form-item name="browser" label="浏览器">
+                <a-input v-model:value="state.search.vm.browser" placeholder="浏览器" />
+              </a-form-item>
+            </a-col>
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
+              <a-form-item name="ip" label="ip地址">
+                <a-input v-model:value="state.search.vm.ip" placeholder="ip地址" />
+              </a-form-item>
+            </a-col>
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
+              <a-form-item name="os" label="操作系统">
+                <a-input v-model:value="state.search.vm.os" placeholder="操作系统" />
+              </a-form-item>
+            </a-col>
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
+              <a-form-item name="rangeTime" label="日期区间">
+                <a-range-picker v-model:value="state.search.vm.rangeTime" class="w100" />
+              </a-form-item>
+            </a-col>
+
+            <!--button-->
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" class="text-right">
+              <a-space :size="8">
+                <a-button
+                  @click="
+                    state.page = 1;
+                    refSearchForm?.resetFields();
+                    findList();
+                  "
+                >
+                  重置
+                </a-button>
+                <a-button
+                  type="primary"
+                  @click="
+                    state.page = 1;
+                    findList();
+                  "
+                >
+                  查询
+                </a-button>
+              </a-space>
+            </a-col>
+          </a-row>
+        </a-form>
+      </template>
+      <!-- toolbar-left -->
+      <template #toolbar-left>
+        <a-button @click="state.search.state = !state.search.state" v-if="power.search">
+          <div v-if="state.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
+          <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
+        </a-button>
+        <a-button type="primary" @click="() => refInfo?.open()" v-if="power.insert">
+          <template #icon>
+            <AppIcon name="PlusOutlined" />
+          </template>
+          新建
+        </a-button>
+        <a-popconfirm title="您确定要删除?" @confirm="deleteList()" okText="确定" cancelText="取消" v-if="power.delete">
+          <a-button type="primary" danger>
+            <template #icon>
+              <AppIcon name="DeleteOutlined" />
+            </template>
+            批量删除
+          </a-button>
+        </a-popconfirm>
+      </template>
+      <!-- toolbar-right -->
+      <template #toolbar-right>
+        <!-- <a-dropdown>
+          <template #overlay>
+            <a-menu>
+              <a-menu-item key="1" @click="exportExcel()">导出 Excel</a-menu-item>
+            </a-menu>
+          </template>
+          <a-button> 更多 <AppIcon name="ellipsis-outlined" /> </a-button>
+        </a-dropdown> -->
+        <!-- 列设置 -->
+        <a-popover>
+          <template #content>
+            <div v-for="item in state.columns.filter((w:any) => w.fieldName.substr(0, 1) != '_')">
+              <a-checkbox v-model:checked="item.show">{{ item.title }}</a-checkbox>
+            </div>
+          </template>
+          <a-button type="text">
+            <template #icon><AppIcon name="setting-outlined" /> </template>
+          </a-button>
+        </a-popover>
+      </template>
+      <!-- table-col -->
+      <template #table-col>
+        <a-table-column title="接口地址" data-index="api" :width="250" :ellipsis="true" />
+        <a-table-column title="操作系统" data-index="os" />
+        <a-table-column title="浏览器" data-index="browser" />
+        <a-table-column title="ip地址" data-index="ip" />
+        <a-table-column title="接口描述" :width="200">
+          <template #default="{ record }">
+            {{ record.controllerDisplayName }}
+            <template v-if="record.controllerDisplayName && record.actionDisplayName"> - </template>
+            {{ record.actionDisplayName }}
+          </template>
+        </a-table-column>
+        <a-table-column title="接口耗时" data-index="takeUpTime">
+          <template #default="{ record }">
+            <a-tag v-if="record.takeUpTime >= 1000" color="orange">{{ record.takeUpTime }}(毫秒)</a-tag>
+            <a-tag v-else-if="record.takeUpTime >= 2000" color="red">{{ record.takeUpTime }}(毫秒)</a-tag>
+            <a-tag v-else color="#87d068">{{ record.takeUpTime }}(毫秒)</a-tag>
+          </template>
+        </a-table-column>
+        <a-table-column title="操作人姓名" data-index="userName" />
+        <a-table-column title="操作人账号" data-index="loginName" />
+        <a-table-column title="创建时间" data-index="creationTime" :width="150" />
+        <!-- 操作 -->
+        <a-table-column title="操作" data-index="id">
+          <template #default="{ record }">
+            <a href="javascript:;" @click="() => refInfo?.open(record.id)">详情</a>
+            <a-divider type="vertical" />
+            <a-popconfirm title="您确定要删除?" @confirm="deleteList(record.id)" okText="确定" cancelText="取消" v-if="power.delete">
+              <a class="text-danger">删除</a>
+            </a-popconfirm>
+          </template>
+        </a-table-column>
+      </template>
+    </TableCurd>
+    <!-- Info -->
+    <Info ref="refInfo" :onSuccess="() => findList()" />
+  </PageContainer>
+</template>

@@ -389,12 +389,10 @@
             数据字典控制器
             </summary>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysDictionaryController.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.Framework.SysDictionary)">
+        <member name="M:HZY.Controllers.Admin.Framework.SysDictionaryController.FindListAsync(HZY.Models.Entities.Framework.SysDictionary)">
             <summary>
             获取列表
             </summary>
-            <param name="size"></param>
-            <param name="page"></param>
             <param name="search"></param>
             <returns></returns>
         </member>
@@ -424,13 +422,6 @@
             编辑
             </summary>
             <param name="form"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysDictionaryController.ExportExcelAsync(HZY.Models.Entities.Framework.SysDictionary)">
-            <summary>
-            导出Excel
-            </summary>
-            <param name="search"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Controllers.Admin.Framework.SysDictionaryController.GetDictionaryTreeAsync">

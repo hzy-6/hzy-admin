@@ -81,6 +81,15 @@ public class SysMenu : DefaultBaseEntityIdentityIntKey
     /// <value></value>
     public SysMenuTypeEnum Type { get; set; } = SysMenuTypeEnum.菜单;
 
+    /// <summary>
+    /// 菜单模式
+    /// </summary>
+    public SysMenuModeEnum Mode { get; set; } = SysMenuModeEnum.普通;
+
+    /// <summary>
+    /// 模块地址 (微前端)
+    /// </summary>
+    public string ModuleUrl { get; set; }
 
 }
 
@@ -88,4 +97,10 @@ public enum SysMenuTypeEnum
 {
     目录 = 1,
     菜单
+}
+
+public enum SysMenuModeEnum
+{
+    普通 = 1,
+    微前端
 }

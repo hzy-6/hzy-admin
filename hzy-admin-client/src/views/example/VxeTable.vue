@@ -1,45 +1,13 @@
-<template>
-  <div>
-    <a-card title="VxeTable 演示">
-      <template #extra><a href="https://xuliangzhan_admin.gitee.io/vxe-table/v4/table/start/install" target="_black">VxeTable 官网文档</a></template>
-      <vxe-table
-        border
-        stripe
-        height="400"
-        :loading="demo1.loading"
-        :column-config="{ resizable: true }"
-        :row-config="{ isHover: true }"
-        :checkbox-config="{ labelField: 'id', highlight: true, range: true }"
-        :data="demo1.tableData"
-      >
-        <vxe-column type="seq" width="60"></vxe-column>
-        <vxe-column type="checkbox" title="ID" width="140"></vxe-column>
-        <vxe-column field="name" title="Name" sortable></vxe-column>
-        <vxe-column field="sex" title="Sex" :filters="demo1.sexList" :filter-multiple="false" :formatter="demo1.formatterSex"></vxe-column>
-        <vxe-column
-          field="age"
-          title="Age"
-          sortable
-          :filters="[
-            { label: '大于16岁', value: 16 },
-            { label: '大于26岁', value: 26 },
-            { label: '大于30岁', value: 30 },
-          ]"
-          :filter-method="filterAgeMethod"
-        ></vxe-column>
-        <vxe-column field="address" title="Address" show-overflow></vxe-column>
-      </vxe-table>
-    </a-card>
-  </div>
-</template>
-
-<script>
-export default { name: "VxeTableCom" };
-</script>
-<script setup>
+<script lang="ts" setup>
 import { reactive, onMounted } from "vue";
+import PageContainer from "@/core/components/PageContainer.vue";
+defineOptions({ name: "VxeTableCom" });
 
-const demo1 = reactive({
+const demo1 = reactive<{
+  loading: boolean;
+  tableData: any[];
+  sexList: any[];
+}>({
   loading: false,
   tableData: [],
   sexList: [
@@ -54,12 +22,12 @@ const demo1 = reactive({
   ],
 });
 
-const formatterSex = ({ cellValue }) => {
+const formatterSex = ({ cellValue }: any) => {
   const item = demo1.sexList.find((item) => item.value === cellValue);
   return item ? item.label : "";
 };
 
-const filterAgeMethod = ({ value, row }) => {
+const filterAgeMethod = ({ value, row }: any) => {
   return row.age >= value;
 };
 
@@ -92,3 +60,38 @@ onMounted(() => {
   }, 200);
 });
 </script>
+
+<template>
+  <PageContainer>
+    <a-card title="VxeTable 演示">
+      <template #extra><a href="https://xuliangzhan_admin.gitee.io/vxe-table/v4/table/start/install" target="_black">VxeTable 官网文档</a></template>
+      <vxe-table
+        border
+        stripe
+        height="400"
+        :loading="demo1.loading"
+        :column-config="{ resizable: true }"
+        :row-config="{ isHover: true }"
+        :checkbox-config="{ labelField: 'id', highlight: true, range: true }"
+        :data="demo1.tableData"
+      >
+        <vxe-column type="seq" width="60"></vxe-column>
+        <vxe-column type="checkbox" title="ID" width="140"></vxe-column>
+        <vxe-column field="name" title="Name" sortable></vxe-column>
+        <vxe-column field="sex" title="Sex" :filters="demo1.sexList" :filter-multiple="false" :formatter="formatterSex"></vxe-column>
+        <vxe-column
+          field="age"
+          title="Age"
+          sortable
+          :filters="[
+            { label: '大于16岁', value: 16 },
+            { label: '大于26岁', value: 26 },
+            { label: '大于30岁', value: 30 },
+          ]"
+          :filter-method="filterAgeMethod"
+        ></vxe-column>
+        <vxe-column field="address" title="Address" show-overflow></vxe-column>
+      </vxe-table>
+    </a-card>
+  </PageContainer>
+</template>

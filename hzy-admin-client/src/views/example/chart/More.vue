@@ -1,16 +1,7 @@
-<template>
-  <div>
-    <a-spin v-if="loading" />
-    <iframe src="https://g2.antv.vision/zh/examples/gallery" frameborder="0" id="iframe_g2" v-show="!loading"></iframe>
-    <!--    <iframe src="https://antv-g2.gitee.io/zh/examples/gallery" frameBorder="0" id="iframe_g2" v-show="!loading"></iframe>-->
-  </div>
-</template>
-
-<script>
-export default { name: "ChartMoreCom" };
-</script>
-<script setup>
+<script lang="ts" setup>
 import { onMounted, ref } from "vue";
+import PageContainer from "@/core/components/PageContainer.vue";
+defineOptions({ name: "ChartMoreCom" });
 
 const loading = ref(true);
 onMounted(() => {
@@ -32,6 +23,14 @@ onMounted(() => {
   }
 });
 </script>
+
+<template>
+  <PageContainer>
+    <a-spin v-if="loading" />
+    <iframe src="https://g2.antv.vision/zh/examples/gallery" frameborder="0" id="iframe_g2" v-show="!loading"></iframe>
+    <!--    <iframe src="https://antv-g2.gitee.io/zh/examples/gallery" frameBorder="0" id="iframe_g2" v-show="!loading"></iframe>-->
+  </PageContainer>
+</template>
 
 <style lang="less" scoped>
 iframe {

@@ -1,158 +1,175 @@
+<script lang="ts" setup>
+import { ref, onMounted, onBeforeUnmount } from "vue";
+import PageContainer from "@/core/components/PageContainer.vue";
+import TimedTaskService from "@/services/development_tool/TimedTaskService";
+import Tools from "@/core/utils/Tools";
+import Info from "./Info.vue";
+import LogInfo from "./LogInfo.vue";
+
+defineOptions({ name: "system_user" });
+
+const searchValue = ref("");
+const loading = ref(false);
+const taskList = ref<any[]>([]);
+let timer: any;
+//表单操作对象
+const refInfo = ref<InstanceType<typeof Info>>();
+//日志示例
+const refLogInfo = ref<InstanceType<typeof LogInfo>>();
+
+//组件加载完成
+onMounted(() => {
+  findList();
+  timer = setInterval(() => {
+    //刷新数据列表
+    findList();
+  }, 30 * 1000);
+});
+
+//组件销毁时
+onBeforeUnmount(() => {
+  clearInterval(timer);
+});
+
+/**
+ * 获取列表数据
+ */
+async function findList() {
+  loading.value = true;
+  const result = await TimedTaskService.findList(searchValue.value);
+  loading.value = false;
+  if (result.code != 1) return;
+  taskList.value = result.data;
+}
+
+/**
+ * 删除数据
+ * @param id
+ */
+async function deleteList(id: string) {
+  loading.value = true;
+  const result = await TimedTaskService.deleteList([id]);
+  loading.value = false;
+  if (result.code != 1) return;
+  Tools.message.success("删除成功!");
+}
+
+/**
+ * 运行状态改变事件
+ * @param checked
+ * @param id
+ */
+async function onChecked(checked: number, id: string) {
+  if (checked == 1) {
+    loading.value = true;
+    const result = await TimedTaskService.run([id]);
+    loading.value = false;
+    if (result.code != 1) {
+      //回退状态
+      taskList.value.find((w) => w.id == id).state = 0;
+      return;
+    }
+  } else {
+    loading.value = true;
+    const result = await TimedTaskService.close([id]);
+    loading.value = false;
+    if (result.code != 1) {
+      //回退状态
+      taskList.value.find((w) => w.id == id).state = 0;
+      return;
+    }
+  }
+}
+</script>
+
 <template>
-  <div>
-    <a-row :gutter="[15, 15]" class="mb-15">
-      <a-col :span="8">
-        <a-button type="primary" @click="methods.openForm(null)">添加</a-button>
-      </a-col>
-      <a-col :span="8" :offset="8">
-        <a-input-search v-model:value="state.filter" placeholder="请输入关键字检索" enter-button @search="methods.onSearch" />
-      </a-col>
-    </a-row>
-
-    <a-row :gutter="[15, 15]">
-      <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" v-for="item in state.list">
-        <a-tooltip placement="top">
-          <template #title>
-            <span> {{ item.apiUrl }}</span>
-          </template>
-          <a-card hoverable>
-            <h3 v-if="item.state == 0"><span class="normal bg-danger"></span> {{ item.name }}</h3>
-            <h3 v-if="item.state == 1"><span class="normal bg-cyan"></span> {{ item.name }}</h3>
-            <h4>{{ item.groupName }}</h4>
-            <p>任务规则<a-divider type="vertical" />{{ item.cron }}</p>
-            <a-tag color="blue" v-if="item.requsetMode == 0">POST</a-tag>
-            <a-tag color="green" v-if="item.requsetMode == 1">GET</a-tag>
-            <a-tag color="orange" v-if="item.requsetMode == 2">DELETE</a-tag> {{ item.executeTime }}
-            <a-divider />
-            <a-button type="primary" size="small" v-if="item.state == 0" @click="methods.run(item.id)"> 启动 </a-button>
-            <a-button type="primary" size="small" danger v-if="item.state == 1" @click="methods.close(item.id)"> 停止 </a-button>
-            <a-dropdown class="ml-15">
-              <template #overlay>
-                <a-menu>
-                  <a-menu-item key="1" @click="methods.openForm(item.id)">修改</a-menu-item>
-                  <a-menu-item key="2" @click="methods.deleteList(item.id)">删除</a-menu-item>
-                  <a-menu-item key="3" @click="methods.openJobLogger(item.id)">执行记录</a-menu-item>
-                </a-menu>
-              </template>
-              <a-button size="small">
-                <AppIcon name="DashOutlined" />
-              </a-button>
-            </a-dropdown>
-          </a-card>
-        </a-tooltip>
-      </a-col>
-    </a-row>
-
-    <Info ref="refForm" @onSuccess="methods.findList()" />
-    <!--弹层-->
-    <a-drawer title="执行记录" placement="right" :closable="false" v-model:visible="state.jobForm.visible" :width="1000" destroyOnClose>
-      <JobLogger v-model:formId="state.jobForm.key" />
-    </a-drawer>
-  </div>
+  <PageContainer>
+    <a-card :bordered="false">
+      <template #title>
+        <a-input-search v-model:value="searchValue" placeholder="请输入" style="width: 200px" @search="() => findList()" />
+      </template>
+      <template #extra>
+        <a-button type="primary" @click="() => refInfo?.open()">新建任务</a-button>
+      </template>
+      <a-spin :spinning="loading">
+        <div class="task" v-for="item in taskList">
+          <div class="task-item">
+            <div class="title" style="color: initial">
+              {{ item.name }} <span>{{ item.groupName }}</span>
+            </div>
+            <div class="value">{{ item.apiUrl }}</div>
+          </div>
+          <div class="task-item">
+            <div class="title">请求方式</div>
+            <div class="value">
+              <a-tag color="#87d068" v-if="item.requsetMode == 0">POST</a-tag>
+              <a-tag color="#87d068" v-if="item.requsetMode == 1">GET</a-tag>
+              <a-tag color="#87d068" v-if="item.requsetMode == 2">DELETE</a-tag>
+            </div>
+          </div>
+          <div class="task-item">
+            <div class="title">间隔表达式</div>
+            <div class="value">{{ item.cron }}</div>
+          </div>
+          <div class="task-item">
+            <div class="title">执行时间</div>
+            <div class="value">{{ item.executeTime }}</div>
+          </div>
+          <div class="task-item">
+            <div class="title">运行状态</div>
+            <div class="value">
+              <a-switch
+                v-model:checked="item.state"
+                checked-children="运行"
+                un-checked-children="停止"
+                :checkedValue="1"
+                :unCheckedValue="0"
+                @change="(checked) => onChecked(checked as number,item.id)"
+              />
+            </div>
+          </div>
+          <div class="task-item">
+            <div class="title">备注</div>
+            <div class="value">{{ item.remark }}</div>
+          </div>
+          <div class="task-item">
+            <div class="title"></div>
+            <div class="value">
+              <a href="javascript:;" @click="() => refInfo?.open(item.id)">编辑</a>
+              <a-divider type="vertical" />
+              <a href="javascript:;" @click="() => refLogInfo?.open(item.id)">日志</a>
+              <a-divider type="vertical" />
+              <a-popconfirm title="您确定要删除?" @confirm="deleteList(item.id)" okText="确定" cancelText="取消">
+                <a href="javascript:;" class="text-danger">删除</a>
+              </a-popconfirm>
+            </div>
+          </div>
+        </div>
+      </a-spin>
+    </a-card>
+    <!-- Info -->
+    <Info ref="refInfo" :onSuccess="() => findList()" />
+    <LogInfo ref="refLogInfo" />
+  </PageContainer>
 </template>
 
-<script>
-export default { name: "TimedTaskCom" };
-</script>
-<script setup>
-import { onBeforeUnmount, onMounted, reactive, ref } from "vue";
-import AppIcon from "@/components/AppIcon.vue";
-import Info from "./Info.vue";
-import service from "@/service/development_tool/timedTaskService.js";
-import tools from "@/scripts/tools.js";
-import JobLogger from "./JobLogger.vue";
-
-const state = reactive({
-  list: [],
-  filter: "",
-  jobForm: {
-    visible: false,
-    key: Object,
-  },
-  timer: null,
-});
-
-const refForm = ref(null);
-
-const methods = {
-  findList() {
-    service.findList(state.filter).then((res) => {
-      state.list = res.data;
-    });
-  },
-  //删除数据
-  deleteList(id) {
-    let ids = [];
-    if (id) {
-      ids.push(id);
-    } else {
-      ids = [];
+<style scoped lang="less">
+.task {
+  padding: 16px;
+  display: flex;
+  .task-item {
+    flex: 1;
+    text-align: center;
+    .title {
+      height: 25px;
+      color: rgba(0, 0, 0, 0.45);
     }
-    service.deleteList(ids).then((res) => {
-      if (res.code != 1) return;
-      tools.message("删除成功!", "成功");
-      methods.findList();
-    });
-  },
-  //打开表单页面
-  openForm(id) {
-    refForm.value.openForm({
-      visible: true,
-      key: id,
-    });
-  },
-  //运行
-  run(id) {
-    let ids = [];
-    ids.push(id);
-    service.run(ids).then((res) => {
-      if (res.code != 1) return;
-      tools.message("运行成功!", "成功");
-      methods.findList();
-    });
-  },
-  //关闭
-  close(id) {
-    let ids = [];
-    ids.push(id);
-    service.close(ids).then((res) => {
-      if (res.code != 1) return;
-      tools.message("关闭成功!", "成功");
-      methods.findList();
-    });
-  },
-  /**
-   * 打开日志界面
-   * @param {*} id
-   */
-  openJobLogger(id) {
-    state.jobForm.visible = true;
-    state.jobForm.key = id;
-  },
-  onSearch() {
-    methods.findList();
-  },
-};
-
-onMounted(() => {
-  methods.findList();
-  state.timer = setInterval(() => {
-    methods.findList();
-  }, 60 * 1000);
-});
-
-onBeforeUnmount(() => {
-  clearInterval(state.timer);
-});
-</script>
-<style lang="less" scoped>
-.normal {
-  width: 8px;
-  height: 8px;
-  display: block;
-  border-radius: 50%;
-  position: absolute;
-  left: 15px;
-  top: 28px;
+  }
+}
+.task:hover {
+  // background-color: rgba(0, 0, 0, 0.02);
+  background-color: #f0f2f5;
+  transition: background-color 0.3s;
+  cursor: pointer;
 }
 </style>

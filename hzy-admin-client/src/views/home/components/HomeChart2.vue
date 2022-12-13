@@ -1,12 +1,4 @@
-<template>
-  <a-card title="基础条形图" :bordered="false" :headStyle="{ 'border-bottom': 0 }">
-    <template #extra>
-      <a href="https://g2plot.antv.vision/zh/docs/manual/getting-started" target="_black"> 组件地址</a>
-    </template>
-    <div id="container-home-chart2"></div>
-  </a-card>
-</template>
-<script setup>
+<script lang="ts" setup>
 import { onMounted } from "vue";
 import { Bar } from "@antv/g2plot";
 
@@ -18,7 +10,7 @@ onMounted(() => {
     { year: "1957 年", value: 145 },
     { year: "1958 年", value: 48 },
   ];
-  document.getElementById("container-home-chart2").innerHTML = "";
+  document.getElementById("container-home-chart2")!.innerHTML = "";
   const bar = new Bar("container-home-chart2", {
     data,
     xField: "value",
@@ -33,6 +25,16 @@ onMounted(() => {
   bar.render();
 });
 </script>
+
+<template>
+  <a-card title="基础条形图" :bordered="false" :headStyle="{ 'border-bottom': 0 }">
+    <template #extra>
+      <a href="https://g2plot.antv.vision/zh/docs/manual/getting-started" target="_black"> 组件地址</a>
+    </template>
+    <div id="container-home-chart2"></div>
+  </a-card>
+</template>
+
 <style lang="less">
 .work-order {
   .icon-size {

@@ -58,18 +58,18 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode
         Task<string> GenServiceJsAsync(GenFormDto genFormDto);
 
         /// <summary>
-        /// 生成 indexVue
+        /// 生成 Index
         /// </summary>
         /// <param name="genFormDto"></param>
         /// <returns></returns>
-        Task<string> GenIndexVueAsync(GenFormDto genFormDto);
+        Task<string> GenIndexAsync(GenFormDto genFormDto);
 
         /// <summary>
-        /// 生成 infoVue
+        /// 生成 Info
         /// </summary>
         /// <param name="genFormDto"></param>
         /// <returns></returns>
-        Task<string> GenInfoVueAsync(GenFormDto genFormDto);
+        Task<string> GenInfoAsync(GenFormDto genFormDto);
 
         /// <summary>
         /// 获取代码
@@ -104,7 +104,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode
         /// </summary>
         /// <returns></returns>
         (byte[] excel, string dataBase) CreateDataDictionary();
-        
+
         /// <summary>
         /// 代码生成自动导入项目
         /// </summary>

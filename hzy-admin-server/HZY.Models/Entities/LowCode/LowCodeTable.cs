@@ -70,22 +70,22 @@ namespace HZY.Models.Entities.LowCode
         /// 前端视图保存路径
         /// </summary>
         /// <value></value>
-        public string IndexVuePath { get; set; }
+        public string ClientIndexPath { get; set; }
         /// <summary>
         /// 前端信息弹窗保存位置
         /// </summary>
         /// <value></value>
-        public string InfoVuePath { get; set; }
+        public string ClientInfoPath { get; set; }
         /// <summary>
         /// 前端服务保存位置
         /// </summary>
         /// <value></value>
-        public string ServiceJsPath { get; set; }
+        public string ClientServicePath { get; set; }
         /// <summary>
         /// 是否覆盖生成  否的话生成代码重复会在后面加一个时间
         /// </summary>
         /// <value></value>
-        public bool? IsCover { get; set; }
+        public bool? IsCover { get; set; } = false;
 
 
     }

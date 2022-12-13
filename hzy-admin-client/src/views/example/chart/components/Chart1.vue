@@ -1,12 +1,8 @@
-<template>
-  <div id="container1"></div>
-</template>
-
-<script setup>
+<script lang="ts" setup>
 import { onMounted, reactive } from "vue";
 import { Chart } from "@antv/g2";
 
-var chartObject = null;
+var chartObject: Chart | null = null;
 const data = reactive([
   { year: "1951 年", sales: 38 },
   { year: "1952 年", sales: 52 },
@@ -52,7 +48,7 @@ const createData = () => {
       sales: Math.floor(Math.random() * 200),
     });
   }
-  chartObject.changeData(data);
+  chartObject!.changeData(data);
 };
 
 onMounted(() => {
@@ -61,5 +57,9 @@ onMounted(() => {
   setInterval(() => createData(), 2000);
 });
 </script>
+
+<template>
+  <div id="container1"></div>
+</template>
 
 <style scoped></style>

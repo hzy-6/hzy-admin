@@ -161,16 +161,16 @@
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GenIndexVueAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GenIndexAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
-            生成 indexVue
+            生成 Index
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GenInfoVueAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.ICodeGenerationService.GenInfoAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
-            生成 infoVue
+            生成 Info
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
@@ -268,14 +268,14 @@
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GenIndexVueAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GenIndexAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成 index vue
             </summary>
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GenInfoVueAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
+        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GenInfoAsync(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
             <summary>
             生成 info vue
             </summary>
@@ -344,13 +344,6 @@
             <param name="genFormDto"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.FindCodeFileName(HZY.Models.DTO.DevelopmentTool.GenFormDto)">
-            <summary>
-            获取代码文件名称  不包含尾缀
-            </summary>
-            <param name="genFormDto"></param>
-            <returns></returns>
-        </member>
         <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.GetProjectAbsolutelyPath(System.String)">
             <summary>
             获取自动导入根路径
@@ -364,13 +357,6 @@
             <param name="tableName"></param>
             <param name="type"></param>
             <param name="basePath"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.FindFileTypeToSuffix(HZY.Services.Admin.DevelopmentTool.LowCode.Impl.FileTypeEnum)">
-            <summary>
-            根据类型获取文件尾缀
-            </summary>
-            <param name="type"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.DevelopmentTool.LowCode.Impl.CodeGenerationService.SaveToFileAsync(System.String,HZY.Services.Admin.DevelopmentTool.LowCode.Impl.FileTypeEnum,System.String,System.String,System.String)">
@@ -603,12 +589,10 @@
             数据字典服务
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysDictionaryService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.Framework.SysDictionary)">
+        <member name="M:HZY.Services.Admin.Framework.SysDictionaryService.FindListAsync(HZY.Models.Entities.Framework.SysDictionary)">
             <summary>
             获取列表数据
             </summary>
-            <param name="page"></param>
-            <param name="size"></param>
             <param name="search"></param>
             <returns></returns>
         </member>
@@ -631,13 +615,6 @@
             保存数据
             </summary>
             <param name="form"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Services.Admin.Framework.SysDictionaryService.ExportExcelAsync(HZY.Models.Entities.Framework.SysDictionary)">
-            <summary>
-            导出Excel
-            </summary>
-            <param name="search"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysDictionaryService.GetDictionaryTreeAsync">
@@ -735,11 +712,10 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysMenuService.CreateMenus(System.Int32,System.Collections.Generic.List{HZY.Models.Entities.Framework.SysMenu})">
+        <member name="M:HZY.Services.Admin.Framework.SysMenuService.CreateMenus(System.Collections.Generic.List{HZY.Models.Entities.Framework.SysMenu})">
             <summary>
             创建菜单
             </summary>
-            <param name="id"></param>
             <param name="sysMenuList"></param>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysMenuService.GetPowerByMenusAsync(System.Collections.Generic.List{HZY.Models.Entities.Framework.SysMenu})">

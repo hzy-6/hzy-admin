@@ -1,19 +1,11 @@
-<template>
-  <div>
-    <a-spin v-if="loading" />
-    <iframe :src="domainName + '/swagger'" frameBorder="0" id="iframe_swagger" v-show="!loading"></iframe>
-  </div>
-</template>
-
-<script>
-export default { name: "swagger" };
-</script>
-<script setup>
+<script lang="ts" setup>
+import AppConsts from "@/utils/AppConsts";
 import { onMounted, ref } from "vue";
-import appConsts from "@/scripts/app-consts";
+
+defineOptions({ name: "swagger" });
 
 const loading = ref(true);
-const domainName = ref(appConsts.domainName);
+const domainName = ref(AppConsts.domainServerApi);
 
 onMounted(() => {
   let iframe = document.getElementById("iframe_swagger");
@@ -34,6 +26,13 @@ onMounted(() => {
   }
 });
 </script>
+
+<template>
+  <div>
+    <a-spin v-if="loading" />
+    <iframe :src="domainName + '/swagger'" frameBorder="0" id="iframe_swagger" v-show="!loading"></iframe>
+  </div>
+</template>
 
 <style lang="less" scoped>
 iframe {

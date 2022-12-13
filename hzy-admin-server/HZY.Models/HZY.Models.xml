@@ -151,6 +151,11 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:HZY.Models.DTO.Framework.SysDictionaryDto.ParentName">
+            <summary>
+            父级名称
+            </summary>
+        </member>
         <member name="P:HZY.Models.DTO.Framework.SysMenuTreeDto.ParentName">
             <summary>
             父级菜单名称
@@ -669,6 +674,16 @@
             </summary>
             <value></value>
         </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.Mode">
+            <summary>
+            菜单模式
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Framework.SysMenu.ModuleUrl">
+            <summary>
+            模块地址 (微前端)
+            </summary>
+        </member>
         <member name="T:HZY.Models.Entities.Framework.SysMenuFunction">
             <summary>
             菜单与功能绑定
@@ -1035,19 +1050,19 @@
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.IndexVuePath">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ClientIndexPath">
             <summary>
             前端视图保存路径
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.InfoVuePath">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ClientInfoPath">
             <summary>
             前端信息弹窗保存位置
             </summary>
             <value></value>
         </member>
-        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ServiceJsPath">
+        <member name="P:HZY.Models.Entities.LowCode.LowCodeTable.ClientServicePath">
             <summary>
             前端服务保存位置
             </summary>

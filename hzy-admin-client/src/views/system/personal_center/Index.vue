@@ -1,6 +1,37 @@
+<script lang="ts" setup>
+import { reactive, computed } from "vue";
+import ChangePassword from "./components/ChangePassword.vue";
+import ChangeBaseInfo from "./components/ChangeBaseInfo.vue";
+import AppStore from "@/core/store/AppStore";
+import PageContainer from "@/core/components/PageContainer.vue";
+defineOptions({ name: "system_personal_center" });
+
+const appStore = AppStore();
+const userInfo = computed(() => appStore.state.userInfo as any);
+const state = reactive({
+  activeKey: 1,
+  sysPosts: "",
+  sysRoles: "",
+});
+//处理岗位
+const posts = [];
+for (let index = 0; index < userInfo.value.sysPosts.length; index++) {
+  const element = userInfo.value.sysPosts[index];
+  posts.push(element.name);
+}
+state.sysPosts = posts.join(" | ");
+//处理角色
+const roles = [];
+for (let index = 0; index < userInfo.value.sysRoles.length; index++) {
+  const element = userInfo.value.sysRoles[index];
+  roles.push(element.name);
+}
+state.sysRoles = roles.join(" | ");
+</script>
+
 <template>
-  <div>
-    <a-row :gutter="[15, 15]">
+  <PageContainer>
+    <a-row :gutter="[16, 0]">
       <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <a-card class="min-height">
           <a-descriptions title="基础信息" bordered>
@@ -28,43 +59,11 @@
         </a-card>
       </a-col>
     </a-row>
-  </div>
+  </PageContainer>
 </template>
 
-<script>
-export default { name: "system_personal_center" };
-</script>
-
-<script setup>
-import { defineComponent, reactive, toRefs, computed } from "vue";
-import ChangePassword from "./ChangePassword.vue";
-import ChangeBaseInfo from "./ChangeBaseInfo.vue";
-import { useAppStore } from "@/store";
-
-const appStore = useAppStore();
-const userInfo = computed(() => appStore.state.userInfo);
-const state = reactive({
-  activeKey: 1,
-  sysPosts: "",
-  sysRoles: "",
-});
-//处理岗位
-const posts = [];
-for (let index = 0; index < userInfo.value.sysPosts.length; index++) {
-  const element = userInfo.value.sysPosts[index];
-  posts.push(element.name);
-}
-state.sysPosts = posts.join(" | ");
-//处理角色
-const roles = [];
-for (let index = 0; index < userInfo.value.sysRoles.length; index++) {
-  const element = userInfo.value.sysRoles[index];
-  roles.push(element.name);
-}
-state.sysRoles = roles.join(" | ");
-</script>
 <style scoped lang="less">
 .min-height {
-  min-height: calc(100vh - 130px);
+  min-height: calc(100vh - 300px);
 }
 </style>

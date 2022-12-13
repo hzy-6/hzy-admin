@@ -28,9 +28,9 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
         private readonly string templateModel = "tempModel.cshtml";
         private readonly string templateService = "tempService.cshtml";
         private readonly string templateController = "tempController.cshtml";
-        private readonly string templateServiceJs = "tempServiceJs.cshtml";
-        private readonly string templateIndexVue = "tempIndexVue.cshtml";
-        private readonly string templateInfoVue = "tempInfoVue.cshtml";
+        private readonly string templateServiceJs = "tempClientService.cshtml";
+        private readonly string templateIndex = "tempClientIndex.cshtml";
+        private readonly string templateInfo = "tempClientInfo.cshtml";
 
         private readonly DatabaseTablesRepository _codeGenerationRepository;
         private readonly IRazorViewRender _razorViewRender;
@@ -161,11 +161,11 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
         /// </summary>
         /// <param name="genFormDto"></param>
         /// <returns></returns>
-        public async Task<string> GenIndexVueAsync(GenFormDto genFormDto)
+        public async Task<string> GenIndexAsync(GenFormDto genFormDto)
         {
             var context = this.GetGenContextDto(genFormDto);
 
-            return this.ClearSymbol(await this._razorViewRender.RenderAsync(templateRootPath + templateIndexVue, context));
+            return this.ClearSymbol(await this._razorViewRender.RenderAsync(templateRootPath + templateIndex, context));
         }
 
         /// <summary>
@@ -173,11 +173,11 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
         /// </summary>
         /// <param name="genFormDto"></param>
         /// <returns></returns>
-        public async Task<string> GenInfoVueAsync(GenFormDto genFormDto)
+        public async Task<string> GenInfoAsync(GenFormDto genFormDto)
         {
             var context = this.GetGenContextDto(genFormDto);
 
-            return this.ClearSymbol(await this._razorViewRender.RenderAsync(templateRootPath + templateInfoVue, context));
+            return this.ClearSymbol(await this._razorViewRender.RenderAsync(templateRootPath + templateInfo, context));
         }
 
 
@@ -194,9 +194,9 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
                 //"HZY.Repository.DbSet" => await this.CreateRepositoryDbSetAsync(),
                 "HZY.Services.Admin" => await this.GenServiceAsync(genFormDto),
                 "HZY.Controllers.Admin" => await this.GenControllerAsync(genFormDto),
-                "Index.vue" => await this.GenIndexVueAsync(genFormDto),
-                "Info.vue" => await this.GenInfoVueAsync(genFormDto),
-                "Service.js" => await this.GenServiceJsAsync(genFormDto),
+                "Client.Index" => await this.GenIndexAsync(genFormDto),
+                "Client.Info" => await this.GenInfoAsync(genFormDto),
+                "Client.Service" => await this.GenServiceJsAsync(genFormDto),
                 _ => string.Empty
             };
         }
@@ -245,7 +245,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
         /// <returns></returns>
         public async Task<(byte[] codeBytes, string contentType, string fileName)> DownloadAllAsync(GenFormDto genFormDto)
         {
-            var isViews = genFormDto.Type == "Index.vue" || genFormDto.Type == "Info.vue";
+            var isViews = genFormDto.Type == "Client.Index" || genFormDto.Type == "Client.Info";
             var success = await this.CreateAllCodeFilesAsync(genFormDto);
 
             if (!success) LogUtil.Log.Warning("无法下载,代码创建失败!");
@@ -255,7 +255,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
 
             if (isViews)
             {
-                path = $"{this._webRootPath}{this.codesRootPath}/Views";
+                path = $"{this._webRootPath}{this.codesRootPath}/pages";
                 zipPath = $"{this._webRootPath}{this.zipRootPath}";
                 if (!Directory.Exists(path))
                 {
@@ -267,7 +267,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
                     Directory.CreateDirectory(zipPath);
                 }
 
-                zipPath += "/Views.zip";
+                zipPath += "/pages.zip";
             }
             else
             {
@@ -294,7 +294,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
             if (System.IO.File.Exists(zipPath)) System.IO.File.Delete(zipPath);
             if (Directory.Exists(path)) Directory.Delete(path, true);
 
-            return (bytes, Tools.GetFileContentType[".zip"], $"{(isViews ? "Views" : genFormDto.Type)}.zip");
+            return (bytes, Tools.GetFileContentType[".zip"], $"{(isViews ? "pages" : genFormDto.Type)}.zip");
         }
 
         /// <summary>
@@ -423,17 +423,17 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
         {
             var path = $"{this._webRootPath}{codesRootPath}";
 
-            if (genFormDto.Type == "Index.vue" || genFormDto.Type == "Info.vue")
+            if (genFormDto.Type == "Client.Index" || genFormDto.Type == "Client.Info")
             {
-                path += $"/Views";
+                path += $"/pages";
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 path += $"/{genFormDto.TableName.FirstCharToLower()}";
                 if (!Directory.Exists(path)) Directory.CreateDirectory(path);
                 //Index
-                var codeString = await this.GenIndexVueAsync(genFormDto);
+                var codeString = await this.GenIndexAsync(genFormDto);
                 await File.WriteAllTextAsync($"{path}/Index.vue", codeString, Encoding.UTF8);
                 //Info
-                codeString = await this.GenInfoVueAsync(genFormDto);
+                codeString = await this.GenInfoAsync(genFormDto);
                 await File.WriteAllTextAsync($"{path}/Info.vue", codeString, Encoding.UTF8);
                 return path;
             }
@@ -462,30 +462,9 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
                 // "HZY.Repository.DbSet" => ,
                 "HZY.Services.Admin" => $"{tableName}Service.cs",
                 "HZY.Controllers.Admin" => $"{tableName}Controller.cs",
-                "Index.vue" => $"Index.vue",
-                "Info.vue" => $"Info.vue",
-                "Service.js" => $"{tableName.FirstCharToLower()}Service.js",
-                _ => string.Empty
-            };
-        }
-
-        /// <summary>
-        /// 获取代码文件名称  不包含尾缀
-        /// </summary>
-        /// <param name="genFormDto"></param>
-        /// <returns></returns>
-        private string FindCodeFileName(GenFormDto genFormDto)
-        {
-            var tableName = Tools.LineToHump(genFormDto.TableName);
-            return genFormDto.Type switch
-            {
-                "HZY.Models" => $"{tableName}",
-                // "HZY.Repository.DbSet" => ,
-                "HZY.Services.Admin" => $"{tableName}Service",
-                "HZY.Controllers.Admin" => $"{tableName}Controller",
-                "Index.vue" => $"Index",
-                "Info.vue" => $"Info",
-                "Service.js" => $"{tableName.FirstCharToLower()}Service",
+                "Client.Index" => $"Index.vue",
+                "Client.Info" => $"Info.vue",
+                "Client.Service" => $"{tableName}Service.ts",
                 _ => string.Empty
             };
         }
@@ -539,14 +518,14 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
                 case FileTypeEnum.Controller:
                     path = tableInfo.ControllerPath + $"/{humpTableName}s";
                     break;
-                case FileTypeEnum.IndexVue:
-                    path = tableInfo.IndexVuePath + $"/{tableName}s";
+                case FileTypeEnum.ClientIndex:
+                    path = tableInfo.ClientIndexPath + $"/{tableName}s";
                     break;
-                case FileTypeEnum.InfoVue:
-                    path = tableInfo.InfoVuePath + $"/{tableName}s";
+                case FileTypeEnum.ClientInfo:
+                    path = tableInfo.ClientInfoPath + $"/{tableName}s";
                     break;
-                case FileTypeEnum.ServiceJS:
-                    path = tableInfo.ServiceJsPath + $"/{tableName}s";
+                case FileTypeEnum.ClientService:
+                    path = tableInfo.ClientServicePath + $"/{tableName}s";
                     break;
             }
             var fileDirPath = Path.Combine(basePath, path);
@@ -563,37 +542,13 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
                 // 如果文件已存在 加尾缀 重新创建文件夹
                 if (File.Exists(filePath))
                 {
-                    oldFileName = FindCodeFileName(dto);
+                    oldFileName = FindCodeFileClassName(dto);
                     replaceName = $"{oldFileName}{DateTime.Now.ToString("yyyyMMddHHmmss")}";
-                    filePath = $"{fileDirPath}/{replaceName}{FindFileTypeToSuffix(type)}";
+                    filePath = $"{fileDirPath}/{replaceName}";
                 }
             }
 
             return (filePath, oldFileName, replaceName);
-        }
-
-        /// <summary>
-        /// 根据类型获取文件尾缀
-        /// </summary>
-        /// <param name="type"></param>
-        /// <returns></returns>
-        private string FindFileTypeToSuffix(FileTypeEnum type)
-        {
-            switch (type)
-            {
-                case FileTypeEnum.Model:
-                case FileTypeEnum.Service:
-                case FileTypeEnum.Controller:
-                    return ".cs";
-                case FileTypeEnum.IndexVue:
-                case FileTypeEnum.InfoVue:
-                    return ".vue";
-                case FileTypeEnum.ServiceJS:
-                    return ".js";
-            }
-
-            MessageBox.Show("不包含的文件类型");
-            return "";
         }
 
         /// <summary>
@@ -616,6 +571,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
                     codeString = codeString.Replace(oldName, replaceName);
                 }
             }
+            await Task.Delay(500);
             await File.WriteAllTextAsync(filePath, codeString, Encoding.UTF8);
         }
 
@@ -639,11 +595,12 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
         Service,
         [Description("HZY.Controllers.Admin")]
         Controller,
-        [Description("Index.vue")]
-        IndexVue,
-        [Description("Info.vue")]
-        InfoVue,
-        [Description("Service.js")]
-        ServiceJS
+        [Description("Client.Index")]
+        ClientIndex,
+        [Description("Client.Info")]
+        ClientInfo,
+        [Description("Client.Service")]
+        ClientService
+
     }
 }

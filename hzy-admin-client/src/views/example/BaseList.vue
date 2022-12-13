@@ -1,26 +1,8 @@
-<template>
-  <div>
-    <a-button type="primary" v-print="'#print'" class="mb-15">打印</a-button>
-    x:{{ x }}y:{{ y }}
-    <div id="print">
-      <a-table :row-selection="rowSelection" :columns="state.columns" :data-source="state.data">
-        <template #bodyCell="{ column, text }">
-          <template v-if="column.dataIndex === 'name'">
-            <a>{{ text }}</a>
-          </template>
-        </template>
-      </a-table>
-    </div>
-    <div ref="el" :style="style" style="position: fixed; background-color: red; width: 100px; height: 100px">快拖动我...</div>
-  </div>
-</template>
-
-<script>
-export default { name: "BaseListCom" };
-</script>
-<script setup>
+<script lang="ts" setup>
 import { reactive, ref } from "vue";
 import { useDraggable } from "@vueuse/core";
+import PageContainer from "@/core/components/PageContainer.vue";
+defineOptions({ name: "BaseListCom" });
 
 const columns = [
   {
@@ -68,11 +50,11 @@ const state = reactive({
   data,
 });
 
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
+const rowSelection: any = {
+  onChange: (selectedRowKeys: string[], selectedRows: any[]) => {
     console.log(`selectedRowKeys: ${selectedRowKeys}`, "selectedRows: ", selectedRows);
   },
-  getCheckboxProps: (record) => ({
+  getCheckboxProps: (record: any) => ({
     disabled: record.name === "Disabled User", // Column configuration not to be checked
     name: record.name,
   }),
@@ -85,3 +67,20 @@ const { x, y, style } = useDraggable(el, {
   initialValue: { x: 500, y: 200 },
 });
 </script>
+
+<template>
+  <PageContainer>
+    <a-button type="primary" class="mb-16" v-print="'#print'">打印</a-button>
+
+    <div id="print">
+      <a-table :row-selection="rowSelection" :columns="state.columns" :data-source="state.data">
+        <template #bodyCell="{ column, text }">
+          <template v-if="column.dataIndex === 'name'">
+            <a>{{ text }}</a>
+          </template>
+        </template>
+      </a-table>
+    </div>
+    <div ref="el" :style="style" style="position: fixed; background-color: red; width: 100px; height: 100px; color: #fff; cursor: pointer">快拖动我... x:{{ x }}y:{{ y }}</div>
+  </PageContainer>
+</template>

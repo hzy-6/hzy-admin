@@ -1,107 +1,12 @@
-<template>
-  <div>
-    <a-card class="mb-15" v-show="state.fromSearch.state">
-      <a-row :gutter="[15, 15]">
-        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-          <a-input v-model:value="state.fromSearch.vm.value" placeholder="用户名" />
-        </a-col>
-        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-          <a-input v-model:value="state.fromSearch.vm.value" placeholder="年龄" />
-        </a-col>
-        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-          <a-input v-model:value="state.fromSearch.vm.value" placeholder="地址" />
-        </a-col>
-        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-          <a-input v-model:value="state.fromSearch.vm.value" placeholder="用户名" />
-        </a-col>
-        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-          <a-input v-model:value="state.fromSearch.vm.value" placeholder="地址" />
-        </a-col>
-        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-          <a-input v-model:value="state.fromSearch.vm.value" placeholder="地址1" />
-        </a-col>
-        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-          <a-input v-model:value="state.fromSearch.vm.value" placeholder="地址2" />
-        </a-col>
-        <!--button-->
-        <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
-          <a-button type="primary" class="mr-15" @click="methods.findList()">查询</a-button>
-          <a-button class="mr-15" @click="methods.findList()">重置</a-button>
-        </a-col>
-      </a-row>
-    </a-card>
-    <a-card>
-      <a-row :gutter="[15, 15]">
-        <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
-          <a-button class="mr-15" @click="state.fromSearch.state = !state.fromSearch.state">
-            <div v-if="state.fromSearch.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
-            <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
-          </a-button>
-          <a-button type="primary" class="mr-15" @click="methods.openForm()">
-            <template #icon>
-              <AppIcon name="PlusOutlined" />
-            </template>
-            新建
-          </a-button>
-          <a-popconfirm title="您确定要删除?" @confirm="confirm" okText="确定" cancelText="取消">
-            <a-button type="primary" danger class="mr-15">
-              <template #icon>
-                <AppIcon name="DeleteOutlined" />
-              </template>
-              批量删除
-            </a-button>
-          </a-popconfirm>
-        </a-col>
-        <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12" class="text-right">
-          <a-dropdown>
-            <template #overlay>
-              <a-menu @click="handleMenuClick">
-                <a-menu-item key="1" @click="exportExcel">导出 Excel</a-menu-item>
-                <a-menu-item key="2" @click="exportExcel">下载 导入模板</a-menu-item>
-                <a-menu-item key="3" @click="exportExcel">导入 Excel</a-menu-item>
-              </a-menu>
-            </template>
-            <a-button>
-              更多操作
-              <AppIcon name="DownOutlined" />
-            </a-button>
-          </a-dropdown>
-        </a-col>
-      </a-row>
-
-      <a-table
-        size="middle"
-        class="mt-15"
-        :columns="state.table.columns"
-        :data-source="state.table.data"
-        :pagination="{ pageSize: 10 }"
-        :loading="state.table.loading"
-        :scroll="{ x: 'calc(100wh - 300px)' }"
-        :row-selection="rowSelection"
-      >
-        <template #bodyCell="{ column, text }">
-          <template v-if="column.dataIndex === 'id'">
-            <span>
-              <a href="javascript:;" @click="methods.openForm(text)">修改</a>
-              <a-divider type="vertical" />
-              <a class="text-danger">删除{{ text }}</a>
-            </span>
-          </template>
-        </template>
-      </a-table>
-    </a-card>
-    <Info ref="refInfo" @onSuccess="() => methods.findList()" />
-  </div>
-</template>
-
-<script>
-export default { name: "ListIndexCom" };
-</script>
-<script setup>
+<script lang="ts" setup>
 import { reactive, ref, onMounted } from "vue";
-import AppIcon from "@/components/AppIcon.vue";
+import AppIcon from "@/core/components/AppIcon.vue";
 import Info from "./Info.vue";
-import tools from "@/scripts/tools";
+import Tools from "@/core/utils/Tools";
+import PageContainer from "@/core/components/PageContainer.vue";
+import TableCurd from "@/core/components/curd/TableCurd.vue";
+import { FormInstance } from "ant-design-vue";
+defineOptions({ name: "ListIndexCom" });
 
 const columns = [
   {
@@ -161,71 +66,193 @@ const columns = [
 ];
 
 const state = reactive({
-  fromSearch: {
+  search: {
     state: false,
-    fieldCount: 7,
     vm: {
       value: "",
     },
   },
-  table: {
-    loading: false,
-    columns: [],
-    data: [],
-  },
+  loading: false,
+  page: 1,
+  size: 10,
+  total: 100,
+  columns: [] as any,
+  data: [] as any,
 });
 
+//表格
+const refTableCurd = ref<InstanceType<typeof TableCurd>>();
 //表单操作对象
-const refInfo = ref(null);
+const refInfo = ref<InstanceType<typeof Info>>();
+//检索表单
+const refSearchForm = ref<FormInstance>();
 
-const methods = {
-  findList() {
-    state.table.loading = true;
-    state.table.columns = columns;
-    setTimeout(() => {
-      const data = [];
-      for (let i = 0; i < 100; i++) {
-        data.push({
-          key: i + 1,
-          name: `Hzy ${i + 1}`,
-          age: 18 + i,
-          address: `addr. ${i + 1}`,
-          column1: `London Park no. ${i}`,
-          column2: `London Park no. ${i}`,
-          column3: `London Park no. ${i}`,
-          column4: `London Park no. ${i}`,
-          id: i,
-        });
-      }
-      state.table.data = data;
-      state.table.loading = false;
-    }, 1.5 * 1000);
-  },
-  exportExcel() {
-    tools.notice("导出Excel成功!", "成功", "提醒");
-  },
-  confirm() {
-    tools.message("删除成功!", "成功");
-  },
-  //打开表单页面
-  openForm(id) {
-    refInfo.value.openForm({ visible: true, key: id });
-  },
-};
-
-//多选对象
-const rowSelection = {
-  onChange: (selectedRowKeys, selectedRows) => {
-    console.log(`selectedRowKeys: ${selectedRowKeys}`, "selectedRows: ", selectedRows);
-  },
-  getCheckboxProps: (record) => ({
-    // disabled: record.name === "Disabled User",
-    // Column configuration not to be checked
-    name: record.name,
-  }),
-};
-
+/**
+ * 初始化
+ */
 onMounted(() => {
-  methods.findList();
+  findList();
 });
+
+function findList() {
+  state.loading = true;
+  state.columns = columns;
+  setTimeout(() => {
+    const data = [];
+    for (let i = 0; i < 100; i++) {
+      data.push({
+        key: i + 1,
+        name: `Hzy ${i + 1}`,
+        age: 18 + i,
+        address: `addr. ${i + 1}`,
+        column1: `London Park no. ${i}`,
+        column2: `London Park no. ${i}`,
+        column3: `London Park no. ${i}`,
+        column4: `London Park no. ${i}`,
+        id: i,
+      });
+    }
+    state.data = data;
+    state.loading = false;
+  }, 300);
+}
+
+function exportExcel() {
+  Tools.notice.success("导出Excel成功!");
+}
+
+function deleteList(id?: string) {
+  let ids: string[] | undefined = [];
+  if (id) {
+    ids.push(id);
+  } else {
+    ids = refTableCurd.value?.getSelectedRowKeys();
+  }
+  // service.deleteList(ids).then((res) => {
+  //   if (res.code != 1) return;
+  //   tools.message("删除成功!", appConsts.success);
+  //   methods.findList();
+  // });
+  console.log(ids);
+  Tools.message.success("删除成功!");
+}
+
+//打开表单页面
+function openForm(id: string) {
+  refInfo.value!.open({ key: id });
+}
 </script>
+
+<template>
+  <PageContainer>
+    <template #describe>
+      <span>段落示意：蚂蚁金服务设计平台 ant.design，用最小的工作量，无缝接入蚂蚁金服生态， 提供跨越设计与开发的体验解决方案。</span>
+      <!-- <img alt="这是一个标题" src="https://gw.alipayobjects.com/zos/rmsportal/RzwpdLnhmvDJToTdfDPe.png" width="80" /> -->
+    </template>
+
+    <TableCurd :config="state" ref="refTableCurd">
+      <!-- search -->
+      <template #search>
+        <a-form ref="refSearchForm" :model="state.search.vm">
+          <a-row :gutter="[16, 0]">
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
+              <a-form-item class="mb-0" name="value" label="真实姓名">
+                <a-input v-model:value="state.search.vm.value" placeholder="真实名称" />
+              </a-form-item>
+            </a-col>
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
+              <a-form-item class="mb-0" name="value" label="真实姓名">
+                <a-input v-model:value="state.search.vm.value" placeholder="真实名称" />
+              </a-form-item>
+            </a-col>
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
+              <a-form-item class="mb-0" name="value" label="真实姓名">
+                <a-input v-model:value="state.search.vm.value" placeholder="真实名称" />
+              </a-form-item>
+            </a-col>
+            <!--button-->
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" class="text-right">
+              <a-space :size="8">
+                <a-button
+                  @click="
+                    state.page = 1;
+                    refSearchForm?.resetFields();
+                    findList();
+                  "
+                >
+                  重置
+                </a-button>
+                <a-button
+                  type="primary"
+                  @click="
+                    state.page = 1;
+                    findList();
+                  "
+                >
+                  查询
+                </a-button>
+              </a-space>
+            </a-col>
+          </a-row>
+        </a-form>
+      </template>
+      <!-- toolbar-left -->
+      <template #toolbar-left>
+        <a-button @click="state.search.state = !state.search.state">
+          <div v-if="state.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
+          <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
+        </a-button>
+        <a-button type="primary" @click="openForm('')">
+          <template #icon>
+            <AppIcon name="PlusOutlined" />
+          </template>
+          新建
+        </a-button>
+        <a-popconfirm title="您确定要删除?" @confirm="deleteList()" okText="确定" cancelText="取消">
+          <a-button type="primary" danger>
+            <template #icon>
+              <AppIcon name="DeleteOutlined" />
+            </template>
+            批量删除
+          </a-button>
+        </a-popconfirm>
+      </template>
+      <!-- toolbar-right -->
+      <template #toolbar-right>
+        <a-dropdown>
+          <template #overlay>
+            <a-menu>
+              <a-menu-item key="1" @click="exportExcel()">导出 Excel</a-menu-item>
+              <a-menu-item key="2" @click="exportExcel()">下载 导入模板</a-menu-item>
+              <a-menu-item key="3" @click="exportExcel()">导入 Excel</a-menu-item>
+            </a-menu>
+          </template>
+          <a-button> 更多 <AppIcon name="ellipsis-outlined" /> </a-button>
+        </a-dropdown>
+        <a-tooltip title="列设置">
+          <a-button type="text">
+            <template #icon><AppIcon name="setting-outlined" /> </template>
+          </a-button>
+        </a-tooltip>
+      </template>
+      <!-- table-col -->
+      <template #table-col>
+        <template v-for="item in state.columns.filter((w:any) => w.dataIndex !== 'id')" :key="item.dataIndex">
+          <a-table-column :title="item.title" :data-index="item.dataIndex" />
+        </template>
+        <!-- 操作 -->
+        <a-table-column title="操作" data-index="id">
+          <template #default="{ record }">
+            <a href="javascript:;" @click="openForm(record.id)">编辑</a>
+            <a-divider type="vertical" />
+            <a-popconfirm title="您确定要删除?" @confirm="deleteList(record.id)" okText="确定" cancelText="取消">
+              <a class="text-danger">删除</a>
+            </a-popconfirm>
+          </template>
+        </a-table-column>
+      </template>
+    </TableCurd>
+    <!-- info -->
+    <Info ref="refInfo" :onSuccess="() => findList()" />
+  </PageContainer>
+</template>

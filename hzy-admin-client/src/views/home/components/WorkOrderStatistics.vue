@@ -1,13 +1,4 @@
-<template>
-  <a-card title="近一年设备销售量" :bordered="false" :headStyle="{ 'border-bottom': 0 }">
-    <template #extra>
-      <a href="https://g2plot.antv.vision/zh/docs/manual/getting-started" target="_black">组件地址</a>
-    </template>
-    <div id="WorkOrderStatisticsContainer"></div>
-  </a-card>
-</template>
-
-<script setup>
+<script lang="ts" setup>
 import { onMounted, ref, onBeforeUnmount } from "vue";
 import { Column } from "@antv/g2plot";
 
@@ -65,12 +56,12 @@ const data = [
 let timer = ref();
 
 onMounted(() => {
-  document.getElementById("WorkOrderStatisticsContainer").innerHTML = "";
+  document.getElementById("WorkOrderStatisticsContainer")!.innerHTML = "";
   const columnPlot = new Column("WorkOrderStatisticsContainer", {
     data,
     xField: "type",
     yField: "sales",
-    height: 320,
+    height: 300,
     label: {
       // 可手动配置 label 数据标签位置
       position: "middle", // 'top', 'bottom', 'middle',
@@ -115,6 +106,16 @@ onBeforeUnmount(() => {
   clearInterval(timer.value);
 });
 </script>
+
+<template>
+  <a-card title="近一年设备销售量" :bordered="false" :headStyle="{ 'border-bottom': 0 }">
+    <template #extra>
+      <a href="https://g2plot.antv.vision/zh/docs/manual/getting-started" target="_black">组件地址</a>
+    </template>
+    <div id="WorkOrderStatisticsContainer"></div>
+  </a-card>
+</template>
+
 <style lang="less">
 .work-order {
   .icon-size {

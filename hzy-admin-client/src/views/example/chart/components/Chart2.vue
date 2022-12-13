@@ -1,12 +1,8 @@
-<template>
-  <div id="container2"></div>
-</template>
-
-<script setup>
+<script lang="ts" setup>
 import { onMounted, reactive } from "vue";
 import { Chart } from "@antv/g2";
 
-var chartObject = null;
+var chartObject: Chart | null = null;
 const data = reactive([
   { item: "事例一", count: 40, percent: 0.4 },
   { item: "事例二", count: 21, percent: 0.21 },
@@ -85,7 +81,7 @@ const createData = () => {
       percent: per,
     });
   }
-  chartObject.changeData(data);
+  chartObject!.changeData(data);
 };
 
 onMounted(() => {
@@ -94,5 +90,9 @@ onMounted(() => {
   setInterval(() => createData(), 2000);
 });
 </script>
+
+<template>
+  <div id="container2"></div>
+</template>
 
 <style scoped></style>

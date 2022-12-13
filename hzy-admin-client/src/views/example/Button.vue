@@ -1,37 +1,39 @@
-<template>
-  <div class="text-center" @click="methods.onHello">
-    <a-button type="primary">Primary</a-button>
-    <a-button>Default</a-button>
-    <a-button type="dashed">Dashed</a-button>
-    <a-button type="primary" danger>Danger</a-button>
-    <a-config-provider :auto-insert-space-in-button="false">
-      <a-button type="primary">按钮</a-button>
-    </a-config-provider>
-    <a-button type="primary">按钮</a-button>
-    <a-button type="link">Link</a-button>
-    <a-button class="btn-success">Success</a-button>
-    <a-button class="btn-info">Info</a-button>
-    <a-button class="btn-warning">warning</a-button>
-  </div>
-</template>
-
-<script>
-export default { name: "ButtonCom" };
-</script>
-<script setup>
+<script lang="ts" setup>
 import { ref } from "vue";
-import { message } from "ant-design-vue";
+import { Button, message, ConfigProvider } from "ant-design-vue";
+import PageContainer from "@/core/components/PageContainer.vue";
+defineOptions({ name: "ButtonCom" });
 
 const messageText = ref("hello");
 
-const methods = {
-  onHello() {
-    message.success(messageText.value);
-  },
-};
+function onHello() {
+  message.success(messageText.value);
+}
 </script>
+
+<template>
+  <PageContainer>
+    <div class="text-center btns" @click="onHello()">
+      <Button type="primary">Primary</Button>
+      <Button>Default</Button>
+      <Button type="dashed">Dashed</Button>
+      <Button type="primary" danger>Danger</Button>
+      <ConfigProvider :auto-insert-space-in-button="false">
+        <Button type="primary">按钮</Button>
+      </ConfigProvider>
+      <Button type="primary">按钮</Button>
+      <Button type="link">Link</Button>
+      <Button class="btn-success">Success</Button>
+      <Button class="btn-info">Info</Button>
+      <Button class="btn-warning">warning</Button>
+    </div>
+  </PageContainer>
+</template>
+
 <style lang="less" scope>
-.ant-btn {
-  margin: 10px;
+.btns {
+  .ant-btn {
+    margin: 10px;
+  }
 }
 </style>

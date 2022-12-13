@@ -1,13 +1,5 @@
-<template>
-  <a-card title="饼图-蜘蛛布局标签" :bordered="false" :headStyle="{ 'border-bottom': 0 }">
-    <template #extra>
-      <a href="https://g2plot.antv.vision/zh/docs/manual/getting-started" target="_black"> 组件地址</a>
-    </template>
-    <div id="container-home-chart3"></div>
-  </a-card>
-</template>
 
-<script setup>
+<script lang="ts" setup>
 import { onMounted } from "vue";
 import { Pie } from "@antv/g2plot";
 
@@ -20,7 +12,7 @@ onMounted(() => {
     { type: "分类五", value: 10 },
     { type: "其他", value: 5 },
   ];
-  document.getElementById("container-home-chart3").innerHTML = "";
+  document.getElementById("container-home-chart3")!.innerHTML = "";
   const piePlot = new Pie("container-home-chart3", {
     appendPadding: 10,
     data,
@@ -39,6 +31,16 @@ onMounted(() => {
   piePlot.render();
 });
 </script>
+
+<template>
+  <a-card title="饼图-蜘蛛布局标签" :bordered="false" :headStyle="{ 'border-bottom': 0 }">
+    <template #extra>
+      <a href="https://g2plot.antv.vision/zh/docs/manual/getting-started" target="_black"> 组件地址</a>
+    </template>
+    <div id="container-home-chart3"></div>
+  </a-card>
+</template>
+
 <style lang="less">
 .work-order {
   .icon-size {

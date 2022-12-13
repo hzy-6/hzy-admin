@@ -23,33 +23,36 @@ public class SysDictionaryService : AdminBaseService<IAdminRepository<SysDiction
     /// <summary>
     /// 获取列表数据
     /// </summary>
-    /// <param name="page"></param>
-    /// <param name="size"></param>
     /// <param name="search"></param>
     /// <returns></returns>
-    public async Task<PagingView> FindListAsync(int page, int size, SysDictionary search)
+    public async Task<List<SysDictionaryDto>> FindListAsync(SysDictionary search)
     {
         var query = (from sysDictionary in this._defaultRepository.Select
                      from sysDictionaryParent in this._defaultRepository.Select.Where(w => w.Id == sysDictionary.ParentId).DefaultIfEmpty()
-                     select new { t1 = sysDictionary, t2 = sysDictionaryParent })
-              .WhereIf(search?.ParentId == 0 || search?.ParentId == null, w => w.t1.ParentId == null || w.t1.ParentId == 0)
-              .WhereIf(search?.ParentId != 0 && search?.ParentId != null, w => w.t1.ParentId == search.ParentId)
+                     select new
+                     {
+                         t1 = sysDictionary,
+                         t2 = sysDictionaryParent
+                     })
+              //.WhereIf(search?.ParentId == 0 || search?.ParentId == null, w => w.t1.ParentId == null || w.t1.ParentId == 0)
+              //.WhereIf(search?.ParentId != 0 && search?.ParentId != null, w => w.t1.ParentId == search.ParentId)
               .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.t1.Name.Contains(search.Name))
               .OrderBy(w => w.t1.Sort)
-              .Select(w => new
+              .Select(w => new SysDictionaryDto
               {
-                  w.t1.Id,
-                  w.t1.Sort,
-                  w.t1.Code,
-                  w.t1.Name,
-                  w.t1.Value,
-                  父级菜单 = w.t2.Name,
-                  LastModificationTime = w.t1.LastModificationTime == null ? "" : w.t1.LastModificationTime.Value.ToString("yyyy-MM-dd"),
-                  CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
+                  Id = w.t1.Id,
+                  Sort = w.t1.Sort,
+                  Code = w.t1.Code,
+                  Name = w.t1.Name,
+                  Value = w.t1.Value,
+                  ParentId = w.t1.ParentId,
+                  ParentName = w.t2.Name,
+                  LastModificationTime = w.t1.LastModificationTime,
+                  CreationTime = w.t1.CreationTime,
               })
           ;
 
-        return await this._defaultRepository.AsPagingViewAsync(query, page, size);
+        return await query.ToListAsync();
     }
 
     /// <summary>
@@ -97,11 +100,11 @@ public class SysDictionaryService : AdminBaseService<IAdminRepository<SysDiction
     /// </summary>
     /// <param name="search"></param>
     /// <returns></returns>
-    public async Task<byte[]> ExportExcelAsync(SysDictionary search)
-    {
-        var tableViewModel = await this.FindListAsync(-1, 0, search);
-        return this.ExportExcelByPagingView(tableViewModel, null, "Id");
-    }
+    //public async Task<byte[]> ExportExcelAsync(SysDictionary search)
+    //{
+    //    var tableViewModel = await this.FindListAsync(search);
+    //    return this.ExportExcelByPagingView(tableViewModel, null, "Id");
+    //}
 
     /// <summary>
     /// 获取字典树

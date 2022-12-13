@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using HZY.Managers.EFCore.Interceptor;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.Options;
+using HZY.Infrastructure.SerilogUtil;
 
 namespace HZY.Managers.EFCore;
 
@@ -26,6 +27,27 @@ public static class EFCoreModule
     public static void UseEfCore(this IApplicationBuilder app)
     {
         app.UseHzyEFCoreRepository(typeof(AdminDbContext));
+
+        #region 开发环境检测是否需要数据库迁移
+        using var scope = app.ApplicationServices.CreateScope();
+        var webHostEnvironment = scope.ServiceProvider.GetService<IWebHostEnvironment>();
+        if (webHostEnvironment.IsDevelopment())
+        {
+            // 自动迁移 （如果迁移文件有变动）
+            var adminDbContext = scope.ServiceProvider.GetService<AdminDbContext>();
+            if (adminDbContext.Database.GetPendingMigrations().Count() > 0)
+            {
+                try
+                {
+                    adminDbContext.Database.Migrate();
+                }
+                catch (Exception ex)
+                {
+                    LogUtil.Log.Error(ex.Message, ex);
+                }
+            }
+        }
+        #endregion
     }
 
     /// <summary>
@@ -120,6 +142,9 @@ public static class EFCoreModule
             options.UseLoggerFactory(loggerFactory);
         }
     }
+
+
+
 
 
 }

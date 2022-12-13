@@ -49,7 +49,7 @@ public class SysRoleMenuFunctionService : AdminBaseService<IAdminRepository<SysR
 
         if (roleId == Guid.Empty) return;
 
-        await this._defaultRepository.DeleteAsync(w => w.RoleId == roleId && form.Select(w => w.MenuId).Contains(w.MenuId));
+        await this._defaultRepository.DeleteAsync(w => w.RoleId == roleId);
 
         foreach (var item in form)
         {

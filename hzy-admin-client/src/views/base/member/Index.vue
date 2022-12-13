@@ -1,226 +1,245 @@
-<template>
-  <div>
-    <List ref="refList" :tableData="state" @onChange="methods.onChange">
-      <!-- 检索插槽 -->
-      <template #search>
-        <a-row :gutter="[15, 15]">
-          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4">
-            <a-input v-model:value="state.search.vm.name" placeholder="名称" />
-          </a-col>
-          <!--button-->
-          <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="4" style="float: right">
-            <a-button type="primary" class="mr-15" @click="methods.findList">查询</a-button>
-            <a-button class="mr-15" @click="methods.onResetSearch">重置</a-button>
-            <a-button type="danger" class="mr-15" @click="state.search.state = false">关闭</a-button>
-          </a-col>
-        </a-row>
-      </template>
-      <!-- 工具栏左侧插槽 -->
-      <template #toolbar>
-        <!-- 列的隐藏显示 -->
-        <a-popover>
-          <template #content>
-            <div v-for="item in state.columns.filter((w) => w.fieldName.substr(0, 1) != '_')">
-              <a-checkbox v-model:checked="item.show" @change="() => nextTick(() => refList.table.refreshColumn())">{{ item.title }}</a-checkbox>
-            </div>
-          </template>
-          <a-button>
-            <AppIcon name="BarsOutlined" />
-          </a-button>
-        </a-popover>
-        <!-- 快捷检索 -->
-        <a-input v-model:value="state.search.vm.name" placeholder="名称" @keyup="methods.findList" />
-        <!-- 高级检索 -->
-        <template v-if="power.search">
-          <a-button @click="state.search.state = !state.search.state">
-            <template #icon>
-              <AppIcon :name="state.search.state ? 'UpOutlined' : 'DownOutlined'" />
-            </template>
-            高级检索
-          </a-button>
-        </template>
-        <!-- 新建 -->
-        <template v-if="power.insert">
-          <a-button type="primary" @click="methods.openForm()">
-            <template #icon>
-              <AppIcon name="PlusOutlined" />
-            </template>
-            新建
-          </a-button>
-        </template>
-        <!-- 批量删除 -->
-        <template v-if="power.delete">
-          <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList()" okText="确定" cancelText="取消">
-            <a-button type="danger">
-              <template #icon>
-                <AppIcon name="DeleteOutlined" />
-              </template>
-              批量删除
-            </a-button>
-          </a-popconfirm>
-        </template>
-        <!-- 更多操作 -->
-        <a-dropdown>
-          <template #overlay>
-            <a-menu>
-              <a-menu-item key="1" @click="methods.exportExcel">导出 Excel</a-menu-item>
-            </a-menu>
-          </template>
-          <a-button>
-            更多操作
-            <AppIcon name="DownOutlined" />
-          </a-button>
-        </a-dropdown>
-      </template>
-      <!-- 表格 -->
-      <template #table-col-default>
-        <!-- 动态列 -->
-        <template v-for="item in state.columns.filter((w) => w.fieldName != 'id')">
-          <!-- 头像自定义列 -->
-          <template v-if="item.fieldName == 'photo'">
-            <vxe-column :field="item.fieldName" :title="item.title" :visible="item.show" :key="item.id">
-              <template #default="{ row }">
-                <img :src="methods.handlePhoto(row.photo)" width="35" height="35" />
-              </template>
-            </vxe-column>
-          </template>
-          <template v-else>
-            <vxe-column :field="item.fieldName" :title="item.title" :visible="item.show" :key="item.id"></vxe-column>
-          </template>
-        </template>
-        <!--  v-if="power.update || power.delete" 预防操作列还存在 -->
-        <vxe-column field="id" title="操作" v-if="power.update || power.delete">
-          <template #default="{ row }">
-            <template v-if="power.update">
-              <a href="javascript:void(0)" @click="methods.jumpDetails(row)">详情</a>
-            </template>
-            <a-divider type="vertical" />
-            <template v-if="power.update">
-              <a href="javascript:void(0)" @click="methods.openForm(row.id)">编辑</a>
-            </template>
-            <a-divider type="vertical" />
-            <template v-if="power.delete">
-              <a-popconfirm title="您确定要删除吗?" @confirm="methods.deleteList(row.id)" okText="确定" cancelText="取消">
-                <a class="text-danger">删除</a>
-              </a-popconfirm>
-            </template>
-          </template>
-        </vxe-column>
-      </template>
-    </List>
-
-    <!--表单弹层-->
-    <Info ref="refForm" @onSuccess="() => methods.findList()" />
-  </div>
-</template>
-
-<script>
-export default { name: "base_member" };
-</script>
-<script setup>
-import { onMounted, reactive, ref, nextTick } from "vue";
-import { useAppStore } from "@/store";
-import List from "@/components/curd/List.vue";
-import AppIcon from "@/components/AppIcon.vue";
+<script lang="ts" setup>
+import { reactive, ref, onMounted } from "vue";
+import { FormInstance } from "ant-design-vue";
+import { useAuthority } from "@/utils/Authority";
+import AppIcon from "@/core/components/AppIcon.vue";
 import Info from "./Info.vue";
-import tools from "@/scripts/tools";
-import appConsts from "@/scripts/app-consts";
-import service from "@/service/base/memberService";
-import router from "@/router/index";
+import Tools from "@/core/utils/Tools";
+import PageContainer from "@/core/components/PageContainer.vue";
+import TableCurd from "@/core/components/curd/TableCurd.vue";
+import MemberService from "@/services/base/MemberService";
+import AppConsts from "@/utils/AppConsts";
+import router from "@/core/router";
 
-const appStore = useAppStore();
+defineOptions({ name: "base_member" });
+
 const state = reactive({
-  //检索
   search: {
     state: false,
-    fieldCount: 2,
     vm: {
-      name: "",
+      name: undefined,
     },
   },
   loading: false,
-  pageSizeOptions: [10, 20, 50, 100, 500, 1000],
-  rows: 10,
   page: 1,
-  total: 0,
-  columns: [],
-  data: [],
-  domainName: appConsts.domainName,
+  size: 10,
+  total: 100,
+  columns: [] as any,
+  data: [] as any,
 });
-//表单 ref 对象
-const refForm = ref(null);
-const refList = ref(null);
 
 //权限
-const power = appStore.getPowerByMenuId(router.currentRoute.value.meta.menuId);
+const power = useAuthority();
+//表格
+const refTableCurd = ref<InstanceType<typeof TableCurd>>();
+//表单操作对象
+const refInfo = ref<InstanceType<typeof Info>>();
+//检索表单
+const refSearchForm = ref<FormInstance>();
 
-//事件 函数
-const methods = {
-  onChange(info) {
-    const { currentPage, pageSize } = info;
-    state.page = currentPage == 0 ? 1 : currentPage;
-    state.rows = pageSize;
-    methods.findList();
-  },
-  //重置检索条件
-  onResetSearch() {
-    state.page = 1;
-    let searchVm = state.search.vm;
-    for (let key in searchVm) {
-      searchVm[key] = "";
-    }
-    methods.findList();
-  },
-  //获取列表数据
-  findList() {
-    state.loading = true;
-    service.findList(state.rows, state.page, state.search.vm).then((res) => {
-      let data = res.data;
-      state.loading = false;
-      state.page = data.page;
-      state.rows = data.size;
-      state.total = data.total;
-      state.columns = data.columns;
-      state.data = data.dataSource;
-    });
-  },
-  //删除数据
-  deleteList(id) {
-    let ids = [];
-    if (id) {
-      ids.push(id);
-    } else {
-      ids = refList.value.table.getCheckboxRecords().map((w) => w.id);
-    }
-    service.deleteList(ids).then((res) => {
-      if (res.code != 1) return;
-      tools.message("删除成功!", "成功");
-      methods.findList();
-    });
-  },
-  //打开表单页面
-  openForm(id) {
-    refForm.value.openForm({ visible: true, key: id });
-  },
-  exportExcel() {
-    service.exportExcel(state.search.vm);
-  },
-  //跳转详情
-  jumpDetails(row) {
-    router.push(`/base/member/details/${row.id}/${row.name}`);
-  },
-  //处理头像
-  handlePhoto(photo) {
-    if (photo) {
-      var photoArray = JSON.parse(photo);
-      return appConsts.domainName + (photoArray.length > 0 ? photoArray[0].url : "");
-    }
-
-    return null;
-  },
-};
-
+/**
+ * 初始化
+ */
 onMounted(() => {
-  methods.findList();
+  findList();
 });
+
+/**
+ *获取数据
+ */
+async function findList() {
+  state.loading = true;
+  const result = await MemberService.findList(state.page, state.size, state.search.vm);
+  state.loading = false;
+  if (result.code != 1) return;
+  state.page = result.data.page;
+  state.size = result.data.size;
+  state.total = result.data.total;
+  state.columns = result.data.columns;
+  state.data = result.data.dataSource;
+}
+
+/**
+ * 删除数据
+ * @param id
+ */
+async function deleteList(id?: string) {
+  let ids: string[] = [];
+  if (id) {
+    ids.push(id);
+  } else {
+    ids = refTableCurd.value?.getSelectedRowKeys() ?? [];
+  }
+
+  if (ids.length == 0) return Tools.message.error("请选择要删除的行!");
+
+  state.loading = true;
+  const result = await MemberService.deleteList(ids);
+  state.loading = false;
+  if (result.code != 1) return;
+  Tools.message.success("删除成功!");
+  findList();
+}
+
+/**
+ * 导出excel
+ */
+function exportExcel() {
+  MemberService.exportExcel(state.search.vm);
+}
+
+/**
+ * 处理头像
+ * @param photo
+ */
+function handlePhoto(photo: string) {
+  if (photo) {
+    var photoArray = JSON.parse(photo);
+    return AppConsts.domainServerApi + (photoArray.length > 0 ? photoArray[0].url : "");
+  }
+
+  return undefined;
+}
+
+/**
+ * 跳转详情
+ * @param row
+ */
+function jumpDetails(row: any) {
+  router.push(`/base/member/details/${row.id}/${row.name}`);
+}
 </script>
+
+<template>
+  <PageContainer>
+    <TableCurd
+      ref="refTableCurd"
+      :config="state"
+      @change="
+        ({ page, pageSize }) => {
+          state.page = page == 0 ? 1 : page;
+          state.size = pageSize;
+          findList();
+        }
+      "
+      @show-size-change="
+        ({ current, size }) => {
+          state.page = current == 0 ? 1 : current;
+          state.size = size;
+          findList();
+        }
+      "
+    >
+      <!-- search -->
+      <template #search>
+        <a-form ref="refSearchForm" :model="state.search.vm" v-if="power.search">
+          <a-row :gutter="[16, 0]">
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
+              <a-form-item class="mb-0" name="name" label="名称">
+                <a-input v-model:value="state.search.vm.name" placeholder="名称" />
+              </a-form-item>
+            </a-col>
+            <!--button-->
+            <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" class="text-right">
+              <a-space :size="8">
+                <a-button
+                  @click="
+                    state.page = 1;
+                    refSearchForm?.resetFields();
+                    findList();
+                  "
+                >
+                  重置
+                </a-button>
+                <a-button
+                  type="primary"
+                  @click="
+                    state.page = 1;
+                    findList();
+                  "
+                >
+                  查询
+                </a-button>
+              </a-space>
+            </a-col>
+          </a-row>
+        </a-form>
+      </template>
+      <!-- toolbar-left -->
+      <template #toolbar-left>
+        <a-button @click="state.search.state = !state.search.state" v-if="power.search">
+          <div v-if="state.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
+          <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
+        </a-button>
+        <a-button type="primary" @click="() => refInfo?.open()" v-if="power.insert">
+          <template #icon>
+            <AppIcon name="PlusOutlined" />
+          </template>
+          新建
+        </a-button>
+        <a-popconfirm title="您确定要删除?" @confirm="deleteList()" okText="确定" cancelText="取消" v-if="power.delete">
+          <a-button type="primary" danger>
+            <template #icon>
+              <AppIcon name="DeleteOutlined" />
+            </template>
+            批量删除
+          </a-button>
+        </a-popconfirm>
+      </template>
+      <!-- toolbar-right -->
+      <template #toolbar-right>
+        <a-dropdown>
+          <template #overlay>
+            <a-menu>
+              <a-menu-item key="1" @click="exportExcel()">导出 Excel</a-menu-item>
+            </a-menu>
+          </template>
+          <a-button> 更多 <AppIcon name="ellipsis-outlined" /> </a-button>
+        </a-dropdown>
+        <!-- 列设置 -->
+        <a-popover>
+          <template #content>
+            <div v-for="item in state.columns.filter((w:any) => w.fieldName.substr(0, 1) != '_')">
+              <a-checkbox v-model:checked="item.show">{{ item.title }}</a-checkbox>
+            </div>
+          </template>
+          <a-button type="text">
+            <template #icon><AppIcon name="setting-outlined" /> </template>
+          </a-button>
+        </a-popover>
+      </template>
+      <!-- table-col -->
+      <template #table-col>
+        <template v-for="item in state.columns.filter((w:any) => w.fieldName !== 'id')" :key="item.fieldName">
+          <!-- 头像自定义列 -->
+          <template v-if="item.fieldName == 'photo'">
+            <a-table-column :title="item.title" :data-index="item.fieldName" v-if="item.show">
+              <template #default="{ record }">
+                <img :src="handlePhoto(record.photo)" width="35" height="35" />
+              </template>
+            </a-table-column>
+          </template>
+          <template v-else>
+            <a-table-column :title="item.title" :data-index="item.fieldName" v-if="item.show" />
+          </template>
+        </template>
+        <!-- 操作 -->
+        <a-table-column title="操作" data-index="id" v-if="power.update || power.delete">
+          <template #default="{ record }">
+            <template v-if="power.update">
+              <a href="javascript:void(0)" @click="jumpDetails(record)">详情</a>
+            </template>
+            <a-divider type="vertical" />
+            <a href="javascript:;" @click="() => refInfo?.open(record.id)" v-if="power.update">编辑</a>
+            <a-divider type="vertical" />
+            <a-popconfirm title="您确定要删除?" @confirm="deleteList(record.id)" okText="确定" cancelText="取消" v-if="power.delete">
+              <a class="text-danger">删除</a>
+            </a-popconfirm>
+          </template>
+        </a-table-column>
+      </template>
+    </TableCurd>
+    <!-- Info -->
+    <Info ref="refInfo" :onSuccess="() => findList()" />
+  </PageContainer>
+</template>

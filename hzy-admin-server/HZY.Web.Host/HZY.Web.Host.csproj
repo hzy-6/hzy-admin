@@ -17,6 +17,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+	  <Content Remove="wwwroot\code_generation\template\tempClientInfo.cshtml~RF6593a682.TMP" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.6" />
 		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
 		  <PrivateAssets>all</PrivateAssets>
@@ -50,10 +54,10 @@
 		<Content Update="wwwroot\code_generation\template\tempController.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="wwwroot\code_generation\template\tempIndexVue.cshtml">
+		<Content Update="wwwroot\code_generation\template\tempClientIndex.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="wwwroot\code_generation\template\tempInfoVue.cshtml">
+		<Content Update="wwwroot\code_generation\template\tempClientInfo.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 		<Content Update="wwwroot\code_generation\template\tempModel.cshtml">
@@ -62,7 +66,7 @@
 		<Content Update="wwwroot\code_generation\template\tempService.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
-		<Content Update="wwwroot\code_generation\template\tempServiceJs.cshtml">
+		<Content Update="wwwroot\code_generation\template\tempClientService.cshtml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</Content>
 	</ItemGroup>

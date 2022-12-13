@@ -1,31 +1,8 @@
-<template>
-  <div>
-    <a-alert message="富文本编辑器 WangEditor" type="success">
-      <template #description>
-        <a target="_blank" href="https://www.wangeditor.com/">查看示例</a>
-      </template>
-    </a-alert>
-
-    <a-row :gutter="[15, 15]" class="mt-15">
-      <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <WangEditor v-model:html="text" domainName="http://localhost:5600" previewDomainName="http://localhost:5600" :height="560" />
-      </a-col>
-
-      <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-        <a-card hoverable :bordered="false" bodyStyle="min-height:640px">
-          <div v-html="text"></div>
-        </a-card>
-      </a-col>
-    </a-row>
-  </div>
-</template>
-
-<script>
-export default { name: "EditorCom" };
-</script>
-<script setup>
+<script lang="ts" setup>
 import { ref } from "vue";
-import WangEditor from "@/components/WangEditor.vue";
+import WangEditor from "@/core/components/WangEditor.vue";
+import PageContainer from "@/core/components/PageContainer.vue";
+defineOptions({ name: "EditorCom" });
 
 const text = ref("");
 text.value = `
@@ -35,5 +12,27 @@ text.value = `
 
 `;
 </script>
+
+<template>
+  <PageContainer>
+    <a-alert message="富文本编辑器 WangEditor" type="success">
+      <template #description>
+        <a target="_blank" href="https://www.wangeditor.com/">查看示例</a>
+      </template>
+    </a-alert>
+
+    <a-row :gutter="[15, 15]" class="mt-16">
+      <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+        <WangEditor v-model:html="text" domainName="http://localhost:5600" previewDomainName="http://localhost:5600" :height="560" />
+      </a-col>
+
+      <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+        <a-card hoverable :bordered="false" :bodyStyle="{ minHeight: '640px' }">
+          <div v-html="text"></div>
+        </a-card>
+      </a-col>
+    </a-row>
+  </PageContainer>
+</template>
 
 <style scoped></style>
