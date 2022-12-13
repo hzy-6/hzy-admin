@@ -1,1 +1,0 @@
-import{a,k as r,q as s,w as o,n,e as u,f as p,aV as c}from"./index-c3cea2d3.js";const k={setup(l){const t=a(0);return(f,e)=>(r(),s(p(c),{type:"primary",onClick:e[0]||(e[0]=i=>t.value++)},{default:o(()=>[n("\u8BA1\u6570:"+u(t.value),1)]),_:1}))}};export{k as default};
