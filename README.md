@@ -11,7 +11,7 @@
 
     后端技术：.Net6、EFCore6、Swagger 、Redis
     
-    前端：Vue3.x 、Antd Of Vue 3.0 、Vite 、Pinia 2.0.x
+    前端：Vue3.x 、Antd Of Vue 3.0 、Vite 、Pinia 2.0.x 、TypeScript
     
     开发需要环境：vs2022 、 .Net6.0 、VsCode 、Redis
 
