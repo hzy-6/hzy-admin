@@ -102,6 +102,14 @@ export interface MenuItemModel {
      */
     levelCode: string | null
     /**
+     * 模式 1=普通模式 2=微前端模式
+     */
+    mode: 1 | 2
+    /**
+     * 微前端模块地址
+     */
+    moduleUrl?: string | null
+    /**
      * 编号
      */
     number?: number | null
@@ -197,7 +205,7 @@ export default defineStore("MenuStore", () => {
         /**
          * 菜单自定义颜色 索引值
          */
-        menuCustomThemesIndex: 3,
+        menuCustomThemesIndex: 0,
         /**
          * 菜单收展
          */

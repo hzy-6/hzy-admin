@@ -36,13 +36,6 @@ class AppConsts {
     static authorizationKeyName: string = "Authorization"
 
     /**
-     * 打包给目录的前缀
-     * 生产环境默认：client 文件夹包起来
-     * 开发环境默认：/
-     */
-    static packDirectoryPrefix: string = process.env.NODE_ENV == "production" ? "/client/" : "/";
-
-    /**
      * 系统标题
      */
     static appTitle: string = "HzyAdmin";
@@ -61,6 +54,7 @@ class AppConsts {
         close: false,
         parentId: null,
         type: 2,
+        mode: 1,
         levelCode: null,
         children: [],
     };

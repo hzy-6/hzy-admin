@@ -1,4 +1,4 @@
-import { defineComponent, computed } from "vue";
+import { defineComponent, computed, onMounted } from "vue";
 import { ConfigProvider, Spin } from "ant-design-vue";
 import AppStore from "@/core/store/AppStore";
 import zhCN from "ant-design-vue/es/locale/zh_CN";
@@ -19,6 +19,16 @@ export default defineComponent({
             // }
             return document.body;
         };
+
+        onMounted(() => {
+
+            ConfigProvider.config({
+                theme: {
+                    primaryColor: '#2f54eb'
+                },
+            });
+
+        });
 
         return () => (
             <ConfigProvider autoInsertSpaceInButton={false} locale={zhCN} getPopupContainer={getPopupContainer}>

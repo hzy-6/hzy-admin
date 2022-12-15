@@ -222,7 +222,9 @@ class Tools {
      */
     static setAuthorization(tokenValue: string): void {
         const cookies = useCookies();
-        cookies.set(AppConsts.tokenKey, tokenValue);
+        cookies.set(AppConsts.tokenKey, tokenValue, {
+            path: "/"
+        });
     }
 
     /**

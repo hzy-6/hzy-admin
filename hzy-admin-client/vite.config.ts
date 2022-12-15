@@ -17,6 +17,11 @@ export default defineConfig({
             },
         })
     ],
+    /**
+     * 打包给目录的前缀
+     * 生产环境默认：client 文件夹包起来
+     * 开发环境默认：/
+     */
     base: process.env.NODE_ENV == "production" ? "/client/" : "/",
     server: {
         port: 5858
