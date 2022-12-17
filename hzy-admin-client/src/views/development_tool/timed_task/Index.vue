@@ -124,7 +124,7 @@ async function onChecked(checked: number, id: string) {
                 un-checked-children="停止"
                 :checkedValue="1"
                 :unCheckedValue="0"
-                @change="(checked) => onChecked(checked as number,item.id)"
+                @change="(checked:any) => onChecked(checked as number,item.id as string)"
               />
             </div>
           </div>

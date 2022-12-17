@@ -146,7 +146,7 @@ function onExpandedAll() {
             v-model:expandedKeys="state.tree.expandedKeys"
             v-model:checkedKeys="state.tree.checkedKeys"
             @check="(checked :any)=>state.selectAll = checked.length == state.tree.allKeys.length"
-            @expand="(expandedKeys) => (state.expandedAll = expandedKeys.length == state.tree.allExpandedKeys.length)"
+            @expand="(expandedKeys:any[]) => (state.expandedAll = expandedKeys.length == state.tree.allExpandedKeys.length)"
             checkable
             :tree-data="state.tree.data"
           >

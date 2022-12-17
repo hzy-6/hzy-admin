@@ -113,11 +113,16 @@ function onChangeCheckbox(values: any, row: any) {
         <ATableColumn title="功能" data-index="id">
           <template #default="{ record }">
             <ASpace :size="8" v-if="record.menuFunctions.length > 0">
-              <a-checkbox v-model:checked="record.checkAll" :indeterminate="record.indeterminate" @change="(e) => onCheckAllChange(e, record)" v-if="record.menuFunctions.length > 0">
+              <a-checkbox
+                v-model:checked="record.checkAll"
+                :indeterminate="record.indeterminate"
+                @change="(e:CheckboxChangeEvent) => onCheckAllChange(e, record)"
+                v-if="record.menuFunctions.length > 0"
+              >
                 全选/取消
               </a-checkbox>
               <ADivider type="vertical" />
-              <a-checkbox-group style="display: block" v-model:value="record.checkedMenuFunctionIds" @change="(values) => onChangeCheckbox(values, record)">
+              <a-checkbox-group style="display: block" v-model:value="record.checkedMenuFunctionIds" @change="(values:any) => onChangeCheckbox(values, record)">
                 <span v-for="item in record.menuFunctions" :key="item.id" class="mr-16">
                   <a-checkbox :value="item.id">{{ item.label }}</a-checkbox>
                 </span>

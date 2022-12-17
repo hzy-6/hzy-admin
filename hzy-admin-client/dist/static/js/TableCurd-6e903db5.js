@@ -1,0 +1,1 @@
+import"./TableCurd.vue_vue_type_script_setup_true_lang-5f4c0a1b.js";import{_ as i}from"./TableCurd.vue_vue_type_script_setup_true_lang-5f4c0a1b.js";import"./index-ddc31fce.js";import"./AppIcon.vue_vue_type_script_setup_true_lang-1e1e30d5.js";export{i as default};

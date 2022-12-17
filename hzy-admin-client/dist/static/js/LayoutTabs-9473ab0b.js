@@ -1,1 +1,0 @@
-import"./LayoutTabs.vue_vue_type_style_index_0_scope_true_lang-92cab4a9.js";import{_ as i}from"./LayoutTabs.vue_vue_type_style_index_0_scope_true_lang-92cab4a9.js";import"./AppIcon.vue_vue_type_script_setup_true_lang-224083f4.js";import"./index-87b89bfd.js";export{i as default};

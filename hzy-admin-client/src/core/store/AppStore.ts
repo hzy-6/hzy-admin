@@ -144,7 +144,7 @@ export default defineStore("AppStore", () => {
      * @param {*} menuId 
      * @returns 
      */
-    function getAuthorityByMenuId(menuId: string) {
+    function getAuthorityByMenuId(menuId: number) {
         const data = state.userInfo.menuPowers.find((w) => w.menuId == menuId);
         return data ? data : {};
     }

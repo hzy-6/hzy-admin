@@ -35,7 +35,7 @@ export function useAuthority() {
  * 根据菜单 id 获取使用权限
  * @returns 
  */
-export function useAuthorityByMenuId(menuId: string) {
+export function useAuthorityByMenuId(menuId: number) {
     const appStore = AppStore();
     return appStore.getAuthorityByMenuId(menuId);
 }

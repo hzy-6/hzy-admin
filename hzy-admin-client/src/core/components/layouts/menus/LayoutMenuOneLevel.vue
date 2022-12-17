@@ -39,7 +39,7 @@ const methods: any = {
   //菜单选中
   onMenuSelected(urlOrId: string) {
     const routeInfo = appStore.getRouterByFullPath(urlOrId);
-    if (routeInfo && router.hasRoute(routeInfo.name) && state.selectedKey != urlOrId) {
+    if (routeInfo && router.hasRoute(routeInfo.name as string) && state.selectedKey != urlOrId) {
       router.push(urlOrId);
     } else {
       state.selectedKey = urlOrId;
