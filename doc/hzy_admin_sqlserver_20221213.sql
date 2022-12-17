@@ -5,14 +5,14 @@
  Source Server Type    : SQL Server
  Source Server Version : 14001000
  Source Host           : .:1433
- Source Catalog        : hzy_admin_sqlserver_20221212
+ Source Catalog        : hzy_admin_sqlserver_20221213
  Source Schema         : dbo
 
  Target Server Type    : SQL Server
  Target Server Version : 14001000
  File Encoding         : 65001
 
- Date: 13/12/2022 22:23:19
+ Date: 17/12/2022 15:07:08
 */
 
 
@@ -1331,7 +1331,8 @@ CREATE TABLE [dbo].[sys_menu] (
   [State] bit  NOT NULL,
   [Type] int  NOT NULL,
   [Mode] int  NOT NULL,
-  [ModuleUrl] varchar(500) COLLATE Chinese_PRC_CI_AS  NULL
+  [ModuleUrl] varchar(500) COLLATE Chinese_PRC_CI_AS  NULL,
+  [ModuleUrlPro] varchar(500) COLLATE Chinese_PRC_CI_AS  NULL
 )
 GO
 
@@ -1345,97 +1346,100 @@ GO
 SET IDENTITY_INSERT [dbo].[sys_menu] ON
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'1', NULL, N'2021-05-28 11:49:02.0000000', NULL, N'2022-03-04 12:25:39.0000000', N'1', N'10', N'更多示例', NULL, NULL, NULL, NULL, N'MoreOutlined', NULL, N'1', N'1', N'1', N'1', N'1', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'1', NULL, N'2021-05-28 11:49:02.0000000', NULL, N'2022-03-04 12:25:39.0000000', N'1', N'10', N'更多示例', NULL, NULL, NULL, NULL, N'MoreOutlined', NULL, N'1', N'1', N'1', N'1', N'1', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'2', NULL, N'2021-01-16 16:05:22.0000000', NULL, N'2022-03-18 12:06:20.0000000', N'1.2', N'10', N'查看更多组件', N'AppComponentsCom', N'views/example/AppComponents.vue', N'/app/components', NULL, N'LayoutOutlined', N'1', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'2', NULL, N'2021-01-16 16:05:22.0000000', NULL, N'2022-03-18 12:06:20.0000000', N'1.2', N'10', N'查看更多组件', N'AppComponentsCom', N'views/example/AppComponents.vue', N'/app/components', NULL, N'LayoutOutlined', N'1', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'3', NULL, N'2020-12-17 14:58:05.0000000', NULL, N'2022-03-04 12:26:14.0000000', N'1.3', N'30', N'按钮', N'ButtonCom', N'views/example/Button.vue', N'/button', NULL, N'AppstoreOutlined', N'1', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'3', NULL, N'2020-12-17 14:58:05.0000000', NULL, N'2022-03-04 12:26:14.0000000', N'1.3', N'30', N'按钮', N'ButtonCom', N'views/example/Button.vue', N'/button', NULL, N'AppstoreOutlined', N'1', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'4', NULL, N'2021-01-16 16:06:33.0000000', NULL, N'2022-03-04 12:26:21.0000000', N'1.4', N'40', N'图表 AntV G2', NULL, NULL, NULL, NULL, N'PieChartOutlined', N'1', N'1', N'1', N'1', N'1', N'1', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'4', NULL, N'2021-01-16 16:06:33.0000000', NULL, N'2022-03-04 12:26:21.0000000', N'1.4', N'40', N'图表 AntV G2', NULL, NULL, NULL, NULL, N'PieChartOutlined', N'1', N'1', N'1', N'1', N'1', N'1', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'5', NULL, N'2021-01-16 16:07:24.0000000', NULL, N'2022-03-04 12:26:25.0000000', N'1.4.5', N'10', N'基础图表', N'ChartBaseCom', N'views/example/chart/Base.vue', N'/chart/base', NULL, NULL, N'4', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'5', NULL, N'2021-01-16 16:07:24.0000000', NULL, N'2022-03-04 12:26:25.0000000', N'1.4.5', N'10', N'基础图表', N'ChartBaseCom', N'views/example/chart/Base.vue', N'/chart/base', NULL, NULL, N'4', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'6', NULL, N'2021-01-16 16:10:06.0000000', NULL, N'2022-03-04 12:26:28.0000000', N'1.4.6', N'20', N'更多图表', N'ChartMoreCom', N'views/example/chart/More.vue', N'/chart/more', NULL, NULL, N'4', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'6', NULL, N'2021-01-16 16:10:06.0000000', NULL, N'2022-03-04 12:26:28.0000000', N'1.4.6', N'20', N'更多图表', N'ChartMoreCom', N'views/example/chart/More.vue', N'/chart/more', NULL, NULL, N'4', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'7', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:26:34.0000000', N'1.7', N'50', N'表格管理', NULL, NULL, NULL, NULL, N'TableOutlined', N'1', N'1', N'1', N'1', N'1', N'1', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'7', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:26:34.0000000', N'1.7', N'50', N'表格管理', NULL, NULL, NULL, NULL, N'TableOutlined', N'1', N'1', N'1', N'1', N'1', N'1', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'8', NULL, N'2020-12-17 14:49:12.0000000', NULL, N'2022-03-04 12:26:38.0000000', N'1.7.8', N'100', N'基础列表', N'BaseListCom', N'views/example/BaseList.vue', N'/base/list', NULL, NULL, N'7', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'8', NULL, N'2020-12-17 14:49:12.0000000', NULL, N'2022-03-04 12:26:38.0000000', N'1.7.8', N'100', N'基础列表', N'BaseListCom', N'views/example/BaseList.vue', N'/base/list', NULL, NULL, N'7', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'9', NULL, N'2020-12-17 14:51:07.0000000', NULL, N'2022-03-04 12:26:41.0000000', N'1.7.9', N'110', N'标准表格', N'ListIndexCom', N'views/example/list/Index.vue', N'/list', NULL, NULL, N'7', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'9', NULL, N'2020-12-17 14:51:07.0000000', NULL, N'2022-03-04 12:26:41.0000000', N'1.7.9', N'110', N'标准表格', N'ListIndexCom', N'views/example/list/Index.vue', N'/list', NULL, NULL, N'7', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'10', NULL, N'2021-01-18 19:34:28.0000000', NULL, N'2022-03-04 12:26:46.0000000', N'1.10', N'60', N'富文本编辑器', N'EditorCom', N'views/example/Editor.vue', N'/editor', NULL, N'PicRightOutlined', N'1', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'10', NULL, N'2021-01-18 19:34:28.0000000', NULL, N'2022-03-04 12:26:46.0000000', N'1.10', N'60', N'富文本编辑器', N'EditorCom', N'views/example/Editor.vue', N'/editor', NULL, N'PicRightOutlined', N'1', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'11', NULL, N'2021-08-05 21:51:12.0000000', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-13 21:57:11.3135871', N'1.11', N'70', N'微前端', N'', N'', N'', N'', N'RadarChartOutlined', N'1', N'1', N'1', N'1', N'1', N'2', N'2', N'http://rapidscada.com.cn/#/')
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'11', NULL, N'2021-08-05 21:51:12.0000000', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-16 22:29:19.9538511', N'1.11', N'70', N'微前端', N'Iframe', N'core/components/Iframe.vue', N'/iframe', N'', N'RadarChartOutlined', N'1', N'1', N'1', N'1', N'1', N'2', N'2', N'https://www.yuque.com/u378909/irw2xs/mkotelqbfrlqux8e/edit#rFnU', N'http://rapidscada.com.cn/#/')
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'12', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:25:43.0000000', N'12', N'50', N'基础信息', NULL, NULL, NULL, NULL, N'GoldOutlined', NULL, N'1', N'1', N'1', N'1', N'1', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'12', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:25:43.0000000', N'12', N'50', N'基础信息', NULL, NULL, NULL, NULL, N'GoldOutlined', NULL, N'1', N'1', N'1', N'1', N'1', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'13', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:26:55.0000000', N'12.13', N'10', N'会员管理', N'base_member', N'views/base/member/Index.vue', N'/base/member', NULL, N'UsergroupAddOutlined', N'12', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'13', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:26:55.0000000', N'12.13', N'10', N'会员管理', N'base_member', N'views/base/member/Index.vue', N'/base/member', NULL, N'UsergroupAddOutlined', N'12', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'14', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:25:46.0000000', N'14', N'100', N'系统管理', NULL, NULL, NULL, NULL, N'DesktopOutlined', NULL, N'1', N'1', N'1', N'1', N'1', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'14', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:25:46.0000000', N'14', N'100', N'系统管理', NULL, NULL, NULL, NULL, N'DesktopOutlined', NULL, N'1', N'1', N'1', N'1', N'1', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'15', NULL, N'2018-03-10 12:16:38.0000000', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-04 16:28:51.0000000', N'14.15', N'100', N'账户管理', N'system_user', N'views/system/sys_user/Index.vue', N'/system/user', NULL, N'UserOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'15', NULL, N'2018-03-10 12:16:38.0000000', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-04 16:28:51.0000000', N'14.15', N'100', N'账户管理', N'system_user', N'views/system/sys_user/Index.vue', N'/system/user', NULL, N'UserOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'16', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-04-22 22:24:03.0000000', N'14.16', N'110', N'角色管理', N'system_role', N'views/system/sys_role/Index.vue', N'/system/role', NULL, N'TeamOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'16', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-04-22 22:24:03.0000000', N'14.16', N'110', N'角色管理', N'system_role', N'views/system/sys_role/Index.vue', N'/system/role', NULL, N'TeamOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'17', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:27:11.0000000', N'14.17', N'120', N'功能管理', N'system_function', N'views/system/sys_function/Index.vue', N'/system/function', NULL, N'ControlOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'17', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:27:11.0000000', N'14.17', N'120', N'功能管理', N'system_function', N'views/system/sys_function/Index.vue', N'/system/function', NULL, N'ControlOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'19', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:27:19.0000000', N'14.19', N'150', N'个人中心', N'system_personal_center', N'views/system/personal_center/Index.vue', N'/system/personal/center', NULL, N'FormOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'19', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:27:19.0000000', N'14.19', N'150', N'个人中心', N'system_personal_center', N'views/system/personal_center/Index.vue', N'/system/personal/center', NULL, N'FormOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'20', NULL, N'2021-05-27 17:29:49.0000000', NULL, N'2022-03-04 12:27:23.0000000', N'14.20', N'160', N'岗位管理', N'system_post', N'views/system/sys_post/Index.vue', N'/system/post', NULL, N'IdcardOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'20', NULL, N'2021-05-27 17:29:49.0000000', NULL, N'2022-03-04 12:27:23.0000000', N'14.20', N'160', N'岗位管理', N'system_post', N'views/system/sys_post/Index.vue', N'/system/post', NULL, N'IdcardOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'21', NULL, N'2021-05-27 20:27:56.0000000', NULL, N'2022-03-04 12:27:27.0000000', N'14.21', N'170', N'组织机构', N'system_organization', N'views/system/sys_organization/Index.vue', N'/system/organization', NULL, N'ClusterOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'21', NULL, N'2021-05-27 20:27:56.0000000', NULL, N'2022-03-04 12:27:27.0000000', N'14.21', N'170', N'组织机构', N'system_organization', N'views/system/sys_organization/Index.vue', N'/system/organization', NULL, N'ClusterOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'22', NULL, N'2018-03-10 12:17:03.0000000', NULL, N'2022-03-04 12:27:41.0000000', N'29.22', N'10', N'接口文档', N'swagger', N'views/development_tool/Swagger.vue', N'/development_tool/swagger', NULL, N'FileSearchOutlined', N'29', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'22', NULL, N'2018-03-10 12:17:03.0000000', NULL, N'2022-03-04 12:27:41.0000000', N'29.22', N'10', N'接口文档', N'swagger', N'views/development_tool/Swagger.vue', N'/development_tool/swagger', NULL, N'FileSearchOutlined', N'29', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'23', NULL, N'2021-07-25 21:50:01.0000000', NULL, N'2022-03-04 12:27:31.0000000', N'14.23', N'190', N'数据字典', N'system_dictionary', N'views/system/sys_dictionary/Index.vue', N'/system/dictionary', NULL, N'FileDoneOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'23', NULL, N'2021-07-25 21:50:01.0000000', NULL, N'2022-03-04 12:27:31.0000000', N'14.23', N'190', N'数据字典', N'system_dictionary', N'views/system/sys_dictionary/Index.vue', N'/system/dictionary', NULL, N'FileDoneOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'24', NULL, N'2021-08-05 21:24:54.0000000', NULL, N'2022-03-04 12:27:35.0000000', N'14.24', N'200', N'操作日志', N'sys_operation_log', N'views/system/sys_operation_log/Index.vue', N'/system/sys_operation_log', N'', N'ContainerOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'24', NULL, N'2021-08-05 21:24:54.0000000', NULL, N'2022-03-04 12:27:35.0000000', N'14.24', N'200', N'操作日志', N'sys_operation_log', N'views/system/sys_operation_log/Index.vue', N'/system/sys_operation_log', N'', N'ContainerOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'25', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:27:15.0000000', N'14.25', N'130', N'菜单功能', N'system_menu', N'views/system/sys_menu/Index.vue', N'/system/menu', NULL, N'MenuOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'25', NULL, N'2018-03-10 12:16:38.0000000', NULL, N'2022-03-04 12:27:15.0000000', N'14.25', N'130', N'菜单功能', N'system_menu', N'views/system/sys_menu/Index.vue', N'/system/menu', NULL, N'MenuOutlined', N'14', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'28', NULL, N'2021-12-29 17:13:26.0000000', NULL, N'2022-03-04 12:26:00.0000000', N'1.28', N'1', N'Vxe-Table', N'VxeTableCom', N'views/example/VxeTable.vue', N'/vxe/table', NULL, N'BorderlessTableOutlined', N'1', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'28', NULL, N'2021-12-29 17:13:26.0000000', NULL, N'2022-03-04 12:26:00.0000000', N'1.28', N'1', N'Vxe-Table', N'VxeTableCom', N'views/example/VxeTable.vue', N'/vxe/table', NULL, N'BorderlessTableOutlined', N'1', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'29', NULL, N'2022-01-12 14:17:21.0000000', NULL, N'2022-03-04 12:25:49.0000000', N'29', N'200', N'开发工具', NULL, NULL, NULL, NULL, N'CodepenOutlined', NULL, N'1', N'1', N'1', N'1', N'1', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'29', NULL, N'2022-01-12 14:17:21.0000000', NULL, N'2022-03-04 12:25:49.0000000', N'29', N'200', N'开发工具', NULL, NULL, NULL, NULL, N'CodepenOutlined', NULL, N'1', N'1', N'1', N'1', N'1', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'30', NULL, N'2022-01-12 14:22:04.0000000', NULL, N'2022-03-04 12:27:44.0000000', N'29.30', N'20', N'定时任务', N'TimedTaskCom', N'views/development_tool/timed_task/Index.vue', N'/development_tool/timed_task', NULL, N'FieldTimeOutlined', N'29', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'30', NULL, N'2022-01-12 14:22:04.0000000', NULL, N'2022-03-04 12:27:44.0000000', N'29.30', N'20', N'定时任务', N'TimedTaskCom', N'views/development_tool/timed_task/Index.vue', N'/development_tool/timed_task', NULL, N'FieldTimeOutlined', N'29', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'31', NULL, N'2022-01-12 15:39:46.0000000', NULL, N'2022-05-24 22:05:57.0000000', N'29.31', N'30', N'代码生成', N'LowCode', N'views/development_tool/low_code/Index.vue', N'/development-tool/low-code', NULL, N'CodeTwoTone', N'29', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'31', NULL, N'2022-01-12 15:39:46.0000000', NULL, N'2022-05-24 22:05:57.0000000', N'29.31', N'30', N'代码生成', N'LowCode', N'views/development_tool/low_code/Index.vue', N'/development-tool/low-code', NULL, N'CodeTwoTone', N'29', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'32', NULL, N'2022-02-24 10:51:38.0000000', NULL, N'2022-03-18 12:06:38.0000000', N'1.32', N'20', N'图标展示', N'IconsVue', N'views/example/Icons.vue', N'/icons', NULL, N'TagsTwoTone', N'1', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'32', NULL, N'2022-02-24 10:51:38.0000000', NULL, N'2022-03-18 12:06:38.0000000', N'1.32', N'20', N'图标展示', N'IconsVue', N'views/example/Icons.vue', N'/icons', NULL, N'TagsTwoTone', N'1', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'33', NULL, N'2022-04-10 10:55:41.0000000', NULL, N'2022-04-10 10:56:17.0000000', N'29.33', N'40', N'EFCore监控台', N'monitor_efcore', N'views/development_tool/monitor_efcore/Index.vue', N'/development_tool/monitor/efcore', NULL, N'DashboardFilled', N'29', N'1', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'33', NULL, N'2022-04-10 10:55:41.0000000', NULL, N'2022-04-10 10:56:17.0000000', N'29.33', N'40', N'EFCore监控台', N'monitor_efcore', N'views/development_tool/monitor_efcore/Index.vue', N'/development_tool/monitor/efcore', NULL, N'DashboardFilled', N'29', N'1', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
 GO
 
-INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl]) VALUES (N'36', NULL, N'2022-04-17 17:45:25.0000000', NULL, N'2022-04-17 17:49:13.0000000', N'12.13.36', N'1', N'详情', N'base_member_info_Details', N'views/base/member/components/Details.vue', N'/base/member/details/:id/:title', NULL, NULL, N'13', N'0', N'1', N'1', N'1', N'2', N'1', NULL)
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'36', NULL, N'2022-04-17 17:45:25.0000000', NULL, N'2022-04-17 17:49:13.0000000', N'12.13.36', N'1', N'详情', N'base_member_info_Details', N'views/base/member/components/Details.vue', N'/base/member/details/:id/:title', NULL, NULL, N'13', N'0', N'1', N'1', N'1', N'2', N'1', NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_menu] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [LevelCode], [Number], [Name], [ComponentName], [Url], [Router], [JumpUrl], [Icon], [ParentId], [Show], [Close], [KeepAlive], [State], [Type], [Mode], [ModuleUrl], [ModuleUrlPro]) VALUES (N'37', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-16 15:00:53.0000000', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-16 17:30:09.9426258', N'1.37', N'80', N'微前端2', N'Iframe123', N'core/components/Iframe.vue', N'/iframe123', NULL, N'AlipaySquareFilled', N'1', N'1', N'1', N'1', N'1', N'2', N'2', N'https://www.yuque.com/u378909/yidf7v/zx6egc', NULL)
 GO
 
 SET IDENTITY_INSERT [dbo].[sys_menu] OFF
@@ -1500,7 +1504,7 @@ GO
 INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'EC535908-8671-4928-0F25-08D9FDAD00AB', NULL, N'2022-03-04 15:24:47.0000000', NULL, N'2022-03-04 15:24:47.0000000', N'10', N'10', N'Display', N'显示', N'Display')
 GO
 
-INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'3BC0E68F-D03D-4E99-0F26-08D9FDAD00AB', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-13 21:57:11.3470627', NULL, N'2022-03-04 15:24:53.0000000', N'10', N'11', N'Display', N'显示', N'Display')
+INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'3BC0E68F-D03D-4E99-0F26-08D9FDAD00AB', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-16 22:29:20.0064301', NULL, N'2022-03-04 15:24:53.0000000', N'10', N'11', N'Display', N'显示', N'Display')
 GO
 
 INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'EB958545-6449-40DB-0F27-08D9FDAD00AB', NULL, N'2022-03-04 15:25:07.0000000', NULL, N'2022-03-04 15:25:07.0000000', N'10', N'13', N'Display', N'显示', N'Display')
@@ -1723,6 +1727,30 @@ INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [L
 GO
 
 INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'38B4704D-7C5D-4F89-A2E7-08DA3D8E6577', NULL, N'2022-05-24 22:05:57.0000000', NULL, N'2022-05-24 22:05:57.0000000', N'60', N'31', N'Search', N'检索', N'Search')
+GO
+
+INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'9C9B41FD-DB96-48CF-C07F-08DADF3345BD', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-16 17:30:09.9542259', NULL, NULL, N'10', N'37', N'Display', N'显示', N'Display')
+GO
+
+INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'47E1A6A3-4C89-46BF-C080-08DADF3345BD', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-16 17:30:09.9542276', NULL, NULL, N'20', N'37', N'Insert', N'添加', N'Insert')
+GO
+
+INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'D51A17AF-163E-4A74-C081-08DADF3345BD', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-16 17:30:09.9542277', NULL, NULL, N'30', N'37', N'Update', N'修改', N'Update')
+GO
+
+INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'C6400925-A381-4679-C082-08DADF3345BD', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-16 17:30:09.9542278', NULL, NULL, N'40', N'37', N'Delete', N'删除', N'Delete')
+GO
+
+INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'216E9AD6-CC3F-4E72-C083-08DADF3345BD', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-16 17:30:09.9542278', NULL, NULL, N'50', N'37', N'Save', N'保存', N'Save')
+GO
+
+INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'4E7CD8DF-2E35-4D5E-C084-08DADF3345BD', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-16 17:30:09.9542279', NULL, NULL, N'60', N'37', N'Search', N'检索', N'Search')
+GO
+
+INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'C981AA0B-D60E-4160-C085-08DADF3345BD', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-16 17:30:09.9542279', NULL, NULL, N'70', N'37', N'Export', N'导出', N'Export')
+GO
+
+INSERT INTO [dbo].[sys_menu_function] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Number], [MenuId], [FunctionCode], [FunctionName], [Remark]) VALUES (N'576F8A5D-1C47-47C9-C086-08DADF3345BD', N'0198459E-2034-4533-B843-5D227AD20740', N'2022-12-16 17:30:09.9542280', NULL, NULL, N'80', N'37', N'Print', N'打印', N'Print')
 GO
 
 
@@ -2537,6 +2565,1975 @@ GO
 INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'79B30448-FC30-40A2-B581-08DADD05B84D', N'00000000-0000-0000-0000-000000000000', N'2022-12-13 22:18:44.2621144', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'111', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
 GO
 
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'296357FC-4A4C-47BF-EB20-08DADD1FC1BD', N'00000000-0000-0000-0000-000000000000', N'2022-12-13 23:36:09.2806584', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'80', N'Edge108', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2903AED3-A330-418A-EB21-08DADD1FC1BD', N'00000000-0000-0000-0000-000000000000', N'2022-12-13 23:36:13.7489679', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'1350', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E6ADE806-B435-4E35-EB22-08DADD1FC1BD', N'00000000-0000-0000-0000-000000000000', N'2022-12-13 23:36:35.9252613', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'270', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'80B302A9-3D26-4527-EB23-08DADD1FC1BD', N'00000000-0000-0000-0000-000000000000', N'2022-12-13 23:37:20.9117060', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'292', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A7909285-22DD-4EB1-EB24-08DADD1FC1BD', N'00000000-0000-0000-0000-000000000000', N'2022-12-13 23:37:23.6751994', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'28', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'65BE7829-B1F7-485C-EB25-08DADD1FC1BD', N'00000000-0000-0000-0000-000000000000', N'2022-12-13 23:37:28.9067540', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AD0A169B-174B-488F-EB26-08DADD1FC1BD', N'00000000-0000-0000-0000-000000000000', N'2022-12-13 23:37:31.2889046', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'212', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EBF2FABE-2F57-4F8A-EB27-08DADD1FC1BD', N'00000000-0000-0000-0000-000000000000', N'2022-12-13 23:37:42.4863460', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'290', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B5C98012-784C-44A6-EB28-08DADD1FC1BD', N'00000000-0000-0000-0000-000000000000', N'2022-12-13 23:37:45.3262447', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'17', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'43A03F2F-6100-4092-EB29-08DADD1FC1BD', N'00000000-0000-0000-0000-000000000000', N'2022-12-13 23:45:44.0678851', NULL, NULL, N'/client/index.html', N'0.0.0.1', N'', N'', N'', N'0', N'Edge108', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'361C3506-DD03-4B23-8884-08DADE655D58', N'00000000-0000-0000-0000-000000000000', N'2022-12-15 14:26:56.7822185', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'96', N'Edge108', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'10B6349A-A122-4D0A-8885-08DADE655D58', N'00000000-0000-0000-0000-000000000000', N'2022-12-15 14:26:58.2522445', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'390', N'Edge108', N'Windows10', NULL, N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'05103721-AA02-471A-8886-08DADE655D58', N'00000000-0000-0000-0000-000000000000', N'2022-12-15 14:27:01.3247572', NULL, NULL, N'/api/account/check', N'0.0.0.1', N'', N'{"userName":"admin","userPassword":"123456"}', N'', N'1146', N'Edge108', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D4947798-074A-4DB8-8887-08DADE655D58', N'00000000-0000-0000-0000-000000000000', N'2022-12-15 14:27:02.5498936', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'687', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D4DF1B52-DB43-4663-8888-08DADE655D58', N'00000000-0000-0000-0000-000000000000', N'2022-12-15 14:27:21.6077106', NULL, NULL, N'/api/admin/SysMenu/FindList/1/1', N'0.0.0.1', N'', N'{
+  "creatorUserId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "creationTime": "2022-12-15T06:27:17.785Z",
+  "lastModifierUserId": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
+  "lastModificationTime": "2022-12-15T06:27:17.785Z",
+  "id": 0,
+  "levelCode": "string",
+  "number": 0,
+  "name": "string",
+  "componentName": "string",
+  "url": "string",
+  "router": "string",
+  "jumpUrl": "string",
+  "icon": "string",
+  "parentId": 0,
+  "show": true,
+  "close": true,
+  "keepAlive": true,
+  "state": true,
+  "type": 1,
+  "mode": 1,
+  "moduleUrl": "string"
+}', N'', N'30', N'Edge108', N'Windows10', NULL, N'菜单', N'查询列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7135A749-E0C7-4CF7-8889-08DADE655D58', N'00000000-0000-0000-0000-000000000000', N'2022-12-15 14:29:41.4552537', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'290', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'57205D2E-FD28-4F91-888A-08DADE655D58', N'00000000-0000-0000-0000-000000000000', N'2022-12-15 14:32:19.1293020', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'165', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8B01395B-6A49-48D3-90F4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:51:27.6379176', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'66', N'Edge108', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4A87B33B-468D-4FD6-90F5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:51:28.5393729', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'280', N'Edge108', N'Windows10', NULL, N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E2A1E175-8F00-493C-90F6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:51:48.7795753', NULL, NULL, N'/api/account/check', N'0.0.0.1', N'', N'{"userName":"admin","userPassword":"123456"}', N'', N'984', N'Edge108', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DA45823C-CC5D-448A-90F7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:51:49.7519603', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'497', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6BB05C66-F4DB-45E6-90F8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:52:01.1280995', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'18', N'Edge108', N'Windows10', NULL, N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2C174DC7-C6B9-4628-90F9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:52:02.9904460', NULL, NULL, N'/api/account/check', N'0.0.0.1', N'', N'{"userName":"admin","userPassword":"123456"}', N'', N'36', N'Edge108', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'32AA871B-2B4E-4E29-90FA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:52:03.3777469', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'281', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'37C31D2E-F765-4393-90FB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:52:11.4223129', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'74', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C6510BDF-A626-46EF-90FC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:52:18.4628556', NULL, NULL, N'/api/admin/SysMenu/findForm/11', N'0.0.0.1', N'', N'', N'', N'104', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1B628926-334D-4F5F-90FD-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:53:11.9634033', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'246', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AB6C05F3-FB6B-45F1-90FE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:53:13.8310774', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'38', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B86EC9D6-8071-434A-90FF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:54:00.1994952', NULL, NULL, N'/api/admin/SysMenu/findForm/11', N'0.0.0.1', N'', N'', N'', N'35', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CD19E53B-98CC-4BD3-9100-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:54:50.8555418', NULL, NULL, N'/api/admin/SysMenu/update', N'0.0.0.1', N'', N'{"id":11,"form":{"levelCode":"1.11","number":70,"name":"微前端","componentName":"Iframe","url":"views/base/Iframe.vue","router":"/iframe","jumpUrl":"","icon":"RadarChartOutlined","parentId":1,"show":true,"close":true,"keepAlive":true,"state":true,"type":2,"mode":1,"moduleUrl":"http://rapidscada.com.cn/#/","id":11,"lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-12-13 21:57:11","creatorUserId":null,"creationTime":"2021-08-05 21:51:12"},"allFunctions":[{"number":10,"name":"显示","byName":"Display","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"c9518758-b2e1-4f51-b517-5282e273889c"},{"number":20,"name":"添加","byName":"Insert","remark":"Insert","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"bffefb1c-8988-4ddf-b4ac-81c2b30e80cd"},{"number":30,"name":"修改","byName":"Update","remark":"Update","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"e7ef2a05-8317-41c3-b588-99519fe88bf9"},{"number":40,"name":"删除","byName":"Delete","remark":"Delete","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"9c388461-2704-4c5e-a729-72c17e9018e1"},{"number":50,"name":"保存","byName":"Save","remark":"Save","lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-09-28 22:12:02","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"383e7ee2-7690-46ac-9230-65155c84aa30"},{"number":60,"name":"检索","byName":"Search","remark":"Search","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"f27ecb0a-197d-47b1-b243-59a8c71302bf"},{"number":70,"name":"导出","byName":"Export","remark":"Export","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"2401f4d0-60b0-4e2e-903f-84c603373572"},{"number":80,"name":"打印","byName":"Print","remark":"Print","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2022-06-16 17:28:00","id":"b6fd5425-504a-46a9-993b-2f8dc9158eb8"}],"menuFunctionList":[{"number":10,"menuId":11,"functionCode":"Display","functionName":"显示","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2022-03-04 15:24:53","creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-13 21:57:11","id":"3bc0e68f-d03d-4e99-0f26-08d9fdad00ab"}]}', N'', N'308', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'编辑表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'677425EB-ACAB-4713-9101-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:54:51.1114968', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'41', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9218F833-DE09-4618-9102-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:54:55.6649480', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'154', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'20BE30D4-1151-4BC0-9103-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:54:57.1442306', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'65', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9BBE6495-0199-45CF-9104-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:58:30.5357380', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'264', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6106AD62-E3E9-439A-9105-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:59:19.8758553', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'166', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'23E07D2C-4C12-46D1-9106-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:59:36.0869248', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'37', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2CCB2937-9AB8-498F-9107-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 14:59:43.5723776', NULL, NULL, N'/api/admin/SysMenu/findForm', N'0.0.0.1', N'', N'', N'', N'111', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'58EC2ABE-18F8-45AF-9108-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:00:53.3320241', NULL, NULL, N'/api/admin/SysMenu/create', N'0.0.0.1', N'', N'{"id":"","form":{"levelCode":null,"number":"80","name":"微前端2","componentName":"Iframe","url":"views/base/Iframe.vue","router":"/iframe123","jumpUrl":null,"icon":"AlipaySquareFilled","parentId":1,"show":true,"close":true,"keepAlive":true,"state":true,"type":2,"mode":1,"moduleUrl":"https://www.yuque.com/u378909/yidf7v/zx6egc","id":0,"lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":null,"creationTime":"0001-01-01 00:00:00"},"allFunctions":[{"number":10,"name":"显示","byName":"Display","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"c9518758-b2e1-4f51-b517-5282e273889c"},{"number":20,"name":"添加","byName":"Insert","remark":"Insert","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"bffefb1c-8988-4ddf-b4ac-81c2b30e80cd"},{"number":30,"name":"修改","byName":"Update","remark":"Update","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"e7ef2a05-8317-41c3-b588-99519fe88bf9"},{"number":40,"name":"删除","byName":"Delete","remark":"Delete","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"9c388461-2704-4c5e-a729-72c17e9018e1"},{"number":50,"name":"保存","byName":"Save","remark":"Save","lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-09-28 22:12:02","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"383e7ee2-7690-46ac-9230-65155c84aa30"},{"number":60,"name":"检索","byName":"Search","remark":"Search","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"f27ecb0a-197d-47b1-b243-59a8c71302bf"},{"number":70,"name":"导出","byName":"Export","remark":"Export","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"2401f4d0-60b0-4e2e-903f-84c603373572"},{"number":80,"name":"打印","byName":"Print","remark":"Print","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2022-06-16 17:28:00","id":"b6fd5425-504a-46a9-993b-2f8dc9158eb8"}],"menuFunctionList":[{"number":10,"menuId":0,"functionCode":"Display","functionName":"显示","remark":"Display"},{"number":20,"menuId":0,"functionCode":"Insert","functionName":"添加","remark":"Insert"},{"number":30,"menuId":0,"functionCode":"Update","functionName":"修改","remark":"Update"},{"number":40,"menuId":0,"functionCode":"Delete","functionName":"删除","remark":"Delete"},{"number":50,"menuId":0,"functionCode":"Save","functionName":"保存","remark":"Save"},{"number":60,"menuId":0,"functionCode":"Search","functionName":"检索","remark":"Search"},{"number":70,"menuId":0,"functionCode":"Export","functionName":"导出","remark":"Export"},{"number":80,"menuId":0,"functionCode":"Print","functionName":"打印","remark":"Print"}]}', N'', N'133', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'创建表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E1564CCA-FE2B-43A0-9109-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:00:53.5634724', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'37', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'18A86A2A-4B80-4FC1-910A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:00:56.2544429', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'136', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FEE68DE9-723B-4737-910B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:00:56.9133883', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'85', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A1B82653-EBD7-466C-910C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:01:05.7619486', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'28', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FAF0A5E4-E8A8-4160-910D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:01:06.5063434', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'65', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9B1E9817-3F14-4CF9-910E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:01:49.9329076', NULL, NULL, N'/api/admin/SysMenu/findForm/11', N'0.0.0.1', N'', N'', N'', N'61', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E9BB3EBF-A979-46F7-910F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:01:59.1323818', NULL, NULL, N'/api/admin/SysMenu/findForm/37', N'0.0.0.1', N'', N'', N'', N'44', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E8597ABE-059A-430A-9110-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:02:02.4980953', NULL, NULL, N'/api/admin/SysMenu/update', N'0.0.0.1', N'', N'{"id":37,"form":{"levelCode":"1.37","number":80,"name":"微前端2","componentName":"Iframe123","url":"views/base/Iframe.vue","router":"/iframe123","jumpUrl":null,"icon":"AlipaySquareFilled","parentId":1,"show":true,"close":true,"keepAlive":true,"state":true,"type":2,"mode":1,"moduleUrl":"https://www.yuque.com/u378909/yidf7v/zx6egc","id":37,"lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-12-16 15:00:53","creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:00:53"},"allFunctions":[{"number":10,"name":"显示","byName":"Display","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"c9518758-b2e1-4f51-b517-5282e273889c"},{"number":20,"name":"添加","byName":"Insert","remark":"Insert","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"bffefb1c-8988-4ddf-b4ac-81c2b30e80cd"},{"number":30,"name":"修改","byName":"Update","remark":"Update","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"e7ef2a05-8317-41c3-b588-99519fe88bf9"},{"number":40,"name":"删除","byName":"Delete","remark":"Delete","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"9c388461-2704-4c5e-a729-72c17e9018e1"},{"number":50,"name":"保存","byName":"Save","remark":"Save","lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-09-28 22:12:02","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"383e7ee2-7690-46ac-9230-65155c84aa30"},{"number":60,"name":"检索","byName":"Search","remark":"Search","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"f27ecb0a-197d-47b1-b243-59a8c71302bf"},{"number":70,"name":"导出","byName":"Export","remark":"Export","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"2401f4d0-60b0-4e2e-903f-84c603373572"},{"number":80,"name":"打印","byName":"Print","remark":"Print","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2022-06-16 17:28:00","id":"b6fd5425-504a-46a9-993b-2f8dc9158eb8"}],"menuFunctionList":[{"number":10,"menuId":37,"functionCode":"Display","functionName":"显示","remark":"Display","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:00:53","id":"9c9b41fd-db96-48cf-c07f-08dadf3345bd"},{"number":20,"menuId":37,"functionCode":"Insert","functionName":"添加","remark":"Insert","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:00:53","id":"47e1a6a3-4c89-46bf-c080-08dadf3345bd"},{"number":30,"menuId":37,"functionCode":"Update","functionName":"修改","remark":"Update","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:00:53","id":"d51a17af-163e-4a74-c081-08dadf3345bd"},{"number":40,"menuId":37,"functionCode":"Delete","functionName":"删除","remark":"Delete","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:00:53","id":"c6400925-a381-4679-c082-08dadf3345bd"},{"number":50,"menuId":37,"functionCode":"Save","functionName":"保存","remark":"Save","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:00:53","id":"216e9ad6-cc3f-4e72-c083-08dadf3345bd"},{"number":60,"menuId":37,"functionCode":"Search","functionName":"检索","remark":"Search","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:00:53","id":"4e7cd8df-2e35-4d5e-c084-08dadf3345bd"},{"number":70,"menuId":37,"functionCode":"Export","functionName":"导出","remark":"Export","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:00:53","id":"c981aa0b-d60e-4160-c085-08dadf3345bd"},{"number":80,"menuId":37,"functionCode":"Print","functionName":"打印","remark":"Print","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:00:53","id":"576f8a5d-1c47-47c9-c086-08dadf3345bd"}]}', N'', N'71', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'编辑表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B481F265-E5AE-4ACC-9111-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:02:02.7217978', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'36', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BBF58193-5590-4C8A-9112-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:02:04.5345435', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'204', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C9FB9222-C36D-4D76-9113-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:02:05.0242861', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'66', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'21875C7A-A967-44E9-9114-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:03:34.4904856', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'239', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CF344D83-A442-441E-9115-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:03:40.1638267', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'27', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E1BBAACD-9F14-4372-9116-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:03:52.0816761', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'196', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C0E23B3D-F756-4384-9117-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:07:07.6161203', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'242', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'07506E34-B7BB-4D66-9118-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:07:09.9292818', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'31', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8220A7D3-1AC1-4035-9119-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:07:29.0034335', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'179', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0BE31AA3-4973-42C0-911A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:07:54.8877637', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'226', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5D2B2592-20A9-4EA8-911B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:11:04.6731009', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'290', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E78B7BD9-738B-4A3F-911C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:11:37.0605960', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'221', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'217B5233-C77D-477E-911D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:12:15.6076572', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'190', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'32A88AEB-816C-427C-911E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:12:16.4679820', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'96', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CEF29C98-BA06-43F4-911F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:12:20.1562319', NULL, NULL, N'/api/admin/SysMenu/findForm/11', N'0.0.0.1', N'', N'', N'', N'40', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0C3A89C8-41BF-4D36-9120-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:12:46.8495945', NULL, NULL, N'/api/admin/SysMenu/update', N'0.0.0.1', N'', N'{"id":11,"form":{"levelCode":"1.11","number":70,"name":"微前端","componentName":"Iframe","url":"core/components/Iframe.vue","router":"/iframe","jumpUrl":"","icon":"RadarChartOutlined","parentId":1,"show":true,"close":true,"keepAlive":true,"state":true,"type":2,"mode":1,"moduleUrl":"http://rapidscada.com.cn/#/","id":11,"lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-12-16 14:54:50","creatorUserId":null,"creationTime":"2021-08-05 21:51:12"},"allFunctions":[{"number":10,"name":"显示","byName":"Display","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"c9518758-b2e1-4f51-b517-5282e273889c"},{"number":20,"name":"添加","byName":"Insert","remark":"Insert","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"bffefb1c-8988-4ddf-b4ac-81c2b30e80cd"},{"number":30,"name":"修改","byName":"Update","remark":"Update","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"e7ef2a05-8317-41c3-b588-99519fe88bf9"},{"number":40,"name":"删除","byName":"Delete","remark":"Delete","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"9c388461-2704-4c5e-a729-72c17e9018e1"},{"number":50,"name":"保存","byName":"Save","remark":"Save","lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-09-28 22:12:02","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"383e7ee2-7690-46ac-9230-65155c84aa30"},{"number":60,"name":"检索","byName":"Search","remark":"Search","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"f27ecb0a-197d-47b1-b243-59a8c71302bf"},{"number":70,"name":"导出","byName":"Export","remark":"Export","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"2401f4d0-60b0-4e2e-903f-84c603373572"},{"number":80,"name":"打印","byName":"Print","remark":"Print","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2022-06-16 17:28:00","id":"b6fd5425-504a-46a9-993b-2f8dc9158eb8"}],"menuFunctionList":[{"number":10,"menuId":11,"functionCode":"Display","functionName":"显示","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2022-03-04 15:24:53","creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 14:54:50","id":"3bc0e68f-d03d-4e99-0f26-08d9fdad00ab"}]}', N'', N'128', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'编辑表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C0EC4494-50D1-48B7-9121-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:12:47.1543919', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'43', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1CF0DEE6-0A66-4931-9122-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:12:48.8487705', NULL, NULL, N'/api/admin/SysMenu/findForm/37', N'0.0.0.1', N'', N'', N'', N'37', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B30DC0B5-8D3C-4788-9123-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:12:52.3637128', NULL, NULL, N'/api/admin/SysMenu/update', N'0.0.0.1', N'', N'{"id":37,"form":{"levelCode":"1.37","number":80,"name":"微前端2","componentName":"Iframe123","url":"core/components/Iframe.vue","router":"/iframe123","jumpUrl":null,"icon":"AlipaySquareFilled","parentId":1,"show":true,"close":true,"keepAlive":true,"state":true,"type":2,"mode":1,"moduleUrl":"https://www.yuque.com/u378909/yidf7v/zx6egc","id":37,"lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-12-16 15:02:02","creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:00:53"},"allFunctions":[{"number":10,"name":"显示","byName":"Display","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"c9518758-b2e1-4f51-b517-5282e273889c"},{"number":20,"name":"添加","byName":"Insert","remark":"Insert","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"bffefb1c-8988-4ddf-b4ac-81c2b30e80cd"},{"number":30,"name":"修改","byName":"Update","remark":"Update","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"e7ef2a05-8317-41c3-b588-99519fe88bf9"},{"number":40,"name":"删除","byName":"Delete","remark":"Delete","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"9c388461-2704-4c5e-a729-72c17e9018e1"},{"number":50,"name":"保存","byName":"Save","remark":"Save","lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-09-28 22:12:02","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"383e7ee2-7690-46ac-9230-65155c84aa30"},{"number":60,"name":"检索","byName":"Search","remark":"Search","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"f27ecb0a-197d-47b1-b243-59a8c71302bf"},{"number":70,"name":"导出","byName":"Export","remark":"Export","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"2401f4d0-60b0-4e2e-903f-84c603373572"},{"number":80,"name":"打印","byName":"Print","remark":"Print","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2022-06-16 17:28:00","id":"b6fd5425-504a-46a9-993b-2f8dc9158eb8"}],"menuFunctionList":[{"number":10,"menuId":37,"functionCode":"Display","functionName":"显示","remark":"Display","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:02:02","id":"9c9b41fd-db96-48cf-c07f-08dadf3345bd"},{"number":20,"menuId":37,"functionCode":"Insert","functionName":"添加","remark":"Insert","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:02:02","id":"47e1a6a3-4c89-46bf-c080-08dadf3345bd"},{"number":30,"menuId":37,"functionCode":"Update","functionName":"修改","remark":"Update","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:02:02","id":"d51a17af-163e-4a74-c081-08dadf3345bd"},{"number":40,"menuId":37,"functionCode":"Delete","functionName":"删除","remark":"Delete","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:02:02","id":"c6400925-a381-4679-c082-08dadf3345bd"},{"number":50,"menuId":37,"functionCode":"Save","functionName":"保存","remark":"Save","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:02:02","id":"216e9ad6-cc3f-4e72-c083-08dadf3345bd"},{"number":60,"menuId":37,"functionCode":"Search","functionName":"检索","remark":"Search","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:02:02","id":"4e7cd8df-2e35-4d5e-c084-08dadf3345bd"},{"number":70,"menuId":37,"functionCode":"Export","functionName":"导出","remark":"Export","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:02:02","id":"c981aa0b-d60e-4160-c085-08dadf3345bd"},{"number":80,"menuId":37,"functionCode":"Print","functionName":"打印","remark":"Print","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:02:02","id":"576f8a5d-1c47-47c9-c086-08dadf3345bd"}]}', N'', N'92', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'编辑表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C58238C3-51DC-4A99-9124-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:12:52.6518717', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'52', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'72A0008D-1E8A-43A7-9125-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:12:54.5717515', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'148', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A88B913C-8DB0-45E2-9126-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:12:55.1991698', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'63', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C63BE8A3-9EE0-4173-9127-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:13:08.6384507', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'163', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E3ADF41A-0907-416E-9128-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:13:10.0906481', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'49', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'609B0DF9-C985-469C-9129-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:18:41.6781647', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'379', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3C48929C-B7AA-4333-912A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:18:48.9393795', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'57', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6E5BDDAE-AB58-4470-912B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:18:55.8837526', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'243', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1DDBE0C6-C36E-4B61-912C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:19:04.9671611', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'15', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'47503C63-3B39-4279-912D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:21:48.5855053', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'184', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'887269C8-4FD3-477E-912E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:21:51.9325454', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'24', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4B702478-6F87-488F-912F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:21:56.0246747', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'29', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C6A8E24A-D49B-4FB1-9130-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:22:01.1686584', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'172', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B6F6A58D-CF71-4D0E-9131-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:22:03.9650360', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'23', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9F48C8B8-C2A0-46E9-9132-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:22:08.0857008', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'28', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FB2DC81D-70D2-4FC3-9133-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:22:10.8761018', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A398102B-2130-4726-9134-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:22:15.2554571', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'169', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EBE3C6CA-B32F-4C73-9135-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:22:18.5494074', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'16', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8A30B128-67DA-48AA-9136-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:22:38.3568673', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'328', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'11C63CDA-6018-4BD7-9137-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:22:47.1215179', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'26', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BC18AE5E-F7EA-418F-9138-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:22:54.2381572', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'329', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'819DEA88-2089-425F-9139-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:22:55.6871381', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'194', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'65BBED00-D3A4-413D-913A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:22:58.5032250', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'18', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'53346964-8103-4D0A-913B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:23:01.1389982', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'30', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'25F8F598-2442-4C10-913C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:23:09.6365290', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'229', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F0BF4EAF-F6BB-4463-913D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:23:22.1076028', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'202', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7E56B266-4832-42AC-913E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:23:34.0936374', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'251', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DDD49CB4-B52B-4331-913F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:23:36.4272518', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D98D6C14-01F7-4B1B-9140-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:23:40.1504048', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'34', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7063C67F-8E88-40B6-9141-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:23:45.0657009', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'172', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'98CBCE77-F00D-43B1-9142-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:23:46.8044146', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'29', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B8878499-4AAF-4976-9143-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:23:50.5612818', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DC5DCCA8-CB99-41DD-9144-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:23:58.8697064', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'211', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'224024AB-A265-4CA4-9145-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:24:43.3081047', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'235', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'15AD8FE5-743F-41A6-9146-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:32:50.4412156', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'564', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E46423E0-1BF1-45EE-9147-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:32:53.0928123', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'54', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C516D7AE-37AA-4CCE-9148-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:33:06.2155375', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'297', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C0C2C3BF-BAAB-409C-9149-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:33:08.1413478', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'312', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AFA987C4-CB65-489E-914A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:34:01.2337969', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'228', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'93F9B4D3-1D56-4312-914B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:34:04.2826203', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'33', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'508A0B2F-23FA-4391-914C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:34:11.8395677', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'209', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C2296F54-EDFF-4552-914D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:34:47.2092955', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'267', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'511E133F-51D6-42CE-914E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:34:51.2712390', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'18', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'45F641C9-D86C-4B01-914F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:34:54.6851716', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'33', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B039F3BD-E112-4CB5-9150-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:35:25.8480124', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'200', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E24C8DD1-96B0-411B-9151-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:35:33.4440951', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'24', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D5442E91-B550-4312-9152-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:35:38.6381699', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'724', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'87DF2A97-7250-4D12-9153-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:35:42.1495539', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'45', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8A80E6B4-9BB2-4A11-9154-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:35:54.6671125', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'220', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CF041BE7-F039-4ECD-9155-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:35:59.9096859', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'21', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E86CDF67-E31F-400C-9156-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:36:07.9684139', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'325', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3CA3207C-44BE-4EDC-9157-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:36:10.7160019', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0D6E738D-3199-45A5-9158-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:36:14.6656707', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'28', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C11E98EC-8D18-4992-9159-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:36:24.2345055', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'177', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8EFE94D9-30A9-45FD-915A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:36:27.8018545', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'72', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5403BC21-BEB5-48BD-915B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:36:43.9149712', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'185', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9542B76C-0E1C-4E50-915C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:36:55.7914317', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'184', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'ABBA019B-A5FC-4CBE-915D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:36:59.5413959', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'126', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E6D008FD-FE94-45FB-915E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:37:04.2835935', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0AC1D2D6-1B55-4531-915F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:37:26.2072070', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'237', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C524DCDC-AF97-488C-9160-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:37:29.1826340', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'86', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'484A19ED-34A5-4FF3-9161-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:37:32.6569654', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'30', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'023C24DF-BB03-454B-9162-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:37:35.7827622', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'84', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'898C6D99-C565-461A-9163-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:37:37.6309955', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'239', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CBA9F299-D3EE-4AA7-9164-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:37:39.7393432', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'224', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'63A73EBD-DA80-4416-9165-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:37:42.2620870', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'24', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'64402BD1-BC1B-44A0-9166-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:37:45.9065616', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'22', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'397AB5C7-8BF1-4B54-9167-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:37:48.3688300', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'89', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'42124ECC-08AF-4017-9168-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:41:19.3160522', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'213', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3E6A15BC-415D-4E79-9169-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:42:32.4641229', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'341', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A3714846-BDE0-4F1B-916A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:42:34.3751142', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'179', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7E075BCD-B481-4317-916B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:42:41.0482822', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'23', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'36AACB31-F0BD-48F9-916C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:42:43.1310216', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'27', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8FBA3532-74FD-42A7-916D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:42:56.6267957', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'317', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'48C18C1F-6BEA-4E5C-916E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:42:57.5911842', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'201', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DDC212AF-A152-4C33-916F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:43:07.5946362', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'21', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'17B4DE92-2530-45BF-9170-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:43:28.7577766', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'362', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'22638DF8-B3D8-4DC1-9171-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:43:32.9147145', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'26', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6260D6F7-F2DA-4996-9172-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:43:47.8850156', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'173', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0D57AF03-2D39-4B64-9173-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:44:12.4314207', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'203', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FEEC5BE8-81B7-4F54-9174-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:44:14.8939716', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'29', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B48017DC-E655-407F-9175-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:44:17.0107566', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'524', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F1E52980-595A-4DFB-9176-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:44:19.1237116', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'36', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B01AC025-382C-4F59-9177-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:44:32.7361064', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'226', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6BE48196-DAF0-4480-9178-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:44:35.6111273', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'32', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FD2A662B-134E-497F-9179-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:44:39.5662712', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'179FEC5A-EED8-4E81-917A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:44:58.5304171', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'169', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1B7E4F2A-B162-43F0-917B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:45:08.0758718', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'24', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C47A3E56-A77A-4FE3-917C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:45:13.5356123', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'299', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A752E079-1812-4BB6-917D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:45:51.5278762', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'320', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8FD2C5BE-B906-4D71-917E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:46:33.7099050', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'220', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D0EA0A12-3BC9-4D21-917F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:47:19.2725932', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'286', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'275BB6CB-E6A4-494B-9180-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:47:22.1593662', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'24', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'20C65E22-1B76-4AF5-9181-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:47:34.8745406', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'218', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B9665B03-DEB5-402A-9182-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:47:58.2509628', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'507', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5B9F412E-7295-4D29-9183-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:48:02.0719919', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'166', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EDEB4CF1-8A7F-4999-9184-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:48:18.5497394', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'166', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'31A4AC3E-B456-4C2E-9185-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:48:28.0980466', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'90', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1C8F1A2C-6CDE-46F5-9186-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:48:30.4196858', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'228', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F80A2AC6-6A6A-41DD-9187-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:48:40.2816712', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'17', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A36365D3-466C-4433-9188-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:48:43.2617210', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'273', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'574CC9EC-3125-45D4-9189-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:48:45.9911878', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'17', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DE21B18F-2476-40E2-918A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:49:15.5716578', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'210', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9C79D2C6-C43B-4C82-918B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:49:20.7738960', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'20', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9687A8EC-CF43-49EA-918C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:50:35.4592616', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'236', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7D1055BE-E798-41F1-918D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:50:49.3532029', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'438', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'96E55018-8A68-4995-918E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:50:51.0029746', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'196', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F36167D4-C229-4B9A-918F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:50:54.3677377', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'40', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AC6D4CD2-A0BA-478F-9190-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:51:08.9655472', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'211', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AA091228-072C-4F19-9191-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:51:11.3524821', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'36', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D5BA4F94-3287-41E5-9192-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:51:13.6168985', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'245', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'33A4A29B-6EC0-45E3-9193-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:51:16.9167475', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'18', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E98FA5DB-8802-4BEB-9194-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:56:05.1064188', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'279', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E07B6D3E-35AC-4E7B-9195-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:56:35.1743734', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'212', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'74CA19A8-F5D6-4DFE-9196-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:56:43.2600286', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'26', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'55D84784-2A7F-42EA-9197-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:56:45.8200374', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'217', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C7B87A00-3A72-4F86-9198-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:56:57.2113697', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'273', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'24051FB8-AD80-4FA9-9199-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:56:59.9601479', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2228B103-114E-4E81-919A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:57:03.9160513', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'34', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EEECD3B0-773B-4104-919B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:57:05.7870245', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'177', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8C8EEE61-23A7-4223-919C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:57:07.3630623', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'23', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D981D550-F378-4761-919D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:57:28.4678231', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'213', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2DF44398-056B-47F2-919E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:57:30.6768814', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'66', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4CF8A6CE-5E8D-4056-919F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:58:17.9266199', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'146', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'60FE7191-3BE1-43A8-91A0-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:58:23.8623777', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'16', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BBAA394A-0279-4CD1-91A1-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:58:30.9950702', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'250', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'619CBE37-7AF5-4E59-91A2-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:58:38.3445397', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'19', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1A4B9A53-DBD4-48D5-91A3-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:58:43.2008514', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'237', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6FCE9B20-CEC1-4206-91A4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:58:47.3586187', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'251', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'48E99D3F-2E11-430C-91A5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:58:48.4329050', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'321', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4D0C7FA5-C7D6-450B-91A6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:59:11.9935200', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'159', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'45536F38-5D16-4CD0-91A7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:59:15.0110669', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'261', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5B2EAD22-787D-4438-91A8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:59:49.4148849', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'254', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B29E312F-10D4-435F-91A9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:59:51.9331541', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'17', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B8A18511-9DE9-48B5-91AA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:59:55.1320364', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'40', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6F8F280A-7A26-4F3A-91AB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 15:59:56.2986969', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'309', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'68124E4F-3899-4395-91AC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:01:02.4932202', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'285', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8DF839C1-3EB7-4706-91AD-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:01:05.7248549', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'76', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4303A716-C982-44A5-91AE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:01:07.7906318', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'290', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E4C7A6F3-C2BE-4E2E-91AF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:01:16.7503407', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'19', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1F74E074-D9EE-47BB-91B0-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:01:18.6789454', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'225', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'249939EF-85F8-4DEA-91B1-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:02:23.9872020', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'193', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'36321925-C1C4-45A5-91B2-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:02:27.5977684', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'99FE34DD-3FD5-45F1-91B3-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:02:44.1954254', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'264', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A8E1A99E-F19F-4CD2-91B4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:02:59.9125346', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'242', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'43B226C9-778C-47BA-91B5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:03:02.5502508', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'26', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'32C3BB11-9EC2-4B67-91B6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:03:11.4215710', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'279', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2A0E7E47-D8D0-478D-91B7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:03:12.9450854', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'183', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'452CC28F-1EFA-45EC-91B8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:03:16.2000281', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'17', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C306EEB7-E0A2-415C-91B9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:03:19.6076012', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'31', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'31A23270-3C5D-4E15-91BA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:05:07.2526318', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'322', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A6706CEF-D408-480B-91BB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:07:18.5656313', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'296', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1E4679F3-766F-4BE8-91BC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:07:22.7137449', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'31', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'71E0AC5B-E0DD-45C1-91BD-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:07:42.8533350', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'359', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C0C39D29-9FDB-4731-91BE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:07:45.0991721', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'264', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9C2A7A72-8E1B-4DC2-91BF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:07:50.3325758', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'23', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F6CCE91A-4E22-4480-91C0-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:08:19.2192885', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'169', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FDF51A00-7D02-4B3E-91C1-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:09:01.8811214', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'317', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'823B8CFD-FD8C-4C1D-91C2-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:09:16.2056756', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'208', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A8573FBF-D61B-486E-91C3-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:10:00.9113665', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'257', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BA160B3B-3653-4F79-91C4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:10:10.5655533', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'28', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B3587D43-CF7A-47F5-91C5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:10:13.6729860', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'329', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C2B28A3C-7B8F-4C25-91C6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:11:14.1139231', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'275', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'43BE9BDA-D5DF-4720-91C7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:11:19.7573691', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AE10B582-59F9-47EB-91C8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:11:22.4849018', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'176', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B6214277-123B-44C8-91C9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:11:26.2271162', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'22', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'310CDAB0-59F3-4460-91CA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:11:32.2652735', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'23', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0A924379-C9C6-40A2-91CB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:11:37.2968423', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'316', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5B6EA046-6056-44EA-91CC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:11:39.3026946', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'363', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A69A59E5-725E-4DF3-91CD-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:11:40.8824234', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'152', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2A2F5658-DCEC-4E60-91CE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:11:44.0817256', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'124365E2-A06E-43D8-91CF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:11:46.4437528', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'155', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3381780E-34AB-4113-91D0-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:11:50.0521579', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'18', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4D07B006-EFD8-4AB6-91D1-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:11:53.0409080', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'36', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'701C0140-D0D5-4CDD-91D2-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:12:21.2106902', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'222', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5F32A694-C53F-411D-91D3-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:12:27.9301301', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'30', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E193B266-C2CD-4700-91D4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:12:29.8077053', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'48', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BA102C8D-D2A1-4E61-91D5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:13:30.7291532', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'226', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'32F3D618-0B40-4E64-91D6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:13:42.4526465', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'261', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'105A2814-6ED3-4A84-91D7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:13:48.4126563', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'26', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3DD77E8B-7D87-4A3D-91D8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:14:14.7624748', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'345', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'72BCE904-531A-4087-91D9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:14:16.3469159', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'263', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C725F29F-A53F-4092-91DA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:14:18.1350733', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'289', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7FD7E93E-0A44-4E2B-91DB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:14:35.7194945', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'176', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EC40595A-EA39-4015-91DC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:14:37.8123817', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'18', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7E51B432-BDFC-4950-91DD-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:14:44.4577501', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'48', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'110A9175-0A8E-4098-91DE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:15:15.3468559', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'228', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C9C2E2F1-8A30-4E8F-91DF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:15:17.6880724', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'16', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AF2D3B80-22CF-4D71-91E0-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:15:21.4345292', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'87', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'21818CDC-DE35-4C0E-91E1-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:15:23.2647558', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'253', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'049C1EDB-A1BF-4D85-91E2-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:15:24.8569117', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'34', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9425AD6A-09AD-4173-91E3-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:15:47.6692316', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'211', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'68D3FE90-FA42-4B50-91E4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:16:10.4721150', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'169', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'179E08DE-D287-47F4-91E5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:16:14.5864822', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'34', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'85B31742-B0F6-4666-91E6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:16:48.8145733', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'216', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F90D0426-150C-4827-91E7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:16:52.4982070', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BA0751E2-2707-4B90-91E8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:16:55.6243359', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9F452D5C-C8D0-4099-91E9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:17:00.6484823', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'211', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'37FA49ED-95CB-4E84-91EA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:17:44.1535945', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'186', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2D664AFF-6CF5-42EE-91EB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:17:47.6832708', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'44', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'805C888E-9389-431D-91EC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:20:43.6435555', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'469', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E97BDDEE-D427-492F-91ED-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:20:45.2560801', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'169', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'519329AA-C087-4F8E-91EE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:20:51.9571087', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'17', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'47AC799D-90C0-4D18-91EF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:20:55.9688825', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'228', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5239F536-6CAB-4BA0-91F0-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:20:57.6513083', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'48', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AEEF1C63-C775-41EA-91F1-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:21:44.0863111', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'209', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E248C805-5D42-41C8-91F2-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:22:46.1257519', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'238', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'53824AF5-3823-4966-91F3-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:23:21.3165037', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'196', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'22A6228E-C9C8-4924-91F4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:23:41.5187528', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'373', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D12B0E17-EF82-4765-91F5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:23:43.0352613', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'224', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'15801152-238F-4A2D-91F6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:23:45.3962314', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'35', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7251DD75-9A46-488E-91F7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:24:27.0990544', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'178', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D3A34017-C684-4D5F-91F8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:24:45.3405505', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'253', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CC4C0C50-F587-4F31-91F9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:24:47.9953122', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'23', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EB323751-9987-4EEF-91FA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:24:51.4145552', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'39', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B046A23F-351E-4BEC-91FB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:25:36.0029232', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'329', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4A0C8E44-BD5D-438B-91FC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:25:38.2102017', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'18', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'938D7B2E-F82F-4C64-91FD-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:28:34.2739301', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'429', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8476443D-7117-41A0-91FE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:28:39.0911930', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'17', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7C35C11F-ABF5-491C-91FF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:28:56.3250637', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'224', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D7FD0E23-5F56-4A75-9200-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:29:00.7103303', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'20', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BABCF799-09D1-44FA-9201-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:29:03.1601854', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'22', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C53483B7-3B99-4E4F-9202-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:30:40.8818088', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'241', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6B8C2DAF-20D4-45D0-9203-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:34:43.1052280', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'237', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DA39D339-B4FE-4892-9204-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:34:50.8742856', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'22', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AFE84773-792A-47F5-9205-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:35:00.4913791', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'502', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2C096A58-B81E-4C3D-9206-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:35:01.4807677', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'315', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'77DAFFBF-F318-40AD-9207-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:35:08.6087585', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'32', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6C12E969-9380-4ECD-9208-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:40:54.0043522', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'203', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'025DEDB3-7807-40C0-9209-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:41:51.5755540', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'308', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F829FDFE-D0FB-48CD-920A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:41:53.3212212', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'185', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'65B74C21-9943-46F6-920B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:42:04.2231999', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'149', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AC2578B3-A6BA-4D67-920C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:42:12.9173163', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'22', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BD9C2197-50FB-4BA1-920D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:42:45.1511072', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'353', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9F9B2FDD-CC46-4359-920E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:43:00.8453929', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'216', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'147F32C8-9CB2-405F-920F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:48:29.5995023', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'482', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5416D16F-E71C-485C-9210-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:48:31.4982338', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'218', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DBEAC1FE-96B7-41D1-9211-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:48:33.2553859', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'153', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EFE53A3E-B9CE-4C90-9212-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:48:42.4781395', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'27', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A02DF823-1567-496C-9213-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:48:44.3514601', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'152', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'38D52A74-B59B-4671-9214-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:48:46.1149925', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'73', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1D61DDA7-5E3D-4CDA-9215-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:49:06.4479740', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'389', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C081677B-5942-4EF2-9216-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:49:37.0079658', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'197', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'135C9D5E-3093-4404-9217-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:50:17.3102558', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'279', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'17F51CF1-4E67-467B-9218-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:50:43.3500053', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'222', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'35F98BC4-9FA5-445E-9219-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:50:46.8527050', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'87', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'39D4C982-8781-4C50-921A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:52:00.2054576', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'203', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'65497C49-FE9A-40F6-921B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:52:03.4369552', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BBB5C7A5-5586-4751-921C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:52:19.2326208', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'259', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AE755387-4BE9-40B4-921D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:52:23.3230368', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'20', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'35F27163-BF44-4118-921E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:52:25.7471719', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'22', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'63E4A210-38C1-4382-921F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:52:39.8721959', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'266', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BB8B7A22-D8C7-4AED-9220-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:53:00.0102228', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'295', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C0762614-D7EB-42C6-9221-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:53:01.3324112', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'173', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8E7F6E6F-7F8A-4A83-9222-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:53:07.6779554', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'31', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'24D64271-667A-4C3F-9223-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:53:12.5876143', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'269', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9F5FD28F-7666-4B40-9224-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:53:15.1313668', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'27', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0CEC3FE2-5942-49AB-9225-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:53:32.2766865', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'255', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8B7168EF-317E-45B8-9226-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 16:59:54.6862956', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'292', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E24070AA-AD25-4D90-9227-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:00:00.0804259', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'20', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B36D7BB6-BEF5-4D42-9228-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:00:43.3044620', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'203', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EFD019BC-FD8B-412F-9229-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:09:07.9822513', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'289', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8DC73F1A-3298-4D71-922A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:09:15.0798245', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'23', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'926CB8C9-D904-4FD3-922B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:09:57.2214838', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'502', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'548B79F3-C4DD-434D-922C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:10:01.8742242', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'16', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E8394F08-E9FD-42B7-922D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:10:06.4494525', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'24', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'887F146C-F31A-41BA-922E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:11:44.0977899', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'312', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C5ECDC91-B201-4A5E-922F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:11:55.9971824', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'211', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7E0AB62F-65E1-4BD5-9230-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:12:13.2540706', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'252', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FF109087-7A44-4727-9231-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:12:20.1571883', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'28', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C9B5D0B9-B7CC-472C-9232-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:12:24.8696554', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'185', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'10CE4D32-A2D0-4566-9233-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:12:37.8641935', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'229', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5285983A-0DAE-4C00-9234-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:12:41.6084202', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'48', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3FE15E46-FA71-4C04-9235-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:12:47.1088104', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'52', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4BF21304-C8AF-49D8-9236-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:12:51.5359560', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'274', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7DCD0D28-D505-4BE7-9237-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:12:55.0077551', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'29', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'504628B4-476F-4DF0-9238-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:13:32.1269796', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'217', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'421BD8DA-3EB2-46B4-9239-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:13:37.3731452', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'22', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B175A2C1-856E-4007-923A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:13:40.5596785', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'21', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'34F6A41C-3EEC-46FF-923B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:13:59.3026278', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'204', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'773F068F-BFD5-427D-923C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:14:06.1742189', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'26', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F36DE85F-AB94-4D00-923D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:14:09.9495302', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'210', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'46AA1BAD-1DB0-43F3-923E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:14:11.3060733', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'21', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A9B1B2AF-DEC8-4D3D-923F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:14:23.2626150', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'203', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'59578BB5-50C0-4924-9240-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:14:33.2337806', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'21', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AFA4F3CE-4C65-464A-9241-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:14:56.3952847', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'214', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3E10E030-AC73-4BB1-9242-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:14:58.7349942', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'27', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'34FD53FB-4D0D-4ABE-9243-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:16:12.1921257', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'299', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0ECDEFA8-9BEE-40DC-9244-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:16:13.5873150', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'155', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FA58ADAA-536F-496A-9245-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:16:20.0648813', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'84', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'05077CF7-797F-441B-9246-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:16:25.0566468', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'156', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9C25FAAC-DD6F-4915-9247-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:16:41.6037385', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'162', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B7B10E99-E35D-48F6-9248-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:16:47.1345834', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'23', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FD15A979-E89F-47C6-9249-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:16:50.3046336', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'30', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2E361499-1D45-4595-924A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:17:40.3564053', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'50', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'39CEBF0E-3FF1-410A-924B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:17:46.7567359', NULL, NULL, N'/api/admin/SysMenu/findForm/22', N'0.0.0.1', N'', N'', N'', N'46', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D94A2AC3-AFE8-417C-924C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:19:49.5391216', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'326', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A6133D1C-1C6F-427E-924D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:19:52.8492425', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'45', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9623EC53-3FAF-4440-924E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:29:55.8600118', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'258', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'19A602C3-F669-4F19-924F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:29:58.7684454', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'88', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F5CC65FA-6EBE-4888-9250-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:30:02.7796583', NULL, NULL, N'/api/admin/SysMenu/findForm/11', N'0.0.0.1', N'', N'', N'', N'32', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8F71A5A0-FDC3-407D-9251-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:30:05.2653071', NULL, NULL, N'/api/admin/SysMenu/update', N'0.0.0.1', N'', N'{"id":11,"form":{"levelCode":"1.11","number":70,"name":"微前端","componentName":"Iframe","url":"core/components/Iframe.vue","router":"/iframe","jumpUrl":"","icon":"RadarChartOutlined","parentId":1,"show":true,"close":true,"keepAlive":true,"state":true,"type":2,"mode":2,"moduleUrl":"http://rapidscada.com.cn/#/","id":11,"lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-12-16 15:12:46","creatorUserId":null,"creationTime":"2021-08-05 21:51:12"},"allFunctions":[{"number":10,"name":"显示","byName":"Display","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"c9518758-b2e1-4f51-b517-5282e273889c"},{"number":20,"name":"添加","byName":"Insert","remark":"Insert","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"bffefb1c-8988-4ddf-b4ac-81c2b30e80cd"},{"number":30,"name":"修改","byName":"Update","remark":"Update","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"e7ef2a05-8317-41c3-b588-99519fe88bf9"},{"number":40,"name":"删除","byName":"Delete","remark":"Delete","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"9c388461-2704-4c5e-a729-72c17e9018e1"},{"number":50,"name":"保存","byName":"Save","remark":"Save","lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-09-28 22:12:02","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"383e7ee2-7690-46ac-9230-65155c84aa30"},{"number":60,"name":"检索","byName":"Search","remark":"Search","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"f27ecb0a-197d-47b1-b243-59a8c71302bf"},{"number":70,"name":"导出","byName":"Export","remark":"Export","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"2401f4d0-60b0-4e2e-903f-84c603373572"},{"number":80,"name":"打印","byName":"Print","remark":"Print","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2022-06-16 17:28:00","id":"b6fd5425-504a-46a9-993b-2f8dc9158eb8"}],"menuFunctionList":[{"number":10,"menuId":11,"functionCode":"Display","functionName":"显示","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2022-03-04 15:24:53","creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:12:46","id":"3bc0e68f-d03d-4e99-0f26-08d9fdad00ab"}]}', N'', N'77', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'编辑表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7E178308-6A44-4C71-9252-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:30:05.4747199', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'38', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B8921A67-8CEB-4EE7-9253-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:30:07.5173499', NULL, NULL, N'/api/admin/SysMenu/findForm/37', N'0.0.0.1', N'', N'', N'', N'39', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DF5B869C-B070-4180-9254-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:30:09.9978068', NULL, NULL, N'/api/admin/SysMenu/update', N'0.0.0.1', N'', N'{"id":37,"form":{"levelCode":"1.37","number":80,"name":"微前端2","componentName":"Iframe123","url":"core/components/Iframe.vue","router":"/iframe123","jumpUrl":null,"icon":"AlipaySquareFilled","parentId":1,"show":true,"close":true,"keepAlive":true,"state":true,"type":2,"mode":2,"moduleUrl":"https://www.yuque.com/u378909/yidf7v/zx6egc","id":37,"lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-12-16 15:12:52","creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:00:53"},"allFunctions":[{"number":10,"name":"显示","byName":"Display","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"c9518758-b2e1-4f51-b517-5282e273889c"},{"number":20,"name":"添加","byName":"Insert","remark":"Insert","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"bffefb1c-8988-4ddf-b4ac-81c2b30e80cd"},{"number":30,"name":"修改","byName":"Update","remark":"Update","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"e7ef2a05-8317-41c3-b588-99519fe88bf9"},{"number":40,"name":"删除","byName":"Delete","remark":"Delete","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"9c388461-2704-4c5e-a729-72c17e9018e1"},{"number":50,"name":"保存","byName":"Save","remark":"Save","lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-09-28 22:12:02","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"383e7ee2-7690-46ac-9230-65155c84aa30"},{"number":60,"name":"检索","byName":"Search","remark":"Search","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"f27ecb0a-197d-47b1-b243-59a8c71302bf"},{"number":70,"name":"导出","byName":"Export","remark":"Export","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"2401f4d0-60b0-4e2e-903f-84c603373572"},{"number":80,"name":"打印","byName":"Print","remark":"Print","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2022-06-16 17:28:00","id":"b6fd5425-504a-46a9-993b-2f8dc9158eb8"}],"menuFunctionList":[{"number":10,"menuId":37,"functionCode":"Display","functionName":"显示","remark":"Display","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:12:52","id":"9c9b41fd-db96-48cf-c07f-08dadf3345bd"},{"number":20,"menuId":37,"functionCode":"Insert","functionName":"添加","remark":"Insert","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:12:52","id":"47e1a6a3-4c89-46bf-c080-08dadf3345bd"},{"number":30,"menuId":37,"functionCode":"Update","functionName":"修改","remark":"Update","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:12:52","id":"d51a17af-163e-4a74-c081-08dadf3345bd"},{"number":40,"menuId":37,"functionCode":"Delete","functionName":"删除","remark":"Delete","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:12:52","id":"c6400925-a381-4679-c082-08dadf3345bd"},{"number":50,"menuId":37,"functionCode":"Save","functionName":"保存","remark":"Save","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:12:52","id":"216e9ad6-cc3f-4e72-c083-08dadf3345bd"},{"number":60,"menuId":37,"functionCode":"Search","functionName":"检索","remark":"Search","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:12:52","id":"4e7cd8df-2e35-4d5e-c084-08dadf3345bd"},{"number":70,"menuId":37,"functionCode":"Export","functionName":"导出","remark":"Export","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:12:52","id":"c981aa0b-d60e-4160-c085-08dadf3345bd"},{"number":80,"menuId":37,"functionCode":"Print","functionName":"打印","remark":"Print","lastModifierUserId":null,"lastModificationTime":null,"creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 15:12:52","id":"576f8a5d-1c47-47c9-c086-08dadf3345bd"}]}', N'', N'55', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'编辑表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FD409028-AE46-476B-9255-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:30:10.1962471', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'38', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C5B2CB2C-F8EA-4B02-9256-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:30:12.0683551', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'140', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'670FE6CD-B85F-444E-9257-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:30:12.9703137', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'70', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'976335DE-2601-40D8-9258-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:31:01.6234656', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'256', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EDF35C3B-3D99-485B-9259-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:31:05.4010270', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'85', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0A680457-BD1C-4592-925A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:31:38.8283570', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'223', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A1CC633B-9C7B-48BF-925B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:31:43.2539805', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'62', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3EFC7BD6-9F2A-4755-925C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:32:46.3190700', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'276', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1454765D-CDDD-4EF7-925D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:32:48.6017395', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'24', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5C258917-1CC5-4900-925E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 17:36:35.3879180', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'275', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C658862F-A02F-4F42-925F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:00:43.8258428', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'307', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DA34D5C5-A757-4402-9260-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:04:10.1433106', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'255', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B2879581-C991-4B53-9261-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:06:40.6983948', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'287', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DBA5D597-AB35-47FB-9262-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:07:58.3901246', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'185', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'619CA27C-B4F8-4494-9263-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:08:51.2417571', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'204', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E8C018B6-3308-4AA0-9264-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:09:26.3929381', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'256', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0C70943C-65F6-409E-9265-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:09:37.9760725', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'288', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8FF61B9A-C9D5-4933-9266-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:09:43.2567550', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'29', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'780D59BB-7FEE-4807-9267-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:10:16.9240745', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'300', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2E0DEB07-644D-4AAD-9268-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:11:03.0070168', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'188', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'56306E89-D0F4-4A78-9269-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:11:41.9451717', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'186', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6EB111B3-3246-4E08-926A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:14:24.4218919', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'230', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BC02B801-2AE9-4E76-926B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:15:09.0167780', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'268', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0F593DB8-8E06-44EE-926C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:15:12.8409917', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'28', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5BE22CB5-6009-497A-926D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:15:45.1452345', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'243', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'79378714-5A96-41A3-926E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:16:02.7075725', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'236', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'63FEC8DC-3280-4EFE-926F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:16:07.6168837', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'20', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'922DC7FE-090A-45CE-9270-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:16:09.9732630', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'923FA8E4-9B95-4103-9271-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:16:11.8142840', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'236', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'95CA5B8F-D95F-4D8E-9272-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:16:15.5130825', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'18', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8676058D-AC1C-431B-9273-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:16:23.6161494', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'285', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4CBEC1E7-B9DD-4121-9274-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:16:28.7311257', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'34', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7A4047E1-58E2-46A4-9275-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:16:31.0352204', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'296', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'336CDC59-0029-4F8E-9276-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:16:59.3417729', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'173', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CE3B2D07-2493-4BFE-9277-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:19:57.3572204', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'191', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1A8C4CED-58EF-4E5A-9278-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:20:01.7336758', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'37', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'54388D81-48F3-4114-9279-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:20:12.9455205', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'199', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CABC604F-3770-4F7E-927A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:20:42.7705822', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'182', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'520884DF-C56F-404F-927B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:21:01.4282157', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'178', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'58DD6439-401D-430C-927C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:21:08.4057420', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'19', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5DDA7C66-A324-466F-927D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:21:15.8773628', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'266', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9C5FFFAD-2F81-40C5-927E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:21:39.2803935', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'326', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8E64FB2A-6AE0-4F5A-927F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:21:50.3131840', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'211', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8C05821D-B177-4458-9280-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:21:55.0536918', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'48', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A64BFC0E-0D1D-4DA6-9281-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:21:58.9641990', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'21', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'08DA53D1-8417-49C7-9282-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:22:02.3404332', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'202', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4B105743-10D4-4C63-9283-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:22:10.2248024', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'36', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F226FF14-8CE7-40CB-9284-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:23:47.7097122', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'237', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'90286123-C4C4-45F1-9285-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:25:07.6049406', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'255', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'646B15B4-8E30-45C5-9286-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:25:52.7339578', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'373', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'890C44CF-894D-4944-9287-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:26:24.9806306', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'209', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C1D6F662-72D1-4959-9288-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:26:52.9220270', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'229', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EB8C722D-B157-4DF1-9289-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:27:23.4501001', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'190', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'28D8D7AE-B631-4C35-928A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:27:32.6160813', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'32', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AFA6A4ED-2E61-4F14-928B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:27:39.4345008', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'188', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4F5F6B56-817D-44CD-928C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:27:44.3017055', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'34', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F00CB4A3-EBEE-4B42-928D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:32:00.6514910', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'236', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C73E59DE-F8EC-4474-928E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:33:40.0190155', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'223', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'73BBA82B-A394-4B0E-928F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:33:47.8806422', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'21', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'79F2D56F-4D52-41F4-9290-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:34:11.8388631', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'293', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E8F9FA41-0391-4399-9291-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:34:13.8149078', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'228', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'12666742-81DF-47CD-9292-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:34:15.4773468', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'139', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3214BDC0-566A-4D49-9293-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:34:20.6582258', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'22', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'77F4B0CE-F4C6-48DA-9294-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:34:24.2328837', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'22', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1256547F-1469-4466-9295-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:35:15.0079162', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'261', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'831E9A72-42C0-4E97-9296-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:35:18.0717099', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'16', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'03FE6C77-E0F7-46DA-9297-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:35:20.8301981', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'21', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'46571F13-BEB4-4C12-9298-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:36:29.0492335', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'235', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2C984D70-D88E-4ECC-9299-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:36:38.8630703', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'16', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F3C1DF98-7BA8-4D13-929A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:36:47.1874935', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'167', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BE8AF9CF-B45A-4C49-929B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:36:53.7853221', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'21', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'78401460-2A53-4413-929C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:36:57.5941287', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'168', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'887612DB-4FE2-4BE9-929D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:37:13.8074140', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'179', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'35B3EC0E-240A-4F7F-929E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:37:18.2502229', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'20', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E8CF13DF-1C47-4492-929F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:37:21.7435782', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'27', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'47403446-E7BF-47F7-92A0-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:37:34.8478407', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'282', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1966B8DD-A843-477F-92A1-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:38:15.3187880', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'177', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DCE5AB63-C732-4D06-92A2-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:38:24.6529591', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'28', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7FE03000-1ED5-43C5-92A3-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:39:39.4444421', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'307', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CA6E6542-3180-449F-92A4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:39:53.3756794', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'180', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CC088558-F4B1-4C77-92A5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:40:12.5670625', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'317', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3601ADB3-90DF-49AB-92A6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:40:26.7000475', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'147', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DFA7A1E3-DEEE-4A3E-92A7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:40:30.6848700', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'22', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A0B4C585-2CBB-4705-92A8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:40:33.9211167', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'23', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B47FE71A-726F-44F9-92A9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:40:57.8969735', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'169', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'421DFD51-6EC8-4645-92AA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:41:01.7678748', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'19', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3EF25BEF-4EA9-4393-92AB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:41:07.9322375', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'59', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8583679B-D1D2-4920-92AC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:41:15.9306464', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'263', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C2EF3951-006C-4ACB-92AD-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:41:24.4996439', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'15', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D8BD97A9-FCAB-4B84-92AE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:41:28.4412264', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'279', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3D62E4B3-27FA-49CD-92AF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:41:33.9256621', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'24', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2C49F4AD-3519-4E40-92B0-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:41:50.5859122', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'253', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'03571CDB-82CF-44D8-92B1-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:43:00.0428064', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'354', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9F537935-2B7A-4DAA-92B2-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:43:05.0223627', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'28', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'609B7E91-7B66-4589-92B3-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:43:34.2311327', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'279', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CDB51746-AF43-4769-92B4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:44:09.8500554', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'283', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0A511DAC-C178-474B-92B5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:45:05.0029735', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'308', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9B21FB76-51E5-4DC7-92B6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:45:50.9201922', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'185', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'149F883B-03AD-497E-92B7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:45:56.7140576', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'23', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'86F30719-7133-4DC2-92B8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:46:05.9150569', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'183', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'36271E9A-3DE9-4288-92B9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:46:13.9015374', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'05B1A16A-F6B5-45C8-92BA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:46:18.7655752', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'153', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'125E5859-0365-4D12-92BB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:46:21.7901594', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'28', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3E47D3B1-7815-4210-92BC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:46:23.8617791', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'332', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B5D7889F-16F5-4410-92BD-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:46:25.7937835', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'223', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F03813A0-CDC0-48AF-92BE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:46:29.9048958', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'21', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E145F9C9-AC79-4135-92BF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:46:34.4069428', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'22', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'253FAE0D-730B-471C-92C0-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:46:47.9677915', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'184', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'49C1BE08-60AF-4E6E-92C1-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:47:50.9772394', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'207', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FDA3D08C-35E1-43A2-92C2-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:49:07.7161862', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'291', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E9921909-1438-4E8A-92C3-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:51:41.0073000', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'365', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'69BC1209-A5AD-438A-92C4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:52:19.8403005', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'295', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'49B51282-ACA0-4137-92C5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:52:27.5295410', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'26', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F591D391-E457-4AB7-92C6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:53:22.7869279', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'301', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6FF4AD8B-B2BF-415B-92C7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:55:31.4819356', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'261', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FD2D2E38-2ABB-4905-92C8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:57:10.2631427', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'253', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EB5A994C-3E18-4CF0-92C9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 19:58:13.5907166', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'195', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'16F736F8-D078-4E38-92CA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:01:15.3873894', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'199', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'65F34E46-340B-4744-92CB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:03:56.1193867', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'249', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'29540BD1-74D2-4959-92CC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:04:50.5600030', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'158', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D2B188CB-DA74-41C2-92CD-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:04:56.5767161', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'15', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C281B55C-5B0D-4509-92CE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:05:24.5224776', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'391', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8F6394D3-3FD7-4318-92CF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:06:29.4769628', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'185', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8432282B-28CF-4EA9-92D0-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:06:33.6910146', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'14543FFD-E6B4-479E-92D1-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:07:24.0935170', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'167', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'30D4D893-7D39-4EF6-92D2-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:08:12.1791062', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'362', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'769BA84E-B15F-48DA-92D3-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:08:15.2178431', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'18', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7D737BF6-D531-4F8D-92D4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:08:21.6572878', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'15', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'594DD83A-2B78-4435-92D5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:08:34.8820933', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'186', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'759047D5-438E-4895-92D6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:08:40.5306177', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'40', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'11C925BB-EEDE-4B80-92D7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:08:49.6749809', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'193', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E9FBC738-BBEF-40AF-92D8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:08:56.4857941', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'24', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'51991818-B3AB-454C-92D9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:09:00.3944451', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'163', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D9B0F7CC-BFEA-4B85-92DA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:09:03.6821882', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'26', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9FBCB9D4-F511-4AB8-92DB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:09:38.2575240', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'404', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3708FB04-680D-47D3-92DC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:10:04.8384851', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'250', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4259BF29-863A-43BE-92DD-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:11:19.1610628', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'227', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AADC7791-845B-4C42-92DE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:11:37.3667235', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'226', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'49939583-75E3-47CD-92DF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:15:00.5024279', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'300', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'22F98067-658B-4380-92E0-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:15:48.2278814', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'195', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BD9976DE-68D8-413C-92E1-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:16:52.3333357', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'337', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8F262CDA-E0A7-4BDA-92E2-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:17:12.5577195', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'240', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B474A477-906F-4DEC-92E3-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:17:32.6855602', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'236', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6B89707D-0DD0-45B9-92E4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:17:45.1894289', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'262', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A3327D15-397E-4740-92E5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:18:13.1864363', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'286', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'422BE0CC-A1B0-4554-92E6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:18:38.9875473', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'313', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'027376D9-6871-4DAC-92E7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:19:19.9008603', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'264', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'36E7B69C-A7E6-4C36-92E8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:21:29.4390001', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'213', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'74D9240C-E92E-4AFC-92E9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:21:44.8484967', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'203', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'728ADC71-5C47-41D8-92EA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:21:49.8236106', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'24', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CB343FC1-2758-43CA-92EB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:21:53.5959285', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C014FFFC-42AF-42B7-92EC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:22:08.1921645', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'326', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'454A0DAC-80BE-4864-92ED-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:22:26.3443671', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'141', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'91B8BC3A-DE5F-4BCC-92EE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:23:34.2344291', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'258', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'42CE4809-D5C1-4001-92EF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:24:59.8191023', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'200', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A470FF6B-6563-41F0-92F0-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:27:26.3594152', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'229', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'044382F1-181E-428D-92F1-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:27:58.6424981', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'210', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'51F3B7A8-444A-4E04-92F2-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:28:00.4126033', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DB541E24-A3D1-4478-92F3-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:29:17.0277002', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'208', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2F64CB2D-CE83-4916-92F4-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:29:33.3639230', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'204', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'44786767-C84A-4A70-92F5-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:37:51.3671922', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'219', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7A24008E-107D-465D-92F6-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:38:19.1946319', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'218', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9601F576-92AF-409D-92F7-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:38:51.9011366', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'267', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1126F515-B25C-4BFB-92F8-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:39:44.6342816', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'321', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A2FB1F34-AD65-4386-92F9-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:40:58.1250440', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'490', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EFC0A140-F7EF-4184-92FA-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:41:31.2828579', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'212', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7354558F-366E-4ECB-92FB-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:41:54.1335868', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'288', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6CD714B8-BC7C-42F2-92FC-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:45:03.2317544', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'318', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1F7764F4-3F4E-4356-92FD-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:55:59.3699628', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'274', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9223F12C-E093-4276-92FE-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:57:04.0707391', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'254', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5F84C92B-60D0-4DF5-92FF-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:57:33.3920383', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'470', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F74F16AD-2951-4A80-9300-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:57:35.5624401', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'164', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A4BF052A-6ECA-48E8-9301-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:57:54.0958046', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'365', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0E412E69-BE39-48E2-9302-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:58:51.1029751', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'206', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'776D4FE9-1F65-4D61-9303-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 20:59:44.7824977', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'243', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DC4349A1-4486-4B37-9304-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:00:35.1433474', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'283', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3B24244D-F873-4436-9305-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:01:16.1013726', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'575', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1EE8D353-7397-4AD5-9306-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:02:14.9529882', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'268', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7C8B6773-21E4-44FF-9307-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:03:38.4289364', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'245', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8405255B-B419-4CB5-9308-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:13:42.5160134', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'220', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'04DF0463-F6DA-46AB-9309-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:14:17.6769709', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'275', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9E765F74-62FF-4FBD-930A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:14:33.5532274', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'204', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7252EC87-ABBD-4096-930B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:14:43.6621878', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'132', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4C661C34-B663-4F23-930C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:14:48.4047987', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'19', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6F063DF4-AB3F-4F1E-930D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:17:23.8918689', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'198', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C284707D-772B-41F9-930E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:23:25.2890246', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'122', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BA415FE9-35CF-47F1-930F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:23:29.3997834', NULL, NULL, N'/api/admin/SysMenu/findForm/11', N'0.0.0.1', N'', N'', N'', N'39', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'70A569B2-9872-4DD5-9310-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:24:55.2582674', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'474', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B45C7DBD-6ED2-418C-9311-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:24:58.4562485', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'23', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'005D1493-F64B-40E6-9312-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:25:01.5482481', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'42', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D14A663B-B53E-4819-9313-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:26:31.9327545', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'284', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0B0BCFA8-4653-4767-9314-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:26:35.8475173', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'42', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'59CFE6AF-C4AC-4FD6-9315-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:27:01.1540657', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'226', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F8238F5A-81A7-4DED-9316-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:27:04.0495161', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'42', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E3D4EA73-0D29-45DE-9317-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:27:27.8551504', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'315', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B5FBA501-3515-4ABC-9318-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:27:54.5840560', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'262', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'85E26C35-42D4-49BC-9319-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:37:59.9113744', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'550', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'76CE1D81-62A0-4BEB-931A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:49:06.6817200', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'273', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0650D5B9-2E62-40E2-931B-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:49:44.1037080', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'80', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'97DD4610-EBC3-4CD4-931C-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:49:52.6492621', NULL, NULL, N'/api/admin/SysMenu/findForm/11', N'0.0.0.1', N'', N'', N'', N'86', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DE610710-6DBF-44AD-931D-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 21:54:49.8238412', NULL, NULL, N'/api/admin/SysMenu/findForm/37', N'0.0.0.1', N'', N'', N'', N'94', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FF9B2B30-E738-4A44-931E-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:00:25.0380812', NULL, NULL, N'/api/account/check', N'0.0.0.1', N'', N'{"userName":"admin","userPassword":"123456"}', N'', N'67', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'22EF782A-04D9-4789-931F-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:00:25.3168230', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'156', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'AF6A829E-0814-4A31-9320-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:00:32.4953977', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'35', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5061803D-9F0F-4BA4-9321-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:00:37.6393158', NULL, NULL, N'/api/admin/SysMenu/findForm/37', N'0.0.0.1', N'', N'', N'', N'36', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B811F295-4DEC-40FD-9322-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:10:46.4447128', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'242', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F86F8169-5105-435D-9323-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:10:51.4688669', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'45', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E8AF1E69-7D14-494C-9324-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:11:22.1713077', NULL, NULL, N'/api/admin/SysMenu/findForm/37', N'0.0.0.1', N'', N'', N'', N'59', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D223BDE6-45C6-439A-9325-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:15:13.1602717', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'267', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3C96D9A4-FF05-4108-9326-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:15:16.7074498', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'37', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A10E2767-9421-4724-9327-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:15:20.4243843', NULL, NULL, N'/api/admin/SysMenu/findForm/37', N'0.0.0.1', N'', N'', N'', N'38', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'295D3E26-D9DC-4A7B-9328-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:18:39.2970718', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'262', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B1FB34B4-07AF-4CA3-9329-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:18:42.5693978', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'94', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'59F57A0F-DC5B-45F6-932A-08DADF31F46E', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:18:46.4375411', NULL, NULL, N'/api/admin/SysMenu/findForm/11', N'0.0.0.1', N'', N'', N'', N'54', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A4439E06-C5AD-43FE-A1C8-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:24:36.0199170', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'75', N'Edge108', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'01E0CB89-C1E6-4284-A1C9-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:24:40.2579035', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'844', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'88ADDAD9-7F8C-4439-A1CA-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:24:40.2903093', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'845', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C13CDDB2-6323-4128-A1CB-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:24:45.5598890', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'153', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8B136C7A-1761-4837-A1CC-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:24:49.3802092', NULL, NULL, N'/api/admin/SysMenu/findForm/11', N'0.0.0.1', N'', N'', N'', N'170', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D0F584A1-4C40-489A-A1CD-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:24:56.4429000', NULL, NULL, N'/api/admin/SysMenu/update', N'0.0.0.1', N'', N'{"id":11,"form":{"levelCode":"1.11","number":70,"name":"微前端","componentName":"Iframe","url":"core/components/Iframe.vue","router":"/iframe","jumpUrl":"","icon":"RadarChartOutlined","parentId":1,"show":true,"close":true,"keepAlive":true,"state":true,"type":2,"mode":2,"moduleUrl":"http://rapidscada.com.cn/#/","moduleUrlPro":"111","id":11,"lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-12-16 17:30:05","creatorUserId":null,"creationTime":"2021-08-05 21:51:12"},"allFunctions":[{"number":10,"name":"显示","byName":"Display","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"c9518758-b2e1-4f51-b517-5282e273889c"},{"number":20,"name":"添加","byName":"Insert","remark":"Insert","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"bffefb1c-8988-4ddf-b4ac-81c2b30e80cd"},{"number":30,"name":"修改","byName":"Update","remark":"Update","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"e7ef2a05-8317-41c3-b588-99519fe88bf9"},{"number":40,"name":"删除","byName":"Delete","remark":"Delete","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"9c388461-2704-4c5e-a729-72c17e9018e1"},{"number":50,"name":"保存","byName":"Save","remark":"Save","lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-09-28 22:12:02","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"383e7ee2-7690-46ac-9230-65155c84aa30"},{"number":60,"name":"检索","byName":"Search","remark":"Search","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"f27ecb0a-197d-47b1-b243-59a8c71302bf"},{"number":70,"name":"导出","byName":"Export","remark":"Export","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"2401f4d0-60b0-4e2e-903f-84c603373572"},{"number":80,"name":"打印","byName":"Print","remark":"Print","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2022-06-16 17:28:00","id":"b6fd5425-504a-46a9-993b-2f8dc9158eb8"}],"menuFunctionList":[{"number":10,"menuId":11,"functionCode":"Display","functionName":"显示","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2022-03-04 15:24:53","creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 17:30:05","id":"3bc0e68f-d03d-4e99-0f26-08d9fdad00ab"}]}', N'', N'300', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'编辑表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C9855B99-B694-4089-A1CE-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:24:56.6607033', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'43', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'25AAE6E7-A6B0-429C-A1CF-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:25:27.7515770', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'40', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4449B976-A2DD-4749-A1D0-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:25:31.6374138', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'35', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'5BFC1DE4-7772-4D5D-A1D1-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:25:35.2044728', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'37', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'36E78F29-5224-44A7-A1D2-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:25:45.4344079', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'35', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EF7C3883-836B-4EB1-A1D3-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:25:47.8470789', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'38', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'96BDBAD2-D4DE-4C5A-A1D4-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:25:51.9933165', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'44', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'11936F7C-BC5C-4664-A1D5-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:26:19.2513048', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'125', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D62A6B4B-1CE4-49E3-A1D6-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:28:33.1810551', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'202', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CC8BAC93-7301-4C19-A1D7-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:28:36.5100955', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'56', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A4EB3152-6A9D-4069-A1D8-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:28:37.8597843', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'22', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FE1AF074-4271-435A-A1D9-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:28:38.8060687', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'103', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FED305D1-AA3B-48D1-A1DA-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:28:56.1191273', NULL, NULL, N'/api/admin/SysMenu/findForm/11', N'0.0.0.1', N'', N'', N'', N'40', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'ED076DA2-183C-43E3-A1DB-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:29:20.0529227', NULL, NULL, N'/api/admin/SysMenu/update', N'0.0.0.1', N'', N'{"id":11,"form":{"levelCode":"1.11","number":70,"name":"微前端","componentName":"Iframe","url":"core/components/Iframe.vue","router":"/iframe","jumpUrl":"","icon":"RadarChartOutlined","parentId":1,"show":true,"close":true,"keepAlive":true,"state":true,"type":2,"mode":2,"moduleUrl":"https://www.yuque.com/u378909/irw2xs/mkotelqbfrlqux8e/edit#rFnU","moduleUrlPro":"http://rapidscada.com.cn/#/","id":11,"lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-12-16 22:24:56","creatorUserId":null,"creationTime":"2021-08-05 21:51:12"},"allFunctions":[{"number":10,"name":"显示","byName":"Display","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"c9518758-b2e1-4f51-b517-5282e273889c"},{"number":20,"name":"添加","byName":"Insert","remark":"Insert","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"bffefb1c-8988-4ddf-b4ac-81c2b30e80cd"},{"number":30,"name":"修改","byName":"Update","remark":"Update","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"e7ef2a05-8317-41c3-b588-99519fe88bf9"},{"number":40,"name":"删除","byName":"Delete","remark":"Delete","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"9c388461-2704-4c5e-a729-72c17e9018e1"},{"number":50,"name":"保存","byName":"Save","remark":"Save","lastModifierUserId":"0198459e-2034-4533-b843-5d227ad20740","lastModificationTime":"2022-09-28 22:12:02","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"383e7ee2-7690-46ac-9230-65155c84aa30"},{"number":60,"name":"检索","byName":"Search","remark":"Search","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"f27ecb0a-197d-47b1-b243-59a8c71302bf"},{"number":70,"name":"导出","byName":"Export","remark":"Export","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2016-06-20 13:40:52","id":"2401f4d0-60b0-4e2e-903f-84c603373572"},{"number":80,"name":"打印","byName":"Print","remark":"Print","lastModifierUserId":null,"lastModificationTime":"2021-04-18 22:08:06","creatorUserId":null,"creationTime":"2022-06-16 17:28:00","id":"b6fd5425-504a-46a9-993b-2f8dc9158eb8"}],"menuFunctionList":[{"number":10,"menuId":11,"functionCode":"Display","functionName":"显示","remark":"Display","lastModifierUserId":null,"lastModificationTime":"2022-03-04 15:24:53","creatorUserId":"0198459e-2034-4533-b843-5d227ad20740","creationTime":"2022-12-16 22:24:56","id":"3bc0e68f-d03d-4e99-0f26-08d9fdad00ab"}]}', N'', N'158', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'编辑表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4E2C08B0-A510-46EA-A1DC-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:29:20.3252450', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'43', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'244C713A-4C33-4BDB-A1DD-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:29:22.6406353', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'308', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F307030D-30A9-4555-A1DE-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:29:23.7042385', NULL, NULL, N'/api/admin/SysMenu/getAll', N'0.0.0.1', N'', N'{}', N'', N'57', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'菜单', N'获取所有的菜单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0061A31D-03C8-4B09-A1DF-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:49:57.9675974', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'324', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1F10CA5C-B1A7-4EBF-A1E0-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:49:58.1396245', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'217', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CD0B086C-DC55-49FB-A1E1-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:49:58.3467237', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'27', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B367374D-AC12-45A7-A1E2-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:49:58.6461086', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'25', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'65082100-A442-4576-A1E3-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:09.3997929', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'323', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B1E317A1-1BD5-498B-A1E4-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:09.8215682', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'18', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8AC97270-DC2D-4F20-A1E5-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:15.4540513', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'26', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C511E01F-6DAE-46F4-A1E6-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:16.3420537', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'45', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E2EE1F18-F4C5-4942-A1E7-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:16.6512325', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'332', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E1FEB9EE-D43A-4550-A1E8-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:16.8556855', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'34', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'01EC3583-C487-489C-A1E9-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:25.4463647', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'60', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F75AC56D-4F95-49D0-A1EA-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:26.3504312', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'38', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4F09AE87-2356-4A1C-A1EB-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:27.6864390', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'227', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E1D6902A-4C77-4C6B-A1EC-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:28.0630857', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'23', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2FE945D1-D545-4646-A1ED-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:29.4599537', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'137', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3BB793BC-FD6C-448C-A1EE-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:29.5852393', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'16', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CCC49FBD-AA9C-44AE-A1EF-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:34.0248029', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'19', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'52F09942-8170-4CAB-A1F0-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:34.3479858', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'21', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F8BA5BB6-EA0C-4C68-A1F1-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:34.8956263', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'29', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2F069E5F-0BDD-41C3-A1F2-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:50:35.1786799', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'270', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B3E3B7E9-8BAB-4ED2-A1F3-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:52:18.5214801', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'196', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9D2A56B8-7222-48B9-A1F4-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:52:29.5187769', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'302', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9E161935-58D9-4FF6-A1F5-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:54:00.5413708', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'342', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C71F8A46-B9C9-46D1-A1F6-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:57:55.4120181', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'391', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D055B52E-B17C-431C-A1F7-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 22:58:38.1986451', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'222', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8BB38B22-2F78-4D14-A1F8-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:01:53.4582876', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'184', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B148CBF8-BDB8-4E97-A1F9-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:02:23.5351457', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'303', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C1A79B43-613D-4475-A1FA-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:02:47.6408381', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'209', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DCF98E9B-B3F4-43B4-A1FB-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:03:03.4068266', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'228', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'75458828-9B57-440F-A1FC-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:04:30.6801480', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'244', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'60A4056E-F9B2-4C2C-A1FD-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:06:02.3994742', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'178', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'7F07C690-F558-4CFC-A1FE-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:06:11.0100383', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'42', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'32893127-BE1F-4EAE-A1FF-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:07:07.7660017', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'465', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'62532AF8-54F1-48C6-A200-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:07:09.2948400', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'259', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'42A95A24-984D-4FA4-A201-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:07:18.4694489', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'18', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'DA6A6368-5E2A-4345-A202-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:07:58.2497223', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'256', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'919F440E-A083-4BAA-A203-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:08:11.9652814', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'275', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CCD29C72-8A67-4ADE-A204-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:08:56.3790089', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'206', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A7DB31F0-5CEF-4A14-A205-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:08:59.0637370', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'31', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'02C12692-9383-4E02-A206-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:09:56.4462511', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'166', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2123DB1E-9337-40A9-A207-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:10:04.6081352', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'28', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C3B3E1F5-D51A-4B5C-A208-08DADF7141EB', N'00000000-0000-0000-0000-000000000000', N'2022-12-16 23:11:55.8749562', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'230', N'Edge108', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
 
 -- ----------------------------
 -- Table structure for sys_organization
@@ -3035,7 +5032,7 @@ GO
 -- ----------------------------
 -- Auto increment value for sys_menu
 -- ----------------------------
-DBCC CHECKIDENT ('[dbo].[sys_menu]', RESEED, 36)
+DBCC CHECKIDENT ('[dbo].[sys_menu]', RESEED, 37)
 GO
 
 

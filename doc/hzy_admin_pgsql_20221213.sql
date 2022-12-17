@@ -12,7 +12,7 @@
  Target Server Version : 130003
  File Encoding         : 65001
 
- Date: 13/12/2022 22:37:08
+ Date: 17/12/2022 15:08:09
 */
 
 
@@ -700,44 +700,45 @@ START 1
   "CreatorUserId" uuid,
   "CreationTime" timestamp(6) NOT NULL,
   "LastModifierUserId" uuid,
-  "LastModificationTime" timestamp(6)
+  "LastModificationTime" timestamp(6),
+  "ModuleUrlPro" varchar(255) COLLATE "pg_catalog"."default"
 )
 ;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO "public"."sys_menu" VALUES (1, '1', 10, '更多示例', NULL, NULL, NULL, NULL, 'MoreOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, '2021-05-28 11:49:02', NULL, '2022-03-04 12:25:39');
-INSERT INTO "public"."sys_menu" VALUES (2, '1.2', 10, '查看更多组件', 'AppComponentsCom', 'views/example/AppComponents.vue', '/app/components', NULL, 'LayoutOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-01-16 16:05:22', NULL, '2022-03-18 12:06:20');
-INSERT INTO "public"."sys_menu" VALUES (3, '1.3', 30, '按钮', 'ButtonCom', 'views/example/Button.vue', '/button', NULL, 'AppstoreOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2020-12-17 14:58:05', NULL, '2022-03-04 12:26:14');
-INSERT INTO "public"."sys_menu" VALUES (4, '1.4', 40, '图表 AntV G2', NULL, NULL, NULL, NULL, 'PieChartOutlined', 1, 't', 't', 't', 't', 1, 1, NULL, NULL, '2021-01-16 16:06:33', NULL, '2022-03-04 12:26:21');
-INSERT INTO "public"."sys_menu" VALUES (5, '1.4.5', 10, '基础图表', 'ChartBaseCom', 'views/example/chart/Base.vue', '/chart/base', NULL, NULL, 4, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-01-16 16:07:24', NULL, '2022-03-04 12:26:25');
-INSERT INTO "public"."sys_menu" VALUES (6, '1.4.6', 20, '更多图表', 'ChartMoreCom', 'views/example/chart/More.vue', '/chart/more', NULL, NULL, 4, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-01-16 16:10:06', NULL, '2022-03-04 12:26:28');
-INSERT INTO "public"."sys_menu" VALUES (7, '1.7', 50, '表格管理', NULL, NULL, NULL, NULL, 'TableOutlined', 1, 't', 't', 't', 't', 1, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:26:34');
-INSERT INTO "public"."sys_menu" VALUES (8, '1.7.8', 100, '基础列表', 'BaseListCom', 'views/example/BaseList.vue', '/base/list', NULL, NULL, 7, 't', 't', 't', 't', 2, 1, NULL, NULL, '2020-12-17 14:49:12', NULL, '2022-03-04 12:26:38');
-INSERT INTO "public"."sys_menu" VALUES (9, '1.7.9', 110, '标准表格', 'ListIndexCom', 'views/example/list/Index.vue', '/list', NULL, NULL, 7, 't', 't', 't', 't', 2, 1, NULL, NULL, '2020-12-17 14:51:07', NULL, '2022-03-04 12:26:41');
-INSERT INTO "public"."sys_menu" VALUES (10, '1.10', 60, '富文本编辑器', 'EditorCom', 'views/example/Editor.vue', '/editor', NULL, 'PicRightOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-01-18 19:34:28', NULL, '2022-03-04 12:26:46');
-INSERT INTO "public"."sys_menu" VALUES (11, '1.11', 70, '微前端', '', '', '', '', 'RadarChartOutlined', 1, 't', 't', 't', 't', 2, 2, 'http://rapidscada.com.cn/#/', NULL, '2021-08-05 21:51:12', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-13 21:57:11');
-INSERT INTO "public"."sys_menu" VALUES (12, '12', 50, '基础信息', NULL, NULL, NULL, NULL, 'GoldOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:25:43');
-INSERT INTO "public"."sys_menu" VALUES (13, '12.13', 10, '会员管理', 'base_member', 'views/base/member/Index.vue', '/base/member', NULL, 'UsergroupAddOutlined', 12, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:26:55');
-INSERT INTO "public"."sys_menu" VALUES (14, '14', 100, '系统管理', NULL, NULL, NULL, NULL, 'DesktopOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:25:46');
-INSERT INTO "public"."sys_menu" VALUES (15, '14.15', 100, '账户管理', 'system_user', 'views/system/sys_user/Index.vue', '/system/user', NULL, 'UserOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-04 16:28:51');
-INSERT INTO "public"."sys_menu" VALUES (16, '14.16', 110, '角色管理', 'system_role', 'views/system/sys_role/Index.vue', '/system/role', NULL, 'TeamOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-04-22 22:24:03');
-INSERT INTO "public"."sys_menu" VALUES (17, '14.17', 120, '功能管理', 'system_function', 'views/system/sys_function/Index.vue', '/system/function', NULL, 'ControlOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:27:11');
-INSERT INTO "public"."sys_menu" VALUES (19, '14.19', 150, '个人中心', 'system_personal_center', 'views/system/personal_center/Index.vue', '/system/personal/center', NULL, 'FormOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:27:19');
-INSERT INTO "public"."sys_menu" VALUES (20, '14.20', 160, '岗位管理', 'system_post', 'views/system/sys_post/Index.vue', '/system/post', NULL, 'IdcardOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-05-27 17:29:49', NULL, '2022-03-04 12:27:23');
-INSERT INTO "public"."sys_menu" VALUES (21, '14.21', 170, '组织机构', 'system_organization', 'views/system/sys_organization/Index.vue', '/system/organization', NULL, 'ClusterOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-05-27 20:27:56', NULL, '2022-03-04 12:27:27');
-INSERT INTO "public"."sys_menu" VALUES (22, '29.22', 10, '接口文档', 'swagger', 'views/development_tool/Swagger.vue', '/development_tool/swagger', NULL, 'FileSearchOutlined', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:17:03', NULL, '2022-03-04 12:27:41');
-INSERT INTO "public"."sys_menu" VALUES (23, '14.23', 190, '数据字典', 'system_dictionary', 'views/system/sys_dictionary/Index.vue', '/system/dictionary', NULL, 'FileDoneOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-07-25 21:50:01', NULL, '2022-03-04 12:27:31');
-INSERT INTO "public"."sys_menu" VALUES (24, '14.24', 200, '操作日志', 'sys_operation_log', 'views/system/sys_operation_log/Index.vue', '/system/sys_operation_log', '', 'ContainerOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-08-05 21:24:54', NULL, '2022-03-04 12:27:35');
-INSERT INTO "public"."sys_menu" VALUES (25, '14.25', 130, '菜单功能', 'system_menu', 'views/system/sys_menu/Index.vue', '/system/menu', NULL, 'MenuOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:27:15');
-INSERT INTO "public"."sys_menu" VALUES (28, '1.28', 1, 'Vxe-Table', 'VxeTableCom', 'views/example/VxeTable.vue', '/vxe/table', NULL, 'BorderlessTableOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-12-29 17:13:26', NULL, '2022-03-04 12:26:00');
-INSERT INTO "public"."sys_menu" VALUES (29, '29', 200, '开发工具', NULL, NULL, NULL, NULL, 'CodepenOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, '2022-01-12 14:17:21', NULL, '2022-03-04 12:25:49');
-INSERT INTO "public"."sys_menu" VALUES (30, '29.30', 20, '定时任务', 'TimedTaskCom', 'views/development_tool/timed_task/Index.vue', '/development_tool/timed_task', NULL, 'FieldTimeOutlined', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, '2022-01-12 14:22:04', NULL, '2022-03-04 12:27:44');
-INSERT INTO "public"."sys_menu" VALUES (31, '29.31', 30, '代码生成', 'LowCode', 'views/development_tool/low_code/Index.vue', '/development-tool/low-code', NULL, 'CodeTwoTone', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, '2022-01-12 15:39:46', NULL, '2022-05-24 22:05:57');
-INSERT INTO "public"."sys_menu" VALUES (32, '1.32', 20, '图标展示', 'IconsVue', 'views/example/Icons.vue', '/icons', NULL, 'TagsTwoTone', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2022-02-24 10:51:38', NULL, '2022-03-18 12:06:38');
-INSERT INTO "public"."sys_menu" VALUES (33, '29.33', 40, 'EFCore监控台', 'monitor_efcore', 'views/development_tool/monitor_efcore/Index.vue', '/development_tool/monitor/efcore', NULL, 'DashboardFilled', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, '2022-04-10 10:55:41', NULL, '2022-04-10 10:56:17');
-INSERT INTO "public"."sys_menu" VALUES (36, '12.13.36', 1, '详情', 'base_member_info_Details', 'views/base/member/components/Details.vue', '/base/member/details/:id/:title', NULL, NULL, 13, 'f', 't', 't', 't', 2, 1, NULL, NULL, '2022-04-17 17:45:25', NULL, '2022-04-17 17:49:13');
+INSERT INTO "public"."sys_menu" VALUES (1, '1', 10, '更多示例', NULL, NULL, NULL, NULL, 'MoreOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, '2021-05-28 11:49:02', NULL, '2022-03-04 12:25:39', NULL);
+INSERT INTO "public"."sys_menu" VALUES (2, '1.2', 10, '查看更多组件', 'AppComponentsCom', 'views/example/AppComponents.vue', '/app/components', NULL, 'LayoutOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-01-16 16:05:22', NULL, '2022-03-18 12:06:20', NULL);
+INSERT INTO "public"."sys_menu" VALUES (3, '1.3', 30, '按钮', 'ButtonCom', 'views/example/Button.vue', '/button', NULL, 'AppstoreOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2020-12-17 14:58:05', NULL, '2022-03-04 12:26:14', NULL);
+INSERT INTO "public"."sys_menu" VALUES (4, '1.4', 40, '图表 AntV G2', NULL, NULL, NULL, NULL, 'PieChartOutlined', 1, 't', 't', 't', 't', 1, 1, NULL, NULL, '2021-01-16 16:06:33', NULL, '2022-03-04 12:26:21', NULL);
+INSERT INTO "public"."sys_menu" VALUES (5, '1.4.5', 10, '基础图表', 'ChartBaseCom', 'views/example/chart/Base.vue', '/chart/base', NULL, NULL, 4, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-01-16 16:07:24', NULL, '2022-03-04 12:26:25', NULL);
+INSERT INTO "public"."sys_menu" VALUES (6, '1.4.6', 20, '更多图表', 'ChartMoreCom', 'views/example/chart/More.vue', '/chart/more', NULL, NULL, 4, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-01-16 16:10:06', NULL, '2022-03-04 12:26:28', NULL);
+INSERT INTO "public"."sys_menu" VALUES (7, '1.7', 50, '表格管理', NULL, NULL, NULL, NULL, 'TableOutlined', 1, 't', 't', 't', 't', 1, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:26:34', NULL);
+INSERT INTO "public"."sys_menu" VALUES (8, '1.7.8', 100, '基础列表', 'BaseListCom', 'views/example/BaseList.vue', '/base/list', NULL, NULL, 7, 't', 't', 't', 't', 2, 1, NULL, NULL, '2020-12-17 14:49:12', NULL, '2022-03-04 12:26:38', NULL);
+INSERT INTO "public"."sys_menu" VALUES (9, '1.7.9', 110, '标准表格', 'ListIndexCom', 'views/example/list/Index.vue', '/list', NULL, NULL, 7, 't', 't', 't', 't', 2, 1, NULL, NULL, '2020-12-17 14:51:07', NULL, '2022-03-04 12:26:41', NULL);
+INSERT INTO "public"."sys_menu" VALUES (10, '1.10', 60, '富文本编辑器', 'EditorCom', 'views/example/Editor.vue', '/editor', NULL, 'PicRightOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-01-18 19:34:28', NULL, '2022-03-04 12:26:46', NULL);
+INSERT INTO "public"."sys_menu" VALUES (11, '1.11', 70, '微前端', '', '', '', '', 'RadarChartOutlined', 1, 't', 't', 't', 't', 2, 2, 'http://rapidscada.com.cn/#/', NULL, '2021-08-05 21:51:12', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-13 21:57:11', NULL);
+INSERT INTO "public"."sys_menu" VALUES (12, '12', 50, '基础信息', NULL, NULL, NULL, NULL, 'GoldOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:25:43', NULL);
+INSERT INTO "public"."sys_menu" VALUES (13, '12.13', 10, '会员管理', 'base_member', 'views/base/member/Index.vue', '/base/member', NULL, 'UsergroupAddOutlined', 12, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:26:55', NULL);
+INSERT INTO "public"."sys_menu" VALUES (14, '14', 100, '系统管理', NULL, NULL, NULL, NULL, 'DesktopOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:25:46', NULL);
+INSERT INTO "public"."sys_menu" VALUES (15, '14.15', 100, '账户管理', 'system_user', 'views/system/sys_user/Index.vue', '/system/user', NULL, 'UserOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-04 16:28:51', NULL);
+INSERT INTO "public"."sys_menu" VALUES (16, '14.16', 110, '角色管理', 'system_role', 'views/system/sys_role/Index.vue', '/system/role', NULL, 'TeamOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-04-22 22:24:03', NULL);
+INSERT INTO "public"."sys_menu" VALUES (17, '14.17', 120, '功能管理', 'system_function', 'views/system/sys_function/Index.vue', '/system/function', NULL, 'ControlOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:27:11', NULL);
+INSERT INTO "public"."sys_menu" VALUES (19, '14.19', 150, '个人中心', 'system_personal_center', 'views/system/personal_center/Index.vue', '/system/personal/center', NULL, 'FormOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:27:19', NULL);
+INSERT INTO "public"."sys_menu" VALUES (20, '14.20', 160, '岗位管理', 'system_post', 'views/system/sys_post/Index.vue', '/system/post', NULL, 'IdcardOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-05-27 17:29:49', NULL, '2022-03-04 12:27:23', NULL);
+INSERT INTO "public"."sys_menu" VALUES (21, '14.21', 170, '组织机构', 'system_organization', 'views/system/sys_organization/Index.vue', '/system/organization', NULL, 'ClusterOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-05-27 20:27:56', NULL, '2022-03-04 12:27:27', NULL);
+INSERT INTO "public"."sys_menu" VALUES (22, '29.22', 10, '接口文档', 'swagger', 'views/development_tool/Swagger.vue', '/development_tool/swagger', NULL, 'FileSearchOutlined', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:17:03', NULL, '2022-03-04 12:27:41', NULL);
+INSERT INTO "public"."sys_menu" VALUES (23, '14.23', 190, '数据字典', 'system_dictionary', 'views/system/sys_dictionary/Index.vue', '/system/dictionary', NULL, 'FileDoneOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-07-25 21:50:01', NULL, '2022-03-04 12:27:31', NULL);
+INSERT INTO "public"."sys_menu" VALUES (24, '14.24', 200, '操作日志', 'sys_operation_log', 'views/system/sys_operation_log/Index.vue', '/system/sys_operation_log', '', 'ContainerOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-08-05 21:24:54', NULL, '2022-03-04 12:27:35', NULL);
+INSERT INTO "public"."sys_menu" VALUES (25, '14.25', 130, '菜单功能', 'system_menu', 'views/system/sys_menu/Index.vue', '/system/menu', NULL, 'MenuOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:27:15', NULL);
+INSERT INTO "public"."sys_menu" VALUES (28, '1.28', 1, 'Vxe-Table', 'VxeTableCom', 'views/example/VxeTable.vue', '/vxe/table', NULL, 'BorderlessTableOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-12-29 17:13:26', NULL, '2022-03-04 12:26:00', NULL);
+INSERT INTO "public"."sys_menu" VALUES (29, '29', 200, '开发工具', NULL, NULL, NULL, NULL, 'CodepenOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, '2022-01-12 14:17:21', NULL, '2022-03-04 12:25:49', NULL);
+INSERT INTO "public"."sys_menu" VALUES (30, '29.30', 20, '定时任务', 'TimedTaskCom', 'views/development_tool/timed_task/Index.vue', '/development_tool/timed_task', NULL, 'FieldTimeOutlined', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, '2022-01-12 14:22:04', NULL, '2022-03-04 12:27:44', NULL);
+INSERT INTO "public"."sys_menu" VALUES (31, '29.31', 30, '代码生成', 'LowCode', 'views/development_tool/low_code/Index.vue', '/development-tool/low-code', NULL, 'CodeTwoTone', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, '2022-01-12 15:39:46', NULL, '2022-05-24 22:05:57', NULL);
+INSERT INTO "public"."sys_menu" VALUES (32, '1.32', 20, '图标展示', 'IconsVue', 'views/example/Icons.vue', '/icons', NULL, 'TagsTwoTone', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2022-02-24 10:51:38', NULL, '2022-03-18 12:06:38', NULL);
+INSERT INTO "public"."sys_menu" VALUES (33, '29.33', 40, 'EFCore监控台', 'monitor_efcore', 'views/development_tool/monitor_efcore/Index.vue', '/development_tool/monitor/efcore', NULL, 'DashboardFilled', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, '2022-04-10 10:55:41', NULL, '2022-04-10 10:56:17', NULL);
+INSERT INTO "public"."sys_menu" VALUES (36, '12.13.36', 1, '详情', 'base_member_info_Details', 'views/base/member/components/Details.vue', '/base/member/details/:id/:title', NULL, NULL, 13, 'f', 't', 't', 't', 2, 1, NULL, NULL, '2022-04-17 17:45:25', NULL, '2022-04-17 17:49:13', NULL);
 
 -- ----------------------------
 -- Table structure for sys_menu_function
