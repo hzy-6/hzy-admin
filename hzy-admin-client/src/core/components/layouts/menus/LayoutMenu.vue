@@ -56,14 +56,15 @@ function onMenuSelected(obj: any) {
   const menuItem = appStore.state.userInfo.menus.find((w) => w.id == obj.key);
 
   //如果是普通模式
-  if (menuItem.mode === 1) {
-    router.push({ path: menuItem.jumpUrl ?? menuItem.router });
+  if (menuItem?.mode === 1) {
+    router.push({ path: menuItem?.jumpUrl ?? menuItem?.router ?? "/404" });
   }
+  router.push({ path: menuItem?.jumpUrl ?? menuItem?.router ?? "/404" });
 
   //如果是微前端
-  if (menuItem.mode === 2) {
-    tabsStore.openModular(menuItem);
-  }
+  // if (menuItem.mode === 2) {
+  //   tabsStore.openModular(menuItem);
+  // }
 }
 </script>
 

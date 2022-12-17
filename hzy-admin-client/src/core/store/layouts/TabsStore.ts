@@ -1,16 +1,12 @@
 import { defineStore } from "pinia";
 import { computed, reactive, watch } from "vue";
 import router from "@/core/router";
-import { RouteMeta } from "vue-router";
+import { RouteLocationNormalizedLoaded } from "vue-router";
 import AppConsts from "@/utils/AppConsts";
+import AppStore from "../AppStore";
 
-export interface ITabsItem {
-    fullPath: string
-    path: string
-    name: string
-    //模式 1 普通模式 2 微前端模式
-    mode: 1 | 2
-    meta: RouteMeta
+export interface ITabsItem extends RouteLocationNormalizedLoaded {
+
 }
 
 interface IState {
@@ -26,6 +22,7 @@ interface IState {
 
 export default defineStore("TabsStore", () => {
 
+    const appStore = AppStore();
     //定义状态
     let state = reactive<IState>({
         height: 41,
@@ -36,12 +33,12 @@ export default defineStore("TabsStore", () => {
             fullPath: AppConsts.defaultHomePageInfo.jumpUrl,
             path: AppConsts.defaultHomePageInfo.jumpUrl,
             name: AppConsts.defaultHomePageInfo.componentName,
-            mode: 1,
             meta: {
                 title: AppConsts.defaultHomePageInfo.name,
                 close: AppConsts.defaultHomePageInfo.close,
                 keepAlive: true,
-                icon: AppConsts.defaultHomePageInfo.icon
+                icon: AppConsts.defaultHomePageInfo.icon,
+                mode: 1
             },
         } as ITabsItem],
         //缓存视图 视图缓存只能通过组件名称来
@@ -50,7 +47,7 @@ export default defineStore("TabsStore", () => {
     });
 
     //当前模式
-    const currentMode = computed(() => state.tabs.find(w => w.fullPath == state.activeKey)?.mode ?? 1);
+    const currentMode = computed(() => state.tabs.find(w => w.fullPath == state.activeKey)?.meta.mode ?? 1);
 
     watch(
         () => router.currentRoute.value.fullPath,
@@ -71,9 +68,9 @@ export default defineStore("TabsStore", () => {
         addCacheView(routeInfo: ITabsItem) {
             const { name, meta } = routeInfo;
             if (!meta.keepAlive) return;
-            let any = state.cacheViews.includes(name);
+            let any = state.cacheViews.includes(name as string);
             if (any) return;
-            state.cacheViews.push(name);
+            state.cacheViews.push(name as string);
         },
 
         /**
@@ -116,24 +113,22 @@ export default defineStore("TabsStore", () => {
      * @param {*} routeInfo 
      * @returns 
      */
-    function addTab(routeInfo: any) {
+    function addTab(routeInfo: RouteLocationNormalizedLoaded) {
         const { meta, fullPath } = routeInfo;
 
         if (!Object.prototype.hasOwnProperty.call(meta, 'close')) return;
 
         //检查是否存在
         let tab = state.tabs.find(w => w.fullPath == fullPath);
+        const menuItem = appStore.state.userInfo.menus.find(w => w.id == routeInfo.meta.menuId);
+        const tabsItem = routeInfo as ITabsItem;
+        tabsItem.meta.mode = menuItem?.mode ?? 1;
+
         if (!tab) {
-            state.tabs.push({
-                fullPath: routeInfo.fullPath,
-                path: routeInfo.path,
-                name: routeInfo.name,
-                mode: routeInfo.mode ?? 1,
-                meta: routeInfo.meta,
-            });
+            state.tabs.push(tabsItem);
         }
 
-        cacheViewMethods.addCacheView(routeInfo);
+        cacheViewMethods.addCacheView(tabsItem);
     }
 
     /**
@@ -146,7 +141,7 @@ export default defineStore("TabsStore", () => {
         let oldTab = state.tabs[index];
         if (oldTab.meta.close) {
             state.tabs.splice(index, 1);
-            cacheViewMethods.delCacheView(oldTab.name, null);
+            cacheViewMethods.delCacheView(oldTab.name as string, null);
         }
         let tab = state.tabs[index - 1];
         if (!tab) return;
@@ -202,11 +197,11 @@ export default defineStore("TabsStore", () => {
      * @param {*} fullPath 
      */
     function tabClick(fullPath: string) {
-        const tab = state.tabs.find(w => w.fullPath == fullPath);
-        if (tab && tab.mode == 2) {
-            openModular({ moduleUrl: tab.fullPath, name: tab.meta.title });
-            return;
-        }
+        // const tab = state.tabs.find(w => w.fullPath == fullPath);
+        // if (tab && tab.mode == 2) {
+        //     openModular({ moduleUrl: tab.fullPath, name: tab.meta.title });
+        //     return;
+        // }
 
         router.push(fullPath);
     }
@@ -216,17 +211,17 @@ export default defineStore("TabsStore", () => {
      * 
      * @param menuItem 
      */
-    function openModular(menuItem: { moduleUrl: string, name: string }) {
-        addTab({
-            fullPath: menuItem.moduleUrl,
-            path: menuItem.moduleUrl,
-            name: menuItem.name,
-            mode: 2,
-            meta: { close: true, title: menuItem.name },
-        });
+    // function openModular(menuItem: { moduleUrl: string, name: string }) {
+    //     addTab({
+    //         fullPath: menuItem.moduleUrl,
+    //         path: menuItem.moduleUrl,
+    //         name: menuItem.name,
+    //         mode: 2,
+    //         meta: { close: true, title: menuItem.name },
+    //     });
 
-        state.activeKey = menuItem.moduleUrl;
-    }
+    //     state.activeKey = menuItem.moduleUrl;
+    // }
 
     return {
         state,
@@ -237,7 +232,7 @@ export default defineStore("TabsStore", () => {
         closeTabOther,
         closeTabAll,
         tabClick,
-        openModular
+        // openModular
     }
 
 });

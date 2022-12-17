@@ -58,14 +58,14 @@ function handlePaths() {
     var ids = levelCode.split(".");
     for (var i = 0; i < ids.length; i++) {
       var id = ids[i];
-      const menuItem = appStore.state.userInfo.menus.find((w) => w.id == id);
+      const menuItem = appStore.state.userInfo.menus.find((w) => w.id == (id as any));
       menus.push(menuItem);
     }
   } else {
-    const menuItem = appStore.state.userInfo.menus.find((w) => (w.id = levelCode));
+    const menuItem = appStore.state.userInfo.menus.find((w) => (w.id = levelCode as any));
     menus.push(menuItem);
   }
-  return menus;
+  return menus as MenuItemModel[];
 }
 </script>
 

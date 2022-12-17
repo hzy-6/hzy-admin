@@ -36,20 +36,15 @@ let left = computed(() => {
     <a-layout :style="{ marginLeft: left + 'px' }">
       <a-layout-content :style="{ paddingTop: '88px' }">
         <div style="min-height: calc(80vh); overflow: hidden">
-          <div v-show="tabsStore.currentMode == 1">
-            <!-- 由于必须要输出 cacheViews 才能不让缓存页面丢失事件 所以用了下面隐藏的input组件 来激活cacheViews变化 -->
-            <!-- <input type="hidden" :value="tabsStore.state.cacheViews" /> -->
-            <router-view v-slot="{ Component, route }">
-              <transition name="fade-transform" mode="out-in">
-                <keep-alive :include="tabsStore.state.cacheViews">
-                  <component :is="Component" :key="route.fullPath" />
-                </keep-alive>
-              </transition>
-            </router-view>
-          </div>
-          <div v-show="tabsStore.currentMode == 2">
-            <LayoutIframe />
-          </div>
+          <router-view v-slot="{ Component, route }">
+            <transition name="fade-transform" mode="out-in">
+              <keep-alive :include="tabsStore.state.cacheViews">
+                <component :is="Component" :key="route.fullPath" v-if="route.meta.mode == 1" />
+              </keep-alive>
+            </transition>
+          </router-view>
+          <!-- iframe 处理 -->
+          <LayoutIframe />
         </div>
 
         <!-- 返回顶部 -->

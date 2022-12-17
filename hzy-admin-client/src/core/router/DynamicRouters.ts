@@ -3,6 +3,8 @@ import { RouteMeta, RouteRecordRaw } from 'vue-router';
 import router from '@/core/router';
 import AppConsts from '../../utils/AppConsts';
 import Tools from '../utils/Tools';
+import { defineAsyncComponent, defineComponent, h } from 'vue';
+import { type } from 'os';
 
 //导出所有的 vue 模块
 let dynamicRouters: Array<RouteRecordRaw> = [];
@@ -33,7 +35,13 @@ export function genDynamicRouters(menuTreeList: any[]): boolean {
             title: AppConsts.defaultHomePageInfo.name,
             close: AppConsts.defaultHomePageInfo.close,
             keepAlive: true,
-            icon: AppConsts.defaultHomePageInfo.icon!
+            icon: AppConsts.defaultHomePageInfo.icon!,
+            id: 0,
+            name: AppConsts.defaultHomePageInfo.name,
+            componentName: AppConsts.defaultHomePageInfo.componentName,
+            url: AppConsts.defaultHomePageInfo.jumpUrl,
+            type: 2,
+            mode: 1
         },
     });
 
@@ -64,9 +72,6 @@ function createDynamicRouters(data: any) {
     for (let i = 0; i < data?.length; i++) {
         let item = data[i];
 
-        //微前端模式跳过路由
-        if (item.mode === 2) continue;
-
         let path = item.router ? item.router : (item.url ?? '/404');
 
         //如果是菜单类型
@@ -77,21 +82,21 @@ function createDynamicRouters(data: any) {
                 redirect: path && path === '/404' ? '/404' : undefined,
                 meta: {
                     title: item.name,
-                    keepAlive: item.keepAlive ?? true,
-                    close: item.close,
-                    show: item.show ?? true,
                     menuId: item.id,
-                    parentId: item.parentId,
-                    levelCode: item.levelCode,
-                    jumpUrl: item.jumpUrl,
-                    icon: item.icon
+                    ...item
                 } as RouteMeta,
             } as RouteRecordRaw;
 
             if (path && path === '/404') {
                 route.redirect = '/404';
             } else {
-                route.component = AppConsts.modules['../../' + item.url] ?? AppConsts.modules['../' + item.url] ?? AppConsts.modules[item.url];
+                const com = AppConsts.modules['../../' + item.url] ?? AppConsts.modules['../' + item.url] ?? AppConsts.modules[item.url];
+                if (item.componentName) {
+                    route.component = com;
+                    updateComponentName(item.componentName, (route.component as any)())
+                } else {
+                    route.component = com;
+                }
             }
 
             dynamicRouters.push(route);
@@ -101,4 +106,15 @@ function createDynamicRouters(data: any) {
         //只要有 children 则需要往下递归
         createDynamicRouters(item.children);
     }
+}
+
+/**
+ * 将指定组件设置自定义名称
+ *
+ * @param {String} name 组件自定义名称
+ * @param {Component | Promise<Component>} component
+ * @return {Component}
+ */
+async function updateComponentName(name: string, component: any) {
+    (await component).default.name = name;
 }

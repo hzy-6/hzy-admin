@@ -68,23 +68,23 @@ export interface MenuItemModel {
     /**
      * 组件名称
      */
-    componentName: string | null
+    componentName?: string | null
     /**
      * 菜单物理路径
      */
-    url: string | null
+    url?: string | null
     /**
      * 路由地址
      */
-    router: string | null
+    router?: string | null
     /**
      * 默认跳转地址
      */
-    jumpUrl: string | null
+    jumpUrl?: string | null
     /**
      * 菜单图标
      */
-    icon: string | null
+    icon?: string | null
     /**
      * 选项卡是否可关闭
      */
@@ -92,7 +92,7 @@ export interface MenuItemModel {
     /**
      * 父级Id
      */
-    parentId: number | null
+    parentId?: number | null
     /**
      * 菜单类型
      */
@@ -100,15 +100,19 @@ export interface MenuItemModel {
     /**
      * 级别码 1.1.1
      */
-    levelCode: string | null
+    levelCode?: string | null
     /**
      * 模式 1=普通模式 2=微前端模式
      */
     mode: 1 | 2
     /**
-     * 微前端模块地址
+     * 微前端模块地址 Dev 模式
      */
     moduleUrl?: string | null
+    /**
+     * 微前端模块地址 Pro 模式
+     */
+    moduleUrlPro?: string | null
     /**
      * 编号
      */
@@ -116,7 +120,7 @@ export interface MenuItemModel {
     /**
      * 子集菜单
      */
-    children: MenuItemModel[] | null | []
+    children?: MenuItemModel[] | null | []
     /**
      * 父级名称
      */

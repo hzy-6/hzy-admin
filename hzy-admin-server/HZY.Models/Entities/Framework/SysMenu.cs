@@ -87,9 +87,14 @@ public class SysMenu : DefaultBaseEntityIdentityIntKey
     public SysMenuModeEnum Mode { get; set; } = SysMenuModeEnum.普通;
 
     /// <summary>
-    /// 模块地址 (微前端)
+    /// 模块地址 (微前端) Dev 开发模式
     /// </summary>
     public string ModuleUrl { get; set; }
+
+    /// <summary>
+    /// 模块地址 (微前端) Pro 生产模式
+    /// </summary>
+    public string ModuleUrlPro { get; set; }
 
 }
 

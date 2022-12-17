@@ -4,10 +4,12 @@ import router from "@/core/router";
 import TabsStore, { ITabsItem } from "./layouts/TabsStore";
 import AppConsts from "@/utils/AppConsts";
 import SysUserService from "@/services/system/SysUserService";
+import { MenuItemModel } from "@/core/store/layouts/MenuStore";
+import { RouteRecordRaw } from "vue-router";
 
 interface IDefaultUserInfo {
     name: string
-    menus: any[]
+    menus: MenuItemModel[]
     menuPowers: any[]
     //
     loadOver: boolean,
@@ -15,7 +17,7 @@ interface IDefaultUserInfo {
 
 interface IState {
     // 所有路由集合
-    allRouters: any[]
+    allRouters: RouteRecordRaw[]
     //用户信息
     userInfo: IDefaultUserInfo
     //一级大菜单集合
@@ -76,7 +78,7 @@ export default defineStore("AppStore", () => {
      * @param {*} parentId 
      */
     function setSubmenu(parentId: string) {
-        const subMenus = state.userInfo.menus.filter((w) => w.parentId == parentId);
+        const subMenus = state.userInfo.menus.filter((w) => w.parentId == parentId as any);
         if (subMenus) {
             state.subMenus = subMenus;
         }
@@ -90,10 +92,10 @@ export default defineStore("AppStore", () => {
      */
     function getRouterByFullPath(fullPath: string): ITabsItem {
         let result = state.allRouters.find(w => w.path == fullPath);
-        if (!result) {
-            result = tabsStore.state.tabs.find((w: any) => w.path == fullPath);
+        if (result) {
+            return (result as any) as ITabsItem
         }
-        return result as ITabsItem;
+        return tabsStore.state.tabs.find((w: any) => w.path == fullPath) as ITabsItem
     }
 
     /**

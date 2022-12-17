@@ -1,12 +1,21 @@
 <script lang="ts" setup>
-import TabsStore from "@/core/store/layouts/TabsStore";
+// import AppStore from "@/core/store/AppStore";
 
-const tabsStore = TabsStore();
+// const appStore = AppStore();
+
+const isPro = process.env.NODE_ENV == "production";
 </script>
 
 <template>
-  <!-- {{ tabsStore.state.activeKey }} -->
-  <iframe frameBorder="0" v-for="item in tabsStore.state.tabs.filter((w) => w.mode == 2)" :src="item.fullPath" v-show="tabsStore.state.activeKey == item.fullPath" :key="item.fullPath"></iframe>
+  <!-- iframe 处理 -->
+  <div v-for="item in $router.getRoutes().filter((w) => w.meta.mode == 2)">
+    <transition name="fade-transform" mode="out-in">
+      <div v-show="item.path == $route.path">
+        <iframe ref="iframe" :src="(item?.meta.moduleUrlPro  as string)" frameBorder="0" v-if="isPro"></iframe>
+        <iframe ref="iframe" :src="(item?.meta.moduleUrl as string)" frameBorder="0" v-else></iframe>
+      </div>
+    </transition>
+  </div>
 </template>
 
 <style lang="less" scoped>

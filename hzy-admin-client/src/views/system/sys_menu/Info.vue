@@ -211,22 +211,28 @@ function addRow(row?: any) {
 
           <!-- 模块地址 -->
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="6" v-if="state.vm.form.type == 2 && state.vm.form.mode == 2">
-            <a-form-item label="模块地址">
+            <a-form-item label="模块地址（Dev 开发模式）">
               <a-input v-model:value="state.vm.form.moduleUrl" placeholder="请输入" />
             </a-form-item>
           </a-col>
 
-          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="6" v-if="state.vm.form.type == 2 && state.vm.form.mode == 1">
+          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="6" v-if="state.vm.form.type == 2 && state.vm.form.mode == 2">
+            <a-form-item label="模块地址（Pro 生产模式）">
+              <a-input v-model:value="state.vm.form.moduleUrlPro" placeholder="请输入" />
+            </a-form-item>
+          </a-col>
+
+          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="6" v-if="state.vm.form.type == 2">
             <a-form-item label="组件名称">
               <a-input v-model:value="state.vm.form.componentName" placeholder="请输入" />
             </a-form-item>
           </a-col>
-          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="6" v-if="state.vm.form.type == 2 && state.vm.form.mode == 1">
+          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="6" v-if="state.vm.form.type == 2">
             <a-form-item label="菜单页面物理地址">
               <a-input v-model:value="state.vm.form.url" placeholder="请输入" />
             </a-form-item>
           </a-col>
-          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="6" v-if="state.vm.form.type == 2 && state.vm.form.mode == 1">
+          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="6" v-if="state.vm.form.type == 2">
             <a-form-item>
               <template #label>
                 菜单路由 &nbsp;&nbsp;
@@ -239,7 +245,7 @@ function addRow(row?: any) {
             </a-form-item>
           </a-col>
 
-          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="6" v-if="state.vm.form.type == 2 && state.vm.form.mode == 1">
+          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="6" v-if="state.vm.form.type == 2">
             <a-form-item>
               <template #label>
                 跳转地址 &nbsp;&nbsp;
