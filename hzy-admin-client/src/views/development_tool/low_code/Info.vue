@@ -29,6 +29,7 @@ defineExpose({
       }
     "
     width="90%"
+    :body-style="{ backgroundColor: 'rgb(240, 242, 245)' }"
   >
     <a-spin :spinning="loading">
       <a-tabs defaultActiveKey="1">
