@@ -13,7 +13,7 @@ const state = reactive({
     id: "",
     form: {} as any,
   },
-  saveLoading: false,
+  loading: false,
 });
 
 const refForm = ref<FormInstance>();
@@ -39,9 +39,9 @@ watchEffect(() => {
  * 获取表单信息
  */
 async function findForm() {
-  state.saveLoading = true;
+  state.loading = true;
   const result = await LowCodeTableService.findForm(props.rowData.id);
-  state.saveLoading = false;
+  state.loading = false;
   if (result.code != 1) return;
   state.vm = result.data;
 }
@@ -51,15 +51,15 @@ async function findForm() {
  */
 function saveForm() {
   refForm.value?.validate().then(() => {
-    state.saveLoading = true;
+    state.loading = true;
     LowCodeTableService.saveForm(state.vm.id, state.vm)
       .then((res) => {
-        state.saveLoading = false;
+        state.loading = false;
         if (res.code != 1) return;
         Tools.message.success("操作成功!");
       })
       .finally(() => {
-        state.saveLoading = false;
+        state.loading = false;
       });
   });
 }
@@ -68,9 +68,9 @@ function saveForm() {
  * 导入代码项目工程
  */
 async function autoImport() {
-  state.saveLoading = true;
+  state.loading = true;
   const result = await CodeGenerationService.autoImprotProject({ tableName: props.rowData.tableName });
-  state.saveLoading = false;
+  state.loading = false;
   if (result.code !== 1) return;
   Tools.message.success("导入项目工程成功!");
 }

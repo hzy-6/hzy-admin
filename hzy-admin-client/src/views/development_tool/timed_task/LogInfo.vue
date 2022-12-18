@@ -8,7 +8,7 @@ const state = reactive({
     form: {} as any,
   },
   visible: false,
-  saveLoading: false,
+  loading: false,
   page: 1,
 });
 
@@ -34,9 +34,9 @@ defineExpose({
  */
 function getJobLoggers(key: string, isFrist: boolean) {
   //初始化表单数据
-  state.saveLoading = true;
+  state.loading = true;
   TimedTaskService.getJobLoggers(key, state.page).then((res) => {
-    state.saveLoading = false;
+    state.loading = false;
     if (res.code != 1) return;
     state.vm.form.data = res.data;
     if (!res.data || res.data.length == 0) {
@@ -69,7 +69,7 @@ function more() {
 
 <template>
   <a-drawer v-model:visible="state.visible" title="任务日志" centered @ok="state.visible = false" :width="1200">
-    <a-spin :spinning="state.saveLoading">
+    <a-spin :spinning="state.loading">
       <a-timeline>
         <a-timeline-item v-for="item in state.vm.form.data">{{ item.text }}</a-timeline-item>
       </a-timeline>

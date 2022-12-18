@@ -28,16 +28,16 @@ async function check() {
   if (!state.userName) return Tools.message.warning("用户名不能为空!");
   if (!state.userPassword) return Tools.message.warning("密码不能为空!");
 
-  loading.value = true;
-
-  const result = await LoginService.login(state.userName, state.userPassword);
-
-  loading.value = false;
-  if (result.code != 1) return;
-
-  Tools.setAuthorization(result.data.token);
-
-  router.push("/");
+  try {
+    loading.value = true;
+    const result = await LoginService.login(state.userName, state.userPassword);
+    loading.value = false;
+    if (result.code != 1) return;
+    Tools.setAuthorization(result.data.token);
+    router.push("/");
+  } catch (error) {
+    loading.value = false;
+  }
 }
 
 /**

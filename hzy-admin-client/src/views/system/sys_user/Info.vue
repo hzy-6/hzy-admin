@@ -18,7 +18,7 @@ const state = reactive({
     allRoleList: [] as any[],
   },
   visible: false,
-  saveLoading: false,
+  loading: false,
   organizationTree: [],
 });
 
@@ -40,17 +40,17 @@ defineExpose({
     }
     refForm.value?.resetFields();
     //初始化表单数据
-    state.saveLoading = true;
+    state.loading = true;
     SysUserService.findForm(key).then((res) => {
-      state.saveLoading = false;
+      state.loading = false;
       if (res.code != 1) return;
       state.vm = res.data;
       state.vm.form.password = "";
     });
     //组织树
-    state.saveLoading = true;
+    state.loading = true;
     SysOrganizationService.sysOrganizationTree().then((res) => {
-      state.saveLoading = false;
+      state.loading = false;
       state.organizationTree = res.data.rows;
     });
   },
@@ -65,12 +65,17 @@ function save() {
       return Tools.message.warning("请选择组织!");
     }
 
-    state.saveLoading = true;
-    const result = await SysUserService.saveForm(state.vm.id, state.vm);
-    if (result.code != 1) return;
-    Tools.message.success("操作成功!");
-    props.onSuccess();
-    state.visible = false;
+    try {
+      state.loading = true;
+      const result = await SysUserService.saveForm(state.vm.id, state.vm);
+      state.loading = false;
+      if (result.code != 1) return;
+      Tools.message.success("操作成功!");
+      props.onSuccess();
+      state.visible = false;
+    } catch (error) {
+      state.loading = false;
+    }
   });
 }
 </script>
@@ -78,10 +83,10 @@ function save() {
 <template>
   <a-modal v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="800">
     <template #footer>
-      <a-button type="primary" :loading="state.saveLoading" @click="save()"> 提交</a-button>
+      <a-button type="primary" :loading="state.loading" @click="save()"> 提交</a-button>
       <a-button @click="state.visible = false">关闭</a-button>
     </template>
-    <a-spin :spinning="state.saveLoading">
+    <a-spin :spinning="state.loading">
       <a-form ref="refForm" layout="vertical" :model="state.vm.form">
         <a-row :gutter="[16, 0]">
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">

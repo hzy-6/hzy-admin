@@ -1,1 +1,0 @@
-import"./Index1.vue_vue_type_script_setup_true_lang-5fb4542c.js";import{_ as i}from"./Index1.vue_vue_type_script_setup_true_lang-5fb4542c.js";import"./AppIcon.vue_vue_type_script_setup_true_lang-abdd4a65.js";import"./index-1050b563.js";export{i as default};

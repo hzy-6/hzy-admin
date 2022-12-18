@@ -47,15 +47,19 @@ onMounted(() => {
  *获取数据
  */
 async function findList() {
-  state.loading = true;
-  const result = await SysMenuService.getAll(state.search.vm);
-  state.loading = false;
-  if (result.code != 1) return;
-  // state.page = result.data.page;
-  // state.size = result.data.size;
-  // state.total = result.data.total;
-  // state.columns = result.data.columns;
-  state.data = Tools.genTreeData(result.data, null);
+  try {
+    state.loading = true;
+    const result = await SysMenuService.getAll(state.search.vm);
+    state.loading = false;
+    if (result.code != 1) return;
+    // state.page = result.data.page;
+    // state.size = result.data.size;
+    // state.total = result.data.total;
+    // state.columns = result.data.columns;
+    state.data = Tools.genTreeData(result.data, null);
+  } catch (error) {
+    state.loading = false;
+  }
 }
 
 /**
@@ -71,13 +75,16 @@ async function deleteList(id?: string) {
   }
 
   if (ids.length == 0) return Tools.message.error("请选择要删除的行!");
-
-  state.loading = true;
-  const result = await SysMenuService.deleteList(ids);
-  state.loading = false;
-  if (result.code != 1) return;
-  Tools.message.success("删除成功!");
-  findList();
+  try {
+    state.loading = true;
+    const result = await SysMenuService.deleteList(ids);
+    state.loading = false;
+    if (result.code != 1) return;
+    Tools.message.success("删除成功!");
+    findList();
+  } catch (error) {
+    state.loading = false;
+  }
 }
 
 /**

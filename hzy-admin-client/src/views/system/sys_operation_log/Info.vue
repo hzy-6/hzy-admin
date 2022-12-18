@@ -13,7 +13,7 @@ const state = reactive({
     use: {} as any,
   },
   visible: false,
-  saveLoading: false,
+  loading: false,
 });
 
 //表单实例
@@ -32,9 +32,9 @@ defineExpose({
     }
     refForm.value?.resetFields();
     //初始化表单数据
-    state.saveLoading = true;
+    state.loading = true;
     SysOperationLogService.findForm(key).then((res) => {
-      state.saveLoading = false;
+      state.loading = false;
       if (res.code != 1) return;
       state.vm = res.data;
     });
@@ -45,10 +45,10 @@ defineExpose({
 <template>
   <a-modal v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" width="70%">
     <template #footer>
-      <!-- <a-button type="primary" :loading="state.saveLoading" @click="save()"> 提交</a-button> -->
+      <!-- <a-button type="primary" :loading="state.loading" @click="save()"> 提交</a-button> -->
       <a-button @click="state.visible = false">关闭</a-button>
     </template>
-    <a-spin :spinning="state.saveLoading">
+    <a-spin :spinning="state.loading">
       <a-descriptions bordered class="text-Center w100">
         <!-- :column="{ xxl: 3, xl: 3, lg: 3, md: 3, sm: 1, xs: 1 }" -->
         <a-descriptions-item label="请求接口" style="width: 150px" :span="3">

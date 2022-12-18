@@ -16,7 +16,7 @@ const state = reactive({
     },
   },
   visible: false,
-  saveLoading: false,
+  loading: false,
   tree: {
     data: [],
     expandedKeys: [] as string[],
@@ -41,9 +41,9 @@ defineExpose({
       state.vm.id = key;
     }
     //初始化表单数据
-    state.saveLoading = true;
+    state.loading = true;
     SysDataAuthorityService.getDataAuthorityByRoleId(key).then(async (res) => {
-      state.saveLoading = false;
+      state.loading = false;
       if (res.code != 1) return;
       state.vm.form.sysDataAuthority = res.data.sysDataAuthority;
       state.vm.form.sysDataAuthorityCustomList = res.data.sysDataAuthorityCustomList;
@@ -87,7 +87,7 @@ async function save() {
     state.vm.form.sysDataAuthorityCustomList = [];
   }
 
-  state.saveLoading = true;
+  state.loading = true;
   const result = await SysDataAuthorityService.saveForm(state.vm.id, state.vm);
   if (result.code != 1) return;
   Tools.message.success("操作成功!");
@@ -121,10 +121,10 @@ function onExpandedAll() {
 <template>
   <a-modal v-model:visible="state.visible" title="数据权限设置" centered @ok="state.visible = false" :width="400">
     <template #footer>
-      <a-button type="primary" :loading="state.saveLoading" @click="save()"> 提交</a-button>
+      <a-button type="primary" :loading="state.loading" @click="save()"> 提交</a-button>
       <a-button @click="state.visible = false">关闭</a-button>
     </template>
-    <a-spin :spinning="state.saveLoading">
+    <a-spin :spinning="state.loading">
       <a-radio-group v-model:value="state.vm.form.sysDataAuthority.permissionType">
         <a-radio :style="{ display: 'flex', height: '30px', lineHeight: '30px' }" :value="1">自定义权限</a-radio>
         <a-radio :style="{ display: 'flex', height: '30px', lineHeight: '30px' }" :value="2">查看所有数据</a-radio>

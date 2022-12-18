@@ -9,7 +9,7 @@ const props = defineProps<{ onSuccess: () => void }>();
 
 const state = reactive({
   visible: false,
-  saveLoading: false,
+  loading: false,
   roleId: "",
   treeData: [] as any,
   rowkeys: [] as string[],
@@ -27,9 +27,9 @@ defineExpose({
     state.visible = true;
     state.roleId = key;
     //初始化表单数据
-    state.saveLoading = true;
+    state.loading = true;
     SysRoleMenuFunctionService.getRoleMenuFunctionByRoleId(key).then((res) => {
-      state.saveLoading = false;
+      state.loading = false;
       state.treeData = res.tree;
       state.rowkeys = res.keys;
       console.log(state.rowkeys);
@@ -107,7 +107,7 @@ function onChangeCheckbox(values: any, row: any) {
         <a-button @click="() => (state.visible = !state.visible)">关闭</a-button>
       </ASpace>
     </template>
-    <a-spin :spinning="state.saveLoading">
+    <a-spin :spinning="state.loading">
       <ATable :data-source="state.treeData" size="small" v-model:expandedRowKeys="state.rowkeys" :pagination="false" row-key="id">
         <ATableColumn title="菜单" data-index="name" width="250px" />
         <ATableColumn title="功能" data-index="id">

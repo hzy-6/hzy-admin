@@ -13,7 +13,7 @@ const state = reactive({
     form: {} as any,
   },
   visible: false,
-  saveLoading: false,
+  loading: false,
 });
 
 //表单实例
@@ -32,9 +32,9 @@ defineExpose({
     }
     refForm.value?.resetFields();
     //初始化表单数据
-    state.saveLoading = true;
+    state.loading = true;
     SysDictionaryService.findForm(key as string).then((res) => {
-      state.saveLoading = false;
+      state.loading = false;
       if (res.code != 1) return;
       state.vm = res.data;
       state.vm.form.parentId = parentId;
@@ -47,12 +47,17 @@ defineExpose({
  */
 function save() {
   refForm.value?.validate().then(async () => {
-    state.saveLoading = true;
-    const result = await SysDictionaryService.saveForm(state.vm.id, state.vm.form);
-    if (result.code != 1) return;
-    Tools.message.success("操作成功!");
-    props.onSuccess();
-    state.visible = false;
+    try {
+      state.loading = true;
+      const result = await SysDictionaryService.saveForm(state.vm.id, state.vm.form);
+      state.loading = false;
+      if (result.code != 1) return;
+      Tools.message.success("操作成功!");
+      props.onSuccess();
+      state.visible = false;
+    } catch (error) {
+      state.loading = false;
+    }
   });
 }
 </script>
@@ -60,10 +65,10 @@ function save() {
 <template>
   <a-modal v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="400">
     <template #footer>
-      <a-button type="primary" :loading="state.saveLoading" @click="save()"> 提交</a-button>
+      <a-button type="primary" :loading="state.loading" @click="save()"> 提交</a-button>
       <a-button @click="state.visible = false">关闭</a-button>
     </template>
-    <a-spin :spinning="state.saveLoading">
+    <a-spin :spinning="state.loading">
       <a-form ref="refForm" layout="vertical" :model="state.vm.form">
         <a-row :gutter="[16, 0]">
           <a-col :xs="24">
