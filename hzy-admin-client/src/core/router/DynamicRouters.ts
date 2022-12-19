@@ -93,7 +93,7 @@ function createDynamicRouters(data: any) {
                 const com = AppConsts.modules['../../' + item.url] ?? AppConsts.modules['../' + item.url] ?? AppConsts.modules[item.url];
                 if (item.componentName) {
                     route.component = com;
-                    updateComponentName(item.componentName, (route.component as any)())
+                    // updateComponentName(item.componentName, (route.component as any)())
                 } else {
                     route.component = com;
                 }

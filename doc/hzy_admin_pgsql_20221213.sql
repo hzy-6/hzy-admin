@@ -12,7 +12,7 @@
  Target Server Version : 130003
  File Encoding         : 65001
 
- Date: 17/12/2022 15:08:09
+ Date: 19/12/2022 09:59:16
 */
 
 
@@ -62,7 +62,7 @@ CREATE TABLE "public"."__EFMigrationsHistory" (
 -- ----------------------------
 -- Records of __EFMigrationsHistory
 -- ----------------------------
-INSERT INTO "public"."__EFMigrationsHistory" VALUES ('20221213143524_pgsql_init', '6.0.9');
+INSERT INTO "public"."__EFMigrationsHistory" VALUES ('20221219015545_pgsql_init', '6.0.9');
 
 -- ----------------------------
 -- Table structure for flow
@@ -697,48 +697,49 @@ START 1
   "Type" int4 NOT NULL,
   "Mode" int4 NOT NULL,
   "ModuleUrl" text COLLATE "pg_catalog"."default",
+  "ModuleUrlPro" text COLLATE "pg_catalog"."default",
   "CreatorUserId" uuid,
   "CreationTime" timestamp(6) NOT NULL,
   "LastModifierUserId" uuid,
-  "LastModificationTime" timestamp(6),
-  "ModuleUrlPro" varchar(255) COLLATE "pg_catalog"."default"
+  "LastModificationTime" timestamp(6)
 )
 ;
 
 -- ----------------------------
 -- Records of sys_menu
 -- ----------------------------
-INSERT INTO "public"."sys_menu" VALUES (1, '1', 10, '更多示例', NULL, NULL, NULL, NULL, 'MoreOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, '2021-05-28 11:49:02', NULL, '2022-03-04 12:25:39', NULL);
-INSERT INTO "public"."sys_menu" VALUES (2, '1.2', 10, '查看更多组件', 'AppComponentsCom', 'views/example/AppComponents.vue', '/app/components', NULL, 'LayoutOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-01-16 16:05:22', NULL, '2022-03-18 12:06:20', NULL);
-INSERT INTO "public"."sys_menu" VALUES (3, '1.3', 30, '按钮', 'ButtonCom', 'views/example/Button.vue', '/button', NULL, 'AppstoreOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2020-12-17 14:58:05', NULL, '2022-03-04 12:26:14', NULL);
-INSERT INTO "public"."sys_menu" VALUES (4, '1.4', 40, '图表 AntV G2', NULL, NULL, NULL, NULL, 'PieChartOutlined', 1, 't', 't', 't', 't', 1, 1, NULL, NULL, '2021-01-16 16:06:33', NULL, '2022-03-04 12:26:21', NULL);
-INSERT INTO "public"."sys_menu" VALUES (5, '1.4.5', 10, '基础图表', 'ChartBaseCom', 'views/example/chart/Base.vue', '/chart/base', NULL, NULL, 4, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-01-16 16:07:24', NULL, '2022-03-04 12:26:25', NULL);
-INSERT INTO "public"."sys_menu" VALUES (6, '1.4.6', 20, '更多图表', 'ChartMoreCom', 'views/example/chart/More.vue', '/chart/more', NULL, NULL, 4, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-01-16 16:10:06', NULL, '2022-03-04 12:26:28', NULL);
-INSERT INTO "public"."sys_menu" VALUES (7, '1.7', 50, '表格管理', NULL, NULL, NULL, NULL, 'TableOutlined', 1, 't', 't', 't', 't', 1, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:26:34', NULL);
-INSERT INTO "public"."sys_menu" VALUES (8, '1.7.8', 100, '基础列表', 'BaseListCom', 'views/example/BaseList.vue', '/base/list', NULL, NULL, 7, 't', 't', 't', 't', 2, 1, NULL, NULL, '2020-12-17 14:49:12', NULL, '2022-03-04 12:26:38', NULL);
-INSERT INTO "public"."sys_menu" VALUES (9, '1.7.9', 110, '标准表格', 'ListIndexCom', 'views/example/list/Index.vue', '/list', NULL, NULL, 7, 't', 't', 't', 't', 2, 1, NULL, NULL, '2020-12-17 14:51:07', NULL, '2022-03-04 12:26:41', NULL);
-INSERT INTO "public"."sys_menu" VALUES (10, '1.10', 60, '富文本编辑器', 'EditorCom', 'views/example/Editor.vue', '/editor', NULL, 'PicRightOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-01-18 19:34:28', NULL, '2022-03-04 12:26:46', NULL);
-INSERT INTO "public"."sys_menu" VALUES (11, '1.11', 70, '微前端', '', '', '', '', 'RadarChartOutlined', 1, 't', 't', 't', 't', 2, 2, 'http://rapidscada.com.cn/#/', NULL, '2021-08-05 21:51:12', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-13 21:57:11', NULL);
-INSERT INTO "public"."sys_menu" VALUES (12, '12', 50, '基础信息', NULL, NULL, NULL, NULL, 'GoldOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:25:43', NULL);
-INSERT INTO "public"."sys_menu" VALUES (13, '12.13', 10, '会员管理', 'base_member', 'views/base/member/Index.vue', '/base/member', NULL, 'UsergroupAddOutlined', 12, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:26:55', NULL);
-INSERT INTO "public"."sys_menu" VALUES (14, '14', 100, '系统管理', NULL, NULL, NULL, NULL, 'DesktopOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:25:46', NULL);
-INSERT INTO "public"."sys_menu" VALUES (15, '14.15', 100, '账户管理', 'system_user', 'views/system/sys_user/Index.vue', '/system/user', NULL, 'UserOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-04 16:28:51', NULL);
-INSERT INTO "public"."sys_menu" VALUES (16, '14.16', 110, '角色管理', 'system_role', 'views/system/sys_role/Index.vue', '/system/role', NULL, 'TeamOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-04-22 22:24:03', NULL);
-INSERT INTO "public"."sys_menu" VALUES (17, '14.17', 120, '功能管理', 'system_function', 'views/system/sys_function/Index.vue', '/system/function', NULL, 'ControlOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:27:11', NULL);
-INSERT INTO "public"."sys_menu" VALUES (19, '14.19', 150, '个人中心', 'system_personal_center', 'views/system/personal_center/Index.vue', '/system/personal/center', NULL, 'FormOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:27:19', NULL);
-INSERT INTO "public"."sys_menu" VALUES (20, '14.20', 160, '岗位管理', 'system_post', 'views/system/sys_post/Index.vue', '/system/post', NULL, 'IdcardOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-05-27 17:29:49', NULL, '2022-03-04 12:27:23', NULL);
-INSERT INTO "public"."sys_menu" VALUES (21, '14.21', 170, '组织机构', 'system_organization', 'views/system/sys_organization/Index.vue', '/system/organization', NULL, 'ClusterOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-05-27 20:27:56', NULL, '2022-03-04 12:27:27', NULL);
-INSERT INTO "public"."sys_menu" VALUES (22, '29.22', 10, '接口文档', 'swagger', 'views/development_tool/Swagger.vue', '/development_tool/swagger', NULL, 'FileSearchOutlined', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:17:03', NULL, '2022-03-04 12:27:41', NULL);
-INSERT INTO "public"."sys_menu" VALUES (23, '14.23', 190, '数据字典', 'system_dictionary', 'views/system/sys_dictionary/Index.vue', '/system/dictionary', NULL, 'FileDoneOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-07-25 21:50:01', NULL, '2022-03-04 12:27:31', NULL);
-INSERT INTO "public"."sys_menu" VALUES (24, '14.24', 200, '操作日志', 'sys_operation_log', 'views/system/sys_operation_log/Index.vue', '/system/sys_operation_log', '', 'ContainerOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-08-05 21:24:54', NULL, '2022-03-04 12:27:35', NULL);
-INSERT INTO "public"."sys_menu" VALUES (25, '14.25', 130, '菜单功能', 'system_menu', 'views/system/sys_menu/Index.vue', '/system/menu', NULL, 'MenuOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:27:15', NULL);
-INSERT INTO "public"."sys_menu" VALUES (28, '1.28', 1, 'Vxe-Table', 'VxeTableCom', 'views/example/VxeTable.vue', '/vxe/table', NULL, 'BorderlessTableOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2021-12-29 17:13:26', NULL, '2022-03-04 12:26:00', NULL);
-INSERT INTO "public"."sys_menu" VALUES (29, '29', 200, '开发工具', NULL, NULL, NULL, NULL, 'CodepenOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, '2022-01-12 14:17:21', NULL, '2022-03-04 12:25:49', NULL);
-INSERT INTO "public"."sys_menu" VALUES (30, '29.30', 20, '定时任务', 'TimedTaskCom', 'views/development_tool/timed_task/Index.vue', '/development_tool/timed_task', NULL, 'FieldTimeOutlined', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, '2022-01-12 14:22:04', NULL, '2022-03-04 12:27:44', NULL);
-INSERT INTO "public"."sys_menu" VALUES (31, '29.31', 30, '代码生成', 'LowCode', 'views/development_tool/low_code/Index.vue', '/development-tool/low-code', NULL, 'CodeTwoTone', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, '2022-01-12 15:39:46', NULL, '2022-05-24 22:05:57', NULL);
-INSERT INTO "public"."sys_menu" VALUES (32, '1.32', 20, '图标展示', 'IconsVue', 'views/example/Icons.vue', '/icons', NULL, 'TagsTwoTone', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, '2022-02-24 10:51:38', NULL, '2022-03-18 12:06:38', NULL);
-INSERT INTO "public"."sys_menu" VALUES (33, '29.33', 40, 'EFCore监控台', 'monitor_efcore', 'views/development_tool/monitor_efcore/Index.vue', '/development_tool/monitor/efcore', NULL, 'DashboardFilled', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, '2022-04-10 10:55:41', NULL, '2022-04-10 10:56:17', NULL);
-INSERT INTO "public"."sys_menu" VALUES (36, '12.13.36', 1, '详情', 'base_member_info_Details', 'views/base/member/components/Details.vue', '/base/member/details/:id/:title', NULL, NULL, 13, 'f', 't', 't', 't', 2, 1, NULL, NULL, '2022-04-17 17:45:25', NULL, '2022-04-17 17:49:13', NULL);
+INSERT INTO "public"."sys_menu" VALUES (1, '1', 10, '更多示例', NULL, NULL, NULL, NULL, 'MoreOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, NULL, '2021-05-28 11:49:02', NULL, '2022-03-04 12:25:39');
+INSERT INTO "public"."sys_menu" VALUES (2, '1.2', 10, '查看更多组件', 'AppComponentsCom', 'views/example/AppComponents.vue', '/app/components', NULL, 'LayoutOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2021-01-16 16:05:22', NULL, '2022-03-18 12:06:20');
+INSERT INTO "public"."sys_menu" VALUES (3, '1.3', 30, '按钮', 'ButtonCom', 'views/example/Button.vue', '/button', NULL, 'AppstoreOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2020-12-17 14:58:05', NULL, '2022-03-04 12:26:14');
+INSERT INTO "public"."sys_menu" VALUES (4, '1.4', 40, '图表 AntV G2', NULL, NULL, NULL, NULL, 'PieChartOutlined', 1, 't', 't', 't', 't', 1, 1, NULL, NULL, NULL, '2021-01-16 16:06:33', NULL, '2022-03-04 12:26:21');
+INSERT INTO "public"."sys_menu" VALUES (5, '1.4.5', 10, '基础图表', 'ChartBaseCom', 'views/example/chart/Base.vue', '/chart/base', NULL, NULL, 4, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2021-01-16 16:07:24', NULL, '2022-03-04 12:26:25');
+INSERT INTO "public"."sys_menu" VALUES (6, '1.4.6', 20, '更多图表', 'ChartMoreCom', 'views/example/chart/More.vue', '/chart/more', NULL, NULL, 4, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2021-01-16 16:10:06', NULL, '2022-03-04 12:26:28');
+INSERT INTO "public"."sys_menu" VALUES (7, '1.7', 50, '表格管理', NULL, NULL, NULL, NULL, 'TableOutlined', 1, 't', 't', 't', 't', 1, 1, NULL, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:26:34');
+INSERT INTO "public"."sys_menu" VALUES (8, '1.7.8', 100, '基础列表', 'BaseListCom', 'views/example/BaseList.vue', '/base/list', NULL, NULL, 7, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2020-12-17 14:49:12', NULL, '2022-03-04 12:26:38');
+INSERT INTO "public"."sys_menu" VALUES (9, '1.7.9', 110, '标准表格', 'ListIndexCom', 'views/example/list/Index.vue', '/list', NULL, NULL, 7, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2020-12-17 14:51:07', NULL, '2022-03-04 12:26:41');
+INSERT INTO "public"."sys_menu" VALUES (10, '1.10', 60, '富文本编辑器', 'EditorCom', 'views/example/Editor.vue', '/editor', NULL, 'PicRightOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2021-01-18 19:34:28', NULL, '2022-03-04 12:26:46');
+INSERT INTO "public"."sys_menu" VALUES (11, '1.11', 70, '微前端', 'Iframe', 'core/components/Iframe.vue', '/iframe', '', 'RadarChartOutlined', 1, 't', 't', 't', 't', 2, 2, 'http://rapidscada.com.cn/#/', 'https://www.yuque.com/u378909/yidf7v/bs256p', NULL, '2021-08-05 21:51:12', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-17 16:25:29');
+INSERT INTO "public"."sys_menu" VALUES (12, '12', 50, '基础信息', NULL, NULL, NULL, NULL, 'GoldOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:25:43');
+INSERT INTO "public"."sys_menu" VALUES (13, '12.13', 10, '会员管理', 'base_member', 'views/base/member/Index.vue', '/base/member', NULL, 'UsergroupAddOutlined', 12, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:26:55');
+INSERT INTO "public"."sys_menu" VALUES (14, '14', 100, '系统管理', NULL, NULL, NULL, NULL, 'DesktopOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:25:46');
+INSERT INTO "public"."sys_menu" VALUES (15, '14.15', 100, '账户管理', 'system_user', 'views/system/sys_user/Index.vue', '/system/user', NULL, 'UserOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2018-03-10 12:16:38', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-04 16:28:51');
+INSERT INTO "public"."sys_menu" VALUES (16, '14.16', 110, '角色管理', 'system_role', 'views/system/sys_role/Index.vue', '/system/role', NULL, 'TeamOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-04-22 22:24:03');
+INSERT INTO "public"."sys_menu" VALUES (17, '14.17', 120, '功能管理', 'system_function', 'views/system/sys_function/Index.vue', '/system/function', NULL, 'ControlOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:27:11');
+INSERT INTO "public"."sys_menu" VALUES (19, '14.19', 150, '个人中心', 'system_personal_center', 'views/system/personal_center/Index.vue', '/system/personal/center', NULL, 'FormOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:27:19');
+INSERT INTO "public"."sys_menu" VALUES (20, '14.20', 160, '岗位管理', 'system_post', 'views/system/sys_post/Index.vue', '/system/post', NULL, 'IdcardOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2021-05-27 17:29:49', NULL, '2022-03-04 12:27:23');
+INSERT INTO "public"."sys_menu" VALUES (21, '14.21', 170, '组织机构', 'system_organization', 'views/system/sys_organization/Index.vue', '/system/organization', NULL, 'ClusterOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2021-05-27 20:27:56', NULL, '2022-03-04 12:27:27');
+INSERT INTO "public"."sys_menu" VALUES (22, '29.22', 10, '接口文档', 'swagger', 'views/development_tool/Swagger.vue', '/development_tool/swagger', NULL, 'FileSearchOutlined', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2018-03-10 12:17:03', NULL, '2022-03-04 12:27:41');
+INSERT INTO "public"."sys_menu" VALUES (23, '14.23', 190, '数据字典', 'system_dictionary', 'views/system/sys_dictionary/Index.vue', '/system/dictionary', NULL, 'FileDoneOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2021-07-25 21:50:01', NULL, '2022-03-04 12:27:31');
+INSERT INTO "public"."sys_menu" VALUES (24, '14.24', 200, '操作日志', 'sys_operation_log', 'views/system/sys_operation_log/Index.vue', '/system/sys_operation_log', '', 'ContainerOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2021-08-05 21:24:54', NULL, '2022-03-04 12:27:35');
+INSERT INTO "public"."sys_menu" VALUES (25, '14.25', 130, '菜单功能', 'system_menu', 'views/system/sys_menu/Index.vue', '/system/menu', NULL, 'MenuOutlined', 14, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2018-03-10 12:16:38', NULL, '2022-03-04 12:27:15');
+INSERT INTO "public"."sys_menu" VALUES (28, '1.28', 1, 'Vxe-Table', 'VxeTableCom', 'views/example/VxeTable.vue', '/vxe/table', NULL, 'BorderlessTableOutlined', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2021-12-29 17:13:26', NULL, '2022-03-04 12:26:00');
+INSERT INTO "public"."sys_menu" VALUES (29, '29', 200, '开发工具', NULL, NULL, NULL, NULL, 'CodepenOutlined', NULL, 't', 't', 't', 't', 1, 1, NULL, NULL, NULL, '2022-01-12 14:17:21', NULL, '2022-03-04 12:25:49');
+INSERT INTO "public"."sys_menu" VALUES (30, '29.30', 20, '定时任务', 'TimedTaskCom', 'views/development_tool/timed_task/Index.vue', '/development_tool/timed_task', NULL, 'FieldTimeOutlined', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2022-01-12 14:22:04', NULL, '2022-03-04 12:27:44');
+INSERT INTO "public"."sys_menu" VALUES (31, '29.31', 30, '代码生成', 'LowCode', 'views/development_tool/low_code/Index.vue', '/development-tool/low-code', NULL, 'CodeTwoTone', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2022-01-12 15:39:46', NULL, '2022-05-24 22:05:57');
+INSERT INTO "public"."sys_menu" VALUES (32, '1.32', 20, '图标展示', 'IconsVue', 'views/example/Icons.vue', '/icons', NULL, 'TagsTwoTone', 1, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2022-02-24 10:51:38', NULL, '2022-03-18 12:06:38');
+INSERT INTO "public"."sys_menu" VALUES (33, '29.33', 40, 'EFCore监控台', 'monitor_efcore', 'views/development_tool/monitor_efcore/Index.vue', '/development_tool/monitor/efcore', NULL, 'DashboardFilled', 29, 't', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2022-04-10 10:55:41', NULL, '2022-04-10 10:56:17');
+INSERT INTO "public"."sys_menu" VALUES (36, '12.13.36', 1, '详情', 'base_member_info_Details', 'views/base/member/components/Details.vue', '/base/member/details/:id/:title', NULL, NULL, 13, 'f', 't', 't', 't', 2, 1, NULL, NULL, NULL, '2022-04-17 17:45:25', NULL, '2022-04-17 17:49:13');
+INSERT INTO "public"."sys_menu" VALUES (37, '1.37', 80, '微前端2', 'Iframe123', 'core/components/Iframe.vue', '/iframe123', NULL, 'AlipaySquareFilled', 1, 't', 't', 't', 't', 2, 2, 'https://www.yuque.com/u378909/yidf7v/zx6egc', 'https://www.yuque.com/u378909/yidf7v/fezgu5', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 15:00:53', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09');
 
 -- ----------------------------
 -- Table structure for sys_menu_function
@@ -774,6 +775,7 @@ INSERT INTO "public"."sys_menu_function" VALUES ('1cb6fbe1-4a6c-4aad-0f22-08d9fd
 INSERT INTO "public"."sys_menu_function" VALUES ('1d831d57-6634-45d7-0f6e-08d9fdad00ab', 80, 23, 'Print', '打印', 'Print', NULL, '2022-03-04 15:25:50', NULL, '2022-03-04 15:25:50');
 INSERT INTO "public"."sys_menu_function" VALUES ('1e69df5d-d1e9-4bc8-0f4d-08d9fdad00ab', 70, 25, 'Export', '导出', 'Export', NULL, '2022-03-04 15:25:28', NULL, '2022-03-04 15:25:28');
 INSERT INTO "public"."sys_menu_function" VALUES ('20ab5395-d57c-49db-0f4a-08d9fdad00ab', 40, 25, 'Delete', '删除', 'Delete', NULL, '2022-03-04 15:25:28', NULL, '2022-03-04 15:25:28');
+INSERT INTO "public"."sys_menu_function" VALUES ('216e9ad6-cc3f-4e72-c083-08dadf3345bd', 50, 37, 'Save', '保存', 'Save', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09', NULL, NULL);
 INSERT INTO "public"."sys_menu_function" VALUES ('2186550d-246c-4552-e2d8-08d9fdefa8f8', 60, 24, 'Search', '检索', 'Search', NULL, '2022-03-04 23:00:02', NULL, '2022-03-04 23:00:02');
 INSERT INTO "public"."sys_menu_function" VALUES ('22a675f6-efda-481d-0f59-08d9fdad00ab', 30, 20, 'Update', '修改', 'Update', NULL, '2022-03-04 15:25:36', NULL, '2022-03-04 15:25:36');
 INSERT INTO "public"."sys_menu_function" VALUES ('2469188c-21de-492a-0f5e-08d9fdad00ab', 80, 20, 'Print', '打印', 'Print', NULL, '2022-03-04 15:25:36', NULL, '2022-03-04 15:25:36');
@@ -781,23 +783,26 @@ INSERT INTO "public"."sys_menu_function" VALUES ('2fea8f87-2a13-4c95-0f3c-08d9fd
 INSERT INTO "public"."sys_menu_function" VALUES ('33c80938-82c8-4299-0f12-08d9fdad00ab', 10, 30, 'Display', '显示', 'Display', NULL, '2022-03-04 15:17:09', NULL, '2022-03-04 15:17:09');
 INSERT INTO "public"."sys_menu_function" VALUES ('37d3e492-62da-47a4-0f33-08d9fdad00ab', 50, 15, 'Save', '保存', 'Save', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-04 16:28:51', NULL, '2022-03-04 15:25:14');
 INSERT INTO "public"."sys_menu_function" VALUES ('38b4704d-7c5d-4f89-a2e7-08da3d8e6577', 60, 31, 'Search', '检索', 'Search', NULL, '2022-05-24 22:05:57', NULL, '2022-05-24 22:05:57');
-INSERT INTO "public"."sys_menu_function" VALUES ('3bc0e68f-d03d-4e99-0f26-08d9fdad00ab', 10, 11, 'Display', '显示', 'Display', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-13 21:57:11', NULL, '2022-03-04 15:24:53');
+INSERT INTO "public"."sys_menu_function" VALUES ('3bc0e68f-d03d-4e99-0f26-08d9fdad00ab', 10, 11, 'Display', '显示', 'Display', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-17 16:25:29', NULL, '2022-03-04 15:24:53');
 INSERT INTO "public"."sys_menu_function" VALUES ('3cb3cbc7-9e45-4cc3-0f62-08d9fdad00ab', 40, 21, 'Delete', '删除', 'Delete', NULL, '2022-03-04 15:25:40', NULL, '2022-03-04 15:25:40');
 INSERT INTO "public"."sys_menu_function" VALUES ('3e44c6f5-e090-40a1-0f58-08d9fdad00ab', 20, 20, 'Insert', '添加', 'Insert', NULL, '2022-03-04 15:25:36', NULL, '2022-03-04 15:25:36');
 INSERT INTO "public"."sys_menu_function" VALUES ('3f6d0af7-5386-4d3a-0f71-08d9fdad00ab', 10, 28, 'Display', '显示', 'Display', NULL, '2022-03-04 15:40:52', NULL, '2022-03-04 15:40:52');
 INSERT INTO "public"."sys_menu_function" VALUES ('41cb1942-573a-4d63-0f4b-08d9fdad00ab', 50, 25, 'Save', '保存', 'Save', NULL, '2022-03-04 15:25:28', NULL, '2022-03-04 15:25:28');
 INSERT INTO "public"."sys_menu_function" VALUES ('437fbf85-8704-4e87-0f3d-08d9fdad00ab', 70, 16, 'Export', '导出', 'Export', NULL, '2022-04-22 22:24:03', NULL, '2022-04-22 22:24:03');
 INSERT INTO "public"."sys_menu_function" VALUES ('45e2ca86-4823-4fb9-0f57-08d9fdad00ab', 10, 20, 'Display', '显示', 'Display', NULL, '2022-03-04 15:25:36', NULL, '2022-03-04 15:25:36');
+INSERT INTO "public"."sys_menu_function" VALUES ('47e1a6a3-4c89-46bf-c080-08dadf3345bd', 20, 37, 'Insert', '添加', 'Insert', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09', NULL, NULL);
 INSERT INTO "public"."sys_menu_function" VALUES ('48f0a694-0539-4e69-a2e4-08da3d8e6577', 10, 31, 'Display', '显示', 'Display', NULL, '2022-05-24 22:05:57', NULL, '2022-05-24 22:05:57');
 INSERT INTO "public"."sys_menu_function" VALUES ('4a67fcdb-a7a9-4e3c-0f49-08d9fdad00ab', 30, 25, 'Update', '修改', 'Update', NULL, '2022-03-04 15:25:28', NULL, '2022-03-04 15:25:28');
 INSERT INTO "public"."sys_menu_function" VALUES ('4bbbe120-0cc6-4a08-0f4e-08d9fdad00ab', 80, 25, 'Print', '打印', 'Print', NULL, '2022-03-04 15:25:28', NULL, '2022-03-04 15:25:28');
 INSERT INTO "public"."sys_menu_function" VALUES ('4dbf096d-d3d3-4565-a2e5-08da3d8e6577', 40, 31, 'Delete', '删除', 'Delete', NULL, '2022-05-24 22:05:57', NULL, '2022-05-24 22:05:57');
+INSERT INTO "public"."sys_menu_function" VALUES ('4e7cd8df-2e35-4d5e-c084-08dadf3345bd', 60, 37, 'Search', '检索', 'Search', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09', NULL, NULL);
 INSERT INTO "public"."sys_menu_function" VALUES ('523b53b5-8159-4a16-0f2b-08d9fdad00ab', 50, 13, 'Save', '保存', 'Save', NULL, '2022-03-04 15:25:07', NULL, '2022-03-04 15:25:07');
 INSERT INTO "public"."sys_menu_function" VALUES ('53fdb4a0-ca6e-4568-0f3f-08d9fdad00ab', 10, 17, 'Display', '显示', 'Display', NULL, '2022-03-04 15:25:21', NULL, '2022-03-04 15:25:21');
 INSERT INTO "public"."sys_menu_function" VALUES ('541d9045-47b2-4629-0f2e-08d9fdad00ab', 80, 13, 'Print', '打印', 'Print', NULL, '2022-03-04 15:25:07', NULL, '2022-03-04 15:25:07');
 INSERT INTO "public"."sys_menu_function" VALUES ('54743c86-ac73-4345-0f5d-08d9fdad00ab', 70, 20, 'Export', '导出', 'Export', NULL, '2022-03-04 15:25:36', NULL, '2022-03-04 15:25:36');
 INSERT INTO "public"."sys_menu_function" VALUES ('550f874b-e804-44a0-0f37-08d9fdad00ab', 10, 16, 'Display', '显示', 'Display', NULL, '2022-04-22 22:24:03', NULL, '2022-04-22 22:24:03');
 INSERT INTO "public"."sys_menu_function" VALUES ('55750f56-edc9-4771-e2d6-08d9fdefa8f8', 10, 24, 'Display', '显示', 'Display', NULL, '2022-03-04 23:00:02', NULL, '2022-03-04 23:00:02');
+INSERT INTO "public"."sys_menu_function" VALUES ('576f8a5d-1c47-47c9-c086-08dadf3345bd', 80, 37, 'Print', '打印', 'Print', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09', NULL, NULL);
 INSERT INTO "public"."sys_menu_function" VALUES ('5e4e87bd-c179-4b5b-0f5c-08d9fdad00ab', 60, 20, 'Search', '检索', 'Search', NULL, '2022-03-04 15:25:36', NULL, '2022-03-04 15:25:36');
 INSERT INTO "public"."sys_menu_function" VALUES ('616c4e4a-fb61-49cf-0f5b-08d9fdad00ab', 50, 20, 'Save', '保存', 'Save', NULL, '2022-03-04 15:25:36', NULL, '2022-03-04 15:25:36');
 INSERT INTO "public"."sys_menu_function" VALUES ('687254ae-0d76-4788-a4e8-08da1a9d9949', 10, 33, 'Display', '显示', 'Display', NULL, '2022-04-10 10:56:17', NULL, '2022-04-10 10:56:17');
@@ -814,6 +819,7 @@ INSERT INTO "public"."sys_menu_function" VALUES ('86465238-c51c-45d5-0f40-08d9fd
 INSERT INTO "public"."sys_menu_function" VALUES ('86ff83fd-d34a-4290-0f41-08d9fdad00ab', 30, 17, 'Update', '修改', 'Update', NULL, '2022-03-04 15:25:21', NULL, '2022-03-04 15:25:21');
 INSERT INTO "public"."sys_menu_function" VALUES ('92b39a10-3927-4ee7-0f6a-08d9fdad00ab', 40, 23, 'Delete', '删除', 'Delete', NULL, '2022-03-04 15:25:50', NULL, '2022-03-04 15:25:50');
 INSERT INTO "public"."sys_menu_function" VALUES ('9426768e-b90d-41e1-0f67-08d9fdad00ab', 10, 23, 'Display', '显示', 'Display', NULL, '2022-03-04 15:25:50', NULL, '2022-03-04 15:25:50');
+INSERT INTO "public"."sys_menu_function" VALUES ('9c9b41fd-db96-48cf-c07f-08dadf3345bd', 10, 37, 'Display', '显示', 'Display', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09', NULL, NULL);
 INSERT INTO "public"."sys_menu_function" VALUES ('a03d56d7-4b0d-47cc-0f6b-08d9fdad00ab', 50, 23, 'Save', '保存', 'Save', NULL, '2022-03-04 15:25:50', NULL, '2022-03-04 15:25:50');
 INSERT INTO "public"."sys_menu_function" VALUES ('a1ddd02f-8c21-4d79-0f21-08d9fdad00ab', 10, 5, 'Display', '显示', 'Display', NULL, '2022-03-04 15:24:30', NULL, '2022-03-04 15:24:30');
 INSERT INTO "public"."sys_menu_function" VALUES ('a3754771-f6e9-4a23-0f2c-08d9fdad00ab', 60, 13, 'Search', '检索', 'Search', NULL, '2022-03-04 15:25:07', NULL, '2022-03-04 15:25:07');
@@ -827,13 +833,16 @@ INSERT INTO "public"."sys_menu_function" VALUES ('b96f977c-a36e-4e7f-0f2d-08d9fd
 INSERT INTO "public"."sys_menu_function" VALUES ('b98a365e-6fb4-4efb-0f69-08d9fdad00ab', 30, 23, 'Update', '修改', 'Update', NULL, '2022-03-04 15:25:50', NULL, '2022-03-04 15:25:50');
 INSERT INTO "public"."sys_menu_function" VALUES ('bd6ae6da-1ca6-46c2-0f3a-08d9fdad00ab', 40, 16, 'Delete', '删除', 'Delete', NULL, '2022-04-22 22:24:03', NULL, '2022-04-22 22:24:03');
 INSERT INTO "public"."sys_menu_function" VALUES ('beb87004-5cfb-417a-0f34-08d9fdad00ab', 60, 15, 'Search', '检索', 'Search', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-04 16:28:51', NULL, '2022-03-04 15:25:14');
+INSERT INTO "public"."sys_menu_function" VALUES ('c6400925-a381-4679-c082-08dadf3345bd', 40, 37, 'Delete', '删除', 'Delete', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09', NULL, NULL);
 INSERT INTO "public"."sys_menu_function" VALUES ('c67a0abe-daec-491b-0f38-08d9fdad00ab', 20, 16, 'Insert', '添加', 'Insert', NULL, '2022-04-22 22:24:03', NULL, '2022-04-22 22:24:03');
 INSERT INTO "public"."sys_menu_function" VALUES ('c6ba141b-99ba-4114-0f5f-08d9fdad00ab', 10, 21, 'Display', '显示', 'Display', NULL, '2022-03-04 15:25:40', NULL, '2022-03-04 15:25:40');
 INSERT INTO "public"."sys_menu_function" VALUES ('c77c812a-1601-4311-0f70-08d9fdad00ab', 10, 19, 'Display', '显示', 'Display', NULL, '2022-03-04 15:26:00', NULL, '2022-03-04 15:26:00');
 INSERT INTO "public"."sys_menu_function" VALUES ('c8edbb79-567e-461b-0f36-08d9fdad00ab', 80, 15, 'Print', '打印', 'Print', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-04 16:28:51', NULL, '2022-03-04 15:25:14');
+INSERT INTO "public"."sys_menu_function" VALUES ('c981aa0b-d60e-4160-c085-08dadf3345bd', 70, 37, 'Export', '导出', 'Export', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09', NULL, NULL);
 INSERT INTO "public"."sys_menu_function" VALUES ('c9e5fff0-6744-47d7-0f66-08d9fdad00ab', 80, 21, 'Print', '打印', 'Print', NULL, '2022-03-04 15:25:40', NULL, '2022-03-04 15:25:40');
 INSERT INTO "public"."sys_menu_function" VALUES ('cce82eb4-7fc5-4308-0f30-08d9fdad00ab', 20, 15, 'Insert', '添加', 'Insert', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-04 16:28:51', NULL, '2022-03-04 15:25:14');
 INSERT INTO "public"."sys_menu_function" VALUES ('d2e6ea60-2cf6-478a-0f23-08d9fdad00ab', 10, 8, 'Display', '显示', 'Display', NULL, '2022-03-04 15:24:40', NULL, '2022-03-04 15:24:40');
+INSERT INTO "public"."sys_menu_function" VALUES ('d51a17af-163e-4a74-c081-08dadf3345bd', 30, 37, 'Update', '修改', 'Update', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09', NULL, NULL);
 INSERT INTO "public"."sys_menu_function" VALUES ('db3ab8bd-7709-41a2-0f47-08d9fdad00ab', 10, 25, 'Display', '显示', 'Display', NULL, '2022-03-04 15:25:28', NULL, '2022-03-04 15:25:28');
 INSERT INTO "public"."sys_menu_function" VALUES ('dee401b1-e20e-496e-0f43-08d9fdad00ab', 50, 17, 'Save', '保存', 'Save', NULL, '2022-03-04 15:25:21', NULL, '2022-03-04 15:25:21');
 INSERT INTO "public"."sys_menu_function" VALUES ('e2319118-42cc-41a2-0f6c-08d9fdad00ab', 60, 23, 'Search', '检索', 'Search', NULL, '2022-03-04 15:25:50', NULL, '2022-03-04 15:25:50');
@@ -874,10 +883,8 @@ CREATE TABLE "public"."sys_operation_log" (
 -- ----------------------------
 -- Records of sys_operation_log
 -- ----------------------------
-INSERT INTO "public"."sys_operation_log" VALUES ('a1b9111d-0015-47d0-b4c5-ef8efbf8cc26', '/', '0.0.0.1', '', '', '', 82, 'Edge108', 'Windows10', NULL, NULL, NULL, '00000000-0000-0000-0000-000000000000', '2022-12-13 22:36:03.815678', NULL, NULL);
-INSERT INTO "public"."sys_operation_log" VALUES ('39746f12-01bc-4aa6-b1ba-bc479c4eefea', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 639, 'Edge108', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', '系统账号', '获取当前用户信息', '00000000-0000-0000-0000-000000000000', '2022-12-13 22:36:05.714507', NULL, NULL);
-INSERT INTO "public"."sys_operation_log" VALUES ('2126e8e1-73b1-45c1-80ac-c8dc76db1944', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 21, 'Edge108', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', '系统账号', '获取当前用户信息', '00000000-0000-0000-0000-000000000000', '2022-12-13 22:36:11.586056', NULL, NULL);
-INSERT INTO "public"."sys_operation_log" VALUES ('2b261961-8c57-46aa-8a33-ed4da77d73a3', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 159, 'Edge108', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', '系统账号', '获取当前用户信息', '00000000-0000-0000-0000-000000000000', '2022-12-13 22:36:15.267774', NULL, NULL);
+INSERT INTO "public"."sys_operation_log" VALUES ('13e21549-02dd-4d43-ac87-37f9946fdf10', '/', '0.0.0.1', '', '', '', 76, 'Edge108', 'Windows10', NULL, NULL, NULL, '00000000-0000-0000-0000-000000000000', '2022-12-19 09:56:23.822394', NULL, NULL);
+INSERT INTO "public"."sys_operation_log" VALUES ('130525c1-5fae-4fa0-a015-3ace0fd2622b', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 692, 'Edge108', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', '系统账号', '获取当前用户信息', '00000000-0000-0000-0000-000000000000', '2022-12-19 09:56:25.824643', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_organization
@@ -1095,7 +1102,7 @@ SELECT setval('"public"."sys_dictionary_Id_seq"', 6, false);
 -- ----------------------------
 ALTER SEQUENCE "public"."sys_menu_Id_seq"
 OWNED BY "public"."sys_menu"."Id";
-SELECT setval('"public"."sys_menu_Id_seq"', 38, false);
+SELECT setval('"public"."sys_menu_Id_seq"', 39, false);
 
 -- ----------------------------
 -- Alter sequences owned by

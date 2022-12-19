@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 17/12/2022 15:07:33
+ Date: 19/12/2022 09:54:45
 */
 
 SET NAMES utf8mb4;
@@ -30,7 +30,7 @@ CREATE TABLE `__efmigrationshistory`  (
 -- ----------------------------
 -- Records of __efmigrationshistory
 -- ----------------------------
-INSERT INTO `__efmigrationshistory` VALUES ('20221213143242_mysql_init', '6.0.9');
+INSERT INTO `__efmigrationshistory` VALUES ('20221219015312_mysql_init', '6.0.9');
 
 -- ----------------------------
 -- Table structure for flow
@@ -594,7 +594,7 @@ CREATE TABLE `sys_dictionary`  (
   `LastModifierUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
   `LastModificationTime` datetime(6) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 4 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 5 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_dictionary
@@ -655,13 +655,13 @@ CREATE TABLE `sys_menu`  (
   `Type` int(0) NOT NULL,
   `Mode` int(0) NOT NULL,
   `ModuleUrl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `ModuleUrlPro` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL,
+  `ModuleUrlPro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `CreatorUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
   `CreationTime` datetime(6) NOT NULL,
   `LastModifierUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
   `LastModificationTime` datetime(6) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 36 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 38 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_menu
@@ -676,7 +676,7 @@ INSERT INTO `sys_menu` VALUES (7, '1.7', 50, '表格管理', NULL, NULL, NULL, N
 INSERT INTO `sys_menu` VALUES (8, '1.7.8', 100, '基础列表', 'BaseListCom', 'views/example/BaseList.vue', '/base/list', NULL, NULL, 7, 1, 1, 1, 1, 2, 1, NULL, NULL, NULL, '2020-12-17 14:49:12.000000', NULL, '2022-03-04 12:26:38.000000');
 INSERT INTO `sys_menu` VALUES (9, '1.7.9', 110, '标准表格', 'ListIndexCom', 'views/example/list/Index.vue', '/list', NULL, NULL, 7, 1, 1, 1, 1, 2, 1, NULL, NULL, NULL, '2020-12-17 14:51:07.000000', NULL, '2022-03-04 12:26:41.000000');
 INSERT INTO `sys_menu` VALUES (10, '1.10', 60, '富文本编辑器', 'EditorCom', 'views/example/Editor.vue', '/editor', NULL, 'PicRightOutlined', 1, 1, 1, 1, 1, 2, 1, NULL, NULL, NULL, '2021-01-18 19:34:28.000000', NULL, '2022-03-04 12:26:46.000000');
-INSERT INTO `sys_menu` VALUES (11, '1.11', 70, '微前端', '', '', '', '', 'RadarChartOutlined', 1, 1, 1, 1, 1, 2, 2, 'http://rapidscada.com.cn/#/', NULL, NULL, '2021-08-05 21:51:12.000000', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-13 21:57:11.000000');
+INSERT INTO `sys_menu` VALUES (11, '1.11', 70, '微前端', 'Iframe', 'core/components/Iframe.vue', '/iframe', '', 'RadarChartOutlined', 1, 1, 1, 1, 1, 2, 2, 'http://rapidscada.com.cn/#/', 'https://www.yuque.com/u378909/yidf7v/bs256p', NULL, '2021-08-05 21:51:12.000000', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-17 16:25:29.000000');
 INSERT INTO `sys_menu` VALUES (12, '12', 50, '基础信息', NULL, NULL, NULL, NULL, 'GoldOutlined', NULL, 1, 1, 1, 1, 1, 1, NULL, NULL, NULL, '2018-03-10 12:16:38.000000', NULL, '2022-03-04 12:25:43.000000');
 INSERT INTO `sys_menu` VALUES (13, '12.13', 10, '会员管理', 'base_member', 'views/base/member/Index.vue', '/base/member', NULL, 'UsergroupAddOutlined', 12, 1, 1, 1, 1, 2, 1, NULL, NULL, NULL, '2018-03-10 12:16:38.000000', NULL, '2022-03-04 12:26:55.000000');
 INSERT INTO `sys_menu` VALUES (14, '14', 100, '系统管理', NULL, NULL, NULL, NULL, 'DesktopOutlined', NULL, 1, 1, 1, 1, 1, 1, NULL, NULL, NULL, '2018-03-10 12:16:38.000000', NULL, '2022-03-04 12:25:46.000000');
@@ -697,6 +697,7 @@ INSERT INTO `sys_menu` VALUES (31, '29.31', 30, '代码生成', 'LowCode', 'view
 INSERT INTO `sys_menu` VALUES (32, '1.32', 20, '图标展示', 'IconsVue', 'views/example/Icons.vue', '/icons', NULL, 'TagsTwoTone', 1, 1, 1, 1, 1, 2, 1, NULL, NULL, NULL, '2022-02-24 10:51:38.000000', NULL, '2022-03-18 12:06:38.000000');
 INSERT INTO `sys_menu` VALUES (33, '29.33', 40, 'EFCore监控台', 'monitor_efcore', 'views/development_tool/monitor_efcore/Index.vue', '/development_tool/monitor/efcore', NULL, 'DashboardFilled', 29, 1, 1, 1, 1, 2, 1, NULL, NULL, NULL, '2022-04-10 10:55:41.000000', NULL, '2022-04-10 10:56:17.000000');
 INSERT INTO `sys_menu` VALUES (36, '12.13.36', 1, '详情', 'base_member_info_Details', 'views/base/member/components/Details.vue', '/base/member/details/:id/:title', NULL, NULL, 13, 0, 1, 1, 1, 2, 1, NULL, NULL, NULL, '2022-04-17 17:45:25.000000', NULL, '2022-04-17 17:49:13.000000');
+INSERT INTO `sys_menu` VALUES (37, '1.37', 80, '微前端2', 'Iframe123', 'core/components/Iframe.vue', '/iframe123', NULL, 'AlipaySquareFilled', 1, 1, 1, 1, 1, 2, 2, 'https://www.yuque.com/u378909/yidf7v/zx6egc', 'https://www.yuque.com/u378909/yidf7v/fezgu5', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 15:00:53.000000', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09.000000');
 
 -- ----------------------------
 -- Table structure for sys_menu_function
@@ -732,6 +733,7 @@ INSERT INTO `sys_menu_function` VALUES ('1cb6fbe1-4a6c-4aad-0f22-08d9fdad00ab', 
 INSERT INTO `sys_menu_function` VALUES ('1d831d57-6634-45d7-0f6e-08d9fdad00ab', 80, 23, 'Print', '打印', 'Print', NULL, '2022-03-04 15:25:50.000000', NULL, '2022-03-04 15:25:50.000000');
 INSERT INTO `sys_menu_function` VALUES ('1e69df5d-d1e9-4bc8-0f4d-08d9fdad00ab', 70, 25, 'Export', '导出', 'Export', NULL, '2022-03-04 15:25:28.000000', NULL, '2022-03-04 15:25:28.000000');
 INSERT INTO `sys_menu_function` VALUES ('20ab5395-d57c-49db-0f4a-08d9fdad00ab', 40, 25, 'Delete', '删除', 'Delete', NULL, '2022-03-04 15:25:28.000000', NULL, '2022-03-04 15:25:28.000000');
+INSERT INTO `sys_menu_function` VALUES ('216e9ad6-cc3f-4e72-c083-08dadf3345bd', 50, 37, 'Save', '保存', 'Save', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09.000000', NULL, NULL);
 INSERT INTO `sys_menu_function` VALUES ('2186550d-246c-4552-e2d8-08d9fdefa8f8', 60, 24, 'Search', '检索', 'Search', NULL, '2022-03-04 23:00:02.000000', NULL, '2022-03-04 23:00:02.000000');
 INSERT INTO `sys_menu_function` VALUES ('22a675f6-efda-481d-0f59-08d9fdad00ab', 30, 20, 'Update', '修改', 'Update', NULL, '2022-03-04 15:25:36.000000', NULL, '2022-03-04 15:25:36.000000');
 INSERT INTO `sys_menu_function` VALUES ('2469188c-21de-492a-0f5e-08d9fdad00ab', 80, 20, 'Print', '打印', 'Print', NULL, '2022-03-04 15:25:36.000000', NULL, '2022-03-04 15:25:36.000000');
@@ -739,23 +741,26 @@ INSERT INTO `sys_menu_function` VALUES ('2fea8f87-2a13-4c95-0f3c-08d9fdad00ab', 
 INSERT INTO `sys_menu_function` VALUES ('33c80938-82c8-4299-0f12-08d9fdad00ab', 10, 30, 'Display', '显示', 'Display', NULL, '2022-03-04 15:17:09.000000', NULL, '2022-03-04 15:17:09.000000');
 INSERT INTO `sys_menu_function` VALUES ('37d3e492-62da-47a4-0f33-08d9fdad00ab', 50, 15, 'Save', '保存', 'Save', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-04 16:28:51.000000', NULL, '2022-03-04 15:25:14.000000');
 INSERT INTO `sys_menu_function` VALUES ('38b4704d-7c5d-4f89-a2e7-08da3d8e6577', 60, 31, 'Search', '检索', 'Search', NULL, '2022-05-24 22:05:57.000000', NULL, '2022-05-24 22:05:57.000000');
-INSERT INTO `sys_menu_function` VALUES ('3bc0e68f-d03d-4e99-0f26-08d9fdad00ab', 10, 11, 'Display', '显示', 'Display', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-13 21:57:11.000000', NULL, '2022-03-04 15:24:53.000000');
+INSERT INTO `sys_menu_function` VALUES ('3bc0e68f-d03d-4e99-0f26-08d9fdad00ab', 10, 11, 'Display', '显示', 'Display', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-17 16:25:29.000000', NULL, '2022-03-04 15:24:53.000000');
 INSERT INTO `sys_menu_function` VALUES ('3cb3cbc7-9e45-4cc3-0f62-08d9fdad00ab', 40, 21, 'Delete', '删除', 'Delete', NULL, '2022-03-04 15:25:40.000000', NULL, '2022-03-04 15:25:40.000000');
 INSERT INTO `sys_menu_function` VALUES ('3e44c6f5-e090-40a1-0f58-08d9fdad00ab', 20, 20, 'Insert', '添加', 'Insert', NULL, '2022-03-04 15:25:36.000000', NULL, '2022-03-04 15:25:36.000000');
 INSERT INTO `sys_menu_function` VALUES ('3f6d0af7-5386-4d3a-0f71-08d9fdad00ab', 10, 28, 'Display', '显示', 'Display', NULL, '2022-03-04 15:40:52.000000', NULL, '2022-03-04 15:40:52.000000');
 INSERT INTO `sys_menu_function` VALUES ('41cb1942-573a-4d63-0f4b-08d9fdad00ab', 50, 25, 'Save', '保存', 'Save', NULL, '2022-03-04 15:25:28.000000', NULL, '2022-03-04 15:25:28.000000');
 INSERT INTO `sys_menu_function` VALUES ('437fbf85-8704-4e87-0f3d-08d9fdad00ab', 70, 16, 'Export', '导出', 'Export', NULL, '2022-04-22 22:24:03.000000', NULL, '2022-04-22 22:24:03.000000');
 INSERT INTO `sys_menu_function` VALUES ('45e2ca86-4823-4fb9-0f57-08d9fdad00ab', 10, 20, 'Display', '显示', 'Display', NULL, '2022-03-04 15:25:36.000000', NULL, '2022-03-04 15:25:36.000000');
+INSERT INTO `sys_menu_function` VALUES ('47e1a6a3-4c89-46bf-c080-08dadf3345bd', 20, 37, 'Insert', '添加', 'Insert', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09.000000', NULL, NULL);
 INSERT INTO `sys_menu_function` VALUES ('48f0a694-0539-4e69-a2e4-08da3d8e6577', 10, 31, 'Display', '显示', 'Display', NULL, '2022-05-24 22:05:57.000000', NULL, '2022-05-24 22:05:57.000000');
 INSERT INTO `sys_menu_function` VALUES ('4a67fcdb-a7a9-4e3c-0f49-08d9fdad00ab', 30, 25, 'Update', '修改', 'Update', NULL, '2022-03-04 15:25:28.000000', NULL, '2022-03-04 15:25:28.000000');
 INSERT INTO `sys_menu_function` VALUES ('4bbbe120-0cc6-4a08-0f4e-08d9fdad00ab', 80, 25, 'Print', '打印', 'Print', NULL, '2022-03-04 15:25:28.000000', NULL, '2022-03-04 15:25:28.000000');
 INSERT INTO `sys_menu_function` VALUES ('4dbf096d-d3d3-4565-a2e5-08da3d8e6577', 40, 31, 'Delete', '删除', 'Delete', NULL, '2022-05-24 22:05:57.000000', NULL, '2022-05-24 22:05:57.000000');
+INSERT INTO `sys_menu_function` VALUES ('4e7cd8df-2e35-4d5e-c084-08dadf3345bd', 60, 37, 'Search', '检索', 'Search', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09.000000', NULL, NULL);
 INSERT INTO `sys_menu_function` VALUES ('523b53b5-8159-4a16-0f2b-08d9fdad00ab', 50, 13, 'Save', '保存', 'Save', NULL, '2022-03-04 15:25:07.000000', NULL, '2022-03-04 15:25:07.000000');
 INSERT INTO `sys_menu_function` VALUES ('53fdb4a0-ca6e-4568-0f3f-08d9fdad00ab', 10, 17, 'Display', '显示', 'Display', NULL, '2022-03-04 15:25:21.000000', NULL, '2022-03-04 15:25:21.000000');
 INSERT INTO `sys_menu_function` VALUES ('541d9045-47b2-4629-0f2e-08d9fdad00ab', 80, 13, 'Print', '打印', 'Print', NULL, '2022-03-04 15:25:07.000000', NULL, '2022-03-04 15:25:07.000000');
 INSERT INTO `sys_menu_function` VALUES ('54743c86-ac73-4345-0f5d-08d9fdad00ab', 70, 20, 'Export', '导出', 'Export', NULL, '2022-03-04 15:25:36.000000', NULL, '2022-03-04 15:25:36.000000');
 INSERT INTO `sys_menu_function` VALUES ('550f874b-e804-44a0-0f37-08d9fdad00ab', 10, 16, 'Display', '显示', 'Display', NULL, '2022-04-22 22:24:03.000000', NULL, '2022-04-22 22:24:03.000000');
 INSERT INTO `sys_menu_function` VALUES ('55750f56-edc9-4771-e2d6-08d9fdefa8f8', 10, 24, 'Display', '显示', 'Display', NULL, '2022-03-04 23:00:02.000000', NULL, '2022-03-04 23:00:02.000000');
+INSERT INTO `sys_menu_function` VALUES ('576f8a5d-1c47-47c9-c086-08dadf3345bd', 80, 37, 'Print', '打印', 'Print', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09.000000', NULL, NULL);
 INSERT INTO `sys_menu_function` VALUES ('5e4e87bd-c179-4b5b-0f5c-08d9fdad00ab', 60, 20, 'Search', '检索', 'Search', NULL, '2022-03-04 15:25:36.000000', NULL, '2022-03-04 15:25:36.000000');
 INSERT INTO `sys_menu_function` VALUES ('616c4e4a-fb61-49cf-0f5b-08d9fdad00ab', 50, 20, 'Save', '保存', 'Save', NULL, '2022-03-04 15:25:36.000000', NULL, '2022-03-04 15:25:36.000000');
 INSERT INTO `sys_menu_function` VALUES ('687254ae-0d76-4788-a4e8-08da1a9d9949', 10, 33, 'Display', '显示', 'Display', NULL, '2022-04-10 10:56:17.000000', NULL, '2022-04-10 10:56:17.000000');
@@ -772,6 +777,7 @@ INSERT INTO `sys_menu_function` VALUES ('86465238-c51c-45d5-0f40-08d9fdad00ab', 
 INSERT INTO `sys_menu_function` VALUES ('86ff83fd-d34a-4290-0f41-08d9fdad00ab', 30, 17, 'Update', '修改', 'Update', NULL, '2022-03-04 15:25:21.000000', NULL, '2022-03-04 15:25:21.000000');
 INSERT INTO `sys_menu_function` VALUES ('92b39a10-3927-4ee7-0f6a-08d9fdad00ab', 40, 23, 'Delete', '删除', 'Delete', NULL, '2022-03-04 15:25:50.000000', NULL, '2022-03-04 15:25:50.000000');
 INSERT INTO `sys_menu_function` VALUES ('9426768e-b90d-41e1-0f67-08d9fdad00ab', 10, 23, 'Display', '显示', 'Display', NULL, '2022-03-04 15:25:50.000000', NULL, '2022-03-04 15:25:50.000000');
+INSERT INTO `sys_menu_function` VALUES ('9c9b41fd-db96-48cf-c07f-08dadf3345bd', 10, 37, 'Display', '显示', 'Display', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09.000000', NULL, NULL);
 INSERT INTO `sys_menu_function` VALUES ('a03d56d7-4b0d-47cc-0f6b-08d9fdad00ab', 50, 23, 'Save', '保存', 'Save', NULL, '2022-03-04 15:25:50.000000', NULL, '2022-03-04 15:25:50.000000');
 INSERT INTO `sys_menu_function` VALUES ('a1ddd02f-8c21-4d79-0f21-08d9fdad00ab', 10, 5, 'Display', '显示', 'Display', NULL, '2022-03-04 15:24:30.000000', NULL, '2022-03-04 15:24:30.000000');
 INSERT INTO `sys_menu_function` VALUES ('a3754771-f6e9-4a23-0f2c-08d9fdad00ab', 60, 13, 'Search', '检索', 'Search', NULL, '2022-03-04 15:25:07.000000', NULL, '2022-03-04 15:25:07.000000');
@@ -785,13 +791,16 @@ INSERT INTO `sys_menu_function` VALUES ('b96f977c-a36e-4e7f-0f2d-08d9fdad00ab', 
 INSERT INTO `sys_menu_function` VALUES ('b98a365e-6fb4-4efb-0f69-08d9fdad00ab', 30, 23, 'Update', '修改', 'Update', NULL, '2022-03-04 15:25:50.000000', NULL, '2022-03-04 15:25:50.000000');
 INSERT INTO `sys_menu_function` VALUES ('bd6ae6da-1ca6-46c2-0f3a-08d9fdad00ab', 40, 16, 'Delete', '删除', 'Delete', NULL, '2022-04-22 22:24:03.000000', NULL, '2022-04-22 22:24:03.000000');
 INSERT INTO `sys_menu_function` VALUES ('beb87004-5cfb-417a-0f34-08d9fdad00ab', 60, 15, 'Search', '检索', 'Search', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-04 16:28:51.000000', NULL, '2022-03-04 15:25:14.000000');
+INSERT INTO `sys_menu_function` VALUES ('c6400925-a381-4679-c082-08dadf3345bd', 40, 37, 'Delete', '删除', 'Delete', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09.000000', NULL, NULL);
 INSERT INTO `sys_menu_function` VALUES ('c67a0abe-daec-491b-0f38-08d9fdad00ab', 20, 16, 'Insert', '添加', 'Insert', NULL, '2022-04-22 22:24:03.000000', NULL, '2022-04-22 22:24:03.000000');
 INSERT INTO `sys_menu_function` VALUES ('c6ba141b-99ba-4114-0f5f-08d9fdad00ab', 10, 21, 'Display', '显示', 'Display', NULL, '2022-03-04 15:25:40.000000', NULL, '2022-03-04 15:25:40.000000');
 INSERT INTO `sys_menu_function` VALUES ('c77c812a-1601-4311-0f70-08d9fdad00ab', 10, 19, 'Display', '显示', 'Display', NULL, '2022-03-04 15:26:00.000000', NULL, '2022-03-04 15:26:00.000000');
 INSERT INTO `sys_menu_function` VALUES ('c8edbb79-567e-461b-0f36-08d9fdad00ab', 80, 15, 'Print', '打印', 'Print', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-04 16:28:51.000000', NULL, '2022-03-04 15:25:14.000000');
+INSERT INTO `sys_menu_function` VALUES ('c981aa0b-d60e-4160-c085-08dadf3345bd', 70, 37, 'Export', '导出', 'Export', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09.000000', NULL, NULL);
 INSERT INTO `sys_menu_function` VALUES ('c9e5fff0-6744-47d7-0f66-08d9fdad00ab', 80, 21, 'Print', '打印', 'Print', NULL, '2022-03-04 15:25:40.000000', NULL, '2022-03-04 15:25:40.000000');
 INSERT INTO `sys_menu_function` VALUES ('cce82eb4-7fc5-4308-0f30-08d9fdad00ab', 20, 15, 'Insert', '添加', 'Insert', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-04 16:28:51.000000', NULL, '2022-03-04 15:25:14.000000');
 INSERT INTO `sys_menu_function` VALUES ('d2e6ea60-2cf6-478a-0f23-08d9fdad00ab', 10, 8, 'Display', '显示', 'Display', NULL, '2022-03-04 15:24:40.000000', NULL, '2022-03-04 15:24:40.000000');
+INSERT INTO `sys_menu_function` VALUES ('d51a17af-163e-4a74-c081-08dadf3345bd', 30, 37, 'Update', '修改', 'Update', '0198459e-2034-4533-b843-5d227ad20740', '2022-12-16 17:30:09.000000', NULL, NULL);
 INSERT INTO `sys_menu_function` VALUES ('db3ab8bd-7709-41a2-0f47-08d9fdad00ab', 10, 25, 'Display', '显示', 'Display', NULL, '2022-03-04 15:25:28.000000', NULL, '2022-03-04 15:25:28.000000');
 INSERT INTO `sys_menu_function` VALUES ('dee401b1-e20e-496e-0f43-08d9fdad00ab', 50, 17, 'Save', '保存', 'Save', NULL, '2022-03-04 15:25:21.000000', NULL, '2022-03-04 15:25:21.000000');
 INSERT INTO `sys_menu_function` VALUES ('e2319118-42cc-41a2-0f6c-08d9fdad00ab', 60, 23, 'Search', '检索', 'Search', NULL, '2022-03-04 15:25:50.000000', NULL, '2022-03-04 15:25:50.000000');
@@ -832,10 +841,10 @@ CREATE TABLE `sys_operation_log`  (
 -- ----------------------------
 -- Records of sys_operation_log
 -- ----------------------------
-INSERT INTO `sys_operation_log` VALUES ('08dadd16-fcc8-494a-80b6-ed4e9a680d16', '/', '0.0.0.1', '', '', '', 78, 'Edge108', 'Windows10', NULL, NULL, NULL, '00000000-0000-0000-0000-000000000000', '2022-12-13 22:33:22.815361', NULL, NULL);
-INSERT INTO `sys_operation_log` VALUES ('08dadd16-fd2c-4ffc-8647-325dad965624', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 294, 'Edge108', 'Windows10', NULL, '系统账号', '获取当前用户信息', '00000000-0000-0000-0000-000000000000', '2022-12-13 22:33:23.295271', NULL, NULL);
-INSERT INTO `sys_operation_log` VALUES ('08dadd16-fe7f-4192-8e65-f7ccf4e0a0c5', '/api/account/check', '0.0.0.1', '', '{\"userName\":\"admin\",\"userPassword\":\"123456\"}', '', 1220, 'Edge108', 'Windows10', NULL, NULL, NULL, '00000000-0000-0000-0000-000000000000', '2022-12-13 22:33:25.511090', NULL, NULL);
-INSERT INTO `sys_operation_log` VALUES ('08dadd16-ff0b-4137-8ee7-16f22fccb559', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 476, 'Edge108', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', '系统账号', '获取当前用户信息', '00000000-0000-0000-0000-000000000000', '2022-12-13 22:33:26.428388', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08dae163-efa4-43d0-8e7e-d6d568bab644', '/', '0.0.0.1', '', '', '', 82, 'Edge108', 'Windows10', NULL, NULL, NULL, '00000000-0000-0000-0000-000000000000', '2022-12-19 09:54:16.753921', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08dae163-f16a-4b0b-809b-2f8370a8645f', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 155, 'Edge108', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', '系统账号', '获取当前用户信息', '00000000-0000-0000-0000-000000000000', '2022-12-19 09:54:19.466606', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08dae163-f2bd-43a4-88fe-920b381d30c9', '/api/account/check', '0.0.0.1', '', '{\"userName\":\"admin\",\"userPassword\":\"123456\"}', '', 181, 'Edge108', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, NULL, '00000000-0000-0000-0000-000000000000', '2022-12-19 09:54:21.684820', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08dae163-f335-4610-8fe7-71850d49c856', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 673, 'Edge108', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', '系统账号', '获取当前用户信息', '00000000-0000-0000-0000-000000000000', '2022-12-19 09:54:22.472170', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_organization
@@ -856,7 +865,7 @@ CREATE TABLE `sys_organization`  (
   `LastModifierUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
   `LastModificationTime` datetime(6) NULL DEFAULT NULL,
   PRIMARY KEY (`Id`) USING BTREE
-) ENGINE = InnoDB AUTO_INCREMENT = 11 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+) ENGINE = InnoDB AUTO_INCREMENT = 12 CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of sys_organization
