@@ -1,9 +1,13 @@
 <script lang="ts" setup>
 import router from "@/core/router";
+import { onMounted } from "vue";
+defineOptions({ name: "RedirectCom" });
 
-const { params, query } = router.currentRoute.value;
-const { path } = params;
-router.replace({ path: "/" + path, query });
+onMounted(() => {
+  const { params, query } = router.currentRoute.value;
+  const { path } = params;
+  router.replace({ path: "/" + path, query });
+});
 </script>
 
 <template>

@@ -25,7 +25,7 @@ const routes: Array<RouteRecordRaw> = [
                 path: '/redirect/:path(.*)',
                 name: "RedirectCom",
                 component: () => import('@/core/components/Redirect.vue'),
-
+                meta: { mode: 1 }
             },
             {
                 //找不到地址

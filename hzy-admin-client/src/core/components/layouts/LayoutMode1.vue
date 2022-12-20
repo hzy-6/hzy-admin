@@ -37,11 +37,11 @@ let left = computed(() => {
       <a-layout-content :style="{ paddingTop: '88px' }">
         <div style="min-height: calc(80vh); overflow: hidden">
           <router-view v-slot="{ Component, route }">
-            <transition name="fade-transform" mode="out-in">
-              <keep-alive :include="tabsStore.state.cacheViews">
-                <component :is="Component" :key="route.fullPath" v-if="route.meta.mode == 1" />
-              </keep-alive>
-            </transition>
+            <!-- <transition name="fade" mode="out-in"> -->
+            <keep-alive :include="tabsStore.state.cacheViews">
+              <component :is="Component" :key="route.fullPath" v-show="route.meta.mode == 1" />
+            </keep-alive>
+            <!-- </transition> -->
           </router-view>
           <!-- iframe 处理 -->
           <LayoutIframe />

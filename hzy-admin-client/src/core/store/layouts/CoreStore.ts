@@ -42,14 +42,12 @@ export default defineStore("LayoutStore", () => {
      * 刷新
      * 
      * @param {*} fullPath 
-     * @param {*} componentName 
      */
-    function refresh(fullPath: string, componentName: string) {
-        tabsStore.delCacheView(componentName, () => {
-            nextTick(() => {
-                router.push("/redirect" + fullPath);
-            });
-        })
+    function refresh(fullPath: string) {
+        tabsStore.closeTabSelf(fullPath);
+        nextTick(() => {
+            router.push("/redirect" + fullPath);
+        });
     }
 
 

@@ -1,16 +1,5 @@
+<script lang="ts" setup></script>
 <template>
-  <div>init</div>
+  <div>iframe</div>
 </template>
-
-<script lang="ts">
-import { defineComponent } from "vue";
-
-export default defineComponent({
-  setup() {
-    // todo
-    return {};
-  },
-});
-</script>
-
-<style lang="stylus" scoped></style>
+<style lang="less" scoped></style>

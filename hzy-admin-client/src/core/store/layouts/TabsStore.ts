@@ -107,7 +107,6 @@ export default defineStore("TabsStore", () => {
         },
     };
 
-
     /**
      * 添加标签页
      * @param {*} routeInfo 
@@ -117,6 +116,8 @@ export default defineStore("TabsStore", () => {
         const { meta, fullPath } = routeInfo;
 
         if (!Object.prototype.hasOwnProperty.call(meta, 'close')) return;
+        const { keepAlive } = meta;
+        if (keepAlive == null) return;
 
         //检查是否存在
         let tab = state.tabs.find(w => w.fullPath == fullPath);
@@ -197,31 +198,8 @@ export default defineStore("TabsStore", () => {
      * @param {*} fullPath 
      */
     function tabClick(fullPath: string) {
-        // const tab = state.tabs.find(w => w.fullPath == fullPath);
-        // if (tab && tab.mode == 2) {
-        //     openModular({ moduleUrl: tab.fullPath, name: tab.meta.title });
-        //     return;
-        // }
-
         router.push(fullPath);
     }
-
-    /**
-     * 打开模块
-     * 
-     * @param menuItem 
-     */
-    // function openModular(menuItem: { moduleUrl: string, name: string }) {
-    //     addTab({
-    //         fullPath: menuItem.moduleUrl,
-    //         path: menuItem.moduleUrl,
-    //         name: menuItem.name,
-    //         mode: 2,
-    //         meta: { close: true, title: menuItem.name },
-    //     });
-
-    //     state.activeKey = menuItem.moduleUrl;
-    // }
 
     return {
         state,
@@ -231,8 +209,7 @@ export default defineStore("TabsStore", () => {
         closeTabSelf,
         closeTabOther,
         closeTabAll,
-        tabClick,
-        // openModular
+        tabClick
     }
 
 });

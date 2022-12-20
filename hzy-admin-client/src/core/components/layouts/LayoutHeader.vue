@@ -25,8 +25,7 @@ function logOut() {
 
 // 刷新
 function onReload() {
-  const name = router.currentRoute.value.name ? router.currentRoute.value.name : "";
-  coreStore.refresh(router.currentRoute.value.fullPath, name as string);
+  coreStore.refresh(router.currentRoute.value.fullPath);
 }
 
 //文档地址

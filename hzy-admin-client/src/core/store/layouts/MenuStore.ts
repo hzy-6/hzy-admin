@@ -60,11 +60,11 @@ interface IState {
  * 菜单项模型
  */
 export interface MenuItemModel {
-    id: number
+    id?: number
     /**
      * 菜单名称
      */
-    name: string
+    name?: string
     /**
      * 组件名称
      */
@@ -88,7 +88,7 @@ export interface MenuItemModel {
     /**
      * 选项卡是否可关闭
      */
-    close: boolean
+    close?: boolean
     /**
      * 父级Id
      */
@@ -96,7 +96,7 @@ export interface MenuItemModel {
     /**
      * 菜单类型
      */
-    type: number
+    type?: number
     /**
      * 级别码 1.1.1
      */
