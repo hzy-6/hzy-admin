@@ -79,7 +79,7 @@ async function deleteList(id?: string) {
  * 同步表
  */
 function synchronization() {
-  LowCodeTableInfoService.synchronization().then((res) => {
+  LowCodeTableInfoService.synchronization(props.rowData.id).then((res) => {
     Tools.message.success("同步成功!");
     findList();
   });

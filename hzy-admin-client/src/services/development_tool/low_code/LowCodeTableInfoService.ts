@@ -36,8 +36,8 @@ export default class LowCodeTableInfoService {
      * 
      * @returns 
      */
-    static synchronization() {
-        return Http.post(`${this.urlPrefix}/synchronization`);
+    static synchronization(tableId: string) {
+        return Http.post(`${this.urlPrefix}/synchronization/${tableId}`);
     }
 
     /**
