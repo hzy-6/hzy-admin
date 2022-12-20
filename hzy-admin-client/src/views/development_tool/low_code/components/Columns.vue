@@ -13,9 +13,9 @@ const state = reactive({
   search: {
     state: false,
     vm: {
-      Low_Code_TableId: null,
-      columnName: null,
-      describe: null,
+      Low_Code_TableId: undefined,
+      columnName: undefined,
+      describe: undefined,
     },
   },
   loading: false,
