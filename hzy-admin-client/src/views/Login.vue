@@ -44,7 +44,7 @@ async function check() {
  * 重置系统信息
  */
 function reset() {
-  // tools.delAuthorization();
+  Tools.removeAuthorization();
   appStore.resetInfo();
 }
 </script>
