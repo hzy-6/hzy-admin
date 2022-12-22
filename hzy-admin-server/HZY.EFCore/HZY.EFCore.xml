@@ -71,6 +71,51 @@
             <param name="modelBuilder"></param>
             <param name="mappingName"></param>
         </member>
+        <member name="T:HZY.EFCore.EFCoreConfig">
+            <summary>
+            仓储模块
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.EFCoreConfig.UseEfCore(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用 DbContext
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:HZY.EFCore.EFCoreConfig.AddEfCore(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            注册 Admin 后台管理数据库
+            </summary>
+            <param name="services"></param>
+            <param name="appConfiguration"></param>
+            <param name="hostBuilder"></param>
+        </member>
+        <member name="M:HZY.EFCore.EFCoreConfig.InitAdminDbContext(HZY.Infrastructure.AppConfiguration,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            初始化 AdminDbContext
+            </summary>
+            <param name="appConfiguration"></param>
+            <param name="options"></param>
+            <param name="hostBuilder"></param>
+        </member>
+        <member name="M:HZY.EFCore.EFCoreConfig.UseEfCoreLoggerFactory(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            efcore 使用控制台日志
+            </summary>
+            <param name="options"></param>
+            <param name="webHostEnvironment"></param>
+        </member>
+        <member name="T:HZY.EFCore.Interceptors.AuditInterceptor">
+            <summary>
+            审计 保存拦截器
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.Interceptors.AuditInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData)">
+            <summary>
+            添加 、 修改 、删除 拦截
+            </summary>
+            <param name="eventData"></param>
+        </member>
         <member name="T:HZY.EFCore.Migrations.Seeds.ModelBuilderExtensions">
             <summary>
             EFCore 种子数据

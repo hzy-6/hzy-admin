@@ -80,14 +80,14 @@ function handlePaths() {
           </a-breadcrumb-item>
         </a-breadcrumb>
       </slot>
-      <div class="mt-16">
+      <!-- <div class="mt-16">
         <span style="font-weight: bold; font-size: 20px; color: rgba(0, 0, 0, 0.85)">{{ router.currentRoute.value.meta.title }}</span>
-      </div>
-      <div class="mt-8">
-        <slot name="describe">
+      </div> -->
+      <slot name="describe">
+        <div class="mt-8" v-if="props.describe">
           <span>{{ props.describe }}</span>
-        </slot>
-      </div>
+        </div>
+      </slot>
     </div>
     <div :class="{ 'p-16': !bodyClassPadding }" :style="{ ...(props.bodyStyle ?? {}) }">
       <slot></slot>

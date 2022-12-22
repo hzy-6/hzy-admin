@@ -7,17 +7,16 @@ using HzyEFCoreRepositories;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using HZY.Managers.EFCore.Interceptor;
 using Microsoft.EntityFrameworkCore.Infrastructure;
-using Microsoft.Extensions.Options;
 using HZY.Infrastructure.SerilogUtil;
+using HZY.EFCore.Interceptors;
 
-namespace HZY.Managers.EFCore;
+namespace HZY.EFCore;
 
 /// <summary>
 /// 仓储模块
 /// </summary>
-public static class EFCoreModule
+public static class EFCoreConfig
 {
 
     /// <summary>
@@ -133,7 +132,7 @@ public static class EFCoreModule
     /// </summary>
     /// <param name="options"></param>
     /// <param name="webHostEnvironment"></param>
-    private static void UseEfCoreLoggerFactory(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder options, IWebHostEnvironment webHostEnvironment)
+    private static void UseEfCoreLoggerFactory(DbContextOptionsBuilder options, IWebHostEnvironment webHostEnvironment)
     {
         if (webHostEnvironment.IsDevelopment())
         {

@@ -6,7 +6,7 @@ using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Models.Entities.Framework;
 using Zyx.MemoryMQ.Interfaces;
 
-namespace HZY.Services.Admin.MessageHandler
+namespace HZY.Managers.MessageHandler
 {
     /// <summary>
     /// 消费日志
@@ -15,16 +15,16 @@ namespace HZY.Services.Admin.MessageHandler
     {
         public string topic => "WriteInLog";
 
-        private readonly IAdminRepository<SysOperationLog> sysOperationLogRepository;
+        private readonly IAdminRepository<SysOperationLog> _sysOperationLogRepository;
 
         public WriteLogHandler(IAdminRepository<SysOperationLog> sysOperationLogRepository)
         {
-            this.sysOperationLogRepository = sysOperationLogRepository;
+            _sysOperationLogRepository = sysOperationLogRepository;
         }
 
         public async Task HandlerAsync(SysOperationLog data)
         {
-            await sysOperationLogRepository.InsertAsync(data);
+            await _sysOperationLogRepository.InsertAsync(data);
         }
     }
 }

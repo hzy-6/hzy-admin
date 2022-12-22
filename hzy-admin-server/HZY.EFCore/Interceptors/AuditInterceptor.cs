@@ -8,7 +8,7 @@ using HzyScanDiService;
 using HZY.Infrastructure.Token;
 using HZY.Models.Entities.BaseEntitys;
 
-namespace HZY.Managers.EFCore.Interceptor
+namespace HZY.EFCore.Interceptors
 {
     /// <summary>
     /// 审计 保存拦截器

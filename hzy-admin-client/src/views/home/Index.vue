@@ -16,7 +16,7 @@ let visible = ref(false);
 </script>
 
 <template>
-  <PageContainer :show="false" style="padding: 16px">
+  <PageContainer :show="false" class="p-16">
     <!-- 基础统计数据 -->
     <div @click="visible = !visible">
       <WorkOrder />

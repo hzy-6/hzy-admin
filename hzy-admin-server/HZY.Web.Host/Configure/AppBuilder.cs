@@ -20,7 +20,6 @@ using HZY.Infrastructure.Filters;
 using Swashbuckle.AspNetCore.Filters;
 using Newtonsoft.Json.Serialization;
 using HZY.Infrastructure.SerilogUtil;
-using HZY.Managers.EFCore;
 using HZY.Managers.SignalRs;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Http.Features;

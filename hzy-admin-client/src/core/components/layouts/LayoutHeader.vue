@@ -53,11 +53,11 @@ function jumpPro() {
     </div>
     <div style="flex: 1 1 0%" v-else></div>
     <!-- Pro -->
-    <div class="hzy-header-btn text-danger" @click="jumpPro()" style="font-weight: bold">Pro By React</div>
+    <div class="hzy-header-btn text-danger" @click="jumpPro()" style="font-weight: bold" v-if="!coreStore.state.isMobile">Pro By React</div>
     <!-- HzyAdmin 文档 -->
     <a-tooltip>
       <template #title>HzyAdmin 文档</template>
-      <div class="hzy-header-btn" @click="jumpDoc">
+      <div class="hzy-header-btn" @click="jumpDoc" v-if="!coreStore.state.isMobile">
         <a-badge status="success" dot>
           <AppIcon name="rocket-outlined" :size="16" />
         </a-badge>

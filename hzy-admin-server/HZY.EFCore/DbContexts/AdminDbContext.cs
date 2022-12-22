@@ -1,14 +1,11 @@
 ﻿using HZY.EFCore.Migrations.Seeds;
 using HZY.Infrastructure;
-using HZY.Infrastructure.SerilogUtil;
 using HZY.Models.Entities.BaseEntitys;
 using HzyEFCoreRepositories.Extensions;
 using HzyScanDiService;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace HZY.EFCore.DbContexts;
@@ -18,9 +15,9 @@ namespace HZY.EFCore.DbContexts;
 /// </summary>
 public class AdminDbContext : DbContext
 {
-    public AdminDbContext(DbContextOptions options) : base(options)
+    public AdminDbContext(DbContextOptions<AdminDbContext> options) : base(options)
     {
-        
+
     }
 
     /// <summary>
