@@ -193,7 +193,7 @@ class Http {
         Http.isLoading = loading;
         const result = await axios.post<AxiosResponse<any>>(url, data, { responseType: "blob" });
 
-        var res = result.data;
+        var res:any = result.data;
         //如果没有文件名称 则使用当前时间
         if (!fileName) fileName = new Date().getTime().toString();
         //如果响应头里面有 filename 则使用响应头中的 filename
@@ -204,7 +204,7 @@ class Http {
             fileName = decodeURI(result![1]);
         }
         console.log(result);
-        var blob = new Blob([res.data], { type: res.data.type });
+        var blob = new Blob([res], { type: res.type });
         let href = (window.URL || window.webkitURL).createObjectURL(blob);
         let a = document.createElement("a");
         a.style.display = "none";
