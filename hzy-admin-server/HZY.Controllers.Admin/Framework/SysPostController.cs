@@ -34,7 +34,7 @@ public class SysPostController : AdminBaseController<SysPostService>
     /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查看列表")]
-    [HttpPost("FindList/{size}/{page}")]
+    [HttpPost("FindList")]
     public async Task<PagingView> FindListAsync([FromBody] PagingSearchInput<SysPost> pagingSearchInput)
     {
         return await this._defaultService.FindListAsync(pagingSearchInput);

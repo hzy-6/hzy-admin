@@ -234,7 +234,7 @@ const rowSelection = computed(() => {
           :scroll="{ x: 'calc(100wh - 300px)' }"
           row-key="id"
           v-model:expandedRowKeys="expandedRowKeys"
-          @change="(pagination, filters, sorter, extra) => onChange(pagination, filters, sorter, extra)"
+          @change="(pagination: TablePaginationConfig, filters: Record<string, FilterValue | null>, sorter: SorterResult<any> | SorterResult<any>[], extra: TableCurrentDataSource<any>) => onChange(pagination, filters, sorter, extra)"
         >
           <slot name="table-col"></slot>
         </a-table>

@@ -212,7 +212,6 @@ findBackMethods.initRows();
           <a-row :gutter="[16, 0]">
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item class="mb-0" name="name" label="真实姓名">
-                {{ power }}
                 <a-input v-model:value="state.search.vm.name" placeholder="真实名称" />
               </a-form-item>
             </a-col>

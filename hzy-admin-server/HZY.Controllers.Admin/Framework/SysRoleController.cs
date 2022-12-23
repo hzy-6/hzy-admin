@@ -35,7 +35,7 @@ public class SysRoleController : AdminBaseController<SysRoleService>
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查看表格")]
     [ApiResourceCacheFilter(1)]
-    [HttpPost("FindList/{size}/{page}")]
+    [HttpPost("FindList")]
     public async Task<PagingView> FindListAsync([FromBody] PagingSearchInput<SysRole> pagingSearchInput)
     {
         return await this._defaultService.FindListAsync(pagingSearchInput);

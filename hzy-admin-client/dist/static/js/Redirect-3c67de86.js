@@ -1,0 +1,1 @@
+import{d as n,q as s,p as a,r as c,o as r,c as p,a as _}from"./index-294e8e84.js";const u={class:"p-16"},m=n({name:"RedirectCom"}),i=n({...m,setup(d){return s(()=>{const{params:o,query:t}=a.currentRoute.value,{path:e}=o;a.replace({path:"/"+e,query:t})}),(o,t)=>{const e=c("a-spin");return r(),p("div",u,[_(e)])}}});export{i as default};

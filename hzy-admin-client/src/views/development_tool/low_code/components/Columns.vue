@@ -17,6 +17,7 @@ const state = reactive({
       columnName: undefined,
       describe: undefined,
     },
+    sort: [] as any[],
   },
   loading: false,
   page: 1,

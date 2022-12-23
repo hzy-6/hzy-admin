@@ -33,7 +33,7 @@ public class SysOperationLogController : AdminBaseController<SysOperationLogServ
     /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查看列表")]
-    [HttpPost("FindList/{size}/{page}")]
+    [HttpPost("FindList")]
     public async Task<PagingView> FindListAsync([FromBody] PagingSearchInput<SysOperationLogSearchDto> pagingSearchInput)
     {
         return await _defaultService.FindListAsync(pagingSearchInput);
