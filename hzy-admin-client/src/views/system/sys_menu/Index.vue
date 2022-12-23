@@ -18,6 +18,7 @@ const state = reactive({
     vm: {
       name: undefined,
     },
+    sort: [] as any[],
   },
   loading: false,
   page: 1,
@@ -91,7 +92,7 @@ async function deleteList(id?: string) {
  * 导出excel
  */
 function exportExcel() {
-  SysMenuService.exportExcel(state.search.vm);
+  SysMenuService.exportExcel(state.search.vm, state.search.sort);
 }
 </script>
 
@@ -101,9 +102,10 @@ function exportExcel() {
       ref="refTableCurd"
       :config="state"
       @change="
-        ({ page, pageSize }) => {
-          state.page = page == 0 ? 1 : page;
-          state.size = pageSize;
+        (changeTable) => {
+          state.page = changeTable.pagination.current ?? 1;
+          state.size = changeTable.pagination.pageSize ?? state.size;
+          state.search.sort = changeTable.sorter instanceof Array ? [...changeTable.sorter] : [changeTable.sorter];
           findList();
         }
       "

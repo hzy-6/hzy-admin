@@ -22,6 +22,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HZY.Infrastructure.Aop.Cache;
+using NPOI.SS.Formula.Functions;
+using System.Linq.Expressions;
 
 namespace HZY.Services.Admin.Framework;
 
@@ -59,11 +61,9 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
     /// <summary>
     /// 获取列表数据
     /// </summary>
-    /// <param name="page"></param>
-    /// <param name="size"></param>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public async Task<PagingView> FindListAsync(int page, int size, SysUser search)
+    public async Task<PagingView> FindListAsync(PagingSearchInput<SysUser> pagingSearchInput)
     {
         var accountInfo = _accountService.GetAccountInfo();
 
@@ -74,10 +74,18 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
 
         var query = (from sysUser in querySysUser
                      from sysOrganization in this._sysOrganizationRepository.Select.Where(w => w.Id == sysUser.OrganizationId).DefaultIfEmpty()
-                     select new { t1 = sysUser, t2 = sysOrganization })
-                .WhereIf(search.OrganizationId != null, w => w.t1.OrganizationId == search.OrganizationId)
-                .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), w => w.t1.Name.Contains(search.Name))
-                .WhereIf(!string.IsNullOrWhiteSpace(search?.LoginName), w => w.t1.LoginName.Contains(search.LoginName))
+                     select new
+                     {
+                         t1 = sysUser,
+                         t2 = sysOrganization,
+                         所属角色 = string.Join(",", from userRole in this._sysUserRoleRepository.Select
+                                                 join role in this._sysRoleRepository.Select on userRole.RoleId equals role.Id
+                                                 where userRole.UserId == sysUser.Id
+                                                 select role.Name)
+                     })
+                .WhereIf(pagingSearchInput.Search.OrganizationId != null, w => w.t1.OrganizationId == pagingSearchInput.Search.OrganizationId)
+                .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search?.Name), w => w.t1.Name.Contains(pagingSearchInput.Search.Name))
+                .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search?.LoginName), w => w.t1.LoginName.Contains(pagingSearchInput.Search.LoginName))
                 .OrderBy(w => w.t1.OrganizationId)
                 .ThenByDescending(w => w.t1.CreationTime)
                 .Select(w => new
@@ -85,20 +93,23 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
                     w.t1.Id,
                     w.t1.Name,
                     w.t1.LoginName,
-                    所属角色 = string.Join(",", from userRole in this._sysUserRoleRepository.Select
-                                            join role in this._sysRoleRepository.Select on userRole.RoleId equals role.Id
-                                            where userRole.UserId == w.t1.Id
-                                            select role.Name),
+                    w.所属角色,
                     OrganizationName = w.t2.Name,
                     w.t1.Phone,
                     _Email = w.t1.Email,
-                    LastModificationTime = w.t1.LastModificationTime == null ? "" : w.t1.LastModificationTime.Value.ToString("yyyy-MM-dd"),
-                    CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
+                    w.t1.LastModificationTime,
+                    w.t1.CreationTime,
                 })
             ;
 
-        var result = await this._defaultRepository.AsPagingViewAsync(query, page, size);
-        result.Column(query, w => w.OrganizationName).Mapping<SysOrganization>(w => w.Name);
+        var result = await this._defaultRepository.AsPagingViewAsync(query, pagingSearchInput);
+        result.GetColumn(query, w => w.OrganizationName).SetColumn<SysOrganization>(w => w.Name);
+        result.GetColumn(query, w => w.所属角色).SetColumn(sort: false);
+        //覆盖值
+        result
+            .SetValue(query, w => w.CreationTime, (oldValue) => oldValue.ToString("yyyy-MM-dd"))
+            .SetValue(query, w => w.LastModificationTime, (oldValue) => oldValue?.ToString("yyyy-MM-dd"))
+            ;
         return result;
     }
 
@@ -236,11 +247,12 @@ public class SysUserService : AdminBaseService<IAdminRepository<SysUser>>
     /// <summary>
     /// 导出Excel
     /// </summary>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public async Task<byte[]> ExportExcelAsync(SysUser search)
+    public async Task<byte[]> ExportExcelAsync(PagingSearchInput<SysUser> pagingSearchInput)
     {
-        var tableViewModel = await this.FindListAsync(-1, 0, search);
+        pagingSearchInput.Page = -1;
+        var tableViewModel = await this.FindListAsync(pagingSearchInput);
         return this.ExportExcelByPagingView(tableViewModel, null, "Id");
     }
 

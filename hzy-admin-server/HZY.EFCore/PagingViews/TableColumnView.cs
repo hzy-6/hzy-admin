@@ -74,26 +74,34 @@ public class TableColumnView
     public string Width { get; set; } = string.Empty;
 
     /// <summary>
+    /// 是否参加排序
+    /// </summary>
+    public bool Sort { get; set; } = true;
+
+    /// <summary>
     /// 映射字段
     /// </summary>
-    /// <param name="title"></param>
-    /// <param name="show"></param>
-    /// <param name="width"></param>
-    public void Mapping(string title, bool? show = null, string width = null)
+    /// <param name="title">列显示名称</param>
+    /// <param name="show">是否显示列</param>
+    /// <param name="width">列宽</param>
+    /// <param name="sort">是否参加排序</param>
+    public void SetColumn(string title = null, bool? show = null, string width = null, bool sort = true)
     {
         if (!string.IsNullOrWhiteSpace(title)) this.Title = title;
         if (show != null) this.Show = show.Value;
         if (!string.IsNullOrWhiteSpace(width)) this.Width = width;
+        this.Sort = sort;
     }
 
     /// <summary>
-    ///  映射字段 用于映射字段设置显示名称
+    /// 映射字段 用于映射字段设置显示名称
     /// </summary>
-    /// <param name="field"></param>
-    /// <param name="show"></param>
-    /// <param name="width"></param>
     /// <typeparam name="T"></typeparam>
-    public void Mapping<T>(Expression<Func<T, object>> field = null, bool? show = null, string width = null)
+    /// <param name="field">字段</param>
+    /// <param name="show">是否显示列</param>
+    /// <param name="width">列宽</param>
+    /// <param name="sort">是否参加排序</param>
+    public void SetColumn<T>(Expression<Func<T, object>> field = null, bool? show = null, string width = null, bool sort = true)
     {
         //自动获取名称对应的显示名
         var type = typeof(T);
@@ -105,7 +113,7 @@ public class TableColumnView
         .Where(w => w.EntityName.ToLower() == type.Name.ToLower())
         .FirstOrDefault();
         var tableInfo = table.TableInfos.FirstOrDefault(w => w.CsField.ToLower() == name.ToLower());
-        this.Mapping(tableInfo?.DisplayName, show, width);
+        this.SetColumn(tableInfo?.DisplayName, show, width, sort);
     }
 
 }

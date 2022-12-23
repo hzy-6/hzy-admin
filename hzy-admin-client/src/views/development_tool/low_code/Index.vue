@@ -19,6 +19,7 @@ const state = reactive({
       entityName: undefined,
       displayName: undefined,
     },
+    sort: [] as any[],
   },
   loading: false,
   page: 1,
@@ -47,7 +48,7 @@ onMounted(() => {
  */
 async function findList() {
   state.loading = true;
-  const result = await LowCodeTableService.findList(state.page, state.size, state.search.vm);
+  const result = await LowCodeTableService.findList(state.page, state.size, state.search.vm, state.search.sort);
   state.loading = false;
   if (result.code != 1) return;
   state.page = result.data.page;
@@ -109,9 +110,10 @@ function change() {
       ref="refTableCurd"
       :config="state"
       @change="
-        ({ page, pageSize }) => {
-          state.page = page == 0 ? 1 : page;
-          state.size = pageSize;
+        (changeTable) => {
+          state.page = changeTable.pagination.current ?? 1;
+          state.size = changeTable.pagination.pageSize ?? state.size;
+          state.search.sort = changeTable.sorter instanceof Array ? [...changeTable.sorter] : [changeTable.sorter];
           findList();
         }
       "

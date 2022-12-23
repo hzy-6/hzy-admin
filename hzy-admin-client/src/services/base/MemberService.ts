@@ -9,14 +9,19 @@ export default class MemberService {
 
     /**
      * 获取数据列表
-     * 
      * @param current 
      * @param pageSize 
      * @param search 
+     * @param searchSort 
      * @returns 
      */
-    static findList(current: number, pageSize: number, search: any = {}) {
-        return Http.post(`${this.urlPrefix}/findList/${pageSize}/${current}`, search)
+    static findList(current: number, pageSize: number, search: any = {}, searchSort: any[] = []) {
+        return Http.post(`${this.urlPrefix}/findList`, {
+            page: current,
+            size: pageSize,
+            search,
+            searchSort
+        })
     }
 
     /**
@@ -52,12 +57,17 @@ export default class MemberService {
 
     /**
      * 导出 excel
-     * 
      * @param search 
+     * @param searchSort 
      * @returns 
      */
-    static exportExcel(search: any = {}) {
-        return Http.download(`${this.urlPrefix}/exportExcel`, search);
+    static exportExcel(search: any = {}, searchSort: any[] = []) {
+        return Http.download(`${this.urlPrefix}/exportExcel`, {
+            page: -1,
+            size: -1,
+            search,
+            searchSort
+        });
     }
 
 }

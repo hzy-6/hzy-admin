@@ -70,11 +70,9 @@ namespace @(Model.Namespace).Services.Admin.App
         /// <summary>
         /// 获取列表数据
         /// </summary>
-        /// <param name="page">page</param>
-        /// <param name="size">size</param>
-        /// <param name="search">search</param>
+        /// <param name="pagingSearchInput"></param>
         /// <returns></returns>
-        public async Task<@("PagingView")> FindListAsync(int page, int size, @(className) search)
+        public async Task<@("PagingView")> FindListAsync(PagingSearchInput<@(className)> pagingSearchInput)
         {
             var query = this._defaultRepository.Select
                     @if (!string.IsNullOrWhiteSpace(searchKeyWord))
@@ -85,15 +83,20 @@ namespace @(Model.Namespace).Services.Admin.App
                     .Select(w => new
                     {
                         w.Id,
-                    @(string.Join(',', tableInfos.Select(w => "w." + w.ColumnName)))@(",")
-                        LastModificationTime = w.LastModificationTime == null ? "" : w.LastModificationTime.Value.ToString("yyyy-MM-dd"),
-                        CreationTime = w.CreationTime.ToString("yyyy-MM-dd")
+                        @(string.Join(',', tableInfos.Select(w => "w." + w.ColumnName)))@(",")
+                        w.LastModificationTime,
+                        w.CreationTime
                     })
                 ;
 
             var result = await this._defaultRepository.AsPagingViewAsync(query, page, size);
             // result.Column(query, w => w.OrganizationName).Mapping<SysOrganization>(w => w.Name);
             // result.Column(query, w => w.OrganizationName).Mapping(title:"所属组织");
+            //覆盖值
+            result
+                .SetValue(query, w => w.CreationTime, (oldValue) => oldValue.ToString("yyyy-MM-dd"))
+                .SetValue(query, w => w.LastModificationTime, (oldValue) => oldValue?.ToString("yyyy-MM-dd"))
+                ;
             return result;
         }
 
@@ -136,11 +139,12 @@ namespace @(Model.Namespace).Services.Admin.App
         /// <summary>
         /// 导出Excel
         /// </summary>
-        /// <param name="search"></param>
+        /// <param name="pagingSearchInput"></param>
         /// <returns></returns>
-        public async Task<@("byte[]")> ExportExcelAsync(@className search)
+        public async Task<@("byte[]")> ExportExcelAsync(PagingSearchInput<@(className)> pagingSearchInput)
         {
-            var tableViewModel = await this.FindListAsync(0, 0, search);
+            pagingSearchInput.Page = -1;
+            var tableViewModel = await this.FindListAsync(pagingSearchInput);
             return this.ExportExcelByPagingView(tableViewModel, null, "Id");
         }
 

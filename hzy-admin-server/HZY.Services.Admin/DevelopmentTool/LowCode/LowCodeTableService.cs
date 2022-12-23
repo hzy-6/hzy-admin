@@ -44,16 +44,14 @@ namespace HZY.Services.Admin
         /// <summary>
         /// 获取列表数据
         /// </summary>
-        /// <param name="page"></param>
-        /// <param name="size"></param>
-        /// <param name="search"></param>
+        /// <param name="pagingSearchInput"></param>
         /// <returns></returns>
-        public async Task<PagingView> FindListAsync(int page, int size, LowCodeTable search)
+        public async Task<PagingView> FindListAsync(PagingSearchInput<LowCodeTable> pagingSearchInput)
         {
             var query = this._defaultRepository.Select
-                    .WhereIf(!string.IsNullOrWhiteSpace(search.TableName), w => w.TableName.Contains(search.TableName))
-                    .WhereIf(!string.IsNullOrWhiteSpace(search.EntityName), w => w.EntityName.Contains(search.EntityName))
-                    .WhereIf(!string.IsNullOrWhiteSpace(search.DisplayName), w => w.DisplayName.Contains(search.DisplayName))
+                    .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search.TableName), w => w.TableName.Contains(pagingSearchInput.Search.TableName))
+                    .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search.EntityName), w => w.EntityName.Contains(pagingSearchInput.Search.EntityName))
+                    .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search.DisplayName), w => w.DisplayName.Contains(pagingSearchInput.Search.DisplayName))
                     .OrderByDescending(w => w.CreationTime)
                     .ThenByDescending(w => w.LastModificationTime)
                     .Select(w => new
@@ -71,7 +69,7 @@ namespace HZY.Services.Admin
             //获取一下数据用于缓存
             _databaseTablesRepository.GetAllTables();
 
-            return await this._defaultRepository.AsPagingViewAsync(query, page, size);
+            return await this._defaultRepository.AsPagingViewAsync(query, pagingSearchInput);
         }
 
         /// <summary>

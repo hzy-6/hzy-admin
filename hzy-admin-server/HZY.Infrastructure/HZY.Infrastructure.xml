@@ -1468,12 +1468,13 @@
             <param name="httpContext"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Infrastructure.Tools.GetNameByExpression``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+        <member name="M:HZY.Infrastructure.Tools.GetNameByExpression``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
             <summary>
             获取名称 根据表达式树
             </summary>
             <param name="exp"></param>
             <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
             <returns></returns>
         </member>
         <member name="M:HZY.Infrastructure.Tools.LineToHump(System.String)">

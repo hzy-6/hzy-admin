@@ -17,6 +17,7 @@ using HZY.Infrastructure;
 using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
 using HZY.Models.Entities.BaseEntitys;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace HZY.EFCore.Repositories.Admin.Core.Impl;
 
@@ -35,22 +36,48 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
     /// <summary>
     /// 查询转换为分页视图模型
     /// </summary>
+    /// <typeparam name="TModel"></typeparam>
+    /// <typeparam name="TSearch"></typeparam>
     /// <param name="query"></param>
-    /// <param name="page"></param>
-    /// <param name="size"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <param name="columnHeads"></param>
     /// <param name="accountInfo"></param>
     /// <param name="userIdFieldNameExpression"></param>
     /// <param name="organizationIdFieldNameExpression"></param>
-    /// <typeparam name="TModel"></typeparam>
     /// <returns></returns>
-    public virtual async Task<PagingView> AsPagingViewAsync<TModel>(IQueryable<TModel> query, int page, int size, List<TableColumnView> columnHeads = default, AccountInfo accountInfo = default, Expression<Func<TModel, object>> userIdFieldNameExpression = null, Expression<Func<TModel, object>> organizationIdFieldNameExpression = null)
+    public virtual async Task<PagingView> AsPagingViewAsync<TModel, TSearch>(IQueryable<TModel> query, PagingSearchInput<TSearch> pagingSearchInput, List<TableColumnView> columnHeads = default, AccountInfo accountInfo = default, Expression<Func<TModel, object>> userIdFieldNameExpression = null, Expression<Func<TModel, object>> organizationIdFieldNameExpression = null)
     {
+        var page = pagingSearchInput.Page;
+        var size = pagingSearchInput.Size;
+        var propertyInfos = typeof(TModel).GetProperties();
+        var fieldNames = propertyInfos.Select(item => item.Name).ToList();
+
+        #region 数据权限处理
+
         //验证是否需要数据权限筛选
         if (accountInfo != null)
         {
             query = this.DataPermission(query, accountInfo, userIdFieldNameExpression, organizationIdFieldNameExpression);
         }
+
+        #endregion
+
+        #region 排序处理
+
+        //检查排序字段大小写
+        foreach (var item in pagingSearchInput.SearchSort)
+        {
+            if (string.IsNullOrWhiteSpace(item.Field)) continue;
+            var name = fieldNames.FirstOrDefault(w => w.ToLower() == item.Field.ToLower());
+            if (string.IsNullOrWhiteSpace(name)) continue;
+            item.Field = name;
+        }
+
+        query = query.GetOrderBy(pagingSearchInput.SearchSort);
+
+        #endregion
+
+        #region 分页处理
 
         var pagingView = new PagingView { Page = page, Size = size };
 
@@ -63,10 +90,9 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
             query = query.Page(pagingView.Page, size);
         }
 
-        var data = await query.ToListAsync();
+        #endregion
 
-        var propertyInfos = typeof(TModel).GetProperties();
-        var fieldNames = propertyInfos.Select(item => item.Name).ToList();
+        var data = await query.ToListAsync();
 
         pagingView.InitColumns(fieldNames, columnHeads, typeof(T));
         //

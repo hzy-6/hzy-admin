@@ -25,16 +25,14 @@ public class SysPostService : AdminBaseService<IAdminRepository<SysPost>>
     }
 
     /// <summary>
-    /// 获取列表数据
+    /// pagingSearchInput
     /// </summary>
-    /// <param name="page"></param>
-    /// <param name="size"></param>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public async Task<PagingView> FindListAsync(int page, int size, SysPost search)
+    public async Task<PagingView> FindListAsync(PagingSearchInput<SysPost> pagingSearchInput)
     {
         var query = this._defaultRepository.Select
-                .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.Name.Contains(search.Name))
+                .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search?.Name), a => a.Name.Contains(pagingSearchInput.Search.Name))
                 .OrderBy(w => w.Number)
                 .Select(w => new
                 {
@@ -50,7 +48,7 @@ public class SysPostService : AdminBaseService<IAdminRepository<SysPost>>
                 })
             ;
 
-        return await this._defaultRepository.AsPagingViewAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewAsync(query, pagingSearchInput);
     }
 
     /// <summary>
@@ -98,11 +96,12 @@ public class SysPostService : AdminBaseService<IAdminRepository<SysPost>>
     /// <summary>
     /// 导出Excel
     /// </summary>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public async Task<byte[]> ExportExcelAsync(SysPost search)
+    public async Task<byte[]> ExportExcelAsync(PagingSearchInput<SysPost> pagingSearchInput)
     {
-        var tableViewModel = await this.FindListAsync(-1, 0, search);
+        pagingSearchInput.Page = -1;
+        var tableViewModel = await this.FindListAsync(pagingSearchInput);
         return this.ExportExcelByPagingView(tableViewModel);
     }
 

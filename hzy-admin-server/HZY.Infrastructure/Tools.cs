@@ -1028,8 +1028,9 @@ public static class Tools
     /// </summary>
     /// <param name="exp"></param>
     /// <typeparam name="T"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
     /// <returns></returns>
-    public static string GetNameByExpression<T>(Expression<Func<T, object>> exp)
+    public static string GetNameByExpression<T, TValue>(Expression<Func<T, TValue>> exp)
     {
         var name = string.Empty;
         if (exp != null)

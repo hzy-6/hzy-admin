@@ -9,20 +9,25 @@ export default class CodeGenerationService {
 
     /**
      * 获取数据列表
-     * 
      * @param current 
      * @param pageSize 
      * @param search 
+     * @param searchSort 
      * @returns 
      */
-    static findList(current: number, pageSize: number, search: any = {}) {
-        return Http.post(`${this.urlPrefix}/findList/${pageSize}/${current}`, search)
+    static findList(current: number, pageSize: number, search: any = {}, searchSort: any[] = []) {
+        return Http.post(`${this.urlPrefix}/findList`, {
+            page: current,
+            size: pageSize,
+            search,
+            searchSort
+        })
     }
 
     /**
-         * 获取 code
-         * @returns 
-         */
+     * 获取 code
+     * @returns 
+     */
     static getCode(form: any) {
         return Http.post(`${this.urlPrefix}/getCode`, form);
     }

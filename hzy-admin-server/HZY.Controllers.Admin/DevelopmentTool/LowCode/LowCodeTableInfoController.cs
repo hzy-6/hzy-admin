@@ -31,14 +31,12 @@ namespace HZY.Controllers.Admin
         /// <summary>
         /// 获取列表
         /// </summary>
-        /// <param name="size"></param>
-        /// <param name="page"></param>
-        /// <param name="search"></param>
+        /// <param name="pagingSearchInput"></param>
         /// <returns></returns>
-        [HttpPost("FindList/{size}/{page}")]
-        public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] LowCodeTableInfo search)
+        [HttpPost("FindList")]
+        public async Task<PagingView> FindListAsync([FromBody] PagingSearchInput<LowCodeTableInfo> pagingSearchInput)
         {
-            return await this._defaultService.FindListAsync(page, size, search);
+            return await this._defaultService.FindListAsync(pagingSearchInput);
         }
 
         /// <summary>

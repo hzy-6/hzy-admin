@@ -1,7 +1,7 @@
 <!-- 脚本 -->
 <script lang="ts" setup>
-import { Table } from "ant-design-vue";
-import { TableRowSelection } from "ant-design-vue/es/table/interface";
+import { Table, TablePaginationConfig } from "ant-design-vue";
+import { FilterValue, SorterResult, TableCurrentDataSource, TableRowSelection } from "ant-design-vue/es/table/interface";
 import { SizeType } from "ant-design-vue/lib/config-provider";
 import { ref, computed, unref } from "vue";
 import AppIcon from "@/core/components/AppIcon.vue";
@@ -35,7 +35,21 @@ const props = withDefaults(
 
 //定义事件
 const emits = defineEmits<{
-  (e: "change", { page, pageSize }: { page: number; pageSize: number }): void;
+  (
+    e: "change",
+    {
+      pagination,
+      filters,
+      sorter,
+      extra,
+    }: {
+      pagination: TablePaginationConfig;
+      filters: Record<string, FilterValue | null>;
+      sorter: SorterResult<any> | SorterResult<any>[];
+      extra: TableCurrentDataSource<any>;
+    }
+  ): void;
+  (e: "paginationChange", { page, pageSize }: { page: number; pageSize: number }): void;
   (e: "showSizeChange", { current, size }: { current: number; size: number }): void;
   (e: "update:expandedRowKeys", value: string[]): void;
 }>();
@@ -88,11 +102,22 @@ defineExpose({
 });
 
 /**
+ * 改变事件
+ * @param pagination
+ * @param filters
+ * @param sorter
+ * @param extra
+ */
+const onChange = (pagination: TablePaginationConfig, filters: Record<string, FilterValue | null>, sorter: SorterResult<any> | SorterResult<any>[], extra: TableCurrentDataSource<any>) => {
+  emits("change", { pagination, filters, sorter, extra });
+};
+
+/**
  * 页码或 pageSize 改变的回调，参数是改变后的页码及每页条数
  * @param param0
  */
-const onChange = ({ page, pageSize }: { page: number; pageSize: number }) => {
-  emits("change", { page, pageSize });
+const onPaginationChange = ({ page, pageSize }: { page: number; pageSize: number }) => {
+  emits("paginationChange", { page, pageSize });
 };
 
 /**
@@ -198,7 +223,7 @@ const rowSelection = computed(() => {
                   current: tableConfig.page,
                   pageSizeOptions,
                   showSizeChanger: true,
-                  onChange: (page, pageSize) => onChange({ page, pageSize }),
+                  onChange: (page, pageSize) => onPaginationChange({ page, pageSize }),
                   onShowSizeChange: (current, size) => onShowSizeChange({ current, size }),
                   showTotal: (total) => `共${total}条`,
                   showQuickJumper: true,
@@ -209,6 +234,7 @@ const rowSelection = computed(() => {
           :scroll="{ x: 'calc(100wh - 300px)' }"
           row-key="id"
           v-model:expandedRowKeys="expandedRowKeys"
+          @change="(pagination, filters, sorter, extra) => onChange(pagination, filters, sorter, extra)"
         >
           <slot name="table-col"></slot>
         </a-table>

@@ -31,16 +31,14 @@ public class SysRoleController : AdminBaseController<SysRoleService>
     /// <summary>
     /// 获取列表
     /// </summary>
-    /// <param name="size"></param>
-    /// <param name="page"></param>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查看表格")]
     [ApiResourceCacheFilter(1)]
     [HttpPost("FindList/{size}/{page}")]
-    public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysRole search)
+    public async Task<PagingView> FindListAsync([FromBody] PagingSearchInput<SysRole> pagingSearchInput)
     {
-        return await this._defaultService.FindListAsync(page, size, search);
+        return await this._defaultService.FindListAsync(pagingSearchInput);
     }
 
     /// <summary>
@@ -73,7 +71,7 @@ public class SysRoleController : AdminBaseController<SysRoleService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [RequestLimitFilter]
     [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
     [HttpPost("Create")]
     [ApiCheckModel]
@@ -87,7 +85,7 @@ public class SysRoleController : AdminBaseController<SysRoleService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [RequestLimitFilter]
     [ActionDescriptor(AdminFunctionConsts.Function_Update, DisplayName = "编辑表单")]
     [HttpPost("Update")]
     [ApiCheckModel]
@@ -99,13 +97,13 @@ public class SysRoleController : AdminBaseController<SysRoleService>
     /// <summary>
     /// 导出Excel
     /// </summary>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "导出数据")]
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
-    public async Task ExportExcelAsync([FromBody] SysRole search)
-        => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+    public async Task ExportExcelAsync([FromBody] PagingSearchInput<SysRole> pagingSearchInput)
+        => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(pagingSearchInput), Tools.GetFileContentType[".xls"].ToStr(),
             $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
 

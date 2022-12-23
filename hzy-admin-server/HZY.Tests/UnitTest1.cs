@@ -25,6 +25,7 @@ public class Tests
 
         Assert.Pass();
     }
+
 }
 
 public class User

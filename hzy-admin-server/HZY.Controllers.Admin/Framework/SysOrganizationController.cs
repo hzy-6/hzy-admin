@@ -72,7 +72,7 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [RequestLimitFilter]
     [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
     [HttpPost("Create")]
     [ApiCheckModel]
@@ -86,7 +86,7 @@ public class SysOrganizationController : AdminBaseController<SysOrganizationServ
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [RequestLimitFilter]
     [ActionDescriptor(AdminFunctionConsts.Function_Update, DisplayName = "编辑表单")]
     [HttpPost("Update")]
     [ApiCheckModel]

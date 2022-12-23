@@ -58,6 +58,7 @@ const state = reactive({
     vm: {
       name: undefined,
     },
+    sort: [] as any[],
   },
   loading: false,
   page: 1,
@@ -89,7 +90,7 @@ onMounted(() => {
 async function findList() {
     try{
       state.loading = true;
-      const result = await @(className)Service.findList(state.page, state.size, state.search.vm);
+      const result = await @(className)Service.findList(state.page, state.size, state.search.vm, state.search.sort);
       state.loading = false;
       if (result.code != 1) return;
       state.page = result.data.page;
@@ -133,7 +134,7 @@ async function deleteList(id?: string) {
  * 导出excel
  */
 function exportExcel() {
-  @(className)Service.exportExcel(state.search.vm);
+  @(className)Service.exportExcel(state.search.vm, state.search.sort);
 }
 </script>
 
@@ -143,9 +144,10 @@ function exportExcel() {
       ref="refTableCurd"
       :config="state"
       @@change="
-        ({ page, pageSize }) => {
-          state.page = page == 0 ? 1 : page;
-          state.size = pageSize;
+        (changeTable) => {
+          state.page = changeTable.pagination.current ?? 1;
+          state.size = changeTable.pagination.pageSize ?? state.size;
+          state.search.sort = changeTable.sorter instanceof Array ? [...changeTable.sorter] : [changeTable.sorter];
           findList();
         }
       "
@@ -237,8 +239,8 @@ function exportExcel() {
       </template>
       <!-- table-col -->
       <template #table-col>
-        <template v-for="item in state.columns.filter((w:any) => w.fieldName !== 'id')" :key="item.fieldName">
-          <a-table-column :title="item.title" :data-index="item.fieldName" v-if="item.show" />
+        <template v-for="item,index in state.columns.filter((w:any) => w.fieldName !== 'id' && w.show)" :key="item.fieldName">
+          <a-table-column :title="item.title" :data-index="item.fieldName" :sorter="item.sort ? { multiple: index + 1 } : false" />
         </template>
         <!-- 操作 -->
         <a-table-column title="操作" data-index="id" v-if="power.update || power.delete">

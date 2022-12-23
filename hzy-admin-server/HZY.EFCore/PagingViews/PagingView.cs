@@ -9,6 +9,7 @@ using Microsoft.Extensions.DependencyInjection;
 using System.Linq.Expressions;
 using System.Data;
 using HZY.EFCore.Repositories.Admin.DevelopmentTool;
+using NPOI.SS.Formula.Functions;
 
 namespace HZY.EFCore.PagingViews;
 
@@ -139,13 +140,31 @@ public class PagingView
     /// <param name="queryField"></param>
     /// <typeparam name="TQuery"></typeparam>
     /// <returns></returns>
-    public TableColumnView Column<TQuery>(IQueryable<TQuery> query, Expression<Func<TQuery, object>> queryField)
+    public TableColumnView GetColumn<TQuery>(IQueryable<TQuery> query, Expression<Func<TQuery, object>> queryField)
     {
         var nameQuery = Tools.GetNameByExpression(queryField);
         var TableColumnView = this.Columns
         .Where(w => w.FieldName.ToLower() == nameQuery.ToLower())
         .FirstOrDefault();
         return TableColumnView;
+    }
+
+    /// <summary>
+    /// 重新设置值
+    /// </summary>
+    /// <typeparam name="TQuery"></typeparam>
+    /// <typeparam name="TValue"></typeparam>
+    /// <param name="query"></param>
+    /// <param name="queryField"></param>
+    /// <param name="funcValue"></param>
+    public PagingView SetValue<TQuery, TValue>(IQueryable<TQuery> query, Expression<Func<TQuery, TValue>> queryField, Func<TValue, object> funcValue)
+    {
+        var nameQuery = Tools.GetNameByExpression(queryField);
+        foreach (var item in this.DataSource.Where(w => w.ContainsKey(nameQuery)))
+        {
+            item[nameQuery] = funcValue?.Invoke(item[nameQuery] == null ? default(TValue) : ((TValue)item[nameQuery] ?? default));
+        }
+        return this;
     }
 
 }

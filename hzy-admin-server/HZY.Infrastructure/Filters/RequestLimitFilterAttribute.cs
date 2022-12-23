@@ -20,7 +20,7 @@ namespace HZY.Infrastructure.Filters
         /// <summary>
         /// 请求次数
         /// </summary>
-        public int LimitCount { get; set; } = 3;
+        public int LimitCount { get; set; } = 1;
         /// <summary>
         /// 消息提醒内容
         /// </summary>

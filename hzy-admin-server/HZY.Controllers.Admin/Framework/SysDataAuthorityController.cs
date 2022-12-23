@@ -33,16 +33,14 @@ namespace HZY.Controllers.Admin.Framework
         /// <summary>
         /// 获取列表
         /// </summary>
-        /// <param name="size">size</param>
-        /// <param name="page">page</param>
-        /// <param name="search">search</param>
+        /// <param name="pagingSearchInput"></param>
         /// <returns></returns>
         [ApiResourceCacheFilter(1)]
         [ActionDescriptor(AdminFunctionConsts.Function_Display, DisplayName = "查看列表")]
-        [HttpPost("FindList/{size}/{page}")]
-        public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysDataAuthority search)
+        [HttpPost("FindList")]
+        public async Task<PagingView> FindListAsync([FromBody] PagingSearchInput<SysDataAuthority> pagingSearchInput)
         {
-            return await this._defaultService.FindListAsync(page, size, search);
+            return await this._defaultService.FindListAsync(pagingSearchInput);
         }
 
         /// <summary>
@@ -75,7 +73,7 @@ namespace HZY.Controllers.Admin.Framework
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
-        [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+        [RequestLimitFilter]
         [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
         [HttpPost("Create")]
         [ApiCheckModel]
@@ -89,7 +87,7 @@ namespace HZY.Controllers.Admin.Framework
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
-        [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+        [RequestLimitFilter]
         [ActionDescriptor(AdminFunctionConsts.Function_Update, DisplayName = "编辑表单")]
         [HttpPost("Update")]
         [ApiCheckModel]
@@ -101,13 +99,13 @@ namespace HZY.Controllers.Admin.Framework
         /// <summary>
         /// 导出Excel
         /// </summary>
-        /// <param name="search"></param>
+        /// <param name="pagingSearchInput"></param>
         /// <returns></returns>
         [ApiResourceCacheFilter(5)]
         [ActionDescriptor(AdminFunctionConsts.Function_Export, DisplayName = "导出数据")]
         [HttpPost("ExportExcel")]
-        public async Task ExportExcelAsync([FromBody] SysDataAuthority search)
-        => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+        public async Task ExportExcelAsync([FromBody] PagingSearchInput<SysDataAuthority> pagingSearchInput)
+        => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(pagingSearchInput), Tools.GetFileContentType[".xls"].ToStr(),
             $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
         /// <summary>

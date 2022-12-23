@@ -20,6 +20,7 @@ const state = reactive({
       name: undefined,
       loginName: undefined,
     },
+    sort: [] as any[],
   },
   loading: false,
   page: 1,
@@ -55,7 +56,7 @@ onMounted(() => {
 async function findList() {
   try {
     state.loading = true;
-    const result = await SysRoleService.findList(state.page, state.size, state.search.vm);
+    const result = await SysRoleService.findList(state.page, state.size, state.search.vm, state.search.sort);
     state.loading = false;
     if (result.code != 1) return;
     state.page = result.data.page;
@@ -98,7 +99,7 @@ async function deleteList(id?: string) {
  * 导出excel
  */
 function exportExcel() {
-  SysRoleService.exportExcel(state.search.vm);
+  SysRoleService.exportExcel(state.search.vm, state.search.sort);
 }
 </script>
 
@@ -108,9 +109,10 @@ function exportExcel() {
       ref="refTableCurd"
       :config="state"
       @change="
-        ({ page, pageSize }) => {
-          state.page = page == 0 ? 1 : page;
-          state.size = pageSize;
+        (changeTable) => {
+          state.page = changeTable.pagination.current ?? 1;
+          state.size = changeTable.pagination.pageSize ?? state.size;
+          state.search.sort = changeTable.sorter instanceof Array ? [...changeTable.sorter] : [changeTable.sorter];
           findList();
         }
       "

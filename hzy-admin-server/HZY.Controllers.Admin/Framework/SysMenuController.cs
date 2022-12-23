@@ -36,16 +36,14 @@ public class SysMenuController : AdminBaseController<SysMenuService>
     /// <summary>
     /// 获取列表
     /// </summary>
-    /// <param name="size"></param>
-    /// <param name="page"></param>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
     //[ApiResourceCacheFilter(1)]
     [ActionDescriptor(DisplayName = "查询列表")]
-    [HttpPost("FindList/{size}/{page}")]
-    public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysMenu search)
+    [HttpPost("FindList")]
+    public async Task<PagingView> FindListAsync([FromBody] PagingSearchInput<SysMenu> pagingSearchInput)
     {
-        return await this._defaultService.FindListAsync(page, size, search);
+        return await this._defaultService.FindListAsync(pagingSearchInput);
     }
 
     /// <summary>
@@ -78,7 +76,7 @@ public class SysMenuController : AdminBaseController<SysMenuService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [RequestLimitFilter]
     [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
     [HttpPost("Create")]
     [ApiCheckModel]
@@ -92,7 +90,7 @@ public class SysMenuController : AdminBaseController<SysMenuService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [RequestLimitFilter]
     [ActionDescriptor(AdminFunctionConsts.Function_Update, DisplayName = "编辑表单")]
     [HttpPost("Update")]
     [ApiCheckModel]
@@ -104,13 +102,13 @@ public class SysMenuController : AdminBaseController<SysMenuService>
     /// <summary>
     /// 导出Excel
     /// </summary>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "导出数据")]
     [ApiResourceCacheFilter(10)]
     [HttpPost("ExportExcel")]
-    public async Task ExportExcelAsync([FromBody] SysMenu search)
-        => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
+    public async Task ExportExcelAsync([FromBody] PagingSearchInput<SysMenu> pagingSearchInput)
+        => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(pagingSearchInput), Tools.GetFileContentType[".xls"].ToStr(),
             $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
 
     /// <summary>

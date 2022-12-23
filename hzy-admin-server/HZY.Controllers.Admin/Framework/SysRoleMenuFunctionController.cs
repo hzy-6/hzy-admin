@@ -34,15 +34,13 @@ public class SysRoleMenuFunctionController : AdminBaseController<SysRoleMenuFunc
     /// <summary>
     /// 获取列表
     /// </summary>
-    /// <param name="size"></param>
-    /// <param name="page"></param>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查询数据")]
     [HttpPost("FindList/{size}/{page}")]
-    public Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysRole search)
+    public Task<PagingView> FindListAsync([FromBody] PagingSearchInput<SysRole> pagingSearchInput)
     {
-        return this._sysRoleService.FindListAsync(page, size, search);
+        return this._sysRoleService.FindListAsync(pagingSearchInput);
     }
 
     /// <summary>
@@ -50,7 +48,7 @@ public class SysRoleMenuFunctionController : AdminBaseController<SysRoleMenuFunc
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [RequestLimitFilter]
     [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
     [HttpPost("Create")]
     [ApiCheckModel]

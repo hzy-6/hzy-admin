@@ -127,6 +127,32 @@
             </summary>
             <param name="modelBuilder"></param>
         </member>
+        <member name="T:HZY.EFCore.PagingViews.PagingSearchInput`1">
+            <summary>
+            分页查询对象
+            </summary>
+            <typeparam name="TSearch"></typeparam>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingSearchInput`1.Page">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingSearchInput`1.Size">
+            <summary>
+            每页数量
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingSearchInput`1.Search">
+            <summary>
+            检索对象
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingSearchInput`1.SearchSort">
+            <summary>
+            排序
+            </summary>
+        </member>
         <member name="T:HZY.EFCore.PagingViews.PagingView">
             <summary>
             分页视图模型
@@ -185,7 +211,7 @@
             <param name="data"></param>
             <param name="fieldNames"></param>
         </member>
-        <member name="M:HZY.EFCore.PagingViews.PagingView.Column``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+        <member name="M:HZY.EFCore.PagingViews.PagingView.GetColumn``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
             <summary>
             获取指定列
             </summary>
@@ -193,6 +219,16 @@
             <param name="queryField"></param>
             <typeparam name="TQuery"></typeparam>
             <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.PagingView.SetValue``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Func{``1,System.Object})">
+            <summary>
+            重新设置值
+            </summary>
+            <typeparam name="TQuery"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="query"></param>
+            <param name="queryField"></param>
+            <param name="funcValue"></param>
         </member>
         <member name="T:HZY.EFCore.PagingViews.TableColumnView">
             <summary>
@@ -219,22 +255,29 @@
             列宽度
             </summary>
         </member>
-        <member name="M:HZY.EFCore.PagingViews.TableColumnView.Mapping(System.String,System.Nullable{System.Boolean},System.String)">
+        <member name="P:HZY.EFCore.PagingViews.TableColumnView.Sort">
+            <summary>
+            是否参加排序
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.TableColumnView.SetColumn(System.String,System.Nullable{System.Boolean},System.String,System.Boolean)">
             <summary>
             映射字段
             </summary>
-            <param name="title"></param>
-            <param name="show"></param>
-            <param name="width"></param>
+            <param name="title">列显示名称</param>
+            <param name="show">是否显示列</param>
+            <param name="width">列宽</param>
+            <param name="sort">是否参加排序</param>
         </member>
-        <member name="M:HZY.EFCore.PagingViews.TableColumnView.Mapping``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Nullable{System.Boolean},System.String)">
+        <member name="M:HZY.EFCore.PagingViews.TableColumnView.SetColumn``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Nullable{System.Boolean},System.String,System.Boolean)">
             <summary>
-             映射字段 用于映射字段设置显示名称
+            映射字段 用于映射字段设置显示名称
             </summary>
-            <param name="field"></param>
-            <param name="show"></param>
-            <param name="width"></param>
             <typeparam name="T"></typeparam>
+            <param name="field">字段</param>
+            <param name="show">是否显示列</param>
+            <param name="width">列宽</param>
+            <param name="sort">是否参加排序</param>
         </member>
         <member name="T:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1">
             <summary>
@@ -242,18 +285,18 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.AsPagingViewAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.AsPagingViewAsync``2(System.Linq.IQueryable{``0},HZY.EFCore.PagingViews.PagingSearchInput{``1},System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
             <summary>
             分页模型构建
             </summary>
+            <typeparam name="TModel"></typeparam>
+            <typeparam name="TSearch"></typeparam>
             <param name="query"></param>
-            <param name="page"></param>
-            <param name="size"></param>
+            <param name="pagingSearchInput"></param>
             <param name="columnHeads"></param>
             <param name="accountInfo"></param>
             <param name="userIdFieldNameExpression"></param>
             <param name="organizationIdFieldNameExpression"></param>
-            <typeparam name="TModel"></typeparam>
             <returns></returns>
         </member>
         <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.AsPagingViewAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},System.Object[])">
@@ -292,18 +335,18 @@
             </summary>
             <typeparam name="T"></typeparam>
         </member>
-        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.AsPagingViewAsync``1(System.Linq.IQueryable{``0},System.Int32,System.Int32,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.AsPagingViewAsync``2(System.Linq.IQueryable{``0},HZY.EFCore.PagingViews.PagingSearchInput{``1},System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
             <summary>
             查询转换为分页视图模型
             </summary>
+            <typeparam name="TModel"></typeparam>
+            <typeparam name="TSearch"></typeparam>
             <param name="query"></param>
-            <param name="page"></param>
-            <param name="size"></param>
+            <param name="pagingSearchInput"></param>
             <param name="columnHeads"></param>
             <param name="accountInfo"></param>
             <param name="userIdFieldNameExpression"></param>
             <param name="organizationIdFieldNameExpression"></param>
-            <typeparam name="TModel"></typeparam>
             <returns></returns>
         </member>
         <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.AsPagingViewAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},System.Object[])">

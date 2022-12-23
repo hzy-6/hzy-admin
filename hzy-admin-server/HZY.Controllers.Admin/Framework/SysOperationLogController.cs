@@ -30,15 +30,13 @@ public class SysOperationLogController : AdminBaseController<SysOperationLogServ
     /// <summary>
     /// 获取表单数据
     /// </summary>
-    /// <param name="size"></param>
-    /// <param name="page"></param>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查看列表")]
     [HttpPost("FindList/{size}/{page}")]
-    public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] SysOperationLogSearchDto search)
+    public async Task<PagingView> FindListAsync([FromBody] PagingSearchInput<SysOperationLogSearchDto> pagingSearchInput)
     {
-        return await _defaultService.FindListAsync(page, size, search);
+        return await _defaultService.FindListAsync(pagingSearchInput);
     }
 
     /// <summary>

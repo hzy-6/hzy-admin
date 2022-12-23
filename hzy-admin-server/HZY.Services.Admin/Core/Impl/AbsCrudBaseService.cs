@@ -45,11 +45,12 @@ public abstract class AbsCrudBaseService<TRepository, TSearchDto, TFormDto, TEnt
     /// <summary>
     /// 导出 excel
     /// </summary>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public virtual async Task<byte[]> ExportExcelAsync(TSearchDto search)
+    public virtual async Task<byte[]> ExportExcelAsync(PagingSearchInput<TSearchDto> pagingSearchInput)
     {
-        var tableViewModel = await this.FindListAsync(1, 999999, search);
+        pagingSearchInput.Size = 999999;
+        var tableViewModel = await this.FindListAsync(pagingSearchInput);
         return this.ExportExcelByPagingView(tableViewModel, null, "Id");
     }
 
@@ -80,12 +81,10 @@ public abstract class AbsCrudBaseService<TRepository, TSearchDto, TFormDto, TEnt
     /// <summary>
     /// 列表查询
     /// </summary>
-    /// <param name="page"></param>
-    /// <param name="size"></param>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
     /// <exception cref="NotImplementedException"></exception>
-    public virtual Task<PagingView> FindListAsync(int page, int size, TSearchDto search)
+    public virtual Task<PagingView> FindListAsync(PagingSearchInput<TSearchDto> pagingSearchInput)
     {
         throw new NotImplementedException("在 HZY.Services.Admin 服务层 FindListAsync 请重写 ");
 

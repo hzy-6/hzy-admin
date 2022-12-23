@@ -40,11 +40,9 @@ public class SysRoleService : AdminBaseService<IAdminRepository<SysRole>>
     /// <summary>
     /// 获取列表数据
     /// </summary>
-    /// <param name="page"></param>
-    /// <param name="size"></param>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public async Task<PagingView> FindListAsync(int page, int size, SysRole search)
+    public async Task<PagingView> FindListAsync(PagingSearchInput<SysRole> pagingSearchInput)
     {
         var query = (from sysRole in this._defaultRepository.Select
                      from sysDataAuthority in this._sysDataAuthorityRepository.Select
@@ -55,7 +53,7 @@ public class SysRoleService : AdminBaseService<IAdminRepository<SysRole>>
                          t1 = sysRole,
                          t2 = sysDataAuthority
                      })
-                    .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.t1.Name.Contains(search.Name))
+                    .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search?.Name), a => a.t1.Name.Contains(pagingSearchInput.Search.Name))
                     .OrderBy(w => w.t1.Number)
                     .Select(w => new
                     {
@@ -70,7 +68,7 @@ public class SysRoleService : AdminBaseService<IAdminRepository<SysRole>>
                     })
                     ;
 
-        return await this._defaultRepository.AsPagingViewAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewAsync(query, pagingSearchInput);
     }
 
     /// <summary>
@@ -127,11 +125,12 @@ public class SysRoleService : AdminBaseService<IAdminRepository<SysRole>>
     /// <summary>
     /// 导出Excel
     /// </summary>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public async Task<byte[]> ExportExcelAsync(SysRole search)
+    public async Task<byte[]> ExportExcelAsync(PagingSearchInput<SysRole> pagingSearchInput)
     {
-        var tableViewModel = await this.FindListAsync(-1, 0, search);
+        pagingSearchInput.Page = -1;
+        var tableViewModel = await this.FindListAsync(pagingSearchInput);
         return this.ExportExcelByPagingView(tableViewModel, null, "Id");
     }
 

@@ -33,17 +33,15 @@ public class MemberController : AdminBaseController<MemberService>
     /// <summary>
     /// 获取列表
     /// </summary>
-    /// <param name="size"></param>
-    /// <param name="page"></param>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    [RequestLimitFilter]
+    [RequestLimitFilter(LimitCount = 3)]
     [ApiResourceCacheFilter(1)]
     [ActionDescriptor(AdminFunctionConsts.Function_Display, DisplayName = "查看列表")]
-    [HttpPost("FindList/{size}/{page}")]
-    public async Task<PagingView> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] Member search)
+    [HttpPost("FindList")]
+    public async Task<PagingView> FindListAsync([FromBody] PagingSearchInput<Member> pagingSearchInput)
     {
-        return await this._defaultService.FindListAsync(page, size, search);
+        return await this._defaultService.FindListAsync(pagingSearchInput);
     }
 
     /// <summary>
@@ -76,7 +74,7 @@ public class MemberController : AdminBaseController<MemberService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [RequestLimitFilter]
     [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
     [HttpPost("Create")]
     [ApiCheckModel]
@@ -90,7 +88,7 @@ public class MemberController : AdminBaseController<MemberService>
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [RequestLimitFilter(Duration = 1, LimitCount = 1)]
+    [RequestLimitFilter]
     [ActionDescriptor(AdminFunctionConsts.Function_Update, DisplayName = "编辑表单")]
     [HttpPost("Update")]
     [ApiCheckModel]
@@ -102,14 +100,14 @@ public class MemberController : AdminBaseController<MemberService>
     /// <summary>
     /// 导出Excel
     /// </summary>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
     [ApiResourceCacheFilter(5)]
     [ActionDescriptor(AdminFunctionConsts.Function_Export, DisplayName = "导出数据")]
     [HttpPost("ExportExcel")]
-    public async Task ExportExcelAsync([FromBody] Member search)
+    public async Task ExportExcelAsync([FromBody] PagingSearchInput<Member> pagingSearchInput)
     {
-        var data = await this._defaultService.ExportExcelAsync(search);
+        var data = await this._defaultService.ExportExcelAsync(pagingSearchInput);
         var name = $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls";
         base.HttpContext.DownLoadFile(data, Tools.GetFileContentType[".xls"].ToStr(), name);
     }

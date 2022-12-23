@@ -19,11 +19,9 @@ namespace HZY.Services.Admin.Core
         /// <summary>
         /// 获取列表数据
         /// </summary>
-        /// <param name="page"></param>
-        /// <param name="size"></param>
-        /// <param name="search"></param>
+        /// <param name="pagingSearchInput"></param>
         /// <returns></returns>
-        public Task<PagingView> FindListAsync(int page, int size, TSearchDto search);
+        public Task<PagingView> FindListAsync(PagingSearchInput<TSearchDto> pagingSearchInput);
 
         /// <summary>
         /// 根据id数组删除
@@ -49,9 +47,9 @@ namespace HZY.Services.Admin.Core
         /// <summary>
         /// 导出Excel
         /// </summary>
-        /// <param name="search"></param>
+        /// <param name="pagingSearchInput"></param>
         /// <returns></returns>
-        public Task<byte[]> ExportExcelAsync(TSearchDto search);
+        public Task<byte[]> ExportExcelAsync(PagingSearchInput<TSearchDto> pagingSearchInput);
 
 
     }

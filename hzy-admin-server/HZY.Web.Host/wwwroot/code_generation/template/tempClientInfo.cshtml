@@ -98,11 +98,12 @@ function save() {
             @foreach (var item in tableInfos)
             {
                 var name = item.ColumnName.FirstCharToLower();
-                var title =item.DisplayName ?? item.Describe;
+                var title = item.DisplayName ?? item.Describe;
+                title = string.IsNullOrWhiteSpace(title) ? "请设置列信息 " + item.ColumnName : title;
 
                 <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-                    <a-form-item label="@title" name="@(name)" :rules="[{ required: true, message: '请输入@(title)', trigger: 'blur' }]">
-                        <a-input v-model:value="state.vm.form.@(name)" placeholder="请输入@(title)" />
+                    <a-form-item label="@(title ?? "请设置列信息 > " + item.ColumnName)" name="@(name)" :rules="[{ required: true, message: '请输入', trigger: 'blur' }]">
+                        <a-input v-model:value="state.vm.form.@(name)" placeholder="请输入" />
                     </a-form-item>
                 </a-col>
             }

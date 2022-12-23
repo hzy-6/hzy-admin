@@ -125,5 +125,18 @@
             </summary>
             <returns></returns>
         </member>
+        <member name="M:AspNetCoreGeneratedDocument.wwwroot_code_generation_template_tempModel.GetTypeNew(HZY.Models.Entities.LowCode.LowCodeTableInfo)">
+            <summary>
+            获取类型 根据 appTableInfo
+            </summary>
+            <param name="appTableInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:AspNetCoreGeneratedDocument.wwwroot_code_generation_template_tempModel.GetIdType">
+            <summary>
+            获取 id 组件所对应的类型
+            </summary>
+            <returns></returns>
+        </member>
     </members>
 </doc>

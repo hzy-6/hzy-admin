@@ -27,11 +27,9 @@ namespace HZY.Services.Admin.Framework
         /// <summary>
         /// 获取列表数据
         /// </summary>
-        /// <param name="page">page</param>
-        /// <param name="size">size</param>
-        /// <param name="search">search</param>
+        /// <param name="pagingSearchInput">page</param>
         /// <returns></returns>
-        public async Task<PagingView> FindListAsync(int page, int size, SysDataAuthorityCustom search)
+        public async Task<PagingView> FindListAsync(PagingSearchInput<SysDataAuthorityCustom> pagingSearchInput)
         {
             var query = this._defaultRepository.Select
                     .OrderByDescending(w => w.CreationTime)
@@ -45,7 +43,7 @@ namespace HZY.Services.Admin.Framework
                     })
                 ;
 
-            return await this._defaultRepository.AsPagingViewAsync(query, page, size);
+            return await this._defaultRepository.AsPagingViewAsync(query, pagingSearchInput);
         }
 
         /// <summary>
@@ -87,11 +85,12 @@ namespace HZY.Services.Admin.Framework
         /// <summary>
         /// 导出Excel
         /// </summary>
-        /// <param name="search"></param>
+        /// <param name="pagingSearchInput"></param>
         /// <returns></returns>
-        public async Task<byte[]> ExportExcelAsync(SysDataAuthorityCustom search)
+        public async Task<byte[]> ExportExcelAsync(PagingSearchInput<SysDataAuthorityCustom> pagingSearchInput)
         {
-            var tableViewModel = await this.FindListAsync(-1, 0, search);
+            pagingSearchInput.Page = -1;
+            var tableViewModel = await this.FindListAsync(pagingSearchInput);
             return this.ExportExcelByPagingView(tableViewModel, null, "Id");
         }
 

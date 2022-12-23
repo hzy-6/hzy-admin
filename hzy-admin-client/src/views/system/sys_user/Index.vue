@@ -44,13 +44,14 @@ const state = reactive({
       loginName: undefined,
       organizationId: undefined,
     },
+    sort: [] as any[],
   },
   loading: false,
   page: 1,
   size: 10,
   total: 100,
-  columns: [] as any,
-  data: [] as any,
+  columns: [] as any[],
+  data: [] as any[],
 });
 
 //权限
@@ -84,7 +85,7 @@ onMounted(() => {
 async function findList() {
   try {
     state.loading = true;
-    const result = await SysUserService.findList(state.page, state.size, state.search.vm);
+    const result = await SysUserService.findList(state.page, state.size, state.search.vm, state.search.sort);
     state.loading = false;
     if (result.code != 1) return;
     state.page = result.data.page;
@@ -129,7 +130,7 @@ async function deleteList(id?: string) {
  * 导出excel
  */
 function exportExcel() {
-  SysUserService.exportExcel(state.search.vm);
+  SysUserService.exportExcel(state.search.vm, state.search.sort);
 }
 
 /**
@@ -190,9 +191,10 @@ findBackMethods.initRows();
       ref="refTableCurd"
       :config="state"
       @change="
-        ({ page, pageSize }) => {
-          state.page = page == 0 ? 1 : page;
-          state.size = pageSize;
+        (changeTable) => {
+          state.page = changeTable.pagination.current ?? 1;
+          state.size = changeTable.pagination.pageSize ?? state.size;
+          state.search.sort = changeTable.sorter instanceof Array ? [...changeTable.sorter] : [changeTable.sorter];
           findList();
         }
       "
@@ -210,6 +212,7 @@ findBackMethods.initRows();
           <a-row :gutter="[16, 0]">
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item class="mb-0" name="name" label="真实姓名">
+                {{ power }}
                 <a-input v-model:value="state.search.vm.name" placeholder="真实名称" />
               </a-form-item>
             </a-col>
@@ -317,8 +320,8 @@ findBackMethods.initRows();
 
       <!-- table-col -->
       <template #table-col>
-        <template v-for="item in state.columns.filter((w:any) => w.fieldName !== 'id')" :key="item.fieldName">
-          <a-table-column :title="item.title" :data-index="item.fieldName" v-if="item.show" />
+        <template v-for="item,index in state.columns.filter((w:any) => w.fieldName !== 'id' && w.show)" :key="item.fieldName">
+          <a-table-column :title="item.title" :data-index="item.fieldName" :sorter="item.sort ? { multiple: index + 1 } : false" />
         </template>
         <!-- 操作 -->
         <a-table-column title="操作" data-index="id" v-if="power.update || power.delete">

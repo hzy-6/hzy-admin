@@ -19,6 +19,7 @@ const state = reactive({
     vm: {
       name: undefined,
     },
+    sort: [] as any[],
   },
   loading: false,
   page: 1,
@@ -50,7 +51,7 @@ onMounted(() => {
 async function findList() {
   try {
     state.loading = true;
-    const result = await MemberService.findList(state.page, state.size, state.search.vm);
+    const result = await MemberService.findList(state.page, state.size, state.search.vm, state.search.sort);
     state.loading = false;
     if (result.code != 1) return;
     state.page = result.data.page;
@@ -93,7 +94,7 @@ async function deleteList(id?: string) {
  * 导出excel
  */
 function exportExcel() {
-  MemberService.exportExcel(state.search.vm);
+  MemberService.exportExcel(state.search.vm, state.search.sort);
 }
 
 /**
@@ -124,9 +125,10 @@ function jumpDetails(row: any) {
       ref="refTableCurd"
       :config="state"
       @change="
-        ({ page, pageSize }) => {
-          state.page = page == 0 ? 1 : page;
-          state.size = pageSize;
+        (changeTable) => {
+          state.page = changeTable.pagination.current ?? 1;
+          state.size = changeTable.pagination.pageSize ?? state.size;
+          state.search.sort = changeTable.sorter instanceof Array ? [...changeTable.sorter] : [changeTable.sorter];
           findList();
         }
       "
@@ -218,18 +220,13 @@ function jumpDetails(row: any) {
       </template>
       <!-- table-col -->
       <template #table-col>
-        <template v-for="item in state.columns.filter((w:any) => w.fieldName !== 'id')" :key="item.fieldName">
-          <!-- 头像自定义列 -->
-          <template v-if="item.fieldName == 'photo'">
-            <a-table-column :title="item.title" :data-index="item.fieldName" v-if="item.show">
-              <template #default="{ record }">
-                <img :src="handlePhoto(record.photo)" width="35" height="35" />
-              </template>
-            </a-table-column>
-          </template>
-          <template v-else>
-            <a-table-column :title="item.title" :data-index="item.fieldName" v-if="item.show" />
-          </template>
+        <template v-for="item,index in state.columns.filter((w:any) => w.fieldName !== 'id' && w.show)" :key="item.fieldName">
+          <a-table-column :title="item.title" :data-index="item.fieldName" :sorter="item.sort ? { multiple: index + 1 } : false">
+            <!-- 头像自定义列 -->
+            <template #default="{ record }" v-if="item.fieldName == 'photo'">
+              <img :src="handlePhoto(record.photo)" width="35" height="35" />
+            </template>
+          </a-table-column>
         </template>
         <!-- 操作 -->
         <a-table-column title="操作" data-index="id" v-if="power.update || power.delete">

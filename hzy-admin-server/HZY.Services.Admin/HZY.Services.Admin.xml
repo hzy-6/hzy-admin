@@ -13,13 +13,11 @@
             <param name="ignore"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Core.ICrudBaseService`5.FindListAsync(System.Int32,System.Int32,`1)">
+        <member name="M:HZY.Services.Admin.Core.ICrudBaseService`5.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{`1})">
             <summary>
             获取列表数据
             </summary>
-            <param name="page"></param>
-            <param name="size"></param>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Core.ICrudBaseService`5.DeleteListAsync(System.Collections.Generic.List{`4})">
@@ -43,11 +41,11 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Core.ICrudBaseService`5.ExportExcelAsync(`1)">
+        <member name="M:HZY.Services.Admin.Core.ICrudBaseService`5.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{`1})">
             <summary>
             导出Excel
             </summary>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="T:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5">
@@ -67,11 +65,11 @@
             <param name="ids"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.ExportExcelAsync(`1)">
+        <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{`1})">
             <summary>
             导出 excel
             </summary>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.FindFormAsync(`4)">
@@ -81,13 +79,11 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.FindListAsync(System.Int32,System.Int32,`1)">
+        <member name="M:HZY.Services.Admin.Core.Impl.AbsCrudBaseService`5.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{`1})">
             <summary>
             列表查询
             </summary>
-            <param name="page"></param>
-            <param name="size"></param>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
             <exception cref="T:System.NotImplementedException"></exception>
         </member>
@@ -415,13 +411,11 @@
             服务 Low_Code_Table_InfoService
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.LowCodeTableInfoService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.LowCodeTableInfo)">
+        <member name="M:HZY.Services.Admin.LowCodeTableInfoService.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.LowCode.LowCodeTableInfo})">
             <summary>
             获取列表数据
             </summary>
-            <param name="page"></param>
-            <param name="size"></param>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.LowCodeTableInfoService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
@@ -451,13 +445,11 @@
             服务 Low_Code_TableService
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.LowCodeTableService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.LowCode.LowCodeTable)">
+        <member name="M:HZY.Services.Admin.LowCodeTableService.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.LowCode.LowCodeTable})">
             <summary>
             获取列表数据
             </summary>
-            <param name="page"></param>
-            <param name="size"></param>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.LowCodeTableService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
@@ -498,13 +490,11 @@
             服务 SysDataAuthorityCustomService
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityCustomService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.Framework.SysDataAuthorityCustom)">
+        <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityCustomService.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysDataAuthorityCustom})">
             <summary>
             获取列表数据
             </summary>
-            <param name="page">page</param>
-            <param name="size">size</param>
-            <param name="search">search</param>
+            <param name="pagingSearchInput">page</param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityCustomService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
@@ -528,11 +518,11 @@
             <param name="form">form</param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityCustomService.ExportExcelAsync(HZY.Models.Entities.Framework.SysDataAuthorityCustom)">
+        <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityCustomService.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysDataAuthorityCustom})">
             <summary>
             导出Excel
             </summary>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="T:HZY.Services.Admin.Framework.SysDataAuthorityService">
@@ -540,13 +530,11 @@
             服务 SysDataAuthorityService
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.Framework.SysDataAuthority)">
+        <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityService.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysDataAuthority})">
             <summary>
             获取列表数据
             </summary>
-            <param name="page">page</param>
-            <param name="size">size</param>
-            <param name="search">search</param>
+            <param name="pagingSearchInput">page</param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
@@ -570,11 +558,11 @@
             <param name="form">form</param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityService.ExportExcelAsync(HZY.Models.Entities.Framework.SysDataAuthority)">
+        <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityService.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysDataAuthority})">
             <summary>
             导出Excel
             </summary>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysDataAuthorityService.GetDataAuthorityByRoleIdAsync(System.Guid)">
@@ -641,13 +629,11 @@
             功能服务
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysFunctionService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.Framework.SysFunction)">
+        <member name="M:HZY.Services.Admin.Framework.SysFunctionService.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysFunction})">
             <summary>
             获取列表数据
             </summary>
-            <param name="page"></param>
-            <param name="size"></param>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysFunctionService.FindFormAsync(System.Guid)">
@@ -662,13 +648,11 @@
             菜单服务
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysMenuService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.Framework.SysMenu)">
+        <member name="M:HZY.Services.Admin.Framework.SysMenuService.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysMenu})">
             <summary>
             获取列表数据
             </summary>
-            <param name="page"></param>
-            <param name="size"></param>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysMenuService.DeleteListAsync(System.Collections.Generic.List{System.Int32})">
@@ -692,11 +676,11 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysMenuService.ExportExcelAsync(HZY.Models.Entities.Framework.SysMenu)">
+        <member name="M:HZY.Services.Admin.Framework.SysMenuService.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysMenu})">
             <summary>
             导出Excel
             </summary>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysMenuService.GetAllAsync(HZY.Models.Entities.Framework.SysMenu)">
@@ -743,13 +727,11 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysOperationLogService.FindListAsync(System.Int32,System.Int32,HZY.Models.DTO.Framework.SysOperationLogSearchDto)">
+        <member name="M:HZY.Services.Admin.Framework.SysOperationLogService.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.DTO.Framework.SysOperationLogSearchDto})">
             <summary>
             获取列表数据
             </summary>
-            <param name="page">page</param>
-            <param name="size">size</param>
-            <param name="search">search</param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysOperationLogService.DeletedAllData">
@@ -810,13 +792,11 @@
             <param name="tree"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysPostService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.Framework.SysPost)">
+        <member name="M:HZY.Services.Admin.Framework.SysPostService.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysPost})">
             <summary>
-            获取列表数据
+            pagingSearchInput
             </summary>
-            <param name="page"></param>
-            <param name="size"></param>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysPostService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
@@ -840,11 +820,11 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysPostService.ExportExcelAsync(HZY.Models.Entities.Framework.SysPost)">
+        <member name="M:HZY.Services.Admin.Framework.SysPostService.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysPost})">
             <summary>
             导出Excel
             </summary>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="T:HZY.Services.Admin.Framework.SysRoleMenuFunctionService">
@@ -871,13 +851,11 @@
             角色服务
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysRoleService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.Framework.SysRole)">
+        <member name="M:HZY.Services.Admin.Framework.SysRoleService.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysRole})">
             <summary>
             获取列表数据
             </summary>
-            <param name="page"></param>
-            <param name="size"></param>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysRoleService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
@@ -901,11 +879,11 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysRoleService.ExportExcelAsync(HZY.Models.Entities.Framework.SysRole)">
+        <member name="M:HZY.Services.Admin.Framework.SysRoleService.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysRole})">
             <summary>
             导出Excel
             </summary>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="T:HZY.Services.Admin.Framework.SysUserService">
@@ -913,13 +891,11 @@
             系统账号服务
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysUserService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.Framework.SysUser)">
+        <member name="M:HZY.Services.Admin.Framework.SysUserService.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysUser})">
             <summary>
             获取列表数据
             </summary>
-            <param name="page"></param>
-            <param name="size"></param>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysUserService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
@@ -943,11 +919,11 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Framework.SysUserService.ExportExcelAsync(HZY.Models.Entities.Framework.SysUser)">
+        <member name="M:HZY.Services.Admin.Framework.SysUserService.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysUser})">
             <summary>
             导出Excel
             </summary>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Framework.SysUserService.GetUserInfoAsync">
@@ -961,13 +937,11 @@
             会员服务
             </summary>
         </member>
-        <member name="M:HZY.Services.Admin.Memebers.MemberService.FindListAsync(System.Int32,System.Int32,HZY.Models.Entities.Member)">
+        <member name="M:HZY.Services.Admin.Memebers.MemberService.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Member})">
             <summary>
             获取列表数据
             </summary>
-            <param name="page"></param>
-            <param name="size"></param>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Services.Admin.Memebers.MemberService.DeleteListAsync(System.Collections.Generic.List{System.Guid})">
@@ -991,11 +965,11 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Services.Admin.Memebers.MemberService.ExportExcelAsync(HZY.Models.Entities.Member)">
+        <member name="M:HZY.Services.Admin.Memebers.MemberService.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Member})">
             <summary>
             导出Excel
             </summary>
-            <param name="search"></param>
+            <param name="pagingSearchInput"></param>
             <returns></returns>
         </member>
     </members>

@@ -46,18 +46,16 @@ public class SysMenuService : AdminBaseService<IAdminRepository<SysMenu>>
     /// <summary>
     /// 获取列表数据
     /// </summary>
-    /// <param name="page"></param>
-    /// <param name="size"></param>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public async Task<PagingView> FindListAsync(int page, int size, SysMenu search)
+    public async Task<PagingView> FindListAsync(PagingSearchInput<SysMenu> pagingSearchInput)
     {
         var query = (from sysMenu in this._defaultRepository.Select
                      from sysMenuParent in this._defaultRepository.Select.Where(w => w.Id == sysMenu.ParentId).DefaultIfEmpty()
                      select new { t1 = sysMenu, t2 = sysMenuParent })
-              .WhereIf(search?.ParentId == 0 || search?.ParentId == null, w => w.t1.ParentId == null || w.t1.ParentId == 0)
-              .WhereIf(search?.ParentId != 0 && search?.ParentId != null, w => w.t1.ParentId == search.ParentId)
-              .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.t1.Name.Contains(search.Name))
+              .WhereIf(pagingSearchInput.Search?.ParentId == 0 || pagingSearchInput.Search?.ParentId == null, w => w.t1.ParentId == null || w.t1.ParentId == 0)
+              .WhereIf(pagingSearchInput.Search?.ParentId != 0 && pagingSearchInput.Search?.ParentId != null, w => w.t1.ParentId == pagingSearchInput.Search.ParentId)
+              .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search?.Name), a => a.t1.Name.Contains(pagingSearchInput.Search.Name))
               .OrderBy(w => w.t1.Number)
               .Select(w => new
               {
@@ -76,7 +74,7 @@ public class SysMenuService : AdminBaseService<IAdminRepository<SysMenu>>
               })
           ;
 
-        return await this._defaultRepository.AsPagingViewAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewAsync(query, pagingSearchInput);
     }
 
     /// <summary>
@@ -170,11 +168,12 @@ public class SysMenuService : AdminBaseService<IAdminRepository<SysMenu>>
     /// <summary>
     /// 导出Excel
     /// </summary>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public async Task<byte[]> ExportExcelAsync(SysMenu search)
+    public async Task<byte[]> ExportExcelAsync(PagingSearchInput<SysMenu> pagingSearchInput)
     {
-        var tableViewModel = await this.FindListAsync(-1, 0, search);
+        pagingSearchInput.Page = -1;
+        var tableViewModel = await this.FindListAsync(pagingSearchInput);
         return this.ExportExcelByPagingView(tableViewModel, null, "Id");
     }
 

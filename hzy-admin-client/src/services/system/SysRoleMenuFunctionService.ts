@@ -9,15 +9,20 @@ export default class SysRoleMenuFunctionService {
     static urlPrefix = "/api/admin/SysRoleMenuFunction";
 
     /**
-     * 查询列表
-     * 
+     * 获取数据列表
      * @param current 
      * @param pageSize 
      * @param search 
+     * @param searchSort 
      * @returns 
      */
-    static findList(current: number, pageSize: number, search: any = {}) {
-        return Http.post(`${this.urlPrefix}/findList/${pageSize}/${current}`, search)
+    static findList(current: number, pageSize: number, search: any = {}, searchSort: any[] = []) {
+        return Http.post(`${this.urlPrefix}/findList`, {
+            page: current,
+            size: pageSize,
+            search,
+            searchSort
+        })
     }
 
     /**

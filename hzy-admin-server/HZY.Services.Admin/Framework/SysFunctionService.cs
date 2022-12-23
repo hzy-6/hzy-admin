@@ -25,14 +25,12 @@ public class SysFunctionService : AbsCrudBaseService<IAdminRepository<SysFunctio
     /// <summary>
     /// 获取列表数据
     /// </summary>
-    /// <param name="page"></param>
-    /// <param name="size"></param>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public override async Task<PagingView> FindListAsync(int page, int size, SysFunction search)
+    public override async Task<PagingView> FindListAsync(PagingSearchInput<SysFunction> pagingSearchInput)
     {
         var query = this._repository.Select
-            .WhereIf(!string.IsNullOrWhiteSpace(search?.Name), a => a.Name.Contains(search.Name))
+            .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search?.Name), a => a.Name.Contains(pagingSearchInput.Search.Name))
             .OrderBy(w => w.Number)
             .Select(w => new
             {
@@ -45,7 +43,7 @@ public class SysFunctionService : AbsCrudBaseService<IAdminRepository<SysFunctio
             })
         ;
 
-        return await this._repository.AsPagingViewAsync(query, page, size);
+        return await this._repository.AsPagingViewAsync(query, pagingSearchInput);
     }
 
     /// <summary>

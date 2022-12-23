@@ -116,21 +116,19 @@ public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOpera
     /// <summary>
     /// 获取列表数据
     /// </summary>
-    /// <param name="page">page</param>
-    /// <param name="size">size</param>
-    /// <param name="search">search</param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public async Task<PagingView> FindListAsync(int page, int size, SysOperationLogSearchDto search)
+    public async Task<PagingView> FindListAsync(PagingSearchInput<SysOperationLogSearchDto> pagingSearchInput)
     {
         var query = (from log in _defaultRepository.Select.OrderByDescending(w => w.CreationTime)
                      from use in _sysUserRepository.Select.Where(w => w.Id == log.UserId).DefaultIfEmpty()
                      select new { log, use })
-                     .WhereIf(!string.IsNullOrWhiteSpace(search.Api), w => w.log.Api.Contains(search.Api))
-                     .WhereIf(!string.IsNullOrWhiteSpace(search.Browser), w => w.log.Browser.Contains(search.Browser))
-                     .WhereIf(!string.IsNullOrWhiteSpace(search.Ip), w => w.log.Ip.Contains(search.Ip))
-                     .WhereIf(!string.IsNullOrWhiteSpace(search.OS), w => w.log.OS.Contains(search.OS))
-                     .WhereIf(search.StartTime != null, w => w.log.CreationTime.Date >= search.StartTime.Value)
-                     .WhereIf(search.EndTime != null, w => w.log.CreationTime.Date <= search.EndTime.Value)
+                     .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search.Api), w => w.log.Api.Contains(pagingSearchInput.Search.Api))
+                     .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search.Browser), w => w.log.Browser.Contains(pagingSearchInput.Search.Browser))
+                     .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search.Ip), w => w.log.Ip.Contains(pagingSearchInput.Search.Ip))
+                     .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search.OS), w => w.log.OS.Contains(pagingSearchInput.Search.OS))
+                     .WhereIf(pagingSearchInput.Search.StartTime != null, w => w.log.CreationTime.Date >= pagingSearchInput.Search.StartTime.Value)
+                     .WhereIf(pagingSearchInput.Search.EndTime != null, w => w.log.CreationTime.Date <= pagingSearchInput.Search.EndTime.Value)
                      .Select(w => new
                      {
                          w.log.Id,
@@ -147,7 +145,7 @@ public class SysOperationLogService : AdminBaseService<IAdminRepository<SysOpera
                      })
                      ;
 
-        return await this._defaultRepository.AsPagingViewAsync(query, page, size);
+        return await this._defaultRepository.AsPagingViewAsync(query, pagingSearchInput);
     }
 
     /// <summary>

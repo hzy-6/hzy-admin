@@ -49,15 +49,13 @@ namespace @(Model.Namespace).Controllers.Admin.App
         /// <summary>
         /// 获取列表
         /// </summary>
-        /// <param name="size">size</param>
-        /// <param name="page">page</param>
-        /// <param name="search">search</param>
+        /// <param name="pagingSearchInput"></param>
         /// <returns></returns>
         [ActionDescriptor(AdminFunctionConsts.Function_Display, DisplayName = "查看数据")]
-        [HttpPost("FindList/{size}/{page}")]
-        public Task<@("PagingView")> FindListAsync([FromRoute] int size, [FromRoute] int page, [FromBody] @(className) search)
+        [HttpPost("FindList")]
+        public Task<@("PagingView")> FindListAsync([FromBody] PagingSearchInput<@(className)> pagingSearchInput)
         {
-            return this._defaultService.FindListAsync(page, size, search);
+            return this._defaultService.FindListAsync(pagingSearchInput);
         }
 
         /// <summary>
@@ -121,9 +119,9 @@ namespace @(Model.Namespace).Controllers.Admin.App
         [ActionDescriptor(AdminFunctionConsts.Function_Export, DisplayName = "导出数据")]
         [ApiResourceCacheFilter(5)]
         [HttpPost("ExportExcel")]
-        public async Task ExportExcelAsync([FromBody] @(className) search)
+        public async Task ExportExcelAsync([FromBody] PagingSearchInput<@(className)> pagingSearchInput)
         {
-            var data = await this._defaultService.ExportExcelAsync(search);
+            var data = await this._defaultService.ExportExcelAsync(pagingSearchInput);
             var name = $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls";
             base.HttpContext.DownLoadFile(data, Tools.GetFileContentType[".xls"].ToStr(), name);
         }

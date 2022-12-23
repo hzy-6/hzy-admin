@@ -71,6 +71,7 @@ const state = reactive({
     vm: {
       value: "",
     },
+    sort: [] as any[],
   },
   loading: false,
   page: 1,

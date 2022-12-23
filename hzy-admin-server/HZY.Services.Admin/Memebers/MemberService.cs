@@ -38,11 +38,9 @@ public class MemberService : AdminBaseService<IAdminRepository<Member>>
     /// <summary>
     /// 获取列表数据
     /// </summary>
-    /// <param name="page"></param>
-    /// <param name="size"></param>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public async Task<PagingView> FindListAsync(int page, int size, Member search)
+    public async Task<PagingView> FindListAsync(PagingSearchInput<Member> pagingSearchInput)
     {
         var accountInfo = _accountService.GetAccountInfo();
 
@@ -51,7 +49,7 @@ public class MemberService : AdminBaseService<IAdminRepository<Member>>
                     from user in this._sysUserRepository.Select.Where(w => w.Id == member.UserId).DefaultIfEmpty()
                     select new { t1 = member, t2 = user }
                 )
-                .WhereIf(!string.IsNullOrWhiteSpace(search.Name), w => w.t1.Name.Contains(search.Name))
+                .WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search.Name), w => w.t1.Name.Contains(pagingSearchInput.Search.Name))
                 .OrderBy(w => w.t1.Number)
                 .Select(w => new
                 {
@@ -61,10 +59,10 @@ public class MemberService : AdminBaseService<IAdminRepository<Member>>
                     w.t1.Name,
                     w.t1.Phone,
                     w.t1.Sex,
-                    Birthday = w.t1.Birthday.ToString("yyyy-MM-dd"),
-                    操作人 = w.t2.Name,
-                    LastModificationTime = w.t1.LastModificationTime == null ? "" : w.t1.LastModificationTime.Value.ToString("yyyy-MM-dd"),
-                    CreationTime = w.t1.CreationTime.ToString("yyyy-MM-dd"),
+                    w.t1.Birthday,
+                    OperatorName = w.t2.Name,
+                    w.t1.LastModificationTime,
+                    w.t1.CreationTime,
                     //别名 前面包含 _ 则表示界面上会隐藏列
                     _UserId = w.t1.UserId,
                     _OrganizationId = w.t2.OrganizationId,
@@ -72,7 +70,16 @@ public class MemberService : AdminBaseService<IAdminRepository<Member>>
             ;
 
         var result = await this._defaultRepository
-        .AsPagingViewAsync(query, page, size, null, accountInfo, w => w._UserId, w => w._OrganizationId);
+        .AsPagingViewAsync(query, pagingSearchInput, null, accountInfo, w => w._UserId, w => w._OrganizationId);
+        result.GetColumn(query, w => w.OperatorName).SetColumn(title: "操作人");
+
+        //覆盖值
+        result
+            .SetValue(query, w => w.CreationTime, (oldValue) => oldValue.ToString("yyyy-MM-dd"))
+            .SetValue(query, w => w.LastModificationTime, (oldValue) => oldValue?.ToString("yyyy-MM-dd"))
+            .SetValue(query, w => w.Birthday, (oldValue) => oldValue.ToString("yyyy-MM-dd"))
+            ;
+
         return result;
     }
 
@@ -118,11 +125,12 @@ public class MemberService : AdminBaseService<IAdminRepository<Member>>
     /// <summary>
     /// 导出Excel
     /// </summary>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
-    public async Task<byte[]> ExportExcelAsync(Member search)
+    public async Task<byte[]> ExportExcelAsync(PagingSearchInput<Member> pagingSearchInput)
     {
-        var tableViewModel = await this.FindListAsync(-1, 0, search);
+        pagingSearchInput.Page = -1;
+        var tableViewModel = await this.FindListAsync(pagingSearchInput);
         return this.ExportExcelByPagingView(tableViewModel);
     }
 }
