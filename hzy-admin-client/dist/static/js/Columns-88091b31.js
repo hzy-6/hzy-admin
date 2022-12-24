@@ -1,0 +1,1 @@
+import"./Columns.vue_vue_type_script_setup_true_lang-9c6fea5b.js";import{_ as f}from"./Columns.vue_vue_type_script_setup_true_lang-9c6fea5b.js";import"./AppIcon.vue_vue_type_script_setup_true_lang-14707d57.js";import"./index-0b0c7006.js";import"./TableCurd.vue_vue_type_script_setup_true_lang-5b25c5de.js";export{f as default};
