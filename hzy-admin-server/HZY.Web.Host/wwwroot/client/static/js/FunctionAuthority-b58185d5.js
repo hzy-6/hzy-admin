@@ -1,1 +1,0 @@
-import"./FunctionAuthority.vue_vue_type_script_setup_true_lang-d8401bfa.js";import{_ as t}from"./FunctionAuthority.vue_vue_type_script_setup_true_lang-d8401bfa.js";import"./index-294e8e84.js";export{t as default};

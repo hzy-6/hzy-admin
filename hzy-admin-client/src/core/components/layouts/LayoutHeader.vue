@@ -37,6 +37,11 @@ function jumpDoc() {
 function jumpPro() {
   window.open("http://124.221.128.7:6600/", "_black");
 }
+
+//mvc
+function jumpMvc() {
+  window.open("http://124.221.128.7:7600/", "_black");
+}
 </script>
 
 <template>
@@ -54,6 +59,8 @@ function jumpPro() {
     <div style="flex: 1 1 0%" v-else></div>
     <!-- Pro -->
     <div class="hzy-header-btn text-danger" @click="jumpPro()" style="font-weight: bold" v-if="!coreStore.state.isMobile">Pro By React</div>
+    <!-- mvc -->
+    <div class="hzy-header-btn text-danger" @click="jumpMvc()" style="font-weight: bold" v-if="!coreStore.state.isMobile">Mvc</div>
     <!-- HzyAdmin 文档 -->
     <a-tooltip>
       <template #title>HzyAdmin 文档</template>
