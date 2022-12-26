@@ -2,6 +2,7 @@ using HZY.Infrastructure;
 using HZY.Infrastructure.SerilogUtil;
 using HZY.Web.Host.Configure;
 using HZY.Web.Host.Endpoints;
+using HzyScanDiService;
 using Serilog;
 
 try

@@ -282,6 +282,9 @@ public static class AppBuilder
         var env = app.Environment;
         var serviceProvider = app.Services;
 
+        //服务扫描 - 使用 host
+        app.UseHost();
+
         if (app.Environment.IsDevelopment())
         {
             app.UseDeveloperExceptionPage();
@@ -296,12 +299,6 @@ public static class AppBuilder
         app.UseStaticFiles();
 
         var appConfiguration = app.Services.GetRequiredService<AppConfiguration>();
-
-        #region 注册服务提供者
-
-        serviceProvider.UseServiceProvider();
-
-        #endregion
 
         #region JWT
 

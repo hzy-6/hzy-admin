@@ -11,8 +11,6 @@ using System.Text.Json;
 using System.Text.RegularExpressions;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.AspNetCore.Http;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata;
 using UAParser;
 
 namespace HZY.Infrastructure;
