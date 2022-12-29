@@ -9,6 +9,8 @@
         <!--尝试设置您的 .csproj？在某些情况下，服务器 GC 可能懒得回收内存。ServerGarbageCollection false-->
 		<ServerGarbageCollection>false</ServerGarbageCollection>
 		<ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
+		<!--防止报 GenerateOpenApiDocuments 错误-->
+		<OpenApiGenerateDocuments>false</OpenApiGenerateDocuments>
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -17,43 +19,24 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <Content Remove="wwwroot\code_generation\template\tempClientInfo.cshtml~RF6593a682.TMP" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.6" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.5">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.5">
-		  <PrivateAssets>all</PrivateAssets>
-		  <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
 
 		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.3" />
 		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net6.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="6.0.11" />
-	</ItemGroup>
-	<ItemGroup Condition="'$(TargetFramework)' == 'net7.0'">
-		<PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="7.0.0" />
-	</ItemGroup>
+	
 	<ItemGroup>
 		<ProjectReference Include="..\HZY.EFCore\HZY.EFCore.csproj" />
-		<ProjectReference Include="..\HZY.Controllers.Admin\HZY.Controllers.Admin.csproj" />
-		<ProjectReference Include="..\HZY.Controllers.App\HZY.Controllers.App.csproj" />
+		<ProjectReference Include="..\HZY.Controllers.Admin\HZY.Controllers.Admin.csproj">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</ProjectReference>
+		<ProjectReference Include="..\HZY.Controllers.App\HZY.Controllers.App.csproj">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</ProjectReference>
 		<ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
 		<ProjectReference Include="..\HZY.Services.Admin\HZY.Services.Admin.csproj" />
 	</ItemGroup>
-
-	<ProjectExtensions>
-		<VisualStudio>
-			<UserProperties appsettings_1json__JsonSchema="" />
-		</VisualStudio>
-	</ProjectExtensions>
 
 	<ItemGroup>
 	  <None Update="HZY.WebHost.xml">
