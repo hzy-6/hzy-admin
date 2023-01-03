@@ -16,20 +16,14 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HzyEFCoreRepositories" Version="1.2.2.5" />
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.9">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.9">
-			<PrivateAssets>all</PrivateAssets>
-			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-		</PackageReference>
+		<PackageReference Include="HzyEFCoreRepositories" Version="1.2.2.6" />
 		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\HZY.FreeSqlCore\HZY.FreeSqlCore.csproj" />
+		<ProjectReference Include="..\HZY.FreeSqlCore\HZY.FreeSqlCore.csproj">
+		  <TreatAsUsed>true</TreatAsUsed>
+		</ProjectReference>
 		<ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
 		<ProjectReference Include="..\HZY.Models\HZY.Models.csproj" />
 	</ItemGroup>
