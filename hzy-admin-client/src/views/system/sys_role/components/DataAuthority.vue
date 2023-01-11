@@ -46,6 +46,7 @@ defineExpose({
       state.loading = false;
       if (res.code != 1) return;
       state.vm.form.sysDataAuthority = res.data.sysDataAuthority;
+      state.vm.form.sysDataAuthority.roleId = key; //赋予角色id
       state.vm.form.sysDataAuthorityCustomList = res.data.sysDataAuthorityCustomList;
 
       const result = await SysOrganizationService.sysOrganizationTree();
