@@ -88,7 +88,7 @@ async function save() {
   }
 
   state.loading = true;
-  const result = await SysDataAuthorityService.saveForm(state.vm.id, state.vm);
+  const result = await SysDataAuthorityService.saveForm(state.vm.id, state.vm.form);
   if (result.code != 1) return;
   Tools.message.success("操作成功!");
   props.onSuccess();
