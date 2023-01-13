@@ -1,11 +1,5 @@
-﻿using HzyEFCoreRepositories.Monitor;
-using HzyEFCoreRepositories.Monitor.Models;
-using HzyScanDiService;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using HZY.Framework.EntityFrameworkRepositories.Monitor.Models;
+using HZY.Framework.AutoRegisterIOC;
 
 namespace HZY.Services.Admin.DevelopmentTool.MonitorEFCore
 {
@@ -15,19 +9,19 @@ namespace HZY.Services.Admin.DevelopmentTool.MonitorEFCore
         /// 获取 EFCore 监控上下文
         /// </summary>
         /// <returns></returns>
-        EFCoreMonitorContext GetEFCoreMonitorContext();
+        EntityFrameworkRepositoriesMonitorContext GetEFCoreMonitorContext();
 
         /// <summary>
         /// 获取 EFCore Sql 监控上下文 耗时排行榜
         /// </summary>
         /// <returns></returns>
-        List<EFCoreMonitorSqlContext> GetTimeConsumingRanking();
+        List<EntityFrameworkRepositoriesMonitorSqlContext> GetTimeConsumingRanking();
 
         /// <summary>
         /// 获取 EFCore Sql 监控上下文 最新数据
         /// </summary>
         /// <returns></returns>
-        List<EFCoreMonitorSqlContext> GetNewest();
+        List<EntityFrameworkRepositoriesMonitorSqlContext> GetNewest();
 
     }
 }

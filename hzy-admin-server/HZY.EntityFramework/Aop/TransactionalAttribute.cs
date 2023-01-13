@@ -1,10 +1,7 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using HzyEFCoreRepositories;
-using HzyScanDiService;
+using HZY.Framework.EntityFrameworkRepositories;
+using HZY.Framework.AutoRegisterIOC;
 using Microsoft.EntityFrameworkCore;
+using HZY.Framework.AutoRegisterIOC.Attributes;
 
 namespace HZY.EFCore.Aop
 {
@@ -21,7 +18,7 @@ namespace HZY.EFCore.Aop
 
         public TransactionalAttribute()
         {
-            _dbContextTypes = HzyEFCoreUtil.GetAllDbContextType().ToArray();
+            _dbContextTypes = EntityFrameworkRepositoriesUtil.GetAllDbContextType().ToArray();
             ExceptionEvent = OnException;
         }
 

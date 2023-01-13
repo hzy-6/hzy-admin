@@ -1,5 +1,5 @@
 ﻿using HZY.Infrastructure;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using Quartz;
 using Quartz.Spi;
 using System;

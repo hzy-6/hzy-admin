@@ -1,7 +1,7 @@
 ﻿using HZY.EFCore.DbContexts;
 using HZY.EFCore.Repositories.Admin.Core.Impl;
 using HZY.Models.Entities.LowCode;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,15 +11,12 @@ using System.Threading.Tasks;
 
 namespace HZY.EFCore.Repositories.Admin.DevelopmentTool.LowCode
 {
-    public class LowCodeTableInfoRepository : AdminRepositoryImpl<LowCodeTableInfo>, ITransientSelfDependency
+    public class LowCodeListRepository : AdminRepositoryImpl<LowCodeList>, ITransientSelfDependency
     {
-        public LowCodeTableInfoRepository(AdminDbContext context, Expression<Func<LowCodeTableInfo, bool>> filter = null)
+        public LowCodeListRepository(AdminDbContext context, Expression<Func<LowCodeList, bool>> filter = null)
             : base(context, filter)
         {
 
         }
-
-
-
     }
 }

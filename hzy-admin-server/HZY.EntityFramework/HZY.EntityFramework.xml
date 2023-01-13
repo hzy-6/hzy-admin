@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>HZY.EFCore</name>
+        <name>HZY.EntityFramework</name>
     </assembly>
     <members>
         <member name="T:HZY.EFCore.Aop.TransactionalAttribute">
@@ -20,25 +20,25 @@
             </summary>
             <param name="dbContextTypes">数据上下文</param>
         </member>
-        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.Before(HzyScanDiService.AopContext)">
+        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.Before(HZY.Framework.AutoRegisterIOC.AopContext)">
             <summary>
             之前
             </summary>
             <param name="aopContext"></param>
         </member>
-        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.After(HzyScanDiService.AopContext)">
+        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.After(HZY.Framework.AutoRegisterIOC.AopContext)">
             <summary>
             之后
             </summary>
             <param name="aopContext"></param>
         </member>
-        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.Before``1(HzyScanDiService.AopContext)">
+        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.Before``1(HZY.Framework.AutoRegisterIOC.AopContext)">
             <summary>
             之前
             </summary>
             <param name="aopContext"></param>
         </member>
-        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.After``1(HzyScanDiService.AopContext,``0)">
+        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.After``1(HZY.Framework.AutoRegisterIOC.AopContext,``0)">
             <summary>
             之后
             </summary>
@@ -46,7 +46,7 @@
             <param name="aopContext"></param>
             <param name="result"></param>
         </member>
-        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.OnException(HzyScanDiService.AopContext,System.Exception)">
+        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.OnException(HZY.Framework.AutoRegisterIOC.AopContext,System.Exception)">
             <summary>
             异常
             </summary>

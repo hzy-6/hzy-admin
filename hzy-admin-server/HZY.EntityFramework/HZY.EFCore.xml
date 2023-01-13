@@ -1,0 +1,420 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.EFCore</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.EFCore.Aop.TransactionalAttribute">
+            <summary>
+            事务拦截
+            </summary>
+        </member>
+        <member name="F:HZY.EFCore.Aop.TransactionalAttribute._dbContextTypes">
+            <summary>
+            指定 数据上下文
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.#ctor(System.Type[])">
+            <summary>
+            事务拦截
+            </summary>
+            <param name="dbContextTypes">数据上下文</param>
+        </member>
+        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.Before(HZY.Framework.AutoRegisterIOC.AopContext)">
+            <summary>
+            之前
+            </summary>
+            <param name="aopContext"></param>
+        </member>
+        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.After(HZY.Framework.AutoRegisterIOC.AopContext)">
+            <summary>
+            之后
+            </summary>
+            <param name="aopContext"></param>
+        </member>
+        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.Before``1(HZY.Framework.AutoRegisterIOC.AopContext)">
+            <summary>
+            之前
+            </summary>
+            <param name="aopContext"></param>
+        </member>
+        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.After``1(HZY.Framework.AutoRegisterIOC.AopContext,``0)">
+            <summary>
+            之后
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="aopContext"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:HZY.EFCore.Aop.TransactionalAttribute.OnException(HZY.Framework.AutoRegisterIOC.AopContext,System.Exception)">
+            <summary>
+            异常
+            </summary>
+            <param name="aopContext"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="T:HZY.EFCore.DbContexts.AdminDbContext">
+            <summary>
+            后台权限管理系统 DbContext
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.DbContexts.AdminDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            模型创建
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="M:HZY.EFCore.DbContexts.AdminDbContext.TableNameMapping(Microsoft.EntityFrameworkCore.ModelBuilder,System.Func{System.String,System.String})">
+            <summary>
+            数据库表名映射
+            </summary>
+            <param name="modelBuilder"></param>
+            <param name="mappingName"></param>
+        </member>
+        <member name="T:HZY.EFCore.EFCoreConfig">
+            <summary>
+            仓储模块
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.EFCoreConfig.UseEfCore(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用 DbContext
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:HZY.EFCore.EFCoreConfig.AddEfCore(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            注册 Admin 后台管理数据库
+            </summary>
+            <param name="services"></param>
+            <param name="appConfiguration"></param>
+            <param name="hostBuilder"></param>
+        </member>
+        <member name="M:HZY.EFCore.EFCoreConfig.InitAdminDbContext(HZY.Infrastructure.AppConfiguration,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            初始化 AdminDbContext
+            </summary>
+            <param name="appConfiguration"></param>
+            <param name="options"></param>
+            <param name="hostBuilder"></param>
+        </member>
+        <member name="M:HZY.EFCore.EFCoreConfig.UseEfCoreLoggerFactory(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+            <summary>
+            efcore 使用控制台日志
+            </summary>
+            <param name="options"></param>
+            <param name="webHostEnvironment"></param>
+        </member>
+        <member name="T:HZY.EFCore.Interceptors.AuditInterceptor">
+            <summary>
+            审计 保存拦截器
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.Interceptors.AuditInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData)">
+            <summary>
+            添加 、 修改 、删除 拦截
+            </summary>
+            <param name="eventData"></param>
+        </member>
+        <member name="T:HZY.EFCore.Migrations.Seeds.ModelBuilderExtensions">
+            <summary>
+            EFCore 种子数据
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.Migrations.Seeds.ModelBuilderExtensions.Seed(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            种子数据
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="T:HZY.EFCore.PagingViews.PagingSearchInput`1">
+            <summary>
+            分页查询对象
+            </summary>
+            <typeparam name="TSearch"></typeparam>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingSearchInput`1.Page">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingSearchInput`1.Size">
+            <summary>
+            每页数量
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingSearchInput`1.Search">
+            <summary>
+            检索对象
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingSearchInput`1.SearchSort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="T:HZY.EFCore.PagingViews.PagingView">
+            <summary>
+            分页视图模型
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingView.Columns">
+            <summary>
+            列信息
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingView.DataSource">
+            <summary>
+            转换后数据
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingView.Total">
+            <summary>
+            总数
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingView.PageCount">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingView.Size">
+            <summary>
+            一页显示多少条
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.PagingView.Page">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.PagingView.InitColumns(System.Collections.Generic.List{System.String},System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},System.Type)">
+            <summary>
+            初始化列头
+            </summary>
+            <param name="fieldNames"></param>
+            <param name="columnHeads"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.PagingView.CreateDataSource``1(System.Collections.Generic.List{``0},System.Collections.Generic.List{System.String})">
+            <summary>
+            创建数据源
+            </summary>
+            <param name="data"></param>
+            <param name="fieldNames"></param>
+            <typeparam name="TEntity"></typeparam>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.PagingView.CreateDataSource(System.Data.DataTable,System.Collections.Generic.List{System.String})">
+            <summary>
+            创建数据源 根据 datatable
+            </summary>
+            <param name="data"></param>
+            <param name="fieldNames"></param>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.PagingView.GetColumn``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            获取指定列
+            </summary>
+            <param name="query"></param>
+            <param name="queryField"></param>
+            <typeparam name="TQuery"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.PagingView.SetValue``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Func{``1,System.Object})">
+            <summary>
+            重新设置值
+            </summary>
+            <typeparam name="TQuery"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="query"></param>
+            <param name="queryField"></param>
+            <param name="funcValue"></param>
+        </member>
+        <member name="T:HZY.EFCore.PagingViews.TableColumnView">
+            <summary>
+            列头信息
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.TableColumnView.FieldName">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.TableColumnView.Title">
+            <summary>
+            标题名称
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.TableColumnView.Show">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.TableColumnView.Width">
+            <summary>
+            列宽度
+            </summary>
+        </member>
+        <member name="P:HZY.EFCore.PagingViews.TableColumnView.Sort">
+            <summary>
+            是否参加排序
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.TableColumnView.SetColumn(System.String,System.Nullable{System.Boolean},System.String,System.Boolean)">
+            <summary>
+            映射字段
+            </summary>
+            <param name="title">列显示名称</param>
+            <param name="show">是否显示列</param>
+            <param name="width">列宽</param>
+            <param name="sort">是否参加排序</param>
+        </member>
+        <member name="M:HZY.EFCore.PagingViews.TableColumnView.SetColumn``1(System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Nullable{System.Boolean},System.String,System.Boolean)">
+            <summary>
+            映射字段 用于映射字段设置显示名称
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="field">字段</param>
+            <param name="show">是否显示列</param>
+            <param name="width">列宽</param>
+            <param name="sort">是否参加排序</param>
+        </member>
+        <member name="T:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1">
+            <summary>
+            Admin默认基础仓储接口
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.AsPagingViewAsync``2(System.Linq.IQueryable{``0},HZY.EFCore.PagingViews.PagingSearchInput{``1},System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            分页模型构建
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <typeparam name="TSearch"></typeparam>
+            <param name="query"></param>
+            <param name="pagingSearchInput"></param>
+            <param name="columnHeads"></param>
+            <param name="accountInfo"></param>
+            <param name="userIdFieldNameExpression"></param>
+            <param name="organizationIdFieldNameExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.AsPagingViewAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},System.Object[])">
+            <summary>
+            分页模型构建 用于编写 sql 语句得情况
+            </summary>
+            <param name="sql"></param>
+            <param name="page"></param>
+            <param name="size"></param>
+            <param name="orderBy"></param>
+            <param name="columnHeads"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.DataPermission(HZY.Models.BO.AccountInfo,HZY.EFCore.Repositories.Admin.Core.IAdminRepository{HZY.Models.Entities.Framework.SysUser})">
+            <summary>
+            根据组织 获取数据权限
+            </summary>
+            <param name="accountInfo"></param>
+            <param name="_sysUserRepository"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.IAdminRepository`1.DataPermission``1(System.Linq.IQueryable{``0},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            根据组织 获取数据权限
+            </summary>
+            <param name="query"></param>
+            <param name="accountInfo"></param>
+            <param name="userIdFieldNameExpression"></param>
+            <param name="organizationIdFieldNameExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1">
+            <summary>
+            Admin默认基础仓储接口
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.AsPagingViewAsync``2(System.Linq.IQueryable{``0},HZY.EFCore.PagingViews.PagingSearchInput{``1},System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            查询转换为分页视图模型
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <typeparam name="TSearch"></typeparam>
+            <param name="query"></param>
+            <param name="pagingSearchInput"></param>
+            <param name="columnHeads"></param>
+            <param name="accountInfo"></param>
+            <param name="userIdFieldNameExpression"></param>
+            <param name="organizationIdFieldNameExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.AsPagingViewAsync(System.String,System.Int32,System.Int32,System.String,System.Collections.Generic.List{HZY.EFCore.PagingViews.TableColumnView},System.Object[])">
+            <summary>
+            查询转换为分页视图模型 支持 Sql 字符串
+            </summary>
+            <param name="sql"></param>
+            <param name="page"></param>
+            <param name="size"></param>
+            <param name="orderBy"></param>
+            <param name="columnHeads"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.GetOrganizations(HZY.Models.BO.AccountInfo)">
+            <summary>
+            获取数据权限
+            </summary>
+            <param name="accountInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.DataPermission(HZY.Models.BO.AccountInfo,HZY.EFCore.Repositories.Admin.Core.IAdminRepository{HZY.Models.Entities.Framework.SysUser})">
+            <summary>
+            根据数据权限查询 获取 IQueryable 对象
+            </summary>
+            <param name="accountInfo">当前账户信息</param>
+            <param name="_sysUserRepository"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.Core.Impl.AdminRepositoryImpl`1.DataPermission``1(System.Linq.IQueryable{``0},HZY.Models.BO.AccountInfo,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            根据数据权限查询 获取 IQueryable 对象
+            </summary>
+            <param name="query"></param>
+            <param name="accountInfo"></param>
+            <param name="userIdFieldNameExpression"></param>
+            <param name="organizationIdFieldNameExpression"></param>
+            <typeparam name="TModel"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.EFCore.Repositories.Admin.DevelopmentTool.DatabaseTablesRepository">
+            <summary>
+            用于获取表信息仓储
+            </summary>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.DevelopmentTool.DatabaseTablesRepository.GetAllTables">
+            <summary>
+            获取所有的表 包含表下面的列
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.DevelopmentTool.DatabaseTablesRepository.GetAllTablesByCache">
+            <summary>
+            获取表信息根据缓存
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.DevelopmentTool.DatabaseTablesRepository.ClearAllTablesByCache">
+            <summary>
+            清空所有表缓存信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.EFCore.Repositories.Admin.DevelopmentTool.DatabaseTablesRepository.GetConnectionString">
+            <summary>
+            获取连接字符串
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

@@ -1,6 +1,6 @@
 ﻿using HZY.EFCore.PagingViews;
 using HZY.Models.DTO.DevelopmentTool;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 
 namespace HZY.Services.Admin.DevelopmentTool.LowCode
 {

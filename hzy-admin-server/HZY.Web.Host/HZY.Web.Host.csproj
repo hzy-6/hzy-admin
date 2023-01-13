@@ -27,13 +27,13 @@
 	</ItemGroup>
 	
 	<ItemGroup>
-		<ProjectReference Include="..\HZY.EFCore\HZY.EFCore.csproj" />
 		<ProjectReference Include="..\HZY.Controllers.Admin\HZY.Controllers.Admin.csproj">
 		  <TreatAsUsed>true</TreatAsUsed>
 		</ProjectReference>
 		<ProjectReference Include="..\HZY.Controllers.App\HZY.Controllers.App.csproj">
 		  <TreatAsUsed>true</TreatAsUsed>
 		</ProjectReference>
+		<ProjectReference Include="..\HZY.EntityFramework\HZY.EntityFramework.csproj" />
 		<ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
 		<ProjectReference Include="..\HZY.Services.Admin\HZY.Services.Admin.csproj" />
 	</ItemGroup>

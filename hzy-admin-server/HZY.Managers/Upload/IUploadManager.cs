@@ -1,5 +1,5 @@
 ﻿using HZY.Models.VO.Upload;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using Microsoft.AspNetCore.Http;
 
 namespace HZY.Managers.Upload;

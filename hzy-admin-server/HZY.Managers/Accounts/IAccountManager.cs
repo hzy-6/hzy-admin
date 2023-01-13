@@ -1,6 +1,6 @@
 ﻿using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using System.Threading.Tasks;
 
 namespace HZY.Managers.Accounts;

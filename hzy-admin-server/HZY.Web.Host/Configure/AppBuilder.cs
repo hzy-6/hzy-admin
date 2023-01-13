@@ -2,7 +2,7 @@
 using HZY.EFCore;
 using HZY.Infrastructure;
 using HZY.Infrastructure.MessageQueue.Models;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using System.Text;
 using HZY.FreeSqlCore;
 using HZY.Infrastructure.Redis;
@@ -76,7 +76,7 @@ public static class AppBuilder
         #region 自动扫描服务注册 、 其他服务注册
 
         //扫描服务自动化注册
-        services.AddHzyScanDiService(prefixString);//, "Hzy","FreeSql."
+        services.AddAutoRegisterIOC(prefixString);//, "Hzy","FreeSql."
 
         services.AddSingleton<IHostedService, LifetimeEventsHostedService>();
 

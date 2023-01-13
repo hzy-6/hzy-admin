@@ -1,4 +1,4 @@
-﻿using HzyScanDiService;
+﻿using HZY.Framework.AutoRegisterIOC;
 
 namespace HZY.Infrastructure.Services;
 

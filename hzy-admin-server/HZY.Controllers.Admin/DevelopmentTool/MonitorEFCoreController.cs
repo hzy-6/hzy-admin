@@ -1,13 +1,8 @@
 ﻿using HZY.Infrastructure.Controllers;
 using HZY.Infrastructure.Permission.Attributes;
 using HZY.Services.Admin.DevelopmentTool.MonitorEFCore;
-using HzyEFCoreRepositories.Monitor.Models;
+using HZY.Framework.EntityFrameworkRepositories.Monitor.Models;
 using Microsoft.AspNetCore.Mvc;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace HZY.Controllers.Admin.DevelopmentTool
 {
@@ -28,7 +23,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// <returns></returns>
         [ActionDescriptor(DisplayName = "获取 EFCore 监控上下文")]
         [HttpPost("GetEFCoreMonitorContext")]
-        public EFCoreMonitorContext GetEFCoreMonitorContext()
+        public EntityFrameworkRepositoriesMonitorContext GetEFCoreMonitorContext()
         {
             return _defaultService.GetEFCoreMonitorContext();
         }
@@ -39,7 +34,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// <returns></returns>
         [ActionDescriptor(DisplayName = "获取 EFCore Sql 监控上下文 耗时排行榜")]
         [HttpPost("GetTimeConsumingRanking")]
-        public List<EFCoreMonitorSqlContext> GetTimeConsumingRanking()
+        public List<EntityFrameworkRepositoriesMonitorSqlContext> GetTimeConsumingRanking()
         {
             return _defaultService.GetTimeConsumingRanking();
         }
@@ -50,7 +45,7 @@ namespace HZY.Controllers.Admin.DevelopmentTool
         /// <returns></returns>
         [ActionDescriptor(DisplayName = "获取 EFCore Sql 监控上下文 最新数据")]
         [HttpPost("GetNewest")]
-        public List<EFCoreMonitorSqlContext> GetNewest()
+        public List<EntityFrameworkRepositoriesMonitorSqlContext> GetNewest()
         {
             return _defaultService.GetNewest();
         }

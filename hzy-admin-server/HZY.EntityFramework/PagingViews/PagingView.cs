@@ -4,7 +4,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Text;
 using HZY.Infrastructure;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq.Expressions;
 using System.Data;

@@ -1,5 +1,5 @@
 ﻿using HZY.Managers.Quartz.Models;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using Microsoft.Extensions.Logging;
 using Quartz;
 using System;

@@ -1,8 +1,8 @@
 ﻿using HZY.EFCore.Migrations.Seeds;
 using HZY.Infrastructure;
 using HZY.Models.Entities.BaseEntitys;
-using HzyEFCoreRepositories.Extensions;
-using HzyScanDiService;
+using HZY.Framework.EntityFrameworkRepositories.Extensions;
+using HZY.Framework.AutoRegisterIOC;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;

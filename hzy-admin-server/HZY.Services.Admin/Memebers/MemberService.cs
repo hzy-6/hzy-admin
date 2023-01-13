@@ -10,7 +10,7 @@ using HZY.Infrastructure;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Core;
-using HzyEFCoreRepositories.Extensions;
+using HZY.Framework.EntityFrameworkRepositories.Extensions;
 using Microsoft.AspNetCore.Http;
 
 namespace HZY.Services.Admin.Memebers;

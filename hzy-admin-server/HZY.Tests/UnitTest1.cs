@@ -1,4 +1,4 @@
-using HzyEFCoreRepositories.Extensions;
+using HZY.Framework.EntityFrameworkRepositories.Extensions;
 using NUnit.Framework;
 using System;
 

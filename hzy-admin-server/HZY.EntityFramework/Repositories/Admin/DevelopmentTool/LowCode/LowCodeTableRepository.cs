@@ -1,7 +1,7 @@
 ﻿using HZY.EFCore.DbContexts;
 using HZY.EFCore.Repositories.Admin.Core.Impl;
 using HZY.Models.Entities.LowCode;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using System;
 using System.Collections.Generic;
 using System.Linq;

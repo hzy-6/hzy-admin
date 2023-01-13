@@ -1,6 +1,6 @@
 using System.Collections;
 using System.Reflection;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using Microsoft.Extensions.Caching.Memory;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;

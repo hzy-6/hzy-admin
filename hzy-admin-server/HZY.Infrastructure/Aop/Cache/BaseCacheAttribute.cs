@@ -1,6 +1,7 @@
 using System.Reflection;
 using System.Text.RegularExpressions;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
+using HZY.Framework.AutoRegisterIOC.Attributes;
 using Microsoft.Extensions.DependencyInjection;
 using StackExchange.Redis;
 

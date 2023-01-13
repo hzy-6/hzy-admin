@@ -7,29 +7,25 @@
 	</PropertyGroup>
 
 	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>HZY.EFCore.xml</DocumentationFile>
+		<DocumentationFile>HZY.EntityFramework.xml</DocumentationFile>
 		<NoWarn>1701;1702;1591</NoWarn>
 	</PropertyGroup>
 
 	<ItemGroup>
-	  <None Remove="DbContexts\AdminDbContext.cs~RF47efc2a1.TMP" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<PackageReference Include="HzyEFCoreRepositories" Version="1.2.2.6" />
+		<PackageReference Include="HZY.Framework.EntityFrameworkRepositories" Version="1.0.0" />
 		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\HZY.FreeSqlCore\HZY.FreeSqlCore.csproj">
-		  <TreatAsUsed>true</TreatAsUsed>
+			<TreatAsUsed>true</TreatAsUsed>
 		</ProjectReference>
 		<ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
 		<ProjectReference Include="..\HZY.Models\HZY.Models.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Update="HZY.EFCore.xml">
+		<None Update="HZY.EntityFramework.xml">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 			<GenerateDocumentationFile>true</GenerateDocumentationFile>
 		</None>

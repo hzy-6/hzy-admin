@@ -1,4 +1,4 @@
-﻿using HzyEFCoreRepositories.Models;
+﻿using HZY.Framework.EntityFrameworkRepositories.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;

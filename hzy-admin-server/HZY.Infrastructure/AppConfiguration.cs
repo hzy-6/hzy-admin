@@ -1,6 +1,7 @@
 ﻿using HZY.Infrastructure.Files;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using Microsoft.Extensions.Configuration;
+using HZY.Framework.AutoRegisterIOC.Attributes;
 
 namespace HZY.Infrastructure;
 

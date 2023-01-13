@@ -9,7 +9,7 @@ using HZY.Services.Admin.Framework;
 using HZY.Services.Admin.Core;
 using Microsoft.AspNetCore.Http;
 using HZY.Models.Entities.LowCode;
-using HzyEFCoreRepositories.Extensions;
+using HZY.Framework.EntityFrameworkRepositories.Extensions;
 using HZY.EFCore.Repositories.Admin.DevelopmentTool;
 using HZY.EFCore.Repositories.Admin.DevelopmentTool.LowCode;
 

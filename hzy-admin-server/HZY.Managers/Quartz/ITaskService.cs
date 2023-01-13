@@ -1,5 +1,5 @@
 ﻿using HZY.Managers.Quartz.Models;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;

@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using HZY.EFCore.DbContexts;
 using HZY.Infrastructure;
-using HzyEFCoreRepositories;
+using HZY.Framework.EntityFrameworkRepositories;
 using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -25,7 +25,7 @@ public static class EFCoreConfig
     /// <param name="app"></param>
     public static void UseEfCore(this IApplicationBuilder app)
     {
-        app.UseHzyEFCoreRepository(typeof(AdminDbContext));
+        app.UseEntityFrameworkRepositories(typeof(AdminDbContext));
 
         #region 开发环境检测是否需要数据库迁移
         using var scope = app.ApplicationServices.CreateScope();
@@ -123,7 +123,7 @@ public static class EFCoreConfig
         // 懒加载代理
         //options.UseLazyLoadingProxies();
         //添加 EFCore 监控 和 动态表名
-        options.AddHzyEFCoreRepository(appConfiguration.Configs.IsMonitorEFCore);
+        options.AddEntityFrameworkRepositories(appConfiguration.Configs.IsMonitorEFCore);
         options.AddInterceptors(new AuditInterceptor());
     }
 

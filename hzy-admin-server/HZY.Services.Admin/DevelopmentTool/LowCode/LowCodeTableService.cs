@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 using HZY.EFCore.PagingViews;
 using HZY.Services.Admin.Core;
 using HZY.Models.Entities.LowCode;
-using HzyEFCoreRepositories.Extensions;
+using HZY.Framework.EntityFrameworkRepositories.Extensions;
 using HZY.EFCore.Repositories.Admin.DevelopmentTool;
 using HZY.EFCore.Repositories.Admin.DevelopmentTool.LowCode;
 using HZY.Infrastructure;

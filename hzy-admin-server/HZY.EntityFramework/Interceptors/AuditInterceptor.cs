@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.ChangeTracking;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.Extensions.DependencyInjection;
 
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 
 using HZY.Infrastructure.Token;
 using HZY.Models.Entities.BaseEntitys;

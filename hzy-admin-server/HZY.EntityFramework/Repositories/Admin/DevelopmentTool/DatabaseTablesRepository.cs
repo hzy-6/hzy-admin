@@ -4,7 +4,7 @@ using HZY.EFCore.Repositories.Admin.DevelopmentTool.LowCode;
 using HZY.Infrastructure;
 using HZY.Models.DTO.DevelopmentTool;
 using HZY.Models.Entities.LowCode;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using Microsoft.Extensions.Caching.Memory;
 using System;
 using System.Collections.Generic;

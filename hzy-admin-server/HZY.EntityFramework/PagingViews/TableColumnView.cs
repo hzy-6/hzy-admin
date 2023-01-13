@@ -1,7 +1,7 @@
 ﻿using System.Linq.Expressions;
 using HZY.EFCore.Repositories.Admin.DevelopmentTool;
 using HZY.Infrastructure;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using Microsoft.Extensions.DependencyInjection;
 
 namespace HZY.EFCore.PagingViews;

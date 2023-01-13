@@ -1,5 +1,5 @@
-﻿using HzyEFCoreRepositories.Monitor;
-using HzyEFCoreRepositories.Monitor.Models;
+﻿using HZY.Framework.EntityFrameworkRepositories.Monitor;
+using HZY.Framework.EntityFrameworkRepositories.Monitor.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,19 +13,19 @@ namespace HZY.Services.Admin.DevelopmentTool.MonitorEFCore.Impl
     /// </summary>
     public class MonitorEFCoreService : IMonitorEFCoreService
     {
-        public EFCoreMonitorContext GetEFCoreMonitorContext()
+        public EntityFrameworkRepositoriesMonitorContext GetEFCoreMonitorContext()
         {
-            return MonitorEFCoreCache.Context;
+            return EntityFrameworkRepositoriesMonitorCache.Context;
         }
 
-        public List<EFCoreMonitorSqlContext> GetNewest()
+        public List<EntityFrameworkRepositoriesMonitorSqlContext> GetNewest()
         {
-            return MonitorEFCoreCache.SqlContext.OrderByDescending(w => w.Time).Take(20).ToList();
+            return EntityFrameworkRepositoriesMonitorCache.SqlContext.OrderByDescending(w => w.Time).Take(20).ToList();
         }
 
-        public List<EFCoreMonitorSqlContext> GetTimeConsumingRanking()
+        public List<EntityFrameworkRepositoriesMonitorSqlContext> GetTimeConsumingRanking()
         {
-            return MonitorEFCoreCache.SqlContext.OrderByDescending(w => w.ElapsedMilliseconds).Take(20).ToList();
+            return EntityFrameworkRepositoriesMonitorCache.SqlContext.OrderByDescending(w => w.ElapsedMilliseconds).Take(20).ToList();
         }
 
 

@@ -13,16 +13,15 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-<ProjectReference Include="..\HZY.Managers\HZY.Managers.csproj" />
-
-	  <ProjectReference Include="..\HZY.EFCore\HZY.EFCore.csproj" />
+		<ProjectReference Include="..\HZY.EntityFramework\HZY.EntityFramework.csproj" />
+		<ProjectReference Include="..\HZY.Managers\HZY.Managers.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="HZY.Services.Admin.xml">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		  <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	  </None>
+		<None Update="HZY.Services.Admin.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		</None>
 	</ItemGroup>
 
 </Project>

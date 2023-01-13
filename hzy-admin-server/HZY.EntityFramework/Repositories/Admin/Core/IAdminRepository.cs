@@ -2,8 +2,8 @@
 using HZY.EFCore.PagingViews;
 using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
-using HzyEFCoreRepositories.Repositories;
-using HzyScanDiService;
+using HZY.Framework.EntityFrameworkRepositories.Repositories;
+using HZY.Framework.AutoRegisterIOC;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,4 +1,4 @@
-﻿using HzyScanDiService;
+﻿using HZY.Framework.AutoRegisterIOC;
 using System;
 using System.Threading.Tasks;
 

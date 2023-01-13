@@ -1,6 +1,6 @@
 ﻿using HZY.EFCore.PagingViews;
 using HZY.EFCore.Repositories.Admin.Core;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using System;
 using System.Collections.Generic;
 using System.Linq;

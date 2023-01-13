@@ -1,5 +1,5 @@
 using HZY.Infrastructure;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using Microsoft.AspNetCore.Hosting;
 
 namespace HZY.Infrastructure.Files

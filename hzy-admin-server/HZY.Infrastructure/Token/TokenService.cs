@@ -1,5 +1,5 @@
 ﻿using HZY.Infrastructure;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using Microsoft.AspNetCore.Http;
 using Microsoft.IdentityModel.Tokens;
 using System;

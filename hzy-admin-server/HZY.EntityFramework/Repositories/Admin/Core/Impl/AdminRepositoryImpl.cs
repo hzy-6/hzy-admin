@@ -6,10 +6,10 @@ using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 
-using HzyEFCoreRepositories.Extensions;
-using HzyEFCoreRepositories.Repositories.Impl;
+using HZY.Framework.EntityFrameworkRepositories.Extensions;
+using HZY.Framework.EntityFrameworkRepositories.Repositories.Impl;
 
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 
 using HZY.EFCore.DbContexts;
 using HZY.EFCore.PagingViews;

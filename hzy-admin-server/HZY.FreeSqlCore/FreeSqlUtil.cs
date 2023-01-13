@@ -1,6 +1,6 @@
 ﻿using HZY.Infrastructure;
 using HZY.Infrastructure.SerilogUtil;
-using HzyScanDiService;
+using HZY.Framework.AutoRegisterIOC;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using System;

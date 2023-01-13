@@ -3,7 +3,7 @@ using HZY.EFCore.Repositories.Admin.Core;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Core;
 using HZY.Services.Admin.Core.Impl;
-using HzyEFCoreRepositories.Extensions;
+using HZY.Framework.EntityFrameworkRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
