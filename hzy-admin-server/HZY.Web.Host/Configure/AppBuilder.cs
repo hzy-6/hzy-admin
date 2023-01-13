@@ -37,6 +37,7 @@ using HZY.WebHost.Configure;
 using Zyx.MemoryMQ.Extensions;
 using HZY.Web.Host.Filters;
 using HZY.Web.Host.Middlewares;
+using HZY.Framework.DynamicApiController;
 
 namespace HZY.Web.Host.Configure;
 
@@ -82,13 +83,6 @@ public static class AppBuilder
 
         #endregion;
 
-        #region razor page 处理
-        //代码生成器需要开启 razor page 引擎
-        builder.Services.AddRazorPages();
-        //razor 解决中文被编码
-        builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));
-        #endregion
-
         // Add services to the container.
         builder.Services.AddControllers(options =>
         {
@@ -97,6 +91,7 @@ public static class AppBuilder
             options.Filters.Add<ApiPermissionFilter>();
         })
         .AddControllersAsServices()
+        .AddApiControllerPlus()
         //.AddJsonOptions(options =>
         //{
         //    //设置 如果是 Dictionary 那么 在 json 序列化 是 key 的字符 采用 小驼峰 命名
@@ -115,6 +110,13 @@ public static class AppBuilder
             //    option.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
         })
         ;
+
+        #region razor page 处理
+        //代码生成器需要开启 razor page 引擎
+        builder.Services.AddRazorPages();
+        //razor 解决中文被编码
+        builder.Services.AddSingleton(HtmlEncoder.Create(UnicodeRanges.All));
+        #endregion
 
         #region HttpContext、IMemoryCache
 

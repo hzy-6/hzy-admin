@@ -5,5 +5,6 @@ public enum ApiVersions
     Public,
     Admin,
     App,
-    Job
+    Job,
+    DynamicApiController
 }

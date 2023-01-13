@@ -485,6 +485,18 @@
             <param name="form"></param>
             <returns></returns>
         </member>
+        <member name="T:HZY.Services.Admin.DynamicApiControllerAppService">
+            <summary>
+            动态 api controller demo
+            </summary>
+        </member>
+        <member name="M:HZY.Services.Admin.DynamicApiControllerAppService.GetName(System.String)">
+            <summary>
+            获取名称
+            </summary>
+            <param name="name"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Services.Admin.Framework.SysDataAuthorityCustomService">
             <summary>
             服务 SysDataAuthorityCustomService
