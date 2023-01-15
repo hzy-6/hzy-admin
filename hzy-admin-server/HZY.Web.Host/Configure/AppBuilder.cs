@@ -90,8 +90,8 @@ public static class AppBuilder
             options.Filters.Add<ApiAuthorizationFilter>();
             options.Filters.Add<ApiPermissionFilter>();
         })
+        .AddDynamicApiController()
         .AddControllersAsServices()
-        .AddApiControllerPlus()
         //.AddJsonOptions(options =>
         //{
         //    //设置 如果是 Dictionary 那么 在 json 序列化 是 key 的字符 采用 小驼峰 命名

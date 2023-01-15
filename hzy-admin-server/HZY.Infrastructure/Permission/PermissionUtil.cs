@@ -39,6 +39,18 @@ namespace HZY.Infrastructure.Permission
         }
 
         /// <summary>
+        /// 获取控制器 的 ControllerDescriptorAttribute 特性
+        /// </summary>
+        /// <param name="controllerType"></param>
+        /// <returns></returns>
+        public static ControllerDescriptorAttribute GetControllerDescriptorAttributeByType(Type controllerType)
+        {
+            if (controllerType == null) return default;
+            var customAttributes = controllerType.GetCustomAttributes();
+            return (ControllerDescriptorAttribute)customAttributes.FirstOrDefault(w => w is ControllerDescriptorAttribute);
+        }
+
+        /// <summary>
         /// 获取 Action 描述标记特性
         /// </summary>
         /// <param name="actionDescriptor"></param>

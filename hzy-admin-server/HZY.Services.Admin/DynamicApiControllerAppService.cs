@@ -22,8 +22,7 @@ namespace HZY.Services.Admin
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
-        [HttpGet("{name}")]
-        public string GetName([FromQuery] string name)
+        public string GetName(string name)
         {
             return "动态 Api 返回数据信息" + name;
         }

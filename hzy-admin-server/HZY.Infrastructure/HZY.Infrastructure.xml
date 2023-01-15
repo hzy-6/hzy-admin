@@ -1106,6 +1106,13 @@
             <param name="controllerBase"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Infrastructure.Permission.PermissionUtil.GetControllerDescriptorAttributeByType(System.Type)">
+            <summary>
+            获取控制器 的 ControllerDescriptorAttribute 特性
+            </summary>
+            <param name="controllerType"></param>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Infrastructure.Permission.PermissionUtil.GetActionDescriptorAttribute(Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor)">
             <summary>
             获取 Action 描述标记特性

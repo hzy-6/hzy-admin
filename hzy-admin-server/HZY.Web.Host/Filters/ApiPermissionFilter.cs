@@ -45,7 +45,18 @@ namespace HZY.Web.Host.Filters
             //拦截操作数据库的 接口
             if (_appConfiguration.Configs.IsInterceptEdit)
             {
-                var actionList = new[] { "SaveForm", "DeleteList", "ChangePassword", "Change", "Delete", "Insert", "Create", "Update", "Remove", "AutoImprotProject" };
+                var actionList = new[] {
+                    "SaveForm",
+                    "DeleteList",
+                    "ChangePassword",
+                    "Change",
+                    "Delete",
+                    "Insert",
+                    "Create",
+                    "Update",
+                    "Remove",
+                    "AutoImprotProject"
+                };
                 if (actionList.Any(w => actionName.ToLower().Contains(w.ToLower())))
                 {
                     var data = ApiResult.ResultMessage(ApiResultCodeEnum.Warn, "请下载源代码本地运行!");
@@ -61,7 +72,7 @@ namespace HZY.Web.Host.Filters
             #endregion
 
             #region 检查控制器 是否有控制器描述标记 [ControllerDescriptorAttribute]
-            var controllerDescriptorAttribute = PermissionUtil.GetControllerDescriptorAttribute((ControllerBase)context.Controller);
+            var controllerDescriptorAttribute = PermissionUtil.GetControllerDescriptorAttributeByType(context.Controller.GetType());
             if (controllerDescriptorAttribute == null) return;
             if (string.IsNullOrWhiteSpace(controllerDescriptorAttribute.MenuId)) return;
             var menuId = controllerDescriptorAttribute.MenuId.ToInt32();
