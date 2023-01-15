@@ -8,7 +8,7 @@ using HZY.Framework.AutoRegisterIOC;
 using HZY.Infrastructure.Token;
 using HZY.Models.Entities.BaseEntitys;
 
-namespace HZY.EFCore.Interceptors
+namespace HZY.EntityFramework.Interceptors
 {
     /// <summary>
     /// 审计 保存拦截器

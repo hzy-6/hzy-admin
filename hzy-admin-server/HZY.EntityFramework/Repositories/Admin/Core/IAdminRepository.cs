@@ -1,5 +1,5 @@
-﻿using HZY.EFCore.DbContexts;
-using HZY.EFCore.PagingViews;
+﻿using HZY.EntityFramework.DbContexts;
+using HZY.EntityFramework.PagingViews;
 using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
 using HZY.Framework.EntityFrameworkRepositories.Repositories;
@@ -11,7 +11,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.EFCore.Repositories.Admin.Core
+namespace HZY.EntityFramework.Repositories.Admin.Core
 {
     /// <summary>
     /// Admin默认基础仓储接口

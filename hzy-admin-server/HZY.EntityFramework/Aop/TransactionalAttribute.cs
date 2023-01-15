@@ -3,7 +3,7 @@ using HZY.Framework.AutoRegisterIOC;
 using Microsoft.EntityFrameworkCore;
 using HZY.Framework.AutoRegisterIOC.Attributes;
 
-namespace HZY.EFCore.Aop
+namespace HZY.EntityFramework.Aop
 {
     /// <summary>
     /// 事务拦截

@@ -1,5 +1,5 @@
-﻿using HZY.EFCore.DbContexts;
-using HZY.EFCore.Repositories.Admin.Core.Impl;
+﻿using HZY.EntityFramework.DbContexts;
+using HZY.EntityFramework.Repositories.Admin.Core.Impl;
 using HZY.Models.Entities.LowCode;
 using HZY.Framework.AutoRegisterIOC;
 using System;
@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.EFCore.Repositories.Admin.DevelopmentTool.LowCode
+namespace HZY.EntityFramework.Repositories.Admin.DevelopmentTool.LowCode
 {
     public class LowCodeTableRepository : AdminRepositoryImpl<LowCodeTable>, ITransientSelfDependency
     {

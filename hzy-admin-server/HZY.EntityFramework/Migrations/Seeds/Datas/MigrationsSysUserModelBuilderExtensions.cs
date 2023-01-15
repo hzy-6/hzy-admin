@@ -10,7 +10,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.EFCore.Migrations.Seeds.Datas;
+namespace HZY.EntityFramework.Migrations.Seeds.Datas;
 
   public static class MigrationsSysUserModelBuilderExtensions
     {

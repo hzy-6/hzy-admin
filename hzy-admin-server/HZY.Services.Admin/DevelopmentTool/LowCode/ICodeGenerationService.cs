@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.PagingViews;
+﻿using HZY.EntityFramework.PagingViews;
 using HZY.Models.DTO.DevelopmentTool;
 using HZY.Framework.AutoRegisterIOC;
 

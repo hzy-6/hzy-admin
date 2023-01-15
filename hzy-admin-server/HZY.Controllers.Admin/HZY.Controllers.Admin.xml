@@ -9,7 +9,7 @@
             会员控制器
             </summary>
         </member>
-        <member name="M:HZY.Controllers.Admin.Base.MemberController.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Member})">
+        <member name="M:HZY.Controllers.Admin.Base.MemberController.FindListAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Member})">
             <summary>
             获取列表
             </summary>
@@ -44,7 +44,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Base.MemberController.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Member})">
+        <member name="M:HZY.Controllers.Admin.Base.MemberController.ExportExcelAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Member})">
             <summary>
             导出Excel
             </summary>
@@ -189,7 +189,7 @@
             <param name="size"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.LowCodeTableController.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.LowCode.LowCodeTable})">
+        <member name="M:HZY.Controllers.Admin.LowCodeTableController.FindListAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.LowCode.LowCodeTable})">
             <summary>
             获取列表
             </summary>
@@ -237,7 +237,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.LowCodeTableInfoController.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.LowCode.LowCodeTableInfo})">
+        <member name="M:HZY.Controllers.Admin.LowCodeTableInfoController.FindListAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.LowCode.LowCodeTableInfo})">
             <summary>
             获取列表
             </summary>
@@ -283,7 +283,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityController.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysDataAuthority})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityController.FindListAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysDataAuthority})">
             <summary>
             获取列表
             </summary>
@@ -318,7 +318,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityController.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysDataAuthority})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityController.ExportExcelAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysDataAuthority})">
             <summary>
             导出Excel
             </summary>
@@ -332,7 +332,7 @@
             <param name="roleId"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityCustomController.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysDataAuthorityCustom})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityCustomController.FindListAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysDataAuthorityCustom})">
             <summary>
             获取列表
             </summary>
@@ -367,7 +367,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityCustomController.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysDataAuthorityCustom})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysDataAuthorityCustomController.ExportExcelAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysDataAuthorityCustom})">
             <summary>
             导出Excel
             </summary>
@@ -425,7 +425,7 @@
             功能控制器
             </summary>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysFunctionController.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysFunction})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysFunctionController.FindListAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysFunction})">
             <summary>
             获取列表
             </summary>
@@ -460,7 +460,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysFunctionController.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysFunction})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysFunctionController.ExportExcelAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysFunction})">
             <summary>
             导出Excel
             </summary>
@@ -472,7 +472,7 @@
             菜单控制器
             </summary>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysMenuController.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysMenu})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysMenuController.FindListAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysMenu})">
             <summary>
             获取列表
             </summary>
@@ -507,7 +507,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysMenuController.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysMenu})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysMenuController.ExportExcelAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysMenu})">
             <summary>
             导出Excel
             </summary>
@@ -526,7 +526,7 @@
             操作日志控制器
             </summary>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysOperationLogController.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.DTO.Framework.SysOperationLogSearchDto})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysOperationLogController.FindListAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.DTO.Framework.SysOperationLogSearchDto})">
             <summary>
             获取表单数据
             </summary>
@@ -598,7 +598,7 @@
             岗位控制器
             </summary>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysPostController.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysPost})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysPostController.FindListAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysPost})">
             <summary>
             获取列表
             </summary>
@@ -633,7 +633,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysPostController.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysPost})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysPostController.ExportExcelAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysPost})">
             <summary>
             导出Excel
             </summary>
@@ -645,7 +645,7 @@
             角色控制器
             </summary>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysRoleController.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysRole})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysRoleController.FindListAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysRole})">
             <summary>
             获取列表
             </summary>
@@ -680,7 +680,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysRoleController.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysRole})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysRoleController.ExportExcelAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysRole})">
             <summary>
             导出Excel
             </summary>
@@ -692,7 +692,7 @@
             角色菜单功能控制器
             </summary>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysRoleMenuFunctionController.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysRole})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysRoleMenuFunctionController.FindListAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysRole})">
             <summary>
             获取列表
             </summary>
@@ -717,7 +717,7 @@
             系统账号管理
             </summary>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysUserController.FindListAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysUser})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysUserController.FindListAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysUser})">
             <summary>
             获取列表
             </summary>
@@ -752,7 +752,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Controllers.Admin.Framework.SysUserController.ExportExcelAsync(HZY.EFCore.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysUser})">
+        <member name="M:HZY.Controllers.Admin.Framework.SysUserController.ExportExcelAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysUser})">
             <summary>
             导出Excel
             </summary>

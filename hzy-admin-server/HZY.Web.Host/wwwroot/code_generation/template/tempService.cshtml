@@ -77,7 +77,7 @@ namespace @(Model.Namespace).Services.Admin.App
             var query = this._defaultRepository.Select
                     @if (!string.IsNullOrWhiteSpace(searchKeyWord))
                     {
-        <pre>.WhereIf(!string.IsNullOrWhiteSpace(search?.@(searchKeyWord)), w => w.@(searchKeyWord).Contains(search.@(searchKeyWord)))</pre>
+                <pre>.WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search?.@(searchKeyWord)), w => w.@(searchKeyWord).Contains(pagingSearchInput.Search?.@(searchKeyWord)))</pre>
                     }
                     .OrderByDescending(w => w.CreationTime)
                     .Select(w => new
@@ -89,7 +89,7 @@ namespace @(Model.Namespace).Services.Admin.App
                     })
                 ;
 
-            var result = await this._defaultRepository.AsPagingViewAsync(query, page, size);
+            var result = await this._defaultRepository.AsPagingViewAsync(query, pagingSearchInput);
             // result.Column(query, w => w.OrganizationName).Mapping<SysOrganization>(w => w.Name);
             // result.Column(query, w => w.OrganizationName).Mapping(title:"所属组织");
             //覆盖值

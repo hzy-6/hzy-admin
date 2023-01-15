@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.DbContexts;
+﻿using HZY.EntityFramework.DbContexts;
 using HZY.Managers.SignalRs.Hubs;
 using Microsoft.AspNetCore.Builder;
 using System;

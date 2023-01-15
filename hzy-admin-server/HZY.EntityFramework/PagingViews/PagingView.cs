@@ -8,10 +8,10 @@ using HZY.Framework.AutoRegisterIOC;
 using Microsoft.Extensions.DependencyInjection;
 using System.Linq.Expressions;
 using System.Data;
-using HZY.EFCore.Repositories.Admin.DevelopmentTool;
+using HZY.EntityFramework.Repositories.Admin.DevelopmentTool;
 using NPOI.SS.Formula.Functions;
 
-namespace HZY.EFCore.PagingViews;
+namespace HZY.EntityFramework.PagingViews;
 
 /// <summary>
 /// 分页视图模型

@@ -1,8 +1,8 @@
 using HZY.Managers.Accounts;
-using HZY.EFCore.Aop;
-using HZY.EFCore.DbContexts;
-using HZY.EFCore.PagingViews;
-using HZY.EFCore.Repositories.Admin.Core;
+using HZY.EntityFramework.Aop;
+using HZY.EntityFramework.DbContexts;
+using HZY.EntityFramework.PagingViews;
+using HZY.EntityFramework.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Aop;
 using HZY.Infrastructure.ApiResultManage;

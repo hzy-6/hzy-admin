@@ -1,7 +1,7 @@
-﻿using HZY.EFCore.Migrations.Seeds.Datas;
+﻿using HZY.EntityFramework.Migrations.Seeds.Datas;
 using Microsoft.EntityFrameworkCore;
 
-namespace HZY.EFCore.Migrations.Seeds
+namespace HZY.EntityFramework.Migrations.Seeds
 {
     /// <summary>
     /// EFCore 种子数据

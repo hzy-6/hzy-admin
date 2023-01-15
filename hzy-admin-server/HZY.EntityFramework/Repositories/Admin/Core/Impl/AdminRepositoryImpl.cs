@@ -11,15 +11,15 @@ using HZY.Framework.EntityFrameworkRepositories.Repositories.Impl;
 
 using HZY.Framework.AutoRegisterIOC;
 
-using HZY.EFCore.DbContexts;
-using HZY.EFCore.PagingViews;
+using HZY.EntityFramework.DbContexts;
+using HZY.EntityFramework.PagingViews;
 using HZY.Infrastructure;
 using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
 using HZY.Models.Entities.BaseEntitys;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
-namespace HZY.EFCore.Repositories.Admin.Core.Impl;
+namespace HZY.EntityFramework.Repositories.Admin.Core.Impl;
 
 /// <summary>
 /// Admin默认基础仓储接口

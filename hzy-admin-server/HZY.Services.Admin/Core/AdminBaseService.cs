@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using HZY.EFCore.PagingViews;
+using HZY.EntityFramework.PagingViews;
 using HZY.Infrastructure;
 using HZY.Infrastructure.Services;
 using NPOI.HSSF.UserModel;

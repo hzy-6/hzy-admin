@@ -1,10 +1,10 @@
 ﻿using System.Linq.Expressions;
-using HZY.EFCore.Repositories.Admin.DevelopmentTool;
+using HZY.EntityFramework.Repositories.Admin.DevelopmentTool;
 using HZY.Infrastructure;
 using HZY.Framework.AutoRegisterIOC;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace HZY.EFCore.PagingViews;
+namespace HZY.EntityFramework.PagingViews;
 
 /// <summary>
 /// 列头信息

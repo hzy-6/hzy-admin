@@ -1,4 +1,4 @@
-﻿using HZY.EFCore.Migrations.Seeds;
+﻿using HZY.EntityFramework.Migrations.Seeds;
 using HZY.Infrastructure;
 using HZY.Models.Entities.BaseEntitys;
 using HZY.Framework.EntityFrameworkRepositories.Extensions;
@@ -8,7 +8,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace HZY.EFCore.DbContexts;
+namespace HZY.EntityFramework.DbContexts;
 
 /// <summary>
 /// 后台权限管理系统 DbContext

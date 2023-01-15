@@ -1,5 +1,5 @@
 ﻿using HZY.Managers.Quartz;
-using HZY.EFCore;
+using HZY.EntityFramework;
 using HZY.Infrastructure;
 using HZY.Infrastructure.MessageQueue.Models;
 using HZY.Framework.AutoRegisterIOC;

@@ -1,6 +1,6 @@
 ﻿using FreeSql;
 using FreeSql.DatabaseModel;
-using HZY.EFCore.Repositories.Admin.DevelopmentTool.LowCode;
+using HZY.EntityFramework.Repositories.Admin.DevelopmentTool.LowCode;
 using HZY.Infrastructure;
 using HZY.Models.DTO.DevelopmentTool;
 using HZY.Models.Entities.LowCode;
@@ -12,7 +12,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.EFCore.Repositories.Admin.DevelopmentTool
+namespace HZY.EntityFramework.Repositories.Admin.DevelopmentTool
 {
     /// <summary>
     /// 用于获取表信息仓储

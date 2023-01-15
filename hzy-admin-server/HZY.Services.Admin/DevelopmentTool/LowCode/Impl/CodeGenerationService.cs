@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel;
 using System.Reflection;
 using System.Text;
-using HZY.EFCore.PagingViews;
-using HZY.EFCore.Repositories.Admin.DevelopmentTool;
+using HZY.EntityFramework.PagingViews;
+using HZY.EntityFramework.Repositories.Admin.DevelopmentTool;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.RazorView;

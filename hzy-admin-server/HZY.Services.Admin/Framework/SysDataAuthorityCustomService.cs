@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using HZY.EFCore.PagingViews;
-using HZY.EFCore.Repositories.Admin.Core;
+using HZY.EntityFramework.PagingViews;
+using HZY.EntityFramework.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;

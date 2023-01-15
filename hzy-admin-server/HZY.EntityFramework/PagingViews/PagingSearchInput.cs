@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.EFCore.PagingViews
+namespace HZY.EntityFramework.PagingViews
 {
     /// <summary>
     /// 分页查询对象

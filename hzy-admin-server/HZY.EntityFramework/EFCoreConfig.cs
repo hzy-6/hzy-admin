@@ -1,7 +1,7 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
-using HZY.EFCore.DbContexts;
+using HZY.EntityFramework.DbContexts;
 using HZY.Infrastructure;
 using HZY.Framework.EntityFrameworkRepositories;
 using Microsoft.Extensions.Hosting;
@@ -9,9 +9,9 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using HZY.Infrastructure.SerilogUtil;
-using HZY.EFCore.Interceptors;
+using HZY.EntityFramework.Interceptors;
 
-namespace HZY.EFCore;
+namespace HZY.EntityFramework;
 
 /// <summary>
 /// 仓储模块

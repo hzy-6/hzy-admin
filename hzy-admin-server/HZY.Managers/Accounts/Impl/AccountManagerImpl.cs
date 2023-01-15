@@ -1,5 +1,5 @@
-using HZY.EFCore;
-using HZY.EFCore.Repositories.Admin.Core;
+using HZY.EntityFramework;
+using HZY.EntityFramework.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Infrastructure.Token;
