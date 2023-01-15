@@ -832,6 +832,20 @@
             <param name="form"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Services.Admin.Framework.SysPostService.CreateAsync(HZY.Models.Entities.Framework.SysPost)">
+            <summary>
+            添加
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Services.Admin.Framework.SysPostService.UpdateAsync(HZY.Models.Entities.Framework.SysPost)">
+            <summary>
+            编辑
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Services.Admin.Framework.SysPostService.ExportExcelAsync(HZY.EntityFramework.PagingViews.PagingSearchInput{HZY.Models.Entities.Framework.SysPost})">
             <summary>
             导出Excel

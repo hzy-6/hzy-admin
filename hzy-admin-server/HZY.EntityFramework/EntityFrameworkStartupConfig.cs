@@ -16,14 +16,14 @@ namespace HZY.EntityFramework;
 /// <summary>
 /// 仓储模块
 /// </summary>
-public static class EFCoreConfig
+public static class EntityFrameworkStartupConfig
 {
 
     /// <summary>
     /// 使用 DbContext
     /// </summary>
     /// <param name="app"></param>
-    public static void UseEfCore(this IApplicationBuilder app)
+    public static void UseEntityFramework(this IApplicationBuilder app)
     {
         app.UseEntityFrameworkRepositories(typeof(AdminDbContext));
 
@@ -55,7 +55,7 @@ public static class EFCoreConfig
     /// <param name="services"></param>
     /// <param name="appConfiguration"></param>
     /// <param name="hostBuilder"></param>
-    public static void AddEfCore(this IServiceCollection services, AppConfiguration appConfiguration, WebApplicationBuilder hostBuilder)
+    public static void AddEntityFramework(this IServiceCollection services, AppConfiguration appConfiguration, WebApplicationBuilder hostBuilder)
     {
         //#region 开发环境使用 AddDbContextPool
 
@@ -119,7 +119,7 @@ public static class EFCoreConfig
                 break;
         }
 
-        UseEfCoreLoggerFactory(options, hostBuilder.Environment);
+        UseEntityFrameworkLoggerFactory(options, hostBuilder.Environment);
         // 懒加载代理
         //options.UseLazyLoadingProxies();
         //添加 EFCore 监控 和 动态表名
@@ -128,11 +128,11 @@ public static class EFCoreConfig
     }
 
     /// <summary>
-    /// efcore 使用控制台日志
+    /// EntityFramework 使用控制台日志
     /// </summary>
     /// <param name="options"></param>
     /// <param name="webHostEnvironment"></param>
-    private static void UseEfCoreLoggerFactory(DbContextOptionsBuilder options, IWebHostEnvironment webHostEnvironment)
+    private static void UseEntityFrameworkLoggerFactory(DbContextOptionsBuilder options, IWebHostEnvironment webHostEnvironment)
     {
         if (webHostEnvironment.IsDevelopment())
         {

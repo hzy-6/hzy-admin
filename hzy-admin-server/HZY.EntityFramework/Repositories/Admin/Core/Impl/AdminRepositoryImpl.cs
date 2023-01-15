@@ -63,17 +63,19 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
         #endregion
 
         #region 排序处理
-
-        //检查排序字段大小写
-        foreach (var item in pagingSearchInput.SearchSort)
+        if (pagingSearchInput?.SearchSort != null)
         {
-            if (string.IsNullOrWhiteSpace(item.Field)) continue;
-            var name = fieldNames.FirstOrDefault(w => w.ToLower() == item.Field.ToLower());
-            if (string.IsNullOrWhiteSpace(name)) continue;
-            item.Field = name;
-        }
+            //检查排序字段大小写
+            foreach (var item in pagingSearchInput.SearchSort)
+            {
+                if (string.IsNullOrWhiteSpace(item.Field)) continue;
+                var name = fieldNames.FirstOrDefault(w => w.ToLower() == item.Field.ToLower());
+                if (string.IsNullOrWhiteSpace(name)) continue;
+                item.Field = name;
+            }
 
-        query = query.GetOrderBy(pagingSearchInput.SearchSort);
+            query = query.GetOrderBy(pagingSearchInput.SearchSort);
+        }
 
         #endregion
 

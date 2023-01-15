@@ -71,18 +71,18 @@
             <param name="modelBuilder"></param>
             <param name="mappingName"></param>
         </member>
-        <member name="T:HZY.EntityFramework.EFCoreConfig">
+        <member name="T:HZY.EntityFramework.EntityFrameworkStartupConfig">
             <summary>
             仓储模块
             </summary>
         </member>
-        <member name="M:HZY.EntityFramework.EFCoreConfig.UseEfCore(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+        <member name="M:HZY.EntityFramework.EntityFrameworkStartupConfig.UseEntityFramework(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
             <summary>
             使用 DbContext
             </summary>
             <param name="app"></param>
         </member>
-        <member name="M:HZY.EntityFramework.EFCoreConfig.AddEfCore(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+        <member name="M:HZY.EntityFramework.EntityFrameworkStartupConfig.AddEntityFramework(Microsoft.Extensions.DependencyInjection.IServiceCollection,HZY.Infrastructure.AppConfiguration,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
             <summary>
             注册 Admin 后台管理数据库
             </summary>
@@ -90,7 +90,7 @@
             <param name="appConfiguration"></param>
             <param name="hostBuilder"></param>
         </member>
-        <member name="M:HZY.EntityFramework.EFCoreConfig.InitAdminDbContext(HZY.Infrastructure.AppConfiguration,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+        <member name="M:HZY.EntityFramework.EntityFrameworkStartupConfig.InitAdminDbContext(HZY.Infrastructure.AppConfiguration,Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
             <summary>
             初始化 AdminDbContext
             </summary>
@@ -98,9 +98,9 @@
             <param name="options"></param>
             <param name="hostBuilder"></param>
         </member>
-        <member name="M:HZY.EntityFramework.EFCoreConfig.UseEfCoreLoggerFactory(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
+        <member name="M:HZY.EntityFramework.EntityFrameworkStartupConfig.UseEntityFrameworkLoggerFactory(Microsoft.EntityFrameworkCore.DbContextOptionsBuilder,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
-            efcore 使用控制台日志
+            EntityFramework 使用控制台日志
             </summary>
             <param name="options"></param>
             <param name="webHostEnvironment"></param>

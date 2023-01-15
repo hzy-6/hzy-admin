@@ -1,24 +1,21 @@
 ﻿using HZY.EntityFramework.PagingViews;
 using HZY.EntityFramework.Repositories.Admin.Core;
 using HZY.Infrastructure;
-using HZY.Infrastructure.ApiResultManage;
-using HZY.Models.DTO;
-using HZY.Models.Entities;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Core;
 using HZY.Framework.EntityFrameworkRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using HZY.Framework.DynamicApiController;
+using Microsoft.AspNetCore.Mvc;
+using HZY.Infrastructure.Filters;
+using HZY.Infrastructure.Permission.Attributes;
+using HZY.Models.Consts;
 
 namespace HZY.Services.Admin.Framework;
 
-public class SysPostService : AdminBaseService<IAdminRepository<SysPost>>
+[ApiExplorerSettings(GroupName = nameof(ApiVersions.DynamicApiController))]
+[Route("/api/[controller]/[action]")]
+public class SysPostService : AdminBaseService<IAdminRepository<SysPost>>, IDynamicApiController
 {
     public SysPostService(IAdminRepository<SysPost> defaultRepository) : base(defaultRepository)
     {
@@ -92,6 +89,33 @@ public class SysPostService : AdminBaseService<IAdminRepository<SysPost>>
     {
         await this._defaultRepository.InsertOrUpdateAsync(form);
     }
+
+    /// <summary>
+    /// 添加
+    /// </summary>
+    /// <param name="form"></param>
+    /// <returns></returns>
+    [RequestLimitFilter]
+    [ActionDescriptor(AdminFunctionConsts.Function_Insert, DisplayName = "创建表单")]
+    [ApiCheckModel]
+    public Task CreateAsync(SysPost form)
+    {
+        return this.SaveFormAsync(form);
+    }
+
+    /// <summary>
+    /// 编辑
+    /// </summary>
+    /// <param name="form"></param>
+    /// <returns></returns>
+    [RequestLimitFilter]
+    [ActionDescriptor(AdminFunctionConsts.Function_Update, DisplayName = "编辑表单")]
+    [ApiCheckModel]
+    public Task UpdateAsync(SysPost form)
+    {
+        return this.SaveFormAsync(form);
+    }
+
 
     /// <summary>
     /// 导出Excel

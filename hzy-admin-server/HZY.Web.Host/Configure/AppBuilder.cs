@@ -1,7 +1,6 @@
 ﻿using HZY.Managers.Quartz;
 using HZY.EntityFramework;
 using HZY.Infrastructure;
-using HZY.Infrastructure.MessageQueue.Models;
 using HZY.Framework.AutoRegisterIOC;
 using System.Text;
 using HZY.FreeSqlCore;
@@ -137,7 +136,7 @@ public static class AppBuilder
         #region 数据库仓储注册 、 中间件注册
 
         //配置efcore
-        services.AddEfCore(appConfiguration, builder);
+        services.AddEntityFramework(appConfiguration, builder);
         //配置freesql
         services.AddFreeSql(appConfiguration, $"{prefixString}Repositories");
         //配置redis
@@ -345,7 +344,7 @@ public static class AppBuilder
         #endregion
 
         #region 使用 DbContext
-        app.UseEfCore();
+        app.UseEntityFramework();
         #endregion
 
         app.UseEndpoints(endpoints =>
