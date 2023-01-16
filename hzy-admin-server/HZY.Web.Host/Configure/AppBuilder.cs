@@ -89,7 +89,10 @@ public static class AppBuilder
             options.Filters.Add<ApiAuthorizationFilter>();
             options.Filters.Add<ApiPermissionFilter>();
         })
-        .AddDynamicApiController()
+        .AddDynamicApiController(options =>
+        {
+            options.IsLower = false;
+        })
         .AddControllersAsServices()
         //.AddJsonOptions(options =>
         //{
