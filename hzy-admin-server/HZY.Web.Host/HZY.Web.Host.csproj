@@ -6,7 +6,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<!--<SatelliteResourceLanguages>zh-Hans</SatelliteResourceLanguages>-->
 		<SatelliteResourceLanguages>zh-Hans11</SatelliteResourceLanguages>
-        <!--尝试设置您的 .csproj？在某些情况下，服务器 GC 可能懒得回收内存。ServerGarbageCollection false-->
+		<!--尝试设置您的 .csproj？在某些情况下，服务器 GC 可能懒得回收内存。ServerGarbageCollection false-->
 		<ServerGarbageCollection>false</ServerGarbageCollection>
 		<ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
 		<!--防止报 GenerateOpenApiDocuments 错误-->
@@ -19,19 +19,17 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="6.0.6" />
-		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.1" />
-
-		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.3" />
+		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.6" />
 		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<ProjectReference Include="..\HZY.Controllers.Admin\HZY.Controllers.Admin.csproj">
-		  <TreatAsUsed>true</TreatAsUsed>
+			<TreatAsUsed>true</TreatAsUsed>
 		</ProjectReference>
 		<ProjectReference Include="..\HZY.Controllers.App\HZY.Controllers.App.csproj">
-		  <TreatAsUsed>true</TreatAsUsed>
+			<TreatAsUsed>true</TreatAsUsed>
 		</ProjectReference>
 		<ProjectReference Include="..\HZY.EntityFramework\HZY.EntityFramework.csproj" />
 		<ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
@@ -39,10 +37,10 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <None Update="HZY.Web.Host.xml">
-	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-		  <GenerateDocumentationFile>true</GenerateDocumentationFile>
-	  </None>
+		<None Update="HZY.Web.Host.xml">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+			<GenerateDocumentationFile>true</GenerateDocumentationFile>
+		</None>
 	</ItemGroup>
 
 	<!--防止发布报多个 xml 问题-->

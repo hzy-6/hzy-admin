@@ -40,7 +40,7 @@ namespace HZY.EntityFramework.Aop
         {
             if (_dbContextTypes == null || _dbContextTypes.Length == 0)
             {
-                throw new Exception("请在程序启动前注册 程序中所有的 dbcontext 类型。例如： serviceProvider.UseHzyEFCore(typeof(AdminDbContext));");
+                throw new Exception("请在程序启动前注册 程序中所有的 dbcontext 类型。例如： app.UseEntityFrameworkRepositories(typeof(AdminDbContext));");
             }
 
             foreach (var dbContextType in _dbContextTypes)
@@ -59,7 +59,7 @@ namespace HZY.EntityFramework.Aop
         {
             if (_dbContextTypes == null || _dbContextTypes.Length == 0)
             {
-                throw new Exception("请在程序启动前注册 程序中所有的 dbcontext 类型。例如： serviceProvider.UseHzyEFCore(typeof(AdminDbContext));");
+                throw new Exception("请在程序启动前注册 程序中所有的 dbcontext 类型。例如： app.UseEntityFrameworkRepositories(typeof(AdminDbContext));");
             }
 
             foreach (var dbContextType in _dbContextTypes)
@@ -98,7 +98,7 @@ namespace HZY.EntityFramework.Aop
         {
             if (_dbContextTypes == null || _dbContextTypes.Length == 0)
             {
-                throw new Exception("请在程序启动前注册 程序中所有的 dbcontext 类型。例如： serviceProvider.UseHzyEFCore(typeof(AdminDbContext));");
+                throw new Exception("请在程序启动前注册 程序中所有的 dbcontext 类型。例如： app.UseEntityFrameworkRepositories(typeof(AdminDbContext));");
             }
 
             //函数异常触发事件
