@@ -82,7 +82,6 @@ namespace HZY.Managers.Quartz.Jobs
                 text += $"EndTime={endTime}|耗时={_stopwatch.ElapsedMilliseconds} 毫秒|结果={result.Message}";
                 _jobLoggerService.Write(new QuartzJobTaskLog()
                 {
-                    Id = Guid.NewGuid(),
                     JobTaskId = taskId,
                     Text = text
                 });

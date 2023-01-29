@@ -190,11 +190,11 @@ namespace HZY.Managers.Quartz.Impl
         /// <returns></returns>
         public async Task<bool> UpdateExecuteTime(Guid tasksId, DateTime dateTime)
         {
-            var jobTask = await _quartzJobTaskRepository.FindByIdAsync(tasksId);
+            var jobTask = await _quartzJobTaskRepository.SelectNoTracking.Where(w => w.Id == tasksId)
+                .ExecuteUpdateAsync(w => w.SetProperty(t => t.ExecuteTime, t => dateTime))
+                ;
 
-            jobTask.ExecuteTime = dateTime;
-
-            return await _quartzJobTaskRepository.UpdateByIdAsync(jobTask) > 0;
+            return jobTask > 0;
         }
 
         /// <summary>
