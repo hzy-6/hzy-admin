@@ -14,7 +14,7 @@ try
          // 使用 hzy framework
          .UseHzyFramework()
          // 启动主端点 miniapi
-         .MapMainEndpoints();
+         .MapMainEndpoints()
     ;
 
     app.Start();
