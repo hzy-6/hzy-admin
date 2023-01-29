@@ -1,12 +1,9 @@
-﻿using HZY.Managers.Quartz.Models;
-using HZY.Framework.AutoRegisterIOC;
+﻿using HZY.Framework.AutoRegisterIOC;
+using HZY.Models.Entities.Quartz;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Quartz;
-using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace HZY.Managers.Quartz.Jobs
 {
@@ -17,17 +14,13 @@ namespace HZY.Managers.Quartz.Jobs
     public class ResultfulApiJob : IJob, ITransientSelfDependency
     {
         private readonly IApiRequestService _apiRequestService;
-        private readonly ITaskService _taskService;
         private readonly ILogger<ResultfulApiJob> _logger;
-        private readonly IJobLoggerService _jobLogger;
         private readonly Stopwatch _stopwatch;
 
-        public ResultfulApiJob(IApiRequestService apiRequestService, ITaskService taskService, ILogger<ResultfulApiJob> logger, IJobLoggerService jobLogger)
+        public ResultfulApiJob(IApiRequestService apiRequestService, ILogger<ResultfulApiJob> logger)
         {
             _apiRequestService = apiRequestService;
-            _taskService = taskService;
             _logger = logger;
-            _jobLogger = jobLogger;
             _stopwatch = new Stopwatch();
         }
 
@@ -37,17 +30,20 @@ namespace HZY.Managers.Quartz.Jobs
             {
                 _stopwatch.Restart();
 
-                var tasksId = context.MergedJobDataMap.GetString("TasksId")?.ToString();
+                var tasksId = context.MergedJobDataMap.GetString(QuartzStartupConfig.JobTaskId)?.ToString();
 
                 if (string.IsNullOrWhiteSpace(tasksId))
                 {
-                    _logger.LogError("tasksId 空!");
+                    _logger.LogError($"{QuartzStartupConfig.JobTaskId} 空!");
                     return;
                 }
 
-                var tasks = await _taskService.FindByIdAsync(Guid.Parse(tasksId));
+                using var scope = IOCUtil.CreateScope();
+                var _taskService = scope.ServiceProvider.GetService<ITaskService>();
+                var _jobLoggerService = scope.ServiceProvider.GetService<IJobLoggerService>();
+                var quartzJobTask = await _taskService.FindByIdAsync(Guid.Parse(tasksId));
 
-                if (tasks == null)
+                if (quartzJobTask == null)
                 {
                     _logger.LogError("tasks 空!");
                     return;
@@ -63,11 +59,11 @@ namespace HZY.Managers.Quartz.Jobs
                 //});
 
                 var time = DateTime.Now;
-                var taskId = tasks?.Id ?? Guid.Empty;
+                var taskId = quartzJobTask?.Id ?? Guid.Empty;
 
-                var text = $"任务={tasks.Name}|组={tasks.GroupName}|{time:yyyy-MM-dd}|StartTime={time: HH:mm:ss:fff}|";
+                var text = $"任务={quartzJobTask.Name}|组={quartzJobTask.GroupName}|{time:yyyy-MM-dd}|StartTime={time: HH:mm:ss:fff}|";
 
-                var result = await _apiRequestService.RequestAsync(tasks.RequsetMode, tasks.ApiUrl, tasks.HeaderToken);
+                var result = await _apiRequestService.RequestAsync(quartzJobTask.RequsetMode, quartzJobTask.ApiUrl, quartzJobTask.HeaderToken);
 
                 if (result.IsSuccess)
                 {
@@ -84,12 +80,11 @@ namespace HZY.Managers.Quartz.Jobs
 
                 //运行结束记录
                 text += $"EndTime={endTime}|耗时={_stopwatch.ElapsedMilliseconds} 毫秒|结果={result.Message}";
-                _jobLogger.Write(new JobLoggerInfo()
+                _jobLoggerService.Write(new QuartzJobTaskLog()
                 {
                     Id = Guid.NewGuid(),
-                    TasksId = taskId,
-                    Text = text,
-                    CreateTime = time
+                    JobTaskId = taskId,
+                    Text = text
                 });
             }
             catch (Exception ex)

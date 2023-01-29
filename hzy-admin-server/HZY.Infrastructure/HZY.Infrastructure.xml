@@ -956,6 +956,11 @@
             <param name="context"></param>
             <returns></returns>
         </member>
+        <member name="T:HZY.Infrastructure.InfrastructureStartup">
+            <summary>
+            程序启动器
+            </summary>
+        </member>
         <member name="T:HZY.Infrastructure.MessageQueue.IMessageQueueProvider">
             <summary>
             消息队列提供者

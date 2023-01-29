@@ -1,13 +1,9 @@
 ﻿using HZY.Managers.Quartz.Jobs;
-using HZY.Managers.Quartz.Models;
 using HZY.Infrastructure.ApiResultManage;
 using Quartz;
 using Quartz.Impl.Matchers;
 using Quartz.Impl.Triggers;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using HZY.Models.Entities.Quartz;
 
 namespace HZY.Managers.Quartz.Impl
 {
@@ -30,7 +26,7 @@ namespace HZY.Managers.Quartz.Impl
         /// </summary>
         /// <param name="tasks"></param>
         /// <returns></returns>
-        public async Task<bool> RunAsync(Tasks tasks)
+        public async Task<bool> RunAsync(QuartzJobTask tasks)
         {
             //1、通过调度工厂获得调度器
             var scheduler = await _schedulerFactory.GetScheduler();
@@ -47,7 +43,7 @@ namespace HZY.Managers.Quartz.Impl
             //3、创建任务
             var jobDetail = JobBuilder.Create<ResultfulApiJob>()
                             .WithIdentity(taskName, tasks.GroupName)
-                            .UsingJobData("TasksId", tasks.Id.ToString())
+                            .UsingJobData(QuartzStartupConfig.JobTaskId, tasks.Id.ToString())
                             .Build();
 
             //4、写入 Job 实例工厂 解决 Job 中取 ioc 对象
@@ -67,7 +63,7 @@ namespace HZY.Managers.Quartz.Impl
         /// </summary>
         /// <param name="tasks"></param>
         /// <returns></returns>
-        public async Task<bool> CloseAsync(Tasks tasks)
+        public async Task<bool> CloseAsync(QuartzJobTask tasks)
         {
             IScheduler scheduler = await _schedulerFactory.GetScheduler();
             var jobKeys = (await scheduler

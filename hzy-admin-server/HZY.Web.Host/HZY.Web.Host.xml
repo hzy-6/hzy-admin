@@ -4,29 +4,6 @@
         <name>HZY.Web.Host</name>
     </assembly>
     <members>
-        <member name="T:HZY.Web.Host.Configure.AppBuilder">
-            <summary>
-            程序构建类
-            </summary>
-        </member>
-        <member name="M:HZY.Web.Host.Configure.AppBuilder.GetVersionList">
-            <summary>
-            获取 Swagger 版本集合
-            </summary>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Web.Host.Configure.AppBuilder.AppConfigureServicesBuild(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
-            <summary>
-            配置服务
-            </summary>
-            <param name="builder"></param>
-        </member>
-        <member name="M:HZY.Web.Host.Configure.AppBuilder.AppConfigureBuild(Microsoft.AspNetCore.Builder.WebApplication)">
-            <summary>
-            配置构建
-            </summary>
-            <param name="app"></param>
-        </member>
         <member name="P:HZY.Web.Host.Configure.CustomPolicyRequirement.AuthKey">
             <summary>
             权限认证键
@@ -124,6 +101,16 @@
             读取 body 信息
             </summary>
             <returns></returns>
+        </member>
+        <member name="T:HZY.Web.Host.WebHostStartup">
+            <summary>
+            程序启动器
+            </summary>
+        </member>
+        <member name="F:HZY.Web.Host.WebHostStartup._versionList">
+            <summary>
+            获取 Swagger 版本集合
+            </summary>
         </member>
         <member name="M:AspNetCoreGeneratedDocument.wwwroot_code_generation_template_tempModel.GetTypeNew(HZY.Models.Entities.LowCode.LowCodeTableInfo)">
             <summary>

@@ -1,18 +1,12 @@
-﻿using System;
-using System.Text.Json.Serialization;
+﻿using HZY.Models.Entities.BaseEntitys;
 
-namespace HZY.Managers.Quartz.Models
+namespace HZY.Models.Entities.Quartz
 {
     /// <summary>
-    /// 定时任务
+    /// 作业任务
     /// </summary>
-    public class Tasks
+    public class QuartzJobTask : DefaultBaseEntityGuidKey
     {
-        /// <summary>
-        /// Id
-        /// </summary>
-        public Guid? Id { get; set; }
-
         /// <summary>
         /// 任务名称
         /// </summary>
@@ -41,7 +35,7 @@ namespace HZY.Managers.Quartz.Models
         /// <summary>
         /// 请求方式
         /// </summary>
-        public TasksRequsetModeEnum RequsetMode { get; set; } = TasksRequsetModeEnum.Post;
+        public QuartzJobTaskRequsetModeEnum RequsetMode { get; set; } = QuartzJobTaskRequsetModeEnum.Post;
 
         /// <summary>
         /// 备注
@@ -51,24 +45,18 @@ namespace HZY.Managers.Quartz.Models
         /// <summary>
         /// 运行状态
         /// </summary>
-        public TasksStateEnum State { get; set; } = TasksStateEnum.未运行;
+        public QuartzJobTaskStateEnum State { get; set; } = QuartzJobTaskStateEnum.未运行;
 
         /// <summary>
         /// 执行时间
         /// </summary>
         public DateTime? ExecuteTime { get; set; }
-
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime? CreateTime { get; set; }
-
     }
 
     /// <summary>
     /// 请求方式
     /// </summary>
-    public enum TasksRequsetModeEnum
+    public enum QuartzJobTaskRequsetModeEnum
     {
         Post,
         Get,
@@ -78,10 +66,9 @@ namespace HZY.Managers.Quartz.Models
     /// <summary>
     /// 状态情况
     /// </summary>
-    public enum TasksStateEnum
+    public enum QuartzJobTaskStateEnum
     {
         未运行,
         运行中
     }
-
 }

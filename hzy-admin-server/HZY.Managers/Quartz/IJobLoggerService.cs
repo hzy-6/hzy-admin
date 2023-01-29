@@ -1,17 +1,16 @@
-﻿using HZY.Managers.Quartz.Models;
-using HZY.Framework.AutoRegisterIOC;
+﻿using HZY.Framework.AutoRegisterIOC;
+using HZY.Models.Entities.Quartz;
 
 namespace HZY.Managers.Quartz
 {
     /// <summary>
     /// Job 运行 日志
     /// </summary>
-    public interface IJobLoggerService : ISingletonDependency
+    public interface IJobLoggerService : ITransientDependency
     {
+        void Write(QuartzJobTaskLog jobLoggerInfo);
 
-        void Write(JobLoggerInfo jobLoggerInfo);
-
-        IEnumerable<JobLoggerInfo> FindListById(Guid tasksId,int page,int size);
+        List<QuartzJobTaskLog> FindListById(Guid tasksId, int page, int size);
 
     }
 }

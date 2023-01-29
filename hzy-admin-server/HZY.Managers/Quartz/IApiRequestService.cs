@@ -1,5 +1,5 @@
-﻿using HZY.Managers.Quartz.Models;
-using HZY.Framework.AutoRegisterIOC;
+﻿using HZY.Framework.AutoRegisterIOC;
+using HZY.Models.Entities.Quartz;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,7 +10,7 @@ namespace HZY.Managers.Quartz
     public interface IApiRequestService : ITransientDependency
     {
 
-        Task<(bool IsSuccess, string Message)> RequestAsync(TasksRequsetModeEnum requsetMode, string apiUrl, string headerKeyValue);
+        Task<(bool IsSuccess, string Message)> RequestAsync(QuartzJobTaskRequsetModeEnum requsetMode, string apiUrl, string headerKeyValue);
 
 
 

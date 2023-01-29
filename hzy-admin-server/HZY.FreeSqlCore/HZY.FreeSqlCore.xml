@@ -4,6 +4,11 @@
         <name>HZY.FreeSqlCore</name>
     </assembly>
     <members>
+        <member name="T:HZY.FreeSqlCore.FreeSqlCoreStartup">
+            <summary>
+            程序启动器
+            </summary>
+        </member>
         <member name="T:HZY.FreeSqlCore.FreeSqlUtil">
             <summary>
             FreeSql 模块配置

@@ -1,8 +1,5 @@
-﻿using HZY.Managers.Quartz.Models;
-using HZY.Framework.AutoRegisterIOC;
-using System;
-using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using HZY.Framework.AutoRegisterIOC;
+using HZY.Models.Entities.Quartz;
 
 namespace HZY.Managers.Quartz
 {
@@ -16,14 +13,14 @@ namespace HZY.Managers.Quartz
         /// 查询列表
         /// </summary>
         /// <returns></returns>
-        Task<IEnumerable<Tasks>> FindListAsync(string filter = null);
+        Task<IEnumerable<QuartzJobTask>> FindListAsync(string filter = null);
 
         /// <summary>
         /// 保存数据
         /// </summary>
         /// <param name="form"></param>
         /// <returns></returns>
-        Task<Tasks> SaveAsync(Tasks form);
+        Task<QuartzJobTask> SaveAsync(QuartzJobTask form);
 
         /// <summary>
         /// 删除数据
@@ -36,21 +33,21 @@ namespace HZY.Managers.Quartz
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
-        Task<Tasks> FindByIdAsync(Guid id);
+        Task<QuartzJobTask> FindByIdAsync(Guid id);
 
         /// <summary>
         /// 根据任务id 运行任务调度
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="quartzJobTask"></param>
         /// <returns></returns>
-        Task<bool> RunByIdAsync(Guid id);
+        Task<bool> RunByIdAsync(QuartzJobTask quartzJobTask);
 
         /// <summary>
         /// 根据任务id 关闭任务调度
         /// </summary>
-        /// <param name="id"></param>
+        /// <param name="quartzJobTask"></param>
         /// <returns></returns>
-        Task<bool> CloseByIdAsync(Guid id);
+        Task<bool> CloseByIdAsync(QuartzJobTask quartzJobTask);
 
         /// <summary>
         /// 更新执行时间

@@ -1200,6 +1200,81 @@
             账户Id
             </summary>
         </member>
+        <member name="T:HZY.Models.Entities.Quartz.QuartzJobTask">
+            <summary>
+            作业任务
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.Name">
+            <summary>
+            任务名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.GroupName">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.Cron">
+            <summary>
+            间隔表达式
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.ApiUrl">
+            <summary>
+            请求地址
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.HeaderToken">
+            <summary>
+            请求 token 密钥
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.RequsetMode">
+            <summary>
+            请求方式
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.State">
+            <summary>
+            运行状态
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.ExecuteTime">
+            <summary>
+            执行时间
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Quartz.QuartzJobTaskRequsetModeEnum">
+            <summary>
+            请求方式
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Quartz.QuartzJobTaskStateEnum">
+            <summary>
+            状态情况
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Quartz.QuartzJobTaskLog">
+            <summary>
+            作业任务 日志
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTaskLog.JobTaskId">
+            <summary>
+            任务id
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTaskLog.Text">
+            <summary>
+            任务日志
+            </summary>
+        </member>
         <member name="T:HZY.Models.VO.Upload.UploadResultVO">
             <summary>
             Antd Vue 文件上传返回对象

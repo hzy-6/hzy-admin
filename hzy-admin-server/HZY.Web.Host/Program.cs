@@ -1,31 +1,28 @@
 using HZY.Infrastructure;
 using HZY.Infrastructure.SerilogUtil;
-using HZY.Web.Host.Configure;
-using HZY.Web.Host.Endpoints;
-using HZY.Framework.AutoRegisterIOC;
 using Serilog;
+using HZY.Framework.Core;
+using HZY.Web.Host.Endpoints;
 
 try
 {
     var app = WebApplication.CreateBuilder(args)
-         // 日志配置
-         .LogUtilBuild()
-         // 服务注册
-         .AppConfigureServicesBuild()
+         // 加入 hzy framework
+         .AddHzyFramework()
          // 构建
          .Build()
-         // 使用服务和配置
-         .AppConfigureBuild()
+         // 使用 hzy framework
+         .UseHzyFramework()
          // 启动主端点 miniapi
-         .MapMainEndpoints()
-     ;
+         .MapMainEndpoints();
+    ;
 
     app.Start();
     app.Urls.First();
 
     //获取到服务启动地址
     AppConfiguration.Urls = app.Urls.ToArray();
-    
+
     //以下是 netcore 实现方式
     //var server = app.Services.GetService<IServer>();
     //var url = server.Features.Get<IServerAddressesFeature>().Addresses.First();

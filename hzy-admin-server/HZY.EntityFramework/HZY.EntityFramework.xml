@@ -71,6 +71,11 @@
             <param name="modelBuilder"></param>
             <param name="mappingName"></param>
         </member>
+        <member name="T:HZY.EntityFramework.EntityFrameworkStartup">
+            <summary>
+            程序启动器
+            </summary>
+        </member>
         <member name="T:HZY.EntityFramework.EntityFrameworkStartupConfig">
             <summary>
             仓储模块

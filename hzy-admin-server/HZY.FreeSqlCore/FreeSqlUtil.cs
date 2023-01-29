@@ -9,6 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using HZY.Framework.Core.Utils;
 
 namespace HZY.FreeSqlCore;
 
@@ -104,7 +105,7 @@ public static class FreeSqlUtil
 
         services.AddSingleton(FreeSqlUtil.AdminFreeSql);
         //services.AddScoped<UnitOfWorkManager>();
-        services.AddFreeRepository(null, IOCUtil.AssemblyList().Where(w =>
+        services.AddFreeRepository(null, CoreUtil.GetAssemblyList().Where(w =>
         {
             var name = w.GetName().Name;
             return name != null && name.StartsWith(assemblyFilter);

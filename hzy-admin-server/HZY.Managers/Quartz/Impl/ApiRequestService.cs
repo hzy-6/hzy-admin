@@ -1,8 +1,6 @@
 ﻿using Flurl.Http;
-using HZY.Managers.Quartz.Models;
+using HZY.Models.Entities.Quartz;
 using Microsoft.Extensions.Logging;
-using System;
-using System.Threading.Tasks;
 
 namespace HZY.Managers.Quartz.Impl
 {
@@ -25,7 +23,7 @@ namespace HZY.Managers.Quartz.Impl
         /// <param name="apiUrl"></param>
         /// <param name="headerKeyValue"></param>
         /// <returns></returns>
-        public async Task<(bool IsSuccess, string Message)> RequestAsync(TasksRequsetModeEnum requsetMode, string apiUrl, string headerKeyValue = null)
+        public async Task<(bool IsSuccess, string Message)> RequestAsync(QuartzJobTaskRequsetModeEnum requsetMode, string apiUrl, string headerKeyValue = null)
         {
             try
             {
@@ -46,17 +44,17 @@ namespace HZY.Managers.Quartz.Impl
 
                 IFlurlResponse flurResponse = default;
 
-                if (requsetMode == TasksRequsetModeEnum.Delete)
+                if (requsetMode == QuartzJobTaskRequsetModeEnum.Delete)
                 {
                     flurResponse = await flurlRequest.DeleteAsync();
                 }
 
-                if (requsetMode == TasksRequsetModeEnum.Post)
+                if (requsetMode == QuartzJobTaskRequsetModeEnum.Post)
                 {
                     flurResponse = await flurlRequest.PostAsync();
                 }
 
-                if (requsetMode == TasksRequsetModeEnum.Get)
+                if (requsetMode == QuartzJobTaskRequsetModeEnum.Get)
                 {
                     flurResponse = await flurlRequest.GetAsync();
                 }
