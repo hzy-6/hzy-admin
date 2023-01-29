@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 19/12/2022 09:54:45
+ Date: 29/01/2023 20:35:20
 */
 
 SET NAMES utf8mb4;
@@ -38,7 +38,7 @@ INSERT INTO `__efmigrationshistory` VALUES ('20221219015312_mysql_init', '6.0.9'
 DROP TABLE IF EXISTS `flow`;
 CREATE TABLE `flow`  (
   `Id` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `Number` int(0) NULL DEFAULT NULL,
+  `Number` int NULL DEFAULT NULL,
   `Code` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Remark` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
@@ -83,11 +83,11 @@ CREATE TABLE `flow_approval`  (
 DROP TABLE IF EXISTS `flow_approval_step_history`;
 CREATE TABLE `flow_approval_step_history`  (
   `Id` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `Sort` int(0) NOT NULL,
+  `Sort` int NOT NULL,
   `FlowNodeId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
   `FlowNodeName` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `SortMore` int(0) NOT NULL,
-  `State` int(0) NOT NULL,
+  `SortMore` int NOT NULL,
+  `State` int NOT NULL,
   `Opinions` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `UserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
   `UserName` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
@@ -132,7 +132,7 @@ DROP TABLE IF EXISTS `flow_node`;
 CREATE TABLE `flow_node`  (
   `Id` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
   `FlowId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `Sort` int(0) NULL DEFAULT NULL,
+  `Sort` int NULL DEFAULT NULL,
   `Name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `RoleId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
   `Remark` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
@@ -254,13 +254,13 @@ CREATE TABLE `low_code_table_info`  (
   `IsPrimary` tinyint(1) NOT NULL,
   `IsIdentity` tinyint(1) NOT NULL,
   `IsNullable` tinyint(1) NOT NULL,
-  `Position` int(0) NOT NULL,
+  `Position` int NOT NULL,
   `ColumnName` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Describe` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `DatabaseColumnType` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `CsType` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `CsField` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `MaxLength` int(0) NULL DEFAULT NULL,
+  `MaxLength` int NULL DEFAULT NULL,
   `DisplayName` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `CreatorUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
   `CreationTime` datetime(6) NOT NULL,
@@ -539,12 +539,85 @@ INSERT INTO `member` VALUES ('96a1aa3d-a61a-42d0-954a-c71753fb2065', '123', '123
 INSERT INTO `member` VALUES ('9a604aa2-9ae6-4a2f-8ddb-d9e0289ead9e', '1', '测试会员', '18510912123', '男', '2019-07-08 11:47:24.000000', '[{\"uid\":\"6f5aed63-0fdc-4752-9c2b-3f66cbfa77bf\",\"name\":\"time_000222_old_name_微信图片_20200521081252.jpg\",\"percent\":100,\"status\":\"done\",\"thumbUrl\":\"/upload/files/20220731/time_000222_old_name_微信图片_20200521081252.jpg\",\"url\":\"/upload/files/20220731/time_000222_old_name_微信图片_20200521081252.jpg\"}]', '<p>999888</p>', '[{\"uid\":\"35828ad6-cbba-4bcb-9c97-141d5b31acc7\",\"name\":\"time_000320_old_name_Ko.js增删改查例子.txt\",\"percent\":100,\"status\":\"done\",\"thumbUrl\":\"/upload/files/20220731/time_000320_old_name_Ko.js增删改查例子.txt\",\"url\":\"/upload/files/20220731/time_000320_old_name_Ko.js增删改查例子.txt\"}]', 'ac18f496-e93d-42f0-b59e-e321acc85335', NULL, '2018-04-25 23:00:00.000000', NULL, '2022-07-31 00:03:23.000000');
 
 -- ----------------------------
+-- Table structure for quartz_job_task
+-- ----------------------------
+DROP TABLE IF EXISTS `quartz_job_task`;
+CREATE TABLE `quartz_job_task`  (
+  `Id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `CreatorUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `CreationTime` datetime NOT NULL COMMENT '创建时间',
+  `LastModifierUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人id',
+  `LastModificationTime` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '任务名称',
+  `GroupName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '分组名称',
+  `Cron` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '间隔表达式',
+  `ApiUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '请求地址',
+  `HeaderToken` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '请求 token 密钥',
+  `RequsetMode` int NULL DEFAULT NULL COMMENT '请求方式（0=Post，1=Get，2=Delete）',
+  `Remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
+  `State` int NULL DEFAULT NULL COMMENT '运行状态（0=未运行，1=运行中）',
+  `ExecuteTime` datetime NULL DEFAULT NULL COMMENT '最后执行时间',
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of quartz_job_task
+-- ----------------------------
+INSERT INTO `quartz_job_task` VALUES ('0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '00000000-0000-0000-0000-000000000000', '2023-01-29 11:36:31', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:32:40', '默认测试接口', 'TEST', '0/10 * * * * ?', 'http://localhost:5600/api/job/JobTest/Test', '', 1, '用于测试', 1, '2023-01-29 17:32:40');
+
+-- ----------------------------
+-- Table structure for quartz_job_task_log
+-- ----------------------------
+DROP TABLE IF EXISTS `quartz_job_task_log`;
+CREATE TABLE `quartz_job_task_log`  (
+  `Id` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `CreatorUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '创建人id',
+  `CreationTime` datetime NOT NULL COMMENT '创建时间',
+  `LastModifierUserId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '更新人id',
+  `LastModificationTime` datetime NULL DEFAULT NULL COMMENT '更新时间',
+  `JobTaskId` char(36) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '作业任务id',
+  `Text` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL COMMENT '日志内容',
+  PRIMARY KEY (`Id`) USING BTREE
+) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
+
+-- ----------------------------
+-- Records of quartz_job_task_log
+-- ----------------------------
+INSERT INTO `quartz_job_task_log` VALUES ('1234C67D-7015-48C4-B21D-364D485F75A3', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:32:30', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:30:012|EndTime=17:32:30:038|耗时=28 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('1C2D3627-2C2C-4D6E-9219-3756E581F7EA', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:03:00', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:00:036|EndTime=12:03:00:100|耗时=65 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('1C5D8474-8BC6-4586-A93D-F1DFFF5B2BE7', '00000000-0000-0000-0000-000000000000', '2023-01-29 16:55:10', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 16:55:10:054|EndTime=16:55:10:092|耗时=41 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('2FCFC8D3-F7EE-47D8-87CC-B5EE4DE561AF', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:02:29', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:29:183|EndTime=12:02:29:234|耗时=54 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('3ECDC0F9-0937-440D-8E8C-D4EA126EF35C', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:04:00', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:04:00:041|EndTime=12:04:00:110|耗时=70 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('4EBD9D4D-28AE-4736-BD1A-1BEF6C77A37F', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:32:40', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:40:047|EndTime=17:32:40:080|耗时=36 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('658213B8-C975-409A-B490-92995B27795C', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:32:20', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:20:036|EndTime=17:32:20:066|耗时=31 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('72B10C0E-620F-4AC9-BF9A-3FCE7EAE1B88', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:12:33', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:12:30:940|EndTime=17:12:33:283|耗时=2372 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('7354BC3B-FA15-4645-8B54-63F1A7265D2F', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:03:20', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:20:039|EndTime=12:03:20:070|耗时=32 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('81E0A17C-5022-4974-B56B-9010102F1B03', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:02:40', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:40:020|EndTime=12:02:40:048|耗时=29 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('86DAA3AC-93CF-4FD2-AA93-C5A04F3AE968', '00000000-0000-0000-0000-000000000000', '2023-01-29 16:55:20', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 16:55:20:039|EndTime=16:55:20:064|耗时=27 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('897F4058-C5DF-4814-8C49-2420348415CC', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:32:00', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:00:011|EndTime=17:32:00:047|耗时=40 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('8F1A6859-B3EA-48AB-894A-158F85369947', '00000000-0000-0000-0000-000000000000', '2023-01-29 16:55:05', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 16:55:00:158|EndTime=16:55:05:239|耗时=5091 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('947B18B8-4ABF-4FDA-A612-0F8CE8EF746A', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:12:50', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:12:50:037|EndTime=17:12:50:071|耗时=35 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('95A4AA46-FDB3-4C29-8089-5A413D8BE776', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:32:10', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:10:040|EndTime=17:32:10:067|耗时=29 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('95DA5460-0C80-4DF7-9AAB-E4EE40D1B924', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:04:10', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:04:10:005|EndTime=12:04:10:039|耗时=36 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('A980D08F-2F2A-4017-8788-2BFB433DF66D', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:31:50', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:31:50:079|EndTime=17:31:50:236|耗时=160 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('BCA6690C-AB03-4677-93A2-471E55CED8EE', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:04:20', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:04:20:058|EndTime=12:04:20:084|耗时=28 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('BE1A1FE0-C856-487A-B7FD-37F1D3958115', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:02:30', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:30:056|EndTime=12:02:30:101|耗时=49 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('C465AD9C-62BD-406F-92D4-19FAF88F0940', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:02:23', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:15:195|EndTime=12:02:21:961|耗时=11296 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('D03B92DD-13C5-40FC-9E61-BFAC59BBB31A', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:02:50', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:50:038|EndTime=12:02:50:069|耗时=33 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('D5BFA210-65B2-4483-8B9A-3AEB47F98176', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:03:40', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:40:021|EndTime=12:03:40:053|耗时=33 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('D70E6344-D373-498A-AE19-E7CD84603E47', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:03:10', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:10:006|EndTime=12:03:10:430|耗时=427 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('D8004A93-C4F5-498B-B9AA-C7301460F5B9', '00000000-0000-0000-0000-000000000000', '2023-01-29 16:54:11', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 16:54:10:120|EndTime=16:54:10:662|耗时=552 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('E375C7F0-7B26-4C0E-8B86-F3A7F298C8FA', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:03:30', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:30:052|EndTime=12:03:30:080|耗时=30 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('F8CD7E8E-100B-43FA-BA4B-8A778BBF429C', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:03:50', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:50:016|EndTime=12:03:50:052|耗时=37 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('FFBBF252-55B1-438F-86B8-E2D6F1AB692A', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:12:40', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:12:40:056|EndTime=17:12:40:083|耗时=30 毫秒|结果=调用测试接口成功!');
+
+-- ----------------------------
 -- Table structure for sys_data_authority
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_data_authority`;
 CREATE TABLE `sys_data_authority`  (
   `Id` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `PermissionType` int(0) NOT NULL,
+  `PermissionType` int NOT NULL,
   `RoleId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
   `CreatorUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
   `CreationTime` datetime(6) NOT NULL,
@@ -566,7 +639,7 @@ DROP TABLE IF EXISTS `sys_data_authority_custom`;
 CREATE TABLE `sys_data_authority_custom`  (
   `Id` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
   `SysDataAuthorityId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
-  `SysOrganizationId` int(0) NOT NULL,
+  `SysOrganizationId` int NOT NULL,
   `CreatorUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
   `CreationTime` datetime(6) NOT NULL,
   `LastModifierUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
@@ -583,12 +656,12 @@ CREATE TABLE `sys_data_authority_custom`  (
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_dictionary`;
 CREATE TABLE `sys_dictionary`  (
-  `Id` int(0) NOT NULL AUTO_INCREMENT,
-  `Sort` int(0) NOT NULL,
+  `Id` int NOT NULL AUTO_INCREMENT,
+  `Sort` int NOT NULL,
   `Code` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Value` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `ParentId` int(0) NULL DEFAULT NULL,
+  `ParentId` int NULL DEFAULT NULL,
   `CreatorUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
   `CreationTime` datetime(6) NOT NULL,
   `LastModifierUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
@@ -610,7 +683,7 @@ INSERT INTO `sys_dictionary` VALUES (4, 0, '3', '未知', '3', 1, NULL, '2022-06
 DROP TABLE IF EXISTS `sys_function`;
 CREATE TABLE `sys_function`  (
   `Id` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `Number` int(0) NULL DEFAULT NULL,
+  `Number` int NULL DEFAULT NULL,
   `Name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `ByName` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Remark` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
@@ -638,22 +711,22 @@ INSERT INTO `sys_function` VALUES ('f27ecb0a-197d-47b1-b243-59a8c71302bf', 60, '
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_menu`;
 CREATE TABLE `sys_menu`  (
-  `Id` int(0) NOT NULL AUTO_INCREMENT,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `LevelCode` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `Number` int(0) NULL DEFAULT NULL,
+  `Number` int NULL DEFAULT NULL,
   `Name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `ComponentName` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Url` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Router` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `JumpUrl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Icon` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `ParentId` int(0) NULL DEFAULT NULL,
+  `ParentId` int NULL DEFAULT NULL,
   `Show` tinyint(1) NOT NULL,
   `Close` tinyint(1) NOT NULL,
   `KeepAlive` tinyint(1) NOT NULL,
   `State` tinyint(1) NOT NULL,
-  `Type` int(0) NOT NULL,
-  `Mode` int(0) NOT NULL,
+  `Type` int NOT NULL,
+  `Mode` int NOT NULL,
   `ModuleUrl` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `ModuleUrlPro` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `CreatorUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
@@ -705,8 +778,8 @@ INSERT INTO `sys_menu` VALUES (37, '1.37', 80, '微前端2', 'Iframe123', 'core/
 DROP TABLE IF EXISTS `sys_menu_function`;
 CREATE TABLE `sys_menu_function`  (
   `Id` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `Number` int(0) NULL DEFAULT NULL,
-  `MenuId` int(0) NOT NULL,
+  `Number` int NULL DEFAULT NULL,
+  `MenuId` int NOT NULL,
   `FunctionCode` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `FunctionName` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Remark` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
@@ -825,7 +898,7 @@ CREATE TABLE `sys_operation_log`  (
   `Form` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `FormBody` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `QueryString` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `TakeUpTime` bigint(0) NOT NULL,
+  `TakeUpTime` bigint NOT NULL,
   `Browser` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `OS` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `UserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
@@ -851,15 +924,15 @@ INSERT INTO `sys_operation_log` VALUES ('08dae163-f335-4610-8fe7-71850d49c856', 
 -- ----------------------------
 DROP TABLE IF EXISTS `sys_organization`;
 CREATE TABLE `sys_organization`  (
-  `Id` int(0) NOT NULL AUTO_INCREMENT,
+  `Id` int NOT NULL AUTO_INCREMENT,
   `Name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `OrderNumber` int(0) NULL DEFAULT NULL,
+  `OrderNumber` int NULL DEFAULT NULL,
   `LevelCode` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Leader` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Phone` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Email` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `State` int(0) NULL DEFAULT NULL,
-  `ParentId` int(0) NULL DEFAULT NULL,
+  `State` int NULL DEFAULT NULL,
+  `ParentId` int NULL DEFAULT NULL,
   `CreatorUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
   `CreationTime` datetime(6) NOT NULL,
   `LastModifierUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
@@ -886,10 +959,10 @@ INSERT INTO `sys_organization` VALUES (11, '技术部门', 2, '1.5.11', '技术�
 DROP TABLE IF EXISTS `sys_post`;
 CREATE TABLE `sys_post`  (
   `Id` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `Number` int(0) NULL DEFAULT NULL,
+  `Number` int NULL DEFAULT NULL,
   `Code` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
-  `State` int(0) NOT NULL,
+  `State` int NOT NULL,
   `Remarks` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `CreatorUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
   `CreationTime` datetime(6) NOT NULL,
@@ -913,7 +986,7 @@ INSERT INTO `sys_post` VALUES ('f0c67537-8094-429a-b474-f54ac518609e', 3, 'hr', 
 DROP TABLE IF EXISTS `sys_role`;
 CREATE TABLE `sys_role`  (
   `Id` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `Number` int(0) NULL DEFAULT NULL,
+  `Number` int NULL DEFAULT NULL,
   `Name` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Remark` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `DeleteLock` tinyint(1) NOT NULL,
@@ -937,7 +1010,7 @@ DROP TABLE IF EXISTS `sys_role_menu_function`;
 CREATE TABLE `sys_role_menu_function`  (
   `Id` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
   `RoleId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
-  `MenuId` int(0) NOT NULL,
+  `MenuId` int NOT NULL,
   `MenuFunctionId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NOT NULL,
   `CreatorUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
   `CreationTime` datetime(6) NOT NULL,
@@ -965,7 +1038,7 @@ CREATE TABLE `sys_user`  (
   `Phone` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL,
   `Email` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
   `DeleteLock` tinyint(1) NOT NULL,
-  `OrganizationId` int(0) NULL DEFAULT NULL,
+  `OrganizationId` int NULL DEFAULT NULL,
   `CreatorUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
   `CreationTime` datetime(6) NOT NULL,
   `LastModifierUserId` char(36) CHARACTER SET ascii COLLATE ascii_general_ci NULL DEFAULT NULL,
