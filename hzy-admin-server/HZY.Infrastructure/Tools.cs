@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations.Schema;
-using System.IO;
-using System.Linq;
-using System.Linq.Expressions;
-using System.Net;
+﻿using System.Linq.Expressions;
 using System.Security.Cryptography;
 using System.Text;
-using System.Text.Json;
-using System.Text.RegularExpressions;
+using HZY.Framework.Core.Utils;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.AspNetCore.Http;
 using UAParser;
@@ -17,60 +10,6 @@ namespace HZY.Infrastructure;
 
 public static class Tools
 {
-    /// <summary>
-    /// 是否 Ajax 请求
-    /// </summary>
-    /// <param name="httpContext"></param>
-    /// <returns></returns>
-    public static bool IsAjaxRequest(this HttpContext httpContext)
-    {
-        const string key = "X-Requested-With";
-        const string value = "XMLHttpRequest";
-
-        var header = httpContext.Request.Headers
-            .Where(w => w.Key.ToLower() == key.ToLower())
-            .Select(w => w.Value)
-            .FirstOrDefault();
-
-        return !string.IsNullOrWhiteSpace(header) && header.ToString() == value;
-    }
-
-    /// <summary>
-    /// 是否 Json 请求 content-type=application/json
-    /// </summary>
-    /// <param name="httpContext"></param>
-    /// <returns></returns>
-    public static bool IsJsonRequest(this HttpContext httpContext)
-    {
-        const string key = "content-type";
-        const string value = "application/json";
-
-        var header = httpContext.Request.Headers
-            .Where(w => w.Key.ToLower() == key.ToLower())
-            .Select(w => w.Value)
-            .FirstOrDefault();
-
-        return !string.IsNullOrWhiteSpace(header) && header.ToString() == value;
-    }
-
-    /// <summary>
-    /// 是否为 html 网页请求
-    /// </summary>
-    /// <param name="httpContext"></param>
-    /// <returns></returns>
-    public static bool IsHtmlRequest(this HttpContext httpContext)
-    {
-        const string key = "accept";
-        const string value = "text/html";
-
-        var header = httpContext.Request.Headers
-            .Where(w => w.Key.ToLower() == key.ToLower())
-            .Select(w => w.Value)
-            .FirstOrDefault();
-
-        return !string.IsNullOrWhiteSpace(header) && header.ToString().Contains(value);
-    }
-
     #region 加密和解密
 
     /// <summary>
@@ -181,38 +120,6 @@ public static class Tools
             ? (diffday / 7 - 1)
             : (diffday / 7)) + 1 + (dayInMonth > firstWeekEndDay ? 1 : 0);
         return weekNumInMonth;
-    }
-
-    /// <summary>
-    /// 将对象序列化为Json字符串
-    /// </summary>
-    /// <param name="obj"></param>
-    /// <returns></returns>
-    public static string Serialize<T>(this T obj)
-        where T : class, new()
-    {
-        return JsonSerializer.Serialize(obj);
-    }
-
-    /// <summary>
-    /// 将 Json 字符串转换为 指定的对象
-    /// </summary>
-    /// <typeparam name="T"></typeparam>
-    /// <param name="json"></param>
-    /// <returns></returns>
-    public static T Deserialize<T>(this string json)
-    {
-        return JsonSerializer.Deserialize<T>(json);
-    }
-
-    /// <summary>
-    /// 将 Json 字符串转换为 object对象
-    /// </summary>
-    /// <param name="json"></param>
-    /// <returns></returns>
-    public static object Deserialize(this string json)
-    {
-        return JsonSerializer.Deserialize(json, typeof(object));
     }
 
     /// <summary>
@@ -835,79 +742,6 @@ public static class Tools
         return returnStream;
     }
 
-    #region Cookie操作
-
-    /// <summary>
-    /// 写入Cookie
-    /// </summary>
-    /// <param name="httpContext"></param>
-    /// <param name="key">键</param>
-    /// <param name="value">值</param>
-    /// <param name="expires">过期时长</param>
-    public static void SetCookie(this HttpContext httpContext, string key, string value, int? expires = null)
-    {
-        if (expires == null)
-            httpContext.Response.Cookies.Append(key, value);
-        else
-            httpContext.Response.Cookies.Append(key, value, new CookieOptions()
-            {
-                Expires = DateTime.Now.AddMinutes(Convert.ToDouble(expires))
-            });
-    }
-
-    /// <summary>
-    /// 读Cookie值
-    /// </summary>
-    /// <param name="httpContext"></param>
-    /// <param name="key">cookies名称</param>
-    /// <returns>返回的cookies</returns>
-    public static string GetCookie(this HttpContext httpContext, string key)
-    {
-        return httpContext.Request.Cookies[key];
-    }
-
-    /// <summary>
-    /// 删除Cookie对象
-    /// </summary>
-    /// <param name="httpContext"></param>
-    /// <param name="key">Cookie对象名称</param>
-    public static void RemoveCookie(this HttpContext httpContext, string key)
-    {
-        httpContext.Response.Cookies.Delete(key);
-    }
-
-    #endregion Cookie操作
-
-    /// <summary>
-    /// 首字母小写写
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    public static string FirstCharToLower(this string input)
-    {
-        if (string.IsNullOrEmpty(input))
-            return input;
-
-        //if (input.Length == input.Count(w => char.IsUpper(w)))
-        //{
-        //    return input.ToLower();
-        //}
-
-        return input.First().ToString().ToLower() + input.Substring(1);
-    }
-
-    /// <summary>
-    /// 首字母大写
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    public static string FirstCharToUpper(this string input)
-    {
-        if (string.IsNullOrEmpty(input))
-            return input;
-        return input.First().ToString().ToUpper() + input.Substring(1);
-    }
-
     #region 获取浏览器客户端信息
 
     /// <summary>
@@ -994,34 +828,6 @@ public static class Tools
     #endregion
 
     /// <summary>
-    /// 通过 httpcontext 下载文件
-    /// </summary>
-    /// <param name="httpContext"></param>
-    /// <param name="fileContents"></param>
-    /// <param name="contentType"></param>
-    /// <param name="fileDownloadName"></param>
-    /// <returns></returns>
-    public static void DownLoadFile(this HttpContext httpContext, byte[] fileContents, string contentType, string fileDownloadName)
-    {
-        //将 Content-Disposition 设置到 Access-Control-Expose-Headers 为白名单
-        httpContext.Response.Headers.Add("Access-Control-Expose-Headers", "Content-Disposition");
-        httpContext.Response.ContentType = contentType;
-        httpContext.Response.Headers.Add("Content-Disposition", "attachment; filename=" + WebUtility.UrlEncode(fileDownloadName));
-        httpContext.Response.BodyWriter.WriteAsync(fileContents);
-        httpContext.Response.BodyWriter.FlushAsync();
-    }
-
-    /// <summary>
-    /// 验证当前上下文响应内容是否是下载文件
-    /// </summary>
-    /// <param name="httpContext"></param>
-    /// <returns></returns>
-    public static bool IsDownLoadFile(this HttpContext httpContext)
-    {
-        return httpContext.Response.Headers["Content-Disposition"].ToString().StartsWith("attachment; filename=");
-    }
-
-    /// <summary>
     /// 获取名称 根据表达式树
     /// </summary>
     /// <param name="exp"></param>
@@ -1046,42 +852,5 @@ public static class Tools
 
         return name;
     }
-
-    /// <summary>
-    /// 蛇形命名 转化为 驼峰命名
-    /// </summary>
-    /// <param name="name"></param>
-    /// <returns></returns>
-    public static string LineToHump(string name)
-    {
-        if (!name.Contains('_') && name != name.ToLower())
-        {
-            return name;
-        }
-
-        StringBuilder sb = new StringBuilder();
-        foreach (var item in name.Split("_", StringSplitOptions.RemoveEmptyEntries))
-        {
-            sb.Append(Thread.CurrentThread.CurrentCulture.TextInfo.ToTitleCase(item));
-        }
-
-        return sb.ToString();
-    }
-
-    /// <summary>
-    /// 将驼峰命名法改为 下划线 命名法
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    public static string ToUnderlineNomenclature(this string input)
-    {
-        if (string.IsNullOrEmpty(input))
-        {
-            return input;
-        }
-
-        return Regex.Replace(input, @"([a-z0-9])([A-Z])", "$1_$2").ToLower();
-    }
-
 
 }

@@ -1,4 +1,4 @@
-namespace HZY.Infrastructure
+namespace HZY.Infrastructure.Enums
 {
     /// <summary>
     /// 命名规则类型

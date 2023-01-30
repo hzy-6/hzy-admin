@@ -72,6 +72,9 @@ namespace HZY.Infrastructure.SerilogUtil
                 })
                 .CreateLogger();
 
+            // log 日志配置
+            builder.Host.UseSerilog();
+
             return builder;
         }
 

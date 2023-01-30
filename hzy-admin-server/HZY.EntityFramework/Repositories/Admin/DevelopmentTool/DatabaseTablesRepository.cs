@@ -1,7 +1,6 @@
 ﻿using FreeSql;
 using FreeSql.DatabaseModel;
 using HZY.EntityFramework.Repositories.Admin.DevelopmentTool.LowCode;
-using HZY.Infrastructure;
 using HZY.Models.DTO.DevelopmentTool;
 using HZY.Models.Entities.LowCode;
 using HZY.Framework.AutoRegisterIOC;
@@ -11,6 +10,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using HZY.Infrastructure.Mappers;
 
 namespace HZY.EntityFramework.Repositories.Admin.DevelopmentTool
 {

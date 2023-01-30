@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using AutoMapper;
 
-namespace HZY.Infrastructure;
+namespace HZY.Infrastructure.Mappers;
 
 /// <summary>
 /// 对象映射类

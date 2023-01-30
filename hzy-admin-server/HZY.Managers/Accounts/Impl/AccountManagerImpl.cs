@@ -2,6 +2,7 @@ using HZY.EntityFramework;
 using HZY.EntityFramework.Repositories.Admin.Core;
 using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
+using HZY.Infrastructure.Mappers;
 using HZY.Infrastructure.Token;
 using HZY.Models.BO;
 using HZY.Models.Consts;

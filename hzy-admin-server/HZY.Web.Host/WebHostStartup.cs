@@ -1,27 +1,24 @@
 ﻿using HZY.Infrastructure;
-using HZY.Framework.AutoRegisterIOC;
 using System.Text;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
-using Serilog;
 using System.Text.Encodings.Web;
 using System.Text.Unicode;
 using HZY.Infrastructure.Filters;
 using Swashbuckle.AspNetCore.Filters;
 using Newtonsoft.Json.Serialization;
-using HZY.Infrastructure.SerilogUtil;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.AspNetCore.Http.Features;
 using Zyx.MemoryMQ.Extensions;
 using HZY.Web.Host.Filters;
 using HZY.Web.Host.Middlewares;
 using HZY.Framework.DynamicApiController;
-using HZY.Framework.Core.Utils;
 using HZY.Framework.Core.AspNetCore;
 using HZY.Web.Host.Configure;
+using HZY.Web.Host.Endpoints;
 
 namespace HZY.Web.Host
 {
@@ -41,24 +38,13 @@ namespace HZY.Web.Host
             //webApplicationBuilder.WebHost.UseUrls("http://*:5600", "http://localhost:5600");
             //webApplicationBuilder.WebHost.UseUrls("http://*:5600");
 
-            // 日志配置
-            webApplicationBuilder.LogUtilBuild();
-            // log 日志配置
-            webApplicationBuilder.Host.UseSerilog();
-            LogUtil.Log.Warning("Web 主机开始启动...");
-
             var services = webApplicationBuilder.Services;
             var configuration = webApplicationBuilder.Configuration;
             var appConfiguration = new AppConfiguration(configuration);
             var prefixString = appConfiguration.Configs.Namespace + ".";
 
-            #region 自动扫描服务注册 、 其他服务注册
-
-            //扫描服务自动化注册
-            services.AddAutoRegisterIOC(CoreUtil.GetAssemblyList(prefixString).ToList());
+            // 生命周期
             services.AddSingleton<IHostedService, LifetimeEventsHostedService>();
-
-            #endregion;
 
             // Add services to the container.
             webApplicationBuilder.Services.AddControllers(options =>
@@ -72,22 +58,11 @@ namespace HZY.Web.Host
                 options.IsLower = false;
             })
             .AddControllersAsServices()
-            //.AddJsonOptions(options =>
-            //{
-            //    //设置 如果是 Dictionary 那么 在 json 序列化 是 key 的字符 采用 小驼峰 命名
-            //    options.JsonSerializerOptions.DictionaryKeyPolicy = JsonNamingPolicy.CamelCase;
-            //    options.JsonSerializerOptions.Converters.Add(new DateTimeJsonConverter());
-            //    options.JsonSerializerOptions.Converters.Add(new DateTimeNullJsonConverter());
-            //    //防止json中带有中文被 unicode 编码
-            //    options.JsonSerializerOptions.Encoder = JavaScriptEncoder.Create(UnicodeRanges.All);
-            //})
             .AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";
                 //小驼峰命名
                 options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
-                //忽略循环引用
-                //    option.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore
             })
             ;
 
@@ -234,13 +209,6 @@ namespace HZY.Web.Host
 
         public override void Configure(WebApplication webApplication)
         {
-            var env = webApplication.Environment;
-            var serviceProvider = webApplication.Services;
-            var appConfiguration = webApplication.Services.GetRequiredService<AppConfiguration>();
-
-            //服务扫描 - 使用 host
-            webApplication.UseHost();
-
             if (webApplication.Environment.IsDevelopment())
             {
                 webApplication.UseDeveloperExceptionPage();
@@ -286,13 +254,12 @@ namespace HZY.Web.Host
             webApplication.UseMemoryMQ();
             #endregion
 
-            webApplication.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            // map controller
+            webApplication.MapControllers();
 
+            // 启动主端点 miniapi
+            webApplication.MapMainEndpoints();
         }
-
 
     }
 }

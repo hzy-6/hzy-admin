@@ -11,6 +11,8 @@ using HZY.Models.DTO.DevelopmentTool;
 using HZY.Framework.EntityFrameworkRepositories.Extensions;
 using Microsoft.AspNetCore.Hosting;
 using NPOI.XSSF.UserModel;
+using HZY.Infrastructure.Zips;
+using HZY.Framework.Core.Utils;
 
 namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
 {
@@ -455,7 +457,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
         /// <returns></returns>
         private string FindCodeFileClassName(GenFormDto genFormDto)
         {
-            var tableName = Tools.LineToHump(genFormDto.TableName);
+            var tableName = genFormDto.TableName.LineToHump();
             return genFormDto.Type switch
             {
                 "HZY.Models" => $"{tableName}.cs",
@@ -502,7 +504,7 @@ namespace HZY.Services.Admin.DevelopmentTool.LowCode.Impl
             var replaceName = string.Empty;
             var oldFileName = string.Empty;
             var dto = new GenFormDto() { TableName = tableName, Type = this.GetEnumDescription(type) };
-            var humpTableName = Tools.LineToHump(tableName);
+            var humpTableName = tableName.LineToHump();
             var fileName = FindCodeFileClassName(dto);
             var path = string.Empty;
             //获取表路径信息

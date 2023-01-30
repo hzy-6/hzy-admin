@@ -11,6 +11,7 @@ using HZY.EntityFramework.Repositories.Admin.DevelopmentTool.LowCode;
 using HZY.Infrastructure;
 using HZY.EntityFramework.Aop;
 using HZY.EntityFramework.Repositories.Admin.Core;
+using HZY.Framework.Core.Utils;
 
 namespace HZY.Services.Admin
 {
@@ -111,7 +112,7 @@ namespace HZY.Services.Admin
                         Id = id,
                         DisplayName = item.Comment,
                         TableName = item.Name,
-                        EntityName = Tools.LineToHump(item.Name),
+                        EntityName = item.Name.LineToHump(),
                         Schema = item.Schema,
                         Type = item.Type.ToString()
                     };

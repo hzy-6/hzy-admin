@@ -1,23 +1,17 @@
-using System;
-using System.Collections.Generic;
 using System.Data;
 using System.Linq.Expressions;
-
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-
 using HZY.Framework.EntityFrameworkRepositories.Extensions;
 using HZY.Framework.EntityFrameworkRepositories.Repositories.Impl;
-
 using HZY.Framework.AutoRegisterIOC;
-
 using HZY.EntityFramework.DbContexts;
 using HZY.EntityFramework.PagingViews;
 using HZY.Infrastructure;
 using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
 using HZY.Models.Entities.BaseEntitys;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using HZY.Framework.Core.Utils;
 
 namespace HZY.EntityFramework.Repositories.Admin.Core.Impl;
 

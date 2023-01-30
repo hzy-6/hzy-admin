@@ -1,12 +1,13 @@
 ﻿using HZY.EntityFramework.PagingViews;
 using HZY.EntityFramework.Repositories.Admin.Core;
-using HZY.Infrastructure;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Models.DTO.Framework;
 using HZY.Models.Entities.Framework;
 using HZY.Services.Admin.Core;
 using HZY.Framework.EntityFrameworkRepositories.Extensions;
 using Microsoft.EntityFrameworkCore;
+using HZY.Infrastructure.Mappers;
+using HZY.Framework.Core.Utils;
 
 namespace HZY.Services.Admin.Framework;
 

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace HZY.Infrastructure;
+namespace HZY.Infrastructure.Enums;
 
 /// <summary>
 /// 默认数据库类型

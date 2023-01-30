@@ -3,7 +3,7 @@ using ICSharpCode.SharpZipLib.Checksum;
 using ICSharpCode.SharpZipLib.Zip;
 using System.IO;
 
-namespace HZY.Infrastructure;
+namespace HZY.Infrastructure.Zips;
 
 /// <summary>
 /// 压缩 zip  https://www.cnblogs.com/xielong/p/6165550.html
@@ -23,7 +23,7 @@ public class Zip
         try
         {
             outStream.SetLevel(6);
-            this.Execute(strFile, outStream, strFile);
+            Execute(strFile, outStream, strFile);
         }
         finally
         {

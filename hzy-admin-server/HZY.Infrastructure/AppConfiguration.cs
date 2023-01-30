@@ -2,6 +2,7 @@
 using HZY.Framework.AutoRegisterIOC;
 using Microsoft.Extensions.Configuration;
 using HZY.Framework.AutoRegisterIOC.Attributes;
+using HZY.Infrastructure.Enums;
 
 namespace HZY.Infrastructure;
 

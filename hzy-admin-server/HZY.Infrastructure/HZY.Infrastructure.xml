@@ -640,151 +640,39 @@
             控制器服务
             </summary>
         </member>
-        <member name="T:HZY.Infrastructure.ConvertExtensions">
-            <summary>
-            数据转换扩展
-            </summary>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToStr``1(``0)">
-            <summary>
-            string
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToInt32``1(``0)">
-            <summary>
-            int
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToFloat``1(``0)">
-            <summary>
-            float
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToDouble``1(``0)">
-            <summary>
-            double
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToDecimal``1(``0)">
-            <summary>
-            decimal
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToGuid``1(``0)">
-            <summary>
-            Guid
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToGuidNull``1(``0)">
-            <summary>
-            Guid?
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToGuidStr``1(``0)">
-            <summary>
-            GuidString
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToDateTime``1(``0)">
-            <summary>
-            DateTime
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToDateTimeNull``1(``0)">
-            <summary>
-            DateTime?
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToDateTimeFormat``1(``0,System.String)">
-            <summary>
-            格式的 时间 字符串
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <param name="formatStr"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToBool``1(``0)">
-            <summary>
-            bool
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToBytes``1(``0)">
-            <summary>
-            byte[]
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="value"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToTime``1(System.Int32)">
-            <summary>
-            时间戳转为C#格式时间
-            </summary>
-            <param name="timeStamp"></param>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.ToTimeInt``1(System.DateTime)">
-            <summary>
-            DateTime时间格式转换为Unix时间戳格式
-            </summary>
-            <param name="time"></param>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.CreateInstance``1">
-            <summary>
-            
-            </summary>
-            <typeparam name="T"></typeparam>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ConvertExtensions.NullSafe``1(``0,``0)">
-            <summary>
-            将 Null 对象转换为 对象的实例
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="model"></param>
-            <param name="defaultInstance">自定义 默认实例</param>
-            <returns></returns>
-        </member>
-        <member name="T:HZY.Infrastructure.DefaultDatabaseType">
+        <member name="T:HZY.Infrastructure.Enums.DefaultDatabaseType">
             <summary>
             默认数据库类型
+            </summary>
+        </member>
+        <member name="T:HZY.Infrastructure.Enums.NameRuleType">
+            <summary>
+            命名规则类型
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.Enums.NameRuleType.Default">
+            <summary>
+            默认类型  请使用驼峰命名法
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.Enums.NameRuleType.SnakeCase">
+            <summary>
+            蛇形命名法 
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.Enums.NameRuleType.UpperSnakeCase">
+            <summary>
+            全大写蛇形命名法
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.Enums.NameRuleType.Upper">
+            <summary>
+            全大写命名
+            </summary>
+        </member>
+        <member name="F:HZY.Infrastructure.Enums.NameRuleType.Lower">
+            <summary>
+            全小写命名
             </summary>
         </member>
         <member name="M:HZY.Infrastructure.Files.FileManager.GetFilePath(System.String)">
@@ -961,6 +849,29 @@
             程序启动器
             </summary>
         </member>
+        <member name="T:HZY.Infrastructure.Mappers.ObjectMapper">
+            <summary>
+            对象映射类
+            </summary>
+        </member>
+        <member name="M:HZY.Infrastructure.Mappers.ObjectMapper.MapTo``2(``0)">
+            <summary>
+            copy object
+            </summary>
+            <typeparam name="TOld">旧对象类型</typeparam>
+            <typeparam name="TNew">新复制对象类型</typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Infrastructure.Mappers.ObjectMapper.MapToList``2(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            copy list
+            </summary>
+            <typeparam name="TOld">旧对象类型</typeparam>
+            <typeparam name="TNew">新复制对象类型</typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Infrastructure.MessageQueue.IMessageQueueProvider">
             <summary>
             消息队列提供者
@@ -997,59 +908,6 @@
             <summary>
             队列回调函数
             </summary>
-        </member>
-        <member name="T:HZY.Infrastructure.NameRuleType">
-            <summary>
-            命名规则类型
-            </summary>
-        </member>
-        <member name="F:HZY.Infrastructure.NameRuleType.Default">
-            <summary>
-            默认类型  请使用驼峰命名法
-            </summary>
-        </member>
-        <member name="F:HZY.Infrastructure.NameRuleType.SnakeCase">
-            <summary>
-            蛇形命名法 
-            </summary>
-        </member>
-        <member name="F:HZY.Infrastructure.NameRuleType.UpperSnakeCase">
-            <summary>
-            全大写蛇形命名法
-            </summary>
-        </member>
-        <member name="F:HZY.Infrastructure.NameRuleType.Upper">
-            <summary>
-            全大写命名
-            </summary>
-        </member>
-        <member name="F:HZY.Infrastructure.NameRuleType.Lower">
-            <summary>
-            全小写命名
-            </summary>
-        </member>
-        <member name="T:HZY.Infrastructure.ObjectMapper">
-            <summary>
-            对象映射类
-            </summary>
-        </member>
-        <member name="M:HZY.Infrastructure.ObjectMapper.MapTo``2(``0)">
-            <summary>
-            copy object
-            </summary>
-            <typeparam name="TOld">旧对象类型</typeparam>
-            <typeparam name="TNew">新复制对象类型</typeparam>
-            <param name="source"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.ObjectMapper.MapToList``2(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            copy list
-            </summary>
-            <typeparam name="TOld">旧对象类型</typeparam>
-            <typeparam name="TNew">新复制对象类型</typeparam>
-            <param name="source"></param>
-            <returns></returns>
         </member>
         <member name="T:HZY.Infrastructure.Permission.Attributes.ActionDescriptorAttribute">
             <summary>
@@ -1167,11 +1025,6 @@
         <member name="T:HZY.Infrastructure.RazorView.RazorViewRender">
             <summary>
             razor cshtml 模板渲染
-            </summary>
-        </member>
-        <member name="T:HZY.Infrastructure.ReadXmlSummary">
-            <summary>
-            读取 xml 摘要
             </summary>
         </member>
         <member name="P:HZY.Infrastructure.Redis.Impl.RedisServiceImpl.Database">
@@ -1307,27 +1160,6 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Infrastructure.Tools.IsAjaxRequest(Microsoft.AspNetCore.Http.HttpContext)">
-            <summary>
-            是否 Ajax 请求
-            </summary>
-            <param name="httpContext"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.Tools.IsJsonRequest(Microsoft.AspNetCore.Http.HttpContext)">
-            <summary>
-            是否 Json 请求 content-type=application/json
-            </summary>
-            <param name="httpContext"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.Tools.IsHtmlRequest(Microsoft.AspNetCore.Http.HttpContext)">
-            <summary>
-            是否为 html 网页请求
-            </summary>
-            <param name="httpContext"></param>
-            <returns></returns>
-        </member>
         <member name="M:HZY.Infrastructure.Tools.Md5Encrypt(System.String)">
             <summary>
             MD5加密
@@ -1370,28 +1202,6 @@
             <param name="daytime">年月日</param>
             <returns>传递过来的时间是第几周</returns>
         </member>
-        <member name="M:HZY.Infrastructure.Tools.Serialize``1(``0)">
-            <summary>
-            将对象序列化为Json字符串
-            </summary>
-            <param name="obj"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.Tools.Deserialize``1(System.String)">
-            <summary>
-            将 Json 字符串转换为 指定的对象
-            </summary>
-            <typeparam name="T"></typeparam>
-            <param name="json"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.Tools.Deserialize(System.String)">
-            <summary>
-            将 Json 字符串转换为 object对象
-            </summary>
-            <param name="json"></param>
-            <returns></returns>
-        </member>
         <member name="F:HZY.Infrastructure.Tools.GetFileContentType">
             <summary>
             获取文件Content-Type
@@ -1403,44 +1213,6 @@
             </summary>
             <param name="streams">key：文件名；value：文件名对应的要压缩的流</param>
             <returns>压缩后的流</returns>
-        </member>
-        <member name="M:HZY.Infrastructure.Tools.SetCookie(Microsoft.AspNetCore.Http.HttpContext,System.String,System.String,System.Nullable{System.Int32})">
-            <summary>
-            写入Cookie
-            </summary>
-            <param name="httpContext"></param>
-            <param name="key">键</param>
-            <param name="value">值</param>
-            <param name="expires">过期时长</param>
-        </member>
-        <member name="M:HZY.Infrastructure.Tools.GetCookie(Microsoft.AspNetCore.Http.HttpContext,System.String)">
-            <summary>
-            读Cookie值
-            </summary>
-            <param name="httpContext"></param>
-            <param name="key">cookies名称</param>
-            <returns>返回的cookies</returns>
-        </member>
-        <member name="M:HZY.Infrastructure.Tools.RemoveCookie(Microsoft.AspNetCore.Http.HttpContext,System.String)">
-            <summary>
-            删除Cookie对象
-            </summary>
-            <param name="httpContext"></param>
-            <param name="key">Cookie对象名称</param>
-        </member>
-        <member name="M:HZY.Infrastructure.Tools.FirstCharToLower(System.String)">
-            <summary>
-            首字母小写写
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.Tools.FirstCharToUpper(System.String)">
-            <summary>
-            首字母大写
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
         </member>
         <member name="M:HZY.Infrastructure.Tools.GetBrowserClientInfo(Microsoft.AspNetCore.Http.HttpContext)">
             <summary>
@@ -1463,23 +1235,6 @@
             <param name="reb"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Infrastructure.Tools.DownLoadFile(Microsoft.AspNetCore.Http.HttpContext,System.Byte[],System.String,System.String)">
-            <summary>
-            通过 httpcontext 下载文件
-            </summary>
-            <param name="httpContext"></param>
-            <param name="fileContents"></param>
-            <param name="contentType"></param>
-            <param name="fileDownloadName"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.Tools.IsDownLoadFile(Microsoft.AspNetCore.Http.HttpContext)">
-            <summary>
-            验证当前上下文响应内容是否是下载文件
-            </summary>
-            <param name="httpContext"></param>
-            <returns></returns>
-        </member>
         <member name="M:HZY.Infrastructure.Tools.GetNameByExpression``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
             <summary>
             获取名称 根据表达式树
@@ -1489,26 +1244,12 @@
             <typeparam name="TValue"></typeparam>
             <returns></returns>
         </member>
-        <member name="M:HZY.Infrastructure.Tools.LineToHump(System.String)">
-            <summary>
-            蛇形命名 转化为 驼峰命名
-            </summary>
-            <param name="name"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Infrastructure.Tools.ToUnderlineNomenclature(System.String)">
-            <summary>
-            将驼峰命名法改为 下划线 命名法
-            </summary>
-            <param name="input"></param>
-            <returns></returns>
-        </member>
-        <member name="T:HZY.Infrastructure.Zip">
+        <member name="T:HZY.Infrastructure.Zips.Zip">
             <summary>
             压缩 zip  https://www.cnblogs.com/xielong/p/6165550.html
             </summary>
         </member>
-        <member name="M:HZY.Infrastructure.Zip.UnZip(System.String,System.String)">
+        <member name="M:HZY.Infrastructure.Zips.Zip.UnZip(System.String,System.String)">
             <summary>
             解压
             </summary>

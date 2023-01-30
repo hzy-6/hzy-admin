@@ -13,6 +13,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Zyx.MemoryMQ.Interfaces;
+using HZY.Framework.Core.Utils;
 
 namespace HZY.Services.Admin.Framework;
 

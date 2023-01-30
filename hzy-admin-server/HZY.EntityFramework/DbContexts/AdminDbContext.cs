@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;
 using System.ComponentModel.DataAnnotations.Schema;
 using HZY.Framework.Core.Utils;
+using HZY.Infrastructure.Enums;
 
 namespace HZY.EntityFramework.DbContexts;
 
@@ -31,7 +32,7 @@ public class AdminDbContext : DbContext
 
         #region 自动扫描 dbset
 
-        var assemblies = CoreUtil.GetAssemblyList()
+        var assemblies = AssemblyUtil.GetAssemblyList()
             .Where(w => w.GetName().FullName.Contains(appConfiguration.Configs.DbContextInfo.DbSetScanDllName))
             ;
         foreach (var item in assemblies.Where(w => !w.IsDynamic))

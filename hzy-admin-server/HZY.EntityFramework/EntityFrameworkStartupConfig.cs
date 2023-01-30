@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using HZY.Infrastructure.SerilogUtil;
 using HZY.EntityFramework.Interceptors;
+using HZY.Infrastructure.Enums;
 
 namespace HZY.EntityFramework;
 
