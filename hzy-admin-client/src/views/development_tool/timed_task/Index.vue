@@ -95,13 +95,14 @@ async function onChecked(checked: number, id: string) {
         <div class="task" v-for="item in taskList">
           <div class="task-item">
             <div class="title" style="color: initial">
-              {{ item.name }} <span>{{ item.groupName }}</span>
+              <span>{{ item.groupName }}</span> {{ item.name }} 
             </div>
-            <div class="value">{{ item.apiUrl }}</div>
+            <div class="value">{{ item.jobPoint }}</div>
           </div>
           <div class="task-item">
             <div class="title">请求方式</div>
             <div class="value">
+              <div v-if="!item.requsetMode">-</div>
               <a-tag color="#87d068" v-if="item.requsetMode == 0">POST</a-tag>
               <a-tag color="#87d068" v-if="item.requsetMode == 1">GET</a-tag>
               <a-tag color="#87d068" v-if="item.requsetMode == 2">DELETE</a-tag>

@@ -12,7 +12,7 @@
  Target Server Version : 130003
  File Encoding         : 65001
 
- Date: 29/01/2023 20:45:10
+ Date: 31/01/2023 19:36:58
 */
 
 
@@ -583,12 +583,12 @@ CREATE TABLE "public"."quartz_job_task" (
   "Name" varchar(255) COLLATE "pg_catalog"."default",
   "GroupName" varchar(255) COLLATE "pg_catalog"."default",
   "Cron" varchar(255) COLLATE "pg_catalog"."default",
-  "ApiUrl" varchar(255) COLLATE "pg_catalog"."default",
-  "HeaderToken" varchar(255) COLLATE "pg_catalog"."default",
+  "JobPoint" varchar(255) COLLATE "pg_catalog"."default",
   "RequsetMode" int4,
   "Remark" varchar(255) COLLATE "pg_catalog"."default",
   "State" int4,
-  "ExecuteTime" timestamp(6)
+  "ExecuteTime" timestamp(6),
+  "Type" int4
 )
 ;
 COMMENT ON COLUMN "public"."quartz_job_task"."CreatorUserId" IS '创建人id';
@@ -598,17 +598,18 @@ COMMENT ON COLUMN "public"."quartz_job_task"."LastModificationTime" IS '更新�
 COMMENT ON COLUMN "public"."quartz_job_task"."Name" IS '任务名称';
 COMMENT ON COLUMN "public"."quartz_job_task"."GroupName" IS '分组名称';
 COMMENT ON COLUMN "public"."quartz_job_task"."Cron" IS '间隔表达式';
-COMMENT ON COLUMN "public"."quartz_job_task"."ApiUrl" IS '请求地址';
-COMMENT ON COLUMN "public"."quartz_job_task"."HeaderToken" IS '请求 token 密钥';
+COMMENT ON COLUMN "public"."quartz_job_task"."JobPoint" IS '作业点';
 COMMENT ON COLUMN "public"."quartz_job_task"."RequsetMode" IS '请求方式（0=Post，1=Get，2=Delete）';
 COMMENT ON COLUMN "public"."quartz_job_task"."Remark" IS '备注';
 COMMENT ON COLUMN "public"."quartz_job_task"."State" IS '运行状态（0=未运行，1=运行中）';
 COMMENT ON COLUMN "public"."quartz_job_task"."ExecuteTime" IS '最后执行时间';
+COMMENT ON COLUMN "public"."quartz_job_task"."Type" IS '类型（1=WebApi，2=本地）';
 
 -- ----------------------------
 -- Records of quartz_job_task
 -- ----------------------------
-INSERT INTO "public"."quartz_job_task" VALUES ('0af155d7-a8ee-4a07-ab1a-40dd0c77d7ea', '00000000-0000-0000-0000-000000000000', '2023-01-29 11:36:30.896033', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:44:50.067889', '默认测试接口', 'TEST', '0/10 * * * * ?', 'http://localhost:5600/api/job/JobTest/Test', '', 1, '用于测试', 1, '2023-01-29 20:44:50.009779');
+INSERT INTO "public"."quartz_job_task" VALUES ('b871a81b-fda6-42b0-bf48-08db0369c499', '00000000-0000-0000-0000-000000000000', '2023-01-31 17:01:40.802376', '00000000-0000-0000-0000-000000000000', '2023-01-31 19:34:38.181475', 'Run', 'HZY.Managers.CalcDataManager', '0/10 * * * * ?', 'HZY.Managers.CalcDataManager>Run', NULL, NULL, 1, '2023-01-31 19:36:00.00906', 2);
+INSERT INTO "public"."quartz_job_task" VALUES ('0af155d7-a8ee-4a07-ab1a-40dd0c77d7ea', '00000000-0000-0000-0000-000000000000', '2023-01-29 11:36:30.896033', '00000000-0000-0000-0000-000000000000', '2023-01-31 19:34:38.199554', '默认测试接口', 'TEST', '0/10 * * * * ?', 'http://localhost:5600/api/job/JobTest/Test', 1, '用于测试', 1, '2023-01-31 19:36:00.010254', 1);
 
 -- ----------------------------
 -- Table structure for quartz_job_task_log

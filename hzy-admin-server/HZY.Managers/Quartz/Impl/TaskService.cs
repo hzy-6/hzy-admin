@@ -232,9 +232,9 @@ namespace HZY.Managers.Quartz.Impl
         {
             try
             {
-                #region WebApi 服务
-
                 var result = (await FindListAsync())?.ToList() ?? new List<QuartzJobTask>();
+
+                #region WebApi 服务
 
                 if (result == null || result.Count == 0)
                 {

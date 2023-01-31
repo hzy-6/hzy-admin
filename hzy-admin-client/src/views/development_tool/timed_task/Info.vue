@@ -22,8 +22,8 @@ const rules = {
   name: [{ required: true, message: "请输入任务名称", trigger: "blur" }],
   groupName: [{ required: true, message: "请输入分组名称", trigger: "blur" }],
   cron: [{ required: true, message: "请输入定时规则", trigger: "blur" }],
-  requsetMode: [{ required: true, message: "请选择请求方式", trigger: "blur" }],
-  apiUrl: [{ required: true, message: "请输入请求地址", trigger: "blur" }],
+  // requsetMode: [{ required: true, message: "请选择请求方式", trigger: "blur" }],
+  jobPoint: [{ required: true, message: "请输入作业点", trigger: "blur" }],
 } as any;
 
 //表单实例
@@ -77,22 +77,34 @@ function save() {
       <a-form ref="refForm" layout="vertical" :model="state.vm.form" :rules="rules">
         <a-row :gutter="[16, 0]">
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-            <a-form-item label="任务名称" ref="name" name="name">
-              <a-input v-model:value="state.vm.form.name" placeholder="请输入" />
-            </a-form-item>
-          </a-col>
-          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="分组" ref="groupName" name="groupName">
               <a-input v-model:value="state.vm.form.groupName" placeholder="请输入" />
             </a-form-item>
           </a-col>
+
+          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+            <a-form-item label="任务名称" ref="name" name="name">
+              <a-input v-model:value="state.vm.form.name" placeholder="请输入" />
+            </a-form-item>
+          </a-col>
+
+          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+            <a-form-item label="任务类型" ref="type" name="type">
+              <a-select v-model:value="state.vm.form.type">
+                <a-select-option :value="1">WebApi</a-select-option>
+                <a-select-option :value="2">Local</a-select-option>
+              </a-select>
+            </a-form-item>
+          </a-col>
+
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item ref="cron" name="cron">
               <template #label> 定时规则 &nbsp; <a target="_blank" href="https://www.bejson.com/othertools/cron/">在线生成规则</a> </template>
               <GenerateCron v-model:value="state.vm.form.cron" />
             </a-form-item>
           </a-col>
-          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
+
+          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" v-show="state.vm.form.type==1">
             <a-form-item label="请求方式" ref="requsetMode" name="requsetMode">
               <a-select v-model:value="state.vm.form.requsetMode">
                 <a-select-option :value="0">POST</a-select-option>
@@ -101,14 +113,9 @@ function save() {
               </a-select>
             </a-form-item>
           </a-col>
-          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
-            <a-form-item label="HeaderToken" ref="headerToken" name="headerToken">
-              <a-input v-model:value="state.vm.form.headerToken" placeholder="请输入" />
-            </a-form-item>
-          </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
-            <a-form-item label="ApiUrl" ref="apiUrl" name="apiUrl">
-              <a-textarea v-model:value="state.vm.form.apiUrl" placeholder="请输入" :rows="4" />
+            <a-form-item label="jobPoint" ref="jobPoint" name="jobPoint">
+              <a-textarea v-model:value="state.vm.form.jobPoint" placeholder="请输入" :rows="4" />
             </a-form-item>
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">

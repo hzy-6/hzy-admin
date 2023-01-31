@@ -11,7 +11,7 @@
  Target Server Version : 80019
  File Encoding         : 65001
 
- Date: 29/01/2023 20:35:20
+ Date: 31/01/2023 19:35:33
 */
 
 SET NAMES utf8mb4;
@@ -551,19 +551,20 @@ CREATE TABLE `quartz_job_task`  (
   `Name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '任务名称',
   `GroupName` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '分组名称',
   `Cron` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '间隔表达式',
-  `ApiUrl` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '请求地址',
-  `HeaderToken` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '请求 token 密钥',
+  `JobPoint` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '作业点',
   `RequsetMode` int NULL DEFAULT NULL COMMENT '请求方式（0=Post，1=Get，2=Delete）',
   `Remark` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NULL DEFAULT NULL COMMENT '备注',
   `State` int NULL DEFAULT NULL COMMENT '运行状态（0=未运行，1=运行中）',
   `ExecuteTime` datetime NULL DEFAULT NULL COMMENT '最后执行时间',
+  `Type` int NULL DEFAULT NULL COMMENT '类型（1=WebApi，2=本地）',
   PRIMARY KEY (`Id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
 -- Records of quartz_job_task
 -- ----------------------------
-INSERT INTO `quartz_job_task` VALUES ('0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '00000000-0000-0000-0000-000000000000', '2023-01-29 11:36:31', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:32:40', '默认测试接口', 'TEST', '0/10 * * * * ?', 'http://localhost:5600/api/job/JobTest/Test', '', 1, '用于测试', 1, '2023-01-29 17:32:40');
+INSERT INTO `quartz_job_task` VALUES ('0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '00000000-0000-0000-0000-000000000000', '2023-01-29 11:36:31', '00000000-0000-0000-0000-000000000000', '2023-01-31 19:34:38', '默认测试接口', 'TEST', '0/10 * * * * ?', 'http://localhost:5600/api/job/JobTest/Test', 1, '用于测试', 1, '2023-01-31 19:34:40', 1);
+INSERT INTO `quartz_job_task` VALUES ('B871A81B-FDA6-42B0-BF48-08DB0369C499', '00000000-0000-0000-0000-000000000000', '2023-01-31 17:01:41', '00000000-0000-0000-0000-000000000000', '2023-01-31 19:34:38', 'Run', 'HZY.Managers.CalcDataManager', '0/10 * * * * ?', 'HZY.Managers.CalcDataManager>Run', NULL, NULL, 1, '2023-01-31 19:34:41', 2);
 
 -- ----------------------------
 -- Table structure for quartz_job_task_log
@@ -586,9 +587,12 @@ CREATE TABLE `quartz_job_task_log`  (
 INSERT INTO `quartz_job_task_log` VALUES ('1234C67D-7015-48C4-B21D-364D485F75A3', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:32:30', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:30:012|EndTime=17:32:30:038|耗时=28 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('1C2D3627-2C2C-4D6E-9219-3756E581F7EA', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:03:00', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:00:036|EndTime=12:03:00:100|耗时=65 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('1C5D8474-8BC6-4586-A93D-F1DFFF5B2BE7', '00000000-0000-0000-0000-000000000000', '2023-01-29 16:55:10', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 16:55:10:054|EndTime=16:55:10:092|耗时=41 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('21f3c791-8252-4057-b71c-0aadc24b8025', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:37:34', NULL, NULL, '0af155d7-a8ee-4a07-ab1a-40dd0c77d7ea', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 20:37:31:069|EndTime=20:37:33:638|耗时=2619 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('2FCFC8D3-F7EE-47D8-87CC-B5EE4DE561AF', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:02:29', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:29:183|EndTime=12:02:29:234|耗时=54 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('32b1e484-f65d-4e0d-8900-3c68bc406ac8', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:37:40', NULL, NULL, '0af155d7-a8ee-4a07-ab1a-40dd0c77d7ea', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 20:37:40:099|EndTime=20:37:40:164|耗时=119 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('3ECDC0F9-0937-440D-8E8C-D4EA126EF35C', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:04:00', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:04:00:041|EndTime=12:04:00:110|耗时=70 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('4EBD9D4D-28AE-4736-BD1A-1BEF6C77A37F', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:32:40', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:40:047|EndTime=17:32:40:080|耗时=36 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('635db16b-b003-421e-9ba2-e58b6b6f13e9', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:38:10', NULL, NULL, '0af155d7-a8ee-4a07-ab1a-40dd0c77d7ea', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 20:38:10:061|EndTime=20:38:10:109|耗时=52 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('658213B8-C975-409A-B490-92995B27795C', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:32:20', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:20:036|EndTime=17:32:20:066|耗时=31 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('72B10C0E-620F-4AC9-BF9A-3FCE7EAE1B88', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:12:33', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:12:30:940|EndTime=17:12:33:283|耗时=2372 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('7354BC3B-FA15-4645-8B54-63F1A7265D2F', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:03:20', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:20:039|EndTime=12:03:20:070|耗时=32 毫秒|结果=调用测试接口成功!');
@@ -600,9 +604,12 @@ INSERT INTO `quartz_job_task_log` VALUES ('947B18B8-4ABF-4FDA-A612-0F8CE8EF746A'
 INSERT INTO `quartz_job_task_log` VALUES ('95A4AA46-FDB3-4C29-8089-5A413D8BE776', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:32:10', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:10:040|EndTime=17:32:10:067|耗时=29 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('95DA5460-0C80-4DF7-9AAB-E4EE40D1B924', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:04:10', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:04:10:005|EndTime=12:04:10:039|耗时=36 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('A980D08F-2F2A-4017-8788-2BFB433DF66D', '00000000-0000-0000-0000-000000000000', '2023-01-29 17:31:50', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:31:50:079|EndTime=17:31:50:236|耗时=160 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('b56637e2-d8e8-416b-927c-172f6b0cbdb7', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:38:20', NULL, NULL, '0af155d7-a8ee-4a07-ab1a-40dd0c77d7ea', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 20:38:20:010|EndTime=20:38:20:057|耗时=50 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('BCA6690C-AB03-4677-93A2-471E55CED8EE', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:04:20', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:04:20:058|EndTime=12:04:20:084|耗时=28 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('BE1A1FE0-C856-487A-B7FD-37F1D3958115', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:02:30', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:30:056|EndTime=12:02:30:101|耗时=49 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('C465AD9C-62BD-406F-92D4-19FAF88F0940', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:02:23', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:15:195|EndTime=12:02:21:961|耗时=11296 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('c9d8c76d-64dd-4538-a1af-d9601b8312ab', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:37:50', NULL, NULL, '0af155d7-a8ee-4a07-ab1a-40dd0c77d7ea', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 20:37:50:061|EndTime=20:37:50:104|耗时=49 毫秒|结果=调用测试接口成功!');
+INSERT INTO `quartz_job_task_log` VALUES ('cfc854f9-b239-464c-8100-29d3f3aaff0a', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:38:00', NULL, NULL, '0af155d7-a8ee-4a07-ab1a-40dd0c77d7ea', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 20:38:00:054|EndTime=20:38:00:100|耗时=52 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('D03B92DD-13C5-40FC-9E61-BFAC59BBB31A', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:02:50', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:50:038|EndTime=12:02:50:069|耗时=33 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('D5BFA210-65B2-4483-8B9A-3AEB47F98176', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:03:40', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:40:021|EndTime=12:03:40:053|耗时=33 毫秒|结果=调用测试接口成功!');
 INSERT INTO `quartz_job_task_log` VALUES ('D70E6344-D373-498A-AE19-E7CD84603E47', '00000000-0000-0000-0000-000000000000', '2023-01-29 12:03:10', NULL, NULL, '0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', '任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:10:006|EndTime=12:03:10:430|耗时=427 毫秒|结果=调用测试接口成功!');
@@ -918,6 +925,22 @@ INSERT INTO `sys_operation_log` VALUES ('08dae163-efa4-43d0-8e7e-d6d568bab644', 
 INSERT INTO `sys_operation_log` VALUES ('08dae163-f16a-4b0b-809b-2f8370a8645f', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 155, 'Edge108', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', '系统账号', '获取当前用户信息', '00000000-0000-0000-0000-000000000000', '2022-12-19 09:54:19.466606', NULL, NULL);
 INSERT INTO `sys_operation_log` VALUES ('08dae163-f2bd-43a4-88fe-920b381d30c9', '/api/account/check', '0.0.0.1', '', '{\"userName\":\"admin\",\"userPassword\":\"123456\"}', '', 181, 'Edge108', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, NULL, '00000000-0000-0000-0000-000000000000', '2022-12-19 09:54:21.684820', NULL, NULL);
 INSERT INTO `sys_operation_log` VALUES ('08dae163-f335-4610-8fe7-71850d49c856', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 673, 'Edge108', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', '系统账号', '获取当前用户信息', '00000000-0000-0000-0000-000000000000', '2022-12-19 09:54:22.472170', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-9863-41dd-8764-ca8be1f2f2de', '/', '0.0.0.1', '', '', '', 111, 'Edge109', 'Windows10', NULL, NULL, NULL, '00000000-0000-0000-0000-000000000000', '2023-01-29 20:37:33.893647', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-9921-4c8f-82ad-02bf78e4e627', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 226, 'Edge109', 'Windows10', NULL, '系统账号', '获取当前用户信息', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:37:35.080184', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-9bcd-41ce-8128-50502187d37d', '/api/account/check', '0.0.0.1', '', '{\"userName\":\"admin\",\"userPassword\":\"123456\"}', '', 452, 'Edge109', 'Windows10', NULL, NULL, NULL, '00000000-0000-0000-0000-000000000000', '2023-01-29 20:37:39.558442', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-9c60-46e9-8a44-6c75fdec961a', '/api/admin/SysUser/info', '0.0.0.1', '', '', '', 476, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', '系统账号', '获取当前用户信息', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:37:40.533467', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-9e92-4c53-8dbf-db0f67697c20', '/api/admin/LowCodeTable/findList', '0.0.0.1', '', '{\"page\":1,\"size\":10,\"search\":{},\"searchSort\":[]}', '', 397, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', 'LowCodeTableController', NULL, '00000000-0000-0000-0000-000000000000', '2023-01-29 20:37:44.209216', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-9fd5-4803-8a10-9b7e8d90af00', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '{}', '', 49, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, '查看列表', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:37:46.324260', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-a26c-4a8d-8f95-2b6296726f65', '/api/admin/QuartzTasks/getJobLoggers/0af155d7-a8ee-4a07-ab1a-40dd0c77d7ea/1/10', '0.0.0.1', '', '', '', 68, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, '查看运行日志', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:37:50.670385', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-a9ba-4b07-8a0e-ffac7d4915f3', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '{}', '', 36, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, '查看列表', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:38:02.925758', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-aa54-4542-8897-6b5fffbe45c4', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '{}', '', 38, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, '查看列表', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:38:03.932657', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-aadb-4a95-8f51-6f1e56b53e78', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '{}', '', 45, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, '查看列表', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:38:04.819582', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-ab52-4baf-8d90-3423e361034b', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '{}', '', 34, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, '查看列表', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:38:05.599901', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-abcb-45fc-8046-947f8937185d', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '{}', '', 40, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, '查看列表', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:38:06.390548', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-ac21-46d9-8721-152d3d822308', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '{}', '', 37, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, '查看列表', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:38:06.954527', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-ad0d-476a-82ae-7236272b06db', '/api/admin/QuartzTasks/getJobLoggers/0af155d7-a8ee-4a07-ab1a-40dd0c77d7ea/1/10', '0.0.0.1', '', '', '', 44, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, '查看运行日志', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:38:08.501389', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-af09-4d28-8749-7a24b5a23ef4', '/api/admin/QuartzTasks/findForm', '0.0.0.1', '', '', '', 43, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, '查看表单', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:38:11.833007', NULL, NULL);
+INSERT INTO `sys_operation_log` VALUES ('08db01f5-b1b5-47d4-869f-0fc783d6017e', '/api/admin/QuartzTasks/findList/', '0.0.0.1', '', '{}', '', 33, 'Edge109', 'Windows10', '0198459e-2034-4533-b843-5d227ad20740', NULL, '查看列表', '00000000-0000-0000-0000-000000000000', '2023-01-29 20:38:16.313446', NULL, NULL);
 
 -- ----------------------------
 -- Table structure for sys_organization
