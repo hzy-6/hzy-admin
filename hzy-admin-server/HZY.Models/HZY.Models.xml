@@ -1220,24 +1220,9 @@
             间隔表达式
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.ApiUrl">
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.ExecuteTime">
             <summary>
-            请求地址
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.HeaderToken">
-            <summary>
-            请求 token 密钥
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.RequsetMode">
-            <summary>
-            请求方式
-            </summary>
-        </member>
-        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.Remark">
-            <summary>
-            备注
+            执行时间
             </summary>
         </member>
         <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.State">
@@ -1245,9 +1230,24 @@
             运行状态
             </summary>
         </member>
-        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.ExecuteTime">
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.Remark">
             <summary>
-            执行时间
+            备注
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.Type">
+            <summary>
+            任务类型
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.JobPoint">
+            <summary>
+            作业点
+            </summary>
+        </member>
+        <member name="P:HZY.Models.Entities.Quartz.QuartzJobTask.RequsetMode">
+            <summary>
+            请求方式
             </summary>
         </member>
         <member name="T:HZY.Models.Entities.Quartz.QuartzJobTaskRequsetModeEnum">
@@ -1258,6 +1258,21 @@
         <member name="T:HZY.Models.Entities.Quartz.QuartzJobTaskStateEnum">
             <summary>
             状态情况
+            </summary>
+        </member>
+        <member name="T:HZY.Models.Entities.Quartz.QuartzJobTaskTypeEnum">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Entities.Quartz.QuartzJobTaskTypeEnum.WebApi">
+            <summary>
+            webapi 远程程序
+            </summary>
+        </member>
+        <member name="F:HZY.Models.Entities.Quartz.QuartzJobTaskTypeEnum.Local">
+            <summary>
+            本地程序
             </summary>
         </member>
         <member name="T:HZY.Models.Entities.Quartz.QuartzJobTaskLog">

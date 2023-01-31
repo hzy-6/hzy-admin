@@ -11,17 +11,17 @@ namespace HZY.Managers.Quartz.Jobs
     /// Resultful 风格 Api Job
     /// </summary>
     [DisallowConcurrentExecution]
-    public class ResultfulApiJob : IJob, ITransientSelfDependency
+    public class WebApiJob : IJob, ITransientSelfDependency
     {
-        private readonly IApiRequestService _apiRequestService;
-        private readonly ILogger<ResultfulApiJob> _logger;
         private readonly Stopwatch _stopwatch;
+        private readonly IApiRequestService _apiRequestService;
+        private readonly ILogger<WebApiJob> _logger;
 
-        public ResultfulApiJob(IApiRequestService apiRequestService, ILogger<ResultfulApiJob> logger)
+        public WebApiJob(IApiRequestService apiRequestService, ILogger<WebApiJob> logger)
         {
+            _stopwatch = new Stopwatch();
             _apiRequestService = apiRequestService;
             _logger = logger;
-            _stopwatch = new Stopwatch();
         }
 
         public async Task Execute(IJobExecutionContext context)
@@ -34,7 +34,7 @@ namespace HZY.Managers.Quartz.Jobs
 
                 if (string.IsNullOrWhiteSpace(tasksId))
                 {
-                    _logger.LogError($"{QuartzStartupConfig.JobTaskId} 空!");
+                    _logger.LogError($"{QuartzStartupConfig.JobTaskId}  is NULL !");
                     return;
                 }
 
@@ -45,7 +45,7 @@ namespace HZY.Managers.Quartz.Jobs
 
                 if (quartzJobTask == null)
                 {
-                    _logger.LogError("tasks 空!");
+                    _logger.LogError("tasks is NULL !");
                     return;
                 }
 
@@ -63,7 +63,7 @@ namespace HZY.Managers.Quartz.Jobs
 
                 var text = $"任务={quartzJobTask.Name}|组={quartzJobTask.GroupName}|{time:yyyy-MM-dd}|StartTime={time: HH:mm:ss:fff}|";
 
-                var result = await _apiRequestService.RequestAsync(quartzJobTask.RequsetMode, quartzJobTask.ApiUrl, quartzJobTask.HeaderToken);
+                var result = await _apiRequestService.RequestAsync(quartzJobTask.RequsetMode ?? QuartzJobTaskRequsetModeEnum.Post, quartzJobTask.JobPoint);
 
                 if (result.IsSuccess)
                 {
@@ -82,13 +82,14 @@ namespace HZY.Managers.Quartz.Jobs
                 text += $"EndTime={endTime}|耗时={_stopwatch.ElapsedMilliseconds} 毫秒|结果={result.Message}";
                 _jobLoggerService.Write(new QuartzJobTaskLog()
                 {
+                    Id = Guid.NewGuid(),
                     JobTaskId = taskId,
                     Text = text
                 });
             }
             catch (Exception ex)
             {
-                var message = $@"Message={ex.Message}\r\n
+                var message = $@">>>>>>>>>>>>>>> 定时任务 {nameof(WebApiJob)} Message={ex.Message}\r\n
 StackTrace={ex.StackTrace}\r\n
 Source={ex.Source}\r\n";
 

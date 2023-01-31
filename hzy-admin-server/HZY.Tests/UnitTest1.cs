@@ -26,6 +26,17 @@ public class Tests
         Assert.Pass();
     }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    [Test]
+    public void TestGetType()
+    {
+        var t = Type.GetType("LocalJob");
+
+        Assert.Pass();
+    }
+
 }
 
 public class User

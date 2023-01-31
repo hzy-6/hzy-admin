@@ -12,7 +12,7 @@
  Target Server Version : 15002095
  File Encoding         : 65001
 
- Date: 29/01/2023 17:32:38
+ Date: 31/01/2023 17:24:18
 */
 
 
@@ -1162,12 +1162,12 @@ CREATE TABLE [dbo].[quartz_job_task] (
   [Name] varchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
   [GroupName] varchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
   [Cron] varchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
-  [ApiUrl] varchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
-  [HeaderToken] varchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
+  [JobPoint] varchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
   [RequsetMode] int  NULL,
   [Remark] varchar(255) COLLATE Chinese_PRC_CI_AS  NULL,
   [State] int  NULL,
-  [ExecuteTime] datetime2(7)  NULL
+  [ExecuteTime] datetime2(7)  NULL,
+  [Type] int  NULL
 )
 GO
 
@@ -1224,17 +1224,10 @@ EXEC sp_addextendedproperty
 GO
 
 EXEC sp_addextendedproperty
-'MS_Description', N'请求地址',
+'MS_Description', N'作业点',
 'SCHEMA', N'dbo',
 'TABLE', N'quartz_job_task',
-'COLUMN', N'ApiUrl'
-GO
-
-EXEC sp_addextendedproperty
-'MS_Description', N'请求 token 密钥',
-'SCHEMA', N'dbo',
-'TABLE', N'quartz_job_task',
-'COLUMN', N'HeaderToken'
+'COLUMN', N'JobPoint'
 GO
 
 EXEC sp_addextendedproperty
@@ -1265,11 +1258,21 @@ EXEC sp_addextendedproperty
 'COLUMN', N'ExecuteTime'
 GO
 
+EXEC sp_addextendedproperty
+'MS_Description', N'类型（1=WebApi，2=本地）',
+'SCHEMA', N'dbo',
+'TABLE', N'quartz_job_task',
+'COLUMN', N'Type'
+GO
+
 
 -- ----------------------------
 -- Records of quartz_job_task
 -- ----------------------------
-INSERT INTO [dbo].[quartz_job_task] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Name], [GroupName], [Cron], [ApiUrl], [HeaderToken], [RequsetMode], [Remark], [State], [ExecuteTime]) VALUES (N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 11:36:30.8960328', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:32:40.0799593', N'默认测试接口', N'TEST', N'0/10 * * * * ?', N'http://localhost:5600/api/job/JobTest/Test', N'', N'1', N'用于测试', N'1', N'2023-01-29 17:32:40.0479575')
+INSERT INTO [dbo].[quartz_job_task] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Name], [GroupName], [Cron], [JobPoint], [RequsetMode], [Remark], [State], [ExecuteTime], [Type]) VALUES (N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:01:40.8023762', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:37.4795205', N'Run', N'HZY.Managers.CalcDataManager', N'0/10 * * * * ?', N'HZY.Managers.CalcDataManager>Run', NULL, NULL, N'1', N'2023-01-31 17:24:20.0501154', N'2')
+GO
+
+INSERT INTO [dbo].[quartz_job_task] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Name], [GroupName], [Cron], [JobPoint], [RequsetMode], [Remark], [State], [ExecuteTime], [Type]) VALUES (N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 11:36:30.8960328', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:37.4989660', N'默认测试接口', N'TEST', N'0/10 * * * * ?', N'http://localhost:5600/api/job/JobTest/Test', N'1', N'用于测试', N'1', N'2023-01-31 17:24:20.0522509', N'1')
 GO
 
 
@@ -1340,25 +1343,208 @@ GO
 -- ----------------------------
 -- Records of quartz_job_task_log
 -- ----------------------------
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'A38F9764-F2CF-4532-A3DC-00A638F4AB99', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:20.0496443', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:18:20:048|EndTime=17:18:20:049|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'0E560E6F-DC8A-4410-AA60-019ADF520052', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:08:50.1005496', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:08:50:052|EndTime=17:08:50:100|耗时=51 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'6316BA7E-94C8-4667-B278-0241017B567F', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:20.0161546', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:20:20:014|EndTime=17:20:20:016|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'D0FDEB9C-575A-4E38-A8A6-03A4CEE4B3A1', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:08:50.0521491', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:08:50:048|EndTime=17:08:50:051|耗时=8 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'4E5C2E28-0144-4231-827D-05FAE53B8D1A', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:40.0479341', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:20:40:012|EndTime=17:20:40:047|耗时=37 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'ABB661A6-A50A-4B4F-B8EF-0612E9F98DEA', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:07:10.0486816', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:07:10:045|EndTime=17:07:10:046|耗时=5 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'FC468F3E-BB46-4E7A-7E67-08DB0290EF26', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:31.4076299', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 15:09:30:131|EndTime=15:09:31:360|耗时=1240 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'367BABB4-EF1A-403F-7E68-08DB0290EF26', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:40.0808059', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 15:09:40:050|EndTime=15:09:40:079|耗时=31 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'520BF12F-F62D-481F-7E69-08DB0290EF26', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:50.0746779', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 15:09:50:048|EndTime=15:09:50:074|耗时=28 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'4D163508-52AD-4EC8-7E6A-08DB0290EF26', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:10:00.0664243', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 15:10:00:034|EndTime=15:10:00:065|耗时=33 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'37B1BBDB-6029-47A1-7E6B-08DB0290EF26', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:10:10.0733354', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 15:10:10:042|EndTime=15:10:10:072|耗时=32 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'B4AFFE67-1956-47C1-605C-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:03:27.6388928', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:03:20:076|EndTime=17:03:23:147|耗时=3080 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'73B20828-D568-4148-605D-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:03:36.4753660', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:03:33:627|EndTime=17:03:36:472|耗时=2855 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'7893F40A-2773-4742-605E-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:03:36.5110428', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:03:23:078|EndTime=17:03:36:510|耗时=16443 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'927F19F5-99A3-44C9-605F-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:03:36.5969612', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:03:36:533|EndTime=17:03:36:585|耗时=54 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'6CA4C489-E704-4091-6060-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:03:40.0219677', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:03:40:019|EndTime=17:03:40:020|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'BF4EE2EB-7369-49A1-6061-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:03:40.0535871', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:03:40:021|EndTime=17:03:40:052|耗时=33 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'1E10C590-2116-476A-6062-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:03:50.0485368', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:03:50:045|EndTime=17:03:50:047|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'24C9A3E1-AE19-40D4-6063-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:03:50.0821041', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:03:50:047|EndTime=17:03:50:081|耗时=36 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'EDD96783-A791-4FF8-6064-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:04:00.0363514', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:04:00:033|EndTime=17:04:00:035|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'F18F06DE-6319-4EFA-6065-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:04:00.0755994', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:04:00:036|EndTime=17:04:00:073|耗时=38 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'929133D4-D19C-4423-6066-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:04:10.0120048', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:04:10:009|EndTime=17:04:10:010|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'B7A0417E-449B-439E-6067-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:04:10.0575686', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:04:10:011|EndTime=17:04:10:056|耗时=46 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'DD33A257-08D2-42E2-6068-08DB036A0446', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:04:32.5466435', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:04:32:538|EndTime=17:04:32:544|耗时=12513 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'7E370620-533F-4D4E-52E9-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:05:10.5539602', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:05:10:340|EndTime=17:05:10:521|耗时=284 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'35FD2ED2-8665-473F-52EA-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:05:10.6252068', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:05:10:270|EndTime=17:05:10:623|耗时=388 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'70C2BB03-888F-46B7-52EB-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:05:20.0492684', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:05:20:045|EndTime=17:05:20:048|耗时=6 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'8D6B6B3E-5099-4E7C-52EC-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:05:20.0958186', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:05:20:048|EndTime=17:05:20:095|耗时=49 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'F598EF6F-2C82-4BDF-52ED-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:05:30.0172900', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:05:30:012|EndTime=17:05:30:015|耗时=11 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'7D135862-42B0-44D9-52EE-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:05:30.0565919', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:05:30:014|EndTime=17:05:30:054|耗时=43 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'2A3302E6-7A64-47F1-52EF-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:05:40.0445618', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:05:40:036|EndTime=17:05:40:041|耗时=8 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'44CCC483-431B-4841-52F0-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:05:40.0784762', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:05:40:039|EndTime=17:05:40:077|耗时=41 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'E9AA684D-A34F-4862-52F1-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:05:50.0416524', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:05:50:039|EndTime=17:05:50:040|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'7C403394-1E88-4B5D-52F2-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:05:50.0716834', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:05:50:041|EndTime=17:05:50:071|耗时=31 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'47CBAD95-3D48-4836-52F3-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:06:00.0364258', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:06:00:034|EndTime=17:06:00:035|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'D4382291-DAB8-42C3-52F4-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:06:00.0834505', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:06:00:037|EndTime=17:06:00:082|耗时=47 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'C0D58649-AAA0-4EBF-52F5-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:06:10.0121181', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:06:10:009|EndTime=17:06:10:011|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'88AB806A-3E6A-4F4E-52F6-08DB036A419E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:06:10.0830214', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:06:10:012|EndTime=17:06:10:082|耗时=71 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'894BCEB4-6257-414D-ADC5-097F26D3E5DD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:00.8394697', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:18:00:091|EndTime=17:18:00:812|耗时=736 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'B9ACC5EC-E7E5-4A45-B142-0CFFDDE47C89', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:10:10.0199234', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:10:10:018|EndTime=17:10:10:019|耗时=3 毫秒|结果=执行完成!')
+GO
+
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'947B18B8-4ABF-4FDA-A612-0F8CE8EF746A', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:12:50.0875068', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:12:50:037|EndTime=17:12:50:071|耗时=35 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'14F9A0D3-C3AD-41DC-8D67-11A6DBF192D8', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:09:10.0587815', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:09:10:017|EndTime=17:09:10:058|耗时=42 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'6BC514F4-BE0C-424E-BB43-12F715A7F066', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:08:40.0524506', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 09:08:40:015|EndTime=09:08:40:048|耗时=35 毫秒|结果=调用测试接口成功!')
 GO
 
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'8F1A6859-B3EA-48AB-894A-158F85369947', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 16:55:05.3355662', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 16:55:00:158|EndTime=16:55:05:239|耗时=5091 毫秒|结果=调用测试接口成功!')
 GO
 
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'CA35E0BA-0536-44E9-B4A8-191C55857AB6', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:50.0415834', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:22:50:015|EndTime=17:22:50:041|耗时=27 毫秒|结果=调用测试接口成功!')
+GO
+
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'C465AD9C-62BD-406F-92D4-19FAF88F0940', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 12:02:23.2676236', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:15:195|EndTime=12:02:21:961|耗时=11296 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'F42AFB7C-8642-4987-930D-1B0E4845162C', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:09:00.0160603', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:09:00:010|EndTime=17:09:00:015|耗时=9 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'3F66B97C-AEB4-49ED-9E50-1B7899733DC1', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:20.0105365', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:19:20:009|EndTime=17:19:20:010|耗时=3 毫秒|结果=执行完成!')
 GO
 
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'4EBD9D4D-28AE-4736-BD1A-1BEF6C77A37F', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:32:40.1392256', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:40:047|EndTime=17:32:40:080|耗时=36 毫秒|结果=调用测试接口成功!')
 GO
 
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'E1CBFD6A-8C99-43E1-B7EE-1D2F88FEFBE1', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:50.0376000', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:20:50:011|EndTime=17:20:50:037|耗时=28 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'1BCD8D88-E597-4C15-9612-1E558F9B4256', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:21:40.2804630', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:21:40:080|EndTime=17:21:40:279|耗时=209 毫秒|结果=调用测试接口成功!')
+GO
+
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'897F4058-C5DF-4814-8C49-2420348415CC', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:32:00.0679601', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:00:011|EndTime=17:32:00:047|耗时=40 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'13D4FDCE-6E49-4A6D-96F7-24D203B9FCAC', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:40.0139113', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:18:40:011|EndTime=17:18:40:013|耗时=8 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'5EDC7252-EF9B-440C-9660-27BBE92B46D4', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:10.0423490', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:22:10:009|EndTime=17:22:10:042|耗时=34 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'F5AD4638-61D1-44DB-81C7-2892ECC830A8', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:10:20.0439900', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:10:20:041|EndTime=17:10:20:043|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'97799811-D942-47B3-8240-29E17F3050DD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:09:10.0159518', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:09:10:014|EndTime=17:09:10:015|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'017D9EB8-8B9A-4A3C-AF48-2AC9C3CD4948', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:40.0487282', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:19:40:046|EndTime=17:19:40:048|耗时=4 毫秒|结果=执行完成!')
 GO
 
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'A980D08F-2F2A-4017-8788-2BFB433DF66D', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:31:50.2686443', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:31:50:079|EndTime=17:31:50:236|耗时=160 毫秒|结果=调用测试接口成功!')
 GO
 
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'B5E3556C-B555-4228-9EAE-2E3E70F14EAB', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:00.0863642', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:22:00:038|EndTime=17:22:00:086|耗时=50 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'6D42BD6A-01AC-4CB6-A235-2E52C9BC9097', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:30.0826518', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:20:30:043|EndTime=17:20:30:082|耗时=41 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'19A82B8A-93B3-4904-8D31-2E876978400B', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:08:40.0154248', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:08:40:014|EndTime=17:08:40:015|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'9A84EB89-A7B4-4F72-BAC4-331F62A0A199', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:40.0808183', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:19:40:051|EndTime=17:19:40:080|耗时=30 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'F5523AE8-8CDC-44C6-AC66-33C702A9786F', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:40.1179785', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:18:40:079|EndTime=17:18:40:117|耗时=106 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'17C01047-97B9-4DC2-AF09-33F775701DAF', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:40.5729213', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:23:40:235|EndTime=17:23:40:572|耗时=348 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'6F65B1BF-5393-4C75-9ABD-34710011F37C', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:10.0389438', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:19:10:037|EndTime=17:19:10:038|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'509231E6-2F9A-45F5-B5B1-352775D6B6B1', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:08:20.1161723', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:08:20:047|EndTime=17:08:20:115|耗时=70 毫秒|结果=调用测试接口成功!')
+GO
+
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'1234C67D-7015-48C4-B21D-364D485F75A3', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:32:30.0552264', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:30:012|EndTime=17:32:30:038|耗时=28 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'ED06B848-F79E-41DF-A8CC-37465B390704', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:07:51.7162459', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:07:50:213|EndTime=17:07:51:715|耗时=1550 毫秒|结果=调用测试接口成功!')
 GO
 
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'1C2D3627-2C2C-4D6E-9219-3756E581F7EA', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 12:03:00.1142360', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:00:036|EndTime=12:03:00:100|耗时=65 毫秒|结果=调用测试接口成功!')
@@ -1370,40 +1556,277 @@ GO
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'D5BFA210-65B2-4483-8B9A-3AEB47F98176', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 12:03:40.0564040', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:40:021|EndTime=12:03:40:053|耗时=33 毫秒|结果=调用测试接口成功!')
 GO
 
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'CF153802-65D9-4851-961A-3BF319AA04C2', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:50.0229564', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:18:50:019|EndTime=17:18:50:022|耗时=7 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'D1726C61-32A8-4221-9928-3EB003A2617D', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:08:10.1024435', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:08:10:048|EndTime=17:08:10:102|耗时=56 毫秒|结果=调用测试接口成功!')
+GO
+
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'72B10C0E-620F-4AC9-BF9A-3FCE7EAE1B88', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:12:33.4134916', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:12:30:940|EndTime=17:12:33:283|耗时=2372 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'CD9D0D0C-8046-4559-81AF-42187D995FBA', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:10.0111865', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:22:10:007|EndTime=17:22:10:010|耗时=5 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'091563A1-9596-463A-8B51-44787451A9D8', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:00.0415234', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:23:00:040|EndTime=17:23:00:041|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'511F81B3-D3D4-4081-854E-4509ED77DE8F', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:10.0609586', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:18:10:013|EndTime=17:18:10:060|耗时=50 毫秒|结果=调用测试接口成功!')
 GO
 
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'BCA6690C-AB03-4677-93A2-471E55CED8EE', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 12:04:20.0879536', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:04:20:058|EndTime=12:04:20:084|耗时=28 毫秒|结果=调用测试接口成功!')
 GO
 
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'47A16A5F-6BFB-4162-B11C-4806FA0E3BCC', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:07:00.9023330', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:07:00:351|EndTime=17:07:00:901|耗时=599 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'18DD75A7-1B00-4EBC-B16A-4EABD12AEED6', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:20.0076734', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:22:20:006|EndTime=17:22:20:007|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'B7940315-DFA4-4305-946F-5019BFDA721A', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:00.1078204', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:23:00:043|EndTime=17:23:00:107|耗时=66 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'7CB3883C-2979-4C4E-8431-50C2F13FD4D2', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:50.0765663', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:23:50:039|EndTime=17:23:50:076|耗时=40 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'9D7C9331-B237-4CB3-A13D-5132D8E97BBC', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:07:10.1316670', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:07:10:081|EndTime=17:07:10:131|耗时=87 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'59F411A5-5889-4625-8D7A-51D501EE921C', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:20.0684986', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:22:20:009|EndTime=17:22:20:068|耗时=61 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'E881CD97-56A9-4724-BFA3-52A2F2C2AA4B', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:20.0495368', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:19:20:012|EndTime=17:19:20:049|耗时=38 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'2276C3CC-EB4E-455A-99B5-548668493688', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:09:40.0112285', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:09:40:009|EndTime=17:09:40:011|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'DF9A5EA8-7584-415F-919C-54BA48E861B0', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:24:00.0785674', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:24:00:051|EndTime=17:24:00:078|耗时=29 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'F2C910D1-FFDA-4917-945C-56B495D54F46', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:09:20.0863927', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 09:09:20:045|EndTime=09:09:20:083|耗时=41 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'7260184F-AEC1-48F5-AD15-57FEAFA11108', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:21:50.0210392', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:21:50:019|EndTime=17:21:50:020|耗时=5 毫秒|结果=执行完成!')
+GO
+
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'95A4AA46-FDB3-4C29-8089-5A413D8BE776', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:32:10.0783313', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:10:040|EndTime=17:32:10:067|耗时=29 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'85DD2871-D099-4BBC-A2F4-5DC4C5D304A9', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:24:00.0479713', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:24:00:046|EndTime=17:24:00:047|耗时=7 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'11E4C07C-DC66-4316-82C0-601988E50D64', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:08:10.0444142', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:08:10:042|EndTime=17:08:10:044|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'DF8C8E90-6D6E-4A42-98DD-61F2B5F4319E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:08:40.0679211', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:08:40:016|EndTime=17:08:40:067|耗时=53 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'C0135621-7E9B-4A2A-89D1-637AF01C5615', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:30.0462006', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:22:30:016|EndTime=17:22:30:046|耗时=31 毫秒|结果=调用测试接口成功!')
 GO
 
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'7354BC3B-FA15-4645-8B54-63F1A7265D2F', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 12:03:20.0730241', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:20:039|EndTime=12:03:20:070|耗时=32 毫秒|结果=调用测试接口成功!')
 GO
 
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'F974948F-C6B7-4743-8DEA-6661F2137CDE', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:00.0538184', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:19:00:018|EndTime=17:19:00:053|耗时=37 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'AECEFE09-59EC-49EF-BC83-66DD2B478ED1', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:21:40.2127802', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:21:40:112|EndTime=17:21:40:171|耗时=101 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'D7A37C8D-8D8F-4F09-91B8-6B9FFBAAA4DC', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:09:00.0573913', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:09:00:013|EndTime=17:09:00:057|耗时=47 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'3566B209-B2E6-4D37-9943-6EF82E951441', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:10:00.1140106', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:10:00:017|EndTime=17:10:00:113|耗时=98 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'D2CDD4AA-BC69-4E9E-81D0-706BBBE46415', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:09:30.0172314', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:09:30:015|EndTime=17:09:30:017|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'B4670525-730A-4C55-90FB-70CAB17074E0', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:08:20.0451471', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:08:20:043|EndTime=17:08:20:045|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'0212D9E2-1D7D-47E8-99BD-761205C3DF80', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:30.0510824', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:18:30:049|EndTime=17:18:30:050|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'3B785B96-A2D4-4235-AE51-7A51AB646893', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:00.0388722', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:22:00:036|EndTime=17:22:00:038|耗时=5 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'70053A15-EE59-440E-9772-7A7E803AC784', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:00.0201323', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:20:00:017|EndTime=17:20:00:019|耗时=6 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'DE0F321D-2055-4258-BC0D-7AA43FB13329', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:08:50.0773913', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 09:08:50:042|EndTime=09:08:50:073|耗时=33 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'A2926F8D-A090-4D77-BBEF-7CC74AF0FAF6', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:10:30.0375374', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:10:30:009|EndTime=17:10:30:037|耗时=29 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'81396ACC-3D43-4740-9BB7-7F5086B62E84', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:10:30.0083445', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:10:30:006|EndTime=17:10:30:008|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'13058192-2025-42AF-9169-8243FEB52BCC', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:50.0788094', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:19:50:037|EndTime=17:19:50:078|耗时=42 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'5F4D5DEF-2503-488A-B9AE-8340FF789C02', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:40.0120390', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:20:40:009|EndTime=17:20:40:011|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'423BA1B9-BFDD-4AB7-8B08-835D6D9AD7AA', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:50.0403369', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:23:50:038|EndTime=17:23:50:040|耗时=5 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'4DEFD360-D6F8-4B8F-901F-85118E6773F4', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:24:10.0353682', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:24:10:033|EndTime=17:24:10:035|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'EDA98239-9864-41EC-914F-89B3E44C938A', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:50.0144439', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:22:50:013|EndTime=17:22:50:014|耗时=3 毫秒|结果=执行完成!')
+GO
+
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'F8CD7E8E-100B-43FA-BA4B-8A778BBF429C', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 12:03:50.0555428', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:50:016|EndTime=12:03:50:052|耗时=37 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'AEF4D341-6A7B-4F1B-B45E-8CA22C07669B', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:07:50.4239985', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:07:50:179|EndTime=17:07:50:378|耗时=214 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'226C7145-E1B4-44D9-B9E4-8D637D236D16', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:30.1002726', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:18:30:058|EndTime=17:18:30:100|耗时=49 毫秒|结果=调用测试接口成功!')
 GO
 
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'81E0A17C-5022-4974-B56B-9010102F1B03', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 12:02:40.0516349', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:40:020|EndTime=12:02:40:048|耗时=29 毫秒|结果=调用测试接口成功!')
 GO
 
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'B75BBBDB-D2EA-4A37-ADC4-91047F659407', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:10:00.0416151', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 09:10:00:006|EndTime=09:10:00:037|耗时=33 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'EFB752B4-4DBE-4678-85E0-910B7558F78B', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:10.0473194', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:23:10:021|EndTime=17:23:10:047|耗时=28 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'8446039C-F87F-4304-AE61-92283C30181B', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:24:20.0829884', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:24:20:052|EndTime=17:24:20:082|耗时=32 毫秒|结果=调用测试接口成功!')
+GO
+
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'658213B8-C975-409A-B490-92995B27795C', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:32:20.0754942', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:20:036|EndTime=17:32:20:066|耗时=31 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'3D03358C-2F1F-44CC-8BC7-92DA7277ECF6', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:09:10.0410646', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 09:09:10:007|EndTime=09:09:10:037|耗时=31 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'4BB896E5-C6AD-4505-B60C-934CE4C6B767', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:10:20.0953056', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:10:20:044|EndTime=17:10:20:095|耗时=53 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'1EDBB0EB-2473-4DE4-B93F-9AFD8B789439', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:33:00.0486307', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:33:00:010|EndTime=17:33:00:044|耗时=36 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'79258860-65FD-493C-834E-9CD013D5583B', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:10.1050569', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:19:10:040|EndTime=17:19:10:104|耗时=66 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'E6FCB5E3-30CD-4CDB-B665-9E20AC34AE0E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:07:00.6471355', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:07:00:351|EndTime=17:07:00:620|耗时=317 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'8465EBFE-DAA0-4479-A6F1-A01E6A0739BC', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:20.0931423', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:18:20:058|EndTime=17:18:20:093|耗时=43 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'AFFC7E59-FDEF-4E62-902D-A05D7D480E6F', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:08:30.0599224', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:08:30:019|EndTime=17:08:30:059|耗时=42 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'C5839F55-CCAA-46B6-BC1F-A14F7159E08E', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:30.0418587', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:20:30:039|EndTime=17:20:30:041|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'9BF61A47-770D-4824-9545-A2300801AE78', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:00.0160767', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:19:00:014|EndTime=17:19:00:015|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'240D8F4E-75BE-420F-A190-A4C8B2E8CF39', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:30.0149324', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:22:30:013|EndTime=17:22:30:014|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'DE26F44A-CB86-4FA5-B341-ACCDAEA43061', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:20.0492936', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:20:20:018|EndTime=17:20:20:049|耗时=32 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'4A0B414F-4209-469F-A64D-AE32AB3F4832', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:09:30.0814927', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:09:30:018|EndTime=17:09:30:081|耗时=65 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'E5868DE9-3774-4271-B25D-AE7C758E9F58', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:10:10.0545099', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:10:10:021|EndTime=17:10:10:054|耗时=35 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'FA30B3BF-778E-44C5-B4E7-AF23068DA0F6', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:09:20.0134515', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:09:20:011|EndTime=17:09:20:013|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'5615088E-38BE-4C6E-8F3B-AFA7AA886E69', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:40.0463368', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:22:40:044|EndTime=17:22:40:046|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'5A70C7E6-4A62-472D-A8C1-AFC06A03C92F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:09:00.0720857', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 09:09:00:036|EndTime=09:09:00:068|耗时=35 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'6AE3C1B2-1F8A-4B51-A93A-B0701FB57CD0', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:09:40.0559695', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 09:09:40:019|EndTime=09:09:40:053|耗时=37 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'FE0067E8-9507-4A67-B755-B0E638A3BA77', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:50.0558112', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:18:50:021|EndTime=17:18:50:055|耗时=36 毫秒|结果=调用测试接口成功!')
 GO
 
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'2FCFC8D3-F7EE-47D8-87CC-B5EE4DE561AF', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 12:02:29.2383986', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:29:183|EndTime=12:02:29:234|耗时=54 毫秒|结果=调用测试接口成功!')
 GO
 
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'D36136BD-FE5C-4566-8662-B784739711A3', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:00.9806280', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:18:00:083|EndTime=17:18:00:980|耗时=903 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'18F11890-C169-4117-B344-B873BFD3BCE1', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:10.0582659', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:20:10:024|EndTime=17:20:10:058|耗时=36 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'8AE323C4-7D7D-494E-A246-BB3F2D6EC958', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:10.0199657', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:18:10:012|EndTime=17:18:10:019|耗时=11 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'4DF28CD1-E568-4C96-BB03-BC643FFDFE03', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:08:00.0945521', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:08:00:055|EndTime=17:08:00:094|耗时=41 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'9754E14F-845C-4EBC-BB0A-BD104BA32AB3', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:10:00.0795921', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:10:00:016|EndTime=17:10:00:079|耗时=68 毫秒|结果=执行完成!')
+GO
+
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'D03B92DD-13C5-40FC-9E61-BFAC59BBB31A', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 12:02:50.0725874', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:02:50:038|EndTime=12:02:50:069|耗时=33 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'CD136763-E310-4F21-8B01-C2720D0E91C9', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:00.0707338', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:20:00:020|EndTime=17:20:00:070|耗时=52 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'7B01A529-80CA-4378-89FD-C4C3712E0D70', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:10.0222347', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:20:10:019|EndTime=17:20:10:022|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'B4F6B2A6-5953-4ED3-90D9-C53DB239AB17', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:08:30.0165752', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:08:30:014|EndTime=17:08:30:016|耗时=5 毫秒|结果=执行完成!')
 GO
 
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'86DAA3AC-93CF-4FD2-AA93-C5A04F3AE968', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 16:55:20.2155604', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 16:55:20:039|EndTime=16:55:20:064|耗时=27 毫秒|结果=调用测试接口成功!')
 GO
 
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'EC390D0D-87EA-4522-A1D5-C65346A7365B', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:32:50.1147764', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:32:50:014|EndTime=17:32:50:095|耗时=82 毫秒|结果=调用测试接口成功!')
+GO
+
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'D8004A93-C4F5-498B-B9AA-C7301460F5B9', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 16:54:10.7758372', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 16:54:10:120|EndTime=16:54:10:662|耗时=552 毫秒|结果=调用测试接口成功!')
 GO
 
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'38F7FF05-B6FA-4302-BF08-C7BDB321683B', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:24:10.0665918', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:24:10:037|EndTime=17:24:10:066|耗时=30 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'AB88443B-611C-43FB-AB0E-C843C16FE511', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:33:10.0403554', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:33:10:007|EndTime=17:33:10:037|耗时=31 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'C9CE4B00-523F-45E0-B21F-CC791CDB02BB', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:30.1095132', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:19:30:076|EndTime=17:19:30:109|耗时=34 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'3D9C2702-ECB1-4365-B892-CC85DDB1ABD9', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:08:30.0985431', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 09:08:30:054|EndTime=09:08:30:094|耗时=43 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'F1D41625-7DC1-409C-9174-D046FEDC265F', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:50.0394096', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:19:50:036|EndTime=17:19:50:039|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'A70ED40D-1BC7-4AC9-B57B-D26CE6019837', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:30.0758725', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:19:30:074|EndTime=17:19:30:075|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'16971A4B-4253-4733-A57C-D2848987FCE3', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:10:10.0902477', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 09:10:10:050|EndTime=09:10:10:087|耗时=38 毫秒|结果=调用测试接口成功!')
+GO
+
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'3ECDC0F9-0937-440D-8E8C-D4EA126EF35C', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 12:04:00.1135006', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:04:00:041|EndTime=12:04:00:110|耗时=70 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'BB003014-9F3C-465D-93D8-D9EC65FFDC6D', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:50.0099757', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:20:50:008|EndTime=17:20:50:009|耗时=3 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'36E05C88-E3D2-4DFE-8B52-DA25E289C62B', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:40.0909673', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:22:40:049|EndTime=17:22:40:090|耗时=43 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'1DEA0372-025F-4030-BD2F-DD00593DD648', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:09:50.1192386', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:09:50:070|EndTime=17:09:50:119|耗时=51 毫秒|结果=调用测试接口成功!')
 GO
 
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'FFBBF252-55B1-438F-86B8-E2D6F1AB692A', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:12:40.0951002', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 17:12:40:056|EndTime=17:12:40:083|耗时=30 毫秒|结果=调用测试接口成功!')
@@ -1415,10 +1838,43 @@ GO
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'D70E6344-D373-498A-AE19-E7CD84603E47', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 12:03:10.4333444', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:10:006|EndTime=12:03:10:430|耗时=427 毫秒|结果=调用测试接口成功!')
 GO
 
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'5BAC3A8A-176D-458B-8E0F-E8A53124359A', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:08:00.0575834', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:08:00:055|EndTime=17:08:00:057|耗时=6 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'3A2193FC-C058-4DF7-B815-E9198415C6CB', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:09:20.0596059', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:09:20:013|EndTime=17:09:20:059|耗时=48 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'949A0313-FA3B-4810-9B3F-E9F420B05E65', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:24:20.0531237', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:24:20:050|EndTime=17:24:20:052|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'4A7808C9-0A07-4BF2-BD81-EA03F4DDD15B', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:09:30.0500199', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 09:09:30:010|EndTime=09:09:30:047|耗时=39 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'D449DDB6-FA90-486E-ABAF-EC4417B61956', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:09:40.0519460', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:09:40:012|EndTime=17:09:40:051|耗时=41 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'A9CD3785-5A46-4AB5-ACA8-F16476EB2CAD', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:09:50.1641731', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 09:09:50:048|EndTime=09:09:50:153|耗时=107 毫秒|结果=调用测试接口成功!')
+GO
+
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'1C5D8474-8BC6-4586-A93D-F1DFFF5B2BE7', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 16:55:10.1081606', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 16:55:10:054|EndTime=16:55:10:092|耗时=41 毫秒|结果=调用测试接口成功!')
 GO
 
 INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'E375C7F0-7B26-4C0E-8B86-F3A7F298C8FA', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 12:03:30.0837588', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-29|StartTime= 12:03:30:052|EndTime=12:03:30:080|耗时=30 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'3C28A397-88B0-4B2E-BB3A-F5297227E349', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:21:50.0557755', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-31|StartTime= 17:21:50:020|EndTime=17:21:50:055|耗时=38 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'C5C7C3AF-3828-4066-B820-F7C5CCD49EBA', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:08:20.3156353', NULL, NULL, N'0AF155D7-A8EE-4A07-AB1A-40DD0C77D7EA', N'任务=默认测试接口|组=TEST|2023-01-30|StartTime= 09:08:20:076|EndTime=09:08:20:275|耗时=205 毫秒|结果=调用测试接口成功!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'D3E5C988-7163-4360-AD25-F9E7F5FB5BC9', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:10.0235295', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:23:10:019|EndTime=17:23:10:023|耗时=6 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'B4EF6835-451F-4E49-BE4B-FC54E0BA24AB', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:09:50.0659926', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=run|组=HZY.Managers.CalcData|2023-01-31|StartTime= 17:09:50:063|EndTime=17:09:50:065|耗时=4 毫秒|结果=执行完成!')
+GO
+
+INSERT INTO [dbo].[quartz_job_task_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [JobTaskId], [Text]) VALUES (N'44702EAE-E779-49C8-91CD-FE154736DD3D', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:40.5194885', NULL, NULL, N'B871A81B-FDA6-42B0-BF48-08DB0369C499', N'任务=Run|组=HZY.Managers.CalcDataManager|2023-01-31|StartTime= 17:23:40:274|EndTime=17:23:40:498|耗时=274 毫秒|结果=执行完成!')
 GO
 
 
@@ -5117,6 +5573,165 @@ INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [L
 GO
 
 INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2C68AC81-7C89-45C4-0F7F-08DB01DBA34D', N'00000000-0000-0000-0000-000000000000', N'2023-01-29 17:31:46.7689678', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'554', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'2520A642-9CBE-412F-EDC0-08DB025E7974', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:08:19.1464083', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'78', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'F6A65B0E-6046-41F8-EDC1-08DB025E7974', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:08:19.7106810', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'211', N'Edge109', N'Windows10', NULL, N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'23D75470-A36B-455D-EDC2-08DB025E7974', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:08:21.7229959', NULL, NULL, N'/api/account/check', N'0.0.0.1', N'', N'{"userName":"admin","userPassword":"123456"}', N'', N'432', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6923CEF3-1E10-435F-EDC3-08DB025E7974', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 09:08:22.5739143', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'431', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B3D9DCD5-7411-47CB-3452-08DB0290EF1F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:31.3831714', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'68', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8DC65D72-D7CD-4D28-3453-08DB0290EF1F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:31.7492820', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'207', N'Edge109', N'Windows10', NULL, N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'26AD00FF-0097-4E95-3454-08DB0290EF1F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:34.4560391', NULL, NULL, N'/api/account/check', N'0.0.0.1', N'', N'{"userName":"admin","userPassword":"123456"}', N'', N'728', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'53FE0047-86BF-4487-3455-08DB0290EF1F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:35.2139129', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'399', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E54EC46F-596C-4402-3456-08DB0290EF1F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:38.2205918', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'45', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'E0C787E5-DAE7-4384-3457-08DB0290EF1F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:43.1625370', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'28', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3FA139A3-D3A2-49BB-3458-08DB0290EF1F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:44.0919214', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'25', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0D4D53E1-8114-4101-3459-08DB0290EF1F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:45.0900787', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'24', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'9CF0EA17-4706-490B-345A-08DB0290EF1F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:48.3541545', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'26', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0FBA2811-CE4C-4994-345B-08DB0290EF1F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:49.6452733', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'29', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'790FD823-79D8-43BA-345C-08DB0290EF1F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:09:54.9037739', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'33', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'CC741B96-1535-4FD3-345D-08DB0290EF1F', N'00000000-0000-0000-0000-000000000000', N'2023-01-30 15:10:08.3939983', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'25', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'B9BE5D69-79F3-47CC-28ED-08DB036943EB', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 16:58:05.0323580', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'71', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3FEA8119-36EC-4421-28EE-08DB036943EB', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 16:58:05.7380726', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'228', N'Edge109', N'Windows10', NULL, N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'995DFC2F-2E6D-4B19-E6B7-08DB03697B88', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 16:59:38.4172139', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'67', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'BF09708D-FD7A-4225-E6B8-08DB03697B88', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 16:59:38.7067548', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'248', N'Edge109', N'Windows10', NULL, N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'44F689F2-B42D-40A3-E6B9-08DB03697B88', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 16:59:41.0335560', NULL, NULL, N'/api/account/check', N'0.0.0.1', N'', N'{"userName":"admin","userPassword":"123456"}', N'', N'618', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1BC7D38E-DE7D-4239-E6BA-08DB03697B88', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 16:59:41.9921726', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'505', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C9C8D3C9-B06A-423A-4AD5-08DB0369FF0A', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:03:19.0211268', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'63', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'C8F65504-9978-489C-4AD6-08DB0369FF0A', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:03:36.4937763', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'17014', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'EBABD7C4-F179-4283-E247-08DB036A4180', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:05:10.4620764', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'64', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'00801E82-CB3D-4D80-E248-08DB036A4180', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:05:11.5495570', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'564', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A67292AB-FEED-4408-2982-08DB036A8366', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:07:00.9486629', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'41', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'687AEC3A-BE46-4568-2983-08DB036A8366', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:07:02.1791353', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'557', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'48DD199C-53AD-4EC4-68D8-08DB036AA1B8', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:07:51.8188505', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'63', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'615EFAF1-D9EA-4276-68D9-08DB036AA1B8', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:07:53.2355919', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'646', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'4DEA8A3F-C0D0-4F3F-D9D8-08DB036BE213', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:16:49.3140481', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'70', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'178D274D-AF8C-4732-9CBA-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:17:54.2331850', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'66', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'005162D9-B8C2-4798-9CBB-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:17:55.4706465', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'623', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'70D96CC4-1744-4D01-9CBC-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:07.0979201', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'61', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'06B7B9B9-ED48-49AB-9CBD-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:11.5588527', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'33', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D10784A5-2DD1-4650-9CBE-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:13.0209802', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'26', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D2FB81CA-EB1D-40E1-9CBF-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:13.9430579', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'42', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'26B22840-7CEA-499C-9CC0-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:15.5329721', NULL, NULL, N'/api/admin/QuartzTasks/getJobLoggers/b871a81b-fda6-42b0-bf48-08db0369c499/1/10', N'0.0.0.1', N'', N'', N'', N'115', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看运行日志')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8659DC96-72BF-45EA-9CC1-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:22.5245815', NULL, NULL, N'/api/admin/QuartzTasks/getJobLoggers/b871a81b-fda6-42b0-bf48-08db0369c499/1/10', N'0.0.0.1', N'', N'', N'', N'60', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看运行日志')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0D29D9CD-A648-435D-9CC2-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:27.0621055', NULL, NULL, N'/api/admin/QuartzTasks/findForm/b871a81b-fda6-42b0-bf48-08db0369c499', N'0.0.0.1', N'', N'', N'', N'54', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看表单')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'29F59BEE-4F36-4969-9CC3-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:18:37.0486111', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'28', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'3DBB3BCE-1808-4B1D-9CC4-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:07.7943525', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'30', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'512C647C-5E14-49CF-9CC5-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:19:37.7844134', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'23', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'51234A2D-FD07-421D-9CC6-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:07.7994869', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'30', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'1B552D08-39FE-4627-9CC7-08DB036C08BD', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:20:37.8185386', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'31', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'D4C7B2BE-8E1F-4858-F10A-08DB036C8E03', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:21:37.7975649', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'66', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'FC4600C9-5215-4750-F10B-08DB036C8E03', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:21:39.0315460', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'595', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'8B535A6C-2D45-4DBD-F10C-08DB036C8E03', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:20.1575019', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'60', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'A567DAE5-9B16-471A-F10D-08DB036C8E03', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:22:50.7961436', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'30', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'6A2E9719-7A57-4071-A19E-08DB036CD712', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:40.4070703', NULL, NULL, N'/', N'0.0.0.1', N'', N'', N'', N'69', N'Edge109', N'Windows10', NULL, NULL, NULL)
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'464243B3-3FD9-4336-A19F-08DB036CD712', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:41.4094606', NULL, NULL, N'/api/admin/SysUser/info', N'0.0.0.1', N'', N'', N'', N'531', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', N'系统账号', N'获取当前用户信息')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'704E4696-C706-449D-A1A0-08DB036CD712', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:23:53.2577274', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'62', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
+GO
+
+INSERT INTO [dbo].[sys_operation_log] ([Id], [CreatorUserId], [CreationTime], [LastModifierUserId], [LastModificationTime], [Api], [Ip], [Form], [FormBody], [QueryString], [TakeUpTime], [Browser], [OS], [UserId], [ControllerDisplayName], [ActionDisplayName]) VALUES (N'0BCEA595-9374-411E-A1A1-08DB036CD712', N'00000000-0000-0000-0000-000000000000', N'2023-01-31 17:24:23.8092803', NULL, NULL, N'/api/admin/QuartzTasks/findList/', N'0.0.0.1', N'', N'{}', N'', N'32', N'Edge109', N'Windows10', N'0198459E-2034-4533-B843-5D227AD20740', NULL, N'查看列表')
 GO
 
 

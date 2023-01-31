@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HZY.EntityFramework.Repositories.Admin.Core;
+using HZY.Framework.Core.Utils;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Models.Entities.Quartz;
 using Microsoft.EntityFrameworkCore;
@@ -29,7 +30,8 @@ namespace HZY.Managers.Quartz.Impl
         public async Task<IEnumerable<QuartzJobTask>> FindListAsync(string filter = null)
         {
             var query = _quartzJobTaskRepository.SelectNoTracking
-                .OrderByDescending(w => w.State)
+                .OrderByDescending(w => w.Type)
+                .ThenBy(w => w.State)
                 .ThenBy(w => w.GroupName)
                 .ThenBy(w => w.Name)
                 .ThenBy(w => w.CreationTime)
@@ -39,7 +41,7 @@ namespace HZY.Managers.Quartz.Impl
             {
                 filter = filter.ToLower();
                 return query
-                     .Where(w => w.Name.ToLower().Contains(filter) || w.GroupName.ToLower().Contains(filter) || w.ApiUrl.ToLower().Contains(filter) || (!string.IsNullOrWhiteSpace(w.Remark) ? w.Remark.ToLower().Contains(filter) : false))
+                     .Where(w => w.Name.ToLower().Contains(filter) || w.GroupName.ToLower().Contains(filter) || w.JobPoint.ToLower().Contains(filter) || (!string.IsNullOrWhiteSpace(w.Remark) ? w.Remark.ToLower().Contains(filter) : false))
                      ;
             }
 
@@ -50,7 +52,9 @@ namespace HZY.Managers.Quartz.Impl
         {
             if (!IsValidExpression(form.Cron))
             {
-                throw new MessageBox("任务 Cron 时间规则不正确!");
+                //throw new MessageBox("任务 Cron 时间规则不正确!");
+                throw new MessageBox("Task Cron time rule is incorrect!");
+
             }
 
             var isRun = false;
@@ -60,7 +64,8 @@ namespace HZY.Managers.Quartz.Impl
             {
                 if (await _quartzJobTaskRepository.AnyAsync(w => w.Name == form.Name))
                 {
-                    throw new MessageBox($"任务名称{form.Name} , 已存在！");
+                    //throw new MessageBox($"任务名称{form.Name} , 已存在！");
+                    throw new MessageBox($"Duplicate task name! [{form.Name}]");
                 }
 
                 await _quartzJobTaskRepository.InsertAsync(form);
@@ -69,7 +74,8 @@ namespace HZY.Managers.Quartz.Impl
             {
                 if (await _quartzJobTaskRepository.AnyAsync(w => w.Name == form.Name && w.Id != jobTask.Id))
                 {
-                    throw new MessageBox($"任务名称{form.Name} , 已存在！");
+                    //throw new MessageBox($"任务名称{form.Name} , 已存在！");
+                    throw new MessageBox($"Duplicate task name! [{form.Name}]");
                 }
 
                 isRun = jobTask.State == QuartzJobTaskStateEnum.运行中 && form.State == QuartzJobTaskStateEnum.运行中;
@@ -226,6 +232,8 @@ namespace HZY.Managers.Quartz.Impl
         {
             try
             {
+                #region WebApi 服务
+
                 var result = (await FindListAsync())?.ToList() ?? new List<QuartzJobTask>();
 
                 if (result == null || result.Count == 0)
@@ -235,18 +243,39 @@ namespace HZY.Managers.Quartz.Impl
                     result.Add(new QuartzJobTask
                     {
                         Id = Guid.NewGuid(),
-                        CreationTime = DateTime.Now,
-                        ApiUrl = "http://localhost:5600/api/job/JobTest/Test",
-                        Cron = "0/10 * * * * ?",
-                        ExecuteTime = DateTime.Now,
-                        Name = "默认测试接口",
+                        JobPoint = "http://localhost:5600/api/job/JobTest/Test",
                         GroupName = "TEST",
-                        HeaderToken = "",
-                        Remark = "用于测试",
+                        Name = "default test webapi",
+                        Cron = "0/10 * * * * ?",
+                        State = QuartzJobTaskStateEnum.运行中,
+                        Type = QuartzJobTaskTypeEnum.WebApi,
+                        Remark = "use test",
                         RequsetMode = QuartzJobTaskRequsetModeEnum.Get,
-                        State = QuartzJobTaskStateEnum.运行中
                     });
                 }
+
+                #endregion
+
+                #region 本地任务
+
+                //识别出本地任务加入数据库任务库
+                foreach (var item in AppUtil.JobTaskInfos)
+                {
+                    var jobTaskInfo = item.Value;
+
+                    var quartzJobTask = new QuartzJobTask();
+                    quartzJobTask.JobPoint = item.Key;
+                    quartzJobTask.GroupName = jobTaskInfo.ScheduledAttribute.GroupName ?? item.Key.Split('>')[0];
+                    quartzJobTask.Name = jobTaskInfo.ScheduledAttribute.Name ?? item.Key.Split('>')[1];
+                    quartzJobTask.Cron = jobTaskInfo.ScheduledAttribute.Cron;
+                    quartzJobTask.State = QuartzJobTaskStateEnum.运行中;
+                    quartzJobTask.Type = QuartzJobTaskTypeEnum.Local;
+                    quartzJobTask.Remark = jobTaskInfo.ScheduledAttribute.Remark;
+
+                    result.Add(quartzJobTask);
+                }
+
+                #endregion
 
                 foreach (var item in result.Where(w => w.State == QuartzJobTaskStateEnum.运行中))
                 {

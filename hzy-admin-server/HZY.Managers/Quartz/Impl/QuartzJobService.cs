@@ -13,9 +13,9 @@ namespace HZY.Managers.Quartz.Impl
     public class QuartzJobService : IQuartzJobService
     {
         private readonly ISchedulerFactory _schedulerFactory;
-        private readonly ResultfulApiJobFactory _resultfulApiJobFactory;
+        private readonly WebApiJobFactory _resultfulApiJobFactory;
 
-        public QuartzJobService(ISchedulerFactory schedulerFactory, ResultfulApiJobFactory resultfulApiJobFactory)
+        public QuartzJobService(ISchedulerFactory schedulerFactory, WebApiJobFactory resultfulApiJobFactory)
         {
             _schedulerFactory = schedulerFactory;
             _resultfulApiJobFactory = resultfulApiJobFactory;
@@ -41,10 +41,23 @@ namespace HZY.Managers.Quartz.Impl
                 .Build();
 
             //3、创建任务
-            var jobDetail = JobBuilder.Create<ResultfulApiJob>()
-                            .WithIdentity(taskName, tasks.GroupName)
-                            .UsingJobData(QuartzStartupConfig.JobTaskId, tasks.Id.ToString())
-                            .Build();
+            IJobDetail jobDetail = null;
+
+            if (tasks.Type == QuartzJobTaskTypeEnum.WebApi)
+            {
+                jobDetail = JobBuilder.Create<WebApiJob>()
+                                .WithIdentity(taskName, tasks.GroupName)
+                                .UsingJobData(QuartzStartupConfig.JobTaskId, tasks.Id.ToString())
+                                .Build();
+            }
+
+            if (tasks.Type == QuartzJobTaskTypeEnum.Local)
+            {
+                jobDetail = JobBuilder.Create<LocalJob>()
+                                .WithIdentity(taskName, tasks.GroupName)
+                                .UsingJobData(QuartzStartupConfig.JobTaskId, tasks.Id.ToString())
+                                .Build();
+            }
 
             //4、写入 Job 实例工厂 解决 Job 中取 ioc 对象
             scheduler.JobFactory = _resultfulApiJobFactory;
@@ -73,7 +86,7 @@ namespace HZY.Managers.Quartz.Impl
 
             if (jobKeys == null || jobKeys.Count() == 0)
             {
-                throw new MessageBox($"未找到分组:{tasks.GroupName}");
+                throw new MessageBox($"Group not found [{tasks.GroupName}]");
             }
 
             JobKey jobKey = jobKeys
@@ -81,7 +94,7 @@ namespace HZY.Managers.Quartz.Impl
 
             if (jobKey == null)
             {
-                throw new MessageBox($"未找到触发器:{taskName}");
+                throw new MessageBox($"Trigger not found [{taskName}]");
             }
             //
             var triggers = await scheduler.GetTriggersOfJob(jobKey);
@@ -89,7 +102,7 @@ namespace HZY.Managers.Quartz.Impl
 
             if (trigger == null)
             {
-                throw new MessageBox($"未找到触发器:{taskName}");
+                throw new MessageBox($"Trigger not found [{taskName}]");
             }
             //
             await scheduler.PauseTrigger(trigger.Key);

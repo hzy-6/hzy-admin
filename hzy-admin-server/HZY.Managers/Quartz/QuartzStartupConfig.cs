@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Quartz.Impl;
 using Quartz;
+using HZY.Framework.Core.Utils;
 
 namespace HZY.Managers.Quartz
 {
@@ -24,6 +25,7 @@ namespace HZY.Managers.Quartz
         {
             //注册ISchedulerFactory的实例。
             services.AddTransient<ISchedulerFactory, StdSchedulerFactory>();
+
         }
 
         /// <summary>
@@ -35,6 +37,7 @@ namespace HZY.Managers.Quartz
             using var scope = app.ApplicationServices.CreateScope();
             var _taskService = scope.ServiceProvider.GetRequiredService<ITaskService>();
             _taskService.RecoveryTaskAsync().Wait();
+
         }
 
 

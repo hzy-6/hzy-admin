@@ -196,6 +196,16 @@
             审批流程核心实现
             </summary>
         </member>
+        <member name="T:HZY.Managers.CalcDataManager">
+            <summary>
+            本地测试对象
+            </summary>
+        </member>
+        <member name="M:HZY.Managers.CalcDataManager.Run">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:HZY.Managers.ManagerStartup">
             <summary>
             程序启动器
@@ -368,12 +378,17 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="T:HZY.Managers.Quartz.Jobs.ResultfulApiJob">
+        <member name="T:HZY.Managers.Quartz.Jobs.LocalJob">
+            <summary>
+            本地任务
+            </summary>
+        </member>
+        <member name="T:HZY.Managers.Quartz.Jobs.WebApiJob">
             <summary>
             Resultful 风格 Api Job
             </summary>
         </member>
-        <member name="T:HZY.Managers.Quartz.Jobs.ResultfulApiJobFactory">
+        <member name="T:HZY.Managers.Quartz.Jobs.WebApiJobFactory">
             <summary>
             IJob 对象无法构造注入 需要此类实现 返回 注入后得 Job 实例
             </summary>

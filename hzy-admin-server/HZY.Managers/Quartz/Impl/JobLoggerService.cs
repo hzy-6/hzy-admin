@@ -29,7 +29,7 @@ namespace HZY.Managers.Quartz.Impl
         {
             if (jobLoggerInfo == null) return;
 
-            _quartzJobTaskLogRepository.InsertOrUpdate(jobLoggerInfo);
+            _quartzJobTaskLogRepository.Insert(jobLoggerInfo);
         }
     }
 }

@@ -10,7 +10,7 @@ namespace HZY.Managers.Quartz
     public interface IApiRequestService : ITransientDependency
     {
 
-        Task<(bool IsSuccess, string Message)> RequestAsync(QuartzJobTaskRequsetModeEnum requsetMode, string apiUrl, string headerKeyValue);
+        Task<(bool IsSuccess, string Message)> RequestAsync(QuartzJobTaskRequsetModeEnum requsetMode, string apiUrl, string headerKeyValue = null);
 
 
 

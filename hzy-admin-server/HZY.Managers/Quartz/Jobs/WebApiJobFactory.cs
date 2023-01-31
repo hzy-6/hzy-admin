@@ -12,9 +12,9 @@ namespace HZY.Managers.Quartz.Jobs
     /// <summary>
     /// IJob 对象无法构造注入 需要此类实现 返回 注入后得 Job 实例
     /// </summary>
-    public class ResultfulApiJobFactory : IJobFactory, ISingletonSelfDependency
+    public class WebApiJobFactory : IJobFactory, ISingletonSelfDependency
     {
-        public ResultfulApiJobFactory()
+        public WebApiJobFactory()
         {
 
         }

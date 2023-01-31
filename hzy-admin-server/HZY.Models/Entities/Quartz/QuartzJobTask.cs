@@ -23,24 +23,9 @@ namespace HZY.Models.Entities.Quartz
         public string Cron { get; set; }
 
         /// <summary>
-        /// 请求地址
+        /// 执行时间
         /// </summary>
-        public string ApiUrl { get; set; }
-
-        /// <summary>
-        /// 请求 token 密钥
-        /// </summary>
-        public string HeaderToken { get; set; }
-
-        /// <summary>
-        /// 请求方式
-        /// </summary>
-        public QuartzJobTaskRequsetModeEnum RequsetMode { get; set; } = QuartzJobTaskRequsetModeEnum.Post;
-
-        /// <summary>
-        /// 备注
-        /// </summary>
-        public string Remark { get; set; }
+        public DateTime? ExecuteTime { get; set; }
 
         /// <summary>
         /// 运行状态
@@ -48,9 +33,25 @@ namespace HZY.Models.Entities.Quartz
         public QuartzJobTaskStateEnum State { get; set; } = QuartzJobTaskStateEnum.未运行;
 
         /// <summary>
-        /// 执行时间
+        /// 备注
         /// </summary>
-        public DateTime? ExecuteTime { get; set; }
+        public string Remark { get; set; }
+
+        /// <summary>
+        /// 任务类型
+        /// </summary>
+        public QuartzJobTaskTypeEnum Type { get; set; }
+
+        /// <summary>
+        /// 作业点
+        /// </summary>
+        public string JobPoint { get; set; }
+
+        /// <summary>
+        /// 请求方式
+        /// </summary>
+        public QuartzJobTaskRequsetModeEnum? RequsetMode { get; set; }
+
     }
 
     /// <summary>
@@ -70,5 +71,20 @@ namespace HZY.Models.Entities.Quartz
     {
         未运行,
         运行中
+    }
+
+    /// <summary>
+    /// 类型
+    /// </summary>
+    public enum QuartzJobTaskTypeEnum
+    {
+        /// <summary>
+        /// webapi 远程程序
+        /// </summary>
+        WebApi = 1,
+        /// <summary>
+        /// 本地程序
+        /// </summary>
+        Local
     }
 }
