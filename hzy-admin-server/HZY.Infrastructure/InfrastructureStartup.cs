@@ -10,8 +10,13 @@ namespace HZY.Infrastructure
     /// <summary>
     /// 程序启动器
     /// </summary>
-    public class InfrastructureStartup : Startup
+    public class InfrastructureStartup : Startup<InfrastructureStartup>
     {
+        public InfrastructureStartup()
+        {
+            this.Order = 0;
+        }
+
         public override void ConfigureServices(WebApplicationBuilder webApplicationBuilder)
         {
             var services = webApplicationBuilder.Services;

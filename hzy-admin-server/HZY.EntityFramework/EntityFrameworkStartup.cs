@@ -7,7 +7,7 @@ namespace HZY.EntityFramework
     /// <summary>
     /// 程序启动器
     /// </summary>
-    public class EntityFrameworkStartup : Startup
+    public class EntityFrameworkStartup : Startup<EntityFrameworkStartup>
     {
         public override void ConfigureServices(WebApplicationBuilder webApplicationBuilder)
         {

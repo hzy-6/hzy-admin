@@ -25,7 +25,7 @@ namespace HZY.Web.Host
     /// <summary>
     /// 程序启动器
     /// </summary>
-    public class WebHostStartup : Startup
+    public class WebHostStartup : Startup<WebHostStartup>
     {
         /// <summary>
         /// 获取 Swagger 版本集合

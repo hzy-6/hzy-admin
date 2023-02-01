@@ -1,4 +1,5 @@
 ﻿using HZY.Framework.Core.AspNetCore;
+using HZY.Framework.Core.Utils;
 using HZY.Infrastructure;
 using HZY.Managers.Quartz;
 using HZY.Managers.SignalRs;
@@ -10,7 +11,7 @@ namespace HZY.Managers
     /// <summary>
     /// 程序启动器
     /// </summary>
-    public class ManagerStartup : Startup
+    public class ManagerStartup : Startup<ManagerStartup>
     {
         public override void ConfigureServices(WebApplicationBuilder webApplicationBuilder)
         {

@@ -54,7 +54,7 @@ namespace HZY.Managers.Quartz.Jobs
 
                 if (jobTaskObject == null)
                 {
-                    _logger.LogError("jobTaskObject is NULL !");
+                    _logger.LogError($"jobTaskObject is not a dependency injection service ! [{jobTaskInfo.ClassType}]");
                     return;
                 }
 
@@ -70,7 +70,7 @@ namespace HZY.Managers.Quartz.Jobs
                 }
                 catch (Exception ex)
                 {
-                    _logger.LogError(ex, $"Managers.Quartz.Jobs.LocalJob.Execute 执行失败 : {ex.Message}");
+                    _logger.LogError(ex, $"Managers.Quartz.Jobs.LocalJob.Execute Execution failed : {ex.Message}");
                 }
                 finally
                 {

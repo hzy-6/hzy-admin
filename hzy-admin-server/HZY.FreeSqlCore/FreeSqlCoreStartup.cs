@@ -7,7 +7,7 @@ namespace HZY.FreeSqlCore
     /// <summary>
     /// 程序启动器
     /// </summary>
-    public class FreeSqlCoreStartup : Startup
+    public class FreeSqlCoreStartup : Startup<FreeSqlCoreStartup>
     {
         public override void ConfigureServices(WebApplicationBuilder webApplicationBuilder)
         {
@@ -22,7 +22,7 @@ namespace HZY.FreeSqlCore
 
         public override void Configure(WebApplication webApplication)
         {
-            
+
 
         }
 
