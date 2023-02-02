@@ -264,7 +264,7 @@ namespace HZY.Managers.Quartz.Impl
                 {
                     var quartzJobTask = new QuartzJobTask();
                     quartzJobTask.JobPoint = item.Key;
-                    quartzJobTask.GroupName = item.ScheduledAttribute.GroupName ?? item.Key.Split('>')[0];
+                    quartzJobTask.GroupName = item.ClassType.Name;
                     quartzJobTask.Name = item.ScheduledAttribute.Name ?? item.Key.Split('>')[1];
                     quartzJobTask.Cron = item.ScheduledAttribute.Cron;
                     quartzJobTask.State = QuartzJobTaskStateEnum.运行中;
