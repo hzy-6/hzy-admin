@@ -89,7 +89,7 @@ namespace HZY.Managers.Quartz.Impl
 
             if (jobKeys == null || jobKeys.Count() == 0)
             {
-                throw new MessageBox($"Group not found [{tasks.GroupName}]");
+                MessageBox.Show($"Group not found [{tasks.GroupName}]");
             }
 
             JobKey jobKey = jobKeys
@@ -97,7 +97,7 @@ namespace HZY.Managers.Quartz.Impl
 
             if (jobKey == null)
             {
-                throw new MessageBox($"Trigger not found [{taskName}]");
+                MessageBox.Show($"Trigger not found [{taskName}]");
             }
             //
             var triggers = await scheduler.GetTriggersOfJob(jobKey);
@@ -105,7 +105,7 @@ namespace HZY.Managers.Quartz.Impl
 
             if (trigger == null)
             {
-                throw new MessageBox($"Trigger not found [{taskName}]");
+                MessageBox.Show($"Trigger not found [{taskName}]");
             }
             //
             await scheduler.PauseTrigger(trigger.Key);

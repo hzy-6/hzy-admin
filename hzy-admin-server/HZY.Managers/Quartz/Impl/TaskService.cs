@@ -54,7 +54,7 @@ namespace HZY.Managers.Quartz.Impl
             if (!IsValidExpression(form.Cron))
             {
                 //throw new MessageBox("任务 Cron 时间规则不正确!");
-                throw new MessageBox("Task Cron time rule is incorrect!");
+                MessageBox.Show("Task Cron time rule is incorrect!");
 
             }
 
@@ -66,7 +66,7 @@ namespace HZY.Managers.Quartz.Impl
                 if (await _quartzJobTaskRepository.AnyAsync(w => w.Name == form.Name))
                 {
                     //throw new MessageBox($"任务名称{form.Name} , 已存在！");
-                    throw new MessageBox($"Duplicate task name! [{form.Name}]");
+                    MessageBox.Show($"Duplicate task name! [{form.Name}]");
                 }
 
                 await _quartzJobTaskRepository.InsertAsync(form);
@@ -76,7 +76,7 @@ namespace HZY.Managers.Quartz.Impl
                 if (await _quartzJobTaskRepository.AnyAsync(w => w.Name == form.Name && w.Id != jobTask.Id))
                 {
                     //throw new MessageBox($"任务名称{form.Name} , 已存在！");
-                    throw new MessageBox($"Duplicate task name! [{form.Name}]");
+                    MessageBox.Show($"Duplicate task name! [{form.Name}]");
                 }
 
                 isRun = jobTask.State == QuartzJobTaskStateEnum.运行中 && form.State == QuartzJobTaskStateEnum.运行中;
@@ -173,7 +173,7 @@ namespace HZY.Managers.Quartz.Impl
             {
                 //tasks.State = QuartzJobTaskStateEnum.未运行;
                 //await _taskService.SaveAsync(tasks);
-                throw new MessageBox(ex.Message);
+                MessageBox.Show(ex.Message);
             }
             finally
             {
