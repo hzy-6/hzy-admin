@@ -278,11 +278,18 @@ namespace HZY.Managers.Quartz.Impl
 
                 foreach (var item in result.Where(w => w.State == QuartzJobTaskStateEnum.运行中))
                 {
-                    item.State = QuartzJobTaskStateEnum.未运行;
-                    item.ExecuteTime = null;
-                    await SaveAsync(item);
-                    //自动恢复任务机制
-                    await RunByIdAsync(item);
+                    try
+                    {
+                        item.State = QuartzJobTaskStateEnum.未运行;
+                        item.ExecuteTime = null;
+                        await SaveAsync(item);
+                        //自动恢复任务机制
+                        await RunByIdAsync(item);
+                    }
+                    catch (Exception)
+                    {
+
+                    }
                 }
 
             }
