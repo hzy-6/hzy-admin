@@ -25,9 +25,7 @@ namespace HZY.Infrastructure
             var prefixString = appConfiguration.Configs.Namespace + ".";
 
             // 日志配置
-            webApplicationBuilder.LogUtilBuild();
-
-            LogUtil.Log.Warning("Web 主机开始启动...");
+            webApplicationBuilder.AddLogUtil();
 
             //扫描服务自动化注册
             services.AddAutoRegisterIOC(AssemblyUtil.GetAssemblyList(prefixString).ToList());
@@ -38,13 +36,13 @@ namespace HZY.Infrastructure
 
         public override void Configure(WebApplication webApplication)
         {
-            //服务扫描 - 使用 host
-            webApplication.UseHost();
 
-            //获取到服务启动地址
-            AppConfiguration.Urls = webApplication.Urls.ToArray();
         }
 
+        public override void ApplicationStarted(WebApplication webApplication)
+        {
+            LogUtil.Log.Warning("Web 主机开始启动...");
+        }
 
     }
 }

@@ -4,6 +4,7 @@ using Quartz;
 using Quartz.Impl.Matchers;
 using Quartz.Impl.Triggers;
 using HZY.Models.Entities.Quartz;
+using Newtonsoft.Json;
 
 namespace HZY.Managers.Quartz.Impl
 {
@@ -47,16 +48,18 @@ namespace HZY.Managers.Quartz.Impl
             {
                 jobDetail = JobBuilder.Create<WebApiJob>()
                                 .WithIdentity(taskName, tasks.GroupName)
-                                .UsingJobData(QuartzStartupConfig.JobTaskId, tasks.Id.ToString())
-                                .Build();
+                                .UsingJobData(QuartzStartupConfig.JobTaskKey, JsonConvert.SerializeObject(tasks))
+                                .Build()
+                                ;
             }
 
             if (tasks.Type == QuartzJobTaskTypeEnum.Local)
             {
                 jobDetail = JobBuilder.Create<LocalJob>()
                                 .WithIdentity(taskName, tasks.GroupName)
-                                .UsingJobData(QuartzStartupConfig.JobTaskId, tasks.Id.ToString())
-                                .Build();
+                                .UsingJobData(QuartzStartupConfig.JobTaskKey, JsonConvert.SerializeObject(tasks))
+                                .Build()
+                                ;
             }
 
             //4、写入 Job 实例工厂 解决 Job 中取 ioc 对象

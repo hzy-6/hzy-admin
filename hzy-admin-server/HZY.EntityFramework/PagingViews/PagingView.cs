@@ -11,6 +11,7 @@ using System.Data;
 using HZY.EntityFramework.Repositories.Admin.DevelopmentTool;
 using NPOI.SS.Formula.Functions;
 using HZY.Framework.Core.Utils;
+using HZY.Framework.Core;
 
 namespace HZY.EntityFramework.PagingViews;
 
@@ -57,7 +58,7 @@ public class PagingView
     /// <param name="type"></param>
     public void InitColumns(List<string> fieldNames, List<TableColumnView> columnHeads, Type type)
     {
-        using var scope = IOCUtil.CreateScope();
+        using var scope = App.CreateScope();
         var _databaseTablesRepository = scope.ServiceProvider.GetService<DatabaseTablesRepository>();
 
         var allTables = _databaseTablesRepository.GetAllTablesByCache();

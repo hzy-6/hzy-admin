@@ -3,6 +3,7 @@ using HZY.EntityFramework.Repositories.Admin.DevelopmentTool;
 using HZY.Infrastructure;
 using HZY.Framework.AutoRegisterIOC;
 using Microsoft.Extensions.DependencyInjection;
+using HZY.Framework.Core;
 
 namespace HZY.EntityFramework.PagingViews;
 
@@ -106,7 +107,7 @@ public class TableColumnView
         //自动获取名称对应的显示名
         var type = typeof(T);
         var name = Tools.GetNameByExpression(field);
-        using var scope = IOCUtil.CreateScope();
+        using var scope = App.CreateScope();
         var _databaseTablesRepository = scope.ServiceProvider.GetService<DatabaseTablesRepository>();
         var allTables = _databaseTablesRepository.GetAllTablesByCache();
         var table = allTables?

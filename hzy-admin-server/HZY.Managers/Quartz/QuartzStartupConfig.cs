@@ -13,9 +13,9 @@ namespace HZY.Managers.Quartz
     public static class QuartzStartupConfig
     {
         /// <summary>
-        /// 作业任务 id 名称
+        /// 作业任务 Key 名称
         /// </summary>
-        public static readonly string JobTaskId = nameof(QuartzJobTask) + nameof(QuartzJobTask.Id);
+        public static readonly string JobTaskKey = nameof(QuartzJobTask);
 
         /// <summary>
         /// 添加 quartz

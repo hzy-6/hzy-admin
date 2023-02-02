@@ -398,9 +398,9 @@
             Quartz 启动配置
             </summary>
         </member>
-        <member name="F:HZY.Managers.Quartz.QuartzStartupConfig.JobTaskId">
+        <member name="F:HZY.Managers.Quartz.QuartzStartupConfig.JobTaskKey">
             <summary>
-            作业任务 id 名称
+            作业任务 Key 名称
             </summary>
         </member>
         <member name="M:HZY.Managers.Quartz.QuartzStartupConfig.AddQuartzStartup(Microsoft.Extensions.DependencyInjection.IServiceCollection)">

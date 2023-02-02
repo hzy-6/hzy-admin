@@ -9,10 +9,8 @@ try
          .AddHzyFramework(assemblyNames: new string[] { "HZY." })
          // 构建
          .Build()
-         // 使用 hzy framework
-         .UseHzyFramework()
-         // 运行 app
-         .RunAsync()
+         // 启动 app
+         .StartHzyFrameworkAsync()
     ;
 }
 catch (Exception ex)

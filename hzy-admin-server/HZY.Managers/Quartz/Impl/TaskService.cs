@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using HZY.EntityFramework.Repositories.Admin.Core;
+using HZY.Framework.Core;
 using HZY.Framework.Core.Utils;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Models.Entities.Quartz;
@@ -243,7 +244,7 @@ namespace HZY.Managers.Quartz.Impl
                     result.Add(new QuartzJobTask
                     {
                         Id = Guid.NewGuid(),
-                        JobPoint = "http://localhost:5600/api/job/JobTest/Test",
+                        JobPoint = $"http://localhost:{App.Urls.FirstOrDefault()}/api/job/JobTest/Test",
                         GroupName = "TEST",
                         Name = "default test webapi",
                         Cron = "0/10 * * * * ?",
@@ -259,18 +260,16 @@ namespace HZY.Managers.Quartz.Impl
                 #region 本地任务
 
                 //识别出本地任务加入数据库任务库
-                foreach (var item in AppUtil.JobTaskInfos)
+                foreach (var item in App.JobTaskInfos)
                 {
-                    var jobTaskInfo = item.Value;
-
                     var quartzJobTask = new QuartzJobTask();
                     quartzJobTask.JobPoint = item.Key;
-                    quartzJobTask.GroupName = jobTaskInfo.ScheduledAttribute.GroupName ?? item.Key.Split('>')[0];
-                    quartzJobTask.Name = jobTaskInfo.ScheduledAttribute.Name ?? item.Key.Split('>')[1];
-                    quartzJobTask.Cron = jobTaskInfo.ScheduledAttribute.Cron;
+                    quartzJobTask.GroupName = item.ScheduledAttribute.GroupName ?? item.Key.Split('>')[0];
+                    quartzJobTask.Name = item.ScheduledAttribute.Name ?? item.Key.Split('>')[1];
+                    quartzJobTask.Cron = item.ScheduledAttribute.Cron;
                     quartzJobTask.State = QuartzJobTaskStateEnum.运行中;
                     quartzJobTask.Type = QuartzJobTaskTypeEnum.Local;
-                    quartzJobTask.Remark = jobTaskInfo.ScheduledAttribute.Remark;
+                    quartzJobTask.Remark = item.ScheduledAttribute.Remark;
 
                     result.Add(quartzJobTask);
                 }

@@ -2,7 +2,6 @@
 using HZY.Infrastructure;
 using HZY.Models.Entities.BaseEntitys;
 using HZY.Framework.EntityFrameworkRepositories.Extensions;
-using HZY.Framework.AutoRegisterIOC;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.Extensions.DependencyInjection;

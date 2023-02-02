@@ -1,7 +1,9 @@
 ﻿using HZY.Framework.AutoRegisterIOC;
+using HZY.Framework.Core;
 using HZY.Models.Entities.Quartz;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
+using Newtonsoft.Json;
 using Quartz;
 using System.Diagnostics;
 
@@ -30,22 +32,22 @@ namespace HZY.Managers.Quartz.Jobs
             {
                 _stopwatch.Restart();
 
-                var tasksId = context.MergedJobDataMap.GetString(QuartzStartupConfig.JobTaskId)?.ToString();
+                var jobTaskString = context.MergedJobDataMap.GetString(QuartzStartupConfig.JobTaskKey)?.ToString();
 
-                if (string.IsNullOrWhiteSpace(tasksId))
+                if (string.IsNullOrWhiteSpace(jobTaskString))
                 {
-                    _logger.LogError($"{QuartzStartupConfig.JobTaskId}  is NULL !");
+                    _logger.LogError($"jobTaskString is NULL !");
                     return;
                 }
 
-                using var scope = IOCUtil.CreateScope();
+                using var scope = App.CreateScope();
                 var _taskService = scope.ServiceProvider.GetService<ITaskService>();
                 var _jobLoggerService = scope.ServiceProvider.GetService<IJobLoggerService>();
-                var quartzJobTask = await _taskService.FindByIdAsync(Guid.Parse(tasksId));
+                var quartzJobTask = JsonConvert.DeserializeObject<QuartzJobTask>(jobTaskString);
 
                 if (quartzJobTask == null)
                 {
-                    _logger.LogError("tasks is NULL !");
+                    _logger.LogError("quartzJobTask is NULL !");
                     return;
                 }
 

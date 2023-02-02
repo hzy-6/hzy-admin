@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using HZY.Framework.Core;
 
 namespace HZY.Managers.Quartz.Jobs
 {
@@ -24,7 +25,7 @@ namespace HZY.Managers.Quartz.Jobs
             //Job类型
             Type jobType = bundle.JobDetail.JobType;
 
-            using var scope = IOCUtil.CreateScope();
+            using var scope = App.CreateScope();
             return scope.ServiceProvider.GetService(jobType) as IJob;
         }
 

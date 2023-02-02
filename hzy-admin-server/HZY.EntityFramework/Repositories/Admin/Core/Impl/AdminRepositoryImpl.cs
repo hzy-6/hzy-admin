@@ -12,6 +12,7 @@ using HZY.Models.BO;
 using HZY.Models.Entities.Framework;
 using HZY.Models.Entities.BaseEntitys;
 using HZY.Framework.Core.Utils;
+using HZY.Framework.Core;
 
 namespace HZY.EntityFramework.Repositories.Admin.Core.Impl;
 
@@ -155,7 +156,7 @@ public class AdminRepositoryImpl<T> : RepositoryBaseImpl<T, AdminDbContext>, IAd
         var organizationList = new List<int>();
         var self = false;
 
-        using var serviceScope = IOCUtil.CreateScope();
+        using var serviceScope = App.CreateScope();
         using var _sysDataAuthorityRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysDataAuthority>>();
         using var _sysDataAuthorityCustomRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysDataAuthorityCustom>>();
         using var _sysOrganizationRepository = serviceScope.ServiceProvider.GetRequiredService<IAdminRepository<SysOrganization>>();

@@ -24,7 +24,7 @@ namespace HZY.Infrastructure.SerilogUtil
         /// </summary>
         /// <param name="builder"></param>
         /// <returns></returns>
-        public static WebApplicationBuilder LogUtilBuild(this WebApplicationBuilder builder)
+        public static WebApplicationBuilder AddLogUtil(this WebApplicationBuilder builder)
         {
             var logger = new LoggerConfiguration()
                 .Enrich.With(new DateTimeNowEnricher())

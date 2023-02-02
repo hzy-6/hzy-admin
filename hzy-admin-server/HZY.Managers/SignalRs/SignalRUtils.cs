@@ -14,7 +14,7 @@ namespace HZY.Managers.SignalRs
     /// </summary>
     public static class SignalRUtils
     {
-        public static void AddSignalRHubs(this WebApplication app)
+        public static void UseSignalRHubs(this WebApplication app)
         {
             app.MapHub<ChatHub>("/hub");
         }

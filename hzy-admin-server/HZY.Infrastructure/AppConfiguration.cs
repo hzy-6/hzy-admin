@@ -49,16 +49,6 @@ public class AppConfiguration : ISingletonSelfDependency
 
     }
 
-    /// <summary>
-    /// host 服务启动地址
-    /// </summary>
-    public static string[] Urls { get; set; }
-
-    /// <summary>
-    /// host 服务启动地址
-    /// </summary>
-    public static string Url => AppConfiguration.Urls.FirstOrDefault();
-
 }
 
 /// <summary>

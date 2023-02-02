@@ -1,5 +1,4 @@
 ﻿using HZY.Framework.Core.AspNetCore;
-using HZY.Framework.Core.Utils;
 using HZY.Infrastructure;
 using HZY.Managers.Quartz;
 using HZY.Managers.SignalRs;
@@ -16,8 +15,8 @@ namespace HZY.Managers
         public override void ConfigureServices(WebApplicationBuilder webApplicationBuilder)
         {
             var services = webApplicationBuilder.Services;
-            var configuration = webApplicationBuilder.Configuration;
-            var appConfiguration = new AppConfiguration(configuration);
+            //var configuration = webApplicationBuilder.Configuration;
+            //var appConfiguration = new AppConfiguration(configuration);
 
             // 添加定时任务 quartz
             services.AddQuartzStartup();
@@ -29,6 +28,12 @@ namespace HZY.Managers
 
         public override void Configure(WebApplication webApplication)
         {
+            //SignalR
+            webApplication.UseSignalRHubs();
+        }
+
+        public override void ConfigureAfterStarting(WebApplication webApplication)
+        {
             var appConfiguration = webApplication.Services.GetRequiredService<AppConfiguration>();
 
             // 启动定时任务
@@ -36,10 +41,6 @@ namespace HZY.Managers
             {
                 webApplication.UseQuartzStartup();
             }
-
-            //SignalR
-            webApplication.AddSignalRHubs();
-
         }
 
 

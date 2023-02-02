@@ -7,6 +7,7 @@ using HZY.Framework.AutoRegisterIOC;
 
 using HZY.Infrastructure.Token;
 using HZY.Models.Entities.BaseEntitys;
+using HZY.Framework.Core;
 
 namespace HZY.EntityFramework.Interceptors
 {
@@ -33,7 +34,7 @@ namespace HZY.EntityFramework.Interceptors
         /// <param name="eventData"></param>
         public void SavingChanges(DbContextEventData eventData)
         {
-            using var scope = IOCUtil.CreateScope();
+            using var scope = App.CreateScope();
             var _tokenService = scope.ServiceProvider.GetService<TokenService>();
             var userId = _tokenService.GetAccountIdByToken();
 

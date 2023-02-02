@@ -259,6 +259,7 @@ namespace HZY.Web.Host
 
             // 启动主端点 miniapi
             webApplication.MapMainEndpoints();
+
         }
 
     }

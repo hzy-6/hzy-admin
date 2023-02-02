@@ -387,16 +387,6 @@
             </summary>
             <param name="configuration"></param>
         </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.Urls">
-            <summary>
-            host 服务启动地址
-            </summary>
-        </member>
-        <member name="P:HZY.Infrastructure.AppConfiguration.Url">
-            <summary>
-            host 服务启动地址
-            </summary>
-        </member>
         <member name="T:HZY.Infrastructure.ConnectionStringsOptions">
             <summary>
             连接字符串配置
@@ -1049,7 +1039,7 @@
             日志工具
             </summary>
         </member>
-        <member name="M:HZY.Infrastructure.SerilogUtil.LogUtil.LogUtilBuild(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+        <member name="M:HZY.Infrastructure.SerilogUtil.LogUtil.AddLogUtil(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
             <summary>
             启动
             </summary>
