@@ -95,18 +95,6 @@ public class SysDictionaryController : AdminBaseController<SysDictionaryService>
     }
 
     /// <summary>
-    /// 导出Excel
-    /// </summary>
-    /// <param name="search"></param>
-    /// <returns></returns>
-    //[ActionDescriptor(DisplayName = "导出数据")]
-    //[ApiResourceCacheFilter(10)]
-    //[HttpPost("ExportExcel")]
-    //public async Task ExportExcelAsync([FromBody] SysDictionary search)
-    //    => base.HttpContext.DownLoadFile(await this._defaultService.ExportExcelAsync(search), Tools.GetFileContentType[".xls"].ToStr(),
-    //        $"{PermissionUtil.GetControllerDisplayName(this.GetType())}列表数据 {DateTime.Now.ToString("yyyy-MM-dd")}.xls");
-
-    /// <summary>
     /// 获取字典树
     /// </summary>
     /// <returns></returns>

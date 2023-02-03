@@ -206,6 +206,11 @@
             
             </summary>
         </member>
+        <member name="T:HZY.Managers.Filters.ApiAuthorizationFilter">
+            <summary>
+            授权认证 拦截
+            </summary>
+        </member>
         <member name="T:HZY.Managers.ManagerStartup">
             <summary>
             程序启动器

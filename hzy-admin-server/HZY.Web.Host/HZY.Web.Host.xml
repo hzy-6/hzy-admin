@@ -9,11 +9,6 @@
             权限认证键
             </summary>
         </member>
-        <member name="T:HZY.Web.Host.Configure.LifetimeEventsHostedService">
-            <summary>
-            生命周期监听
-            </summary>
-        </member>
         <member name="T:HZY.Web.Host.Controllers.AccountController">
             <summary>
             账户控制器
@@ -66,11 +61,6 @@
         <member name="T:HZY.Web.Host.Endpoints.MainEndpoints">
             <summary>
             主端点 miniapi
-            </summary>
-        </member>
-        <member name="T:HZY.Web.Host.Filters.ApiAuthorizationFilter">
-            <summary>
-            授权认证 拦截
             </summary>
         </member>
         <member name="T:HZY.Web.Host.Filters.ApiPermissionFilter">

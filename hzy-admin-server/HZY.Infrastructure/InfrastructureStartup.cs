@@ -41,8 +41,17 @@ namespace HZY.Infrastructure
 
         public override void ApplicationStarted(WebApplication webApplication)
         {
-            LogUtil.Log.Warning("Web 主机开始启动...");
+            LogUtil.Log.Warning("Web 主机已启动");
         }
 
+        public override void ApplicationStopping(WebApplication webApplication)
+        {
+            LogUtil.Log.Warning("Web 主机停止中...");
+        }
+
+        public override void ApplicationStopped(WebApplication webApplication)
+        {
+            LogUtil.Log.Warning("Web 主机已停止");
+        }
     }
 }

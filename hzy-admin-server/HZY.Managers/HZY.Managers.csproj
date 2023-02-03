@@ -1,33 +1,27 @@
 <Project Sdk="Microsoft.NET.Sdk">
-
-	<PropertyGroup>
-		<TargetFrameworks>net6.0;net7.0</TargetFrameworks>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<!--<Nullable>enable</Nullable>-->
-	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="Quartz" Version="3.5.0" />
-		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\HZY.EntityFramework\HZY.EntityFramework.csproj" />
-		<ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
-		<ProjectReference Include="..\HZY.Models\HZY.Models.csproj" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<None Update="HZY.Managers.xml">
-			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
-			<GenerateDocumentationFile>true</GenerateDocumentationFile>
-		</None>
-	</ItemGroup>
-
-	<!--用于生成当前程序集xml描述-->
-	<PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-		<DocumentationFile>HZY.Managers.xml</DocumentationFile>
-		<NoWarn>1701;1702;1591</NoWarn>
-	</PropertyGroup>
-
+  <PropertyGroup>
+    <TargetFrameworks>net6.0;net7.0</TargetFrameworks>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <!--<Nullable>enable</Nullable>-->
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Quartz" Version="3.5.0" />
+    <PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\HZY.EntityFramework\HZY.EntityFramework.csproj" />
+    <ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
+    <ProjectReference Include="..\HZY.Models\HZY.Models.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="HZY.Managers.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </None>
+  </ItemGroup>
+  <!--用于生成当前程序集xml描述-->
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>HZY.Managers.xml</DocumentationFile>
+    <NoWarn>1701;1702;1591</NoWarn>
+  </PropertyGroup>
 </Project>

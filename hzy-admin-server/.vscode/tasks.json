@@ -7,7 +7,7 @@
             "type": "process",
             "args": [
                 "build",
-                "${workspaceFolder}/HZY.WebHost/HZY.WebHost.csproj",
+                "${workspaceFolder}/HZY.Web.Host/HZY.Web.Host.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -19,7 +19,7 @@
             "type": "process",
             "args": [
                 "publish",
-                "${workspaceFolder}/HZY.WebHost/HZY.WebHost.csproj",
+                "${workspaceFolder}/HZY.Web.Host/HZY.Web.Host.csproj",
                 "/property:GenerateFullPaths=true",
                 "/consoleloggerparameters:NoSummary"
             ],
@@ -32,9 +32,8 @@
             "args": [
                 "watch",
                 "run",
-                "${workspaceFolder}/HZY.WebHost/HZY.WebHost.csproj",
-                "/property:GenerateFullPaths=true",
-                "/consoleloggerparameters:NoSummary"
+                "--project",
+                "${workspaceFolder}/HZY.Web.Host/HZY.Web.Host.csproj"
             ],
             "problemMatcher": "$msCompile"
         }

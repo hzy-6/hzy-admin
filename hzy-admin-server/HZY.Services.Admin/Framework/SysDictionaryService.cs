@@ -97,17 +97,6 @@ public class SysDictionaryService : AdminBaseService<IAdminRepository<SysDiction
     }
 
     /// <summary>
-    /// 导出Excel
-    /// </summary>
-    /// <param name="search"></param>
-    /// <returns></returns>
-    //public async Task<byte[]> ExportExcelAsync(SysDictionary search)
-    //{
-    //    var tableViewModel = await this.FindListAsync(search);
-    //    return this.ExportExcelByPagingView(tableViewModel, null, "Id");
-    //}
-
-    /// <summary>
     /// 获取字典树
     /// </summary>
     /// <returns></returns>

@@ -19,6 +19,9 @@ using HZY.Framework.DynamicApiController;
 using HZY.Framework.Core.AspNetCore;
 using HZY.Web.Host.Configure;
 using HZY.Web.Host.Endpoints;
+using HZY.Managers.Filters;
+using Microsoft.AspNetCore.StaticFiles;
+using Microsoft.Extensions.FileProviders;
 
 namespace HZY.Web.Host
 {
@@ -42,9 +45,6 @@ namespace HZY.Web.Host
             var configuration = webApplicationBuilder.Configuration;
             var appConfiguration = new AppConfiguration(configuration);
             var prefixString = appConfiguration.Configs.Namespace + ".";
-
-            // 生命周期
-            services.AddSingleton<IHostedService, LifetimeEventsHostedService>();
 
             // Add services to the container.
             webApplicationBuilder.Services.AddControllers(options =>
@@ -115,7 +115,8 @@ namespace HZY.Web.Host
             services.AddSingleton<IAuthorizationHandler, CustomAuthorizationHandler>();
             #endregion
 
-            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+                .AddJwtBearer(options =>
             {
                 options.TokenValidationParameters = new TokenValidationParameters
                 {
@@ -205,6 +206,8 @@ namespace HZY.Web.Host
             });
             #endregion
 
+            // 加入文件浏览器
+            services.AddDirectoryBrowser();
         }
 
         public override void Configure(WebApplication webApplication)
@@ -259,6 +262,27 @@ namespace HZY.Web.Host
 
             // 启动主端点 miniapi
             webApplication.MapMainEndpoints();
+
+            #region 日志文件浏览器配置
+
+            var provider = new FileExtensionContentTypeProvider();
+            //添加之后能够识别.log
+            provider.Mappings[".log"] = "text/plain;charset=utf-8";
+            webApplication.UseStaticFiles(new StaticFileOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AppLogs")),
+                RequestPath = "/logs",
+                ServeUnknownFileTypes = true,
+                ContentTypeProvider = provider
+            });
+            webApplication.UseFileServer(new FileServerOptions
+            {
+                FileProvider = new PhysicalFileProvider(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "AppLogs")),
+                RequestPath = "/logs",
+                EnableDirectoryBrowsing = true,
+            });
+
+            #endregion
 
         }
 
