@@ -5,6 +5,7 @@ using HZY.Framework.Core.Utils;
 using HZY.Infrastructure.ApiResultManage;
 using HZY.Models.Entities.Quartz;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Quartz.Impl.Triggers;
 
@@ -197,6 +198,9 @@ namespace HZY.Managers.Quartz.Impl
         /// <returns></returns>
         public async Task<bool> UpdateExecuteTime(Guid tasksId, DateTime dateTime)
         {
+            using var scope = App.CreateScope();
+            using var _quartzJobTaskRepository = scope.ServiceProvider.GetService<IAdminRepository<QuartzJobTask>>();
+
             var jobTask = await _quartzJobTaskRepository.SelectNoTracking.Where(w => w.Id == tasksId)
                 .ExecuteUpdateAsync(w => w.SetProperty(t => t.ExecuteTime, t => dateTime))
                 ;

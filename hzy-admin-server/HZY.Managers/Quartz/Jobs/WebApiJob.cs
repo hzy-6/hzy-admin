@@ -51,43 +51,33 @@ namespace HZY.Managers.Quartz.Jobs
                     return;
                 }
 
-                //运行开始记录
-                //_jobLogger.Write(new JobLoggerInfo()
-                //{
-                //    Id = Guid.NewGuid(),
-                //    TasksId = tasks.Id ?? Guid.Empty,
-                //    Text = $"[执行任务Start] Id={tasks.Id}、Name={tasks.Name}、GroupName={tasks.GroupName}",
-                //    CreateTime = DateTime.Now
-                //});
-
                 var time = DateTime.Now;
                 var taskId = quartzJobTask?.Id ?? Guid.Empty;
 
-                var text = $"任务={quartzJobTask.Name}|组={quartzJobTask.GroupName}|{time:yyyy-MM-dd}|StartTime={time: HH:mm:ss:fff}|";
+                var text = $"任务={quartzJobTask.Name}|组={quartzJobTask.GroupName}|{time:yyyy-MM-dd}|Time={time: HH:mm:ss:fff} - ";
 
                 var result = await _apiRequestService.RequestAsync(quartzJobTask.RequsetMode ?? QuartzJobTaskRequsetModeEnum.Post, quartzJobTask.JobPoint);
 
-                if (result.IsSuccess)
-                {
-                    await _taskService.UpdateExecuteTime(taskId, time);
-                }
-                else
+                if (!result.IsSuccess)
                 {
                     _logger.LogError($"Web Api RequestAsync(); 请求失败! WebApi 返回结果:{result.Message}");
                 }
 
-                _stopwatch.Stop();
+                await _taskService.UpdateExecuteTime(taskId, time);
 
                 var endTime = $"{DateTime.Now:HH:mm:ss:fff}";
 
+                _stopwatch.Stop();
+
                 //运行结束记录
-                text += $"EndTime={endTime}|耗时={_stopwatch.ElapsedMilliseconds} 毫秒|结果={result.Message}";
+                text += $"{endTime}|结果={result.Message}|耗时={_stopwatch.ElapsedMilliseconds} 毫秒";
                 _jobLoggerService.Write(new QuartzJobTaskLog()
                 {
                     Id = Guid.NewGuid(),
                     JobTaskId = taskId,
                     Text = text
                 });
+
             }
             catch (Exception ex)
             {
