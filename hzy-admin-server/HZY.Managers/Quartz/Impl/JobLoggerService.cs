@@ -17,7 +17,9 @@ namespace HZY.Managers.Quartz.Impl
 
         public List<QuartzJobTaskLog> FindListById(Guid tasksId, int page, int size)
         {
+            page = page < 1 ? 1 : page;
             return _quartzJobTaskLogRepository.SelectNoTracking
+                .OrderByDescending(w => w.CreationTime)
                 .Where(w => w.JobTaskId == tasksId)
                 .Skip((page - 1) * size)
                 .Take(size)
