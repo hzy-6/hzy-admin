@@ -29,49 +29,17 @@ namespace HZY.Managers.Quartz.Impl
         /// <returns></returns>
         public async Task<bool> RunAsync(QuartzJobTask tasks)
         {
-            //1、通过调度工厂获得调度器
-            var scheduler = await _schedulerFactory.GetScheduler();
-            var taskName = $"{tasks.GroupName}>{tasks.Name}";
-            //2、创建一个触发器
-            var trigger = TriggerBuilder.Create()
-                .WithIdentity(taskName, tasks.GroupName)
-                .StartNow()
-                .WithDescription(tasks.Remark)
-                // 触发表达式 0 0 0 1 1 ?
-                .WithCronSchedule(tasks.Cron)
-                .Build();
-
-            //3、创建任务
-            IJobDetail jobDetail = null;
-
             if (tasks.Type == QuartzJobTaskTypeEnum.WebApi)
             {
-                jobDetail = JobBuilder.Create<WebApiJob>()
-                                .WithIdentity(taskName, tasks.GroupName)
-                                .UsingJobData(QuartzStartupConfig.JobTaskKey, JsonConvert.SerializeObject(tasks))
-                                .Build()
-                                ;
+                return await RunAsync<WebApiJob>(tasks);
             }
 
             if (tasks.Type == QuartzJobTaskTypeEnum.Local)
             {
-                jobDetail = JobBuilder.Create<LocalJob>()
-                                .WithIdentity(taskName, tasks.GroupName)
-                                .UsingJobData(QuartzStartupConfig.JobTaskKey, JsonConvert.SerializeObject(tasks))
-                                .Build()
-                                ;
+                return await RunAsync<LocalJob>(tasks);
             }
 
-            //4、写入 Job 实例工厂 解决 Job 中取 ioc 对象
-            scheduler.JobFactory = _resultfulApiJobFactory;
-
-            //5、将触发器和任务器绑定到调度器中
-            await scheduler.ScheduleJob(jobDetail, trigger);
-
-            //6、开启调度器
-            await scheduler.Start();
-
-            return await Task.FromResult(true);
+            return false;
         }
 
         /// <summary>
@@ -115,6 +83,45 @@ namespace HZY.Managers.Quartz.Impl
             return await Task.FromResult(true);
         }
 
+        /// <summary>
+        /// 开始运行一个调度器
+        /// </summary>
+        /// <param name="tasks"></param>
+        /// <returns></returns>
+        public async Task<bool> RunAsync<T>(QuartzJobTask tasks) where T : IJob
+        {
+            //1、通过调度工厂获得调度器
+            var scheduler = await _schedulerFactory.GetScheduler();
+            var taskName = $"{tasks.GroupName}>{tasks.Name}";
+            //2、创建一个触发器
+            var trigger = TriggerBuilder.Create()
+                .WithIdentity(taskName, tasks.GroupName)
+                .StartNow()
+                .WithDescription(tasks.Remark)
+                // 触发表达式 0 0 0 1 1 ?
+                .WithCronSchedule(tasks.Cron)
+                .Build();
+
+            //3、创建任务
+            IJobDetail jobDetail = null;
+
+            jobDetail = JobBuilder.Create<T>()
+                                .WithIdentity(taskName, tasks.GroupName)
+                                .UsingJobData(QuartzStartupConfig.JobTaskKey, JsonConvert.SerializeObject(tasks))
+                                .Build()
+                                ;
+
+            //4、写入 Job 实例工厂 解决 Job 中取 ioc 对象
+            scheduler.JobFactory = _resultfulApiJobFactory;
+
+            //5、将触发器和任务器绑定到调度器中
+            await scheduler.ScheduleJob(jobDetail, trigger);
+
+            //6、开启调度器
+            await scheduler.Start();
+
+            return await Task.FromResult(true);
+        }
 
 
 

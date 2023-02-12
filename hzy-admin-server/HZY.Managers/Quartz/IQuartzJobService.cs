@@ -1,5 +1,6 @@
 ﻿using HZY.Framework.AutoRegisterIOC;
 using HZY.Models.Entities.Quartz;
+using Quartz;
 
 namespace HZY.Managers.Quartz
 {
@@ -17,6 +18,14 @@ namespace HZY.Managers.Quartz
         /// <param name="tasks"></param>
         /// <returns></returns>
         Task<bool> CloseAsync(QuartzJobTask tasks);
+
+        /// <summary>
+        /// 开始运行一个任务调度器
+        /// </summary>
+        /// <typeparam name="T"></typeparam>
+        /// <param name="tasks"></param>
+        /// <returns></returns>
+        Task<bool> RunAsync<T>(QuartzJobTask tasks) where T : IJob;
 
     }
 }
