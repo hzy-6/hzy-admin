@@ -1234,6 +1234,13 @@
             <typeparam name="TValue"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:HZY.Infrastructure.Tools.CopyObject``1(``0)">
+            <summary>
+            复制对象
+            </summary>
+            <param name="sourceObj"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Infrastructure.Zips.Zip">
             <summary>
             压缩 zip  https://www.cnblogs.com/xielong/p/6165550.html

@@ -264,6 +264,13 @@
             <param name="tasks"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Managers.Quartz.Impl.QuartzJobService.RunAsync``1(HZY.Models.Entities.Quartz.QuartzJobTask)">
+            <summary>
+            开始运行一个调度器
+            </summary>
+            <param name="tasks"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Managers.Quartz.Impl.TaskService">
             <summary>
             任务服务
@@ -321,6 +328,14 @@
             <summary>
             关闭任务调度
             </summary>
+            <param name="tasks"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Managers.Quartz.IQuartzJobService.RunAsync``1(HZY.Models.Entities.Quartz.QuartzJobTask)">
+            <summary>
+            开始运行一个任务调度器
+            </summary>
+            <typeparam name="T"></typeparam>
             <param name="tasks"></param>
             <returns></returns>
         </member>

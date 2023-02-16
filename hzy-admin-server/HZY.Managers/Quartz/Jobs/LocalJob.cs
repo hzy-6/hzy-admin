@@ -50,6 +50,12 @@ namespace HZY.Managers.Quartz.Jobs
 
                 var jobTaskInfo = App.JobTaskInfos.FirstOrDefault(w => w.Key == quartzJobTask.JobPoint);
 
+                if (jobTaskInfo == null)
+                {
+                    _logger.LogError($"jobTaskInfo is NULL !");
+                    return;
+                }
+
                 // 获取类型的代理类
                 var jobTaskObjectProxy = scope.ServiceProvider.GetService(jobTaskInfo.ClassType);
 

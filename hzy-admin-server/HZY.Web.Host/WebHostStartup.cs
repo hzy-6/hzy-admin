@@ -75,7 +75,7 @@ namespace HZY.Web.Host
 
             #region HttpContext、IMemoryCache
 
-            services.AddSingleton<IHttpContextAccessor, HttpContextAccessor>();
+            services.AddHttpContextAccessor();
             services.AddMemoryCache();
 
             #endregion

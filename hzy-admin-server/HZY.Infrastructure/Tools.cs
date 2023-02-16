@@ -4,6 +4,7 @@ using System.Text;
 using HZY.Framework.Core.Utils;
 using ICSharpCode.SharpZipLib.Zip;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using UAParser;
 
 namespace HZY.Infrastructure;
@@ -851,6 +852,16 @@ public static class Tools
         }
 
         return name;
+    }
+
+    /// <summary>
+    /// 复制对象
+    /// </summary>
+    /// <param name="sourceObj"></param>
+    /// <returns></returns>
+    public static T CopyObject<T>(this T sourceObj)
+    {
+        return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(sourceObj));
     }
 
 }

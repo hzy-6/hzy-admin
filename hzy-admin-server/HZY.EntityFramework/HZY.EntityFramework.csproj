@@ -12,14 +12,12 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HZY.Framework.EntityFrameworkRepositories" Version="1.0.1" />
+		<PackageReference Include="HZY.Framework.EntityFrameworkRepositories" Version="1.0.2.3" />
 		<PackageReference Update="Microsoft.SourceLink.GitHub" Version="1.1.1" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\HZY.FreeSqlCore\HZY.FreeSqlCore.csproj">
-			<TreatAsUsed>true</TreatAsUsed>
-		</ProjectReference>
+		<ProjectReference Include="..\HZY.FreeSqlCore\HZY.FreeSqlCore.csproj" />
 		<ProjectReference Include="..\HZY.Infrastructure\HZY.Infrastructure.csproj" />
 		<ProjectReference Include="..\HZY.Models\HZY.Models.csproj" />
 	</ItemGroup>

@@ -1,4 +1,5 @@
 ﻿using HZY.Framework.AutoRegisterIOC;
+using HZY.Framework.AutoRegisterIOC.Attributes;
 using HZY.Framework.Core.Quartz;
 
 namespace HZY.Managers
@@ -6,7 +7,8 @@ namespace HZY.Managers
     /// <summary>
     /// 本地测试对象
     /// </summary>
-    public class CalcDataManager : ITransientSelfDependency
+    [Component(ServiceType = ServiceType.Transient)]
+    public class CalcDataManager
     {
         /// <summary>
         /// 

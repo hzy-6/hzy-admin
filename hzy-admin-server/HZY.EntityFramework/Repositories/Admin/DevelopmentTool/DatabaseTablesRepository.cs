@@ -11,13 +11,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using HZY.Infrastructure.Mappers;
+using HZY.EntityFramework.Repositories.Admin.Core.Impl;
+using System.Linq.Expressions;
+using HZY.EntityFramework.DbContexts;
 
 namespace HZY.EntityFramework.Repositories.Admin.DevelopmentTool
 {
     /// <summary>
     /// 用于获取表信息仓储
     /// </summary>
-    public class DatabaseTablesRepository : ITransientSelfDependency
+    public class DatabaseTablesRepository : AdminRepositoryImpl<LowCodeTable>, ITransientSelfDependency
     {
         private readonly LowCodeTableRepository _lowCodeTableRepository;
         private readonly LowCodeTableInfoRepository _lowCodeTableInfoRepository;
@@ -27,14 +30,26 @@ namespace HZY.EntityFramework.Repositories.Admin.DevelopmentTool
         private readonly string TableInfoKey = "TableInfo:GenDbTableDto";
         private readonly int CacheTime = 12;
 
-        public DatabaseTablesRepository(LowCodeTableRepository lowCodeTableRepository,
-        LowCodeTableInfoRepository lowCodeTableInfoRepository,
-        IFreeSql freeSql,
-        IMemoryCache memoryCache)
+        //public DatabaseTablesRepository(LowCodeTableRepository lowCodeTableRepository,
+        //LowCodeTableInfoRepository lowCodeTableInfoRepository,
+        //IFreeSql freeSql,
+        //IMemoryCache memoryCache)
+        //{
+        //    _lowCodeTableRepository = lowCodeTableRepository;
+        //    _lowCodeTableInfoRepository = lowCodeTableInfoRepository;
+        //    _freeSql = freeSql;
+        //    _memoryCache = memoryCache;
+        //}
+
+        public DatabaseTablesRepository(AdminDbContext context,
+            LowCodeTableRepository lowCodeTableRepository,
+            LowCodeTableInfoRepository lowCodeTableInfoRepository,
+            IMemoryCache memoryCache,
+            Expression<Func<LowCodeTable, bool>> filter = null)
+         : base(context, filter)
         {
             _lowCodeTableRepository = lowCodeTableRepository;
             _lowCodeTableInfoRepository = lowCodeTableInfoRepository;
-            _freeSql = freeSql;
             _memoryCache = memoryCache;
         }
 

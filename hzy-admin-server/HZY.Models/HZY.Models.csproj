@@ -12,7 +12,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\HZY.FreeSqlCore\HZY.FreeSqlCore.csproj" />
+	  <ProjectReference Include="..\HZY.FreeSqlCore\HZY.FreeSqlCore.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
