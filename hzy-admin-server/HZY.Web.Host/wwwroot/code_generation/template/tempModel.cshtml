@@ -67,6 +67,8 @@
     {
         var lowCodeTableInfo = Model.TableInfos.Where(w => w.ColumnName == "Id").FirstOrDefault();
 
+        if (lowCodeTableInfo == null) return "DefaultBaseEntityGuidKey";
+
         if (lowCodeTableInfo.CsType.ToLower().Contains("string"))
             return "DefaultBaseEntityStringKey";
 

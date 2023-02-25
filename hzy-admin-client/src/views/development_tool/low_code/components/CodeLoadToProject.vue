@@ -52,7 +52,7 @@ async function findForm() {
 function saveForm() {
   refForm.value?.validate().then(() => {
     state.loading = true;
-    LowCodeTableService.saveForm(state.vm.id, state.vm)
+    LowCodeTableService.saveForm(state.vm.id, state.vm.from)
       .then((res) => {
         state.loading = false;
         if (res.code != 1) return;
@@ -78,7 +78,7 @@ async function autoImport() {
 
 <template>
   <div>
-    <a-form ref="formRef" layout="vertical" :model="state.vm.form" :rules="rules">
+    <a-form ref="refForm" layout="vertical" :model="state.vm.form" :rules="rules">
       <a-row :gutter="[15, 15]">
         <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
           <a-form-item label="是否覆盖" ref="isCover" name="isCover">
