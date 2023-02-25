@@ -111,6 +111,7 @@ async function deleteList(id?: string) {
           findList();
         }
       "
+      :is-pagination="false"
       v-model:expandedRowKeys="state.expandedRowKeys"
     >
       <!-- search -->
