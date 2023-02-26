@@ -52,7 +52,7 @@ async function findForm() {
 function saveForm() {
   refForm.value?.validate().then(() => {
     state.loading = true;
-    LowCodeTableService.saveForm(state.vm.id, state.vm.from)
+    LowCodeTableService.saveForm(state.vm.id, state.vm.form)
       .then((res) => {
         state.loading = false;
         if (res.code != 1) return;
