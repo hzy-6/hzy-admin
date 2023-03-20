@@ -37,7 +37,7 @@
 
 ### ✨  部分截图
 
-![输入图片说明](gitee/images/theme1.png)
+![输入图片说明](gitee/images/theme_dark.png)
 
 | ![输入图片说明](gitee/images/DataAuthority.png) | ![输入图片说明](gitee/images/function.png) |
 |-------------------------------------------|---|
