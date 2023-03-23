@@ -174,7 +174,13 @@ namespace HZY.Infrastructure.Aop.Cache
         /// <param name="isStart"></param>
         private void RemoveMemoryGroupKey(string pattern, IMemoryCache memoryCache, bool isStart)
         {
-            var entries = memoryCache.GetType().GetField("_entries", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(memoryCache) as IDictionary;
+            IDictionary entries = null;
+#if NET7_0_OR_GREATER
+            var coherentState = memoryCache.GetType().GetField("_coherentState", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(memoryCache);
+            entries = coherentState.GetType().GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(coherentState) as IDictionary;
+#else
+            entries = memoryCache.GetType().GetField("_entries", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(memoryCache) as IDictionary;
+#endif
             if (entries != null)
             {
                 List<string> keys = new List<string>();
