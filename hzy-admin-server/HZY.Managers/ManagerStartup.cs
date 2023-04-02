@@ -32,7 +32,7 @@ namespace HZY.Managers
             webApplication.UseSignalRHubs();
         }
 
-        public override void ConfigureAfterStarting(WebApplication webApplication)
+        public override void ApplicationStarted(WebApplication webApplication)
         {
             var appConfiguration = webApplication.Services.GetRequiredService<AppConfiguration>();
 
