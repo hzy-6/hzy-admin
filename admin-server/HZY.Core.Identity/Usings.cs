@@ -1,0 +1,16 @@
+﻿global using HZY.Core.Identity.Configs;
+global using HZY.Core.Identity.Models;
+global using HZY.Core.Identity.Utils;
+global using HZY.Framework.AutoRegisterIOC;
+global using HZY.Framework.Core.AspNetCore;
+global using HZY.Framework.Core.Utils;
+global using Microsoft.AspNetCore.Authentication.JwtBearer;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.AspNetCore.Http;
+global using Microsoft.Extensions.Caching.Memory;
+global using Microsoft.Extensions.Configuration;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.IdentityModel.Tokens;
+global using System.IdentityModel.Tokens.Jwt;
+global using System.Security.Claims;
+global using System.Text;

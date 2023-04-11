@@ -1,0 +1,85 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "HZY.Gateway.Yarp",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-HZY.Gateway.Yarp",
+            "program": "${workspaceFolder}/HZY.Gateway.Yarp/bin/Debug/net7.0/HZY.Gateway.Yarp.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/HZY.Gateway.Yarp",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/HZY.Gateway.Yarp/Views"
+            }
+        },
+        {
+            "name": "HZY.Api.Template",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-HZY.Api.Template",
+            "program": "${workspaceFolder}/HZY.Api.Template/bin/Debug/net7.0/HZY.Api.Template.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/HZY.Api.Template",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/HZY.Api.Template/Views"
+            }
+        },
+        {
+            "name": "HZY.Api.Identity",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-HZY.Api.Identity",
+            "program": "${workspaceFolder}/HZY.Api.Identity/bin/Debug/net7.0/HZY.Api.Identity.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/HZY.Api.Identity",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/HZY.Api.Identity/Views"
+            }
+        },
+        {
+            "name": "HZY.Api.Admin",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "build-HZY.Api.Admin",
+            "program": "${workspaceFolder}/HZY.Api.Admin/bin/Debug/net7.0/HZY.Api.Admin.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/HZY.Api.Admin",
+            "stopAtEntry": false,
+            "serverReadyAction": {
+                "action": "openExternally",
+                "pattern": "\\bNow listening on:\\s+(https?://\\S+)"
+            },
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/HZY.Api.Admin/Views"
+            }
+        }
+    ]
+}

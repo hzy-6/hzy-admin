@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Repository.FreeSql.Admin</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Repository.FreeSql.Admin.Configs.FreeSqlConfig">
+            <summary>
+            FreeSql 模块配置
+            </summary>
+        </member>
+        <member name="F:HZY.Repository.FreeSql.Admin.Configs.FreeSqlConfig.AdminFreeSql">
+            <summary>
+            Admin IFreeSql
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.FreeSql.Admin.Configs.FreeSqlConfig.AddFreeSqlByAdmin(Microsoft.AspNetCore.Builder.WebApplicationBuilder,HZY.Core.Enums.DefaultDatabaseType)">
+            <summary>
+            注册 仓储
+            </summary>
+            <param name="webApplicationBuilder"></param>
+            <param name="defaultDatabaseType"></param>
+        </member>
+        <member name="T:HZY.Repository.FreeSql.Admin.Models.AdminRepositoriesOptions">
+            <summary>
+            admin 仓储配置
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.FreeSql.Admin.Models.AdminRepositoriesOptions.DefaultDatabaseType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.FreeSql.Admin.Models.AdminRepositoriesOptions.IsMonitorEFCore">
+            <summary>
+            是否监控 efcore
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.FreeSql.Admin.RepositoryFreeSqlAdminStartup">
+            <summary>
+            程序启动器
+            </summary>
+        </member>
+    </members>
+</doc>

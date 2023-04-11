@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Core.CAP</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Core.CAP.CoreCAPStartup">
+            <summary>
+            CAP github : https://github.com/dotnetcore/CAP/blob/master/README.zh-cn.md
+            </summary>
+        </member>
+        <member name="M:HZY.Core.CAP.CoreCAPStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Core.CAP.CoreCAPStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+    </members>
+</doc>

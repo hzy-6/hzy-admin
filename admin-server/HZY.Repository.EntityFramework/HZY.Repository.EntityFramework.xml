@@ -1,0 +1,259 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Repository.EntityFramework</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Repository.EntityFramework.Annotations.DbContextConfigAttribute">
+            <summary>
+            DbContext 配置注解
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Annotations.DbContextConfigAttribute.NameRuleType">
+            <summary>
+            命名规则默认 蛇形 命名 SysFunction => sys_function
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Annotations.DbContextConfigAttribute.#ctor">
+            <summary>
+            DbContext 配置注解
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Annotations.DbContextConfigAttribute.#ctor(HZY.Core.Enums.NameRuleType)">
+            <summary>
+            DbContext 配置注解
+            </summary>
+            <param name="nameRuleType">表命名规则</param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Annotations.DbContextConfigAttribute.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder,System.Type,System.Func{System.Type,System.Boolean})">
+            <summary>
+            模型创建
+            </summary>
+            <param name="modelBuilder"></param>
+            <param name="dbContextType"></param>
+            <param name="predicate">过滤实体类型</param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Annotations.DbContextConfigAttribute.TableNameMapping(Microsoft.EntityFrameworkCore.ModelBuilder,System.Func{System.String,System.String})">
+            <summary>
+            数据库表名映射
+            </summary>
+            <param name="modelBuilder"></param>
+            <param name="mappingName"></param>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Aop.TransactionalAttribute">
+            <summary>
+            事务拦截
+            </summary>
+        </member>
+        <member name="F:HZY.Repository.EntityFramework.Aop.TransactionalAttribute._dbContextTypes">
+            <summary>
+            指定 数据上下文
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Aop.TransactionalAttribute.#ctor(System.Type[])">
+            <summary>
+            事务拦截
+            </summary>
+            <param name="dbContextTypes">数据上下文</param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Aop.TransactionalAttribute.Before(HZY.Framework.AutoRegisterIOC.AopContext)">
+            <summary>
+            之前
+            </summary>
+            <param name="aopContext"></param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Aop.TransactionalAttribute.After(HZY.Framework.AutoRegisterIOC.AopContext)">
+            <summary>
+            之后
+            </summary>
+            <param name="aopContext"></param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Aop.TransactionalAttribute.Before``1(HZY.Framework.AutoRegisterIOC.AopContext)">
+            <summary>
+            之前
+            </summary>
+            <param name="aopContext"></param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Aop.TransactionalAttribute.After``1(HZY.Framework.AutoRegisterIOC.AopContext,``0)">
+            <summary>
+            之后
+            </summary>
+            <typeparam name="TResult"></typeparam>
+            <param name="aopContext"></param>
+            <param name="result"></param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Aop.TransactionalAttribute.OnException(HZY.Framework.AutoRegisterIOC.AopContext,System.Exception)">
+            <summary>
+            异常
+            </summary>
+            <param name="aopContext"></param>
+            <param name="exception"></param>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Interceptors.AuditInterceptor">
+            <summary>
+            审计 保存拦截器
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Interceptors.AuditInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})">
+            <summary>
+            SavingChanges
+            </summary>
+            <param name="eventData"></param>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Interceptors.AuditInterceptor.SavingChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            SavingChangesAsync
+            </summary>
+            <param name="eventData"></param>
+            <param name="result"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Interceptors.AuditInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData)">
+            <summary>
+            添加 、 修改 、删除 拦截
+            </summary>
+            <param name="eventData"></param>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Models.ICreateEntity.CreatorUserId">
+            <summary>
+            创建用户
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Models.ICreateEntity.CreationTime">
+            <summary>
+            创建时间
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Models.DefaultEntity">
+            <summary>
+            基础模型 主键为 Guid
+            包含属性 Id=主键、
+            LastModificationTime=最后更新时间 、
+            LastModifierUserId=最后更新人Id、
+            CreationTime=创建时间 、
+            CreatorUserId=创建人Id
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Models.DefaultEntityIdentityIntKey">
+            <summary>
+            基础模型 主键为 int 自增
+            包含属性 Id=主键、
+            LastModificationTime=最后更新时间 、
+            LastModifierUserId=最后更新人Id、
+            CreationTime=创建时间 、
+            CreatorUserId=创建人Id
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Models.DefaultEntityStringKey">
+            <summary>
+            基础模型 主键为 string
+            包含属性 Id=主键、
+            LastModificationTime=最后更新时间 、
+            LastModifierUserId=最后更新人Id、
+            CreationTime=创建时间 、
+            CreatorUserId=创建人Id
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Models.DefaultEntity`1">
+            <summary>
+            基础模型 主键为 自己定义传入
+            包含属性 Id=主键、
+            LastModificationTime=最后更新时间 、
+            LastModifierUserId=最后更新人Id、
+            CreationTime=创建时间 、
+            CreatorUserId=创建人Id
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Models.IDeleteEntity.IsDeleted">
+            <summary>
+            是否删除
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Models.IDeleteEntity.DeleterUserId">
+            <summary>
+            删除用户
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Models.IDeleteEntity.DeletionTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Models.IEntity">
+            <summary>
+            dbset 自动填充标识
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Models.FullEntity">
+            <summary>
+            全量模型 主键为 Guid
+            包含属性 
+            Id=主键、
+            LastModificationTime=最后更新时间 、
+            LastModifierUserId=最后更新人Id、
+            CreationTime=创建时间 、
+            CreatorUserId=创建人Id、
+            IsDeleted=是否删除、
+            DeleterUserId=删除人、
+            DeletionTime=删除时间
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Models.FullEntityIdentityIntKey">
+            <summary>
+            全量模型 主键为 int 自增
+            包含属性 
+            Id=主键、
+            LastModificationTime=最后更新时间 、
+            LastModifierUserId=最后更新人Id、
+            CreationTime=创建时间 、
+            CreatorUserId=创建人Id、
+            IsDeleted=是否删除、
+            DeleterUserId=删除人、
+            DeletionTime=删除时间
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Models.FullEntityStringKey">
+            <summary>
+            基础模型 主键为 string
+            包含属性 
+            Id=主键、
+            LastModificationTime=最后更新时间 、
+            LastModifierUserId=最后更新人Id、
+            CreationTime=创建时间 、
+            CreatorUserId=创建人Id、
+            IsDeleted=是否删除、
+            DeleterUserId=删除人、
+            DeletionTime=删除时间
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Models.FullEntity`1">
+            <summary>
+            全量模型 主键为 自己定义传入
+            包含属性 
+            Id=主键、
+            LastModificationTime=最后更新时间 、
+            LastModifierUserId=最后更新人Id、
+            CreationTime=创建时间 、
+            CreatorUserId=创建人Id、
+            IsDeleted=是否删除、
+            DeleterUserId=删除人、
+            DeletionTime=删除时间
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Models.IUpdateEntity.LastModifierUserId">
+            <summary>
+            更新用户
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Models.IUpdateEntity.LastModificationTime">
+            <summary>
+            更新时间
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<TieredPGO>true</TieredPGO>
+		<DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="DotNetCore.CAP" Version="7.1.0" />
+		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="7.1.0" />
+		<PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="7.1.0" />
+		<PackageReference Include="Savorboard.CAP.InMemoryMessageQueue" Version="7.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />
+	</ItemGroup>
+
+</Project>

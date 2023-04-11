@@ -1,0 +1,1 @@
+指令：dotnet ef migrations add mysql_init --startup-project "../HZY.Gateway.Yarp/HZY.Gateway.Yarp.csproj" --context "AdminDbContext" -v

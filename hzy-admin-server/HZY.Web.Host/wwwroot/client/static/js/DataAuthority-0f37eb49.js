@@ -1,1 +1,0 @@
-import"./DataAuthority.vue_vue_type_script_setup_true_lang-4c944e79.js";import{_ as i}from"./DataAuthority.vue_vue_type_script_setup_true_lang-4c944e79.js";import"./index-1d0f4517.js";import"./SysOrganizationService-6cfe0f11.js";export{i as default};

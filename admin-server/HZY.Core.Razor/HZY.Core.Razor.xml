@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Core.Razor</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Core.Razor.CoreRazorStartup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Razor.CoreRazorStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Core.Razor.CoreRazorStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="T:HZY.Core.Razor.Services.Impl.RazorViewRenderImpl">
+            <summary>
+            razor cshtml 模板渲染
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Razor.Services.IRazorViewRender.RenderAsync(System.String,System.Object)">
+            <summary>
+            渲染 razor cshtml
+            </summary>
+            <param name="viewName">例如： /wwwroot/Root/Service.cshtml</param>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Razor.Services.IRazorViewRender.RenderByDictionaryAsync(System.String,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            渲染 razor cshtml
+            </summary>
+            <param name="viewName">例如： /wwwroot/Root/Service.cshtml</param>
+            <param name="viewData"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Razor.Services.IRazorViewRender.RenderAsync(System.String,System.Object,System.Collections.Generic.Dictionary{System.String,System.Object})">
+            <summary>
+            渲染 razor cshtml
+            </summary>
+            <param name="viewName">例如： /wwwroot/Root/Service.cshtml</param>
+            <param name="model"></param>
+            <param name="viewData"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

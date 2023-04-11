@@ -1,5 +1,0 @@
-namespace {{namespace}};
-
-public enum {{name}}
-{
-}

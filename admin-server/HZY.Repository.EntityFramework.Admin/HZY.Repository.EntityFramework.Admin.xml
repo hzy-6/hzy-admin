@@ -1,0 +1,1419 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Repository.EntityFramework.Admin</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Repository.EntityFramework.Admin.AdminDbContext">
+            <summary>
+            后台管理系统数据库上下文
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.AdminDbContext.#ctor(Microsoft.EntityFrameworkCore.DbContextOptions{HZY.Repository.EntityFramework.Admin.AdminDbContext})">
+            <summary>
+            后台管理系统数据库上下文
+            </summary>
+            <param name="options"></param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.AdminDbContext.OnModelCreating(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            模型创建
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Configs.CoreRepositoriesAdminConfig">
+            <summary>
+            仓储模块
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Configs.CoreRepositoriesAdminConfig.UseEFByAdmin(Microsoft.AspNetCore.Builder.IApplicationBuilder)">
+            <summary>
+            使用 DbContext
+            </summary>
+            <param name="app"></param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Configs.CoreRepositoriesAdminConfig.AddEFByAdmin(Microsoft.AspNetCore.Builder.WebApplicationBuilder,HZY.Repository.EntityFramework.Admin.Models.AdminRepositoriesOptions)">
+            <summary>
+            注册 Admin 后台管理数据库
+            </summary>
+            <param name="webApplicationBuilder"></param>
+            <param name="adminRepositoriesOptions"></param>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.Flow">
+            <summary>
+            工作流主表
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.Flow.Number">
+            <summary>
+            序号 => 备注:Number
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.Flow.Code">
+            <summary>
+            流程编码 => 备注:Code
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.Flow.Name">
+            <summary>
+            流程名称 => 备注:Name 
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.Flow.Remark">
+            <summary>
+            备注 => 备注:Name 
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApproval">
+            <summary>
+            审批发起表
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApproval.UserId">
+            <summary>
+            流程发起人Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApproval.UserName">
+            <summary>
+            流程发起人名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApproval.LaunchTime">
+            <summary>
+            流程发起时间
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApproval.FormId">
+            <summary>
+            表单Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApproval.FlowId">
+            <summary>
+            审批流Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApproval.FlowCode">
+            <summary>
+            审批流编码
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApproval.FlowName">
+            <summary>
+            审批流名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistory">
+            <summary>
+            流程审批步骤记录表 审批历史记录
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistory.Sort">
+            <summary>
+            流程审批顺序
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistory.FlowNodeId">
+            <summary>
+            审批流节点id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistory.FlowNodeName">
+            <summary>
+            节点名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistory.SortMore">
+            <summary>
+            多次审批顺序号
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistory.State">
+            <summary>
+            流程审批状态
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistory.Opinions">
+            <summary>
+            审批意见
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistory.UserId">
+            <summary>
+            审批人id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistory.UserName">
+            <summary>
+            审批人姓名
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistory.ApprovalDate">
+            <summary>
+            审批时间
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.EFlowApprovalStepState">
+            <summary>
+            流程审批步骤状态
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistoryUser">
+            <summary>
+            流程步骤可审批人记录表
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistoryUser.FlowApprovalStepHistoryId">
+            <summary>
+            审批步骤id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistoryUser.FlowNodeId">
+            <summary>
+            流程节点Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistoryUser.FlowNodeName">
+            <summary>
+            审批节点名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistoryUser.UserId">
+            <summary>
+            审批人Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowApprovalStepHistoryUser.UserName">
+            <summary>
+            审批人名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowNode">
+            <summary>
+            工作流节点表
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowNode.FlowId">
+            <summary>
+            流程id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowNode.Sort">
+            <summary>
+            序号
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowNode.Name">
+            <summary>
+            节点名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowNode.RoleId">
+            <summary>
+            角色Id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.ApprovalFlow.FlowNode.Remark">
+            <summary>
+            备注
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Base.Member">
+            <summary>
+            member
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Base.Member.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Base.Member.Name">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Base.Member.Phone">
+            <summary>
+            电话号码
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Base.Member.Sex">
+            <summary>
+            性别
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Base.Member.Birthday">
+            <summary>
+            生日
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Base.Member.Photo">
+            <summary>
+            头像
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Base.Member.Introduce">
+            <summary>
+            简介
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Base.Member.FilePath">
+            <summary>
+            文件
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Base.Member.UserId">
+            <summary>
+            账户Id
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeList">
+            <summary>
+            低代码 列表配置
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeList.Low_Code_TableId">
+            <summary>
+            表id
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeList.Low_Code_Table_InfoId">
+            <summary>
+            表字段信息id
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeList.ForeignKeyTableId">
+            <summary>
+            外键表 Low_Code_TableId
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeList.ForeignKeyTableFieldName">
+            <summary>
+            外键表 字段 名称
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeSearch">
+            <summary>
+            低代码 检索配置
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeSearch.Low_Code_TableId">
+            <summary>
+            表id
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeSearch.Low_Code_Table_InfoId">
+            <summary>
+            表
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable">
+            <summary>
+            低代码表
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.Schema">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.Type">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.TableName">
+            <summary>
+            表名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.DisplayName">
+            <summary>
+            显示名称 描述
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.EntityName">
+            <summary>
+            实体名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.ModelPath">
+            <summary>
+            实体保存路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.ServicePath">
+            <summary>
+            服务保存路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.ControllerPath">
+            <summary>
+            控制器保存路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.ClientIndexPath">
+            <summary>
+            前端视图保存路径
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.ClientInfoPath">
+            <summary>
+            前端信息弹窗保存位置
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.ClientServicePath">
+            <summary>
+            前端服务保存位置
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable.IsCover">
+            <summary>
+            是否覆盖生成  否的话生成代码重复会在后面加一个时间
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo">
+            <summary>
+            低代码表信息
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo.Low_Code_TableId">
+            <summary>
+            表 id
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo.IsPrimary">
+            <summary>
+            主键
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo.IsIdentity">
+            <summary>
+            自增标识
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo.IsNullable">
+            <summary>
+            是否可DBNull
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo.Position">
+            <summary>
+            字段位置
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo.ColumnName">
+            <summary>
+            列名
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo.Describe">
+            <summary>
+            列描述
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo.DatabaseColumnType">
+            <summary>
+            数据库列类型
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo.CsType">
+            <summary>
+            c# 数据类型
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo.CsField">
+            <summary>
+            c# 字段
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo.MaxLength">
+            <summary>
+            
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo.DisplayName">
+            <summary>
+            显示名称
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.LowCode.CsTypeEnum">
+            <summary>
+            c# 类型枚举
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTask">
+            <summary>
+            作业任务
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTask.Name">
+            <summary>
+            任务名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTask.GroupName">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTask.Cron">
+            <summary>
+            间隔表达式
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTask.ExecuteTime">
+            <summary>
+            执行时间
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTask.State">
+            <summary>
+            运行状态
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTask.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTask.Type">
+            <summary>
+            任务类型
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTask.JobPoint">
+            <summary>
+            作业点
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTask.RequsetMode">
+            <summary>
+            请求方式
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTaskRequsetModeEnum">
+            <summary>
+            请求方式
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTaskStateEnum">
+            <summary>
+            状态情况
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTaskTypeEnum">
+            <summary>
+            类型
+            </summary>
+        </member>
+        <member name="F:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTaskTypeEnum.WebApi">
+            <summary>
+            webapi 远程程序
+            </summary>
+        </member>
+        <member name="F:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTaskTypeEnum.Local">
+            <summary>
+            本地程序
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTaskLog">
+            <summary>
+            作业任务 日志
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTaskLog.JobTaskId">
+            <summary>
+            任务id
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Quartz.QuartzJobTaskLog.Text">
+            <summary>
+            任务日志
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDataAuthority">
+            <summary>
+            数据权限主表
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDataAuthority.PermissionType">
+            <summary>
+             PermissionType => 备注: 数据权限类型
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDataAuthority.RoleId">
+            <summary>
+             RoleId => 备注: 角色Id
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDataAuthorityPermissionTypeEnum">
+            <summary>
+            数据权限类型
+            </summary>
+        </member>
+        <member name="F:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDataAuthorityPermissionTypeEnum.Custom">
+            <summary>
+            自定义权限 
+            </summary>
+        </member>
+        <member name="F:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDataAuthorityPermissionTypeEnum.All">
+            <summary>
+            查看所有数据 
+            </summary>
+        </member>
+        <member name="F:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDataAuthorityPermissionTypeEnum.Organization">
+            <summary>
+            仅查看本组织 
+            </summary>
+        </member>
+        <member name="F:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDataAuthorityPermissionTypeEnum.OrganizationOrBranch">
+            <summary>
+            仅查看本组织和下属组织 
+            </summary>
+        </member>
+        <member name="F:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDataAuthorityPermissionTypeEnum.Self">
+            <summary>
+            仅查看本人 
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDataAuthorityCustom">
+            <summary>
+            数据权限子表
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDataAuthorityCustom.SysDataAuthorityId">
+            <summary>
+             SysDataAuthorityId => 备注: 数据权限主表Id
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDataAuthorityCustom.SysOrganizationId">
+            <summary>
+             SysOrganizationId => 备注: 组织Id
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDictionary">
+            <summary>
+            数据字典
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDictionary.Sort">
+            <summary>
+            排序号
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDictionary.Code">
+            <summary>
+            编码
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDictionary.Name">
+            <summary>
+            分组名称/键
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDictionary.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysDictionary.ParentId">
+            <summary>
+            父级Id
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysFunction">
+            <summary>
+            功能
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysFunction.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysFunction.Name">
+            <summary>
+            功能名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysFunction.ByName">
+            <summary>
+            功能标识
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysFunction.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu">
+            <summary>
+            菜单
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.LevelCode">
+            <summary>
+            级别码 1.1.1
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.Name">
+            <summary>
+            菜单名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.ComponentName">
+            <summary>
+            Vue组件名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.Url">
+            <summary>
+            菜单物理路径
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.Router">
+            <summary>
+            路由地址
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.JumpUrl">
+            <summary>
+            默认跳转地址
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.Icon">
+            <summary>
+            菜单图标
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.ParentId">
+            <summary>
+            父级Id
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.Show">
+            <summary>
+            显示状态 => 显示 | 隐藏
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.Close">
+            <summary>
+            选项卡是否可关闭
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.KeepAlive">
+            <summary>
+            是否缓存 => 是 | 否
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.State">
+            <summary>
+            菜单状态 => 正常 | 停用
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.Type">
+            <summary>
+            菜单类型
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.Mode">
+            <summary>
+            菜单模式
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.ModuleUrl">
+            <summary>
+            模块地址 (微前端) Dev 开发模式
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu.ModuleUrlPro">
+            <summary>
+            模块地址 (微前端) Pro 生产模式
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenuFunction">
+            <summary>
+            菜单与功能绑定
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenuFunction.Number">
+            <summary>
+            序号
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenuFunction.MenuId">
+            <summary>
+            菜单id
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenuFunction.FunctionCode">
+            <summary>
+            功能编码
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenuFunction.FunctionName">
+            <summary>
+            功能名称
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenuFunction.Remark">
+            <summary>
+            备注
+            </summary>
+            <value></value>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOperationLog">
+            <summary>
+            操作日志
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOperationLog.Api">
+            <summary>
+            接口地址
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOperationLog.Ip">
+            <summary>
+            ip地址
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOperationLog.Form">
+            <summary>
+            表单信息
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOperationLog.FormBody">
+            <summary>
+            json表单信息
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOperationLog.QueryString">
+            <summary>
+            地址栏信息
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOperationLog.TakeUpTime">
+            <summary>
+            接口耗时（毫秒）
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOperationLog.Browser">
+            <summary>
+            浏览器名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOperationLog.OS">
+            <summary>
+            系统名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOperationLog.UserId">
+            <summary>
+            当前操作人id
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOperationLog.ControllerDisplayName">
+            <summary>
+            控制器显示名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOperationLog.ActionDisplayName">
+            <summary>
+            接口显示名称
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOrganization">
+            <summary>
+            组织机构
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOrganization.Name">
+            <summary>
+            组织名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOrganization.OrderNumber">
+            <summary>
+            组织排序号
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOrganization.LevelCode">
+            <summary>
+            等级码
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOrganization.Leader">
+            <summary>
+            负责人
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOrganization.Phone">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOrganization.Email">
+            <summary>
+            邮箱
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOrganization.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOrganization.ParentId">
+            <summary>
+            父级Id
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysPost">
+            <summary>
+            岗位
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysPost.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysPost.Code">
+            <summary>
+            岗位编码
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysPost.Name">
+            <summary>
+            岗位名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysPost.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysPost.Remarks">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.StateEnum">
+            <summary>
+            状态 枚举
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysRole">
+            <summary>
+            角色
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysRole.Number">
+            <summary>
+            编号
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysRole.Name">
+            <summary>
+            角色名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysRole.IsAdmin">
+            <summary>
+            是否是管理员
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysRole.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysRole.DeleteLock">
+            <summary>
+            删除锁 ，如果是 true 则不能删除
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysRoleMenuFunction">
+            <summary>
+            角色菜单功能绑定
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser">
+            <summary>
+            系统账号
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser.Name">
+            <summary>
+            账户名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser.LoginName">
+            <summary>
+            登录账号
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser.Phone">
+            <summary>
+            联系电话
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser.Email">
+            <summary>
+            账户邮件地址
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser.DeleteLock">
+            <summary>
+            删除锁 ，如果是 true 则不能删除
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser.OrganizationId">
+            <summary>
+            组织Id
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUserPost">
+            <summary>
+            用户鱼岗位绑定表
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUserPost.UserId">
+            <summary>
+            账户Id
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUserPost.PostId">
+            <summary>
+            岗位Id
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUserRole">
+            <summary>
+            用户与角色绑定
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Migrations.SeedsDatas.ModelBuilderExtensions">
+            <summary>
+            EFCore 种子数据
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Migrations.SeedsDatas.ModelBuilderExtensions.Seed(Microsoft.EntityFrameworkCore.ModelBuilder)">
+            <summary>
+            种子数据
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Models.AccountContext">
+            <summary>
+            账户 业务对象
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.AccountContext.SysRoles">
+            <summary>
+            角色 集合
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.AccountContext.SysPosts">
+            <summary>
+            所属岗位
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.AccountContext.SysOrganization">
+            <summary>
+            所属组织
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.AccountContext.IsAdministrator">
+            <summary>
+            是否超级管理员
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.AccountContext.Menus">
+            <summary>
+            菜单树集合
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.AccountContext.MenuPowers">
+            <summary>
+            菜单功能集合
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Models.AdminRepositoriesOptions">
+            <summary>
+            admin 仓储配置
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.AdminRepositoriesOptions.DefaultDatabaseType">
+            <summary>
+            数据库类型
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.AdminRepositoriesOptions.IsMonitorEFCore">
+            <summary>
+            是否监控 efcore
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Models.Dtos.Systems.AuthUserFormDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.Dtos.Systems.AuthUserFormDto.UserName">
+            <summary>
+            用户名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.Dtos.Systems.AuthUserFormDto.UserPassword">
+            <summary>
+            用户密码
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.Dtos.Systems.AuthUserFormDto.LoginCode">
+            <summary>
+            验证码(不填)
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.Dtos.Systems.SysMenuDto.ParentName">
+            <summary>
+            父级菜单名称
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingSearchInput`1">
+            <summary>
+            分页查询对象
+            </summary>
+            <typeparam name="TSearch"></typeparam>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingSearchInput`1.Page">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingSearchInput`1.Size">
+            <summary>
+            每页数量
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingSearchInput`1.Search">
+            <summary>
+            检索对象
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingSearchInput`1.SearchSort">
+            <summary>
+            排序
+            </summary>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView">
+            <summary>
+            分页视图模型
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView.Columns">
+            <summary>
+            列信息
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView.DataSource">
+            <summary>
+            转换后数据
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView.Total">
+            <summary>
+            总数
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView.PageCount">
+            <summary>
+            总页数
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView.Size">
+            <summary>
+            一页显示多少条
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView.Page">
+            <summary>
+            页码
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView.#ctor(System.Int32,System.Int32)">
+            <summary>
+            初始化
+            </summary>
+            <param name="page"></param>
+            <param name="size"></param>
+        </member>
+        <member name="F:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView._mainTableEntityType">
+            <summary>
+            仓储主表实体类型
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView.MainTableEntityType">
+            <summary>
+            主表实体类型
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView.BuilderDataSource``1(System.Collections.Generic.List{``0},System.Type)">
+            <summary>
+            创建数据源
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="data"></param>
+            <param name="mainTableEntityType"></param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView.BuilderDataSourceByDataTable(System.Data.DataTable,System.Type)">
+            <summary>
+            创建数据源 根据 datatable
+            </summary>
+            <param name="data"></param>
+            <param name="mainTableEntityType"></param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView.GetColumn``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            获取指定列
+            </summary>
+            <param name="query"></param>
+            <param name="queryField"></param>
+            <typeparam name="TQuery"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView.FormatValue``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Func{``1,System.Object})">
+            <summary>
+            格式化值
+            </summary>
+            <typeparam name="TQuery"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <param name="query"></param>
+            <param name="queryField"></param>
+            <param name="funcValue"></param>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Models.PagingViews.TableColumnView">
+            <summary>
+            列头信息
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.TableColumnView.FieldName">
+            <summary>
+            字段名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.TableColumnView.Title">
+            <summary>
+            标题名称
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.TableColumnView.Show">
+            <summary>
+            是否显示
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.TableColumnView.Width">
+            <summary>
+            列宽度
+            </summary>
+        </member>
+        <member name="P:HZY.Repository.EntityFramework.Admin.Models.PagingViews.TableColumnView.Sort">
+            <summary>
+            是否参加排序
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Models.PagingViews.TableColumnView.SetColumn(System.String,System.Nullable{System.Boolean},System.String,System.Boolean)">
+            <summary>
+            映射字段
+            </summary>
+            <param name="title">列显示名称</param>
+            <param name="show">是否显示列</param>
+            <param name="width">列宽</param>
+            <param name="sort">是否参加排序</param>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Repositories.Impl.RepositoryImpl`1">
+            <summary>
+            Admin默认基础仓储接口
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Repositories.Impl.RepositoryImpl`1.#ctor(HZY.Repository.EntityFramework.Admin.AdminDbContext,System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            Admin默认基础仓储接口
+            </summary>
+            <param name="context"></param>
+            <param name="filter"></param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Repositories.Impl.RepositoryImpl`1.AsPagingViewAsync``2(System.Linq.IQueryable{``0},HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingSearchInput{``1},HZY.Repository.EntityFramework.Admin.Models.AccountContext,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            查询转换为分页视图模型
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <typeparam name="TSearch"></typeparam>
+            <param name="query"></param>
+            <param name="pagingSearchInput"></param>
+            <param name="accountInfo"></param>
+            <param name="userIdFieldNameExpression"></param>
+            <param name="organizationIdFieldNameExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Repositories.Impl.RepositoryImpl`1.AsPagingViewAsync(System.String,System.Int32,System.Int32,System.String,System.Object[])">
+            <summary>
+            查询转换为分页视图模型 支持 Sql 字符串
+            </summary>
+            <param name="sql"></param>
+            <param name="page"></param>
+            <param name="size"></param>
+            <param name="orderBy"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Repositories.Impl.RepositoryImpl`1.GetOrganizations(HZY.Repository.EntityFramework.Admin.Models.AccountContext)">
+            <summary>
+            获取数据权限
+            </summary>
+            <param name="accountInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Repositories.Impl.RepositoryImpl`1.DataPermission(HZY.Repository.EntityFramework.Admin.Models.AccountContext,HZY.Repository.EntityFramework.Admin.Repositories.IRepository{HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser})">
+            <summary>
+            根据数据权限查询 获取 IQueryable 对象
+            </summary>
+            <param name="accountInfo">当前账户信息</param>
+            <param name="_sysUserRepository"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Repositories.Impl.RepositoryImpl`1.DataPermission``1(System.Linq.IQueryable{``0},HZY.Repository.EntityFramework.Admin.Models.AccountContext,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            根据数据权限查询 获取 IQueryable 对象
+            </summary>
+            <param name="query"></param>
+            <param name="accountInfo"></param>
+            <param name="userIdFieldNameExpression"></param>
+            <param name="organizationIdFieldNameExpression"></param>
+            <typeparam name="TModel"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.Repositories.IRepository`1">
+            <summary>
+            Admin默认基础仓储接口
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Repositories.IRepository`1.AsPagingViewAsync``2(System.Linq.IQueryable{``0},HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingSearchInput{``1},HZY.Repository.EntityFramework.Admin.Models.AccountContext,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            分页模型构建
+            </summary>
+            <typeparam name="TModel"></typeparam>
+            <typeparam name="TSearch"></typeparam>
+            <param name="query"></param>
+            <param name="pagingSearchInput"></param>
+            <param name="accountInfo"></param>
+            <param name="userIdFieldNameExpression"></param>
+            <param name="organizationIdFieldNameExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Repositories.IRepository`1.AsPagingViewAsync(System.String,System.Int32,System.Int32,System.String,System.Object[])">
+            <summary>
+            分页模型构建 用于编写 sql 语句得情况
+            </summary>
+            <param name="sql"></param>
+            <param name="page"></param>
+            <param name="size"></param>
+            <param name="orderBy"></param>
+            <param name="parameters"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Repositories.IRepository`1.DataPermission(HZY.Repository.EntityFramework.Admin.Models.AccountContext,HZY.Repository.EntityFramework.Admin.Repositories.IRepository{HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser})">
+            <summary>
+            根据组织 获取数据权限
+            </summary>
+            <param name="accountInfo"></param>
+            <param name="_sysUserRepository"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.Repositories.IRepository`1.DataPermission``1(System.Linq.IQueryable{``0},HZY.Repository.EntityFramework.Admin.Models.AccountContext,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Linq.Expressions.Expression{System.Func{``0,System.Object}})">
+            <summary>
+            根据组织 获取数据权限
+            </summary>
+            <param name="query"></param>
+            <param name="accountInfo"></param>
+            <param name="userIdFieldNameExpression"></param>
+            <param name="organizationIdFieldNameExpression"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Repository.EntityFramework.Admin.RepositoryEFAdminStartup">
+            <summary>
+            程序启动器
+            </summary>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.RepositoryEFAdminStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            程序启动器
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Repository.EntityFramework.Admin.RepositoryEFAdminStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            Configure
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+    </members>
+</doc>

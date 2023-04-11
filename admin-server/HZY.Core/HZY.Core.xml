@@ -1,0 +1,714 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Core</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Core.ApiResultManage.ApiResult">
+            <summary>
+            Api 消息返回类
+            </summary>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.ApiResult.ResultMessage(HZY.Core.ApiResultManage.ApiResultCodeEnum,System.String)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="apiResultCodeEnum"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.ApiResult.ResultData(HZY.Core.ApiResultManage.ApiResultCodeEnum,System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="apiResultCodeEnum"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.ApiResult.Result(HZY.Core.ApiResultManage.ApiResultCodeEnum,System.String,System.Object)">
+            <summary>
+            可返回消息和数据
+            </summary>
+            <param name="apiResultCodeEnum"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.ApiResult.ResultMessage(System.Int32,System.String)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.ApiResult.ResultData(System.Int32,System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="code"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.ApiResult.Result(System.Int32,System.String,System.Object)">
+            <summary>
+            可返回消息和数据
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.ApiResult.OkMessage(System.String)">
+            <summary>
+            成功 可返回消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.ApiResult.OkData(System.Object)">
+            <summary>
+            成功 可返回数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.ApiResult.Ok(System.String,System.Object)">
+            <summary>
+            成功 可返回 消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.ApiResult.WarnMessage(System.String)">
+            <summary>
+            警告 可返回消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.ApiResult.WarnData(System.Object)">
+            <summary>
+            警告 可返回数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.ApiResult.Warn(System.String,System.Object)">
+            <summary>
+            警告 可返回 消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.ApiResultManage.ApiResultCodeEnum">
+            <summary>
+            消息返回码
+            </summary>
+        </member>
+        <member name="F:HZY.Core.ApiResultManage.ApiResultCodeEnum.RequestLimit">
+            <summary>
+            请求限制
+            </summary>
+        </member>
+        <member name="F:HZY.Core.ApiResultManage.ApiResultCodeEnum.NotFount">
+            <summary>
+            接口不存在
+            </summary>
+        </member>
+        <member name="F:HZY.Core.ApiResultManage.ApiResultCodeEnum.Error">
+            <summary>
+            程序错误
+            </summary>
+        </member>
+        <member name="F:HZY.Core.ApiResultManage.ApiResultCodeEnum.UnAuth">
+            <summary>
+            未授权
+            </summary>
+        </member>
+        <member name="F:HZY.Core.ApiResultManage.ApiResultCodeEnum.Warn">
+            <summary>
+            警告
+            </summary>
+        </member>
+        <member name="F:HZY.Core.ApiResultManage.ApiResultCodeEnum.Ok">
+            <summary>
+            成功
+            </summary>
+        </member>
+        <member name="T:HZY.Core.ApiResultManage.MessageBox">
+            <summary>
+            警告消息
+            </summary>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.MessageBox.GetApiResult">
+            <summary>
+            获取 ApiResult
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.MessageBox.Show(System.String)">
+            <summary>
+            输出消息
+            </summary>
+            <param name="message"></param>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.MessageBox.Show(System.String,System.Object)">
+            <summary>
+            输出消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.MessageBox.Show(HZY.Core.ApiResultManage.ApiResult)">
+            <summary>
+            支持传入 ApiResult 对象
+            </summary>
+            <param name="apiResult"></param>
+        </member>
+        <member name="T:HZY.Core.CoreStartup">
+            <summary>
+            程序启动器
+            </summary>
+        </member>
+        <member name="M:HZY.Core.CoreStartup.#ctor">
+            <summary>
+            程序启动器
+            </summary>
+        </member>
+        <member name="M:HZY.Core.CoreStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Core.CoreStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="T:HZY.Core.CrossOrigins.CrossOriginConfig">
+            <summary>
+            跨域配置
+            </summary>
+        </member>
+        <member name="M:HZY.Core.CrossOrigins.CrossOriginConfig.AddCrossOrigin(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            添加跨域
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Core.CrossOrigins.CrossOriginConfig.UseCrossOrigin(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            使用跨域
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Enums.DefaultDatabaseType">
+            <summary>
+            默认数据库类型
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Enums.NameRuleType">
+            <summary>
+            命名规则类型
+            </summary>
+        </member>
+        <member name="F:HZY.Core.Enums.NameRuleType.Default">
+            <summary>
+            默认类型  请使用驼峰命名法
+            </summary>
+        </member>
+        <member name="F:HZY.Core.Enums.NameRuleType.SnakeCase">
+            <summary>
+            蛇形命名法 
+            </summary>
+        </member>
+        <member name="F:HZY.Core.Enums.NameRuleType.UpperSnakeCase">
+            <summary>
+            全大写蛇形命名法
+            </summary>
+        </member>
+        <member name="F:HZY.Core.Enums.NameRuleType.Upper">
+            <summary>
+            全大写命名
+            </summary>
+        </member>
+        <member name="F:HZY.Core.Enums.NameRuleType.Lower">
+            <summary>
+            全小写命名
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Files.FileManager.GetFilePath(System.String)">
+            <summary>
+            获取配置的文件路径
+            </summary>
+            <param name="dir"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Files.FileManager.AddSaveFolder(System.String)">
+            <summary>
+            设置追加目录
+            </summary>
+            <param name="dir"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Files.FileManager.AddMaxLength(System.Int64)">
+            <summary>
+            设置上传最大长度
+            </summary>
+            <param name="maxLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Files.FileManager.AddMaxLength(System.String)">
+            <summary>
+            设置上传最大长度
+            </summary>
+            <param name="maxLength"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Files.FileManager.AllowAnyFileExtensions">
+            <summary>
+            允许所有文件格式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Files.FileManager.AddFileExtensions(System.String[])">
+            <summary>
+            追加允许文件格式
+            </summary>
+            <param name="fileExtensions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Files.FileManager.ResetFileExtensions">
+            <summary>
+            重置文件格式
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Files.FileManager.BuildFileManagerContext">
+            <summary>
+            构建FileManagerContext
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.Filters.ApiCheckModelAttribute">
+            <summary>
+            对接口模型验证
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Filters.ApiCheckModelAttribute.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            每次请求Action之前发生，，在行为方法执行前执行
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:HZY.Core.Filters.ApiExceptionFilter">
+            <summary>
+            异常过滤器
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Filters.ApiResourceCacheFilterAttribute">
+            <summary>
+            接口资源加载过滤 拦截资源做缓存
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Filters.ApiResourceCacheFilterAttribute.OnResourceExecuting(Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext)">
+            <summary>
+            资源加载之前
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:HZY.Core.Filters.ApiResourceCacheFilterAttribute.OnResourceExecuted(Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext)">
+            <summary>
+            资源加载之后
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:HZY.Core.Filters.ApiResourceCacheFilterAttribute.GetCacheKey(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取每个唯一请求的缓存 key
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.Filters.ApiResultFilterAttribute">
+            <summary>
+            Api 结果返回包装器
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Filters.ApiResultFilterAttribute.OnResultExecuting(Microsoft.AspNetCore.Mvc.Filters.ResultExecutingContext)">
+            <summary>
+            结果 返回前
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:HZY.Core.Filters.ApiResultFilterAttribute.OnResultExecuted(Microsoft.AspNetCore.Mvc.Filters.ResultExecutedContext)">
+            <summary>
+            返回结果后
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:HZY.Core.Filters.Models.RequestLimitContext">
+            <summary>
+            请求限制上下文
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Filters.Models.RequestLimitContext.LimitCount">
+            <summary>
+            限制次数
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Filters.Models.RequestLimitContext.ActiveTime">
+            <summary>
+            最后活跃时间
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Filters.RequestLimitFilterAttribute">
+            <summary>
+            请求限制
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Filters.RequestLimitFilterAttribute.Duration">
+            <summary>
+            请求范围内 单位：秒
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Filters.RequestLimitFilterAttribute.LimitCount">
+            <summary>
+            请求次数
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Filters.RequestLimitFilterAttribute.Message">
+            <summary>
+            消息提醒内容
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Filters.RequestLimitFilterAttribute.#ctor">
+            <summary>
+            请求限制
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Filters.RequestLimitFilterAttribute.OnResourceExecuting(Microsoft.AspNetCore.Mvc.Filters.ResourceExecutingContext)">
+            <summary>
+            资源加载之前
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:HZY.Core.Filters.RequestLimitFilterAttribute.OnResourceExecuted(Microsoft.AspNetCore.Mvc.Filters.ResourceExecutedContext)">
+            <summary>
+            资源加载之后
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:HZY.Core.Filters.RequestLimitFilterAttribute.GetCacheKey(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取每个唯一请求的缓存 key
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.Mappers.ObjectMapper">
+            <summary>
+            对象映射类
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Mappers.ObjectMapper.MapTo``2(``0)">
+            <summary>
+            copy object
+            </summary>
+            <typeparam name="TOld">旧对象类型</typeparam>
+            <typeparam name="TNew">新复制对象类型</typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Mappers.ObjectMapper.MapToList``2(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            copy list
+            </summary>
+            <typeparam name="TOld">旧对象类型</typeparam>
+            <typeparam name="TNew">新复制对象类型</typeparam>
+            <param name="source"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.Permission.Attributes.ActionDescriptorAttribute">
+            <summary>
+            action 功能模块描述
+            </summary>
+        </member>
+        <member name="F:HZY.Core.Permission.Attributes.ActionDescriptorAttribute._functionName">
+            <summary>
+            功能名称
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Permission.Attributes.ActionDescriptorAttribute.DisplayName">
+            <summary>
+            接口显示名称
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Permission.Attributes.ActionDescriptorAttribute.GetFunctionName">
+            <summary>
+            获取功能名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.Permission.Attributes.ControllerDescriptorAttribute">
+            <summary>
+            控制器 接口 描述
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Permission.Attributes.ControllerDescriptorAttribute.MenuId">
+            <summary>
+            用于接口权限鉴定 菜单id
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Permission.Attributes.ControllerDescriptorAttribute.DisplayName">
+            <summary>
+            控制器显示名称
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Permission.Attributes.ControllerDescriptorAttribute.#ctor">
+            <summary>
+            控制器描述
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Permission.PermissionUtil">
+            <summary>
+            权限工具
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Permission.PermissionUtil.GetControllerDescriptorAttribute(System.Type)">
+            <summary>
+            获取控制器 的 ControllerDescriptorAttribute 特性
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Permission.PermissionUtil.GetControllerDescriptorAttribute(Microsoft.AspNetCore.Mvc.ControllerBase)">
+            <summary>
+            获取控制器 的 ControllerDescriptorAttribute 特性
+            </summary>
+            <param name="controllerBase"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Permission.PermissionUtil.GetControllerDescriptorAttributeByType(System.Type)">
+            <summary>
+            获取控制器 的 ControllerDescriptorAttribute 特性
+            </summary>
+            <param name="controllerType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Permission.PermissionUtil.GetActionDescriptorAttribute(Microsoft.AspNetCore.Mvc.Abstractions.ActionDescriptor)">
+            <summary>
+            获取 Action 描述标记特性
+            </summary>
+            <param name="actionDescriptor"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Permission.PermissionUtil.GetControllerDisplayName(System.Type)">
+            <summary>
+            获取当前控制器的显示名称
+            </summary>
+            <param name="type"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Permission.PermissionUtil.GetControllerDisplayName(Microsoft.AspNetCore.Mvc.ControllerBase)">
+            <summary>
+            获取当前控制器的显示名称
+            </summary>
+            <param name="controllerBase"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.SerilogUtil.LogUtil">
+            <summary>
+            日志工具
+            </summary>
+        </member>
+        <member name="M:HZY.Core.SerilogUtil.LogUtil.AddLogUtil(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            启动
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="P:HZY.Core.SerilogUtil.LogUtil.Log">
+            <summary>
+            日志对象
+            </summary>
+        </member>
+        <member name="T:HZY.Core.SerilogUtil.DateTimeNowEnricher">
+            <summary>
+            时间处理
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Swaggers.InSwaggerFormHideAttribute">
+            <summary>
+            在 swagger 表单中 隐藏字段
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Swaggers.InSwaggerFormHideSchemaFilter">
+            <summary>
+            在 swagger 表单中 隐藏字段 过滤
+            </summary>
+        </member>
+        <member name="T:HZY.Core.TextJson.DateTimeJsonConverter">
+            <summary>
+            Json时间转化器
+            </summary>
+        </member>
+        <member name="T:HZY.Core.TextJson.DateTimeNullJsonConverter">
+            <summary>
+            Json时间转化器
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Tools">
+            <summary>
+            Tools
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Tools.Md5Encrypt(System.String)">
+            <summary>
+            MD5加密
+            </summary>
+            <param name="str">要加密的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.DESEncrypt(System.String,System.String)">
+            <summary> 
+            DES加密字符串 
+            </summary> 
+            <param name="encryptString">待加密的字符串</param> 
+            <param name="encryptKey">加密密钥,要求为16位</param> 
+            <returns>加密成功返回加密后的字符串，失败返回源串</returns> 
+        </member>
+        <member name="M:HZY.Core.Tools.DESDecrypt(System.String,System.String)">
+            <summary> 
+            DES解密字符串 
+            </summary> 
+            <param name="decryptString">待解密的字符串</param> 
+            <param name="decryptKey">解密密钥,要求为16位,和加密密钥相同</param> 
+            <returns>解密成功返回解密后的字符串，失败返源串</returns> 
+        </member>
+        <member name="M:HZY.Core.Tools.GetSjs(System.Int32)">
+            <summary>
+            随机数
+            </summary>
+            <param name="length">随机数长度</param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.GetWeekByDate(System.DateTime)">
+            <summary>
+            根据日期获取星期几
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Tools.GetWeekNumInMonth(System.DateTime)">
+            <summary>
+            得到这个月的第几周
+            </summary>
+            <param name="daytime">年月日</param>
+            <returns>传递过来的时间是第几周</returns>
+        </member>
+        <member name="F:HZY.Core.Tools.GetFileContentType">
+            <summary>
+            获取文件Content-Type
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Tools.PackageManyZip(System.Collections.Generic.Dictionary{System.String,System.IO.Stream})">
+            <summary>
+            将多个流进行zip压缩，返回压缩后的流
+            </summary>
+            <param name="streams">key：文件名；value：文件名对应的要压缩的流</param>
+            <returns>压缩后的流</returns>
+        </member>
+        <member name="M:HZY.Core.Tools.GetBrowserClientInfo(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            获取浏览器客户端信息
+            </summary>
+            <param name="httpContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.StringToBytes(System.String)">
+            <summary>
+            将16
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.BytesToString(System.Byte[])">
+            <summary>
+            byte 数组 转化为 string
+            </summary>
+            <param name="reb"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.GetNameByExpression``2(System.Linq.Expressions.Expression{System.Func{``0,``1}})">
+            <summary>
+            获取名称 根据表达式树
+            </summary>
+            <param name="exp"></param>
+            <typeparam name="T"></typeparam>
+            <typeparam name="TValue"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.CopyObject``1(``0)">
+            <summary>
+            复制对象
+            </summary>
+            <param name="sourceObj"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.GetServerIpAddress">
+            <summary>
+            获取所有服务 ip 地址
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Tools.GetLocalIpAddress(System.String)">
+            <summary>
+            获取所有本地 ip 地址
+            </summary>
+            <param name="netType">"InterNetwork":ipv4，"InterNetworkV6":ipv6</param>
+        </member>
+        <member name="M:HZY.Core.Tools.GetNamespace``1">
+            <summary>
+            获取命名空间前缀
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.GetNamespacePrefix``1">
+            <summary>
+            获取命名空间前缀
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.GetAppName``1">
+            <summary>
+            获取 程序名称 根据类型 下的命名空间
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.GetAppName(System.String)">
+            <summary>
+            获取 程序名称 根据类型 下的命名空间
+            </summary>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.Zips.Zip">
+            <summary>
+            压缩 zip  https://www.cnblogs.com/xielong/p/6165550.html
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Zips.Zip.UnZip(System.String,System.String)">
+            <summary>
+            解压
+            </summary>
+            <param name="zipFile">压缩包文件名</param>
+            <param name="targetPath">解压缩目标路径</param>
+        </member>
+    </members>
+</doc>

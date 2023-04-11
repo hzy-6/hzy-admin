@@ -1,0 +1,150 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Core.Quartz</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Core.Quartz.CoreQuartzStartup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Quartz.CoreQuartzStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Core.Quartz.CoreQuartzStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="T:HZY.Core.Quartz.Jobs.MemoryJob">
+            <summary>
+            本地任务
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Quartz.Models.QuartzJobTaskInfo">
+            <summary>
+            定时任务信息
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.GroupName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.Cron">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.Remark">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Quartz.Services.IJobTaskInfo">
+            <summary>
+            作业任务信息
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Services.IJobTaskInfo.Name">
+            <summary>
+            任务名称
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Services.IJobTaskInfo.GroupName">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Services.IJobTaskInfo.Cron">
+            <summary>
+            定时表达式
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Services.IJobTaskInfo.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Quartz.Services.Impl.DIJobFactory">
+            <summary>
+            IJob 对象无法构造注入 需要此类实现 返回 注入后得 Job 实例
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Quartz.Services.Impl.QuartzJobService">
+            <summary>
+            任务调度服务
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Quartz.Services.Impl.QuartzJobService.#ctor(Quartz.ISchedulerFactory,HZY.Core.Quartz.Services.Impl.DIJobFactory)">
+            <summary>
+            任务调度服务
+            </summary>
+            <param name="schedulerFactory"></param>
+            <param name="dIJobFactory"></param>
+        </member>
+        <member name="M:HZY.Core.Quartz.Services.Impl.QuartzJobService.RunAsync``2(``0)">
+            <summary>
+            开始运行一个调度器
+            </summary>
+            <typeparam name="TJobTaskInfo"></typeparam>
+            <typeparam name="TJob"></typeparam>
+            <param name="jobTaskInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Quartz.Services.Impl.QuartzJobService.CloseAsync``1(``0)">
+            <summary>
+            关闭调度器
+            </summary>
+            <typeparam name="TJobTaskInfo"></typeparam>
+            <param name="tasks"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.Quartz.Services.IQuartzJobService">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Quartz.Services.IQuartzJobService.RunAsync``2(``0)">
+            <summary>
+            开始运行一个任务调度器
+            </summary>
+            <typeparam name="TJobTaskInfo"></typeparam>
+            <typeparam name="TJob"></typeparam>
+            <param name="jobTaskInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Quartz.Services.IQuartzJobService.CloseAsync``1(``0)">
+            <summary>
+            关闭任务调度
+            </summary>
+            <param name="tasks"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.Quartz.Services.QuartzStartupConfig">
+            <summary>
+            Quartz 启动配置
+            </summary>
+        </member>
+        <member name="F:HZY.Core.Quartz.Services.QuartzStartupConfig.JobTaskKey">
+            <summary>
+            作业任务 Key 名称
+            </summary>
+        </member>
+    </members>
+</doc>

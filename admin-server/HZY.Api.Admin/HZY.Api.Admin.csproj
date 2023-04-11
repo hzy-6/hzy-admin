@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<TieredPgo>true</TieredPgo>
+		<DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HZY.Core.Identity\HZY.Core.Identity.csproj" />
+		<ProjectReference Include="..\HZY.Core.Quartz\HZY.Core.Quartz.csproj" />
+		<ProjectReference Include="..\HZY.Core.Razor\HZY.Core.Razor.csproj" />
+		<ProjectReference Include="..\HZY.Core.Redis\HZY.Core.Redis.csproj" />
+		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />
+		<ProjectReference Include="..\HZY.Repository.EntityFramework.Admin\HZY.Repository.EntityFramework.Admin.csproj" />
+		<ProjectReference Include="..\HZY.Repository.FreeSql.Admin\HZY.Repository.FreeSql.Admin.csproj" />
+		<ProjectReference Include="..\HZY.Shared\HZY.Shared.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Update="appsettings.Development.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Update="appsettings.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	  <Content Update="appsettings.Production.json">
+	    <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	    <ExcludeFromSingleFile>true</ExcludeFromSingleFile>
+	    <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+	  </Content>
+	</ItemGroup>
+
+</Project>

@@ -1,0 +1,633 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Shared</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Shared.ApplicationServices.Accounts.IAccountService">
+            <summary>
+            当前登录账户服务
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.IAccountService.GetAccountContext">
+            <summary>
+            获取账户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:HZY.Shared.ApplicationServices.Accounts.IAccountService.AccountContext">
+            <summary>
+            获取账户信息
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.IAccountService.LoginAsync(HZY.Repository.EntityFramework.Admin.Models.Dtos.Systems.AuthUserFormDto)">
+            <summary>
+            检查账户密码信息
+            </summary>
+            <param name="authUserFormDto"></param>
+            <returns>账户 id</returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.IAccountService.IsRefreshToken">
+            <summary>
+            是否刷新 token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.IAccountService.RefreshToken">
+            <summary>
+            刷新 token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.IAccountService.IsExpire">
+            <summary>
+            是否过期
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:HZY.Shared.ApplicationServices.Accounts.IAccountService.IsValidate">
+            <summary>
+            验证 token
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.IAccountService.ChangePasswordAsync(System.String,System.String)">
+            <summary>
+            修改密码
+            </summary>
+            <param name="oldPassword"></param>
+            <param name="newPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.IAccountService.ChangeUserAsync(HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser)">
+            <summary>
+            修改用户信息
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.IAccountService.SetCacheByAccountContext(HZY.Repository.EntityFramework.Admin.Models.AccountContext)">
+            <summary>
+            根据账户信息缓存
+            </summary>
+            <param name="accountInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.IAccountService.GetCacheAccountContextById(System.String)">
+            <summary>
+            获取缓存中的账户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.IAccountService.DeleteCacheAccountContextById(System.String)">
+            <summary>
+            删除缓存账户信息 根据id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl">
+            <summary>
+            当前登录账户服务
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.#ctor(HZY.Repository.EntityFramework.Admin.Repositories.IRepository{HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser},HZY.Repository.EntityFramework.Admin.Repositories.IRepository{HZY.Repository.EntityFramework.Admin.Entities.Systems.SysOrganization},HZY.Core.Identity.Services.JwtTokenService,Microsoft.Extensions.Caching.Memory.IMemoryCache,HZY.Repository.EntityFramework.Admin.Repositories.IRepository{HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUserRole},HZY.Repository.EntityFramework.Admin.Repositories.IRepository{HZY.Repository.EntityFramework.Admin.Entities.Systems.SysRole},HZY.Repository.EntityFramework.Admin.Repositories.IRepository{HZY.Repository.EntityFramework.Admin.Entities.Systems.SysPost},HZY.Repository.EntityFramework.Admin.Repositories.IRepository{HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUserPost})">
+            <summary>
+            当前登录账户服务
+            </summary>
+            <param name="sysUserRepository"></param>
+            <param name="sysOrganizationRepository"></param>
+            <param name="tokenService"></param>
+            <param name="memoryCache"></param>
+            <param name="sysUserRoleRepository"></param>
+            <param name="sysRoleRepository"></param>
+            <param name="sysPostRepository"></param>
+            <param name="sysUserPostRepository"></param>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.FindAccountContextByToken">
+            <summary>
+            根据用户信息获取 Account 对象
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.GetAccountContext">
+            <summary>
+            获取当前登录账户信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.AccountContext">
+            <summary>
+            获取当前登录账户信息
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.LoginAsync(HZY.Repository.EntityFramework.Admin.Models.Dtos.Systems.AuthUserFormDto)">
+            <summary>
+            检查账户 登录信息 并返回 token
+            </summary>
+            <param name="authUserFormDto"></param>
+            <returns>账户 id</returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.IsRefreshToken">
+            <summary>
+            是否刷新 token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.RefreshToken">
+            <summary>
+            刷新 token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.IsExpire">
+            <summary>
+            是否过期
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.IsValidate">
+            <summary>
+            验证 token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.ChangePasswordAsync(System.String,System.String)">
+            <summary>
+            修改密码
+            </summary>
+            <param name="oldPassword"></param>
+            <param name="newPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.ChangeUserAsync(HZY.Repository.EntityFramework.Admin.Entities.Systems.SysUser)">
+            <summary>
+            修改用户基础信息
+            </summary>
+            <param name="form"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.SetCacheByAccountContext(HZY.Repository.EntityFramework.Admin.Models.AccountContext)">
+            <summary>
+            根据账户信息缓存
+            </summary>
+            <param name="accountInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.GetCacheAccountContextById(System.String)">
+            <summary>
+            获取缓存中的账户信息
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.Accounts.Impl.AccountServiceImpl.DeleteCacheAccountContextById(System.String)">
+            <summary>
+            删除缓存账户信息 根据id
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Shared.ApplicationServices.ApplicationService">
+            <summary>
+            服务父类
+            </summary>
+        </member>
+        <member name="T:HZY.Shared.ApplicationServices.ApplicationService`1">
+            <summary>
+            服务父类
+            </summary>
+            <typeparam name="TRepository">仓储</typeparam>
+        </member>
+        <member name="F:HZY.Shared.ApplicationServices.ApplicationService`1._defaultRepository">
+            <summary>
+            默认仓储
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.ApplicationService`1.#ctor(`0)">
+            <summary>
+            服务父类
+            </summary>
+            <param name="defaultRepository"></param>
+        </member>
+        <member name="T:HZY.Shared.ApplicationServices.LowCodes.DatabaseTableService">
+            <summary>
+            数据库表服务
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.LowCodes.DatabaseTableService.#ctor(IFreeSql,Microsoft.Extensions.Caching.Memory.IMemoryCache,HZY.Repository.EntityFramework.Admin.Repositories.IRepository{HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTable},HZY.Repository.EntityFramework.Admin.Repositories.IRepository{HZY.Repository.EntityFramework.Admin.Entities.LowCode.LowCodeTableInfo})">
+            <summary>
+            
+            </summary>
+            <param name="freeSql"></param>
+            <param name="memoryCache"></param>
+            <param name="lowCodeTableRepository"></param>
+            <param name="lowCodeTableInfoRepository"></param>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.LowCodes.DatabaseTableService.GetAllTableInfos">
+            <summary>
+            获取所有的表 包含表下面的列
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.LowCodes.DatabaseTableService.GetAllTables">
+            <summary>
+            获取所有的表 包含表下面的列
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.LowCodes.DatabaseTableService.GetAllTablesByCache">
+            <summary>
+            获取表信息根据缓存
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.LowCodes.DatabaseTableService.ClearAllTablesByCache">
+            <summary>
+            清空所有表缓存信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.LowCodes.DatabaseTableService.GetDatabaseName">
+            <summary>
+            获取数据库名称
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Shared.ApplicationServices.PagingViews.PagingViewService">
+            <summary>
+            分页视图服务
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.PagingViews.PagingViewService.#ctor(HZY.Shared.ApplicationServices.LowCodes.DatabaseTableService)">
+            <summary>
+            分页视图服务
+            </summary>
+            <param name="databaseTableService"></param>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.PagingViews.PagingViewService.BuilderColumns(HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView)">
+            <summary>
+            构建列 对列头字段设置显示名称
+            </summary>
+            <param name="pagingView"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.PagingViews.PagingViewService.BuilderColumns(HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView,System.Action{HZY.Shared.ApplicationServices.PagingViews.PagingViewService,HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView})">
+            <summary>
+            构建列 对列头字段设置显示名称
+            </summary>
+            <param name="pagingView"></param>
+            <param name="action"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.PagingViews.PagingViewService.SetColumn``1(HZY.Repository.EntityFramework.Admin.Models.PagingViews.TableColumnView,System.Linq.Expressions.Expression{System.Func{``0,System.Object}},System.Nullable{System.Boolean},System.String,System.Boolean)">
+            <summary>
+            设置列信息 用于外键表列头得显示名称
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <param name="tableColumnView"></param>
+            <param name="field"></param>
+            <param name="show"></param>
+            <param name="width"></param>
+            <param name="sort"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Shared.ApplicationServices.PermissionService">
+            <summary>
+            系统权限服务
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.PermissionService.GetPowerByMenusAsync(System.Collections.Generic.List{HZY.Repository.EntityFramework.Admin.Entities.Systems.SysMenu})">
+            <summary>
+            获取拥有的菜单对象的权限
+            </summary>
+            <param name="sysMenuList"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.ApplicationServices.PermissionService.GetPowerStateByMenuIdAsync(System.Int32)">
+            <summary>
+            根据菜单获取权限
+            </summary>
+            <param name="menuId"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Shared.MicroserviceStartupBase`1">
+            <summary>
+            基础启动器
+            </summary>
+            <typeparam name="TStartup"></typeparam>
+        </member>
+        <member name="M:HZY.Shared.MicroserviceStartupBase`1.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Shared.MicroserviceStartupBase`1.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            使用服务
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="T:HZY.Shared.AppStartupBaseCore`1">
+            <summary>
+            基础启动器
+            </summary>
+            <typeparam name="TStartup"></typeparam>
+        </member>
+        <member name="P:HZY.Shared.AppStartupBaseCore`1._namespacePrefix">
+            <summary>
+            命名空间前缀
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.AppStartupBaseCore`1._appName">
+            <summary>
+            程序名称
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.AppStartupBaseCore`1.#ctor">
+            <summary>
+            基础启动器
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.AppStartupBaseCore`1.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            注册服务
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Shared.AppStartupBaseCore`1.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            使用服务
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="M:HZY.Shared.AppStartupBaseCore`1.ApplicationStarted(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="M:HZY.Shared.AppStartupBaseCore`1.ApplicationStopping(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="M:HZY.Shared.AppStartupBaseCore`1.ApplicationStopped(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="P:HZY.Shared.Configures.CustomPolicyRequirement.AuthKey">
+            <summary>
+            权限认证键
+            </summary>
+        </member>
+        <member name="T:HZY.Shared.Filters.ApiAuthorizationFilter">
+            <summary>
+            授权认证 拦截 Token
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.Filters.ApiAuthorizationFilter.#ctor(HZY.Shared.ApplicationServices.Accounts.IAccountService)">
+            <summary>
+            授权认证 拦截
+            </summary>
+            <param name="accountService"></param>
+        </member>
+        <member name="M:HZY.Shared.Filters.ApiAuthorizationFilter.OnAuthorizationAsync(Microsoft.AspNetCore.Mvc.Filters.AuthorizationFilterContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Shared.Filters.ApiPermissionFilter">
+            <summary>
+            系统权限 拦截
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.Filters.ApiPermissionFilter.#ctor(HZY.Shared.ApplicationServices.PermissionService)">
+            <summary>
+            系统权限 拦截
+            </summary>
+            <param name="permissionService"></param>
+        </member>
+        <member name="M:HZY.Shared.Filters.ApiPermissionFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
+            <summary>
+            action 执行之前
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:HZY.Shared.Filters.ApiPermissionFilter.OnActionExecuted(Microsoft.AspNetCore.Mvc.Filters.ActionExecutedContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:HZY.Shared.MessageHandler.WriteLogHandler">
+            <summary>
+            消费日志
+            </summary>
+        </member>
+        <member name="T:HZY.Shared.Middlewares.TakeUpTimeMiddleware">
+            <summary>
+            统计耗时 并记录接口访问日志 中间件
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.Middlewares.TakeUpTimeMiddleware.#ctor(Microsoft.Extensions.Logging.ILogger{HZY.Shared.Middlewares.TakeUpTimeMiddleware},Microsoft.AspNetCore.Http.IHttpContextAccessor,HZY.Shared.ApplicationServices.Accounts.IAccountService,Zyx.MemoryMQ.Interfaces.IProducer)">
+            <summary>
+            统计耗时 并记录日志中 中间件
+            </summary>
+            <param name="logger"></param>
+            <param name="iHttpContextAccessor"></param>
+            <param name="accountService"></param>
+            <param name="producer"></param>
+        </member>
+        <member name="M:HZY.Shared.Middlewares.TakeUpTimeMiddleware.InvokeAsync(Microsoft.AspNetCore.Http.HttpContext,Microsoft.AspNetCore.Http.RequestDelegate)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+            <param name="next"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.Middlewares.TakeUpTimeMiddleware.IsApi(Microsoft.AspNetCore.Http.HttpContext)">
+            <summary>
+            判断请求类型 是否 是 api
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.Middlewares.TakeUpTimeMiddleware.ReadBodyAsync">
+            <summary>
+            读取 body 信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.Middlewares.TakeUpTimeMiddleware.WriteInLogAsync(System.Int64,System.String,Microsoft.AspNetCore.Http.Endpoint)">
+            <summary>
+            写入操作日志
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Shared.Models.Consts.PermissionFunctionConsts">
+            <summary>
+            权限功能定义
+            </summary>
+        </member>
+        <member name="F:HZY.Shared.Models.Consts.PermissionFunctionConsts.Function_Insert">
+            <summary>
+            功能常量 添加
+            </summary>
+        </member>
+        <member name="F:HZY.Shared.Models.Consts.PermissionFunctionConsts.Function_Update">
+            <summary>
+            功能常量 修改
+            </summary>
+        </member>
+        <member name="F:HZY.Shared.Models.Consts.PermissionFunctionConsts.Function_Save">
+            <summary>
+            功能常量 保存
+            </summary>
+        </member>
+        <member name="F:HZY.Shared.Models.Consts.PermissionFunctionConsts.Function_Delete">
+            <summary>
+            功能常量 删除
+            </summary>
+        </member>
+        <member name="F:HZY.Shared.Models.Consts.PermissionFunctionConsts.Function_Display">
+            <summary>
+            功能常量 是否拥有菜单
+            </summary>
+        </member>
+        <member name="F:HZY.Shared.Models.Consts.PermissionFunctionConsts.Function_Search">
+            <summary>
+            功能常量 检索
+            </summary>
+        </member>
+        <member name="F:HZY.Shared.Models.Consts.PermissionFunctionConsts.Function_Export">
+            <summary>
+            功能常量 导出
+            </summary>
+        </member>
+        <member name="F:HZY.Shared.Models.Consts.PermissionFunctionConsts.Function_Print">
+            <summary>
+            功能常量 打印
+            </summary>
+        </member>
+        <member name="T:HZY.Shared.Models.LowCodes.GenDbTableDto">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Models.LowCodes.GenDbTableDto.TableInfos">
+            <summary>
+            表字段信息
+            </summary>
+            <value></value>
+        </member>
+        <member name="P:HZY.Shared.Models.LowCodes.GenDbTableDto.Namespace">
+            <summary>
+            命名空间
+            </summary>
+        </member>
+        <member name="T:HZY.Shared.SharedStartup">
+            <summary>
+            共享库 启动器
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.SharedStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Shared.SharedStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="T:HZY.Shared.Upload.Impl.UploadManagerImpl">
+            <summary>
+            上传文件服务
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.Upload.Impl.UploadManagerImpl.HandleUploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String,System.String[])">
+            <summary>
+            上传文件 辅助函数
+            </summary>
+            <param name="formFile"></param>
+            <param name="folder"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.Upload.Impl.UploadManagerImpl.HandleUploadFile(Microsoft.AspNetCore.Http.IFormFile,System.String[])">
+            <summary>
+            上传文件
+            </summary>
+            <param name="iFormFile"></param>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.Upload.Impl.UploadManagerImpl.HandleUploadImageFile(Microsoft.AspNetCore.Http.IFormFile,System.String)">
+            <summary>
+            上传图片
+            </summary>
+            <param name="iFormFile"></param>
+            <param name="folder"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Shared.Upload.VO.UploadResultVO">
+            <summary>
+            Antd Vue 文件上传返回对象
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Upload.VO.UploadResultVO.Uid">
+            <summary>
+            唯一标识符，不设置时会自动生成 string	-
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Upload.VO.UploadResultVO.Name">
+            <summary>
+            文件名
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Upload.VO.UploadResultVO.Percent">
+            <summary>
+            上传进度
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Upload.VO.UploadResultVO.Status">
+            <summary>
+            上传状态，不同状态展示颜色也会有所不同 error | success | done | uploading | removed	-
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Upload.VO.UploadResultVO.ThumbUrl">
+            <summary>
+            缩略图地址
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Upload.VO.UploadResultVO.Url">
+            <summary>
+            下载地址
+            </summary>
+        </member>
+        <member name="T:HZY.Shared.Utils.ExcelUtil">
+            <summary>
+            Excel 工具类
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.Utils.ExcelUtil.ExportExcelByPagingView(HZY.Repository.EntityFramework.Admin.Models.PagingViews.PagingView,System.Collections.Generic.Dictionary{System.String,System.String},System.String[])">
+            <summary>
+            导出 Excel
+            </summary>
+            <param name="pagingView"></param>
+            <param name="byName">别名</param>
+            <param name="ignore"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

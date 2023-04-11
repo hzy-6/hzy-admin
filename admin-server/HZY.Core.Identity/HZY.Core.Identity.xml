@@ -1,0 +1,169 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Core.Identity</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Core.Identity.Configs.CoreIdentityConfig">
+            <summary>
+            共享身份认证配置
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Identity.Configs.CoreIdentityConfig.AddIdentity(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            添加身份认证
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Identity.Configs.CoreIdentityConfig.UseIdentity(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            使用身份认证
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="T:HZY.Core.Identity.CoreIdentityAddStartup">
+            <summary>
+            程序启动器 - 身份认证 注册
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Identity.CoreIdentityAddStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="T:HZY.Core.Identity.CoreIdentityStartup">
+            <summary>
+            程序启动器 - 身份认证 注册、认证
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Identity.CoreIdentityStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Core.Identity.CoreIdentityStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="T:HZY.Core.Identity.Models.JwtTokenOptions">
+            <summary>
+            jwt token 配置
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Identity.Models.JwtTokenOptions.JwtTokenKeyName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Identity.Models.JwtTokenOptions.JwtIssuerSigningKey">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Identity.Models.JwtTokenOptions.JwtValidIssuer">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Identity.Models.JwtTokenOptions.JwtValidAudience">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Identity.Services.JwtTokenService">
+            <summary>
+            jwt token 服务
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Identity.Services.JwtTokenService.#ctor(Microsoft.AspNetCore.Http.IHttpContextAccessor,Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            jwt token 服务
+            </summary>
+            <param name="httpContextAccessor"></param>
+            <param name="configuration"></param>
+        </member>
+        <member name="M:HZY.Core.Identity.Services.JwtTokenService.CreateTokenByAccountId(System.Guid)">
+            <summary>
+            根据 id 创建token
+            </summary>
+            <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Identity.Services.JwtTokenService.HasTokenString">
+            <summary>
+            检查是否有Token字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Identity.Services.JwtTokenService.GetTokenString">
+            <summary>
+            获取 token 字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Identity.Services.JwtTokenService.ValidateAndReadJWTToken">
+            <summary>
+            验证和读取jwt token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Identity.Services.JwtTokenService.IsValidate">
+            <summary>
+            是否验证通过
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Identity.Services.JwtTokenService.GetAccountIdByToken">
+            <summary>
+            获取 token 并得到 id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Identity.Services.JwtTokenService.IsRefreshToken">
+            <summary>
+            是否刷新token
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Identity.Services.JwtTokenService.IsExpire">
+            <summary>
+            是否过期
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.Identity.Utils.JwtTokenUtil">
+            <summary>
+            JWT是由 . 分割的三部分组成：
+            头部(Header)
+            载荷(Payload) : 这一部分是JWT主要的信息存储部分，其中包含了许多种的声明（claims）。
+            签名(Signature)：使用保存在服务端的秘钥对其签名，用来验证发送者的JWT的同时也能确保在期间不被篡改。
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Identity.Utils.JwtTokenUtil.CreateToken(System.String,HZY.Core.Identity.Models.JwtTokenOptions)">
+            <summary>
+            创建 token
+            </summary>
+            <param name="id"></param>
+            <param name="jwtTokenOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Identity.Utils.JwtTokenUtil.ValidateAndReadJWTToken(System.String,HZY.Core.Identity.Models.JwtTokenOptions)">
+            <summary>
+            验证 和 读取 token 
+            </summary>
+            <param name="token"></param>
+            <param name="jwtTokenOptions"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Identity.Utils.JwtTokenUtil.ReadJwtToken(System.String)">
+            <summary>
+            通过 token 字符串读取内容
+            </summary>
+            <param name="token"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

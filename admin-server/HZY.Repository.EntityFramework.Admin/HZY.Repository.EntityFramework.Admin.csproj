@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net7.0</TargetFramework>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<Nullable>enable</Nullable>
+		<TieredPGO>true</TieredPGO>
+		<DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HZY.Core.Quartz\HZY.Core.Quartz.csproj" />
+		<ProjectReference Include="..\HZY.Repository.EntityFramework\HZY.Repository.EntityFramework.csproj" />
+		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />
+	</ItemGroup>
+
+</Project>
