@@ -6,10 +6,11 @@
 public class TakeUpTimeMiddleware : IMiddleware
 {
     private readonly Stopwatch _stopwatch;
-    private readonly Microsoft.Extensions.Logging.ILogger _logger;
-    private readonly HttpContext _httpContext;
+    private readonly ILogger _logger;
+    private readonly HttpContext? _httpContext;
     private readonly IAccountService _accountService;
     private readonly IProducer _producer;
+    private readonly IConfiguration _configuration;
 
     /// <summary>
     /// 统计耗时 并记录日志中 中间件
@@ -18,16 +19,19 @@ public class TakeUpTimeMiddleware : IMiddleware
     /// <param name="iHttpContextAccessor"></param>
     /// <param name="accountService"></param>
     /// <param name="producer"></param>
+    /// <param name="configuration"></param>
     public TakeUpTimeMiddleware(ILogger<TakeUpTimeMiddleware> logger,
         IHttpContextAccessor iHttpContextAccessor,
         IAccountService accountService,
-        IProducer producer)
+        IProducer producer,
+        IConfiguration configuration)
     {
         _stopwatch ??= new Stopwatch();
         _logger = logger;
         _httpContext = iHttpContextAccessor.HttpContext;
         _accountService = accountService;
         _producer = producer;
+        _configuration = configuration;
     }
 
     /// <summary>
@@ -38,15 +42,11 @@ public class TakeUpTimeMiddleware : IMiddleware
     /// <returns></returns>
     public async Task InvokeAsync(HttpContext context, RequestDelegate next)
     {
-        var apiList = new string[] {
-            "/MonitorEFCore/",
-            "/job/",
-            "/health/check"
-        };
+        var apiList = _configuration.GetSection("ApiWhiteList")?.Get<string[]>();
 
         var path = context.Request.Path;
 
-        if (apiList.Any(w => path.ToString().ToLower().Contains(w.ToLower())))
+        if (apiList != null && apiList.Any(w => path.ToString().ToLower().Contains(w.ToLower())))
         {
             await next.Invoke(context);
             return;
@@ -89,15 +89,24 @@ public class TakeUpTimeMiddleware : IMiddleware
     /// 读取 body 信息
     /// </summary>
     /// <returns></returns>
-    private async Task<string> ReadBodyAsync()
+    private async Task<string?> ReadBodyAsync()
     {
-        //获取body
-        _httpContext.Request.EnableBuffering();//可以实现多次读取Body
-        var sr = new StreamReader(_httpContext.Request.Body);
-        var bodyString = await sr.ReadToEndAsync();
-        _httpContext.Request.Body.Seek(0, SeekOrigin.Begin);
+        try
+        {
+            if (_httpContext.Request.ContentType != null && _httpContext.Request.ContentType.Contains("multipart/form-data")) return default;
 
-        return bodyString;
+            //获取body
+            _httpContext.Request.EnableBuffering();//可以实现多次读取Body
+            var sr = new StreamReader(_httpContext.Request.Body);
+            var bodyString = await sr.ReadToEndAsync();
+            _httpContext.Request.Body.Seek(0, SeekOrigin.Begin);
+
+            return bodyString;
+        }
+        catch (Exception)
+        {
+            return default;
+        }
     }
 
 

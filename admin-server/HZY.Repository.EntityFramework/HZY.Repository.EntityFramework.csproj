@@ -9,6 +9,11 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="HZY.Framework.EntityFrameworkRepositories" Version="1.0.2.5" />
+	</ItemGroup>
+
+
+	<ItemGroup>
 		<ProjectReference Include="..\HZY.Core.Identity\HZY.Core.Identity.csproj" />
 		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />
 	</ItemGroup>

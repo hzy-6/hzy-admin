@@ -1,6 +1,4 @@
-﻿using HZY.Core.Identity.Models;
-
-namespace HZY.Core.Identity.Utils;
+﻿namespace HZY.Core.Identity.Utils;
 
 /// <summary>
 /// JWT是由 . 分割的三部分组成：

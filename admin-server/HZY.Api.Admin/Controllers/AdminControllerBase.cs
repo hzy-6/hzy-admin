@@ -6,6 +6,7 @@
 [ApiResultFilter]
 [Route(AdminControllerBase.RoutePrefix + "/[controller]/[action]")]
 [Authorize]//是否授权 Authorize
+[ApiController]
 public class AdminControllerBase : ControllerBase
 {
     /// <summary>
