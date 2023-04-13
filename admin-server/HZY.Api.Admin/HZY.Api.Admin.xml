@@ -2092,16 +2092,6 @@
             IConfiguration 通过属性注入
             </summary>
         </member>
-        <member name="P:AppConfiguration.AppOptions">
-            <summary>
-            程序默认配置项 通过属性注入
-            </summary>
-        </member>
-        <member name="P:AppConfiguration.AdminDatabaseOptions">
-            <summary>
-            admin 数据库配置信息
-            </summary>
-        </member>
         <member name="M:AppConfiguration.#ctor">
             <summary>
             程序配置信息映射类
@@ -2112,96 +2102,6 @@
             程序配置信息映射类
             </summary>
             <param name="configuration"></param>
-        </member>
-        <member name="T:AppOptions">
-            <summary>
-            应用程序配置
-            </summary>
-        </member>
-        <member name="P:AppOptions.SysMenuId">
-            <summary>
-            系统菜单id
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:AppOptions.Namespace">
-            <summary>
-            命名空间
-            </summary>
-        </member>
-        <member name="P:AppOptions.IsInterceptEdit">
-            <summary>
-            是否拦截编辑 添加、修改、删除
-            </summary>
-        </member>
-        <member name="P:AppOptions.IsRunQuartzTask">
-            <summary>
-            是否运行 Quartz Task
-            </summary>
-        </member>
-        <member name="T:ConnectionStringsOptions">
-            <summary>
-            连接字符串配置
-            </summary>
-        </member>
-        <member name="P:ConnectionStringsOptions.Redis">
-            <summary>
-            redis 地址
-            </summary>
-            <value></value>
-        </member>
-        <member name="T:AdminDatabaseOptions">
-            <summary>
-            
-            </summary>
-        </member>
-        <member name="P:AutoImprotNode.ProjectRootPath">
-            <summary>
-            项目所在文件夹名
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:AutoImprotNode.ModelPath">
-            <summary>
-            实体保存路径
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:AutoImprotNode.ServicePath">
-            <summary>
-            服务保存路径
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:AutoImprotNode.ControllerPath">
-            <summary>
-            控制器保存路径
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:AutoImprotNode.ClientIndexPath">
-            <summary>
-            前端视图保存路径
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:AutoImprotNode.ClientInfoPath">
-            <summary>
-            前端信息弹窗保存位置
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:AutoImprotNode.ClientServicePath">
-            <summary>
-            前端服务保存位置
-            </summary>
-            <value></value>
-        </member>
-        <member name="P:AutoImprotNode.IsCover">
-            <summary>
-            是否覆盖生成  否的话生成代码重复会在后面加一个时间
-            </summary>
-            <value></value>
         </member>
         <member name="P:FileManagerNode.MaxRequestBodySize">
             <summary>

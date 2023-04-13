@@ -8,7 +8,7 @@
     typeof(RepositoryEFAdminStartup),
     typeof(RepositoryFreeSqlAdminStartup)
     )]
-public class MicroserviceStartupBase<TStartup> : AppStartupBaseCore<TStartup> where TStartup : Framework.Core.AspNetCore.IStartup, new()
+public class AppStartupBase<TStartup> : AppStartupBaseCore<TStartup> where TStartup : Framework.Core.AspNetCore.IStartup, new()
 {
     /// <summary>
     /// 注册服务

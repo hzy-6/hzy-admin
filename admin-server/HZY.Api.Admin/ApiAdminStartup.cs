@@ -1,6 +1,4 @@
-﻿using Yitter.IdGenerator;
-
-namespace HZY.Api.Admin;
+﻿namespace HZY.Api.Admin;
 
 /// <summary>
 /// 程序启动器
@@ -9,7 +7,7 @@ namespace HZY.Api.Admin;
     typeof(CoreRazorStartup),
     typeof(CoreRedisStartup),
     typeof(CoreIdentityStartup))]
-public class ApiAdminStartup : MicroserviceStartupBase<ApiAdminStartup>
+public class ApiAdminStartup : AppStartupBase<ApiAdminStartup>
 {
     /// <summary>
     /// 
@@ -117,6 +115,8 @@ public class ApiAdminStartup : MicroserviceStartupBase<ApiAdminStartup>
         //SignalR
         webApplication.UseSignalRHubs();
 
+
+
     }
 
     /// <summary>
@@ -125,10 +125,8 @@ public class ApiAdminStartup : MicroserviceStartupBase<ApiAdminStartup>
     /// <param name="webApplication"></param>
     public override void ApplicationStarted(WebApplication webApplication)
     {
-        var appConfiguration = webApplication.Services.GetRequiredService<AppConfiguration>();
-
         // 启动定时任务
-        if (appConfiguration.AppOptions.IsRunQuartzTask)
+        if (webApplication.Configuration.GetSection("IsRunQuartzTask").Get<bool>())
         {
             webApplication.UseQuartzStartup();
         }

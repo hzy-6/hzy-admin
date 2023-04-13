@@ -311,19 +311,19 @@
             <param name="menuId"></param>
             <returns></returns>
         </member>
-        <member name="T:HZY.Shared.MicroserviceStartupBase`1">
+        <member name="T:HZY.Shared.AppStartupBase`1">
             <summary>
             基础启动器
             </summary>
             <typeparam name="TStartup"></typeparam>
         </member>
-        <member name="M:HZY.Shared.MicroserviceStartupBase`1.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+        <member name="M:HZY.Shared.AppStartupBase`1.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
             <summary>
             注册服务
             </summary>
             <param name="webApplicationBuilder"></param>
         </member>
-        <member name="M:HZY.Shared.MicroserviceStartupBase`1.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+        <member name="M:HZY.Shared.AppStartupBase`1.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
             <summary>
             使用服务
             </summary>
