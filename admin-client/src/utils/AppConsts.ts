@@ -20,7 +20,7 @@ class AppConsts {
   /**
    * 后台服务api域名
    */
-  static domainServerApi: string = process.env.NODE_ENV == "production" ? "" : "http://localhost:5100";
+  static domainServerApi: string = process.env.NODE_ENV == "production" ? "" : "http://localhost:5102";
 
   /**
    * app 前缀 用于浏览器本地缓存 key 的前缀
