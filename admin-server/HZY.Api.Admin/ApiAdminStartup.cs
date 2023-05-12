@@ -74,6 +74,12 @@ public class ApiAdminStartup : AppStartupBase<ApiAdminStartup>
         //SignalR
         services.AddSignalR();
 
+        #region 取消默认验证Api 接收参数模型 的 验证特性 如有 [ApiController]
+
+        services.Configure<ApiBehaviorOptions>(options => { options.SuppressModelStateInvalidFilter = true; });
+
+        #endregion
+
         // 创建 IdGeneratorOptions 对象，可在构造函数中输入 WorkerId：
         var options = new IdGeneratorOptions((ushort)Thread.CurrentThread.ManagedThreadId);
         // options.WorkerIdBitLength = 10; // 默认值6，限定 WorkerId 最大值为2^6-1，即默认最多支持64个节点。
