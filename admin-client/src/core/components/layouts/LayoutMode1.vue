@@ -8,6 +8,7 @@ import MenuStore, { EMenuMode } from "@/core/store/layouts/MenuStore";
 import CoreStore from "@/core/store/layouts/CoreStore";
 import { computed } from "vue";
 import AppConsts from "@/utils/AppConsts";
+import LayoutIframe from "@/core/components/layouts/LayoutIframe.vue";
 
 const tabsStore = TabsStore();
 const appStore = AppStore();
