@@ -2,6 +2,7 @@
 import { computed, onMounted, ref, watch } from "vue";
 import Tools from "@/core/utils/Tools";
 import TabsStore from "@/core/store/layouts/TabsStore";
+import { useRouter } from "@/core/router";
 
 const isPro = process.env.NODE_ENV == "production";
 const token = ref(Tools.getAuthorization());
@@ -9,6 +10,7 @@ const iframe = ref<HTMLElement[]>();
 const tabsStore = TabsStore();
 const tabsIframe = computed(() => tabsStore.state.tabs.filter((w) => w.meta.mode == 2));
 const loading = ref<boolean>(false);
+const router = useRouter();
 
 onMounted(() => {
   token.value = Tools.getAuthorization();
@@ -50,9 +52,11 @@ function getUrl(urlDev: string, urlPro: string, menuId: number) {
 <template>
   <a-spin :spinning="loading">
     <div v-for="(item, index) in tabsIframe" :key="item.path">
-      <div v-show="item.path == $route.path" :key="item.path">
-        <iframe ref="iframe" :src="getUrl(item.meta.moduleUrl!, item.meta.moduleUrlPro!, item.meta.menuId!)" frameBorder="0" @load="loading = false" :key="item.path"></iframe>
-      </div>
+      <transition name="fade-transform" mode="out-in">
+        <div v-show="item.path == router.currentRoute.value.path" :key="item.path">
+          <iframe ref="iframe" :src="getUrl(item.meta.moduleUrl!, item.meta.moduleUrlPro!, item.meta.menuId!)" frameBorder="0" @load="loading = false" :key="item.path"></iframe>
+        </div>
+      </transition>
     </div>
   </a-spin>
 </template>
