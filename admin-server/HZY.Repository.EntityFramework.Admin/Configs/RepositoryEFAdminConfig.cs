@@ -5,15 +5,12 @@
 /// </summary>
 public static class CoreRepositoriesAdminConfig
 {
-
     /// <summary>
     /// 使用 DbContext
     /// </summary>
     /// <param name="app"></param>
     public static void UseEFByAdmin(this IApplicationBuilder app)
     {
-        app.UseEntityFrameworkRepositories(typeof(AdminDbContext));
-
         #region 开发环境检测是否需要数据库迁移
         using var scope = app.ApplicationServices.CreateScope();
         var webHostEnvironment = scope.ServiceProvider.GetService<IWebHostEnvironment>();

@@ -13,7 +13,7 @@ public class TransactionalAttribute : AopBaseAttribute
 
     public TransactionalAttribute()
     {
-        _dbContextTypes = EntityFrameworkRepositoriesUtil.GetAllDbContextType().ToArray();
+        _dbContextTypes = EntityFrameworkRepositoriesUtil.GetDbContextTypeAll().ToArray();
         ExceptionEvent = OnException;
     }
 
