@@ -121,6 +121,16 @@ public class AccountServiceImpl : IAccountService
         if (string.IsNullOrWhiteSpace(authUserFormDto.UserPassword))
             MessageBox.Show("请输入密码！");
 
+        if (authUserFormDto.UserPassword.Length < 6)
+        {
+            MessageBox.Show("密码长度不能少于6位！");
+        }
+
+        if (authUserFormDto.UserPassword.Length > 20)
+        {
+            MessageBox.Show("密码长度不能大于20位！");
+        }
+
         // if (string.IsNullOrWhiteSpace(code))
         //  MessageBox.Show("请输入验证码!");
 
