@@ -408,12 +408,6 @@
             系统权限 拦截
             </summary>
         </member>
-        <member name="M:HZY.Shared.Filters.ApiPermissionFilter.#ctor(HZY.Shared.ApplicationServices.PermissionService)">
-            <summary>
-            系统权限 拦截
-            </summary>
-            <param name="permissionService"></param>
-        </member>
         <member name="M:HZY.Shared.Filters.ApiPermissionFilter.OnActionExecuting(Microsoft.AspNetCore.Mvc.Filters.ActionExecutingContext)">
             <summary>
             action 执行之前

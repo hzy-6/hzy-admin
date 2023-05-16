@@ -6,14 +6,12 @@ namespace HZY.Shared.Filters;
 public class ApiPermissionFilter : IActionFilter
 {
     private readonly PermissionService _permissionService;
+    private readonly IConfiguration _configuration;
 
-    /// <summary>
-    /// 系统权限 拦截
-    /// </summary>
-    /// <param name="permissionService"></param>
-    public ApiPermissionFilter(PermissionService permissionService)
+    public ApiPermissionFilter(PermissionService permissionService, IConfiguration configuration)
     {
         _permissionService = permissionService;
+        _configuration = configuration;
     }
 
     /// <summary>
@@ -28,6 +26,34 @@ public class ApiPermissionFilter : IActionFilter
         //var areaName = routeValues["area"];
         var controllerName = routeValues["controller"];
         var actionName = routeValues["action"];
+
+        #region 拦截操作数据库的 接口 方便发布线上演示
+
+        var isInterceptEdit = _configuration.GetSection("IsInterceptEdit")?.Get<bool>();
+
+        //拦截操作数据库的 接口
+        if (isInterceptEdit ?? false)
+        {
+            var actionList = new[] {
+                "SaveForm",
+                "DeleteList",
+                "ChangePassword",
+                "Change",
+                "Delete",
+                "Insert",
+                "Create",
+                "Update",
+                "Remove",
+                "AutoImprotProject"
+            };
+
+            if (actionList.Any(w => actionName.ToLower().Contains(w.ToLower())))
+            {
+                var data = ApiResult.ResultMessage(ApiResultCodeEnum.Warn, "请下载源代码本地运行!");
+                context.Result = new JsonResult(data);
+            }
+        }
+        #endregion
 
         #region 如果有取消授权标记 则 权限检查失效
 
