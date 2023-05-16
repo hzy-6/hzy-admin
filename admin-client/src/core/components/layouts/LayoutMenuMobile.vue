@@ -1,12 +1,15 @@
 <script lang="ts" setup>
 import CoreStore from "@/core/store/layouts/CoreStore";
 import MenuStore from "@/core/store/layouts/MenuStore";
-import AppStore from "@/core/store/AppStore";
 import LayoutMenuVue from "./menus/LayoutMenu.vue";
+import { theme } from "ant-design-vue";
+import LayoutLogoVue from "./LayoutLogo.vue";
 
 const coreStore = CoreStore();
 const menuStore = MenuStore();
-const appStore = AppStore();
+
+const { useToken } = theme;
+const { token } = useToken();
 </script>
 
 <template>
@@ -16,14 +19,12 @@ const appStore = AppStore();
     :closable="false"
     :visible="!menuStore.state.isCollapse"
     :bodyStyle="{ padding: 0 }"
-    :drawerStyle="{ background: menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].backgroundColor }"
+    :drawerStyle="{ background: token.Menu?.colorItemBg }"
     width="250px"
     v-if="coreStore.state.isMobile"
     class="hzy-menu"
   >
-    <!-- <div class="hzy-logo" :style="{ color: menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex].textColor }">
-      {{ appStore.state.title }}
-    </div> -->
+    <LayoutLogoVue />
     <LayoutMenuVue />
   </a-drawer>
 </template>

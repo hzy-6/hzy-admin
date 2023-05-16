@@ -9,12 +9,15 @@ import MenuStore, { EMenuMode } from "@/core/store/layouts/MenuStore";
 import HeaderStore from "@/core/store/layouts/HeaderStore";
 import SettingsStore from "@/core/store/layouts/SettingsStore";
 import Tools from "@/core/utils/Tools";
+import ThemeStore from "@/core/store/layouts/ThemeStore";
 
 const appStore = AppStore();
 const coreStore = CoreStore();
 const menuStore = MenuStore();
 const headerStore = HeaderStore();
 const settingsStore = SettingsStore();
+const themeStore = ThemeStore();
+const iconSize = 16;
 
 const { isFullscreen, enter, exit, toggle } = useFullscreen();
 
@@ -37,21 +40,16 @@ function jumpDoc() {
 function jumpPro() {
   window.open("http://124.221.128.7:6600/", "_black");
 }
-
-//mvc
-function jumpMvc() {
-  window.open("http://124.221.128.7:7600/", "_black");
-}
 </script>
 
 <template>
-  <a-layout-header class="hzy-layout-header" :class="headerStore.state.themeClass">
+  <a-layout-header class="hzy-layout-header">
     <div class="hzy-header-btn" @click="menuStore.onChangeCollapse(!menuStore.state.isCollapse)">
       <!-- <a-tooltip>
         <template #title>菜单收展</template>
-        <AppIcon :name="menuStore.state.isCollapse ? 'MenuUnfoldOutlined' : 'MenuFoldOutlined'" :size="16" />
+        <AppIcon :name="menuStore.state.isCollapse ? 'MenuUnfoldOutlined' : 'MenuFoldOutlined'" :size="iconSize" />
       </a-tooltip> -->
-      <AppIcon :name="menuStore.state.isCollapse ? 'MenuUnfoldOutlined' : 'MenuFoldOutlined'" :size="16" />
+      <AppIcon :name="menuStore.state.isCollapse ? 'MenuUnfoldOutlined' : 'MenuFoldOutlined'" :size="iconSize" />
     </div>
     <div style="flex: 1 1 0%; height: 100%; display: flex" v-if="menuStore.state.menuMode == EMenuMode.top">
       <LayoutOneLevelMenu />
@@ -59,14 +57,12 @@ function jumpMvc() {
     <div style="flex: 1 1 0%" v-else></div>
     <!-- Pro -->
     <div class="hzy-header-btn text-danger" @click="jumpPro()" style="font-weight: bold" v-if="!coreStore.state.isMobile">Pro By React</div>
-    <!-- mvc -->
-    <div class="hzy-header-btn text-danger" @click="jumpMvc()" style="font-weight: bold" v-if="!coreStore.state.isMobile">Mvc</div>
     <!-- HzyAdmin 文档 -->
     <a-tooltip>
       <template #title>HzyAdmin 文档</template>
       <div class="hzy-header-btn" @click="jumpDoc" v-if="!coreStore.state.isMobile">
         <a-badge status="success" dot>
-          <AppIcon name="rocket-outlined" :size="16" />
+          <AppIcon name="rocket-outlined" :size="iconSize" />
         </a-badge>
       </div>
     </a-tooltip>
@@ -74,27 +70,38 @@ function jumpMvc() {
     <a-tooltip>
       <template #title>刷新当前选项卡</template>
       <div class="hzy-header-btn" @click="onReload">
-        <AppIcon name="ReloadOutlined" :size="16" />
+        <AppIcon name="ReloadOutlined" :size="iconSize" />
       </div>
     </a-tooltip>
     <!-- 界面设置 -->
     <a-tooltip>
       <template #title>界面设置</template>
       <div class="hzy-header-btn" @click="settingsStore.isShow()">
-        <AppIcon name="SettingOutlined" :size="16" />
+        <AppIcon name="SettingOutlined" :size="iconSize" />
       </div>
     </a-tooltip>
+
+    <!-- 暗黑 -->
+    <a-tooltip>
+      <template #title>暗黑</template>
+      <div class="hzy-header-btn" @click="themeStore.changeTheme(!themeStore.state.isDark)">
+        <AppIcon name="Sunny" :size="iconSize" v-if="themeStore.state.isDark" />
+        <AppIcon name="MoonNight" :size="iconSize" v-else />
+      </div>
+    </a-tooltip>
+
     <!-- 全屏 -->
     <a-tooltip>
       <template #title>全屏</template>
       <div class="hzy-header-btn" @click="toggle" v-if="!coreStore.state.isMobile">
-        <AppIcon :name="isFullscreen ? 'FullscreenExitOutlined' : 'FullscreenOutlined'" :size="16" />
+        <AppIcon :name="isFullscreen ? 'FullscreenExitOutlined' : 'FullscreenOutlined'" :size="iconSize" />
       </div>
     </a-tooltip>
+
     <div class="hzy-header-btn">
       <a-dropdown>
         <div>
-          <AppIcon name="UserOutlined" :size="16" />
+          <AppIcon name="UserOutlined" :size="iconSize" />
           &nbsp;&nbsp;
           <span>{{ appStore.state.userInfo.name ? appStore.state.userInfo.name : "未知用户" }}</span>
         </div>
@@ -119,7 +126,6 @@ function jumpMvc() {
     width: 100%;
     height: auto !important;
     line-height: normal !important;
-    border-bottom: 1px solid #f0f2f5;
   }
 
   //=======// 头部
@@ -128,7 +134,7 @@ function jumpMvc() {
     position: relative;
     display: flex;
     align-items: center;
-    height: 50px !important;
+    height: 48px !important;
     //
     transition: background-color 0.1s;
     -moz-transition: background-color 0.1s;
@@ -137,10 +143,8 @@ function jumpMvc() {
     /* Safari 和 Chrome */
     -o-transition: background-color 0.1s;
 
-    background: none;
-
     .hzy-header-btn {
-      padding: 0 12px;
+      padding: 0 8px;
       cursor: pointer;
       height: 100%;
       display: inline-flex;
@@ -151,95 +155,6 @@ function jumpMvc() {
     .hzy-header-btn:hover {
       background: rgba(243, 246, 248, 0.2);
     }
-  }
-}
-</style>
-<!-- 头部皮肤定义 -->
-<style lang="less">
-//=======// 头部 蓝色
-.hzy-layout-header-0 {
-  background: #2173dc !important;
-  background: -webkit-gradient(linear, left top, right top, from(#1d42ab), color-stop(#2173dc), to(#1e93ff)) !important;
-  background: linear-gradient(90deg, #1d42ab, #2173dc, #1e93ff) !important;
-  * {
-    color: #ffffff !important;
-  }
-}
-
-.hzy-layout-header-1 {
-  background-color: #8d6658 !important;
-  * {
-    color: #ffffff !important;
-  }
-}
-
-.hzy-layout-header-2 {
-  background-color: #57c7d4 !important;
-  * {
-    color: #ffffff !important;
-  }
-}
-
-.hzy-layout-header-3 {
-  background-color: #46be8a !important;
-  * {
-    color: #ffffff !important;
-  }
-}
-
-.hzy-layout-header-4 {
-  background-color: #757575 !important;
-  * {
-    color: #ffffff !important;
-  }
-}
-
-.hzy-layout-header-5 {
-  background-color: #677ae4 !important;
-  * {
-    color: #ffffff !important;
-  }
-}
-
-.hzy-layout-header-6 {
-  background-color: #f2a654 !important;
-  * {
-    color: #ffffff !important;
-  }
-}
-
-.hzy-layout-header-7 {
-  background-color: #f96197 !important;
-  * {
-    color: #ffffff !important;
-  }
-}
-
-.hzy-layout-header-8 {
-  background-color: #926dde !important;
-  * {
-    color: #ffffff !important;
-  }
-}
-
-.hzy-layout-header-9 {
-  background-color: #f96868 !important;
-  * {
-    color: #ffffff !important;
-  }
-}
-
-.hzy-layout-header-10 {
-  background-color: #3aa99e !important;
-  * {
-    color: #ffffff !important;
-  }
-}
-
-.hzy-layout-header-11 {
-  background-color: #f9cd48 !important;
-  * {
-    color: #ffffff !important;
   }
 }
 </style>

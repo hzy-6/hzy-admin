@@ -61,7 +61,7 @@ onMounted(() => {
     data,
     xField: "type",
     yField: "sales",
-    height: 300,
+    height: 250,
     label: {
       // 可手动配置 label 数据标签位置
       position: "middle", // 'top', 'bottom', 'middle',

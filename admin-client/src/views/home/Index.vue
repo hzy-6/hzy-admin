@@ -10,6 +10,7 @@ import image1 from "@/assets/images/下楼做核酸.png";
 import image2 from "@/assets/images/核酸检测.png";
 import image3 from "@/assets/images/抗疫必胜.png";
 import PageContainer from "@/core/components/PageContainer.vue";
+
 defineOptions({ name: "HomeIndexCom" });
 
 let visible = ref(false);
@@ -29,13 +30,9 @@ let visible = ref(false);
           <WorkOrderStatistics />
         </a-col>
         <a-col :xs="24" :sm="24" :md="12" :lg="8" :xl="8">
-          <div class="mb-16">
-            <a href="https://gitee.com/hzy6/HzyAdmin/stargazers" target="_black"><img src="https://gitee.com/hzy6/HzyAdmin/badge/star.svg?theme=dark" alt="star" /></a>
-          </div>
-          <!-- <div class="mb-16">
-            <a :href="appConsts.domainName + '/ui'" target="_black">预览 ElementPlus+Vite+Ts 版本</a>
-          </div> -->
-          <img src="https://gitee.com/hzy6/HzyAdmin/widgets/widget_card.svg?colors=eae9d7,2e2f29,272822,484a45,eae9d7,747571" style="width: 100%; height: 320px" />
+          <a href="https://gitee.com/hzy6/HzyAdmin/stargazers" target="_black">
+            <img src="https://gitee.com/hzy6/HzyAdmin/widgets/widget_card.svg?colors=eae9d7,2e2f29,272822,484a45,eae9d7,747571" style="width: 100%; height: 320px" />
+          </a>
         </a-col>
       </a-row>
     </div>
@@ -82,7 +79,7 @@ let visible = ref(false);
       </a-row>
     </div>
     <!-- 抽屉 -->
-    <a-drawer v-model:visible="visible" style="color: red" title="更多" placement="right" width="90%" :bodyStyle="{ 'background-color': '#f0f2f5' }">
+    <a-drawer v-model:visible="visible" title="更多" placement="right" width="90%">
       <Home1 />
     </a-drawer>
   </PageContainer>

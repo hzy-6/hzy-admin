@@ -10,7 +10,7 @@ class AppConsts {
   /**
    * token 键值
    */
-  static tokenKey: string = "Authorization-HZY-Microservices";
+  static tokenKey: string = "Authorization_HZY_ADMIN_SPA";
 
   /**
    * Guid Empty String
@@ -20,12 +20,12 @@ class AppConsts {
   /**
    * 后台服务api域名
    */
-  static domainServerApi: string = process.env.NODE_ENV == "production" ? "" : "http://localhost:5102";
+  static domainServerApi: string = process.env.NODE_ENV == "production" ? "" : "http://localhost:5500";
 
   /**
    * app 前缀 用于浏览器本地缓存 key 的前缀
    */
-  static appPrefix: string = `HZY-Microservices-AntdVue-${domainName}`;
+  static appPrefix: string = `HzyAdminAntdVue-${domainName}`;
 
   /**
    * 用于请求头部授权码key名称
@@ -35,7 +35,7 @@ class AppConsts {
   /**
    * 系统标题
    */
-  static appTitle: string = "HZY-Microservices";
+  static appTitle: string = "HzyAdmin";
 
   /**
    * 默认首页标签页信息配置
@@ -93,16 +93,6 @@ class AppConsts {
      */
     leftModeWidth: 50,
   };
-
-  /**
-   * 显示底部
-   */
-  static showFooter = true;
-
-  /**
-   * 显示页面导航
-   */
-  static showPageContainer = true;
 }
 
 export default AppConsts;

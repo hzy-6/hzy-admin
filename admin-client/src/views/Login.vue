@@ -97,10 +97,8 @@ body {
   align-items: center;
   height: 100vh;
   //可以解开一下注解 放置一个背景图片
-  background: url("../assets/images/login.jpg") no-repeat;
-  // background: url("../assets/undraw_Tree_swing_re_pqee.png") no-repeat;
+  background: url("../assets/images/login-1.jpg") no-repeat;
   background-size: cover;
-  // background: #f0f2f5 url("../assets/background.svg") no-repeat 50%;
 
   .login-card {
     height: 450px;

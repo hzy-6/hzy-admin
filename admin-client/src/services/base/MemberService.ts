@@ -4,7 +4,7 @@ import Http from "@/core/utils/Http";
  * 功能服务
  */
 export default class MemberService {
-  static urlPrefix = "/api/v1/template/Member";
+  static urlPrefix = "/api/v1/admin/Member";
 
   /**
    * 获取数据列表

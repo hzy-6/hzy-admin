@@ -175,13 +175,16 @@ const rowSelection = computed(() => {
 
 <template>
   <div>
-    <a-card class="mb-16" v-show="tableConfig.search.state" :bordered="false">
-      <!-- 检索插槽 -->
-      <slot name="search"></slot>
+    <a-card class="mb-16" :bordered="false" :bodyStyle="{ padding: 0 }" v-show="tableConfig.search.state">
+      <div class="p-16">
+        <!-- 检索插槽 -->
+        <slot name="search"></slot>
+      </div>
     </a-card>
 
-    <a-card :bodyStyle="{ paddingTop: 0 }" :bordered="false">
-      <a-row class="pt-16 pb-16">
+    <a-card class="mb-16" :bordered="false" :bodyStyle="{ padding: 0 }">
+      <!-- 工具栏 -->
+      <a-row class="p-16">
         <a-col :xs="24" :sm="24" :md="12" :lg="12" :xl="12">
           <a-space :size="8">
             <!-- 工具栏左侧插槽 -->
@@ -208,8 +211,10 @@ const rowSelection = computed(() => {
           </a-space>
         </a-col>
       </a-row>
+    </a-card>
 
-      <!-- 表格 -->
+    <!-- 表格 -->
+    <div>
       <slot name="table">
         <a-table
           :size="tableSizeType"
@@ -218,6 +223,7 @@ const rowSelection = computed(() => {
           :pagination="
             props.isPagination
               ? {
+                  size: 'default',
                   pageSize: tableConfig.size,
                   total: tableConfig.total,
                   current: tableConfig.page,
@@ -234,11 +240,11 @@ const rowSelection = computed(() => {
           :scroll="{ x: 'calc(100wh - 300px)' }"
           row-key="id"
           v-model:expandedRowKeys="expandedRowKeys"
-          @change="(pagination: TablePaginationConfig, filters: Record<string, FilterValue | null>, sorter: SorterResult<any> | SorterResult<any>[], extra: TableCurrentDataSource<any>) => onChange(pagination, filters, sorter, extra)"
+          @change="(pagination, filters, sorter, extra) => onChange(pagination, filters, sorter, extra)"
         >
           <slot name="table-col"></slot>
         </a-table>
       </slot>
-    </a-card>
+    </div>
   </div>
 </template>

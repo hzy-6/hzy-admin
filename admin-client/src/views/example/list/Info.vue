@@ -14,7 +14,7 @@ const state = reactive({
     },
   },
   visible: false,
-  loading: false,
+  saveLoading: false,
 });
 
 const refForm = ref<FormInstance>();
@@ -38,9 +38,9 @@ defineExpose({
  */
 function save() {
   refForm.value?.validate().then(() => {
-    state.loading = true;
+    state.saveLoading = true;
     setTimeout(() => {
-      state.loading = false;
+      state.saveLoading = false;
       props.onSuccess();
       Tools.message.success("提交成功!");
       state.visible = false;
@@ -52,10 +52,10 @@ function save() {
 <template>
   <a-modal v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="800">
     <template #footer>
-      <a-button type="primary" :loading="state.loading" @click="save()"> 提交</a-button>
+      <a-button type="primary" :loading="state.saveLoading" @click="save()"> 提交</a-button>
       <a-button @click="state.visible = false">关闭</a-button>
     </template>
-    <a-spin v-drag :spinning="state.loading">
+    <a-spin v-drag :spinning="state.saveLoading">
       <a-form ref="refForm" layout="vertical" :model="state.vm.form">
         <a-row :gutter="[16, 0]">
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">

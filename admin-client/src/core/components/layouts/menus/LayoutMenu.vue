@@ -6,11 +6,9 @@ import LayoutMenuSub from "./LayoutMenuSub.vue";
 import MenuStore, { EMenuMode } from "@/core/store/layouts/MenuStore";
 import AppStore from "@/core/store/AppStore";
 import Tools from "@/core/utils/Tools";
-import TabsStore from "@/core/store/layouts/TabsStore";
 
 const menuStore = MenuStore();
 const appStore = AppStore();
-const tabsStore = TabsStore();
 // const currentRoutePath = computed(() => router.currentRoute.value.fullPath);
 const menuTree = computed(() => {
   return Tools.genTreeData(appStore.state.userInfo.menus, null);
@@ -59,10 +57,10 @@ function onMenuSelected(obj: any) {
 </script>
 
 <template>
-  <a-menu :theme="menuStore.themeType()" mode="inline" @select="onMenuSelected" v-model:selectedKeys="state.selectedKeys" v-model:openKeys="state.openKeys">
+  <a-menu mode="inline" @select="onMenuSelected" v-model:selectedKeys="state.selectedKeys" v-model:openKeys="state.openKeys">
     <!-- 动态生成 topnav-->
     <template v-if="menuStore.state.menuMode != EMenuMode.default">
-      <template v-for="item in appStore.state.subMenus">
+      <template v-for="item in appStore.state.subMenus?.filter((w:any) => w.show)">
         <a-menu-item v-if="!item.children || (item.children?.filter((w:any) => w.show).length == 0 && item.type == 2)" :key="item.id" :title="item.name">
           <AppIcon :name="item.icon" v-if="item.icon" />
           <span>{{ item.name }}</span>
@@ -71,7 +69,7 @@ function onMenuSelected(obj: any) {
       </template>
     </template>
     <template v-else>
-      <template v-for="item in menuTree">
+      <template v-for="item in menuTree?.filter((w:any) => w.show)">
         <a-menu-item v-if="!item.children || (item.children?.filter((w:any) => w.show).length == 0 && item.type == 2)" :key="item.id" :title="item.name">
           <AppIcon :name="item.icon" v-if="item.icon" />
           <span>{{ item.name }}</span>
@@ -85,23 +83,7 @@ function onMenuSelected(obj: any) {
 <style lang="less">
 .hzy-menu {
   .ant-menu {
-    background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.backgroundColor") !important;
-    color: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.textColor") !important;
-    .ant-menu-submenu-expand-icon,
-    .ant-menu-submenu-arrow {
-      color: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.textColor") !important;
-    }
-  }
-
-  .ant-menu.ant-menu-dark,
-  .ant-menu-dark .ant-menu-sub,
-  .ant-menu.ant-menu-dark .ant-menu-sub {
-    background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.backgroundColor") !important;
-  }
-
-  .ant-menu:not(.ant-menu-horizontal) .ant-menu-item-selected {
-    background: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.activeBgColor") !important;
-    color: v-bind("menuStore.menuCustomThemes[menuStore.state.menuCustomThemesIndex]?.activeTextColor") !important;
+    border-inline-end: 0 !important;
   }
 }
 </style>

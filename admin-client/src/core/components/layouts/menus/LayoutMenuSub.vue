@@ -11,7 +11,7 @@ const props = defineProps<{ menuInfo: any }>();
         <span>{{ props.menuInfo.name }}</span>
       </span>
     </template>
-    <template v-for="item in props.menuInfo.children">
+    <template v-for="item in props.menuInfo.children?.filter((w:any) => w.show)">
       <a-menu-item v-if="!item.children || (item.children?.filter((w:any) => w.show).length == 0 && item.type == 2)" :key="item.id" :title="item.name">
         <AppIcon :name="item.icon" v-if="item.icon" />
         <span>{{ item.name }}</span>

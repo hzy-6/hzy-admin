@@ -244,7 +244,7 @@ function openForm(id: string) {
         <!-- 操作 -->
         <a-table-column title="操作" data-index="id">
           <template #default="{ record }">
-            <a href="javascript:;" @click="openForm(record.id)">编辑</a>
+            <a @click="openForm(record.id)">编辑</a>
             <a-divider type="vertical" />
             <a-popconfirm title="您确定要删除?" @confirm="deleteList(record.id)" okText="确定" cancelText="取消">
               <a class="text-danger">删除</a>

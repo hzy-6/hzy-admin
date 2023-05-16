@@ -4,39 +4,38 @@ import router from "@/core/router";
 import TabsStore from "./TabsStore";
 
 interface IState {
-    isMobile: boolean
-    demarcation: number
+  isMobile: boolean;
+  demarcation: number;
 }
 
 export default defineStore("LayoutStore", () => {
+  const tabsStore = TabsStore();
 
-    const tabsStore = TabsStore();
+  //定义状态
+  let state = reactive<IState>({
+    isMobile: false,
+    // 鉴定是否移动设备分界值
+    // demarcation: 1080
+    demarcation: 768,
+  });
 
-    //定义状态
-    let state = reactive<IState>({
-        isMobile: false,
-        // 鉴定是否移动设备分界值
-        // demarcation: 1080
-        demarcation: 768
-    });
+  //页面加载 钩子函数
+  onMounted(() => {
+    calcScreen();
+  });
 
-    //页面加载 钩子函数
-    onMounted(() => {
-        calcScreen();
-    });
-
-    /**
-     * 实时计算监听 宽高
-     * 
-     */
-    const calcScreen = () => {
+  /**
+   * 实时计算监听 宽高
+   *
+   */
+  const calcScreen = () => {
+    state.isMobile = window.innerWidth < state.demarcation;
+    window.onresize = () => {
+      return (() => {
         state.isMobile = window.innerWidth < state.demarcation;
-        window.onresize = () => {
-            return (() => {
-                state.isMobile = window.innerWidth < state.demarcation;
-            })();
-        };
+      })();
     };
+  };
 
   /**
    * 刷新
@@ -49,12 +48,11 @@ export default defineStore("LayoutStore", () => {
       nextTick(() => {
         router.push("/redirect" + fullPath);
       });
-    }, 300);
+    }, 100);
   }
 
-    return {
-        state,
-        refresh,
-    }
-
+  return {
+    state,
+    refresh,
+  };
 });

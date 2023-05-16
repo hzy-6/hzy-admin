@@ -35,7 +35,7 @@
     "@vitejs/plugin-vue-jsx": "^2.1.1",
     "@vueuse/core": "^9.5.0",
     "@vueuse/integrations": "^9.2.0",
-    "ant-design-vue": "3.2.11",
+    "ant-design-vue": "4.0.0-beta.4",
     "axios": "^0.27.2",
     "color": "^4.2.3",
     "less": "^4.1.3",

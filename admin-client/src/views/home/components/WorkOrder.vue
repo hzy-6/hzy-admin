@@ -6,6 +6,7 @@ let value1 = ref(12);
 let value2 = ref(26);
 let value3 = ref(107);
 let value4 = ref(5);
+let iconSize = ref(60);
 let timer = ref<NodeJS.Timer | null>(null);
 timer.value = setInterval(() => {
   value1.value = Math.floor(Math.random() * 90);
@@ -24,10 +25,10 @@ onBeforeUnmount(() => {
 <template>
   <a-row class="work-order" :gutter="[16, 16]">
     <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-      <a-card :bordered="false" hoverable :bodyStyle="{ background: '#5b8ff9' }">
-        <a-row :gutter="[16, 16]" class="text-center">
-          <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <AppIcon name="DashboardOutlined" :size="70" style="color: #fff" />
+      <a-card :bordered="false" hoverable :style="{ background: '#5b8ff9' }" :bodyStyle="{ padding: 0 }">
+        <a-row class="text-center p-16">
+          <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12" class="icon">
+            <AppIcon name="DashboardOutlined" :size="iconSize" style="color: #fff" />
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
             <h3 style="color: #fff">CPU占用率</h3>
@@ -37,10 +38,10 @@ onBeforeUnmount(() => {
       </a-card>
     </a-col>
     <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-      <a-card :bordered="false" hoverable :bodyStyle="{ background: '#61ddaa' }">
-        <a-row :gutter="[16, 16]" class="text-center">
-          <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <AppIcon name="CloudServerOutlined" :size="70" style="color: #fff" />
+      <a-card :bordered="false" hoverable :style="{ background: '#61ddaa' }" :bodyStyle="{ padding: 0 }">
+        <a-row class="text-center p-16">
+          <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12" class="icon">
+            <AppIcon name="CloudServerOutlined" :size="iconSize" style="color: #fff" />
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
             <h3 style="color: #fff">内存占用率</h3>
@@ -50,10 +51,10 @@ onBeforeUnmount(() => {
       </a-card>
     </a-col>
     <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-      <a-card :bordered="false" hoverable :bodyStyle="{ background: '#85ce61' }">
-        <a-row :gutter="[16, 16]" class="text-center">
-          <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <AppIcon name="LinkOutlined" :size="70" style="color: #fff" />
+      <a-card :bordered="false" hoverable :style="{ background: '#85ce61' }" :bodyStyle="{ padding: 0 }">
+        <a-row class="text-center p-16">
+          <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12" class="icon">
+            <AppIcon name="LinkOutlined" :size="iconSize" style="color: #fff" />
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
             <h3 style="color: #fff">当前在线设备</h3>
@@ -63,10 +64,10 @@ onBeforeUnmount(() => {
       </a-card>
     </a-col>
     <a-col :xs="24" :sm="12" :md="12" :lg="6" :xl="6">
-      <a-card :bordered="false" hoverable :bodyStyle="{ background: '#ff7875' }">
-        <a-row :gutter="[16, 16]" class="text-center">
-          <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
-            <AppIcon name="DisconnectOutlined" :size="70" style="color: #fff" />
+      <a-card :bordered="false" hoverable :style="{ background: '#ff7875' }" :bodyStyle="{ padding: 0 }">
+        <a-row class="text-center p-16">
+          <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12" class="icon">
+            <AppIcon name="DisconnectOutlined" :size="iconSize" style="color: #fff" />
           </a-col>
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="12">
             <h3 style="color: #fff">当前离线设备</h3>
@@ -77,3 +78,10 @@ onBeforeUnmount(() => {
     </a-col>
   </a-row>
 </template>
+
+<style lang="less">
+.icon {
+  display: flex;
+  justify-content: center;
+}
+</style>
