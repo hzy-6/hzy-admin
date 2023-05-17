@@ -2,19 +2,14 @@ import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import { resolve } from "path";
 import vueJsx from "@vitejs/plugin-vue-jsx";
-import VueMacros from "unplugin-vue-macros/vite"; //https://github.com/sxzz/unplugin-vue-macros/blob/main/README-zh-CN.md
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
-    VueMacros({
-      plugins: {
-        vue: vue(),
-        vueJsx: vueJsx({
-          // https://github.com/vitejs/vite/tree/main/packages/plugin-vue-jsx
-          // options are passed on to @vue/babel-plugin-jsx
-        }),
-      },
+    vue(),
+    vueJsx({
+      // https://github.com/vitejs/vite/tree/main/packages/plugin-vue-jsx
+      // options are passed on to @vue/babel-plugin-jsx
     }),
   ],
   /**
