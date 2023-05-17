@@ -167,51 +167,57 @@ public class CacheEvictAttribute : BaseCacheAttribute
     /// <param name="isStart"></param>
     private void RemoveMemoryGroupKey(string pattern, IMemoryCache memoryCache, bool isStart)
     {
-        var entries = memoryCache.GetType().GetField("_entries", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(memoryCache) as IDictionary;
+        IDictionary entries = null;
+#if NET7_0_OR_GREATER
+            var coherentState = memoryCache.GetType().GetField("_coherentState", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(memoryCache);
+            entries = coherentState.GetType().GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(coherentState) as IDictionary;
+#else
+            entries = memoryCache.GetType().GetField("_entries", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(memoryCache) as IDictionary;
+#endif
         if (entries != null)
-        {
-            List<string> keys = new List<string>();
-
-            if (isStart)
             {
-                // 前缀模式匹配
-                foreach (var key in entries.Keys)
+                List<string> keys = new List<string>();
+
+                if (isStart)
                 {
-                    var k = key as string;
-                    if (k != null)
+                    // 前缀模式匹配
+                    foreach (var key in entries.Keys)
                     {
-                        if (k.StartsWith(pattern))
+                        var k = key as string;
+                        if (k != null)
                         {
-                            keys.Add(k);
+                            if (k.StartsWith(pattern))
+                            {
+                                keys.Add(k);
+                            }
                         }
                     }
+                }
+                else
+                {
+                    // 尾缀模式匹配
+                    foreach (var key in entries.Keys)
+                    {
+                        var k = key as string;
+                        if (k != null)
+                        {
+                            if (k.EndsWith(pattern))
+                            {
+                                keys.Add(k);
+                            }
+                        }
+                    }
+                }
+
+                foreach (var key in keys)
+                {
+                    memoryCache.Remove(key);
                 }
             }
             else
             {
-                // 尾缀模式匹配
-                foreach (var key in entries.Keys)
-                {
-                    var k = key as string;
-                    if (k != null)
-                    {
-                        if (k.EndsWith(pattern))
-                        {
-                            keys.Add(k);
-                        }
-                    }
-                }
+                throw new Exception("前缀或尾缀匹配不可用!");
             }
-
-            foreach (var key in keys)
-            {
-                memoryCache.Remove(key);
-            }
-        }
-        else
-        {
-            throw new Exception("前缀或尾缀匹配不可用!");
-        }
     }
 
     private IConnectionMultiplexer GetMultiplexer(AopContext aopContext)
