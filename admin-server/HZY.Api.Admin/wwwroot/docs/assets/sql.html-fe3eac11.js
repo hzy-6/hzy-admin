@@ -1,0 +1,1 @@
+const a=JSON.parse('{"key":"v-72d0308d","path":"/guide/hzy-admin/database/sql.html","title":"SQL 初始化数据库","lang":"zh-CN","frontmatter":{},"headers":[],"git":{"updatedTime":1685428009000,"contributors":[{"name":"hzy","email":"1396510655@qq.com","commits":1}]},"filePathRelative":"guide/hzy-admin/database/sql.md"}');export{a as data};

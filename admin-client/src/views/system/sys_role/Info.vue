@@ -35,7 +35,7 @@ defineExpose({
     state.loading = true;
     SysRoleService.findForm(key).then((res) => {
       state.loading = false;
-      if (res.code != 1) return;
+      if (res.code != 200) return;
       state.vm = res.data;
       state.vm.form.password = "";
     });
@@ -51,7 +51,7 @@ function save() {
       state.loading = true;
       const result = await SysRoleService.saveForm(state.vm.id, state.vm.form);
       state.loading = false;
-      if (result.code != 1) return;
+      if (result.code != 200) return;
       Tools.message.success("操作成功!");
       props.onSuccess();
       state.visible = false;
@@ -63,7 +63,7 @@ function save() {
 </script>
 
 <template>
-  <a-modal v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="400">
+  <a-modal v-model:open="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="400">
     <template #footer>
       <a-button type="primary" :loading="state.loading" @click="save()"> 提交</a-button>
       <a-button @click="state.visible = false">关闭</a-button>

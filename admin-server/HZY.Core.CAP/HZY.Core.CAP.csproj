@@ -1,18 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<TieredPGO>true</TieredPGO>
-		<DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
-		<NoWarn>1701;1702;1591</NoWarn>
-	</PropertyGroup>
+	<Import Project="..\projects\project.targets"/>
 
 	<ItemGroup>
-		<PackageReference Include="DotNetCore.CAP" Version="7.1.1" />
-		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="7.1.1" />
-		<PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="7.1.1" />
+		<PackageReference Include="DotNetCore.CAP" Version="7.2.2" />
+		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="7.2.2" />
+		<PackageReference Include="DotNetCore.CAP.MySql" Version="7.2.2" />
+		<PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="7.2.2" />
+		<PackageReference Include="DotNetCore.CAP.RedisStreams" Version="7.2.2" />
 		<PackageReference Include="Savorboard.CAP.InMemoryMessageQueue" Version="7.0.0" />
 	</ItemGroup>
 

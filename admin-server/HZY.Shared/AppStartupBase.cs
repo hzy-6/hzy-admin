@@ -3,12 +3,9 @@
 /// <summary>
 /// 基础启动器
 /// </summary>
-/// <typeparam name="TStartup"></typeparam>
-[ImportStartup(typeof(SharedStartup),
-    typeof(RepositoryEFAdminStartup),
-    typeof(RepositoryFreeSqlAdminStartup)
-    )]
-public class AppStartupBase<TStartup> : AppStartupBaseCore<TStartup> where TStartup : Framework.Core.AspNetCore.IStartup, new()
+/// <typeparam name="TStartupMoudle"></typeparam>
+[ImportStartup(typeof(SharedStartup))]
+public class AppStartupBase<TStartupMoudle> : AppStartupBaseCore<TStartupMoudle> where TStartupMoudle : IStartupModule, new()
 {
     /// <summary>
     /// 注册服务

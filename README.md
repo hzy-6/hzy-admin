@@ -1,7 +1,9 @@
 # HzyAdmin
 
 ### QQ交流群
-    534584927（已满）、174311837
+
+    534584927  174311837   
+    
 
 
 ### 📝  介绍 
@@ -9,11 +11,11 @@
 
     数据库脚本位置根目录 doc 文件夹 目前仅提供了 MySql、SqlServer、PgSql 脚本 ，其他请使用efcore迁移（迁移教程请看语雀文档）
 
-    后端技术：.Net6、EFCore6、Swagger 、Redis
+    后端技术：.Net8、EFCore8、Swagger 、Redis
     
-    前端：Vue3.x 、Antd Of Vue 3.0 、Vite 、Pinia 2.0.x 、TypeScript
+    前端：Vue3.x 、Antd Of Vue 4.x 、Vite 、Pinia 2.0.x 、TypeScript
     
-    开发需要环境：vs2022 、 .Net6.0 、VsCode 、Redis
+    开发需要环境：vs2022 、 .Net8.0 、VsCode 、Redis
 
 ### [演示地址](http://124.221.128.7:5600)
 

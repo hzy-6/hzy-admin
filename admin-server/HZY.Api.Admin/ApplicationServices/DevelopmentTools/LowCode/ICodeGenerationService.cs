@@ -3,7 +3,7 @@
 /// <summary>
 /// 代码生成服务
 /// </summary>
-public interface ICodeGenerationService : ITransientDependency
+public interface ICodeGenerationService : IScopedDependency
 {
     /// <summary>
     /// 生成上下文集合

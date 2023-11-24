@@ -4,140 +4,6 @@
         <name>HZY.Core</name>
     </assembly>
     <members>
-        <member name="T:HZY.Core.ApiResultManage.ApiResult">
-            <summary>
-            Api 消息返回类
-            </summary>
-        </member>
-        <member name="M:HZY.Core.ApiResultManage.ApiResult.ResultMessage(HZY.Core.ApiResultManage.ApiResultCodeEnum,System.String)">
-            <summary>
-            返回消息
-            </summary>
-            <param name="apiResultCodeEnum"></param>
-            <param name="message"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.ApiResultManage.ApiResult.ResultData(HZY.Core.ApiResultManage.ApiResultCodeEnum,System.Object)">
-            <summary>
-            返回数据
-            </summary>
-            <param name="apiResultCodeEnum"></param>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.ApiResultManage.ApiResult.Result(HZY.Core.ApiResultManage.ApiResultCodeEnum,System.String,System.Object)">
-            <summary>
-            可返回消息和数据
-            </summary>
-            <param name="apiResultCodeEnum"></param>
-            <param name="message"></param>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.ApiResultManage.ApiResult.ResultMessage(System.Int32,System.String)">
-            <summary>
-            返回消息
-            </summary>
-            <param name="code"></param>
-            <param name="message"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.ApiResultManage.ApiResult.ResultData(System.Int32,System.Object)">
-            <summary>
-            返回数据
-            </summary>
-            <param name="code"></param>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.ApiResultManage.ApiResult.Result(System.Int32,System.String,System.Object)">
-            <summary>
-            可返回消息和数据
-            </summary>
-            <param name="code"></param>
-            <param name="message"></param>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.ApiResultManage.ApiResult.OkMessage(System.String)">
-            <summary>
-            成功 可返回消息
-            </summary>
-            <param name="message"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.ApiResultManage.ApiResult.OkData(System.Object)">
-            <summary>
-            成功 可返回数据
-            </summary>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.ApiResultManage.ApiResult.Ok(System.String,System.Object)">
-            <summary>
-            成功 可返回 消息和数据
-            </summary>
-            <param name="message"></param>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.ApiResultManage.ApiResult.WarnMessage(System.String)">
-            <summary>
-            警告 可返回消息
-            </summary>
-            <param name="message"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.ApiResultManage.ApiResult.WarnData(System.Object)">
-            <summary>
-            警告 可返回数据
-            </summary>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.ApiResultManage.ApiResult.Warn(System.String,System.Object)">
-            <summary>
-            警告 可返回 消息和数据
-            </summary>
-            <param name="message"></param>
-            <param name="data"></param>
-            <returns></returns>
-        </member>
-        <member name="T:HZY.Core.ApiResultManage.ApiResultCodeEnum">
-            <summary>
-            消息返回码
-            </summary>
-        </member>
-        <member name="F:HZY.Core.ApiResultManage.ApiResultCodeEnum.RequestLimit">
-            <summary>
-            请求限制
-            </summary>
-        </member>
-        <member name="F:HZY.Core.ApiResultManage.ApiResultCodeEnum.NotFount">
-            <summary>
-            接口不存在
-            </summary>
-        </member>
-        <member name="F:HZY.Core.ApiResultManage.ApiResultCodeEnum.Error">
-            <summary>
-            程序错误
-            </summary>
-        </member>
-        <member name="F:HZY.Core.ApiResultManage.ApiResultCodeEnum.UnAuth">
-            <summary>
-            未授权
-            </summary>
-        </member>
-        <member name="F:HZY.Core.ApiResultManage.ApiResultCodeEnum.Warn">
-            <summary>
-            警告
-            </summary>
-        </member>
-        <member name="F:HZY.Core.ApiResultManage.ApiResultCodeEnum.Ok">
-            <summary>
-            成功
-            </summary>
-        </member>
         <member name="T:HZY.Core.ApiResultManage.MessageBox">
             <summary>
             警告消息
@@ -162,11 +28,115 @@
             <param name="message"></param>
             <param name="data"></param>
         </member>
-        <member name="M:HZY.Core.ApiResultManage.MessageBox.Show(HZY.Core.ApiResultManage.ApiResult)">
+        <member name="M:HZY.Core.ApiResultManage.MessageBox.Show(HZY.Core.ApiResultManage.R)">
             <summary>
             支持传入 ApiResult 对象
             </summary>
             <param name="apiResult"></param>
+        </member>
+        <member name="T:HZY.Core.ApiResultManage.R">
+            <summary>
+            Api 消息返回类
+            </summary>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.R.ResultMessage(System.Net.HttpStatusCode,System.String)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.R.ResultData(System.Net.HttpStatusCode,System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="code"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.R.Result(System.Net.HttpStatusCode,System.String,System.Object)">
+            <summary>
+            可返回消息和数据
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.R.ResultMessage(System.Int32,System.String)">
+            <summary>
+            返回消息
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.R.ResultData(System.Int32,System.Object)">
+            <summary>
+            返回数据
+            </summary>
+            <param name="code"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.R.Result(System.Int32,System.String,System.Object)">
+            <summary>
+            可返回消息和数据
+            </summary>
+            <param name="code"></param>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.R.OkMessage(System.String)">
+            <summary>
+            成功 可返回消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.R.OkData(System.Object)">
+            <summary>
+            成功 可返回数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.R.Ok(System.String,System.Object)">
+            <summary>
+            成功 可返回 消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.R.ErrorMessage(System.String)">
+            <summary>
+            Error 可返回消息
+            </summary>
+            <param name="message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.R.ErrorData(System.Object)">
+            <summary>
+            Error 可返回数据
+            </summary>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.ApiResultManage.R.Error(System.String,System.Object)">
+            <summary>
+            Error 可返回 消息和数据
+            </summary>
+            <param name="message"></param>
+            <param name="data"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.ApiResultManage.R`1">
+            <summary>
+            Api 消息返回类
+            </summary>
         </member>
         <member name="T:HZY.Core.CoreStartup">
             <summary>
@@ -310,6 +280,12 @@
             异常过滤器
             </summary>
         </member>
+        <member name="M:HZY.Core.Filters.ApiExceptionFilter.Unauthorized(Microsoft.AspNetCore.Mvc.Filters.ExceptionContext)">
+            <summary>
+            未授权
+            </summary>
+            <param name="context"></param>
+        </member>
         <member name="T:HZY.Core.Filters.ApiResourceCacheFilterAttribute">
             <summary>
             接口资源加载过滤 拦截资源做缓存
@@ -424,6 +400,16 @@
             <param name="source"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Core.Mappers.ObjectMapper.MapTo``2(``0,``1)">
+            <summary>
+            copy object
+            </summary>
+            <typeparam name="TOld"></typeparam>
+            <typeparam name="TNew"></typeparam>
+            <param name="source"></param>
+            <param name="new"></param>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Core.Mappers.ObjectMapper.MapToList``2(System.Collections.Generic.IEnumerable{``0})">
             <summary>
             copy list
@@ -521,37 +507,27 @@
             <param name="controllerBase"></param>
             <returns></returns>
         </member>
-        <member name="T:HZY.Core.SerilogUtil.LogUtil">
+        <member name="T:HZY.Core.Startups.CoreAutoRegisterIOCStartup">
             <summary>
-            日志工具
+            程序启动器 - 自动化注册服务
             </summary>
         </member>
-        <member name="M:HZY.Core.SerilogUtil.LogUtil.AddLogUtil(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+        <member name="M:HZY.Core.Startups.CoreAutoRegisterIOCStartup.#ctor">
             <summary>
-            启动
-            </summary>
-            <param name="builder"></param>
-            <returns></returns>
-        </member>
-        <member name="P:HZY.Core.SerilogUtil.LogUtil.Log">
-            <summary>
-            日志对象
+            程序启动器
             </summary>
         </member>
-        <member name="T:HZY.Core.SerilogUtil.DateTimeNowEnricher">
+        <member name="M:HZY.Core.Startups.CoreAutoRegisterIOCStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
             <summary>
-            时间处理
+            
             </summary>
+            <param name="webApplicationBuilder"></param>
         </member>
-        <member name="T:HZY.Core.Swaggers.InSwaggerFormHideAttribute">
+        <member name="M:HZY.Core.Startups.CoreAutoRegisterIOCStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
             <summary>
-            在 swagger 表单中 隐藏字段
+            
             </summary>
-        </member>
-        <member name="T:HZY.Core.Swaggers.InSwaggerFormHideSchemaFilter">
-            <summary>
-            在 swagger 表单中 隐藏字段 过滤
-            </summary>
+            <param name="webApplication"></param>
         </member>
         <member name="T:HZY.Core.TextJson.DateTimeJsonConverter">
             <summary>
@@ -684,6 +660,14 @@
             <typeparam name="T"></typeparam>
             <returns></returns>
         </member>
+        <member name="M:HZY.Core.Tools.GetNamespacePrefix(System.String)">
+            <summary>
+            获取命名空间前缀
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="namespaces"></param>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Core.Tools.GetAppName``1">
             <summary>
             获取 程序名称 根据类型 下的命名空间
@@ -696,6 +680,75 @@
             获取 程序名称 根据类型 下的命名空间
             </summary>
             <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.GetNewId">
+            <summary>
+            获取 雪花 id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.IsDocker(Microsoft.Extensions.Hosting.IHostEnvironment)">
+            <summary>
+            Checks if the current host environment name is <see cref="!:EnvironmentName.Production"/>.
+            </summary>
+            <param name="hostEnvironment">An instance of <see cref="T:Microsoft.Extensions.Hosting.IHostEnvironment"/>.</param>
+            <returns>True if the environment name is <see cref="!:EnvironmentName.Production"/>, otherwise false.</returns>
+        </member>
+        <member name="M:HZY.Core.Tools.IsDouble(System.String)">
+            <summary>
+            判断是否为 double 类型
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.IsTimestampString(System.String)">
+            <summary>
+            判断字符串是否为时间戳
+            </summary>
+            <param name="timestampString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.ToUtcDateTime(System.Int64)">
+            <summary>
+            时间戳转换为本地时间
+            </summary>
+            <param name="timeStamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.ToLocalDateTime(System.Int64)">
+            <summary>
+            时间戳转换为 Utc 时间
+            </summary>
+            <param name="timeStamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.ToLocalDateTimeString(System.Int64)">
+            <summary>
+            时间戳转换为本地时间
+            </summary>
+            <param name="timeStamp"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.ToLocalTimestamp(System.DateTime)">
+            <summary>
+            转时间戳
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.ToUtcTimestamp(System.DateTime)">
+            <summary>
+            转时间戳
+            </summary>
+            <param name="dateTime"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.IsDateTimeByString(System.String)">
+            <summary>
+            判断字符串是否为有效的 日期类型
+            </summary>
+            <param name="input"></param>
             <returns></returns>
         </member>
         <member name="T:HZY.Core.Zips.Zip">

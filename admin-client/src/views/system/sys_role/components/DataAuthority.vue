@@ -44,7 +44,7 @@ defineExpose({
     state.loading = true;
     SysDataAuthorityService.getDataAuthorityByRoleId(key).then(async (res) => {
       state.loading = false;
-      if (res.code != 1) return;
+      if (res.code != 200) return;
       state.vm.form.sysDataAuthority = res.data.sysDataAuthority;
       state.vm.form.sysDataAuthority.roleId = key; //赋予角色id
       state.vm.form.sysDataAuthorityCustomList = res.data.sysDataAuthorityCustomList;
@@ -90,7 +90,7 @@ async function save() {
 
   state.loading = true;
   const result = await SysDataAuthorityService.saveForm(state.vm.id, state.vm.form);
-  if (result.code != 1) return;
+  if (result.code != 200) return;
   Tools.message.success("操作成功!");
   props.onSuccess();
   state.visible = false;
@@ -120,7 +120,7 @@ function onExpandedAll() {
 </script>
 
 <template>
-  <a-modal v-model:visible="state.visible" title="数据权限设置" centered @ok="state.visible = false" :width="400">
+  <a-modal v-model:open="state.visible" title="数据权限设置" centered @ok="state.visible = false" :width="400">
     <template #footer>
       <a-button type="primary" :loading="state.loading" @click="save()"> 提交</a-button>
       <a-button @click="state.visible = false">关闭</a-button>

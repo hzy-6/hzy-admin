@@ -1,17 +1,10 @@
 try
 {
-    await WebApplication.CreateBuilder(args)
-         // 加入 hzy framework
-         .AddHzyFramework<ApiAdminStartup>()
-         // 构建
-         .Build()
-         // 启动 app
-         .StartHzyFrameworkAsync()
-    ;
+    await HzyApplication.RunAsync<ApiAdminStartup>(args);
 }
 catch (Exception ex)
 {
-    LogUtil.Log.Fatal(ex, "主机意外终止...");
+    LogUtil.Log.Fatal(ex, "涓绘満鎰忓缁堟...");
     throw;
 }
 finally

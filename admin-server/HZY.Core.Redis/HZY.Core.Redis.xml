@@ -16,14 +16,14 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.BaseCacheAttribute.GetCacheKey(HZY.Framework.AutoRegisterIOC.AopContext)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.BaseCacheAttribute.GetCacheKey(Rougamo.Context.MethodContext)">
             <summary>
             获取缓存Key
             </summary>
             <param name="context"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.BaseCacheAttribute.ParseCacheKey(HZY.Framework.AutoRegisterIOC.AopContext)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.BaseCacheAttribute.ParseCacheKey(Rougamo.Context.MethodContext)">
             <summary>
             解析缓存主键
             </summary>
@@ -45,11 +45,11 @@
             <param name="name">需要的属性名</param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.BaseCacheAttribute.GetDatabase(HZY.Framework.AutoRegisterIOC.AopContext)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.BaseCacheAttribute.GetDatabase(Rougamo.Context.MethodContext)">
             <summary>
             获取Redis数据库
             </summary>
-            <param name="aopContext"></param>
+            <param name="MethodContext"></param>
             <returns></returns>
         </member>
         <member name="T:HZY.Core.Redis.Aop.Cache.CacheableAttribute">
@@ -63,70 +63,49 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.Before(HZY.Framework.AutoRegisterIOC.AopContext)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.OnEntry(Rougamo.Context.MethodContext)">
             <summary>
-            Before
+            
             </summary>
-            <param name="aopContext"></param>
+            <param name="context"></param>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.Before``1(HZY.Framework.AutoRegisterIOC.AopContext)">
-            <summary>
-            Before~TResult
-            </summary>
-            <param name="aopContext"></param>
-            <typeparam name="TResult"></typeparam>
-        </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.After(HZY.Framework.AutoRegisterIOC.AopContext)">
-            <summary>
-            After
-            </summary>
-            <param name="aopContext"></param>
-        </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.After``1(HZY.Framework.AutoRegisterIOC.AopContext,``0)">
-            <summary>
-            After TResult
-            </summary>
-            <param name="aopContext"></param>
-            <param name="result"></param>
-            <typeparam name="TResult"></typeparam>
-        </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.GetMemoryCache(HZY.Framework.AutoRegisterIOC.AopContext)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.GetMemoryCache(Rougamo.Context.MethodContext)">
             <summary>
             获取 MemoryCache 缓存
             </summary>
-            <param name="aopContext"></param>
+            <param name="context"></param>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.GetRedisCache(HZY.Framework.AutoRegisterIOC.AopContext)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.GetRedisCache(Rougamo.Context.MethodContext)">
             <summary>
             获取 RedisCache 缓存
             </summary>
-            <param name="aopContext"></param>
+            <param name="context"></param>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.GetRedisCache``1(HZY.Framework.AutoRegisterIOC.AopContext)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.GetRedisCache``1(Rougamo.Context.MethodContext)">
             <summary>
             获取 RedisCache 缓存
             </summary>
-            <param name="aopContext"></param>
+            <param name="context"></param>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.CreateCache(HZY.Framework.AutoRegisterIOC.AopContext,System.Object)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.CreateCache(Rougamo.Context.MethodContext,System.Object)">
             <summary>
             创建缓存
             </summary>
-            <param name="aopContext"></param>
+            <param name="MethodContext"></param>
             <param name="result"></param>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.CreateMemoryCache(HZY.Framework.AutoRegisterIOC.AopContext,System.Object)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.CreateMemoryCache(Rougamo.Context.MethodContext,System.Object)">
             <summary>
             创建内存缓存
             </summary>
-            <param name="aopContext"></param>
+            <param name="context"></param>
             <param name="result"></param>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.CreateRedisCache(HZY.Framework.AutoRegisterIOC.AopContext,System.Object)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.CreateRedisCache(Rougamo.Context.MethodContext,System.Object)">
             <summary>
             创建Redis缓存
             </summary>
-            <param name="aopContext"></param>
+            <param name="context"></param>
             <param name="result"></param>
         </member>
         <member name="T:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute">
@@ -147,38 +126,26 @@
             </summary>
             <value></value>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute.Before(HZY.Framework.AutoRegisterIOC.AopContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute.Before``1(HZY.Framework.AutoRegisterIOC.AopContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute.After(HZY.Framework.AutoRegisterIOC.AopContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute.After``1(HZY.Framework.AutoRegisterIOC.AopContext,``0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute.RemoveKey(HZY.Framework.AutoRegisterIOC.AopContext)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute.RemoveKey(Rougamo.Context.MethodContext)">
             <summary>
             移除key
             </summary>
             <param name="aopContext"></param>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute.RemoveRedisKey(HZY.Framework.AutoRegisterIOC.AopContext)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute.RemoveRedisKey(Rougamo.Context.MethodContext)">
             <summary>
             移除redis key
             </summary>
             <param name="aopContext"></param>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute.RemoveRedisGroupKey(HZY.Framework.AutoRegisterIOC.AopContext,System.String)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute.RemoveRedisGroupKey(Rougamo.Context.MethodContext,System.String)">
             <summary>
             移除Redis分组的key
             </summary>
             <param name="aopContext"></param>
             <param name="cacheKey"></param>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute.RemoveMemoryKey(HZY.Framework.AutoRegisterIOC.AopContext)">
+        <member name="M:HZY.Core.Redis.Aop.Cache.CacheEvictAttribute.RemoveMemoryKey(Rougamo.Context.MethodContext)">
             <summary>
             移除内存key
             </summary>

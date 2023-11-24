@@ -1,12 +1,13 @@
 <script lang="ts" setup>
-import { reactive, ref, onMounted } from "vue";
+import {reactive, ref, onMounted} from "vue";
 import AppIcon from "@/core/components/AppIcon.vue";
 import Info from "./Info.vue";
 import Tools from "@/core/utils/Tools";
 import PageContainer from "@/core/components/PageContainer.vue";
 import TableCurd from "@/core/components/curd/TableCurd.vue";
-import { FormInstance } from "ant-design-vue";
-defineOptions({ name: "ListIndexCom" });
+import {FormInstance} from "ant-design-vue";
+
+defineOptions({name: "ListIndexCom"});
 
 const columns = [
   {
@@ -20,6 +21,7 @@ const columns = [
     dataIndex: "name",
     ellipsis: true,
     width: 130,
+    fixed: "left",
   },
   {
     title: "年龄",
@@ -140,7 +142,7 @@ function deleteList(id?: string) {
 
 //打开表单页面
 function openForm(id: string) {
-  refInfo.value!.open({ key: id });
+  refInfo.value!.open({key: id});
 }
 </script>
 
@@ -151,31 +153,31 @@ function openForm(id: string) {
       <!-- <img alt="这是一个标题" src="https://gw.alipayobjects.com/zos/rmsportal/RzwpdLnhmvDJToTdfDPe.png" width="80" /> -->
     </template>
 
-    <TableCurd :config="state" ref="refTableCurd">
+    <TableCurd v-model:config="state" ref="refTableCurd">
       <!-- search -->
       <template #search>
         <a-form ref="refSearchForm" :model="state.search.vm">
           <a-row :gutter="[16, 0]">
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item class="mb-0" name="value" label="真实姓名">
-                <a-input v-model:value="state.search.vm.value" placeholder="真实名称" />
+                <a-input v-model:value="state.search.vm.value" placeholder="真实名称"/>
               </a-form-item>
             </a-col>
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item class="mb-0" name="value" label="真实姓名">
-                <a-input v-model:value="state.search.vm.value" placeholder="真实名称" />
+                <a-input v-model:value="state.search.vm.value" placeholder="真实名称"/>
               </a-form-item>
             </a-col>
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item class="mb-0" name="value" label="真实姓名">
-                <a-input v-model:value="state.search.vm.value" placeholder="真实名称" />
+                <a-input v-model:value="state.search.vm.value" placeholder="真实名称"/>
               </a-form-item>
             </a-col>
             <!--button-->
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" class="text-right">
               <a-space :size="8">
                 <a-button
-                  @click="
+                    @click="
                     state.page = 1;
                     refSearchForm?.resetFields();
                     findList();
@@ -184,8 +186,8 @@ function openForm(id: string) {
                   重置
                 </a-button>
                 <a-button
-                  type="primary"
-                  @click="
+                    type="primary"
+                    @click="
                     state.page = 1;
                     findList();
                   "
@@ -200,19 +202,23 @@ function openForm(id: string) {
       <!-- toolbar-left -->
       <template #toolbar-left>
         <a-button @click="state.search.state = !state.search.state">
-          <div v-if="state.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
-          <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
+          <div v-if="state.search.state">
+            <AppIcon name="UpOutlined"/>&nbsp;&nbsp;收起
+          </div>
+          <div v-else>
+            <AppIcon name="DownOutlined"/>&nbsp;&nbsp;展开
+          </div>
         </a-button>
         <a-button type="primary" @click="openForm('')">
           <template #icon>
-            <AppIcon name="PlusOutlined" />
+            <AppIcon name="PlusOutlined"/>
           </template>
           新建
         </a-button>
         <a-popconfirm title="您确定要删除?" @confirm="deleteList()" okText="确定" cancelText="取消">
           <a-button type="primary" danger>
             <template #icon>
-              <AppIcon name="DeleteOutlined" />
+              <AppIcon name="DeleteOutlined"/>
             </template>
             批量删除
           </a-button>
@@ -228,32 +234,30 @@ function openForm(id: string) {
               <a-menu-item key="3" @click="exportExcel()">导入 Excel</a-menu-item>
             </a-menu>
           </template>
-          <a-button> 更多 <AppIcon name="ellipsis-outlined" /> </a-button>
-        </a-dropdown>
-        <a-tooltip title="列设置">
-          <a-button type="text">
-            <template #icon><AppIcon name="setting-outlined" /> </template>
+          <a-button> 更多
+            <AppIcon name="ellipsis-outlined"/>
           </a-button>
-        </a-tooltip>
+        </a-dropdown>
       </template>
+
       <!-- table-col -->
-      <template #table-col>
-        <template v-for="item in state.columns.filter((w:any) => w.dataIndex !== 'id')" :key="item.dataIndex">
-          <a-table-column :title="item.title" :data-index="item.dataIndex" />
-        </template>
+      <template #table-col></template>
+      <!--列插槽-->
+      <template #id="item">
         <!-- 操作 -->
-        <a-table-column title="操作" data-index="id">
+        <a-table-column v-bind="item">
           <template #default="{ record }">
             <a @click="openForm(record.id)">编辑</a>
-            <a-divider type="vertical" />
+            <a-divider type="vertical"/>
             <a-popconfirm title="您确定要删除?" @confirm="deleteList(record.id)" okText="确定" cancelText="取消">
               <a class="text-danger">删除</a>
             </a-popconfirm>
           </template>
         </a-table-column>
       </template>
+
     </TableCurd>
     <!-- info -->
-    <Info ref="refInfo" :onSuccess="() => findList()" />
+    <Info ref="refInfo" :onSuccess="() => findList()"/>
   </PageContainer>
 </template>

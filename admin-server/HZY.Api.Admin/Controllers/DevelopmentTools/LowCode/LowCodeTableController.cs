@@ -1,4 +1,6 @@
-﻿namespace HZY.Api.Admin.Controllers.DevelopmentTools.LowCode;
+﻿using HZY.Api.Admin.ApplicationServices.DevelopmentTools.LowCode.Impl;
+
+namespace HZY.Api.Admin.Controllers.DevelopmentTools.LowCode;
 
 [ControllerDescriptor(MenuId = "请设置菜单Id 系统菜单表中查找", DisplayName = nameof(LowCodeTableController))]
 public class LowCodeTableController : AdminControllerBase<LowCodeTableService>

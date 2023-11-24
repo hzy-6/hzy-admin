@@ -30,7 +30,6 @@ public class SysDictionaryService : ApplicationService<IRepository<SysDictionary
               .OrderBy(w => w.t1.Sort)
               .Select(w => new SysDictionaryDto
               {
-                  Id = w.t1.Id,
                   Sort = w.t1.Sort,
                   Code = w.t1.Code,
                   Name = w.t1.Name,
@@ -39,6 +38,7 @@ public class SysDictionaryService : ApplicationService<IRepository<SysDictionary
                   ParentName = w.t2.Name,
                   LastModificationTime = w.t1.LastModificationTime,
                   CreationTime = w.t1.CreationTime,
+                  Id = w.t1.Id,
               })
           ;
 

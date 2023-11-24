@@ -47,7 +47,7 @@ public class ApiAuthorizationFilter : IAsyncAuthorizationFilter
         //验证 token 是否过期无效 或者 检查 token 是否授权
         if (!_accountService.IsValidate)
         {
-            context.Result = new JsonResult(ApiResult.ResultMessage(ApiResultCodeEnum.UnAuth, unAuthMessage));
+            context.Result = new JsonResult(R.ResultMessage(HttpStatusCode.Unauthorized, unAuthMessage));
         }
     }
 

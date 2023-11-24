@@ -1,6 +1,6 @@
 <template>
   <a-input v-model:value="cron" placeholder="请输入" @click="onClick" />
-  <a-modal title="Cron表达式" v-model:visible="visible" :footer="null" :width="800" :bodyStyle="{ padding: 0 }">
+  <a-modal title="Cron表达式" v-model:open="visible" :footer="null" :width="800" :bodyStyle="{ padding: 0 }">
     <Vue3CronCore i18n="cn" maxHeight="350px" @change="onChangeCron" v-model:value="cron" />
   </a-modal>
 </template>

@@ -1,11 +1,11 @@
 import { defineStore } from "pinia";
 import { reactive } from "vue";
 import router from "@/core/router";
-import TabsStore, { ITabsItem } from "./layouts/TabsStore";
-import AppConsts from "@/utils/AppConsts";
-import { MenuItemModel } from "@/core/store/layouts/MenuStore";
+import TabsStore, { ITabsItem } from "@/core/store/layouts/TabsStore.js";
+import AppConsts from "@/utils/AppConsts.js";
+import { MenuItemModel } from "@/core/store/layouts/MenuStore.js";
 import { RouteRecordRaw } from "vue-router";
-import SysUserService from "@/services/system/SysUserService";
+import SysUserService from "@/services/system/SysUserService.js";
 
 interface IDefaultUserInfo {
   name: string;

@@ -52,7 +52,7 @@ async function findList() {
     state.loading = true;
     const result = await SysOrganizationService.findList(state.search.vm);
     state.loading = false;
-    if (result.code != 1) return;
+    if (result.code != 200) return;
     // state.page = result.data.page;
     // state.size = result.data.size;
     // state.total = result.data.total;
@@ -82,7 +82,7 @@ async function deleteList(id?: string) {
     state.loading = true;
     const result = await SysOrganizationService.deleteList(ids);
     state.loading = false;
-    if (result.code != 1) return;
+    if (result.code != 200) return;
     Tools.message.success("删除成功!");
     findList();
   } catch (error) {

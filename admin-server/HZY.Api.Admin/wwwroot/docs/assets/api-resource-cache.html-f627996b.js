@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-a0a7007a","path":"/guide/hzy-admin/web-api/api-resource-cache.html","title":"缓存特性","lang":"zh-CN","frontmatter":{},"headers":[],"git":{"updatedTime":1685435672000,"contributors":[{"name":"hzy","email":"1396510655@qq.com","commits":1}]},"filePathRelative":"guide/hzy-admin/web-api/api-resource-cache.md"}');export{e as data};

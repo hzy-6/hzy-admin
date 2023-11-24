@@ -1,6 +1,4 @@
-﻿using HZY.Shared.ApplicationServices.PagingViews;
-
-namespace HZY.Api.Admin.ApplicationServices.Systems;
+﻿namespace HZY.Api.Admin.ApplicationServices.Systems;
 
 /// <summary>
 /// 操作日服务
@@ -8,20 +6,12 @@ namespace HZY.Api.Admin.ApplicationServices.Systems;
 public class SysOperationLogService : ApplicationService<IRepository<SysOperationLog>>
 {
     private readonly IRepository<SysUser> _sysUserRepository;
-    private readonly PagingViewService _pagingViewService;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="defaultRepository"></param>
-    /// <param name="sysUserRepository"></param>
     public SysOperationLogService(IRepository<SysOperationLog> defaultRepository,
-          IRepository<SysUser> sysUserRepository,
-          PagingViewService pagingViewService)
+          IRepository<SysUser> sysUserRepository)
         : base(defaultRepository)
     {
         _sysUserRepository = sysUserRepository;
-        _pagingViewService = pagingViewService;
     }
 
     /// <summary>
@@ -42,7 +32,6 @@ public class SysOperationLogService : ApplicationService<IRepository<SysOperatio
                      .WhereIf(pagingSearchInput.Search.EndTime != null, w => w.log.CreationTime.Date <= pagingSearchInput.Search.EndTime.Value)
                      .Select(w => new
                      {
-                         w.log.Id,
                          w.log.Api,
                          w.log.Browser,
                          w.log.Ip,
@@ -52,7 +41,8 @@ public class SysOperationLogService : ApplicationService<IRepository<SysOperatio
                          w.use.LoginName,
                          w.log.ControllerDisplayName,
                          w.log.ActionDisplayName,
-                         w.log.CreationTime
+                         w.log.CreationTime,
+                         w.log.Id,
                      })
                      ;
 
@@ -62,7 +52,7 @@ public class SysOperationLogService : ApplicationService<IRepository<SysOperatio
             .FormatValue(query, w => w.CreationTime, (oldValue) => oldValue.ToString("yyyy-MM-dd HH:mm:ss"))
             ;
 
-        return _pagingViewService.BuilderColumns(result);
+        return result;
     }
 
     /// <summary>

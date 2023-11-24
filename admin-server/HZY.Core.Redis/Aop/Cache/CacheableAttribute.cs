@@ -13,126 +13,115 @@ public class CacheableAttribute : BaseCacheAttribute
     public long CacheDuration { get; set; } = 10;
 
     /// <summary>
-    /// Before
+    /// 
     /// </summary>
-    /// <param name="aopContext"></param>
-    public override void Before(AopContext aopContext)
+    /// <param name="context"></param>
+    public override void OnEntry(MethodContext context)
     {
         if (RedisServiceType == null)
         {
-            GetMemoryCache(aopContext);
+            GetMemoryCache(context);
             return;
         }
 
-        GetRedisCache(aopContext);
+        GetRedisCache(context);
     }
 
-    /// <summary>
-    /// Before~TResult
-    /// </summary>
-    /// <param name="aopContext"></param>
-    /// <typeparam name="TResult"></typeparam>
-    public override void Before<TResult>(AopContext aopContext)
+    public override void OnException(MethodContext context)
     {
-        if (RedisServiceType == null)
-        {
-            GetMemoryCache(aopContext);
-            return;
-        }
 
-        GetRedisCache<TResult>(aopContext);
     }
 
-    /// <summary>
-    /// After
-    /// </summary>
-    /// <param name="aopContext"></param>
-    public override void After(AopContext aopContext)
+    public override void OnSuccess(MethodContext context)
     {
-        if (aopContext.Invocation.ReturnValue == null)
+        if (context.ReturnValue == null)
         {
             return;
         }
 
-        CreateCache(aopContext, aopContext.Invocation.ReturnValue);
+        CreateCache(context, context.ReturnValue);
     }
 
-    /// <summary>
-    /// After TResult
-    /// </summary>
-    /// <param name="aopContext"></param>
-    /// <param name="result"></param>
-    /// <typeparam name="TResult"></typeparam>
-    public override void After<TResult>(AopContext aopContext, TResult result)
+    public override void OnExit(MethodContext context)
     {
-        if (aopContext.Invocation.ReturnValue == null)
-        {
-            return;
-        }
 
-        CreateCache(aopContext, result);
     }
 
     /// <summary>
     /// 获取 MemoryCache 缓存
     /// </summary>
-    /// <param name="aopContext"></param>
-    private void GetMemoryCache(AopContext aopContext)
+    /// <param name="context"></param>
+    private void GetMemoryCache(MethodContext context)
     {
-        var key = GetCacheKey(aopContext);
-        var memoryCache = aopContext.ServiceProvider.GetRequiredService<IMemoryCache>();
-        aopContext.Invocation.ReturnValue = memoryCache.Get(key);
+        var key = GetCacheKey(context);
+        var memoryCache = m_ServiceProvider.Value?.GetRequiredService<IMemoryCache>();
+        context.ReplaceReturnValue(this, memoryCache.Get(key));
     }
 
     /// <summary>
     /// 获取 RedisCache 缓存
     /// </summary>
-    /// <param name="aopContext"></param>
-    private void GetRedisCache(AopContext aopContext)
+    /// <param name="context"></param>
+    private void GetRedisCache(MethodContext context)
     {
-        var key = GetCacheKey(aopContext);
-        var redisCache = GetDatabase(aopContext);
+        var key = GetCacheKey(context);
+        var redisCache = GetDatabase(context);
         var value = redisCache.StringGet(key);
-        aopContext.Invocation.ReturnValue = string.IsNullOrWhiteSpace(value) ? null : JsonConvert.DeserializeObject(value, aopContext.Invocation.Method.ReturnType);
+
+        var val = string.IsNullOrWhiteSpace(value) ? null : JsonConvert.DeserializeObject(value);
+
+        if (val == null) return;
+
+        context.ReplaceReturnValue(this, val);
     }
 
     /// <summary>
     /// 获取 RedisCache 缓存
     /// </summary>
-    /// <param name="aopContext"></param>
-    private void GetRedisCache<TResult>(AopContext aopContext)
+    /// <param name="context"></param>
+    private void GetRedisCache<TResult>(MethodContext context)
     {
-        var key = GetCacheKey(aopContext);
-        var redisCache = GetDatabase(aopContext);
+        var key = GetCacheKey(context);
+        var redisCache = GetDatabase(context);
         var value = redisCache.StringGet(key);
-        aopContext.Invocation.ReturnValue = string.IsNullOrWhiteSpace(value) ? null : JsonConvert.DeserializeObject<TResult>(value);
+
+        if (string.IsNullOrWhiteSpace(value))
+        {
+            return;
+        }
+
+        var val = JsonConvert.DeserializeObject<TResult>(value);
+
+        if (val == null) return;
+
+        context.ReplaceReturnValue(this, val);
     }
 
     /// <summary>
     /// 创建缓存
     /// </summary>
-    /// <param name="aopContext"></param>
+    /// <param name="MethodContext"></param>
     /// <param name="result"></param>
-    private void CreateCache(AopContext aopContext, object result)
+    private void CreateCache(MethodContext MethodContext, object result)
     {
         if (RedisServiceType == null)
         {
-            CreateMemoryCache(aopContext, result);
+            CreateMemoryCache(MethodContext, result);
             return;
         }
 
-        CreateRedisCache(aopContext, result);
+        CreateRedisCache(MethodContext, result);
     }
 
     /// <summary>
     /// 创建内存缓存
     /// </summary>
-    /// <param name="aopContext"></param>
+    /// <param name="context"></param>
     /// <param name="result"></param>
-    private void CreateMemoryCache(AopContext aopContext, object result)
+    private void CreateMemoryCache(MethodContext context, object result)
     {
-        var memoryCache = aopContext.ServiceProvider.GetRequiredService<IMemoryCache>();
-        var key = GetCacheKey(aopContext);
+        var memoryCache = m_ServiceProvider.Value?.GetRequiredService<IMemoryCache>();
+        var key = GetCacheKey(context);
 
         if (CacheDuration <= 0)
         {
@@ -147,12 +136,12 @@ public class CacheableAttribute : BaseCacheAttribute
     /// <summary>
     /// 创建Redis缓存
     /// </summary>
-    /// <param name="aopContext"></param>
+    /// <param name="context"></param>
     /// <param name="result"></param>
-    private void CreateRedisCache(AopContext aopContext, object result)
+    private void CreateRedisCache(MethodContext context, object result)
     {
-        var redisCache = GetDatabase(aopContext);
-        var key = GetCacheKey(aopContext);
+        var redisCache = GetDatabase(context);
+        var key = GetCacheKey(context);
 
         if (CacheDuration <= 0)
         {

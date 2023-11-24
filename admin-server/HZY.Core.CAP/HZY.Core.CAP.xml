@@ -4,6 +4,18 @@
         <name>HZY.Core.CAP</name>
     </assembly>
     <members>
+        <member name="M:HZY.Core.CAP.CoreCAPRedisStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Core.CAP.CoreCAPRedisStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            
+            </summary>
+            <param name="webApplication"></param>
+        </member>
         <member name="T:HZY.Core.CAP.CoreCAPStartup">
             <summary>
             CAP github : https://github.com/dotnetcore/CAP/blob/master/README.zh-cn.md

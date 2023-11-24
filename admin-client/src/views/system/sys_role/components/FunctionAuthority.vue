@@ -65,7 +65,7 @@ async function save() {
 
   scanningTreeData(state.treeData);
   const result = await SysRoleMenuFunctionService.saveForm(newData);
-  if (result.code != 1) return;
+  if (result.code != 200) return;
   Tools.message.success("操作成功!");
   props.onSuccess();
   state.visible = false;
@@ -100,7 +100,7 @@ function onChangeCheckbox(values: any, row: any) {
 </script>
 
 <template>
-  <a-drawer v-model:visible="state.visible" title="角色功能设置" centered @ok="state.visible = false" :width="1200" :footer="null">
+  <a-drawer v-model:open="state.visible" title="角色功能设置" centered @ok="state.visible = false" :width="1200" :footer="null">
     <template #extra>
       <ASpace>
         <a-button type="primary" @click="save()">保存/提交</a-button>

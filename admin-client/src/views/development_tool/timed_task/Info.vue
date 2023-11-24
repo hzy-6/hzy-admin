@@ -45,7 +45,7 @@ defineExpose({
     state.loading = true;
     TimedTaskService.findForm(key).then((res) => {
       state.loading = false;
-      if (res.code != 1) return;
+      if (res.code != 200) return;
       state.vm.form = res.data;
       state.vm.form.cron = state.vm.form.cron ?? "* * * * * ? *";
     });
@@ -59,7 +59,7 @@ function save() {
   refForm.value?.validate().then(async () => {
     state.loading = true;
     const result = await TimedTaskService.saveForm(state.vm.id, state.vm.form);
-    if (result.code != 1) return;
+    if (result.code != 200) return;
     Tools.message.success("操作成功!");
     props.onSuccess();
     state.visible = false;
@@ -68,7 +68,7 @@ function save() {
 </script>
 
 <template>
-  <a-modal v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="800">
+  <a-modal v-model:open="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="800">
     <template #footer>
       <a-button type="primary" :loading="state.loading" @click="save()"> 提交</a-button>
       <a-button @click="state.visible = false">关闭</a-button>
@@ -104,7 +104,7 @@ function save() {
             </a-form-item>
           </a-col>
 
-          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" v-show="state.vm.form.type==1">
+          <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12" v-show="state.vm.form.type == 1">
             <a-form-item label="请求方式" ref="requsetMode" name="requsetMode">
               <a-select v-model:value="state.vm.form.requsetMode">
                 <a-select-option :value="0">POST</a-select-option>

@@ -2,7 +2,8 @@
 import Char1 from "./components/Chart1.vue";
 import Char2 from "./components/Chart2.vue";
 import PageContainer from "@/core/components/PageContainer.vue";
-defineOptions({ name: "ChartBaseCom" });
+
+defineOptions({name: "ChartBaseCom"});
 
 </script>
 
@@ -18,12 +19,12 @@ defineOptions({ name: "ChartBaseCom" });
     <a-row :gutter="[15, 15]" class="pt-16">
       <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <a-card hoverable>
-          <Char1 />
+          <Char1/>
         </a-card>
       </a-col>
       <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
         <a-card hoverable>
-          <Char2 />
+          <Char2/>
         </a-card>
       </a-col>
     </a-row>

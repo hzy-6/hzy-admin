@@ -3,7 +3,7 @@
 /// <summary>
 /// 程序启动器 - 身份认证 注册、认证
 /// </summary>
-public class CoreIdentityStartup : Startup<CoreIdentityStartup>
+public class CoreIdentityStartup : StartupModule<CoreIdentityStartup>
 {
     /// <summary>
     /// 

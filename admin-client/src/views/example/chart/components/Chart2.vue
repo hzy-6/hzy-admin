@@ -1,73 +1,52 @@
 <script lang="ts" setup>
-import { onMounted, reactive } from "vue";
-import { Chart } from "@antv/g2";
+import {onMounted, reactive} from "vue";
+import {Chart} from "@antv/g2";
 
 var chartObject: Chart | null = null;
-const data = reactive([
-  { item: "事例一", count: 40, percent: 0.4 },
-  { item: "事例二", count: 21, percent: 0.21 },
-  { item: "事例三", count: 17, percent: 0.17 },
-  { item: "事例四", count: 13, percent: 0.13 },
-  { item: "事例五", count: 9, percent: 0.09 },
-]);
 
 /**
  * 初始化 chart
  */
 const chartInit = () => {
+
   chartObject = new Chart({
-    container: "container2",
-    autoFit: true,
+    container: 'container2',
     height: 500,
   });
 
-  chartObject.data(data);
+  chartObject.coordinate({type: 'theta'});
 
-  chartObject.coordinate("theta", {
-    radius: 0.85,
-  });
+  chartObject
+      .interval()
+      .transform({type: 'stackY'})
+      .data({
+        type: 'fetch',
+        value:
+            'https://gw.alipayobjects.com/os/bmw-prod/79fd9317-d2af-4bc4-90fa-9d07357398fd.csv',
+      })
+      .encode('y', 'value')
+      .encode('color', 'name')
+      .style('stroke', 'white')
+      .scale('color', {
+        palette: 'spectral',
+        offset: (t) => t * 0.8 + 0.1,
+      })
+      .label({
+        text: 'name',
+        radius: 0.8,
+        fontSize: 10,
+        fontWeight: 'bold',
+      })
+      .label({
+        text: (d, i, data) => (i < data.length - 3 ? d.value : ''),
+        radius: 0.8,
+        fontSize: 9,
+        dy: 12,
+      })
+      .animate('enter', {type: 'waveIn'})
+      .legend(false);
 
-  chartObject.scale("percent", {
-    formatter: (val) => {
-      val = val * 100 + "%";
-      return val;
-    },
-  });
-  chartObject.tooltip({
-    showTitle: false,
-    showMarkers: false,
-  });
-  chartObject.axis(false); // 关闭坐标轴
-  const interval = chartObject
-    .interval()
-    .adjust("stack")
-    .position("percent")
-    .color("item")
-    .label("percent", {
-      offset: -40,
-      style: {
-        textAlign: "center",
-        shadowBlur: 2,
-        shadowColor: "rgba(0, 0, 0, .45)",
-        fill: "#fff",
-      },
-    })
-    .tooltip("item*percent", (item, percent) => {
-      percent = percent * 100 + "%";
-      return {
-        name: item,
-        value: percent,
-      };
-    })
-    .style({
-      lineWidth: 1,
-      stroke: "#fff",
-    });
-  chartObject.interaction("element-single-selected");
   chartObject.render();
-
-  // 默认选择
-  interval.elements[0].setState("selected", true);
 };
 
 const createData = () => {
@@ -86,8 +65,8 @@ const createData = () => {
 
 onMounted(() => {
   chartInit();
-  createData();
-  setInterval(() => createData(), 2000);
+  // createData();
+  // setInterval(() => createData(), 2000);
 });
 </script>
 

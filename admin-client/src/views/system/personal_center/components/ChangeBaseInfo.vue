@@ -28,7 +28,7 @@ const rules = {
 function saveForm() {
   refForm.value?.validate().then(() => {
     PersonalCenterService.saveForm(state.vm).then((res) => {
-      if (res.code != 1) return;
+      if (res.code != 200) return;
       appStore.refreshUserInfo().then(() => {
         Tools.message.success("操作成功!");
       });

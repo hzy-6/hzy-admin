@@ -19,7 +19,7 @@ defineExpose({
 
 <template>
   <a-drawer
-    v-model:visible="visible"
+    v-model:open="visible"
     :title="'配置 - ' + rowData?.tableName"
     centered
     @close="

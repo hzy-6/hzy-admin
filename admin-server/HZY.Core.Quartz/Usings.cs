@@ -1,10 +1,9 @@
-﻿global using HZY.Core.ApiResultManage;
-global using HZY.Core.Quartz.Jobs;
+﻿global using HZY.Core.Quartz.Jobs;
 global using HZY.Core.Quartz.Models;
 global using HZY.Core.Quartz.Services;
-global using HZY.Framework.AutoRegisterIOC;
 global using HZY.Framework.Core;
 global using HZY.Framework.Core.AspNetCore;
+global using HZY.Framework.DependencyInjection;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.Extensions.DependencyInjection;
 global using Microsoft.Extensions.Logging;

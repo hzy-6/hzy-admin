@@ -9,20 +9,17 @@ public class SysMenuService : ApplicationService<IRepository<SysMenu>>
     private readonly IRepository<SysMenuFunction> _sysMenuFunctionRepository;
     private readonly IRepository<SysRoleMenuFunction> _sysRoleMenuFunctionRepository;
     private readonly AccountContext _accountInfo;
-    private readonly PagingViewService _pagingViewService;
 
     public SysMenuService(IRepository<SysMenu> defaultRepository,
         IRepository<SysFunction> sysFunctionRepository,
         IRepository<SysMenuFunction> sysMenuFunctionRepository,
         IRepository<SysRoleMenuFunction> sysRoleMenuFunctionRepository,
-        IAccountService accountService,
-        PagingViewService pagingViewService) : base(defaultRepository)
+        IAccountService accountService) : base(defaultRepository)
     {
         _sysFunctionRepository = sysFunctionRepository;
         _sysMenuFunctionRepository = sysMenuFunctionRepository;
         _sysRoleMenuFunctionRepository = sysRoleMenuFunctionRepository;
         _accountInfo = accountService.GetAccountContext();
-        _pagingViewService = pagingViewService;
     }
 
     /// <summary>
@@ -41,7 +38,6 @@ public class SysMenuService : ApplicationService<IRepository<SysMenu>>
               .OrderBy(w => w.t1.Number)
               .Select(w => new
               {
-                  w.t1.Id,
                   w.t1.Number,
                   w.t1.Name,
                   w.t1.Url,
@@ -53,6 +49,7 @@ public class SysMenuService : ApplicationService<IRepository<SysMenu>>
                   w.t1.Show,
                   w.t1.LastModificationTime,
                   w.t1.CreationTime,
+                  w.t1.Id,
               })
           ;
 
@@ -63,7 +60,7 @@ public class SysMenuService : ApplicationService<IRepository<SysMenu>>
             .FormatValue(query, w => w.LastModificationTime, (oldValue) => oldValue?.ToString("yyyy-MM-dd"))
             ;
 
-        return _pagingViewService.BuilderColumns(result);
+        return result;
     }
 
     /// <summary>
@@ -313,6 +310,17 @@ public class SysMenuService : ApplicationService<IRepository<SysMenu>>
             item.MenuId = newMenu.Id;
         }
         return await this._sysMenuFunctionRepository.InsertRangeAsync(newMenuFuncList);
+    }
+
+    /// <summary>
+    /// 获取菜单国际化json
+    /// </summary>
+    /// <returns></returns>
+    public async Task<Dictionary<string, string>> GetGlobalNameJsonAsync()
+    {
+        return await this._defaultRepository.SelectNoTracking
+            .OrderBy(w => w.Id)
+            .ToDictionaryAsync(w => "menu." + w.Id, w => w.Name!);
     }
 
 }

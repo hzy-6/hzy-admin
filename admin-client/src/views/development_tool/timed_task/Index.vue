@@ -38,7 +38,7 @@ async function findList() {
   loading.value = true;
   const result = await TimedTaskService.findList(searchValue.value);
   loading.value = false;
-  if (result.code != 1) return;
+  if (result.code != 200) return;
   taskList.value = result.data;
 }
 
@@ -50,7 +50,7 @@ async function deleteList(id: string) {
   loading.value = true;
   const result = await TimedTaskService.deleteList([id]);
   loading.value = false;
-  if (result.code != 1) return;
+  if (result.code != 200) return;
   Tools.message.success("删除成功!");
 }
 
@@ -64,7 +64,7 @@ async function onChecked(checked: number, id: string) {
     loading.value = true;
     const result = await TimedTaskService.run([id]);
     loading.value = false;
-    if (result.code != 1) {
+    if (result.code != 200) {
       //回退状态
       taskList.value.find((w) => w.id == id).state = 0;
       return;
@@ -73,7 +73,7 @@ async function onChecked(checked: number, id: string) {
     loading.value = true;
     const result = await TimedTaskService.close([id]);
     loading.value = false;
-    if (result.code != 1) {
+    if (result.code != 200) {
       //回退状态
       taskList.value.find((w) => w.id == id).state = 0;
       return;
@@ -95,7 +95,7 @@ async function onChecked(checked: number, id: string) {
         <div class="task" v-for="item in taskList">
           <div class="task-item">
             <div class="title" style="color: initial">
-              <span>{{ item.groupName }}</span> {{ item.name }} 
+              <span>{{ item.groupName }}</span> {{ item.name }}
             </div>
             <div class="value">{{ item.jobPoint }}</div>
           </div>

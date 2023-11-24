@@ -3,7 +3,7 @@
 /// <summary>
 /// 
 /// </summary>
-public class CoreRazorStartup : Startup<CoreRazorStartup>
+public class CoreRazorStartup : StartupModule<CoreRazorStartup>
 {
     /// <summary>
     /// 

@@ -43,7 +43,7 @@ function onClear() {
 
 <template>
   <div>
-    <a-drawer :title="props.title" placement="right" :visible="state.visible" :width="1300" @close="state.visible = false" :bodyStyle="{ padding: '16px', background: '#f0f2f5' }">
+    <a-drawer :title="props.title" placement="right" :open="state.visible" :width="1300" @close="state.visible = false" :bodyStyle="{ padding: '16px', background: '#f0f2f5' }">
       <slot></slot>
     </a-drawer>
     <!-- input 输入 -->

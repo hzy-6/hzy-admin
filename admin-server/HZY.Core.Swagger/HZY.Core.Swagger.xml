@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Core.Swagger</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Core.Swagger.Attributes.InSwaggerFormHideAttribute">
+            <summary>
+            在 swagger 表单中 隐藏字段
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Swagger.CoreSwaggerBaseStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            服务配置
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Core.Swagger.CoreSwaggerBaseStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            使用服务
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="M:HZY.Core.Swagger.CoreSwaggerJwtStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            服务配置
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Core.Swagger.CoreSwaggerJwtStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            使用服务
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="T:HZY.Core.Swagger.Filters.InSwaggerFormHideSchemaFilter">
+            <summary>
+            在 swagger 表单中 隐藏字段 过滤
+            </summary>
+        </member>
+    </members>
+</doc>

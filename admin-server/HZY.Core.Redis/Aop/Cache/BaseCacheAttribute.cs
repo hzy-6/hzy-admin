@@ -1,8 +1,11 @@
 namespace HZY.Core.Redis.Aop.Cache;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-public abstract class BaseCacheAttribute : AopBaseAttribute
+public abstract class BaseCacheAttribute : MoAttribute
 {
+    protected static AsyncLocal<IServiceProvider> m_ServiceProvider = new AsyncLocal<IServiceProvider>();
+    public static void SetServiceProvider(IServiceProvider serviceProvider) => m_ServiceProvider.Value = serviceProvider;
+
     /// <summary>
     /// 缓存Key 不填默认是 函数的命名空间.函数名称
     /// </summary>
@@ -20,15 +23,15 @@ public abstract class BaseCacheAttribute : AopBaseAttribute
     /// </summary>
     /// <param name="context"></param>
     /// <returns></returns>
-    protected virtual string GetCacheKey(AopContext context)
+    protected virtual string GetCacheKey(MethodContext context)
     {
         if (!string.IsNullOrWhiteSpace(CacheKey))
         {
             return ParseCacheKey(context);
         }
 
-        var name = context.Invocation.Method.Name;
-        var prefix = context.Invocation.Method.DeclaringType?.FullName;
+        var name = context.Method.Name;
+        var prefix = context.Method.DeclaringType?.FullName;
         return $"{prefix}.{name}";
     }
 
@@ -36,14 +39,14 @@ public abstract class BaseCacheAttribute : AopBaseAttribute
     /// 解析缓存主键
     /// </summary>
     /// <param name="context">拦截器上下文</param>
-    private string ParseCacheKey(AopContext context)
+    private string ParseCacheKey(MethodContext context)
     {
         //寻找大括号{} 内的内容
         var replaceParameters = Regex.Matches(CacheKey, @"\{(.+?)\}").Select(m => m.Groups[1].Value).ToList();
         if (replaceParameters.Count > 0)
         {
             // 获取所有方法参数
-            var typeNames = context.Invocation.Method.GetParameters().Select(t => t.Name).ToList();
+            var typeNames = context.Method.GetParameters().Select(t => t.Name).ToList();
             foreach (var replaceParameter in replaceParameters)
             {
                 var firstName = replaceParameter.Split(".")[0];
@@ -62,14 +65,14 @@ public abstract class BaseCacheAttribute : AopBaseAttribute
                         // 移除第一位
                         names.RemoveAt(0);
                         // 递归获取到属性值
-                        var value = GetParameterValue(context.Invocation.GetArgumentValue(index), names);
+                        var value = GetParameterValue(context.Arguments[index], names);
                         value = value ?? "null";
                         CacheKey = CacheKey.Replace(replaceName, value);
                     }
                     else
                     {
                         var replaceName = "{" + replaceParameter + "}";
-                        var value = context.Invocation.GetArgumentValue(index)?.ToString();
+                        var value = context.Arguments[index]?.ToString();
                         CacheKey = CacheKey.Replace(replaceName, value);
                     }
                 }
@@ -140,11 +143,17 @@ public abstract class BaseCacheAttribute : AopBaseAttribute
     /// <summary>
     /// 获取Redis数据库
     /// </summary>
-    /// <param name="aopContext"></param>
+    /// <param name="MethodContext"></param>
     /// <returns></returns>
-    protected IDatabase GetDatabase(AopContext aopContext)
+    protected IDatabase GetDatabase(MethodContext MethodContext)
     {
-        var redisService = aopContext.ServiceProvider.GetRequiredService(RedisServiceType);
+        var redisService = m_ServiceProvider.Value?.GetRequiredService(RedisServiceType);
+
+        if (redisService == null)
+        {
+            throw new Exception($"Redis服务 {RedisServiceType.FullName} 找不到属性 public IDatabase {nameof(IDatabase.Database)} {{get;}}");
+        }
+
         var propertyInfos = redisService.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
         var databasePropertyInfo = propertyInfos.FirstOrDefault(w => w.Name == nameof(IDatabase.Database) && w.PropertyType == typeof(IDatabase));
         if (databasePropertyInfo == null)
@@ -152,7 +161,7 @@ public abstract class BaseCacheAttribute : AopBaseAttribute
             throw new Exception($"Redis服务 {RedisServiceType.FullName} 找不到属性 public IDatabase {nameof(IDatabase.Database)} {{get;}}");
         }
         // 获取 idatabase
-        var redisCache = (IDatabase)databasePropertyInfo.GetValue(redisService);
+        var redisCache = (IDatabase?)databasePropertyInfo.GetValue(redisService);
         if (redisCache == null)
         {
             throw new Exception($"Redis服务 {RedisServiceType.FullName} 属性 public IDatabase {nameof(IDatabase.Database)} {{get;}} 是 null ");

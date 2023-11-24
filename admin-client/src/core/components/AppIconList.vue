@@ -108,8 +108,8 @@ onMounted(() => {
 
     .icon-list-item {
       overflow: hidden;
-      width: 250px;
-      height: 50px;
+      width: 220px;
+      height: 40px;
       margin-top: 0px;
       margin-left: 5px;
       margin-right: 5px;

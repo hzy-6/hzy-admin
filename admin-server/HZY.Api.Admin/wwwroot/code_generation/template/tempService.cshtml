@@ -3,12 +3,13 @@
     var className = Model.EntityName;
     var classNameRemark = Model.DisplayName;
 
-    var ignores = new string[] {
+    var ignores = new string[]
+    {
         "Id",
         "CreationTime",
         "CreatorUserId",
         "LastModificationTime",
-        "LastModifierUserId" ,
+        "LastModifierUserId",
         "DeletionTime",
         "DeleterUserId",
         "IsDeleted"
@@ -36,14 +37,12 @@ namespace @(Model.Namespace).Api.Admin.ApplicationServices.Apps;
 /// <summary>
 /// @(classNameRemark) 服务 @(className)Service
 /// </summary>
-public class @(className)Service : ApplicationService<IRepository<@(className)>>
+public class @(className)Service : ApplicationService<@("IRepository")<@(className)>>
 {
-    private readonly PagingViewService _pagingViewService;
-
-    public @(className)Service(IRepository<@(className)> defaultRepository,PagingViewService pagingViewService)
+    public @(className)Service(IRepository<@(className)> defaultRepository)
         : base(defaultRepository)
     {
-        _pagingViewService = pagingViewService;
+
     }
 
     /// <summary>
@@ -56,7 +55,7 @@ public class @(className)Service : ApplicationService<IRepository<@(className)>>
         var query = this._defaultRepository.Select
                 @if (!string.IsNullOrWhiteSpace(searchKeyWord))
                 {
-            <pre>.WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search?.@(searchKeyWord)), w => w.@(searchKeyWord).Contains(pagingSearchInput.Search.@(searchKeyWord) ?? ""))</pre>
+                    <pre>.WhereIf(!string.IsNullOrWhiteSpace(pagingSearchInput.Search?.@(searchKeyWord)), w => w.@(searchKeyWord).Contains(pagingSearchInput.Search.@(searchKeyWord) ?? ""))</pre>
                 }
                 .OrderByDescending(w => w.CreationTime)
                 .Select(w => new
@@ -70,17 +69,17 @@ public class @(className)Service : ApplicationService<IRepository<@(className)>>
 
         var result = await _defaultRepository.AsPagingViewAsync(query, pagingSearchInput);
 
-        return _pagingViewService.BuilderColumns(result, (service, pagingView) =>
-        {
-            //覆盖值
-            result
-               .FormatValue(query, w => w.CreationTime, (oldValue) => oldValue.ToString("yyyy-MM-dd"))
-               .FormatValue(query, w => w.LastModificationTime, (oldValue) => oldValue?.ToString("yyyy-MM-dd"))
-               ;
+        // 覆盖值
+        result
+            .FormatValue(query, w => w.CreationTime, (oldValue) => oldValue.ToString("yyyy-MM-dd"))
+            .FormatValue(query, w => w.LastModificationTime, (oldValue) => oldValue?.ToString("yyyy-MM-dd"))
+            ;
 
-            // result.GetColumn(query, w => w.OperatorName).SetColumn("操作人");
-            // service.SetColumn<SysUser>(pagingView.GetColumn(query, w => w.OperatorName!), w => w.Name!);
-        });
+        // 设置列
+        //result.GetColumn(query, w => w.OperatorName).SetColumn("操作人");
+        //result.GetColumn(query, w => w.OperatorName!).SetColumn<@("SysUser")>(w => w.Name!);
+
+        return result;
     }
 
     /// <summary>

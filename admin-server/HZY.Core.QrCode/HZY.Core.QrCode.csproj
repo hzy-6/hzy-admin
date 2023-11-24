@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\projects\project.targets"/>
+
+	<ItemGroup>
+		<PackageReference Include="SkiaSharp.QrCode" Version="0.6.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />
+	</ItemGroup>
+</Project>

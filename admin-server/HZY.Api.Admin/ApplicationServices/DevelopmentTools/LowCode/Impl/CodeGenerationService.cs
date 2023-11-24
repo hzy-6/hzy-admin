@@ -18,7 +18,10 @@ public class CodeGenerationService : ICodeGenerationService
     private readonly string templateIndex = "tempClientIndex.cshtml";
     private readonly string templateInfo = "tempClientInfo.cshtml";
 
-    private readonly DatabaseTableService _databaseTableService;
+    // 客户端名称
+    private readonly string projectClientName = "admin-client";
+
+    private readonly IDatabaseTableService _databaseTableService;
     private readonly IRazorViewRender _razorViewRender;
 
     /// <summary>
@@ -28,7 +31,7 @@ public class CodeGenerationService : ICodeGenerationService
     /// <param name="razorViewRender"></param>
     /// <param name="webHostEnvironment"></param>
     /// <param name="appConfiguration"></param>
-    public CodeGenerationService(DatabaseTableService databaseTableService,
+    public CodeGenerationService(IDatabaseTableService databaseTableService,
         IRazorViewRender razorViewRender,
         IWebHostEnvironment webHostEnvironment,
         AppConfiguration appConfiguration)
@@ -95,7 +98,7 @@ public class CodeGenerationService : ICodeGenerationService
 
         if (string.IsNullOrWhiteSpace(lowCodeTable.ModelPath))
         {
-            lowCodeTable.ModelPath = rootPath + $"\\{typeof(RepositoryEFAdminStartup).Namespace}\\Entities\\Apps";
+            lowCodeTable.ModelPath = rootPath + $"\\{typeof(AdminRepositoryStartup).Namespace}\\Entities\\Apps";
         }
 
         if (string.IsNullOrWhiteSpace(lowCodeTable.ServicePath))
@@ -111,17 +114,17 @@ public class CodeGenerationService : ICodeGenerationService
         rootPath = rootPath.Substring(0, rootPath.LastIndexOf("\\"));
         if (string.IsNullOrWhiteSpace(lowCodeTable.ClientIndexPath))
         {
-            lowCodeTable.ClientIndexPath = rootPath + "\\microservices-client\\src\\views\\Apps";
+            lowCodeTable.ClientIndexPath = rootPath + "\\" + projectClientName + "\\src\\views\\Apps";
         }
 
         if (string.IsNullOrWhiteSpace(lowCodeTable.ClientInfoPath))
         {
-            lowCodeTable.ClientInfoPath = rootPath + "\\microservices-client\\src\\views\\Apps";
+            lowCodeTable.ClientInfoPath = rootPath + "\\" + projectClientName + "\\src\\views\\Apps";
         }
 
         if (string.IsNullOrWhiteSpace(lowCodeTable.ClientServicePath))
         {
-            lowCodeTable.ClientServicePath = rootPath + "\\microservices-client\\src\\services\\Apps";
+            lowCodeTable.ClientServicePath = rootPath + "\\" + projectClientName + "\\src\\services\\Apps";
         }
 
         return lowCodeTable;

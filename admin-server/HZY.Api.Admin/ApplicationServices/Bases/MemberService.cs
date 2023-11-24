@@ -7,23 +7,14 @@ public class MemberService : ApplicationService<IRepository<Member>>
 {
     private readonly IRepository<SysUser> _sysUserRepository;
     private readonly IAccountService _accountService;
-    private readonly PagingViewService _pagingViewService;
 
-    /// <summary>
-    /// 
-    /// </summary>
-    /// <param name="defaultRepository"></param>
-    /// <param name="sysUserRepository"></param>
-    /// <param name="accountService"></param>
     public MemberService(IRepository<Member> defaultRepository,
         IRepository<SysUser> sysUserRepository,
-        IAccountService accountService,
-        PagingViewService pagingViewService)
+        IAccountService accountService)
         : base(defaultRepository)
     {
         _sysUserRepository = sysUserRepository;
         _accountService = accountService;
-        _pagingViewService = pagingViewService;
     }
 
     /// <summary>
@@ -44,7 +35,6 @@ public class MemberService : ApplicationService<IRepository<Member>>
                 .OrderBy(w => w.t1.Number)
                 .Select(w => new
                 {
-                    w.t1.Id,
                     w.t1.Number,
                     w.t1.Photo,
                     w.t1.Name,
@@ -57,24 +47,24 @@ public class MemberService : ApplicationService<IRepository<Member>>
                     //别名 前面包含 _ 则表示界面上会隐藏列
                     _UserId = w.t1.UserId,
                     _OrganizationId = w.t2.OrganizationId,
+                    w.t1.Id,
                 })
             ;
 
         var result = await _defaultRepository.AsPagingViewAsync(query, pagingSearchInput, accountInfo, w => w._UserId, w => w._OrganizationId);
 
-        return _pagingViewService.BuilderColumns(result, (service, pagingView) =>
-        {
-            //覆盖值
-            result
-                .FormatValue(query, w => w.CreationTime, (oldValue) => oldValue.ToString("yyyy-MM-dd"))
-                .FormatValue(query, w => w.LastModificationTime, (oldValue) => oldValue?.ToString("yyyy-MM-dd"))
-                .FormatValue(query, w => w.Birthday, (oldValue) => oldValue.ToString("yyyy-MM-dd"))
-                ;
+        // 覆盖值
+        result
+            .FormatValue(query, w => w.CreationTime, (oldValue) => oldValue.ToString("yyyy-MM-dd"))
+            .FormatValue(query, w => w.LastModificationTime, (oldValue) => oldValue?.ToString("yyyy-MM-dd"))
+            .FormatValue(query, w => w.Birthday, (oldValue) => oldValue.ToString("yyyy-MM-dd"))
+            ;
 
-            //result.GetColumn(query, w => w.OperatorName).SetColumn("操作人");
+        // 设置列
+        //result.GetColumn(query, w => w.OperatorName).SetColumn("操作人");
+        result.GetColumn(query, w => w.OperatorName!).SetColumn<SysUser>(w => w.Name!);
 
-            service.SetColumn<SysUser>(pagingView.GetColumn(query, w => w.OperatorName!), w => w.Name!);
-        });
+        return result;
     }
 
     /// <summary>

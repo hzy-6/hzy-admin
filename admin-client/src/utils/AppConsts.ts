@@ -1,36 +1,39 @@
-import { MenuItemModel } from "../core/store/layouts/MenuStore";
+import { MenuItemModel } from "@/core/store/layouts/MenuStore"
+
 
 // 域名
 const domainName = window.location.origin;
+
 
 /**
  * 程序常量
  */
 class AppConsts {
+
   /**
    * token 键值
    */
-  static tokenKey: string = "Authorization_HZY_ADMIN_SPA";
+  static tokenKey: string = "Authorization_HZY_ADMIN_SPA"
 
   /**
    * Guid Empty String
    */
-  static guidEmpty: string = "00000000-0000-0000-0000-000000000000";
+  static guidEmpty: string = '00000000-0000-0000-0000-000000000000'
 
   /**
    * 后台服务api域名
    */
-  static domainServerApi: string = process.env.NODE_ENV == "production" ? "" : "http://localhost:5500";
+  static domainServerApi: string = process.env.NODE_ENV == "production" ? "" : "http://localhost:5500"
 
   /**
    * app 前缀 用于浏览器本地缓存 key 的前缀
    */
-  static appPrefix: string = `HzyAdminAntdVue-${domainName}`;
+  static appPrefix: string = `HzyAdminAntdVue-${domainName}`
 
   /**
    * 用于请求头部授权码key名称
    */
-  static authorizationKeyName: string = "Authorization";
+  static authorizationKeyName: string = "Authorization"
 
   /**
    * 系统标题
@@ -74,7 +77,7 @@ class AppConsts {
   /**
    * 模块 视图模块 和 组件模块
    */
-  static modules = import.meta.glob(["../views/**/**.vue", "../core/components/**/**.vue", "../views/**/**.tsx", "../core/components/**/**.tsx"]);
+  static modules = import.meta.glob(['../views/**/**.vue', '../core/components/**/**.vue', '../views/**/**.tsx', '../core/components/**/**.tsx']);
 
   /**
    * 菜单配置项
@@ -83,16 +86,17 @@ class AppConsts {
     /**
      * pc 模式 菜单最小宽度
      */
-    minWidth: 50,
+    minWidth: 60,
     /**
      * 菜单最大宽度
      */
-    maxWidth: 200,
+    maxWidth: 210,
     /**
      * 左侧模式一级菜单宽度
      */
-    leftModeWidth: 50,
-  };
+    leftModeWidth: 80,
+  }
+
 }
 
 export default AppConsts;

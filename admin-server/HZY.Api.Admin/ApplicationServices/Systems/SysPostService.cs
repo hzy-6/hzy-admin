@@ -1,14 +1,10 @@
-﻿using HZY.Shared.ApplicationServices.PagingViews;
-
-namespace HZY.Api.Admin.ApplicationServices.Systems;
+﻿namespace HZY.Api.Admin.ApplicationServices.Systems;
 
 public class SysPostService : ApplicationService<IRepository<SysPost>>
 {
-    private readonly PagingViewService _pagingViewService;
-
-    public SysPostService(IRepository<SysPost> defaultRepository, PagingViewService pagingViewService) : base(defaultRepository)
+    public SysPostService(IRepository<SysPost> defaultRepository) : base(defaultRepository)
     {
-        _pagingViewService = pagingViewService;
+
     }
 
     /// <summary>
@@ -23,7 +19,6 @@ public class SysPostService : ApplicationService<IRepository<SysPost>>
                 .OrderBy(w => w.Number)
                 .Select(w => new
                 {
-                    w.Id,
                     w.Number,
                     w.Code,
                     w.Name,
@@ -32,6 +27,7 @@ public class SysPostService : ApplicationService<IRepository<SysPost>>
                     //State=w.State.ToString(),
                     w.LastModificationTime,
                     w.CreationTime,
+                    w.Id,
                 })
             ;
 
@@ -42,7 +38,7 @@ public class SysPostService : ApplicationService<IRepository<SysPost>>
             .FormatValue(query, w => w.LastModificationTime, (oldValue) => oldValue?.ToString("yyyy-MM-dd"))
             ;
 
-        return _pagingViewService.BuilderColumns(result);
+        return result;
     }
 
     /// <summary>

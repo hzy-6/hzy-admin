@@ -1,0 +1,9 @@
+﻿global using HZY.Core.Logs;
+global using HZY.Framework.Core;
+global using HZY.Framework.Core.AspNetCore;
+global using HZY.Repository.Admin;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.Extensions.DependencyInjection;
+global using Serilog;
+global using Microsoft.AspNetCore.Hosting;
+global using Microsoft.Extensions.Hosting;

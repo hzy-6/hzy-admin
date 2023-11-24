@@ -43,7 +43,7 @@ defineExpose({
     state.loading = true;
     SysUserService.findForm(key).then((res) => {
       state.loading = false;
-      if (res.code != 1) return;
+      if (res.code != 200) return;
       state.vm = res.data;
       state.vm.form.password = "";
     });
@@ -69,7 +69,7 @@ function save() {
       state.loading = true;
       const result = await SysUserService.saveForm(state.vm.id, state.vm);
       state.loading = false;
-      if (result.code != 1) return;
+      if (result.code != 200) return;
       Tools.message.success("操作成功!");
       props.onSuccess();
       state.visible = false;
@@ -81,7 +81,7 @@ function save() {
 </script>
 
 <template>
-  <a-modal v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="800">
+  <a-modal v-model:open="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="800">
     <template #footer>
       <a-button type="primary" :loading="state.loading" @click="save()"> 提交</a-button>
       <a-button @click="state.visible = false">关闭</a-button>
@@ -143,7 +143,7 @@ function save() {
 
           <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
             <a-form-item label="所属岗位">
-              <a-checkbox-group v-model:value="state.vm.postIds" class="w100">
+              <a-checkbox-group v-model:value="state.vm.postIds" class="w100" style="display: block">
                 <a-row :gutter="[16, 8]">
                   <a-col :span="6" v-for="(item, index) in state.vm.allPostList" :key="index">
                     <a-checkbox :value="item.id">
@@ -154,9 +154,9 @@ function save() {
               </a-checkbox-group>
             </a-form-item>
           </a-col>
-          <a-col :xs="24">
+          <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
             <a-form-item label="所属角色">
-              <a-checkbox-group v-model:value="state.vm.roleIds" class="w100">
+              <a-checkbox-group v-model:value="state.vm.roleIds" class="w100" style="display: block">
                 <a-row :gutter="[16, 8]">
                   <a-col :span="6" v-for="(item, index) in state.vm.allRoleList" :key="index">
                     <a-checkbox :value="item.id">

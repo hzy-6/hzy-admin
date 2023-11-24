@@ -10,4 +10,14 @@ public static class QuartzStartupConfig
     /// </summary>
     public static readonly string JobTaskKey = nameof(IJobTaskInfo);
 
+    /// <summary>
+    /// 任务信息 key 名称
+    /// </summary>
+    public static readonly string JobTaskInfoKey = nameof(IJobTaskInfo);
+
+    /// <summary>
+    /// 任务信息回调 key 名称
+    /// </summary>
+    public static readonly string JobTaskInfoCallKey = nameof(IJobTaskInfo) + "Call";
+
 }

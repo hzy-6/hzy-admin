@@ -1,12 +1,15 @@
 <script lang="ts" setup>
-import { onMounted, reactive, computed, watch } from "vue";
+import {onMounted, reactive, computed, watch} from "vue";
 import AppIcon from "@/core/components/AppIcon.vue";
 import router from "@/core/router";
-import MenuStore, { EMenuMode } from "@/core/store/layouts/MenuStore";
+import MenuStore, {EMenuMode} from "@/core/store/layouts/MenuStore";
 import AppStore from "@/core/store/AppStore";
+import ThemeStore from "@/core/store/layouts/ThemeStore";
+import logo from "@/assets/hzy.jpg";
 
 const menuStore = MenuStore();
 const appStore = AppStore();
+const themeStore = ThemeStore();
 
 const fullPath = computed(() => router.currentRoute.value.fullPath);
 const topMenuId = computed(() => appStore.getTopMenuIdByCurrentRoute());
@@ -15,10 +18,10 @@ const state = reactive({
 });
 
 watch(
-  () => router.currentRoute.value,
-  (value) => {
-    methods.initTopMenu();
-  }
+    () => router.currentRoute.value,
+    (value) => {
+      methods.initTopMenu();
+    }
 );
 
 const methods: any = {
@@ -62,14 +65,20 @@ onMounted(() => {
   <!-- 左侧模式 -->
   <div class="hzy-left-nav" v-if="menuStore.state.menuMode == EMenuMode.left">
     <div class="hzy-logo">
-      <AppIcon name="AntDesignOutlined" style="font-size: 30px; color: #1890ff" />
+      <img :src="logo" width="80" alt="logo"/>
     </div>
     <ul>
       <template v-for="item in appStore.state.oneLevels">
         <a-tooltip placement="right">
-          <template #title>{{ item.name }}</template>
-          <li :key="methods.getJumpUrl(item)" :class="{ active: methods.getJumpUrl(item) == state.selectedKey }" @click="methods.onMenuSelected(methods.getJumpUrl(item))">
-            <AppIcon :name="item.icon" :size="22" />
+          <template #title>
+            {{ $t(`menu.${item.id}`) }}
+          </template>
+          <li :key="methods.getJumpUrl(item)" :class="{ active: methods.getJumpUrl(item) == state.selectedKey }"
+              @click="methods.onMenuSelected(methods.getJumpUrl(item))">
+            <AppIcon :name="item.icon" :size="22"/>
+            <div class="mt-8">
+              {{ $t(`menu.${item.id}`) }}
+            </div>
           </li>
         </a-tooltip>
       </template>
@@ -78,14 +87,14 @@ onMounted(() => {
   <!-- 顶部模式 -->
   <ul class="hzy-one-nav" v-if="menuStore.state.menuMode == EMenuMode.top">
     <li
-      v-for="item in appStore.state.oneLevels"
-      :key="methods.getJumpUrl(item)"
-      :class="{ active: methods.getJumpUrl(item) == state.selectedKey }"
-      @click="methods.onMenuSelected(methods.getJumpUrl(item))"
+        v-for="item in appStore.state.oneLevels"
+        :key="methods.getJumpUrl(item)"
+        :class="{ active: methods.getJumpUrl(item) == state.selectedKey }"
+        @click="methods.onMenuSelected(methods.getJumpUrl(item))"
     >
       <div class="menu-item">
-        <AppIcon :name="item.icon" :size="16" v-if="item.icon" />
-        <div class="ml-5">{{ item.name }}</div>
+        <AppIcon :name="item.icon" :size="16" v-if="item.icon"/>
+        <div class="ml-5">{{ $t(`menu.${item.id}`) }}</div>
       </div>
     </li>
   </ul>
@@ -111,8 +120,9 @@ onMounted(() => {
       margin: 16px 8px;
       border-radius: 4px;
     }
+
     .active {
-      background: #2f54eb;
+      background: v-bind("themeStore.state.tokenTheme?.colorPrimary");
       //
       transition: background-color 0.1s;
       -moz-transition: background-color 0.1s;
@@ -121,11 +131,18 @@ onMounted(() => {
       /* Safari 和 Chrome */
       -o-transition: background-color 0.1s;
     }
+
     li:hover {
-      background: #2f54eb;
+      background: v-bind("themeStore.state.tokenTheme?.colorPrimary");
     }
   }
+
+  * {
+    color: #e5e7eb !important;
+  }
+
 }
+
 .hzy-one-nav {
   margin: 0;
   padding: 0;
@@ -159,17 +176,19 @@ onMounted(() => {
 
   .active {
     .menu-item {
-      background: #2f54eb;
+      background: v-bind("themeStore.state.tokenTheme?.colorPrimary");
+
       * {
-        color: #fff !important;
+        color: #e5e7eb !important;
       }
     }
   }
 
   .menu-item:hover {
-    background: #2f54eb;
+    background: v-bind("themeStore.state.tokenTheme?.colorPrimary");
+
     * {
-      color: #fff !important;
+      color: #e5e7eb !important;
     }
   }
 }

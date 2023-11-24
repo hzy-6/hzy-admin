@@ -1,4 +1,6 @@
-﻿/// <summary>
+﻿namespace HZY.Api.Admin.Models.Configs;
+
+/// <summary>
 /// 程序配置信息映射类 appsettings.json
 /// </summary>
 public class AppConfiguration : ISingletonSelfDependency

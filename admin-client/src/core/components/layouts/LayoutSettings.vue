@@ -13,7 +13,7 @@ const themeStore = ThemeStore();
 </script>
 
 <template>
-  <a-drawer class="hzy-settings" placement="right" width="300px" :closable="false" v-model:visible="settingsStore.state.show">
+  <a-drawer class="hzy-settings" placement="right" width="350px" :closable="false" v-model:open="settingsStore.state.show">
     <a-divider>品牌色</a-divider>
     <div class="hzy-skin-list mb-5 text-center">
       <template v-for="(item, index) in themeStore.colorPrimaryList" :key="index">

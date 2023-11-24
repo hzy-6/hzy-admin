@@ -1,6 +1,4 @@
-﻿using HZY.Shared.ApplicationServices.PagingViews;
-
-namespace HZY.Api.Admin.ApplicationServices.Systems;
+﻿namespace HZY.Api.Admin.ApplicationServices.Systems;
 
 /// <summary>
 /// 服务 SysDataAuthorityService
@@ -8,15 +6,12 @@ namespace HZY.Api.Admin.ApplicationServices.Systems;
 public class SysDataAuthorityService : ApplicationService<IRepository<SysDataAuthority>>
 {
     private readonly IRepository<SysDataAuthorityCustom> _sysDataAuthorityCustomRepository;
-    private readonly PagingViewService _pagingViewService;
 
     public SysDataAuthorityService(IRepository<SysDataAuthority> defaultRepository,
-    IRepository<SysDataAuthorityCustom> sysDataAuthorityCustomRepository,
-    PagingViewService pagingViewService)
+    IRepository<SysDataAuthorityCustom> sysDataAuthorityCustomRepository)
         : base(defaultRepository)
     {
         _sysDataAuthorityCustomRepository = sysDataAuthorityCustomRepository;
-        _pagingViewService = pagingViewService;
     }
 
     /// <summary>
@@ -30,11 +25,11 @@ public class SysDataAuthorityService : ApplicationService<IRepository<SysDataAut
                 .OrderByDescending(w => w.CreationTime)
                 .Select(w => new
                 {
-                    w.Id,
                     w.PermissionType,
                     w.RoleId,
                     w.LastModificationTime,
-                    w.CreationTime
+                    w.CreationTime,
+                    w.Id,
                 })
             ;
 
@@ -45,7 +40,7 @@ public class SysDataAuthorityService : ApplicationService<IRepository<SysDataAut
             .FormatValue(query, w => w.LastModificationTime, (oldValue) => oldValue?.ToString("yyyy-MM-dd"))
             ;
 
-        return _pagingViewService.BuilderColumns(result);
+        return result;
     }
 
     /// <summary>

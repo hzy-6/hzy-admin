@@ -33,20 +33,20 @@ public class ApiResultFilterAttribute : Attribute, IResultFilter
         if (context.Result is ObjectResult)
         {
             var result = context.Result as ObjectResult;
-            context.Result = new JsonResult(ApiResult.Ok("success", result.Value));
+            context.Result = new JsonResult(R.Ok("success", result.Value));
             return;
         }
 
         if (context.Result is ContentResult)
         {
             var result = context.Result as ContentResult;
-            context.Result = new JsonResult(ApiResult.Ok("success", result.Content));
+            context.Result = new JsonResult(R.Ok("success", result.Content));
             return;
         }
 
         if (context.Result is EmptyResult)
         {
-            context.Result = new JsonResult(ApiResult.Ok("success", null));
+            context.Result = new JsonResult(R.Ok("success", null));
             return;
         }
 

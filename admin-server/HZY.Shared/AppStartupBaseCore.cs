@@ -3,19 +3,22 @@
 /// <summary>
 /// 基础启动器
 /// </summary>
-/// <typeparam name="TStartup"></typeparam>
-[ImportStartup(typeof(CoreStartup))]
-public class AppStartupBaseCore<TStartup> : Startup<TStartup> where TStartup : Framework.Core.AspNetCore.IStartup, new()
+/// <typeparam name="TStartupMoudle"></typeparam>
+[ImportStartup(
+    typeof(CoreStartup),
+    typeof(LogStartup)
+    )]
+public class AppStartupBaseCore<TStartupMoudle> : StartupModule<TStartupMoudle> where TStartupMoudle : IStartupModule, new()
 {
     /// <summary>
     /// 命名空间前缀
     /// </summary>
-    protected string _namespacePrefix => Tools.GetNamespacePrefix<TStartup>() ?? "";
+    protected string _namespacePrefix => Tools.GetNamespacePrefix<TStartupMoudle>() ?? "";
 
     /// <summary>
     /// 程序名称
     /// </summary>
-    protected string? _appName => Tools.GetAppName<TStartup>();
+    protected string? _appName => Tools.GetAppName<TStartupMoudle>();
 
     /// <summary>
     /// 基础启动器
@@ -28,11 +31,6 @@ public class AppStartupBaseCore<TStartup> : Startup<TStartup> where TStartup : F
     /// <param name="webApplicationBuilder"></param>
     public override void ConfigureServices(WebApplicationBuilder webApplicationBuilder)
     {
-        var configuration = webApplicationBuilder.Configuration;
-
-        // 扫描服务自动化注册
-        webApplicationBuilder.Services.AddAutoRegisterIOC(App.Startups.Select(w => w.GetType().Assembly).ToList());
-
         webApplicationBuilder.Services.AddHttpContextAccessor();
 
         // 跨域配置 配置跨域处理

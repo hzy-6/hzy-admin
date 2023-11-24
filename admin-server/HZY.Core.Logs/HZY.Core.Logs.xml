@@ -1,0 +1,36 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Core.Logs</name>
+    </assembly>
+    <members>
+        <member name="M:HZY.Core.Logs.LogStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            使用服务
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="T:HZY.Core.Logs.LogUtil">
+            <summary>
+            日志工具
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Logs.LogUtil.AddLogUtil(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            启动
+            </summary>
+            <param name="builder"></param>
+            <returns></returns>
+        </member>
+        <member name="P:HZY.Core.Logs.LogUtil.Log">
+            <summary>
+            日志对象
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Logs.DateTimeNowEnricher">
+            <summary>
+            时间处理
+            </summary>
+        </member>
+    </members>
+</doc>

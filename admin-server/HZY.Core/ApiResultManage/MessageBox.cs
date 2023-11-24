@@ -6,28 +6,28 @@
 [Serializable]
 public class MessageBox : Exception
 {
-    private ApiResult ApiResult { get; set; }
+    private R ApiResult { get; set; }
 
-    public MessageBox(ApiResult apiResult) : base(string.Empty)
+    public MessageBox(R apiResult) : base(string.Empty)
     {
         ApiResult = apiResult;
     }
 
     public MessageBox(string message) : base(message)
     {
-        ApiResult = ApiResult.WarnMessage(message);
+        ApiResult = R.ErrorMessage(message);
     }
 
     public MessageBox(string message, object data) : base(message)
     {
-        ApiResult = ApiResult.Warn(message, data);
+        ApiResult = R.Error(message, data);
     }
 
     /// <summary>
     /// 获取 ApiResult
     /// </summary>
     /// <returns></returns>
-    public ApiResult GetApiResult() => ApiResult;
+    public R GetApiResult() => ApiResult;
 
     /// <summary>
     /// 输出消息
@@ -46,7 +46,7 @@ public class MessageBox : Exception
     /// 支持传入 ApiResult 对象
     /// </summary>
     /// <param name="apiResult"></param>
-    public static void Show(ApiResult apiResult) => throw new MessageBox(apiResult);
+    public static void Show(R apiResult) => throw new MessageBox(apiResult);
 
 
 }

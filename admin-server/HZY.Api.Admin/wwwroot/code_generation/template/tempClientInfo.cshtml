@@ -25,7 +25,7 @@
 import { reactive, ref } from "vue";
 import { FormInstance } from "ant-design-vue";
 import Tools from "@@/core/utils/Tools";
-import @(className)Service from "@@/service/app/@(tableName)s/@(className)Service";
+import @(className)Service from "@@/services/app/@(tableName)s/@(className)Service";
 
 //定义组件事件
 const props = defineProps<{ onSuccess: () => void }>();
@@ -58,7 +58,7 @@ defineExpose({
     state.loading = true;
     @(className)Service.findForm(key).then((res) => {
       state.loading = false;
-      if (res.code != 1) return;
+      if (res.code != 200) return;
       state.vm = res.data;
     });
   },
@@ -73,7 +73,7 @@ function save() {
         state.loading = true;
         const result = await @(className)Service.saveForm(state.vm.id, state.vm.form);
         state.loading = false;
-        if (result.code != 1) return;
+        if (result.code !=200) return;
         Tools.message.success("操作成功!");
         props.onSuccess();
         state.visible = false;
@@ -85,7 +85,7 @@ function save() {
 </script>
 
 <template>
-  <a-modal v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @@ok="state.visible = false" :width="400">
+  <a-modal v-model:open="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @@ok="state.visible = false" :width="400">
     <template #footer>
       <a-button type="primary" :loading="state.loading" @@click="save()"> 提交</a-button>
       <a-button @@click="state.visible = false">关闭</a-button>

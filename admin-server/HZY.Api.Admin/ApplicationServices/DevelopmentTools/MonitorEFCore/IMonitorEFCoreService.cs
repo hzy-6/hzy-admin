@@ -6,18 +6,18 @@ public interface IMonitorEFCoreService : ITransientDependency
     /// 获取 EFCore 监控上下文
     /// </summary>
     /// <returns></returns>
-    EntityFrameworkRepositoriesMonitorContext GetEFCoreMonitorContext();
+    EntityFrameworkRepositoriesMonitorContext? GetEFCoreMonitorContext();
 
     /// <summary>
     /// 获取 EFCore Sql 监控上下文 耗时排行榜
     /// </summary>
     /// <returns></returns>
-    List<EntityFrameworkRepositoriesMonitorSqlContext> GetTimeConsumingRanking();
+    List<EntityFrameworkRepositoriesMonitorSqlContext>? GetTimeConsumingRanking();
 
     /// <summary>
     /// 获取 EFCore Sql 监控上下文 最新数据
     /// </summary>
     /// <returns></returns>
-    List<EntityFrameworkRepositoriesMonitorSqlContext> GetNewest();
+    List<EntityFrameworkRepositoriesMonitorSqlContext>? GetNewest();
 
 }

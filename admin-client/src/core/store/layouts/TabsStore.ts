@@ -1,9 +1,9 @@
-import { defineStore } from "pinia";
-import { computed, reactive, watch } from "vue";
+import {defineStore} from "pinia";
+import {computed, reactive, watch} from "vue";
 import router from "@/core/router";
-import { RouteLocationNormalizedLoaded } from "vue-router";
-import AppConsts from "@/utils/AppConsts";
-import AppStore from "../AppStore";
+import {RouteLocationNormalizedLoaded} from "vue-router";
+import AppConsts from "@/utils/AppConsts.js";
+import AppStore from "../AppStore.js";
 
 export interface ITabsItem extends RouteLocationNormalizedLoaded {
 
@@ -34,6 +34,8 @@ export default defineStore("TabsStore", () => {
             path: AppConsts.defaultHomePageInfo.jumpUrl,
             name: AppConsts.defaultHomePageInfo.componentName,
             meta: {
+                id: AppConsts.defaultHomePageInfo.id,
+                menuId: AppConsts.defaultHomePageInfo.id,
                 title: AppConsts.defaultHomePageInfo.name,
                 close: AppConsts.defaultHomePageInfo.close,
                 keepAlive: true,
@@ -62,11 +64,11 @@ export default defineStore("TabsStore", () => {
     var cacheViewMethods = {
         /**
          * 添加缓存视图
-         * @param {*} routeInfo 
-         * @returns 
+         * @param {*} routeInfo
+         * @returns
          */
         addCacheView(routeInfo: ITabsItem) {
-            const { name, meta } = routeInfo;
+            const {name, meta} = routeInfo;
             if (!meta.keepAlive) return;
             let any = state.cacheViews.includes(name as string);
             if (any) return;
@@ -76,7 +78,7 @@ export default defineStore("TabsStore", () => {
         /**
          * 删除缓存视图
          * @param {*} name
-         * @param {*} call 
+         * @param {*} call
          */
         delCacheView(name: string, call: (() => void) | null) {
             const index = state.cacheViews.indexOf(name);
@@ -88,7 +90,7 @@ export default defineStore("TabsStore", () => {
 
         /**
          * 删除其他缓存视图
-         * @param {*} name 
+         * @param {*} name
          */
         delCacheViewOther(name: string) {
             const index = state.cacheViews.indexOf(name)
@@ -109,14 +111,14 @@ export default defineStore("TabsStore", () => {
 
     /**
      * 添加标签页
-     * @param {*} routeInfo 
-     * @returns 
+     * @param {*} routeInfo
+     * @returns
      */
     function addTab(routeInfo: RouteLocationNormalizedLoaded) {
-        const { meta, fullPath } = routeInfo;
+        const {meta, fullPath} = routeInfo;
 
         if (!Object.prototype.hasOwnProperty.call(meta, 'close')) return;
-        const { keepAlive } = meta;
+        const {keepAlive} = meta;
         if (keepAlive == null) return;
 
         //检查是否存在
@@ -134,8 +136,8 @@ export default defineStore("TabsStore", () => {
 
     /**
      * 关闭当前
-     * @param {*} fullPath 
-     * @returns 
+     * @param {*} fullPath
+     * @returns
      */
     function closeTabSelf(fullPath: string) {
         let index = state.tabs.findIndex(w => w.fullPath == fullPath);
@@ -151,7 +153,7 @@ export default defineStore("TabsStore", () => {
 
     /**
      * 关闭其他
-     * @param {*} fullPath 
+     * @param {*} fullPath
      */
     function closeTabOther(fullPath: string) {
         var list = [];
@@ -195,7 +197,7 @@ export default defineStore("TabsStore", () => {
 
     /**
      * 点击切换选项卡
-     * @param {*} fullPath 
+     * @param {*} fullPath
      */
     function tabClick(fullPath: string) {
         router.push(fullPath);

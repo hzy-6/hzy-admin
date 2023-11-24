@@ -1,6 +1,4 @@
-﻿using HZY.Shared.ApplicationServices.PagingViews;
-
-namespace HZY.Api.Admin.ApplicationServices.Systems;
+﻿namespace HZY.Api.Admin.ApplicationServices.Systems;
 
 /// <summary>
 /// 角色服务
@@ -10,18 +8,15 @@ public class SysRoleService : ApplicationService<IRepository<SysRole>>
     private readonly IRepository<SysUserRole> _sysUserRoleRepository;
     private readonly IRepository<SysDataAuthority> _sysDataAuthorityRepository;
     private readonly IRepository<SysDataAuthorityCustom> _sysDataAuthorityCustomRepository;
-    private readonly PagingViewService _pagingViewService;
 
     public SysRoleService(IRepository<SysRole> defaultRepository,
         IRepository<SysUserRole> sysUserRoleRepository,
         IRepository<SysDataAuthority> sysDataAuthorityRepository,
-        IRepository<SysDataAuthorityCustom> sysDataAuthorityCustomRepository,
-        PagingViewService pagingViewService) : base(defaultRepository)
+        IRepository<SysDataAuthorityCustom> sysDataAuthorityCustomRepository) : base(defaultRepository)
     {
         _sysUserRoleRepository = sysUserRoleRepository;
         _sysDataAuthorityRepository = sysDataAuthorityRepository;
         _sysDataAuthorityCustomRepository = sysDataAuthorityCustomRepository;
-        _pagingViewService = pagingViewService;
     }
 
     /// <summary>
@@ -44,7 +39,6 @@ public class SysRoleService : ApplicationService<IRepository<SysRole>>
                     .OrderBy(w => w.t1.Number)
                     .Select(w => new
                     {
-                        w.t1.Id,
                         w.t1.Number,
                         w.t1.Name,
                         w.t1.Remark,
@@ -52,6 +46,7 @@ public class SysRoleService : ApplicationService<IRepository<SysRole>>
                         PermissionType = w.t2 == null ? 0 : w.t2.PermissionType,
                         w.t1.LastModificationTime,
                         w.t1.CreationTime,
+                        w.t1.Id,
                     })
                     ;
 
@@ -62,7 +57,7 @@ public class SysRoleService : ApplicationService<IRepository<SysRole>>
             .FormatValue(query, w => w.LastModificationTime, (oldValue) => oldValue?.ToString("yyyy-MM-dd"))
             ;
 
-        return _pagingViewService.BuilderColumns(result);
+        return result;
     }
 
     /// <summary>

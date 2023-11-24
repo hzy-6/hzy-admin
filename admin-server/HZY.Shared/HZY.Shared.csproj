@@ -1,18 +1,12 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<PropertyGroup>
-		<TargetFramework>net7.0</TargetFramework>
-		<ImplicitUsings>enable</ImplicitUsings>
-		<Nullable>enable</Nullable>
-		<TieredPGO>true</TieredPGO>
-		<DocumentationFile>$(MSBuildProjectName).xml</DocumentationFile>
-		<NoWarn>1701;1702;1591</NoWarn>
-	</PropertyGroup>
+	<Import Project="..\projects\project.targets"/>
 
 	<ItemGroup>
-		<ProjectReference Include="..\HZY.Repository.EntityFramework.Admin\HZY.Repository.EntityFramework.Admin.csproj" />
+		<ProjectReference Include="..\HZY.Core.FreeSql\HZY.Core.FreeSql.csproj" />
+		<ProjectReference Include="..\HZY.Core.Logs\HZY.Core.Logs.csproj" />
+		<ProjectReference Include="..\HZY.Repository.Admin\HZY.Repository.Admin.csproj" />
 		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />
-		<ProjectReference Include="..\HZY.Repository.FreeSql.Admin\HZY.Repository.FreeSql.Admin.csproj" />
 	</ItemGroup>
 
 </Project>

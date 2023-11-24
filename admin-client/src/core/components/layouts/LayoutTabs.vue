@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { onMounted, watch, computed } from "vue";
-import { ConfigProvider } from "ant-design-vue";
+import {onMounted, watch, computed} from "vue";
+import {ConfigProvider} from "ant-design-vue";
 import AppIcon from "@/core/components/AppIcon.vue";
 import router from "@/core/router";
 import TabsStore from "@/core/store/layouts/TabsStore";
@@ -15,10 +15,10 @@ onMounted(() => {
 });
 
 watch(
-  () => router.currentRoute.value.fullPath,
-  (value) => {
-    addTags();
-  }
+    () => router.currentRoute.value.fullPath,
+    (value) => {
+      addTags();
+    }
 );
 
 function addTags() {
@@ -53,9 +53,9 @@ const tabsTheme = computed(() => {
     return {};
   }
   return {
-    // borderRadiusLG: 0,
-    colorFillAlter: "#fff",
-    colorBgContainer: "#f5f5f5",
+    // borderRadius: 0,
+    colorFillAlter: "none",
+    colorBgContainer: "#fff"
   };
 });
 </script>
@@ -63,35 +63,44 @@ const tabsTheme = computed(() => {
 <template>
   <div class="hzy-tabs">
     <ConfigProvider
-      :theme="{
+        :theme="{
         components: {
           Tabs: { ...tabsTheme, lineWidth: 0 },
         },
       }"
     >
-      <a-tabs hide-add tabPosition="top" type="editable-card" :tabBarGutter="0" @edit="onEdit" @change="tabOnChange" :activeKey="tabsStore.state.activeKey">
+      <a-tabs
+          hide-add
+          tabPosition="top"
+          type="editable-card"
+          :tabBarGutter="0"
+          @edit="onEdit"
+          @change="tabOnChange"
+          :activeKey="tabsStore.state.activeKey"
+      >
         <a-tab-pane v-for="item in tabsStore.state.tabs" :key="item.fullPath" :closable="item.meta.close">
           <template #tab>
-            <span>{{ item.meta.title }}</span>
+            <span>{{ $t(`menu.${item.meta.menuId}`) }}</span>
+            <!--            item.meta.title-->
           </template>
           <template #closeIcon>
-            <AppIcon name="CloseOutlined" :size="12" class="close" />
+            <AppIcon name="CloseOutlined" :size="12" class="close"/>
           </template>
         </a-tab-pane>
         <template #rightExtra>
           <a-dropdown placement="bottomRight">
-            <AppIcon name="MoreOutlined" class="pl-16 pr-16" style="height: 100%" :size="16" />
+            <AppIcon name="MoreOutlined" class="pl-16 pr-16" style="height: 100%" :size="16"/>
             <template #overlay>
               <a-menu>
                 <a-menu-item key="2" @click="closeTabOther()">
                   <template #icon>
-                    <AppIcon name="CloseOutlined" />
+                    <AppIcon name="CloseOutlined"/>
                   </template>
                   关闭其他
                 </a-menu-item>
                 <a-menu-item key="3" @click="closeTabAll()">
                   <template #icon>
-                    <AppIcon name="DeleteOutlined" />
+                    <AppIcon name="DeleteOutlined"/>
                   </template>
                   关闭全部
                 </a-menu-item>
@@ -108,6 +117,7 @@ const tabsTheme = computed(() => {
 .hzy-tabs {
   .ant-tabs-nav {
     margin: 0 !important;
+
     .ant-tabs-tab-active {
       .close {
         visibility: visible !important;

@@ -1,38 +1,38 @@
 <script lang="ts" setup>
-import { onBeforeUnmount, onMounted, ref } from "vue";
+import {onBeforeUnmount, onMounted, ref} from "vue";
 import router from "../router";
 import AppStore from "../store/AppStore";
-import { MenuItemModel } from "../store/layouts/MenuStore";
+import {MenuItemModel} from "../store/layouts/MenuStore";
 import AppIcon from "@/core/components/AppIcon.vue";
 import AppConsts from "@/utils/AppConsts";
 import ThemeStore from "../store/layouts/ThemeStore";
 
 const props = withDefaults(
-  defineProps<{
-    /**
-     * 是否显示
-     */
-    show?: boolean;
-    /**
-     * 详情
-     */
-    describe?: string;
-    /**
-     * pading class
-     */
-    classPadding?: string;
-    /**
-     * 主体内容 pading class
-     */
-    bodyClassPadding?: string;
-    /**
-     * 主体内容样式
-     */
-    bodyStyle?: Object;
-  }>(),
-  {
-    show: true,
-  }
+    defineProps<{
+      /**
+       * 是否显示
+       */
+      show?: boolean;
+      /**
+       * 详情
+       */
+      describe?: string;
+      /**
+       * pading class
+       */
+      classPadding?: string;
+      /**
+       * 主体内容 pading class
+       */
+      bodyClassPadding?: string;
+      /**
+       * 主体内容样式
+       */
+      bodyStyle?: Object;
+    }>(),
+    {
+      show: true,
+    }
 );
 
 const appStore = AppStore();
@@ -74,12 +74,13 @@ function handlePaths() {
 <template>
   <div v-if="props.show">
     <a-card :bordered="false" :bodyStyle="{ padding: 0 }">
-      <div :class="{ 'pl-16 pr-16 pt-16 pb-16': !classPadding }" :style="{ background: themeStore.state.isDark ? '#141414' : '#fff', color: themeStore.state.isDark ? '#fff' : '' }">
+      <div :class="{ 'pl-16 pr-16 pt-16 pb-16': !classPadding }"
+           :style="{ background: themeStore.state.isDark ? '#141414' : '#fff', color: themeStore.state.isDark ? '#fff' : '' }">
         <slot name="nav">
           <a-breadcrumb>
             <a-breadcrumb-item v-for="item in navs">
-              <AppIcon :name="item.icon" v-if="item.icon" />
-              <span>{{ item.name }}</span>
+              <AppIcon :name="item.icon" v-if="item.icon"/>
+              <span>{{ $t(`menu.${item.id}`) }}</span>
             </a-breadcrumb-item>
           </a-breadcrumb>
         </slot>

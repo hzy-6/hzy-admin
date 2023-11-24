@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\projects\project.targets" />
+	
+	<PropertyGroup>
+		<!--AOP 肉夹馍 配置-->
+		<WeaverConfiguration>
+			<Weavers>
+				<Rougamo />
+			</Weavers>
+		</WeaverConfiguration>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<PackageReference Include="HZY.Framework.Repository.EntityFramework" Version="0.0.0.2" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HZY.Core.Identity\HZY.Core.Identity.csproj" />
+		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />
+	</ItemGroup>
+
+</Project>

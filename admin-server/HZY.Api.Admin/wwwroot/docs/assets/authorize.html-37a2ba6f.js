@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-01c1a904","path":"/guide/hzy-admin/permission/authorize.html","title":"授权验证","lang":"zh-CN","frontmatter":{},"headers":[],"git":{"updatedTime":1685435672000,"contributors":[{"name":"hzy","email":"1396510655@qq.com","commits":1}]},"filePathRelative":"guide/hzy-admin/permission/authorize.md"}');export{e as data};

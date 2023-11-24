@@ -5,6 +5,8 @@ import router from "@/core/router";
 import Tools from "@/core/utils/Tools";
 import AppStore from "@/core/store/AppStore";
 import LoginService from "@/services/LoginService";
+import LanguageComponent from "@/locale/components/LanguageComponent.vue";
+import i18n from "@/locale/Main.js";
 
 const state = reactive({
   userName: "admin",
@@ -25,16 +27,22 @@ onMounted(() => {
  * 检查账户并登录
  */
 async function check() {
-  if (!state.userName) return Tools.message.warning("用户名不能为空!");
-  if (!state.userPassword) return Tools.message.warning("密码不能为空!");
+  if (!state.userName) {
+    return Tools.message.warning(i18n.global.t("login.validate.username"));
+  }
+
+  if (!state.userPassword) {
+    return Tools.message.warning(i18n.global.t("login.validate.userPassword"));
+  }
 
   try {
     loading.value = true;
     const result = await LoginService.login(state.userName, state.userPassword);
     loading.value = false;
-    if (result.code != 1) return;
+    if (result.code != 200) return;
     Tools.setAuthorization(result.data.token);
-    router.push("/");
+    // router.push("/");
+    window.location.href = window.location.origin;
   } catch (error) {
     loading.value = false;
   }
@@ -51,13 +59,17 @@ function reset() {
 
 <template>
   <div>
+    <div class="lang-content">
+      <LanguageComponent />
+    </div>
+
     <div class="login">
       <div class="login-card">
         <div class="flex-left">
           <img src="../assets/images/info_service.png" alt="" />
         </div>
         <div class="flex-right p-30">
-          <div class="title">{{ title }}</div>
+          <div class="title">{{ $t("login.title") }}</div>
 
           <div class="mt-16">
             <a-input v-model:value="state.userName" placeholder="请输入" size="large" allow-clear>
@@ -76,7 +88,9 @@ function reset() {
           </div>
 
           <div class="mt-40">
-            <a-button type="primary" @click="check()" :loading="loading" size="large" block>登录</a-button>
+            <a-button type="primary" @click="check()" :loading="loading" size="large" block>
+              {{ $t("login.submit") }}
+            </a-button>
           </div>
         </div>
       </div>
@@ -101,14 +115,16 @@ body {
   background-size: cover;
 
   .login-card {
-    height: 450px;
-    width: 900px;
+    height: 600px;
+    width: 1000px;
     box-shadow: 0px 16px 48px 16px rgba(0, 0, 0, 0.72), 0px 12px 32px #000000, 0px 8px 16px -8px #000000;
     display: flex;
     border-radius: 5px;
+
     .flex-left {
       flex: 1;
       width: 450px;
+
       img {
         height: 100%;
       }
@@ -133,6 +149,7 @@ body {
 
     .el-input-group__append {
       padding: 0 !important;
+
       .login-code {
         height: 38px;
       }
@@ -145,11 +162,13 @@ body {
   .flex-left {
     display: none;
     flex: 0 !important;
+
     img {
       height: auto !important;
       width: 80% !important;
     }
   }
+
   .flex-right {
     border-radius: 5px;
   }
@@ -166,5 +185,11 @@ body {
     // flex-direction: column;
     width: 100% !important;
   }
+}
+
+.lang-content {
+  position: absolute;
+  right: 24px;
+  top: 20px;
 }
 </style>

@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import { reactive, ref, watch } from "vue";
-import { FormInstance } from "ant-design-vue";
+import {reactive, ref, watch} from "vue";
+import {FormInstance} from "ant-design-vue";
 import Tools from "@/core/utils/Tools";
 import MemberService from "@/services/base/MemberService";
 import AppConsts from "@/utils/AppConsts";
@@ -28,10 +28,10 @@ const photoList = ref<any[]>([]);
 const photoImage = ref<string>("");
 //处理头像显示图片
 watch(
-  () => photoList.value,
-  (value) => {
-    handlePhoto(value);
-  }
+    () => photoList.value,
+    (value) => {
+      handlePhoto(value);
+    }
 );
 
 //表单实例
@@ -53,7 +53,7 @@ defineExpose({
     state.loading = true;
     MemberService.findForm(key).then((res) => {
       state.loading = false;
-      if (res.code != 1) return;
+      if (res.code != 200) return;
       state.vm = res.data;
       //文件处理
       filePathList.value = state.vm.form.filePath ? JSON.parse(state.vm.form.filePath) : [];
@@ -90,7 +90,7 @@ function save() {
       state.loading = true;
       const result = await MemberService.saveForm(state.vm.id, state.vm.form);
       state.loading = false;
-      if (result.code != 1) return;
+      if (result.code != 200) return;
       Tools.message.success("操作成功!");
       props.onSuccess();
       state.visible = false;
@@ -124,7 +124,8 @@ function handleFile(files: any[]) {
 </script>
 
 <template>
-  <a-modal v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="1300">
+  <a-modal v-model:open="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false"
+           :width="1300">
     <template #footer>
       <a-button type="primary" :loading="state.loading" @click="save()"> 提交</a-button>
       <a-button @click="state.visible = false">关闭</a-button>
@@ -136,15 +137,17 @@ function handleFile(files: any[]) {
             <a-row :gutter="[16, 0]">
               <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                 <a-form-item label="头像">
-                  <a-upload v-model:file-list="photoList" list-type="picture-card" :show-upload-list="false" :action="AppConsts.domainServerApi + '/api/upload/uploadFile'">
-                    <img v-if="photoImage" :src="photoImage" alt="avatar" width="100" height="100" />
+                  <a-upload v-model:file-list="photoList" list-type="picture-card" :show-upload-list="false"
+                            :action="AppConsts.domainServerApi + '/api/upload/uploadFile'">
+                    <img v-if="photoImage" :src="photoImage" alt="avatar" width="100" height="100"/>
                     <div v-else class="ant-upload-text">上传</div>
                   </a-upload>
                 </a-form-item>
               </a-col>
               <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                 <a-form-item label="文件">
-                  <a-upload v-model:file-list="filePathList" :action="AppConsts.domainServerApi + '/api/upload/uploadFile'">
+                  <a-upload v-model:file-list="filePathList"
+                            :action="AppConsts.domainServerApi + '/api/v1/admin/upload/uploadFile'">
                     <a-button>
                       <upload-outlined></upload-outlined>
                       上传文件
@@ -162,32 +165,33 @@ function handleFile(files: any[]) {
               </a-col>
               <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                 <a-form-item label="编号">
-                  <a-input v-model:value="state.vm.form.number" placeholder="请输入" />
+                  <a-input v-model:value="state.vm.form.number" placeholder="请输入"/>
                 </a-form-item>
               </a-col>
               <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                 <a-form-item label="名称">
-                  <a-input v-model:value="state.vm.form.name" placeholder="请输入" />
+                  <a-input v-model:value="state.vm.form.name" placeholder="请输入"/>
                 </a-form-item>
               </a-col>
               <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                 <a-form-item label="联系电话">
-                  <a-input v-model:value="state.vm.form.phone" placeholder="请输入" />
+                  <a-input v-model:value="state.vm.form.phone" placeholder="请输入"/>
                 </a-form-item>
               </a-col>
               <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                 <a-form-item label="生日">
-                  <a-date-picker v-model:value="state.vm.form.birthday" valueFormat="YYYY-MM-DD" style="width: 100%" />
+                  <a-date-picker v-model:value="state.vm.form.birthday" valueFormat="YYYY-MM-DD" style="width: 100%"/>
                 </a-form-item>
               </a-col>
               <a-col :xs="24" :sm="24" :md="24" :lg="24" :xl="24">
                 <a-form-item label="所属用户">
                   <!-- 查找带回 -->
                   <FindBack
-                    title="查找所属用户"
-                    v-model:label="state.vm.sysUser.name"
-                    v-model:visible="state.findBackUserVisible"
-                    @onClear="
+                      :visible="false"
+                      title="查找所属用户"
+                      v-model:label="state.vm.sysUser.name"
+                      v-model:open="state.findBackUserVisible"
+                      @onClear="
                       () => {
                         state.vm.form.userId = null;
                         state.vm.sysUser.name = null;
@@ -195,9 +199,9 @@ function handleFile(files: any[]) {
                     "
                   >
                     <SystemUser
-                      isFindBack
-                      :defaultRowIds="[state.vm.form.userId]"
-                      @findBackChange="
+                        isFindBack
+                        :defaultRowIds="[state.vm.form.userId as string]"
+                        @findBackChange="
                         (rows) => {
                           state.vm.form.userId = rows[0].id;
                           state.vm.sysUser.name = rows[0].name;
@@ -213,7 +217,8 @@ function handleFile(files: any[]) {
 
           <a-col :xs="24" :sm="24" :md="18" :lg="18" :xl="18">
             <a-form-item label="简介">
-              <WangEditor v-model:html="state.vm.form.introduce" :domainName="AppConsts.domainServerApi" :previewDomainName="AppConsts.domainServerApi" :height="600" />
+              <WangEditor v-model:html="state.vm.form.introduce" :domainName="AppConsts.domainServerApi"
+                          :previewDomainName="AppConsts.domainServerApi" :height="600"/>
             </a-form-item>
           </a-col>
         </a-row>

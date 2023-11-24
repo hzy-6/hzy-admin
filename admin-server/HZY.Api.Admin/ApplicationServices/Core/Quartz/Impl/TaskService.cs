@@ -169,12 +169,12 @@ public class TaskService : ITaskService
         {
             if (quartzJobTask.Type == QuartzJobTaskTypeEnum.WebApi)
             {
-                result = await _quartzJobService.CloseAsync(quartzJobTask);
+                result = await _quartzJobService.CloseAsync(quartzJobTask.Name!, quartzJobTask.GroupName!);
             }
 
             if (quartzJobTask.Type == QuartzJobTaskTypeEnum.Local)
             {
-                result = await _quartzJobService.CloseAsync(quartzJobTask);
+                result = await _quartzJobService.CloseAsync(quartzJobTask.Name!, quartzJobTask.GroupName!);
             }
         }
         catch (Exception ex)
@@ -273,6 +273,8 @@ public class TaskService : ITaskService
             //识别出本地任务加入数据库任务库
             foreach (var item in App.JobTaskInfos)
             {
+                if (result.Any(w => w.JobPoint == item.Key)) continue;
+
                 var quartzJobTask = new QuartzJobTask();
                 quartzJobTask.JobPoint = item.Key;
                 quartzJobTask.GroupName = item.ClassType.Name;

@@ -1,9 +1,9 @@
 ﻿global using HZY.Core.Identity.Configs;
 global using HZY.Core.Identity.Models;
 global using HZY.Core.Identity.Utils;
-global using HZY.Framework.AutoRegisterIOC;
 global using HZY.Framework.Core.AspNetCore;
 global using HZY.Framework.Core.Utils;
+global using HZY.Framework.DependencyInjection;
 global using Microsoft.AspNetCore.Authentication.JwtBearer;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Http;

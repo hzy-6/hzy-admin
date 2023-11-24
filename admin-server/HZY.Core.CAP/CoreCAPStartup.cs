@@ -3,7 +3,7 @@
 /// <summary>
 /// CAP github : https://github.com/dotnetcore/CAP/blob/master/README.zh-cn.md
 /// </summary>
-public class CoreCAPStartup : Startup<CoreCAPStartup>
+public class CoreCAPStartup : StartupModule<CoreCAPStartup>
 {
     /// <summary>
     /// 

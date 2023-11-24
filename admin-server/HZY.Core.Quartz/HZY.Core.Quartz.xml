@@ -21,6 +21,18 @@
             </summary>
             <param name="webApplication"></param>
         </member>
+        <member name="T:HZY.Core.Quartz.Jobs.MemoryEventJob">
+            <summary>
+            本地事件任务
+            </summary>
+        </member>
+        <member name="M:HZY.Core.Quartz.Jobs.MemoryEventJob.Execute(Quartz.IJobExecutionContext)">
+            <summary>
+            执行
+            </summary>
+            <param name="context"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Core.Quartz.Jobs.MemoryJob">
             <summary>
             本地任务
@@ -91,13 +103,6 @@
             任务调度服务
             </summary>
         </member>
-        <member name="M:HZY.Core.Quartz.Services.Impl.QuartzJobService.#ctor(Quartz.ISchedulerFactory,HZY.Core.Quartz.Services.Impl.DIJobFactory)">
-            <summary>
-            任务调度服务
-            </summary>
-            <param name="schedulerFactory"></param>
-            <param name="dIJobFactory"></param>
-        </member>
         <member name="M:HZY.Core.Quartz.Services.Impl.QuartzJobService.RunAsync``2(``0)">
             <summary>
             开始运行一个调度器
@@ -107,12 +112,22 @@
             <param name="jobTaskInfo"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Core.Quartz.Services.Impl.QuartzJobService.CloseAsync``1(``0)">
+        <member name="M:HZY.Core.Quartz.Services.Impl.QuartzJobService.RunAsync(System.String,System.String,System.Action{System.ValueTuple{System.String,System.String}},System.String)">
+            <summary>
+            开始运行一个调度器
+            </summary>
+            <param name="taskName"></param>
+            <param name="cron"></param>
+            <param name="call"></param>
+            <param name="groupName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Quartz.Services.Impl.QuartzJobService.CloseAsync(System.String,System.String)">
             <summary>
             关闭调度器
             </summary>
-            <typeparam name="TJobTaskInfo"></typeparam>
-            <param name="tasks"></param>
+            <param name="taskName">任务名称</param>
+            <param name="groupName">组名称</param>
             <returns></returns>
         </member>
         <member name="T:HZY.Core.Quartz.Services.IQuartzJobService">
@@ -129,11 +144,22 @@
             <param name="jobTaskInfo"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Core.Quartz.Services.IQuartzJobService.CloseAsync``1(``0)">
+        <member name="M:HZY.Core.Quartz.Services.IQuartzJobService.RunAsync(System.String,System.String,System.Action{System.ValueTuple{System.String,System.String}},System.String)">
+            <summary>
+            开始运行一个任务调度器
+            </summary>
+            <param name="taskName">任务名称唯一</param>
+            <param name="cron">任务表达式</param>
+            <param name="call">被执行事件</param>
+            <param name="groupName">分组</param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Quartz.Services.IQuartzJobService.CloseAsync(System.String,System.String)">
             <summary>
             关闭任务调度
             </summary>
-            <param name="tasks"></param>
+            <param name="taskName">任务名称</param>
+            <param name="groupName">组名称</param>
             <returns></returns>
         </member>
         <member name="T:HZY.Core.Quartz.Services.QuartzStartupConfig">
@@ -144,6 +170,16 @@
         <member name="F:HZY.Core.Quartz.Services.QuartzStartupConfig.JobTaskKey">
             <summary>
             作业任务 Key 名称
+            </summary>
+        </member>
+        <member name="F:HZY.Core.Quartz.Services.QuartzStartupConfig.JobTaskInfoKey">
+            <summary>
+            任务信息 key 名称
+            </summary>
+        </member>
+        <member name="F:HZY.Core.Quartz.Services.QuartzStartupConfig.JobTaskInfoCallKey">
+            <summary>
+            任务信息回调 key 名称
             </summary>
         </member>
     </members>

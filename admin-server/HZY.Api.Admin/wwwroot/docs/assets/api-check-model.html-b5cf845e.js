@@ -1,0 +1,1 @@
+const e=JSON.parse('{"key":"v-0fbc1248","path":"/guide/hzy-admin/web-api/api-check-model.html","title":"模型验证","lang":"zh-CN","frontmatter":{},"headers":[],"git":{"updatedTime":1685435672000,"contributors":[{"name":"hzy","email":"1396510655@qq.com","commits":1}]},"filePathRelative":"guide/hzy-admin/web-api/api-check-model.md"}');export{e as data};

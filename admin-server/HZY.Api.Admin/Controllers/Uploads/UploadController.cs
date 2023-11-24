@@ -3,6 +3,7 @@ namespace HZY.Api.Admin.Controllers.Uploads;
 /// <summary>
 /// 上传文件控制器
 /// </summary>
+[AllowAnonymous]
 public class UploadController : AdminControllerBase
 {
     private readonly IUploadManager _uploadService;

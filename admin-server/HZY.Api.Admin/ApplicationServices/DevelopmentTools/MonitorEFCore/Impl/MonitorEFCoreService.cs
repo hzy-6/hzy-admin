@@ -9,27 +9,27 @@ public class MonitorEFCoreService : IMonitorEFCoreService
     /// GetEFCoreMonitorContext
     /// </summary>
     /// <returns></returns>
-    public EntityFrameworkRepositoriesMonitorContext GetEFCoreMonitorContext()
+    public EntityFrameworkRepositoriesMonitorContext? GetEFCoreMonitorContext()
     {
-        return EntityFrameworkRepositoriesMonitorCache.Context;
+        return RepositoryEntityFrameworkMonitorCache.Context;
     }
 
     /// <summary>
     /// GetNewest
     /// </summary>
     /// <returns></returns>
-    public List<EntityFrameworkRepositoriesMonitorSqlContext> GetNewest()
+    public List<EntityFrameworkRepositoriesMonitorSqlContext>? GetNewest()
     {
-        return EntityFrameworkRepositoriesMonitorCache.SqlContext.OrderByDescending(w => w.Time).Take(20).ToList();
+        return RepositoryEntityFrameworkMonitorCache.SqlContext?.OrderByDescending(w => w.Time).Take(20).ToList();
     }
 
     /// <summary>
     /// GetTimeConsumingRanking
     /// </summary>
     /// <returns></returns>
-    public List<EntityFrameworkRepositoriesMonitorSqlContext> GetTimeConsumingRanking()
+    public List<EntityFrameworkRepositoriesMonitorSqlContext>? GetTimeConsumingRanking()
     {
-        return EntityFrameworkRepositoriesMonitorCache.SqlContext.OrderByDescending(w => w.ElapsedMilliseconds).Take(20).ToList();
+        return RepositoryEntityFrameworkMonitorCache.SqlContext?.OrderByDescending(w => w.ElapsedMilliseconds).Take(20).ToList();
     }
 
 

@@ -35,7 +35,7 @@ defineExpose({
     state.loading = true;
     SysOperationLogService.findForm(key).then((res) => {
       state.loading = false;
-      if (res.code != 1) return;
+      if (res.code != 200) return;
       state.vm = res.data;
     });
   },
@@ -43,7 +43,7 @@ defineExpose({
 </script>
 
 <template>
-  <a-modal v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" width="70%">
+  <a-modal v-model:open="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" width="70%">
     <template #footer>
       <!-- <a-button type="primary" :loading="state.loading" @click="save()"> 提交</a-button> -->
       <a-button @click="state.visible = false">关闭</a-button>

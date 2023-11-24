@@ -3,7 +3,7 @@
 /// <summary>
 /// 共享库 启动器
 /// </summary>
-public class SharedStartup : Startup<SharedStartup>
+public class SharedStartup : StartupModule<SharedStartup>
 {
     /// <summary>
     /// 

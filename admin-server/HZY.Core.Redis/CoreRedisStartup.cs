@@ -3,7 +3,7 @@
 /// <summary>
 ///  redis 启动器
 /// </summary>
-public class CoreRedisStartup : Startup<CoreRedisStartup>
+public class CoreRedisStartup : StartupModule<CoreRedisStartup>
 {
     /// <summary>
     /// 配置服务

@@ -39,7 +39,7 @@ function saveForm() {
       return Tools.message.warning("两次密码不一致!");
     }
     PersonalCenterService.changePassword(state.vm).then((res) => {
-      if (res.code != 1) return;
+      if (res.code != 200) return;
       Tools.message.success("操作成功!");
     });
   });

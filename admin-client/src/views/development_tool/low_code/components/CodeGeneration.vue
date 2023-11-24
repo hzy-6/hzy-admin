@@ -30,7 +30,7 @@ async function getCode() {
     codeText: "",
   });
   loading.value = false;
-  if (result.code != 1) return;
+  if (result.code != 200) return;
   code.value = result?.data?.code;
 
   if (codeType.value == "HZY.Models" || codeType.value == "HZY.Services.Admin" || codeType.value == "HZY.Controllers.Admin") {

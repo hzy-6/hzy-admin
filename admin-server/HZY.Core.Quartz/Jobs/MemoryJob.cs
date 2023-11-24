@@ -94,7 +94,7 @@ public class MemoryJob : IJob, ITransientSelfDependency
                 {
                     if (methodResult.GetType().IsGenericType)
                     {
-                        var _value = methodResult.GetType().GetProperty(nameof(Task<object>.Result)).GetValue(methodResult);
+                        var _value = methodResult.GetType().GetProperty(nameof(Task<object>.Result))?.GetValue(methodResult);
 
                         result = _value?.ToString();
                     }

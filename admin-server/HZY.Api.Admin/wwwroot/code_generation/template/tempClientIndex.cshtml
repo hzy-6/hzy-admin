@@ -1,4 +1,4 @@
-﻿@model GenDbTableDto
+@model GenDbTableDto
 @{
     var className = Model.EntityName;
     var tableName = Model.TableName;
@@ -90,13 +90,13 @@ async function findList() {
       state.loading = true;
       const result = await @(className)Service.findList(state.page, state.size, state.search.vm, state.search.sort);
       state.loading = false;
-      if (result.code != 1) return;
+      if (result.code != 200) return;
       state.page = result.data.page;
       state.size = result.data.size;
       state.total = result.data.total;
       state.columns = result.data.columns;
       state.data = result.data.dataSource;
-      state.visible = false;
+      // state.visible = false;
     } catch (error) {
       state.loading = false;
     }
@@ -120,7 +120,7 @@ async function deleteList(id?: string) {
       state.loading = true;
       const result = await @(className)Service.deleteList(ids);
       state.loading = false;
-      if (result.code != 1) return;
+      if (result.code != 200) return;
       Tools.message.success("删除成功!");
       findList();
     } catch (error) {

@@ -1,0 +1,80 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Core.EntityFramework</name>
+    </assembly>
+    <members>
+        <member name="T:HZY.Core.EntityFramework.Aop.TransactionalAttribute">
+            <summary>
+            事务拦截
+            </summary>
+        </member>
+        <member name="F:HZY.Core.EntityFramework.Aop.TransactionalAttribute._dbContextTypes">
+            <summary>
+            指定 数据上下文
+            </summary>
+        </member>
+        <member name="M:HZY.Core.EntityFramework.Aop.TransactionalAttribute.#ctor(System.Type[])">
+            <summary>
+            事务拦截
+            </summary>
+            <param name="dbContextTypes">数据上下文</param>
+        </member>
+        <member name="M:HZY.Core.EntityFramework.Aop.TransactionalAttribute.OnEntry(Rougamo.Context.MethodContext)">
+            <summary>
+            
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.CoreEntityFrameworkStartup">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Interceptors.AuditInterceptor">
+            <summary>
+            审计 保存拦截器
+            </summary>
+        </member>
+        <member name="M:HZY.Core.EntityFramework.Interceptors.AuditInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})">
+            <summary>
+            SavingChanges
+            </summary>
+            <param name="eventData"></param>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.EntityFramework.Interceptors.AuditInterceptor.SavingChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)">
+            <summary>
+            SavingChangesAsync
+            </summary>
+            <param name="eventData"></param>
+            <param name="result"></param>
+            <param name="cancellationToken"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.EntityFramework.Interceptors.AuditInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData)">
+            <summary>
+            添加 、 修改 、删除 拦截
+            </summary>
+            <param name="eventData"></param>
+        </member>
+        <member name="M:HZY.Core.EntityFramework.Interceptors.AuditInterceptor.HandleTableId(Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry[])">
+            <summary>
+            处理 表 主键 id
+            </summary>
+            <param name="entityEntries"></param>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Interceptors.AuditInterceptorV2">
+            <summary>
+            审计 保存拦截器 拦截v2实体模型
+            </summary>
+        </member>
+        <member name="M:HZY.Core.EntityFramework.Interceptors.AuditInterceptorV2.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData)">
+            <summary>
+            添加 、 修改 、删除 拦截
+            </summary>
+            <param name="eventData"></param>
+        </member>
+    </members>
+</doc>

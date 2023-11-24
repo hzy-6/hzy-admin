@@ -4,7 +4,7 @@
 /// 服务父类
 /// </summary>
 [Component]
-public class ApplicationService
+public class ApplicationService //: IScopedSelfDependency
 {
 
 
@@ -15,8 +15,7 @@ public class ApplicationService
 /// 服务父类
 /// </summary>
 /// <typeparam name="TRepository">仓储</typeparam>
-[Component]
-public class ApplicationService<TRepository> where TRepository : class
+public class ApplicationService<TRepository> : ApplicationService where TRepository : class
 {
     /// <summary>
     /// 默认仓储

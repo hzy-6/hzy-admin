@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     vue(),
     vueJsx({
-      // https://github.com/vitejs/vite/tree/main/packages/plugin-vue-jsx
+      // https://github.com/vitejs/vite-plugin-vue/tree/main/packages/plugin-vue-jsx
       // options are passed on to @vue/babel-plugin-jsx
     }),
   ],
@@ -38,7 +38,7 @@ export default defineConfig({
     // }
   },
   resolve: {
-    extensions: [".js", ".json", ".scss", ".css", ".less", ".tsx"],
+    extensions: [".js", ".json", ".scss", ".css", ".less", ".tsx", ".ts", ".vue"],
     alias: {
       "@/": resolve("src") + "/",
     },

@@ -1,5 +1,3 @@
-using HZY.Shared.ApplicationServices.PagingViews;
-
 namespace HZY.Api.Admin.ApplicationServices.Systems;
 
 /// <summary>
@@ -14,8 +12,7 @@ public class SysUserService : ApplicationService<IRepository<SysUser>>
     private readonly IAccountService _accountService;
     private readonly SysMenuService _sysMenuService;
     private readonly IRepository<SysOrganization> _sysOrganizationRepository;
-    private readonly PermissionService _permissionService;
-    private readonly PagingViewService _pagingViewService;
+    private readonly IPermissionService _permissionService;
 
     public SysUserService(IRepository<SysUser> defaultRepository,
         IRepository<SysUserRole> sysUserRoleRepository,
@@ -25,8 +22,7 @@ public class SysUserService : ApplicationService<IRepository<SysUser>>
         IAccountService accountService,
         SysMenuService sysMenuService,
         IRepository<SysOrganization> sysOrganizationRepository,
-        PermissionService permissionService,
-        PagingViewService pagingViewService) : base(defaultRepository)
+        IPermissionService permissionService) : base(defaultRepository)
     {
         _sysUserRoleRepository = sysUserRoleRepository;
         _sysRoleRepository = sysRoleRepository;
@@ -36,7 +32,7 @@ public class SysUserService : ApplicationService<IRepository<SysUser>>
         _sysMenuService = sysMenuService;
         _sysOrganizationRepository = sysOrganizationRepository;
         _permissionService = permissionService;
-        _pagingViewService = pagingViewService;
+
     }
 
     /// <summary>
@@ -71,7 +67,6 @@ public class SysUserService : ApplicationService<IRepository<SysUser>>
                 .ThenByDescending(w => w.t1.CreationTime)
                 .Select(w => new
                 {
-                    w.t1.Id,
                     w.t1.Name,
                     w.t1.LoginName,
                     w.所属角色,
@@ -80,6 +75,7 @@ public class SysUserService : ApplicationService<IRepository<SysUser>>
                     _Email = w.t1.Email,
                     w.t1.LastModificationTime,
                     w.t1.CreationTime,
+                    w.t1.Id,
                 })
             ;
 
@@ -89,9 +85,11 @@ public class SysUserService : ApplicationService<IRepository<SysUser>>
             .FormatValue(query, w => w.CreationTime, (oldValue) => oldValue.ToString("yyyy-MM-dd"))
             .FormatValue(query, w => w.LastModificationTime, (oldValue) => oldValue?.ToString("yyyy-MM-dd"))
             ;
-        result.GetColumn(query, w => w.OrganizationName).SetColumn("所属组织");
 
-        return _pagingViewService.BuilderColumns(result);
+        result.GetColumn(query, w => w.OrganizationName!).SetColumn("所属组织");
+        result.GetColumn(query, w => w.所属角色!).SetColumn("所属角色", sort: false);
+
+        return result;
     }
 
     /// <summary>

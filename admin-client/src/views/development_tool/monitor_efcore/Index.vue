@@ -28,13 +28,13 @@ async function init() {
   loading.value = true;
   const result = await MonitorEFCoreService.getEFCoreMonitorContext();
   loading.value = false;
-  if (result.code != 1) return;
+  if (result.code != 200) return;
   context.value = result.data;
   //处理获取耗时排行榜
   loading.value = true;
   const result1 = await MonitorEFCoreService.getTimeConsumingRanking();
   loading.value = false;
-  if (result1.code != 1) return;
+  if (result1.code != 200) return;
   data.value = result1.data;
 }
 </script>

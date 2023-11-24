@@ -3,7 +3,7 @@
 /// <summary>
 /// 
 /// </summary>
-public class CoreQuartzStartup : Startup<CoreQuartzStartup>
+public class CoreQuartzStartup : StartupModule<CoreQuartzStartup>
 {
     /// <summary>
     /// 
@@ -32,9 +32,10 @@ public class CoreQuartzStartup : Startup<CoreQuartzStartup>
             _quartzJobService.RunAsync<QuartzJobTaskInfo, MemoryJob>(new QuartzJobTaskInfo()
             {
                 Cron = item.ScheduledAttribute.Cron,
-                GroupName = item.ScheduledAttribute.GroupName,
-                Name = item.ScheduledAttribute.Name,
+                GroupName = item.ScheduledAttribute.GroupName ?? "default",
+                Name = item.ScheduledAttribute.Name ?? item.Key,
                 Remark = item.ScheduledAttribute.Remark,
+                // key 如果放入了 HZY.Api.CalcCenter.ApplicationServices.ServiceBus.Publishs.AppPublish>TestPublishAuto 表示执行函数
                 Key = item.Key
             }).Wait()
            ;

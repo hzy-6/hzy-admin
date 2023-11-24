@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { reactive, ref } from "vue";
+import {reactive, ref} from "vue";
 import Tools from "@/core/utils/Tools";
-import { FormInstance } from "ant-design-vue";
+import {FormInstance} from "ant-design-vue";
 
 //定义组件事件
 const props = defineProps<{ onSuccess: () => void }>();
@@ -25,7 +25,7 @@ defineExpose({
    * 打开表单初始化
    * @param param0
    */
-  open: ({ key }: { key: string }) => {
+  open: ({key}: { key: string }) => {
     state.visible = true;
     if (state.visible) {
       state.vm.id = key;
@@ -50,57 +50,59 @@ function save() {
 </script>
 
 <template>
-  <a-modal v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="800">
+  <a-modal v-model:open="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false"
+           :width="800">
     <template #footer>
       <a-button type="primary" :loading="state.saveLoading" @click="save()"> 提交</a-button>
       <a-button @click="state.visible = false">关闭</a-button>
     </template>
-    <a-spin v-drag :spinning="state.saveLoading">
+    <!--    v-drag-->
+    <a-spin :spinning="state.saveLoading">
       <a-form ref="refForm" layout="vertical" :model="state.vm.form">
         <a-row :gutter="[16, 0]">
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="用户名" ref="value" name="value" :rules="[{ required: true, trigger: 'blur' }]">
-              <a-input v-model:value="state.vm.form.value" placeholder="请输入" />
+              <a-input v-model:value="state.vm.form.value" placeholder="请输入"/>
             </a-form-item>
           </a-col>
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="年龄" ref="value" name="value" :rules="[{ required: true, trigger: 'blur' }]">
-              <a-input v-model:value="state.vm.form.value" placeholder="请输入" />
+              <a-input v-model:value="state.vm.form.value" placeholder="请输入"/>
             </a-form-item>
           </a-col>
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="地址" ref="value" name="value" :rules="[{ required: true, trigger: 'blur' }]">
-              <a-input v-model:value="state.vm.form.value" placeholder="请输入" />
+              <a-input v-model:value="state.vm.form.value" placeholder="请输入"/>
             </a-form-item>
           </a-col>
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="用户名" ref="value" name="value" :rules="[{ required: true, trigger: 'blur' }]">
-              <a-input v-model:value="state.vm.form.value" placeholder="请输入" />
+              <a-input v-model:value="state.vm.form.value" placeholder="请输入"/>
             </a-form-item>
           </a-col>
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="年龄" ref="value" name="value" :rules="[{ required: true, trigger: 'blur' }]">
-              <a-input v-model:value="state.vm.form.value" placeholder="请输入" />
+              <a-input v-model:value="state.vm.form.value" placeholder="请输入"/>
             </a-form-item>
           </a-col>
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="地址" ref="value" name="value" :rules="[{ required: true, trigger: 'blur' }]">
-              <a-input v-model:value="state.vm.form.value" placeholder="请输入" />
+              <a-input v-model:value="state.vm.form.value" placeholder="请输入"/>
             </a-form-item>
           </a-col>
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="用户名" ref="value" name="value" :rules="[{ required: true, trigger: 'blur' }]">
-              <a-input v-model:value="state.vm.form.value" placeholder="请输入" />
+              <a-input v-model:value="state.vm.form.value" placeholder="请输入"/>
             </a-form-item>
           </a-col>
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="年龄" ref="value" name="value" :rules="[{ required: true, trigger: 'blur' }]">
-              <a-input v-model:value="state.vm.form.value" placeholder="请输入" />
+              <a-input v-model:value="state.vm.form.value" placeholder="请输入"/>
             </a-form-item>
           </a-col>
           <a-col :xs="24" :sm="12" :md="12" :lg="12" :xl="12">
             <a-form-item label="地址" ref="value" name="value" :rules="[{ required: true, trigger: 'blur' }]">
-              <a-input v-model:value="state.vm.form.value" placeholder="请输入" />
+              <a-input v-model:value="state.vm.form.value" placeholder="请输入"/>
             </a-form-item>
           </a-col>
         </a-row>

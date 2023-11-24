@@ -1,97 +1,124 @@
 <script lang="ts" setup>
-import { reactive, onMounted } from "vue";
+import {reactive, onMounted, ref} from "vue";
 import PageContainer from "@/core/components/PageContainer.vue";
-defineOptions({ name: "VxeTableCom" });
+import {VxeTablePropTypes} from 'vxe-table'
+import XEUtils from 'xe-utils'
 
-const demo1 = reactive<{
-  loading: boolean;
-  tableData: any[];
-  sexList: any[];
-}>({
-  loading: false,
-  tableData: [],
-  sexList: [
-    {
-      label: "女",
-      value: "0",
-    },
-    {
-      label: "男",
-      value: "1",
-    },
-  ],
-});
+defineOptions({name: "VxeTableCom"});
 
-const formatterSex = ({ cellValue }: any) => {
-  const item = demo1.sexList.find((item) => item.value === cellValue);
-  return item ? item.label : "";
-};
+interface RowVO {
+  name: string
+  attr1: number
+  attr2: string
+  attr3: string
+  attr4: string
+  attr5: string
+  attr6: string
+  attr7: string
+  attr8: string
+  attr9: string
+  attr10: string
+  attr11: string
+  attr12: string
+  attr13: string
+  attr14: string
+}
 
-const filterAgeMethod = ({ value, row }: any) => {
-  return row.age >= value;
-};
+const tableData = ref<RowVO[]>([])
 
-onMounted(() => {
-  demo1.loading = true;
-  setTimeout(() => {
-    demo1.tableData = [
-      { id: 10001, name: "Test1", role: "Develop", sex: "0", age: 28, address: "test abc" },
-      { id: 10002, name: "Test2", role: "Test", sex: "1", age: 22, address: "Guangzhou" },
-      { id: 10003, name: "Test3", role: "PM", sex: "0", age: 32, address: "Shanghai" },
-      { id: 10004, name: "Test4", role: "Designer", sex: "1", age: 23, address: "test abc" },
-      { id: 10005, name: "Test5", role: "Develop", sex: "1", age: 30, address: "Shanghai" },
-      { id: 10006, name: "Test6", role: "Designer", sex: "1", age: 21, address: "test abc" },
-      { id: 10007, name: "Test7", role: "Test", sex: "0", age: 29, address: "test abc" },
-      { id: 10008, name: "Test8", role: "Develop", sex: "0", age: 35, address: "test abc" },
-      { id: 10009, name: "Test9", role: "Test", sex: "1", age: 21, address: "test abc" },
-      { id: 10010, name: "Test10", role: "Develop", sex: "0", age: 28, address: "test abc" },
-      { id: 10011, name: "Test11", role: "Test", sex: "0", age: 29, address: "test abc" },
-      { id: 10012, name: "Test12", role: "Develop", sex: "1", age: 27, address: "test abc" },
-      { id: 10013, name: "Test13", role: "Test", sex: "0", age: 24, address: "test abc" },
-      { id: 10014, name: "Test14", role: "Develop", sex: "1", age: 34, address: "test abc" },
-      { id: 10015, name: "Test15", role: "Test", sex: "1", age: 21, address: "test abc" },
-      { id: 10016, name: "Test16", role: "Develop", sex: "0", age: 20, address: "test abc" },
-      { id: 10017, name: "Test17", role: "Test", sex: "1", age: 31, address: "test abc" },
-      { id: 10018, name: "Test18", role: "Develop", sex: "0", age: 32, address: "test abc" },
-      { id: 10019, name: "Test19", role: "Test", sex: "1", age: 37, address: "test abc" },
-      { id: 10020, name: "Test20", role: "Develop", sex: "1", age: 41, address: "test abc" },
-    ];
-    demo1.loading = false;
-  }, 200);
-});
+const sumNum = (list: RowVO[], field: string) => {
+  let count = 0
+  list.forEach(item => {
+    count += Number(item[field])
+  })
+  return XEUtils.round(count, 2)
+}
+
+const footerMethod: VxeTablePropTypes.FooterMethod<RowVO> = ({columns, data}) => {
+  // 返回一个二维数组的表尾合计
+  const footData = [
+    columns.map((column: any, columnIndex: any) => {
+      if (columnIndex === 0) {
+        return '平均'
+      }
+      switch (column.field) {
+        case 'attr1':
+          return sumNum(data, 'attr1')
+      }
+      return '-'
+    })
+  ]
+  return footData
+}
+
+setTimeout(() => {
+  const mockList: RowVO[] = []
+  for (let index = 0; index < 1000; index++) {
+    mockList.push({
+      name: 'Test' + index,
+      attr1: index,
+      attr2: 'a2-' + index,
+      attr3: 'a3-' + index,
+      attr4: 'a4-' + index,
+      attr5: 'a5-' + index,
+      attr6: 'a6-' + index,
+      attr7: 'a7-' + index,
+      attr8: 'a8-' + index,
+      attr9: 'a9-' + index,
+      attr10: 'a10-' + index,
+      attr11: 'a11-' + index,
+      attr12: 'a12-' + index,
+      attr13: 'a13-' + index,
+      attr14: 'a14-' + index
+    })
+  }
+  tableData.value = mockList
+}, 300)
 </script>
 
 <template>
   <PageContainer>
-    <a-card title="VxeTable 演示">
-      <template #extra><a href="https://xuliangzhan_admin.gitee.io/vxe-table/v4/table/start/install" target="_black">VxeTable 官网文档</a></template>
-      <vxe-table
-        border
-        stripe
-        height="400"
-        :loading="demo1.loading"
-        :column-config="{ resizable: true }"
-        :row-config="{ isHover: true }"
-        :checkbox-config="{ labelField: 'id', highlight: true, range: true }"
-        :data="demo1.tableData"
-      >
-        <vxe-column type="seq" width="60"></vxe-column>
-        <vxe-column type="checkbox" title="ID" width="140"></vxe-column>
-        <vxe-column field="name" title="Name" sortable></vxe-column>
-        <vxe-column field="sex" title="Sex" :filters="demo1.sexList" :filter-multiple="false" :formatter="formatterSex"></vxe-column>
-        <vxe-column
-          field="age"
-          title="Age"
-          sortable
-          :filters="[
-            { label: '大于16岁', value: 16 },
-            { label: '大于26岁', value: 26 },
-            { label: '大于30岁', value: 30 },
-          ]"
-          :filter-method="filterAgeMethod"
-        ></vxe-column>
-        <vxe-column field="address" title="Address" show-overflow></vxe-column>
-      </vxe-table>
+    <a-card title="VxeTable 演示" :body-style="{padding:0}">
+      <template #extra>
+        <a href="https://vxetable.cn/#/table/scroll/scroll" target="_black">
+          VxeTable 官网文档
+        </a>
+      </template>
+      <div>
+        <vxe-table
+            border
+            show-overflow
+            show-header-overflow
+            show-footer-overflow
+            show-footer
+            height="600px"
+            :footer-method="footerMethod"
+            :scroll-x="{enabled: true, gt: 10}"
+            :scroll-y="{enabled: true, gt: 100}"
+            :data="tableData">
+          <vxe-column type="seq" width="100"></vxe-column>
+          <vxe-column field="name" title="Name" width="150" sortable></vxe-column>
+          <vxe-colgroup title="分类1">
+            <vxe-column field="attr1" title="Attr1" width="100"></vxe-column>
+            <vxe-column field="attr2" title="Attr2" width="100"></vxe-column>
+            <vxe-column field="attr3" title="Attr3" width="100"></vxe-column>
+          </vxe-colgroup>
+          <vxe-column field="attr4" title="Attr4" width="100"></vxe-column>
+          <vxe-column field="attr5" title="Attr5" width="150" sortable></vxe-column>
+          <vxe-column field="attr6" title="Attr6" width="100"></vxe-column>
+          <vxe-column field="attr7" title="Attr7" width="100"></vxe-column>
+          <vxe-column field="attr8" title="Attr8" width="200" show-overflow></vxe-column>
+          <vxe-column field="attr9" title="Attr9" width="100"></vxe-column>
+          <vxe-column field="attr10" title="Attr10" width="100"></vxe-column>
+          <vxe-colgroup title="分类2">
+            <vxe-column field="attr11" title="Attr11" width="100"></vxe-column>
+            <vxe-column field="attr12" title="Attr12" width="100"></vxe-column>
+            <vxe-column field="attr13" title="Attr13" width="150" sortable></vxe-column>
+            <vxe-column field="attr14" title="Attr14" width="100"></vxe-column>
+            <vxe-column field="attr15" title="Attr15" width="100"></vxe-column>
+          </vxe-colgroup>
+        </vxe-table>
+      </div>
     </a-card>
   </PageContainer>
 </template>

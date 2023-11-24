@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import { reactive, ref, onMounted, computed, watch } from "vue";
-import { FormInstance } from "ant-design-vue";
-import { useAuthority } from "@/utils/Authority";
+import {reactive, ref, onMounted, computed, watch} from "vue";
+import {FormInstance} from "ant-design-vue";
+import {useAuthority} from "@/utils/Authority";
 import AppIcon from "@/core/components/AppIcon.vue";
 import Info from "./Info.vue";
 import Tools from "@/core/utils/Tools";
@@ -10,7 +10,7 @@ import TableCurd from "@/core/components/curd/TableCurd.vue";
 import SysUserService from "@/services/system/SysUserService";
 import SysOrganizationService from "@/services/system/SysOrganizationService";
 
-defineOptions({ name: "system_user" });
+defineOptions({name: "system_user"});
 
 //定义组件事件
 const emits = defineEmits<{
@@ -18,23 +18,98 @@ const emits = defineEmits<{
 }>();
 //定义组件属性
 const props = withDefaults(
-  defineProps<{
-    //查找带回
-    isFindBack: boolean;
-    /**
-     * 默认选中行ids
-     */
-    defaultRowIds: string[];
-    /**
-     * 类型 带回 多条(false)还是单条(true)
-     */
-    type: boolean;
-  }>(),
-  {
-    isFindBack: false,
-    type: true,
-  }
+    defineProps<{
+      //查找带回
+      isFindBack: boolean;
+      /**
+       * 默认选中行ids
+       */
+      defaultRowIds: string[];
+      /**
+       * 类型 带回 多条(false)还是单条(true)
+       */
+      type: boolean;
+    }>(),
+    {
+      isFindBack: false,
+      type: true,
+    }
 );
+
+const columns: any[] = [
+  {
+    fieldName: "name",
+    title: "用户名称",
+    show: true,
+    width: "",
+    sorter: true,
+    dataIndex: "name"
+  },
+  {
+    fieldName: "loginName",
+    title: "登录名称",
+    show: true,
+    width: "",
+    sorter: true,
+    dataIndex: "loginName"
+  },
+  {
+    fieldName: "所属角色",
+    title: "所属角色",
+    show: true,
+    width: "",
+    sorter: false,
+    dataIndex: "所属角色"
+  },
+  {
+    fieldName: "organizationName",
+    title: "所属组织",
+    show: true,
+    width: "",
+    sorter: true,
+    dataIndex: "organizationName"
+  },
+  {
+    fieldName: "phone",
+    title: "联系电话",
+    show: true,
+    width: "",
+    sorter: true,
+    dataIndex: "phone"
+  },
+  {
+    fieldName: "_Email",
+    title: "邮件地址",
+    show: false,
+    width: "",
+    sorter: true,
+    dataIndex: "_Email"
+  },
+  {
+    fieldName: "lastModificationTime",
+    title: "更新时间",
+    show: true,
+    width: "",
+    sorter: true,
+    dataIndex: "lastModificationTime"
+  },
+  {
+    fieldName: "creationTime",
+    title: "创建时间",
+    show: true,
+    width: "",
+    sorter: true,
+    dataIndex: "creationTime"
+  },
+  {
+    fieldName: "id",
+    title: "操作",
+    show: true,
+    width: "",
+    sorter: true,
+    dataIndex: "id"
+  }
+];
 
 const state = reactive({
   search: {
@@ -50,7 +125,7 @@ const state = reactive({
   page: 1,
   size: 10,
   total: 100,
-  columns: [] as any[],
+  columns: columns,
   data: [] as any[],
 });
 
@@ -87,11 +162,11 @@ async function findList() {
     state.loading = true;
     const result = await SysUserService.findList(state.page, state.size, state.search.vm, state.search.sort);
     state.loading = false;
-    if (result.code != 1) return;
+    if (result.code != 200) return;
     state.page = result.data.page;
     state.size = result.data.size;
     state.total = result.data.total;
-    state.columns = result.data.columns;
+    // state.columns = result.data.columns;
     state.data = result.data.dataSource;
     //查找带回初始化选中操作
     findBackMethods.setCheckboxRow();
@@ -118,7 +193,7 @@ async function deleteList(id?: string) {
     state.loading = true;
     const result = await SysUserService.deleteList(ids);
     state.loading = false;
-    if (result.code != 1) return;
+    if (result.code != 200) return;
     Tools.message.success("删除成功!");
     findList();
   } catch (error) {
@@ -140,10 +215,10 @@ const findBackMethods = {
   initRows() {
     if (!props.isFindBack) return;
     watch(
-      () => props.defaultRowIds,
-      (value) => {
-        findBackMethods.setCheckboxRow();
-      }
+        () => props.defaultRowIds,
+        (value) => {
+          findBackMethods.setCheckboxRow();
+        }
     );
   },
   //设置默认选中项
@@ -188,9 +263,9 @@ findBackMethods.initRows();
 <template>
   <PageContainer :show="!$props.isFindBack">
     <TableCurd
-      ref="refTableCurd"
-      :config="state"
-      @change="
+        ref="refTableCurd"
+        v-model:config="state"
+        @change="
         (changeTable) => {
           state.page = changeTable.pagination.current ?? 1;
           state.size = changeTable.pagination.pageSize ?? state.size;
@@ -198,7 +273,7 @@ findBackMethods.initRows();
           findList();
         }
       "
-      @show-size-change="
+        @show-size-change="
         ({ current, size }) => {
           state.page = current == 0 ? 1 : current;
           state.size = size;
@@ -212,29 +287,29 @@ findBackMethods.initRows();
           <a-row :gutter="[16, 0]">
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item class="mb-0" name="name" label="真实姓名">
-                <a-input v-model:value="state.search.vm.name" placeholder="真实名称" />
+                <a-input v-model:value="state.search.vm.name" placeholder="真实名称"/>
               </a-form-item>
             </a-col>
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item class="mb-0" name="loginName" label="账户名称">
-                <a-input v-model:value="state.search.vm.loginName" placeholder="账户名称" />
+                <a-input v-model:value="state.search.vm.loginName" placeholder="账户名称"/>
               </a-form-item>
             </a-col>
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item class="mb-0" name="organizationId" label="所属组织">
                 <a-tree-select
-                  v-model:value="state.search.vm.organizationId"
-                  :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
-                  placeholder="所属组织"
-                  allow-clear
-                  tree-default-expand-all
-                  :tree-data="organizationTree"
-                  :field-names="{
+                    v-model:value="state.search.vm.organizationId"
+                    :dropdown-style="{ maxHeight: '400px', overflow: 'auto' }"
+                    placeholder="所属组织"
+                    allow-clear
+                    tree-default-expand-all
+                    :tree-data="organizationTree"
+                    :field-names="{
                     children: 'children',
                     label: 'title',
                     value: 'key',
                   }"
-                  class="w100"
+                    class="w100"
                 ></a-tree-select>
               </a-form-item>
             </a-col>
@@ -242,7 +317,7 @@ findBackMethods.initRows();
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" class="text-right">
               <a-space :size="8">
                 <a-button
-                  @click="
+                    @click="
                     state.page = 1;
                     refSearchForm?.resetFields();
                     findList();
@@ -251,8 +326,8 @@ findBackMethods.initRows();
                   重置
                 </a-button>
                 <a-button
-                  type="primary"
-                  @click="
+                    type="primary"
+                    @click="
                     state.page = 1;
                     findList();
                   "
@@ -267,19 +342,23 @@ findBackMethods.initRows();
       <!-- toolbar-left -->
       <template #toolbar-left>
         <a-button @click="state.search.state = !state.search.state" v-if="power.search">
-          <div v-if="state.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
-          <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
+          <div v-if="state.search.state">
+            <AppIcon name="UpOutlined"/>&nbsp;&nbsp;收起
+          </div>
+          <div v-else>
+            <AppIcon name="DownOutlined"/>&nbsp;&nbsp;展开
+          </div>
         </a-button>
         <a-button type="primary" @click="() => refInfo?.open()" v-if="power.insert">
           <template #icon>
-            <AppIcon name="PlusOutlined" />
+            <AppIcon name="PlusOutlined"/>
           </template>
           新建
         </a-button>
         <a-popconfirm title="您确定要删除?" @confirm="deleteList()" okText="确定" cancelText="取消" v-if="power.delete">
           <a-button type="primary" danger>
             <template #icon>
-              <AppIcon name="DeleteOutlined" />
+              <AppIcon name="DeleteOutlined"/>
             </template>
             批量删除
           </a-button>
@@ -288,7 +367,7 @@ findBackMethods.initRows();
         <template v-if="$props.isFindBack">
           <a-button type="primary" @click="findBackMethods.onChange()">
             <template #icon>
-              <AppIcon name="CheckOutlined" />
+              <AppIcon name="CheckOutlined"/>
             </template>
             带回数据
           </a-button>
@@ -302,39 +381,29 @@ findBackMethods.initRows();
               <a-menu-item key="1" @click="exportExcel()">导出 Excel</a-menu-item>
             </a-menu>
           </template>
-          <a-button> 更多 <AppIcon name="ellipsis-outlined" /> </a-button>
-        </a-dropdown>
-        <!-- 列设置 -->
-        <a-popover>
-          <template #content>
-            <div v-for="item in state.columns.filter((w:any) => w.fieldName.substr(0, 1) != '_')">
-              <a-checkbox v-model:checked="item.show">{{ item.title }}</a-checkbox>
-            </div>
-          </template>
-          <a-button type="text">
-            <template #icon><AppIcon name="setting-outlined" /> </template>
+          <a-button> 更多
+            <AppIcon name="ellipsis-outlined"/>
           </a-button>
-        </a-popover>
+        </a-dropdown>
       </template>
 
-      <!-- table-col -->
-      <template #table-col>
-        <template v-for="item,index in state.columns.filter((w:any) => w.fieldName !== 'id' && w.show)" :key="item.fieldName">
-          <a-table-column :title="item.title" :data-index="item.fieldName" :sorter="item.sort ? { multiple: index + 1 } : false" />
-        </template>
+      <!--列插槽-->
+      <template #id="item">
         <!-- 操作 -->
-        <a-table-column title="操作" data-index="id" v-if="power.update || power.delete">
+        <a-table-column v-bind="item" v-if="power.update || power.delete">
           <template #default="{ record }">
             <a href="javascript:;" @click="() => refInfo?.open(record.id)" v-if="power.update">编辑</a>
-            <a-divider type="vertical" />
-            <a-popconfirm title="您确定要删除?" @confirm="deleteList(record.id)" okText="确定" cancelText="取消" v-if="power.delete">
+            <a-divider type="vertical"/>
+            <a-popconfirm title="您确定要删除?" @confirm="deleteList(record.id)" okText="确定" cancelText="取消"
+                          v-if="power.delete">
               <a class="text-danger">删除</a>
             </a-popconfirm>
           </template>
         </a-table-column>
       </template>
+
     </TableCurd>
     <!-- Info -->
-    <Info ref="refInfo" :onSuccess="() => findList()" />
+    <Info ref="refInfo" :onSuccess="() => findList()"/>
   </PageContainer>
 </template>

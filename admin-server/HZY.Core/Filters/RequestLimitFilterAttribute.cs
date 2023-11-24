@@ -39,7 +39,7 @@
             var result = _memoryCache.Get<RequestLimitContext>(apiResourceCacheKey);
             if (result != null && (DateTime.Now - result.ActiveTime).Seconds <= Duration && result.LimitCount >= LimitCount)
             {
-                context.Result = new JsonResult(ApiResult.ResultMessage(ApiResultCodeEnum.Error, Message));
+                context.Result = new JsonResult(R.ResultMessage((int)HttpStatusCode.InternalServerError, Message));
                 return;
             }
 

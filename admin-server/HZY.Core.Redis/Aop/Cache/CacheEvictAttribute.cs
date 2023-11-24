@@ -25,7 +25,7 @@ public class CacheEvictAttribute : BaseCacheAttribute
         _actionName = actionName;
     }
 
-    protected override string GetCacheKey(AopContext context)
+    protected override string GetCacheKey(MethodContext context)
     {
         if (_cacheClassType != null && !string.IsNullOrWhiteSpace(_actionName))
         {
@@ -41,39 +41,30 @@ public class CacheEvictAttribute : BaseCacheAttribute
     /// <value></value>
     public bool BeforeRun { get; set; } = false;
 
-    /// <inheritdoc/>
-    public override void Before(AopContext aopContext)
+
+    public override void OnEntry(MethodContext context)
     {
         if (BeforeRun)
         {
-            RemoveKey(aopContext);
+            RemoveKey(context);
         }
     }
 
-    /// <inheritdoc/>
-    public override void Before<TResult>(AopContext aopContext)
+    public override void OnException(MethodContext context)
     {
-        if (BeforeRun)
-        {
-            RemoveKey(aopContext);
-        }
+
     }
 
-    /// <inheritdoc/>
-    public override void After(AopContext aopContext)
+    public override void OnSuccess(MethodContext context)
     {
-        if (!BeforeRun)
-        {
-            RemoveKey(aopContext);
-        }
-    }
-    /// <inheritdoc/>
 
-    public override void After<TResult>(AopContext aopContext, TResult result)
+    }
+
+    public override void OnExit(MethodContext context)
     {
         if (!BeforeRun)
         {
-            RemoveKey(aopContext);
+            RemoveKey(context);
         }
     }
 
@@ -81,7 +72,7 @@ public class CacheEvictAttribute : BaseCacheAttribute
     /// 移除key
     /// </summary>
     /// <param name="aopContext"></param>
-    private void RemoveKey(AopContext aopContext)
+    private void RemoveKey(MethodContext aopContext)
     {
         if (RedisServiceType == null)
         {
@@ -97,7 +88,7 @@ public class CacheEvictAttribute : BaseCacheAttribute
     /// 移除redis key
     /// </summary>
     /// <param name="aopContext"></param>
-    private void RemoveRedisKey(AopContext aopContext)
+    private void RemoveRedisKey(MethodContext aopContext)
     {
         var cacheKey = GetCacheKey(aopContext);
         if (cacheKey.Contains('*'))
@@ -116,7 +107,7 @@ public class CacheEvictAttribute : BaseCacheAttribute
     /// </summary>
     /// <param name="aopContext"></param>
     /// <param name="cacheKey"></param>
-    private void RemoveRedisGroupKey(AopContext aopContext, string cacheKey)
+    private void RemoveRedisGroupKey(MethodContext aopContext, string cacheKey)
     {
         var redisMultiplexer = GetMultiplexer(aopContext);
         List<RedisKey> redisKeys = new List<RedisKey>();
@@ -138,10 +129,13 @@ public class CacheEvictAttribute : BaseCacheAttribute
     /// 移除内存key
     /// </summary>
     /// <param name="aopContext"></param>
-    private void RemoveMemoryKey(AopContext aopContext)
+    private void RemoveMemoryKey(MethodContext aopContext)
     {
         var cacheKey = GetCacheKey(aopContext);
-        var cache = aopContext.ServiceProvider.CreateScope().ServiceProvider.GetRequiredService<IMemoryCache>();
+        using var scope = m_ServiceProvider.Value?.CreateScope();
+
+        var cache = scope.ServiceProvider.GetRequiredService<IMemoryCache>();
+
         // 是否要进行前缀或后缀匹配
         if (cacheKey.StartsWith('*'))
         {
@@ -167,62 +161,56 @@ public class CacheEvictAttribute : BaseCacheAttribute
     /// <param name="isStart"></param>
     private void RemoveMemoryGroupKey(string pattern, IMemoryCache memoryCache, bool isStart)
     {
-        IDictionary entries = null;
-#if NET7_0_OR_GREATER
-            var coherentState = memoryCache.GetType().GetField("_coherentState", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(memoryCache);
-            entries = coherentState.GetType().GetProperty("EntriesCollection", BindingFlags.NonPublic | BindingFlags.Instance)?.GetValue(coherentState) as IDictionary;
-#else
-            entries = memoryCache.GetType().GetField("_entries", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(memoryCache) as IDictionary;
-#endif
+        var entries = memoryCache.GetType().GetField("_entries", BindingFlags.Instance | BindingFlags.NonPublic)?.GetValue(memoryCache) as IDictionary;
         if (entries != null)
+        {
+            List<string> keys = new List<string>();
+
+            if (isStart)
             {
-                List<string> keys = new List<string>();
-
-                if (isStart)
+                // 前缀模式匹配
+                foreach (var key in entries.Keys)
                 {
-                    // 前缀模式匹配
-                    foreach (var key in entries.Keys)
+                    var k = key as string;
+                    if (k != null)
                     {
-                        var k = key as string;
-                        if (k != null)
+                        if (k.StartsWith(pattern))
                         {
-                            if (k.StartsWith(pattern))
-                            {
-                                keys.Add(k);
-                            }
+                            keys.Add(k);
                         }
                     }
-                }
-                else
-                {
-                    // 尾缀模式匹配
-                    foreach (var key in entries.Keys)
-                    {
-                        var k = key as string;
-                        if (k != null)
-                        {
-                            if (k.EndsWith(pattern))
-                            {
-                                keys.Add(k);
-                            }
-                        }
-                    }
-                }
-
-                foreach (var key in keys)
-                {
-                    memoryCache.Remove(key);
                 }
             }
             else
             {
-                throw new Exception("前缀或尾缀匹配不可用!");
+                // 尾缀模式匹配
+                foreach (var key in entries.Keys)
+                {
+                    var k = key as string;
+                    if (k != null)
+                    {
+                        if (k.EndsWith(pattern))
+                        {
+                            keys.Add(k);
+                        }
+                    }
+                }
             }
+
+            foreach (var key in keys)
+            {
+                memoryCache.Remove(key);
+            }
+        }
+        else
+        {
+            throw new Exception("前缀或尾缀匹配不可用!");
+        }
     }
 
-    private IConnectionMultiplexer GetMultiplexer(AopContext aopContext)
+    private IConnectionMultiplexer GetMultiplexer(MethodContext aopContext)
     {
-        var redisService = aopContext.ServiceProvider.GetRequiredService(RedisServiceType);
+        var redisService = m_ServiceProvider.Value?.GetRequiredService(RedisServiceType);
         var propertyInfos = redisService.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
         var databasePropertyInfo = propertyInfos.FirstOrDefault(w => w.PropertyType == typeof(IConnectionMultiplexer));
         if (databasePropertyInfo == null)

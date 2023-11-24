@@ -1,0 +1,1 @@
+import{_ as t,o,c as s,b as e,d as r}from"./app-4f4af2d5.js";const a={},c=e("h1",{id:"others",tabindex:"-1"},[e("a",{class:"header-anchor",href:"#others","aria-hidden":"true"},"#"),r(" others")],-1),n=e("p",null,"建设中...",-1),_=[c,n];function h(d,i){return o(),s("div",null,_)}const f=t(a,[["render",h],["__file","home.html.vue"]]);export{f as default};

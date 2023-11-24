@@ -86,7 +86,7 @@ public class @(className)Controller : AdminControllerBase<@($"{className}Service
     /// <summary>
     /// 导出Excel
     /// </summary>
-    /// <param name="search"></param>
+    /// <param name="pagingSearchInput"></param>
     /// <returns></returns>
     [ActionDescriptor(PermissionFunctionConsts.Function_Export, DisplayName = "导出数据")]
     [ApiResourceCacheFilter(10)]

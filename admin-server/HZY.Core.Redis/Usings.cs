@@ -1,14 +1,14 @@
 ﻿global using HZY.Core.Redis.Configs;
 global using HZY.Core.Redis.Services.Impl;
-global using HZY.Framework.AutoRegisterIOC;
-global using HZY.Framework.AutoRegisterIOC.Attributes;
 global using HZY.Framework.Core.AspNetCore;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.Extensions.Caching.Memory;
 global using Microsoft.Extensions.Configuration;
 global using Microsoft.Extensions.DependencyInjection;
 global using Newtonsoft.Json;
+global using Rougamo;
 global using StackExchange.Redis;
 global using System.Collections;
 global using System.Reflection;
 global using System.Text.RegularExpressions;
+global using Rougamo.Context;

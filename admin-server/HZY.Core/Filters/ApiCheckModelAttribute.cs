@@ -26,8 +26,10 @@ public class ApiCheckModelAttribute : ActionFilterAttribute
             }
         }
 
+        if (messages.Count == 0) return;
+
         //var apiResult = ApiResult.WarnMessage(string.Join("<br /><br />", messages));
-        var apiResult = ApiResult.WarnMessage(messages?.FirstOrDefault());
+        var apiResult = R.ErrorMessage(messages?.FirstOrDefault()!);
         context.Result = new JsonResult(apiResult);
     }
 }

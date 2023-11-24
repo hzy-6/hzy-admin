@@ -18,4 +18,15 @@ public class DynamicApiControllerAppService : IDynamicApiController
         return "动态 Api 返回数据信息" + name;
     }
 
+    /// <summary>
+    /// 测试定时任务
+    /// </summary>
+    /// <returns></returns>
+    [Scheduled(false)]
+    [NonAction]
+    public string Run()
+    {
+        return "运行成功！！！";
+    }
+
 }

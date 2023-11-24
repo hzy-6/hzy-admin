@@ -47,7 +47,7 @@ defineExpose({
     state.loading = true;
     SysMenuService.findForm(key as string).then((res) => {
       state.loading = false;
-      if (res.code != 1) return;
+      if (res.code != 200) return;
       state.vm = res.data;
       //如果 vm.menuFunctionList 集合为空则默认将 allFunctions 数据加入进去
       if (state.vm.menuFunctionList.length == 0 && state.vm.allFunctions.length > 0) {
@@ -88,7 +88,7 @@ function save() {
       state.vm.form.parentId = state.parentId ?? state.vm.form.parentId;
       const result = await SysMenuService.saveForm(state.vm.id, state.vm);
       state.loading = false;
-      if (result.code != 1) return;
+      if (result.code != 200) return;
       Tools.message.success("操作成功!");
       props.onSuccess();
       state.visible = false;
@@ -175,7 +175,7 @@ function onChangeComponentName() {
 </script>
 
 <template>
-  <a-drawer v-model:visible="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="1300">
+  <a-drawer v-model:open="state.visible" :title="state.vm.id ? '编辑' : '新建'" centered @ok="state.visible = false" :width="1300">
     <template #footer>
       <a-space :size="8">
         <a-button type="primary" :loading="state.loading" @click="save()"> 提交</a-button>
@@ -226,7 +226,7 @@ function onChangeComponentName() {
                   <AppIcon name="search-outlined" v-else />
                 </template>
               </a-input-search>
-              <a-modal v-model:visible="state.iconFormVisible" title="图标库" width="100%" wrap-class-name="full-modal" :footer="false">
+              <a-modal v-model:open="state.iconFormVisible" title="图标库" width="100%" wrap-class-name="full-modal" :footer="false">
                 <AppIconList v-model:name="state.vm.form.icon" @onChangeName="() => (state.iconFormVisible = !state.iconFormVisible)" />
               </a-modal>
             </a-form-item>

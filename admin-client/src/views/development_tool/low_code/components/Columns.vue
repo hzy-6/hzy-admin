@@ -46,7 +46,7 @@ async function findList() {
   state.search.vm.Low_Code_TableId = props.rowData.id;
   const result = await LowCodeTableInfoService.findList(state.page, state.size, state.search.vm, state.search.sort);
   state.loading = false;
-  if (result.code != 1) return;
+  if (result.code != 200) return;
   state.page = result.data.page;
   state.size = result.data.size;
   state.total = result.data.total;
@@ -71,7 +71,7 @@ async function deleteList(id?: string) {
   state.loading = true;
   const result = await LowCodeTableInfoService.deleteList(ids);
   state.loading = false;
-  if (result.code != 1) return;
+  if (result.code != 200) return;
   Tools.message.success("删除成功!");
   findList();
 }
@@ -204,16 +204,16 @@ function change() {
           <a-button> 更多 <AppIcon name="ellipsis-outlined" /> </a-button>
         </a-dropdown> -->
       <!-- 列设置 -->
-      <a-popover>
-        <template #content>
-          <div v-for="item in state.columns.filter((w:any) => w.fieldName.substr(0, 1) != '_')">
-            <a-checkbox v-model:checked="item.show">{{ item.title }}</a-checkbox>
-          </div>
-        </template>
-        <a-button type="text">
-          <template #icon><AppIcon name="setting-outlined" /> </template>
-        </a-button>
-      </a-popover>
+<!--      <a-popover>-->
+<!--        <template #content>-->
+<!--          <div v-for="item in state.columns.filter((w:any) => w.fieldName.substr(0, 1) != '_')">-->
+<!--            <a-checkbox v-model:checked="item.show">{{ item.title }}</a-checkbox>-->
+<!--          </div>-->
+<!--        </template>-->
+<!--        <a-button type="text">-->
+<!--          <template #icon><AppIcon name="setting-outlined" /> </template>-->
+<!--        </a-button>-->
+<!--      </a-popover>-->
     </template>
     <!-- table-col -->
     <template #table-col>

@@ -56,21 +56,12 @@ class Http {
         const data = response.data;
 
         if (Object.prototype.hasOwnProperty.call(data, "code")) {
-          //     程序异常 = -2,
-          // 未授权 = -1,
-          // 失败 = 0,
-          // 成功 = 1,
-
-          if (data.code === -1) {
+          if (data.code === 401) {
             //接口授权码无效
-            Tools.message.warning(data.message + ",请重新登录授权!");
+            Tools.notice.warning("未授权!");
             return router.push(AppConsts.loginPath);
           }
-          if (data.code === -2) {
-            //服务端异常
-            Tools.message.error(data.message);
-          }
-          if (data.code === 0) {
+          if (data.code === 500) {
             //失败
             Tools.message.error(data.message);
           }
@@ -89,14 +80,13 @@ class Http {
             router.replace(AppConsts.loginPath);
             // window.location.reload();
           }
+          if (error.response.status === 500) {
+            Tools.notice.error(error.response.data.message ?? error.message);
+          }
+        } else {
+          Tools.notice.error(error.message);
         }
 
-        if (error.message === "Network Error") {
-          Tools.message.error("网络连接错误!");
-          router.replace(AppConsts.loginPath);
-        }
-
-        console.log(error);
         return Promise.reject(error.response.data);
       }
     );

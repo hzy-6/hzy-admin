@@ -5,10 +5,10 @@ namespace HZY.Shared.Filters;
 /// </summary>
 public class ApiPermissionFilter : IActionFilter
 {
-    private readonly PermissionService _permissionService;
+    private readonly IPermissionService _permissionService;
     private readonly IConfiguration _configuration;
 
-    public ApiPermissionFilter(PermissionService permissionService, IConfiguration configuration)
+    public ApiPermissionFilter(IPermissionService permissionService, IConfiguration configuration)
     {
         _permissionService = permissionService;
         _configuration = configuration;
@@ -44,12 +44,13 @@ public class ApiPermissionFilter : IActionFilter
                 "Create",
                 "Update",
                 "Remove",
-                "AutoImprotProject"
+                "AutoImprotProject",
+                "Copy"
             };
 
             if (actionList.Any(w => actionName.ToLower().Contains(w.ToLower())))
             {
-                var data = ApiResult.ResultMessage(ApiResultCodeEnum.Warn, "请下载源代码本地运行!");
+                var data = R.ErrorMessage("请下载源代码本地运行!");
                 context.Result = new JsonResult(data);
             }
         }
@@ -83,7 +84,7 @@ public class ApiPermissionFilter : IActionFilter
 
         if (power == null)
         {
-            var data = ApiResult.ResultMessage(ApiResultCodeEnum.Error, "检测不到任何权限信息!");
+            var data = R.ErrorMessage("检测不到任何权限信息!");
             context.Result = new JsonResult(data);
             return;
         }
@@ -91,7 +92,7 @@ public class ApiPermissionFilter : IActionFilter
         //检查当前用户对当前权限码是否有权限
         if (power.ContainsKey(functionName) && !(bool)power[functionName])
         {
-            var data = ApiResult.ResultMessage(ApiResultCodeEnum.UnAuth, unAuthMessage);
+            var data = R.ResultMessage(HttpStatusCode.Unauthorized, unAuthMessage);
             context.Result = new JsonResult(data);
         }
         #endregion

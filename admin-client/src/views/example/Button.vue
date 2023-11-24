@@ -1,14 +1,21 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import { Button, message, ConfigProvider } from "ant-design-vue";
+import {ref} from "vue";
+import {Button, message, ConfigProvider} from "ant-design-vue";
 import PageContainer from "@/core/components/PageContainer.vue";
-defineOptions({ name: "ButtonCom" });
+import {Dayjs} from 'dayjs';
+
+defineOptions({name: "ButtonCom"});
 
 const messageText = ref("hello");
 
 function onHello() {
   message.success(messageText.value);
 }
+
+const value = ref<Dayjs>();
+const onPanelChange = (value: Dayjs, mode: string) => {
+  console.log(value, mode);
+};
 </script>
 
 <template>
@@ -27,6 +34,13 @@ function onHello() {
       <Button class="btn-info">Info</Button>
       <Button class="btn-warning">warning</Button>
     </div>
+    <div style="display: flex; justify-content: center;" class="mt-46">
+      <div :style="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px' }">
+        <a-calendar v-model:value="value" :fullscreen="false" @panelChange="onPanelChange"/>
+      </div>
+    </div>
+
+
   </PageContainer>
 </template>
 

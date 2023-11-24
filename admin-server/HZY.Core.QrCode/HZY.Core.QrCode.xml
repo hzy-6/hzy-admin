@@ -1,0 +1,30 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>HZY.Core.QrCode</name>
+    </assembly>
+    <members>
+        <member name="M:HZY.Core.QrCode.CoreQrCodeStartup.ConfigureServices(Microsoft.AspNetCore.Builder.WebApplicationBuilder)">
+            <summary>
+            服务配置
+            </summary>
+            <param name="webApplicationBuilder"></param>
+        </member>
+        <member name="M:HZY.Core.QrCode.CoreQrCodeStartup.Configure(Microsoft.AspNetCore.Builder.WebApplication)">
+            <summary>
+            使用服务
+            </summary>
+            <param name="webApplication"></param>
+        </member>
+        <member name="T:HZY.Core.QrCode.Services.QrCodeService">
+            <summary>
+            二维码服务
+            </summary>
+        </member>
+        <member name="M:HZY.Core.QrCode.Services.QrCodeService.GenerateQRCode">
+            <summary>
+            生成二维码图片
+            </summary>
+        </member>
+    </members>
+</doc>

@@ -1,5 +1,5 @@
-﻿global using HZY.Framework.AutoRegisterIOC;
-global using HZY.Framework.Core.AspNetCore;
+﻿global using HZY.Framework.Core.AspNetCore;
+global using HZY.Framework.DependencyInjection;
 global using Microsoft.AspNetCore.Builder;
 global using Microsoft.AspNetCore.Http;
 global using Microsoft.AspNetCore.Mvc;

@@ -37,7 +37,7 @@ function getJobLoggers(key: string, isFrist: boolean) {
   state.loading = true;
   TimedTaskService.getJobLoggers(key, state.page).then((res) => {
     state.loading = false;
-    if (res.code != 1) return;
+    if (res.code != 200) return;
     state.vm.form.data = res.data;
     if (!res.data || res.data.length == 0) {
       state.page = state.page - 1;
@@ -68,7 +68,7 @@ function more() {
 </script>
 
 <template>
-  <a-drawer v-model:visible="state.visible" title="任务日志" centered @ok="state.visible = false" :width="1200">
+  <a-drawer v-model:open="state.visible" title="任务日志" centered @ok="state.visible = false" :width="1200">
     <a-spin :spinning="state.loading">
       <a-timeline>
         <a-timeline-item v-for="item in state.vm.form.data">{{ item.text }}</a-timeline-item>

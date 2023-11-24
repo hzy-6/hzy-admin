@@ -113,5 +113,15 @@ public class SysMenuController : AdminControllerBase<SysMenuService>
         return await this._defaultService.CopyMenuAsync(id);
     }
 
+    /// <summary>
+    /// 获取菜单国际化json
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    public async Task<Dictionary<string, string>> GetGlobalNameJsonAsync()
+    {
+        return await this._defaultService.GetGlobalNameJsonAsync();
+    }
+
 
 }

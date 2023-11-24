@@ -23,6 +23,24 @@ public static class ObjectMapper
     }
 
     /// <summary>
+    /// copy object
+    /// </summary>
+    /// <typeparam name="TOld"></typeparam>
+    /// <typeparam name="TNew"></typeparam>
+    /// <param name="source"></param>
+    /// <param name="new"></param>
+    /// <returns></returns>
+    public static TNew MapTo<TOld, TNew>(this TOld source, TNew @new)
+    {
+        if (source == null) return default;
+
+        var config = new MapperConfiguration(cfg => cfg.CreateMap<TOld, TNew>());
+        var mapper = config.CreateMapper();
+
+        return mapper.Map(source, @new);
+    }
+
+    /// <summary>
     /// copy list
     /// </summary>
     /// <typeparam name="TOld">旧对象类型</typeparam>
@@ -38,4 +56,5 @@ public static class ObjectMapper
 
         return mapper.Map<List<TNew>>(source);
     }
+
 }

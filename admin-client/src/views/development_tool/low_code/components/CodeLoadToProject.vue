@@ -42,7 +42,7 @@ async function findForm() {
   state.loading = true;
   const result = await LowCodeTableService.findForm(props.rowData.id);
   state.loading = false;
-  if (result.code != 1) return;
+  if (result.code != 200) return;
   state.vm = result.data;
 }
 
@@ -55,7 +55,7 @@ function saveForm(successCallBack: Function | null = null) {
     LowCodeTableService.saveForm(state.vm.id, state.vm.form)
       .then((res) => {
         state.loading = false;
-        if (res.code != 1) return;
+        if (res.code != 200) return;
         Tools.message.success("保存成功!");
         if (successCallBack) {
           successCallBack();

@@ -1,0 +1,16 @@
+﻿global using HZY.Core.Identity.Services;
+global using HZY.Framework.Core;
+global using HZY.Framework.Core.AspNetCore;
+global using HZY.Framework.Core.Utils;
+global using HZY.Framework.DependencyInjection.Attributes;
+global using HZY.Framework.Repository.EntityFramework;
+global using HZY.Framework.Repository.EntityFramework.Attributes;
+global using HZY.Framework.Repository.EntityFramework.Models.Standard;
+global using HZY.Framework.Repository.EntityFramework.Models.StandardV2;
+global using Microsoft.AspNetCore.Builder;
+global using Microsoft.EntityFrameworkCore;
+global using Microsoft.EntityFrameworkCore.ChangeTracking;
+global using Microsoft.EntityFrameworkCore.Diagnostics;
+global using Microsoft.Extensions.DependencyInjection;
+global using Rougamo.Context;
+global using System.Reflection;
