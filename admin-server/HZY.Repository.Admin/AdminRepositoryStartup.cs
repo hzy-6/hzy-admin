@@ -3,7 +3,7 @@
 /// <summary>
 /// 程序启动器
 /// </summary>
-[ImportStartup(typeof(CoreEntityFrameworkStartup))]
+[ImportStartupModule<CoreEntityFrameworkStartup>]
 public class AdminRepositoryStartup : StartupModule<AdminRepositoryStartup>
 {
     /// <summary>
@@ -64,10 +64,22 @@ public class AdminRepositoryStartup : StartupModule<AdminRepositoryStartup>
             //添加 EFCore 监控 和 动态表名
             optionsBuilder.AddEntityFrameworkMonitor(adminRepositoriesOptions.IsMonitorEFCore);
             optionsBuilder.AddInterceptors(new AuditInterceptor());
-            optionsBuilder.AddInterceptors(new AuditInterceptorV2());
         });
 
-        services.AddEntityFrameworkRepositories(typeof(AdminDbContext));
+        services.AddEntityFrameworkRepositories(typeof(AdminDbContext), (auditOptions) =>
+        {
+            // 你的自定义审计字段 ...
+            //auditOptions.Add(new AuditOptions()
+            //{
+            //    CreationTimeFieldName = nameof(ICreateEntityV2.CreateTime),
+            //    CreatorUserIdFieldName = "",
+            //    LastModificationTimeFieldName = nameof(IUpdateEntityV2.UpdateTime),
+            //    LastModifierUserIdFieldName = "",
+            //    DeletionTimeFieldName = "UpdateTime",
+            //    DeleterUserIdFieldName = "UpdateBy",
+            //    IsDeletedFieldName = "DelFlag",
+            //});
+        });
     }
 
     /// <summary>

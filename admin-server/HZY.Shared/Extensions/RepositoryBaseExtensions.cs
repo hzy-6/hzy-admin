@@ -235,7 +235,7 @@ public static class RepositoryBaseExtensions
 
         //连表条件
         var query = from table in queryRepository.SelectNoTracking
-                    from sysUser in _sysUserRepository.SelectNoTracking.Where(w => w.Id == ((ICreateEntity)table).CreatorUserId)
+                    from sysUser in _sysUserRepository.SelectNoTracking.Where(w => w.Id == ((ICreateEntity)table).CreatorUserId).DefaultIfEmpty()
                     select new
                     {
                         table,

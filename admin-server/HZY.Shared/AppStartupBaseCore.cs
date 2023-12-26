@@ -4,10 +4,7 @@
 /// 基础启动器
 /// </summary>
 /// <typeparam name="TStartupMoudle"></typeparam>
-[ImportStartup(
-    typeof(CoreStartup),
-    typeof(LogStartup)
-    )]
+[ImportStartupModule<CoreStartup, LogStartup>]
 public class AppStartupBaseCore<TStartupMoudle> : StartupModule<TStartupMoudle> where TStartupMoudle : IStartupModule, new()
 {
     /// <summary>

@@ -11,20 +11,9 @@ public class AuditInterceptorV2 : AuditInterceptor
     /// <param name="eventData"></param>
     protected override void SavingChanges(DbContextEventData eventData)
     {
-        var userId = default(string);
-        try
-        {
-            using var scope = App.CreateScope();
-            var tokenService = scope.ServiceProvider.GetService<JwtTokenService>(); //
+        base.SavingChanges(eventData);
 
-            var id = tokenService?.GetAccountIdByToken();
-
-            userId = tokenService?.GetAccountIdByToken() == Guid.Empty ? null : id.ToString();
-        }
-        catch (Exception e)
-        {
-            // ignored
-        }
+        var userId = this.GetCurrentUserId();
 
         var entries = eventData.Context?.ChangeTracker.Entries();
         var entityEntries = entries as EntityEntry[] ?? entries?.ToArray();

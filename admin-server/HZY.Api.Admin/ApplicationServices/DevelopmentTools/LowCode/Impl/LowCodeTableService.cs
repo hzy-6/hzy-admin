@@ -102,7 +102,7 @@ public class LowCodeTableService : ApplicationService<IRepository<LowCodeTable>>
                     Id = id,
                     DisplayName = item.Comment,
                     TableName = item.Name,
-                    EntityName = item.Name.LineToHump()
+                    EntityName = item.Name.ToLineConvertHump()
                 };
                 insertList.Add(lowCodeTable);
             }

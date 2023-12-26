@@ -1135,22 +1135,6 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysOrganizationService.GetSysOrganizationTreeAsync(System.Collections.Generic.List{System.Int32},System.Collections.Generic.List{HZY.Repository.Admin.Entities.Systems.SysOrganization},HZY.Repository.Admin.Entities.Systems.SysOrganization)">
-            <summary>
-            获取组织机构树
-            </summary>
-            <param name="expandedRowKeys"></param>
-            <param name="sysOrganizations"></param>
-            <param name="sysOrganization"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysOrganizationService.GetSysOrganizationTreeAsync(System.Collections.Generic.IEnumerable{HZY.Api.Admin.Models.Dtos.Systems.SysOrganizationTreeDto})">
-            <summary>
-            对 组织树 加工树结构
-            </summary>
-            <param name="tree"></param>
-            <returns></returns>
-        </member>
         <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysPostService.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysPost})">
             <summary>
             pagingSearchInput
@@ -2277,6 +2261,11 @@
         <member name="P:HZY.Api.Admin.Models.Dtos.Systems.SysDictionaryDto.ParentName">
             <summary>
             父级名称
+            </summary>
+        </member>
+        <member name="P:HZY.Api.Admin.Models.Dtos.Systems.SysOperationLogSearchDto.RangeTime">
+            <summary>
+            时间区间
             </summary>
         </member>
         <member name="P:HZY.Api.Admin.Models.Dtos.Systems.SysOperationLogSearchDto.StartTime">

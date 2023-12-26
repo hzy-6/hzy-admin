@@ -37,13 +37,13 @@ public class CodeGenerationController : AdminControllerBase<ICodeGenerationServi
     {
         var code = await _defaultService.GetCodeByTypeAndTableNameAsync(genFormDto);
 
-        var lowCodeTableInfos = new List<LowCodeTableInfo>();
+        //var lowCodeTableInfos = new List<LowCodeTableInfo>();
 
         if (!string.IsNullOrWhiteSpace(genFormDto.TableName))
         {
             var table = _defaultService.GetGenContextDtoByTableName(genFormDto.TableName);
 
-            lowCodeTableInfos = table.TableInfos;
+            //lowCodeTableInfos = table.TableInfos;
         }
 
         return new

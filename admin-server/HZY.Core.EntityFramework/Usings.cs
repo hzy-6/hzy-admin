@@ -14,3 +14,4 @@ global using Microsoft.EntityFrameworkCore.Diagnostics;
 global using Microsoft.Extensions.DependencyInjection;
 global using Rougamo.Context;
 global using System.Reflection;
+global using HZY.Framework.Repository.EntityFramework.Interceptor;

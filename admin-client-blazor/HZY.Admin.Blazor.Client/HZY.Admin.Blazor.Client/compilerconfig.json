@@ -1,0 +1,10 @@
+﻿[
+  {
+    "outputFile": "Pages/Login/Login.razor.css",
+    "inputFile": "Pages/Login/Login.razor.less"
+  },
+  {
+    "outputFile": "wwwroot/css/hzy-admin-ui-tools.css",
+    "inputFile": "wwwroot/css/hzy-admin-ui-tools.less"
+  }
+]

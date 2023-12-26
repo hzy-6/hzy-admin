@@ -461,7 +461,7 @@ public class CodeGenerationService : ICodeGenerationService
         {
             path += $"/pages";
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
-            path += $"/{genFormDto.TableName.FirstCharToLower()}";
+            path += $"/{genFormDto.TableName.ToFirstCharConvertLower()}";
             if (!Directory.Exists(path)) Directory.CreateDirectory(path);
             //Index
             var codeString = await GenIndexAsync(genFormDto);
@@ -489,7 +489,7 @@ public class CodeGenerationService : ICodeGenerationService
     /// <returns></returns>
     private string FindCodeFileClassName(GenFormDto genFormDto)
     {
-        var tableName = genFormDto.TableName.LineToHump();
+        var tableName = genFormDto.TableName.ToLineConvertHump();
         return genFormDto.Type switch
         {
             "HZY.Models" => $"{tableName}.cs",
@@ -514,7 +514,7 @@ public class CodeGenerationService : ICodeGenerationService
         var replaceName = string.Empty;
         var oldFileName = string.Empty;
         var dto = new GenFormDto() { TableName = tableName, Type = GetEnumDescription(type) };
-        var humpTableName = tableName.LineToHump();
+        var humpTableName = tableName.ToLineConvertHump();
         var fileName = FindCodeFileClassName(dto);
         var path = string.Empty;
         //获取表路径信息

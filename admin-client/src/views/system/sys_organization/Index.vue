@@ -58,7 +58,7 @@ async function findList() {
     // state.total = result.data.total;
     // state.columns = result.data.columns;
     state.data = Tools.genTreeData(result.data, null);
-    state.expandedRowKeys = result.data.map((item: any) => item.id);
+    // state.expandedRowKeys = result.data.map((item: any) => item.id);
   } catch (error) {
     state.loading = false;
   }

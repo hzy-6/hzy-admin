@@ -1,4 +1,6 @@
-﻿namespace HZY.Api.Admin.Controllers.Systems;
+﻿using HZY.Framework.Core.Aop.Attributes;
+
+namespace HZY.Api.Admin.Controllers.Systems;
 
 /// <summary>
 /// 组织机构控制器
@@ -7,11 +9,18 @@
 public class SysOrganizationController : AdminControllerBase<SysOrganizationService>
 {
     private readonly IRepository<SysOrganization> _sysOrganizationRepository;
+    private readonly IRepository<SysUser> _sysUserRepository;
+    private readonly IAccountService _accountService;
 
-    public SysOrganizationController(SysOrganizationService defaultService, IRepository<SysOrganization> sysOrganizationRepository)
+    public SysOrganizationController(SysOrganizationService defaultService,
+        IRepository<SysOrganization> sysOrganizationRepository,
+        IRepository<SysUser> sysUserRepository,
+        IAccountService accountService)
         : base(defaultService)
     {
         _sysOrganizationRepository = sysOrganizationRepository;
+        _sysUserRepository = sysUserRepository;
+        _accountService = accountService;
     }
 
     /// <summary>
@@ -86,16 +95,23 @@ public class SysOrganizationController : AdminControllerBase<SysOrganizationServ
     /// <returns></returns>
     [ActionDescriptor(DisplayName = "查看组织架构树")]
     [HttpPost]
+    [Time("查看组织架构树")]
     public async Task<dynamic> GetSysOrganizationTreeAsync()
     {
         var expandedRowKeys = new List<int>();
-        var data = await _defaultService.GetSysOrganizationTreeAsync(expandedRowKeys, null, null);
+
+        var accountInfo = _accountService.GetAccountContext();
+
+        var sysOrganizationAll = await _sysOrganizationRepository
+             .DataPermission(_sysOrganizationRepository.SelectNoTracking, accountInfo, s => s.CreatorUserId!, s => s.Id)
+             .OrderBy(w => w.OrderNumber)
+             .ToListAsync();
 
         return new
         {
             expandedRowKeys,
-            allKeys = await _sysOrganizationRepository.Select.OrderBy(w => w.OrderNumber).Select(w => w.Id).ToListAsync(),
-            rows = await _defaultService.GetSysOrganizationTreeAsync(data)
+            allKeys = sysOrganizationAll.OrderBy(w => w.OrderNumber).Select(w => w.Id).ToList(),
+            rows = sysOrganizationAll
         };
     }
 

@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\projects\project.targets"/>
+	<Import Project="..\projects\project.targets" />
 
 	<ItemGroup>
-		<PackageReference Include="DotNetCore.CAP" Version="7.2.2" />
-		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="7.2.2" />
-		<PackageReference Include="DotNetCore.CAP.MySql" Version="7.2.2" />
-		<PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="7.2.2" />
-		<PackageReference Include="DotNetCore.CAP.RedisStreams" Version="7.2.2" />
+		<PackageReference Include="DotNetCore.CAP" Version="8.0.0" />
+		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="8.0.0" />
+		<PackageReference Include="DotNetCore.CAP.MySql" Version="8.0.0" />
+		<PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="8.0.0" />
+		<PackageReference Include="DotNetCore.CAP.RedisStreams" Version="8.0.0" />
 		<PackageReference Include="Savorboard.CAP.InMemoryMessageQueue" Version="7.0.0" />
 	</ItemGroup>
 

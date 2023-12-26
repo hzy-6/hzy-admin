@@ -122,12 +122,13 @@ function save() {
                 placeholder="所属组织"
                 allow-clear
                 tree-default-expand-all
+                show-search
+                tree-node-filter-prop="name"
                 :tree-data="state.organizationTree"
                 :field-names="{
                   children: 'children',
-                  label: 'title',
-                  // key: 'key',
-                  value: 'key',
+                  label: 'name',
+                  value: 'id',
                 }"
               ></a-tree-select>
             </a-form-item>

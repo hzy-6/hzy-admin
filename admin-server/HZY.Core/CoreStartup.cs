@@ -3,9 +3,7 @@
 /// <summary>
 /// 程序启动器
 /// </summary>
-[ImportStartup(
-    typeof(CoreAutoRegisterIOCStartup)
-    )]
+[ImportStartupModule<CoreAutoRegisterIOCStartup>]
 public class CoreStartup : StartupModule<CoreStartup>
 {
     /// <summary>
@@ -19,7 +17,7 @@ public class CoreStartup : StartupModule<CoreStartup>
     /// <param name="webApplicationBuilder"></param>
     public override void ConfigureServices(WebApplicationBuilder webApplicationBuilder)
     {
-        
+
 
     }
 

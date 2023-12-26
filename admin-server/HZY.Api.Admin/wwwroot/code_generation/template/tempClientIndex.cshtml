@@ -48,7 +48,7 @@ import PageContainer from "@@/core/components/PageContainer.vue";
 import TableCurd from "@@/core/components/curd/TableCurd.vue";
 import @(className)Service from "@@/service/app/@(tableName)s/@(className)Service";
 
-defineOptions({ name: "@(className.FirstCharToLower())Index" });
+defineOptions({ name: "@(className.ToFirstCharConvertLower())Index" });
 
 const state = reactive({
   search: {

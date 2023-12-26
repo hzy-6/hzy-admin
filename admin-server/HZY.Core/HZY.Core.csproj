@@ -4,9 +4,9 @@
 
 	<ItemGroup>
 		<PackageReference Include="HZY.Framework.Core" Version="1.1.4.*" />
-		<PackageReference Include="HZY.Framework.DependencyInjection" Version="0.0.0.6" />
+		<PackageReference Include="HZY.Framework.DependencyInjection" Version="0.0.1.2" />
 		<PackageReference Include="HZY.Framework.DependencyInjection.SourceGenerator" Version="0.0.0.4" />
-		<PackageReference Include="Flurl.Http" Version="3.2.4" />
+		<PackageReference Include="Flurl.Http" Version="4.0.0" />
 		<PackageReference Include="AutoMapper" Version="12.0.1" />
 		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
 		<PackageReference Include="SharpZipLib" Version="1.4.2" />

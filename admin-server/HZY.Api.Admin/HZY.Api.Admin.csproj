@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
 
 	<Import Project="..\projects\project.targets" />
-	
+
 	<PropertyGroup>
 		<!--尝试设置您的 .csproj？在某些情况下，服务器 GC 可能懒得回收内存。ServerGarbageCollection false-->
 		<ServerGarbageCollection>false</ServerGarbageCollection>
@@ -12,12 +12,17 @@
 				<Rougamo />
 			</Weavers>
 		</WeaverConfiguration>
+		<!--aot-->
+		<!--<PublishAot>true</PublishAot>-->
+		<!--如果我们不需要全球化代码和数据，需要特定的代码和数据，并且使用不变模式-->
+		<!--<InvariantGlobalization>true</InvariantGlobalization>-->
+
 	</PropertyGroup>
-	
+
 	<ItemGroup>
-		<PackageReference Include="Rougamo.Fody" Version="2.0.*" IncludeAssets="all" PrivateAssets="contentfiles;analyzers" />
+		<PackageReference Include="Rougamo.Fody" Version="2.*" IncludeAssets="all" PrivateAssets="contentfiles;analyzers" />
 	</ItemGroup>
-	
+
 	<ItemGroup>
 		<ProjectReference Include="..\HZY.Core.FreeSql\HZY.Core.FreeSql.csproj" />
 		<ProjectReference Include="..\HZY.Core.Identity\HZY.Core.Identity.csproj" />

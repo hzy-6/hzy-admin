@@ -1,10 +1,10 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 
-	<Import Project="..\projects\project.targets"/>
+	<Import Project="..\projects\project.targets" />
 
 	<ItemGroup>
-		<PackageReference Include="Quartz" Version="3.7.0" />
+		<PackageReference Include="Quartz" Version="3.8.0" />
 	</ItemGroup>
 
 	<ItemGroup>

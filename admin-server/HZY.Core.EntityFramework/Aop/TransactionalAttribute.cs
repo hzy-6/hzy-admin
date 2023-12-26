@@ -11,13 +11,19 @@ public class TransactionalAttribute : AopMoAttribute
     /// </summary>
     private readonly Type[] _dbContextTypes;
 
+    /// <summary>
+    /// 是否延迟提交
+    /// </summary>
+    public bool IsCommitDelay { get; set; } = false;
+
     public TransactionalAttribute()
     {
         _dbContextTypes = RepositoryEntityFrameworkExtensions.GetDbContextTypeAll().ToArray();
 
         if (_dbContextTypes == null || _dbContextTypes.Length == 0)
         {
-            throw new Exception("请在程序启动前注册 程序中所有的 dbContext 类型。例如：        services.AddEntityFrameworkRepositories(typeof(AdminDbContext));");
+            throw new Exception(
+                "请在程序启动前注册 程序中所有的 dbContext 类型。例如：        services.AddEntityFrameworkRepositories(typeof(AdminDbContext));");
         }
     }
 
@@ -31,7 +37,8 @@ public class TransactionalAttribute : AopMoAttribute
 
         if (_dbContextTypes == null || _dbContextTypes.Length == 0)
         {
-            throw new Exception("请在程序启动前注册 程序中所有的 dbContext 类型。例如：        services.AddEntityFrameworkRepositories(typeof(AdminDbContext));");
+            throw new Exception(
+                "请在程序启动前注册 程序中所有的 dbContext 类型。例如：        services.AddEntityFrameworkRepositories(typeof(AdminDbContext));");
         }
     }
 
@@ -43,9 +50,18 @@ public class TransactionalAttribute : AopMoAttribute
     {
         foreach (var dbContextType in _dbContextTypes)
         {
-            var dbContext = GetService(dbContextType) as DbContext;
-            dbContext?.Database.OpenConnection();
-            dbContext?.Database.BeginTransaction();
+            if (IsCommitDelay)
+            {
+                // 延迟提交
+                var baseDbContext = GetService(dbContextType) as IBaseDbContext;
+                baseDbContext?.UnitOfWork?.CommitDelayStart();
+            }
+            else
+            {
+                var dbContext = GetService(dbContextType) as DbContext;
+                dbContext?.Database.OpenConnection();
+                dbContext?.Database.BeginTransaction();
+            }
         }
     }
 
@@ -68,8 +84,17 @@ public class TransactionalAttribute : AopMoAttribute
     {
         foreach (var dbContextType in _dbContextTypes)
         {
-            var dbContext = GetService(dbContextType) as DbContext;
-            dbContext?.Database.CommitTransaction();
+            if (IsCommitDelay)
+            {
+                // 延迟提交
+                var baseDbContext = GetService(dbContextType) as IBaseDbContext;
+                baseDbContext?.UnitOfWork?.CommitDelayEnd();
+            }
+            else
+            {
+                var dbContext = GetService(dbContextType) as DbContext;
+                dbContext?.Database.CommitTransaction();
+            }
         }
     }
 

@@ -3,15 +3,14 @@
 /// <summary>
 /// 程序启动器
 /// </summary>
-[ImportStartup(
-    typeof(CoreQuartzStartup),
-    typeof(CoreRazorStartup),
-    typeof(CoreRedisStartup),
-    typeof(CoreIdentityStartup),
-    typeof(AdminRepositoryStartup),
-    typeof(RepositoryFreeSqlAdminStartup),
-    typeof(CoreSwaggerJwtStartup)
-    )]
+[ImportStartupModule<
+    CoreQuartzStartup,
+    CoreRazorStartup,
+    CoreRedisStartup,
+    CoreIdentityStartup,
+    AdminRepositoryStartup,
+    RepositoryFreeSqlAdminStartup,
+    CoreSwaggerJwtStartup>]
 public class ApiAdminStartup : AppStartupBase<ApiAdminStartup>
 {
     /// <summary>

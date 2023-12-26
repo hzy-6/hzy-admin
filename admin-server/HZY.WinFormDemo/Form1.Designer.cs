@@ -29,47 +29,42 @@
         private void InitializeComponent()
         {
             button1 = new Button();
-            dataGridView1 = new DataGridView();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            blazorWebView1 = new Microsoft.AspNetCore.Components.WebView.WindowsForms.BlazorWebView();
             SuspendLayout();
             // 
             // button1
             // 
-            button1.Location = new Point(947, 50);
+            button1.Location = new Point(0, 0);
             button1.Name = "button1";
-            button1.Size = new Size(112, 34);
-            button1.TabIndex = 0;
-            button1.Text = "button1";
-            button1.UseVisualStyleBackColor = true;
-            button1.Click += button1_Click;
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 3;
             // 
-            // dataGridView1
+            // blazorWebView1
             // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(12, 129);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.RowHeadersWidth = 62;
-            dataGridView1.RowTemplate.Height = 32;
-            dataGridView1.Size = new Size(1980, 607);
-            dataGridView1.TabIndex = 1;
+            blazorWebView1.Dock = DockStyle.Fill;
+            blazorWebView1.Location = new Point(0, 0);
+            blazorWebView1.Name = "blazorWebView1";
+            blazorWebView1.Size = new Size(1754, 1156);
+            blazorWebView1.StartPath = "/";
+            blazorWebView1.TabIndex = 2;
+            blazorWebView1.Text = "blazorWebView1";
             // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(11F, 24F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(2004, 748);
-            Controls.Add(dataGridView1);
+            ClientSize = new Size(1754, 1156);
+            Controls.Add(blazorWebView1);
             Controls.Add(button1);
             Name = "Form1";
             Text = "Form1";
             Load += Form1_Load;
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Button button1;
-        private DataGridView dataGridView1;
+        private Microsoft.AspNetCore.Components.WebView.WindowsForms.BlazorWebView blazorWebView1;
     }
 }

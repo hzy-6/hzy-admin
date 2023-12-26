@@ -4,7 +4,6 @@ public class SysOrganizationService : ApplicationService<IRepository<SysOrganiza
 {
     public SysOrganizationService(IRepository<SysOrganization> defaultRepository) : base(defaultRepository)
     {
-
     }
 
     /// <summary>
@@ -98,70 +97,4 @@ public class SysOrganizationService : ApplicationService<IRepository<SysOrganiza
         #endregion
 
     }
-
-    /// <summary>
-    /// 获取组织机构树
-    /// </summary>
-    /// <param name="expandedRowKeys"></param>
-    /// <param name="sysOrganizations"></param>
-    /// <param name="sysOrganization"></param>
-    /// <returns></returns>
-    public async Task<List<SysOrganizationTreeDto>> GetSysOrganizationTreeAsync(List<int> expandedRowKeys, List<SysOrganization> sysOrganizations, SysOrganization sysOrganization)
-    {
-        var result = new List<SysOrganizationTreeDto>();
-
-        var isFirst = (sysOrganizations == null || sysOrganizations.Count == 0) && sysOrganization == null;
-        if (isFirst)
-        {
-            sysOrganizations = await _defaultRepository.Select.OrderBy(w => w.OrderNumber).ToListAsync();
-
-            foreach (var item in sysOrganizations.Where(w => w.ParentId == null || w.ParentId == 0))
-            {
-                var model = item.MapTo<SysOrganization, SysOrganizationTreeDto>();
-                model.Children = await GetSysOrganizationTreeAsync(expandedRowKeys, sysOrganizations, item);
-                result.Add(model);
-            }
-        }
-        else
-        {
-            if (sysOrganization != null)
-            {
-                expandedRowKeys.Add(sysOrganization.Id);
-                var list = sysOrganizations.Where(w => w.ParentId == sysOrganization.Id).ToList();
-
-                foreach (var item in list)
-                {
-                    var model = item.MapTo<SysOrganization, SysOrganizationTreeDto>();
-                    model.Children = await GetSysOrganizationTreeAsync(expandedRowKeys, sysOrganizations, item);
-                    result.Add(model);
-                }
-            }
-        }
-
-        return result;
-    }
-
-    /// <summary>
-    /// 对 组织树 加工树结构
-    /// </summary>
-    /// <param name="tree"></param>
-    /// <returns></returns>
-    public async Task<List<Dictionary<string, object>>> GetSysOrganizationTreeAsync(IEnumerable<SysOrganizationTreeDto> tree)
-    {
-        var res = new List<Dictionary<string, object>>();
-
-        foreach (var item in tree)
-        {
-            res.Add(new Dictionary<string, object>()
-            {
-                ["key"] = item.Id,
-                ["title"] = item.Name,
-                ["children"] = item.Children.Count > 0 ? await GetSysOrganizationTreeAsync(item.Children) : null
-            });
-        }
-
-        return res;
-    }
-
-
 }

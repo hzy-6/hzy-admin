@@ -51,7 +51,7 @@ public class ExcelUtil
             {
                 if (col.StartsWith("_")) continue;
                 var index = cols.IndexOf(col);
-                var name = col.FirstCharToUpper();
+                var name = col.ToFirstCharConvertUpper();
                 if (!item.ContainsKey(name)) continue;
                 var value = item[name];
                 dataRow.CreateCell(index).SetCellValue(value == null ? "" : value.ToString());

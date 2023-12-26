@@ -100,7 +100,7 @@ public class PagingView
         foreach (var item in fieldNames)
         {
             if (item.StartsWith("_")) continue;
-            Columns.Add(new TableColumnView(item.FirstCharToLower(), item));
+            Columns.Add(new TableColumnView(item.ToFirstCharConvertLower(), item));
         }
     }
 
@@ -132,7 +132,7 @@ public class PagingView
         foreach (var item in fieldNames)
         {
             if (item.StartsWith("_")) continue;
-            Columns.Add(new TableColumnView(item.FirstCharToLower(), item));
+            Columns.Add(new TableColumnView(item.ToFirstCharConvertLower(), item));
         }
     }
 

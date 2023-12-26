@@ -1,0 +1,47 @@
+﻿@layout AppLayout
+@page "/login"
+
+<div class="login">
+    <div class="login-card">
+        <div class="flex-left">
+            <img src="/images/info_service.png" alt="" />
+        </div>
+        <div class="flex-right p-30">
+            <div class="title">欢迎登录 HzyAdmin</div>
+
+            <div class="mt-16">
+                <Input Placeholder="large size" Size="@InputSize.Large" @bind-Value="@UserName" @onkeyup="Check">
+                <Prefix>
+                    <Icon Type="user" Theme="outline" style="color: #1890ff; font-size: 14px" />
+                </Prefix>
+                </Input>
+
+                @* <a-input v-model:value="state.userName" placeholder="请输入" size="large" allow-clear>
+                <template #prefix>
+                <Icon Type="user" Theme="outline" style="color: #1890ff; font-size: 14px" />
+                </template>
+                </a-input> *@
+            </div>
+
+            <div class="mt-16">
+                <InputPassword Placeholder="large size" Size="@InputSize.Large" @bind-Value="@Password">
+                    <Prefix>
+                        <Icon Type="lock" Theme="outline" style="color: #1890ff; font-size: 14px" />
+                    </Prefix>
+                </InputPassword>
+
+                @*   <AInputPassword type="password" v-model:value="state.userPassword" size="large" ref="inputPassword" @keyup.enter="check()">
+                <template #prefix>
+                <Icon Type="lock" Theme="outline" style="color: #1890ff; font-size: 14px" />
+                </template>
+                </AInputPassword> *@
+            </div>
+
+            <div class="mt-40">
+                <Button Type="@ButtonType.Primary" @onclick="Check" Loading="Loading" Size="large" Block>
+                    登录
+                </Button>
+            </div>
+        </div>
+    </div>
+</div>

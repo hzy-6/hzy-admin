@@ -3,7 +3,7 @@
 /// <summary>
 /// 二维码服务
 /// </summary>
-[Component(ServiceType = ServiceType.Singleton)]
+[Component(ServiceLifetime.Singleton)]
 public class QrCodeService
 {
     public QrCodeService()

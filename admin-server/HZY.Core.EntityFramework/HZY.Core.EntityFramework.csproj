@@ -12,7 +12,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="HZY.Framework.Repository.EntityFramework" Version="0.0.0.2" />
+		<PackageReference Include="HZY.Framework.Repository.EntityFramework" Version="0.0.0.15" />
 	</ItemGroup>
 
 	<ItemGroup>

@@ -4,7 +4,7 @@
 /// 基础启动器
 /// </summary>
 /// <typeparam name="TStartupMoudle"></typeparam>
-[ImportStartup(typeof(SharedStartup))]
+[ImportStartupModule<SharedStartup>]
 public class AppStartupBase<TStartupMoudle> : AppStartupBaseCore<TStartupMoudle> where TStartupMoudle : IStartupModule, new()
 {
     /// <summary>

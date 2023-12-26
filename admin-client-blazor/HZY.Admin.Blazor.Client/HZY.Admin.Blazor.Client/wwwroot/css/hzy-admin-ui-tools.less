@@ -1,0 +1,114 @@
+//工具样式库
+
+/*   全局样式   */
+
+// ======================================================text
+.text-danger {
+    color: #F56C6C !important;
+}
+
+.text-blue {
+    color: #91d5ff !important;
+}
+
+.text-lime {
+    color: #d3f261 !important;
+}
+
+.text-cyan {
+    color: #87e8de !important;
+}
+
+.text-left {
+    text-align: left !important;
+}
+
+.text-right {
+    text-align: right !important;
+}
+
+.text-center {
+    text-align: center !important;
+}
+
+// ======================================================height / width
+.h100 {
+    height: 100% !important;
+}
+
+.w100 {
+    width: 100% !important;
+}
+
+.bg-white {
+    background-color: #fff;
+}
+
+/*
+循环
+*/
+.go_for(@count, @stylename, @name, @base) when (@count >=0) {
+    .@{name}-@{count} {
+        @{stylename}: @base * @count  !important;
+    }
+
+    .go_for((@count - 1), (@stylename), (@name), @base);
+}
+
+/*
+end
+*/
+
+// ======================================================padding
+.go_for(100, padding, p, 1px);
+.go_for(100, padding-left, pl, 1px);
+.go_for(100, padding-top, pt, 1px);
+.go_for(100, padding-bottom, pb, 1px);
+.go_for(100, padding-right, pr, 1px);
+//负数
+.go_for(100, padding, p-, -1px);
+.go_for(100, padding-left, pl-, -1px);
+.go_for(100, padding-top, pt-, -1px);
+.go_for(100, padding-bottom, pb-, -1px);
+.go_for(100, padding-right, pr-, -1px);
+// ======================================================margin
+.go_for(100, margin, m, 1px);
+.go_for(100, margin-left, ml, 1px);
+.go_for(100, margin-top, mt, 1px);
+.go_for(100, margin-bottom, mb, 1px);
+.go_for(100, margin-right, mr, 1px);
+//负数
+.go_for(100, margin, m-, -1px);
+.go_for(100, margin-left, ml-, -1px);
+.go_for(100, margin-top, mt-, -1px);
+.go_for(100, margin-bottom, mb-, -1px);
+.go_for(100, margin-right, mr-, -1px);
+// ======================================================font size
+.go_for(100, font-size, fs, 1px);
+// ======================================================Width
+.go_for(100, width, w, 1px);
+.go_for(100, width, w-, -1px);
+// ======================================================Height
+.go_for(100, height, h, 1px);
+.go_for(100, height, h-, -1px);
+
+// ======================================================Height
+@media (max-width: 768px) {
+    .xs-hide {
+        display: none !important;
+    }
+
+    .logo {
+        width: 200px;
+    }
+
+    .xs-w100 {
+        width: 100% !important;
+    }
+}
+
+@media (min-width:768px) and (max-width: 1200px) {
+    .xs-w100 {
+        width: 85% !important;
+    }
+}

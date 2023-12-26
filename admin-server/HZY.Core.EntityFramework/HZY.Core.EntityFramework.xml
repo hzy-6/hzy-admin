@@ -14,6 +14,11 @@
             指定 数据上下文
             </summary>
         </member>
+        <member name="P:HZY.Core.EntityFramework.Aop.TransactionalAttribute.IsCommitDelay">
+            <summary>
+            是否延迟提交
+            </summary>
+        </member>
         <member name="M:HZY.Core.EntityFramework.Aop.TransactionalAttribute.#ctor(System.Type[])">
             <summary>
             事务拦截
@@ -36,34 +41,17 @@
             审计 保存拦截器
             </summary>
         </member>
-        <member name="M:HZY.Core.EntityFramework.Interceptors.AuditInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32})">
+        <member name="M:HZY.Core.EntityFramework.Interceptors.AuditInterceptor.GetCurrentUserId">
             <summary>
-            SavingChanges
+            获取当前用户 id
             </summary>
-            <param name="eventData"></param>
-            <param name="result"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Core.EntityFramework.Interceptors.AuditInterceptor.SavingChangesAsync(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData,Microsoft.EntityFrameworkCore.Diagnostics.InterceptionResult{System.Int32},System.Threading.CancellationToken)">
+        <member name="M:HZY.Core.EntityFramework.Interceptors.AuditInterceptor.GetSnowflakeId">
             <summary>
-            SavingChangesAsync
+            获取雪花id
             </summary>
-            <param name="eventData"></param>
-            <param name="result"></param>
-            <param name="cancellationToken"></param>
             <returns></returns>
-        </member>
-        <member name="M:HZY.Core.EntityFramework.Interceptors.AuditInterceptor.SavingChanges(Microsoft.EntityFrameworkCore.Diagnostics.DbContextEventData)">
-            <summary>
-            添加 、 修改 、删除 拦截
-            </summary>
-            <param name="eventData"></param>
-        </member>
-        <member name="M:HZY.Core.EntityFramework.Interceptors.AuditInterceptor.HandleTableId(Microsoft.EntityFrameworkCore.ChangeTracking.EntityEntry[])">
-            <summary>
-            处理 表 主键 id
-            </summary>
-            <param name="entityEntries"></param>
         </member>
         <member name="T:HZY.Core.EntityFramework.Interceptors.AuditInterceptorV2">
             <summary>

@@ -1,4 +1,4 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk.Razor">
 
 	<PropertyGroup>
 		<OutputType>WinExe</OutputType>
@@ -12,19 +12,32 @@
 				<Rougamo />
 			</Weavers>
 		</WeaverConfiguration>
+		<!--<EnableDefaultContentItems>false</EnableDefaultContentItems>-->
+		<!--<EnableDefaultCompileItems>false</EnableDefaultCompileItems>-->
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Rougamo.Fody" Version="2.0.*" IncludeAssets="all" PrivateAssets="contentfiles;analyzers"  />
+	  <Compile Remove="bin\**" />
+	  <Content Remove="bin\**" />
+	  <EmbeddedResource Remove="bin\**" />
+	  <None Remove="bin\**" />
 	</ItemGroup>
 
 	<ItemGroup>
-		<None Remove="appsettings.Development.json" />
-		<None Remove="appsettings.json" />
-		<None Remove="appsettings.Production.json" />
+		<PackageReference Include="AntDesign" Version="0.16.3" />
+		<PackageReference Include="Rougamo.Fody" Version="2.*" IncludeAssets="all" PrivateAssets="contentfiles;analyzers" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<PackageReference Include="Microsoft.AspNetCore.Components.WebView.WindowsForms" Version="8.0.3" />
+	</ItemGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\HZY.Core.Logs\HZY.Core.Logs.csproj" />
+		<ProjectReference Include="..\HZY.Repository.Admin\HZY.Repository.Admin.csproj" />
+	</ItemGroup>
+
+	<!--<ItemGroup>
 		<Content Include="appsettings.Development.json">
 			<CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
 			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
@@ -40,11 +53,6 @@
 			<ExcludeFromSingleFile>true</ExcludeFromSingleFile>
 			<CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
 		</Content>
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\HZY.Core.Logs\HZY.Core.Logs.csproj" />
-		<ProjectReference Include="..\HZY.Repository.Admin\HZY.Repository.Admin.csproj" />
-	</ItemGroup>
+	</ItemGroup>-->
 
 </Project>

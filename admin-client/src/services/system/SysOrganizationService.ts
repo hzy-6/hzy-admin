@@ -1,4 +1,5 @@
 import Http from "@/core/utils/Http";
+import Tools from "@/core/utils/Tools";
 
 /**
  * 组织机构日志
@@ -51,6 +52,18 @@ export default class SysOrganizationService {
    * 获取组织树
    */
   static sysOrganizationTree() {
-    return Http.post(`${this.urlPrefix}/GetSysOrganizationTree`);
+    return new Promise((resolve: (value: any) => any, reject) => {
+      Http.post(`${this.urlPrefix}/GetSysOrganizationTree`).then((res) => {
+        // 如果成功
+        if (res.code === 200) {
+          // 对数据加工转换为 tree
+          res.data.rows = Tools.genTreeData(res.data.rows, null);
+          console.log(res);
+          resolve(res as any);
+        } else {
+          reject(res as any);
+        }
+      });
+    });
   }
 }

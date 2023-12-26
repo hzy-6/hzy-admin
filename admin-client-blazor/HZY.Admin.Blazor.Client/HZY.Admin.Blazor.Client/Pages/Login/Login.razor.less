@@ -1,0 +1,93 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+
+.login {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    //可以解开一下注解 放置一个背景图片
+    background: url("/images/login-1.jpg") no-repeat;
+    background-size: cover;
+
+    .login-card {
+        height: 600px;
+        width: 1000px;
+        box-shadow: 0px 16px 48px 16px rgba(0, 0, 0, 0.72), 0px 12px 32px #000000, 0px 8px 16px -8px #000000;
+        display: flex;
+        border-radius: 5px;
+
+        .flex-left {
+            flex: 1;
+            width: 450px;
+
+            img {
+                height: 100%;
+            }
+        }
+
+        .flex-right {
+            flex: 1;
+            background-color: #ffffff;
+            display: flex;
+            justify-content: center;
+            flex-direction: column;
+            border-top-right-radius: 5px;
+            border-bottom-right-radius: 5px;
+        }
+
+        .title {
+            text-align: center;
+            font-size: 30px;
+            padding: 20px;
+            font-weight: bold;
+        }
+
+        .el-input-group__append {
+            padding: 0 !important;
+
+            .login-code {
+                height: 38px;
+            }
+        }
+    }
+}
+
+//小于 1024 像素 选择采用此样式
+@media (max-width: 1024px) {
+    .flex-left {
+        display: none;
+        flex: 0 !important;
+
+        img {
+            height: auto !important;
+            width: 80% !important;
+        }
+    }
+
+    .flex-right {
+        border-radius: 5px;
+    }
+}
+
+@media (min-width: 600px) and (max-width: 1024px) {
+    .login-card {
+        width: 70% !important;
+    }
+}
+
+@media (max-width: 600px) {
+    .login-card {
+        // flex-direction: column;
+        width: 100% !important;
+    }
+}
+
+.lang-content {
+    position: absolute;
+    right: 24px;
+    top: 20px;
+}
