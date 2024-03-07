@@ -16,15 +16,19 @@ public class AdminRepositoryStartup : StartupModule<AdminRepositoryStartup>
         var services = webApplicationBuilder.Services;
         var webHostEnvironment = webApplicationBuilder.Environment;
 
-        var adminRepositoriesOptions = configuration
-            .GetSection(nameof(AdminRepositoryOptions))
-            .Get<AdminRepositoryOptions>();
+        var repositoriesOptions = configuration
+         .GetSection(nameof(AdminRepositoryOptions))
+         .Get<AdminRepositoryOptions>() ?? throw new Exception("配置对象 空 异常！");
 
-        var connectionString = configuration["ConnectionStrings:" + adminRepositoriesOptions!.DefaultDatabaseType.ToString()];
+        var connectionString = repositoriesOptions?.ConnectionString;
+
+        connectionString = string.IsNullOrWhiteSpace(connectionString) ?
+            configuration["ConnectionStrings:" + repositoriesOptions!.DefaultDatabaseType.ToString()] :
+            connectionString;
 
         services.AddDbContextFactory<AdminDbContext>(optionsBuilder =>
         {
-            switch (adminRepositoriesOptions.DefaultDatabaseType)
+            switch (repositoriesOptions.DefaultDatabaseType)
             {
                 case DefaultDatabaseType.SqlServer:
                     optionsBuilder
@@ -62,11 +66,11 @@ public class AdminRepositoryStartup : StartupModule<AdminRepositoryStartup>
             // 懒加载代理
             //options.UseLazyLoadingProxies();
             //添加 EFCore 监控 和 动态表名
-            optionsBuilder.AddEntityFrameworkMonitor(adminRepositoriesOptions.IsMonitorEFCore);
+            optionsBuilder.AddEntityFrameworkMonitor(repositoriesOptions.IsMonitorEFCore);
             optionsBuilder.AddInterceptors(new AuditInterceptor());
         });
 
-        services.AddEntityFrameworkRepositories(typeof(AdminDbContext), (auditOptions) =>
+        services.AddEntityFrameworkRepositories<AdminDbContext>(repositoriesOptions, (auditOptions) =>
         {
             // 你的自定义审计字段 ...
             //auditOptions.Add(new AuditOptions()
@@ -79,6 +83,20 @@ public class AdminRepositoryStartup : StartupModule<AdminRepositoryStartup>
             //    DeleterUserIdFieldName = "UpdateBy",
             //    IsDeletedFieldName = "DelFlag",
             //});
+        }, (freesqlOptions) =>
+        {
+            freesqlOptions.FreeSqlAuditAopList?.Add(new FreeSqlAuditAop());
+            freesqlOptions.FreeSqlAction = (freeSql) =>
+            {
+                freeSql.Aop.CurdAfter += (object? sender, FreeSql.Aop.CurdAfterEventArgs curdAfter) =>
+                {
+                    var stringBuilder = new StringBuilder();
+                    stringBuilder.Append($"\r\n====[FreeSql 开始 耗时: {curdAfter.ElapsedMilliseconds} ms]=========");
+                    stringBuilder.Append($"\r\n{curdAfter.Sql}");
+                    stringBuilder.Append($"\r\n====[FreeSql 结束 线程Id:{Environment.CurrentManagedThreadId}]=========");
+                    LogUtil.Log.Warning(stringBuilder.ToString());
+                };
+            };
         });
     }
 

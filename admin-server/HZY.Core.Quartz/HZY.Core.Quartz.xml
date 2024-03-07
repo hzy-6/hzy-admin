@@ -35,37 +35,136 @@
         </member>
         <member name="T:HZY.Core.Quartz.Jobs.MemoryJob">
             <summary>
-            本地任务
+            本地同步任务
             </summary>
         </member>
-        <member name="T:HZY.Core.Quartz.Models.QuartzJobTaskInfo">
+        <member name="T:HZY.Core.Quartz.Jobs.MemoryJobAsync">
+            <summary>
+            异步任务
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Quartz.Jobs.QuartzJobBase`1">
+            <summary>
+            任务基础类
+            </summary>
+            <typeparam name="TQuartzJobInfo"></typeparam>
+        </member>
+        <member name="M:HZY.Core.Quartz.Jobs.QuartzJobBase`1.RunAsync(System.IServiceProvider,`0)">
+            <summary>
+            运行逻辑
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="quartzJobInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Quartz.Jobs.QuartzJobBase`1.BeforeExecutionAsync(System.IServiceProvider,`0)">
+            <summary>
+            执行前
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="quartzJobInfo"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Quartz.Jobs.QuartzJobBase`1.OnExitAsync(System.IServiceProvider,`0,System.Object)">
+            <summary>
+            执行后，退出
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="quartzJobInfo"></param>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Quartz.Jobs.QuartzJobBase`1.OnSuccessAsync(System.IServiceProvider,`0,System.Object)">
+            <summary>
+            成功执行
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="quartzJobInfo"></param>
+            <param name="result"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Quartz.Jobs.QuartzJobBase`1.OnExceptionAsync(System.IServiceProvider,`0,System.Exception)">
+            <summary>
+            异常处理
+            </summary>
+            <param name="serviceProvider"></param>
+            <param name="quartzJobInfo"></param>
+            <param name="exception"></param>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.Quartz.Models.IQuartzJobInfoEntity">
+            <summary>
+            作业任务信息
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.IQuartzJobInfoEntity.JobPoint">
+            <summary>
+            定时任务 key
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.IQuartzJobInfoEntity.Name">
+            <summary>
+            任务名称
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.IQuartzJobInfoEntity.GroupName">
+            <summary>
+            分组名称
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.IQuartzJobInfoEntity.Cron">
+            <summary>
+            间隔表达式
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.IQuartzJobInfoEntity.Remark">
+            <summary>
+            备注
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.IQuartzJobLogEntity.JobId">
+            <summary>
+            任务id
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.IQuartzJobLogEntity.Text">
+            <summary>
+            任务日志
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Quartz.Models.QuartzJobEntity">
             <summary>
             定时任务信息
             </summary>
         </member>
-        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.Key">
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobEntity.JobPoint">
             <summary>
             
             </summary>
         </member>
-        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.Name">
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobEntity.Name">
             <summary>
             
             </summary>
         </member>
-        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.GroupName">
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobEntity.GroupName">
             <summary>
             
             </summary>
         </member>
-        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.Cron">
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobEntity.Cron">
             <summary>
             
             </summary>
         </member>
-        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.Remark">
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobEntity.Remark">
             <summary>
             
+            </summary>
+        </member>
+        <member name="T:HZY.Core.Quartz.Models.QuartzJobRequestModeEnum">
+            <summary>
+            请求方式
             </summary>
         </member>
         <member name="T:HZY.Core.Quartz.Services.IJobTaskInfo">
@@ -130,6 +229,21 @@
             <param name="groupName">组名称</param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Core.Quartz.Services.Impl.QuartzJobService.GetTrigger(System.String,System.String)">
+            <summary>
+            判断任务是否存在 和 运行状态
+            </summary>
+            <param name="taskName"></param>
+            <param name="groupName"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Quartz.Services.Impl.QuartzJobService.IsValidExpression(System.String)">
+            <summary>
+            验证 Cron 表达式是否有效
+            </summary>
+            <param name="cronExpression"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Core.Quartz.Services.IQuartzJobService">
             <summary>
             
@@ -154,12 +268,27 @@
             <param name="groupName">分组</param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Core.Quartz.Services.IQuartzJobService.GetTrigger(System.String,System.String)">
+            <summary>
+            判断任务是否存在 和 运行状态
+            </summary>
+            <param name="taskName"></param>
+            <param name="groupName"></param>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Core.Quartz.Services.IQuartzJobService.CloseAsync(System.String,System.String)">
             <summary>
             关闭任务调度
             </summary>
             <param name="taskName">任务名称</param>
             <param name="groupName">组名称</param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Quartz.Services.IQuartzJobService.IsValidExpression(System.String)">
+            <summary>
+            验证 Cron 表达式是否有效
+            </summary>
+            <param name="cronExpression"></param>
             <returns></returns>
         </member>
         <member name="T:HZY.Core.Quartz.Services.QuartzStartupConfig">

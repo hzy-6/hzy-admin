@@ -10,14 +10,14 @@ public interface ITaskService : ITransientDependency
     /// 查询列表
     /// </summary>
     /// <returns></returns>
-    Task<IEnumerable<QuartzJobTask>> FindListAsync(string filter = null);
+    Task<List<QuartzJob>> FindListAsync(string? filter = null);
 
     /// <summary>
     /// 保存数据
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    Task<QuartzJobTask> SaveAsync(QuartzJobTask form);
+    Task<QuartzJob> SaveAsync(QuartzJob form);
 
     /// <summary>
     /// 删除数据
@@ -30,21 +30,21 @@ public interface ITaskService : ITransientDependency
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    Task<QuartzJobTask> FindByIdAsync(Guid id);
+    Task<QuartzJob> FindByIdAsync(Guid id);
 
     /// <summary>
     /// 根据任务id 运行任务调度
     /// </summary>
     /// <param name="quartzJobTask"></param>
     /// <returns></returns>
-    Task<bool> RunByIdAsync(QuartzJobTask quartzJobTask);
+    Task<bool> RunByIdAsync(QuartzJob quartzJobTask);
 
     /// <summary>
     /// 根据任务id 关闭任务调度
     /// </summary>
     /// <param name="quartzJobTask"></param>
     /// <returns></returns>
-    Task<bool> CloseByIdAsync(QuartzJobTask quartzJobTask);
+    Task<bool> CloseByIdAsync(QuartzJob quartzJobTask);
 
     /// <summary>
     /// 更新执行时间

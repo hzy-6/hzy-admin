@@ -27,7 +27,7 @@ public class CoreAutoRegisterIOCStartup : StartupModule<CoreAutoRegisterIOCStart
     /// <param name="webApplication"></param>
     public override void Configure(WebApplication webApplication)
     {
-        webApplication.UseDependencyInjection();
+
     }
 
 }

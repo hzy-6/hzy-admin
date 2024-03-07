@@ -3,37 +3,51 @@ namespace HZY.Api.Admin.ApplicationServices.Systems;
 /// <summary>
 /// 系统账号服务
 /// </summary>
-public class SysUserService : ApplicationService<IRepository<SysUser>>
+public class SysUserService : ApplicationService<IRepository<SysUser>>, IAopServiceProvider
 {
-    private readonly IRepository<SysUserRole> _sysUserRoleRepository;
-    private readonly IRepository<SysRole> _sysRoleRepository;
-    private readonly IRepository<SysUserPost> _sysUserPostRepository;
-    private readonly IRepository<SysPost> _sysPostRepository;
-    private readonly IAccountService _accountService;
-    private readonly SysMenuService _sysMenuService;
-    private readonly IRepository<SysOrganization> _sysOrganizationRepository;
-    private readonly IPermissionService _permissionService;
+    public IServiceProvider ServiceProvider { get; set; }
+    [Autowired]
+    private IRepository<SysUserRole> _sysUserRoleRepository { get; }
+    [Autowired]
+    private IRepository<SysRole> _sysRoleRepository { get; }
+    [Autowired]
+    private IRepository<SysUserPost> _sysUserPostRepository { get; }
+    [Autowired]
+    private IRepository<SysPost> _sysPostRepository { get; }
+    [Autowired]
+    private IAccountService _accountService { get; }
+    [Autowired]
+    private SysMenuService _sysMenuService { get; }
+    [Autowired]
+    private IRepository<SysOrganization> _sysOrganizationRepository { get; }
+    [Autowired]
+    private IPermissionService _permissionService { get; }
 
-    public SysUserService(IRepository<SysUser> defaultRepository,
-        IRepository<SysUserRole> sysUserRoleRepository,
-        IRepository<SysRole> sysRoleRepository,
-        IRepository<SysUserPost> sysUserPostRepository,
-        IRepository<SysPost> sysPostRepository,
-        IAccountService accountService,
-        SysMenuService sysMenuService,
-        IRepository<SysOrganization> sysOrganizationRepository,
-        IPermissionService permissionService) : base(defaultRepository)
+    public SysUserService(IServiceProvider serviceProvider, IRepository<SysUser> defaultRepository) : base(defaultRepository)
     {
-        _sysUserRoleRepository = sysUserRoleRepository;
-        _sysRoleRepository = sysRoleRepository;
-        _sysUserPostRepository = sysUserPostRepository;
-        _sysPostRepository = sysPostRepository;
-        _accountService = accountService;
-        _sysMenuService = sysMenuService;
-        _sysOrganizationRepository = sysOrganizationRepository;
-        _permissionService = permissionService;
-
+        this.ServiceProvider = serviceProvider;
     }
+
+    //public SysUserService(IRepository<SysUser> defaultRepository,
+    //    IRepository<SysUserRole> sysUserRoleRepository,
+    //    IRepository<SysRole> sysRoleRepository,
+    //    IRepository<SysUserPost> sysUserPostRepository,
+    //    IRepository<SysPost> sysPostRepository,
+    //    IAccountService accountService,
+    //    SysMenuService sysMenuService,
+    //    IRepository<SysOrganization> sysOrganizationRepository,
+    //    IPermissionService permissionService) : base(defaultRepository)
+    //{
+    //    _sysUserRoleRepository = sysUserRoleRepository;
+    //    _sysRoleRepository = sysRoleRepository;
+    //    _sysUserPostRepository = sysUserPostRepository;
+    //    _sysPostRepository = sysPostRepository;
+    //    _accountService = accountService;
+    //    _sysMenuService = sysMenuService;
+    //    _sysOrganizationRepository = sysOrganizationRepository;
+    //    _permissionService = permissionService;
+
+    //}
 
     /// <summary>
     /// 获取列表数据

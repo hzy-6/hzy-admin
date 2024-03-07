@@ -1,13 +1,13 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-
 	<Import Project="..\projects\project.targets" />
 
 	<ItemGroup>
-		<PackageReference Include="Quartz" Version="3.8.0" />
+		<PackageReference Include="Quartz" Version="3.8.1" />
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\HZY.Core.EntityFramework\HZY.Core.EntityFramework.csproj" />
 		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />
 	</ItemGroup>
 

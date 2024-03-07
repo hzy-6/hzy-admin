@@ -5,15 +5,15 @@ namespace HZY.Shared.Filters;
 /// </summary>
 public class ApiAuthorizationFilter : IAsyncAuthorizationFilter
 {
-    private readonly IAccountService _accountService;
+    private readonly JwtTokenService _jwtTokenService;
 
     /// <summary>
     /// 授权认证 拦截
     /// </summary>
-    /// <param name="accountService"></param>
-    public ApiAuthorizationFilter(IAccountService accountService)
+    /// <param name="jwtTokenService"></param>
+    public ApiAuthorizationFilter(JwtTokenService jwtTokenService)
     {
-        _accountService = accountService;
+        _jwtTokenService = jwtTokenService;
     }
 
     /// <summary>
@@ -45,7 +45,8 @@ public class ApiAuthorizationFilter : IAsyncAuthorizationFilter
         #endregion
 
         //验证 token 是否过期无效 或者 检查 token 是否授权
-        if (!_accountService.IsValidate)
+        var isValidate = _jwtTokenService.IsValidate();
+        if (!isValidate)
         {
             context.Result = new JsonResult(R.ResultMessage(HttpStatusCode.Unauthorized, unAuthMessage));
         }

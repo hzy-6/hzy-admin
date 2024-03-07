@@ -4,6 +4,69 @@
         <name>HZY.Core.EntityFramework</name>
     </assembly>
     <members>
+        <member name="T:HZY.Shared.Aop.DictAttribute">
+            <summary>
+            字典特性
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Aop.DictAttribute.TableName">
+            <summary>
+            表名称
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Aop.DictAttribute.FieldCode">
+            <summary>
+            唯一标识
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Aop.DictAttribute.FieldText">
+            <summary>
+            字段
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Aop.DictAttribute.ToField">
+            <summary>
+            赋值给那个字段
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Aop.DictAttribute.DbContextType">
+            <summary>
+            DbContext 类型
+            </summary>
+        </member>
+        <member name="P:HZY.Shared.Aop.DictAttribute.RedisServiceType">
+            <summary>
+            redis 类型
+            </summary>
+        </member>
+        <member name="M:HZY.Shared.Aop.DictAttribute.GetDatabase(Rougamo.Context.MethodContext)">
+            <summary>
+            获取Redis数据库
+            </summary>
+            <param name="MethodContext"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.Aop.DictAttribute.GetDbContext(Rougamo.Context.MethodContext)">
+            <summary>
+            获取DbContext
+            </summary>
+            <param name="MethodContext"></param>
+            <returns></returns>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:HZY.Shared.Aop.DictAttribute.GetCacheKey">
+            <summary>
+            获取缓存 Key
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Shared.Aop.DictAttribute.GetData(Rougamo.Context.MethodContext)">
+            <summary>
+            获取数据
+            </summary>
+            <param name="methodContext"></param>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Core.EntityFramework.Aop.TransactionalAttribute">
             <summary>
             事务拦截
@@ -63,6 +126,245 @@
             添加 、 修改 、删除 拦截
             </summary>
             <param name="eventData"></param>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Interceptors.FreeSqlAuditAop">
+            <summary>
+            审计 保存拦截器
+            </summary>
+        </member>
+        <member name="M:HZY.Core.EntityFramework.Interceptors.FreeSqlAuditAop.GetCurrentUserId">
+            <summary>
+            获取当前用户 id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.EntityFramework.Interceptors.FreeSqlAuditAop.GetSnowflakeId">
+            <summary>
+            获取雪花id
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Models.DefaultEntityV3">
+            <summary>
+            基础模型 主键为 Guid
+            包含属性 Id=主键、
+            UpdateTime=最后更新时间 、
+            UpdateBy=最后更新人Id、
+            CreateTime=创建时间 、
+            CreateBy=创建人Id、
+            DeleteTime=删除时间 、
+            DeleteBy=删除人Id、
+            DelFlag=是否删除
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityV3.DeleteTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityV3.DeleteBy">
+            <summary>
+            删除人
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityV3.DelFlag">
+            <summary>
+            删除标识
+            </summary>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Models.DefaultEntityIdentityIntKeyV3">
+            <summary>
+            基础模型 主键为 int 自增
+            包含属性 Id=主键、
+            UpdateTime=最后更新时间 、
+            UpdateBy=最后更新人Id、
+            CreateTime=创建时间 、
+            CreateBy=创建人Id、
+            DeleteTime=删除时间 、
+            DeleteBy=删除人Id、
+            DelFlag=是否删除
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityIdentityIntKeyV3.DeleteTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityIdentityIntKeyV3.DeleteBy">
+            <summary>
+            删除人
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityIdentityIntKeyV3.DelFlag">
+            <summary>
+            删除标识
+            </summary>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Models.DefaultEntityIdentityLongKeyV3">
+            <summary>
+            基础模型 主键为 int 自增
+            包含属性 Id=主键、
+            UpdateTime=最后更新时间 、
+            UpdateBy=最后更新人Id、
+            CreateTime=创建时间 、
+            CreateBy=创建人Id、
+            DeleteTime=删除时间 、
+            DeleteBy=删除人Id、
+            DelFlag=是否删除
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityIdentityLongKeyV3.DeleteTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityIdentityLongKeyV3.DeleteBy">
+            <summary>
+            删除人
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityIdentityLongKeyV3.DelFlag">
+            <summary>
+            删除标识
+            </summary>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Models.DefaultEntityStringKeyV3">
+            <summary>
+            基础模型 主键为 string
+            包含属性 Id=主键、
+            UpdateTime=最后更新时间 、
+            UpdateBy=最后更新人Id、
+            CreateTime=创建时间 、
+            CreateBy=创建人Id、
+            DeleteTime=删除时间 、
+            DeleteBy=删除人Id、
+            DelFlag=是否删除
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityStringKeyV3.DeleteTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityStringKeyV3.DeleteBy">
+            <summary>
+            删除人
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityStringKeyV3.DelFlag">
+            <summary>
+            删除标识
+            </summary>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Models.DefaultEntityV3`1">
+            <summary>
+            基础模型 主键为 自己定义传入
+            包含属性 Id=主键、
+            UpdateTime=最后更新时间 、
+            UpdateBy=最后更新人Id、
+            CreateTime=创建时间 、
+            CreateBy=创建人Id、
+            DeleteTime=删除时间 、
+            DeleteBy=删除人Id、
+            DelFlag=是否删除
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityV3`1.DeleteTime">
+            <summary>
+            删除时间
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityV3`1.DeleteBy">
+            <summary>
+            删除人
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityV3`1.DelFlag">
+            <summary>
+            删除标识
+            </summary>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Models.DefaultEntityV3Java">
+            <summary>
+            基础模型 主键为 Guid
+            包含属性 Id=主键、
+            UpdateTime=最后更新时间 、
+            UpdateBy=最后更新人Id、
+            CreateTime=创建时间 、
+            CreateBy=创建人Id、
+            DelFlag=是否删除
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityV3Java.DelFlag">
+            <summary>
+            删除标识
+            </summary>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Models.DefaultEntityIdentityIntKeyV3Java">
+            <summary>
+            基础模型 主键为 int 自增
+            包含属性 Id=主键、
+            UpdateTime=最后更新时间 、
+            UpdateBy=最后更新人Id、
+            CreateTime=创建时间 、
+            CreateBy=创建人Id、
+            DelFlag=是否删除
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityIdentityIntKeyV3Java.DelFlag">
+            <summary>
+            删除标识
+            </summary>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Models.DefaultEntityIdentityLongKeyV3Java">
+            <summary>
+            基础模型 主键为 int 自增
+            包含属性 Id=主键、
+            UpdateTime=最后更新时间 、
+            UpdateBy=最后更新人Id、
+            CreateTime=创建时间 、
+            CreateBy=创建人Id、
+            DelFlag=是否删除
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityIdentityLongKeyV3Java.DelFlag">
+            <summary>
+            删除标识
+            </summary>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Models.DefaultEntityStringKeyV3Java">
+            <summary>
+            基础模型 主键为 string
+            包含属性 Id=主键、
+            UpdateTime=最后更新时间 、
+            UpdateBy=最后更新人Id、
+            CreateTime=创建时间 、
+            CreateBy=创建人Id、
+            DelFlag=是否删除
+            </summary>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityStringKeyV3Java.DelFlag">
+            <summary>
+            删除标识
+            </summary>
+        </member>
+        <member name="T:HZY.Core.EntityFramework.Models.DefaultEntityV3Java`1">
+            <summary>
+            基础模型 主键为 自己定义传入
+            包含属性 Id=主键、
+            UpdateTime=最后更新时间 、
+            UpdateBy=最后更新人Id、
+            CreateTime=创建时间 、
+            CreateBy=创建人Id、
+            DelFlag=是否删除
+            </summary>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:HZY.Core.EntityFramework.Models.DefaultEntityV3Java`1.DelFlag">
+            <summary>
+            删除标识
+            </summary>
         </member>
     </members>
 </doc>

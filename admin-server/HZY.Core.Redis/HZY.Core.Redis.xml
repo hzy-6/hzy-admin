@@ -81,12 +81,6 @@
             </summary>
             <param name="context"></param>
         </member>
-        <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.GetRedisCache``1(Rougamo.Context.MethodContext)">
-            <summary>
-            获取 RedisCache 缓存
-            </summary>
-            <param name="context"></param>
-        </member>
         <member name="M:HZY.Core.Redis.Aop.Cache.CacheableAttribute.CreateCache(Rougamo.Context.MethodContext,System.Object)">
             <summary>
             创建缓存
@@ -208,10 +202,24 @@
             
             </summary>
         </member>
+        <member name="M:HZY.Core.Redis.Services.IBaseRedisService.UseDatabase(System.Int32)">
+            <summary>
+            获取数据库
+            </summary>
+            <param name="db"></param>
+            <returns></returns>
+        </member>
         <member name="P:HZY.Core.Redis.Services.Impl.RedisServiceImpl.Database">
             <summary>
             get database
             </summary>
+        </member>
+        <member name="M:HZY.Core.Redis.Services.Impl.RedisServiceImpl.UseDatabase(System.Int32)">
+            <summary>
+            获取指定Redis数据库
+            </summary>
+            <param name="db"></param>
+            <returns></returns>
         </member>
         <member name="T:HZY.Core.Redis.Services.IRedisService">
             <summary>

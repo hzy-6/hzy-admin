@@ -1,8 +1,6 @@
-using HZY.Framework.DependencyInjection.Attributes;
-
 namespace HZY.Core.Files;
 
-public class FileManager : IFileManager , ITransientDependency
+public class FileManager : IFileManager, ITransientDependency
 {
     //private readonly AppConfiguration appConfiguration;
     private readonly IWebHostEnvironment webHostEnvironment;

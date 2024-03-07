@@ -21,8 +21,6 @@ public class AppStartupBase<TStartupMoudle> : AppStartupBaseCore<TStartupMoudle>
             {
                 options.Filters.Add<ApiExceptionFilter>();
             })
-            .AddDynamicApiController(options => options.IsLower = false)
-            .AddControllersAsServices()
             .AddNewtonsoftJson(options =>
             {
                 options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss";

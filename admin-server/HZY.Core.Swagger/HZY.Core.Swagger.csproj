@@ -1,10 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\projects\project.targets"/>
+	<Import Project="..\projects\project.targets" />
 
 	<ItemGroup>
 		<PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
-		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="7.0.12" />
+		<PackageReference Include="Swashbuckle.AspNetCore.Filters" Version="8.0.1" />
 		<PackageReference Include="IGeekFan.AspNetCore.Knife4jUI" Version="0.0.16" />
 	</ItemGroup>
 

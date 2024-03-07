@@ -1,9 +1,9 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\projects\project.targets"/>
+	<Import Project="..\projects\project.targets" />
 
 	<ItemGroup>
-		<PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
 	</ItemGroup>
 
 	<ItemGroup>

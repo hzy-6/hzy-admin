@@ -482,92 +482,72 @@
             c# 类型枚举
             </summary>
         </member>
-        <member name="T:HZY.Repository.Admin.Entities.Quartz.QuartzJobTask">
+        <member name="T:HZY.Repository.Admin.Entities.Quartz.QuartzJob">
             <summary>
             作业任务
             </summary>
         </member>
-        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobTask.Name">
+        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJob.Name">
             <summary>
             任务名称
             </summary>
         </member>
-        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobTask.GroupName">
+        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJob.GroupName">
             <summary>
             分组名称
             </summary>
         </member>
-        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobTask.Cron">
+        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJob.Cron">
             <summary>
             间隔表达式
             </summary>
         </member>
-        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobTask.ExecuteTime">
+        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJob.ExecuteTime">
             <summary>
             执行时间
             </summary>
         </member>
-        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobTask.State">
+        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJob.State">
             <summary>
             运行状态
             </summary>
         </member>
-        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobTask.Remark">
+        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJob.Remark">
             <summary>
             备注
             </summary>
         </member>
-        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobTask.Type">
+        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJob.Type">
             <summary>
             任务类型
             </summary>
         </member>
-        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobTask.JobPoint">
+        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJob.JobPoint">
             <summary>
             作业点
             </summary>
         </member>
-        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobTask.RequsetMode">
+        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJob.RequestMode">
             <summary>
             请求方式
             </summary>
         </member>
-        <member name="T:HZY.Repository.Admin.Entities.Quartz.QuartzJobTaskRequsetModeEnum">
+        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJob.Key">
             <summary>
-            请求方式
+            非数据库字段
             </summary>
         </member>
-        <member name="T:HZY.Repository.Admin.Entities.Quartz.QuartzJobTaskStateEnum">
-            <summary>
-            状态情况
-            </summary>
-        </member>
-        <member name="T:HZY.Repository.Admin.Entities.Quartz.QuartzJobTaskTypeEnum">
-            <summary>
-            类型
-            </summary>
-        </member>
-        <member name="F:HZY.Repository.Admin.Entities.Quartz.QuartzJobTaskTypeEnum.WebApi">
-            <summary>
-            webapi 远程程序
-            </summary>
-        </member>
-        <member name="F:HZY.Repository.Admin.Entities.Quartz.QuartzJobTaskTypeEnum.Local">
-            <summary>
-            本地程序
-            </summary>
-        </member>
-        <member name="T:HZY.Repository.Admin.Entities.Quartz.QuartzJobTaskLog">
+        <member name="T:HZY.Repository.Admin.Entities.Quartz.QuartzJobLog">
             <summary>
             作业任务 日志
             </summary>
         </member>
-        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobTaskLog.JobTaskId">
+        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobLog.JobId">
             <summary>
             任务id
             </summary>
         </member>
-        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobTaskLog.Text">
+        <member name="P:HZY.Repository.Admin.Entities.Quartz.QuartzJobLog.Text">
             <summary>
             任务日志
             </summary>
@@ -1097,16 +1077,6 @@
         <member name="T:HZY.Repository.Admin.Models.AdminRepositoryOptions">
             <summary>
             admin 仓储配置
-            </summary>
-        </member>
-        <member name="P:HZY.Repository.Admin.Models.AdminRepositoryOptions.DefaultDatabaseType">
-            <summary>
-            数据库类型
-            </summary>
-        </member>
-        <member name="P:HZY.Repository.Admin.Models.AdminRepositoryOptions.IsMonitorEFCore">
-            <summary>
-            是否监控 efcore
             </summary>
         </member>
         <member name="T:HZY.Repository.Admin.Models.Dtos.Systems.AuthUserFormDto">

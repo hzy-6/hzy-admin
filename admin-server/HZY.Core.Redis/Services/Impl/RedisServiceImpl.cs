@@ -21,6 +21,13 @@ public class RedisServiceImpl : IRedisService
         Multiplexer.Dispose();
     }
 
-
-
+    /// <summary>
+    /// 获取指定Redis数据库
+    /// </summary>
+    /// <param name="db"></param>
+    /// <returns></returns>
+    public IDatabase UseDatabase(int db)
+    {
+        return Multiplexer.GetDatabase(db);
+    }
 }

@@ -9,8 +9,8 @@
     CoreRedisStartup,
     CoreIdentityStartup,
     AdminRepositoryStartup,
-    RepositoryFreeSqlAdminStartup,
-    CoreSwaggerJwtStartup>]
+    CoreSwaggerJwtStartup,
+    SharedAdminStartup>]
 public class ApiAdminStartup : AppStartupBase<ApiAdminStartup>
 {
     /// <summary>
@@ -29,7 +29,10 @@ public class ApiAdminStartup : AppStartupBase<ApiAdminStartup>
         {
             options.Filters.Add<ApiAuthorizationFilter>();
             options.Filters.Add<ApiPermissionFilter>();
-        });
+        })
+        .AddDynamicApiController(options => options.IsLower = false)
+        .AddControllersAsServices()
+        ;
 
         // 代码生成器需要开启 razor page 引擎
         webApplicationBuilder.Services.AddRazorPages();

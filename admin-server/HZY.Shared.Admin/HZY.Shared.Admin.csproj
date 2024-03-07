@@ -1,0 +1,12 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<Import Project="..\projects\project.targets" />
+
+	<ItemGroup>
+		<ProjectReference Include="..\HZY.Core.Logs\HZY.Core.Logs.csproj" />
+		<ProjectReference Include="..\HZY.Repository.Admin\HZY.Repository.Admin.csproj" />
+		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />
+		<ProjectReference Include="..\HZY.Shared\HZY.Shared.csproj" />
+	</ItemGroup>
+
+</Project>

@@ -22,7 +22,7 @@ public class DynamicApiControllerAppService : IDynamicApiController
     /// 测试定时任务
     /// </summary>
     /// <returns></returns>
-    [Scheduled(false)]
+    [Scheduled(QuartzJobTaskType.Local)]
     [NonAction]
     public string Run()
     {

@@ -17,16 +17,21 @@ internal static class Program
 
         try
         {
-            HzyApplication.Run<WinFormDemoStartup>(args, webApplicationBuilder =>
+            HzyApplication.Run<WinFormDemoStartup>(args, options =>
             {
-                // 注册窗体
-                webApplicationBuilder.Services.AddTransient<Form1>();
-            }, app =>
-            {
-                // 从 ioc 容器中获取窗体
-                var form1 = app.Services.GetService<Form1>();
-                // 运行主窗体
-                Application.Run(form1);
+                options.WebApplicationBuilderAction = webApplicationBuilder =>
+                {
+                    webApplicationBuilder.Services.AddTransient<Form1>();
+                };
+
+                options.WebApplicationAction = webApplication =>
+                {
+                    // 从 ioc 容器中获取窗体
+                    var form1 = webApplication.Services.GetService<Form1>();
+                    // 运行主窗体
+                    Application.Run(form1);
+                };
+
             });
         }
         catch (Exception ex)

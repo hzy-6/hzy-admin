@@ -1,11 +1,8 @@
 namespace HZY.Core.Redis.Aop.Cache;
 
 [AttributeUsage(AttributeTargets.Method, AllowMultiple = true, Inherited = true)]
-public abstract class BaseCacheAttribute : MoAttribute
+public abstract class BaseCacheAttribute : AopMoAttribute
 {
-    protected static AsyncLocal<IServiceProvider> m_ServiceProvider = new AsyncLocal<IServiceProvider>();
-    public static void SetServiceProvider(IServiceProvider serviceProvider) => m_ServiceProvider.Value = serviceProvider;
-
     /// <summary>
     /// 缓存Key 不填默认是 函数的命名空间.函数名称
     /// </summary>
@@ -16,7 +13,7 @@ public abstract class BaseCacheAttribute : MoAttribute
     /// Redis 服务类型 不传递默认 走内存缓存
     /// </summary>
     /// <value></value>
-    public Type RedisServiceType { get; set; }
+    public Type RedisServiceType { get; set; } = null!;
 
     /// <summary>
     /// 获取缓存Key
@@ -147,7 +144,7 @@ public abstract class BaseCacheAttribute : MoAttribute
     /// <returns></returns>
     protected IDatabase GetDatabase(MethodContext MethodContext)
     {
-        var redisService = m_ServiceProvider.Value?.GetRequiredService(RedisServiceType);
+        var redisService = this.GetService(MethodContext, RedisServiceType);
 
         if (redisService == null)
         {

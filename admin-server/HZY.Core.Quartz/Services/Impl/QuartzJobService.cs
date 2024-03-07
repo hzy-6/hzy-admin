@@ -6,10 +6,10 @@
 public class QuartzJobService : IQuartzJobService
 {
     private readonly ISchedulerFactory _schedulerFactory;
-    private readonly DIJobFactory _dIJobFactory;
+    private readonly IJobFactory _dIJobFactory;
     private readonly ILogger _logger;
 
-    public QuartzJobService(ISchedulerFactory schedulerFactory, DIJobFactory dIJobFactory, ILogger<QuartzJobService> logger)
+    public QuartzJobService(ISchedulerFactory schedulerFactory, IJobFactory dIJobFactory, ILogger<QuartzJobService> logger)
     {
         _schedulerFactory = schedulerFactory;
         _dIJobFactory = dIJobFactory;
@@ -24,10 +24,17 @@ public class QuartzJobService : IQuartzJobService
     /// <param name="jobTaskInfo"></param>
     /// <returns></returns>
     public async Task<bool> RunAsync<TJobTaskInfo, TJob>(TJobTaskInfo jobTaskInfo)
-        where TJobTaskInfo : IJobTaskInfo
+        where TJobTaskInfo : IQuartzJobInfoEntity
         where TJob : IJob
     {
         if (jobTaskInfo == null) return false;
+
+        // 运行前判断是否存在 如果存在则不运行
+        var isTrigger = await this.GetTrigger(jobTaskInfo.Name!, jobTaskInfo.GroupName!);
+        if (isTrigger is not null)
+        {
+            await this.CloseAsync(jobTaskInfo.Name!, jobTaskInfo.GroupName!);
+        }
 
         //1、通过调度工厂获得调度器
         var scheduler = await _schedulerFactory.GetScheduler();
@@ -43,9 +50,11 @@ public class QuartzJobService : IQuartzJobService
             .Build();
 
         //3、创建任务
+        var jobDataMap = new JobDataMap();
+        jobDataMap.Put(QuartzStartupConfig.JobTaskKey, jobTaskInfo);
         var jobDetail = JobBuilder.Create<TJob>()
                             .WithIdentity(taskName, jobTaskInfo.GroupName!)
-                            .UsingJobData(QuartzStartupConfig.JobTaskKey, JsonConvert.SerializeObject(jobTaskInfo))
+                            .UsingJobData(jobDataMap)
                             .Build()
                             ;
 
@@ -74,6 +83,13 @@ public class QuartzJobService : IQuartzJobService
         if (string.IsNullOrWhiteSpace(taskName)) throw new ArgumentNullException(nameof(taskName));
         if (string.IsNullOrWhiteSpace(groupName)) throw new ArgumentNullException(nameof(groupName));
         if (call == null) throw new ArgumentNullException(nameof(call));
+
+        // 运行前判断是否存在 如果存在则不运行
+        var isTrigger = await this.GetTrigger(taskName, groupName);
+        if (isTrigger is not null)
+        {
+            await this.CloseAsync(taskName, groupName);
+        }
 
         var result = (groupName, taskName);
 
@@ -123,7 +139,31 @@ public class QuartzJobService : IQuartzJobService
     /// <returns></returns>
     public async Task<bool> CloseAsync(string taskName, string groupName = "default-group")
     {
-        IScheduler scheduler = await _schedulerFactory.GetScheduler();
+        var scheduler = await _schedulerFactory.GetScheduler();
+        var trigger = await this.GetTrigger(taskName, groupName);
+
+        if (trigger == null)
+        {
+            return false;
+        }
+
+        // 任务暂停
+        await scheduler.PauseTrigger(trigger.Key);
+        // 移除触发器
+        await scheduler.UnscheduleJob(trigger.Key);
+        // 删除任务
+        return await scheduler.DeleteJob(trigger.JobKey);
+    }
+
+    /// <summary>
+    /// 判断任务是否存在 和 运行状态
+    /// </summary>
+    /// <param name="taskName"></param>
+    /// <param name="groupName"></param>
+    /// <returns></returns>
+    public async Task<ITrigger?> GetTrigger(string taskName, string groupName = "default-group")
+    {
+        var scheduler = await _schedulerFactory.GetScheduler();
         var jobKeys = (await scheduler
             .GetJobKeys(GroupMatcher<JobKey>.GroupEquals(groupName)))
             .ToList();
@@ -132,8 +172,8 @@ public class QuartzJobService : IQuartzJobService
 
         if (jobKeys == null || jobKeys.Count() == 0)
         {
-            _logger.LogError($"Group not found [{groupName}]");
-            return false;
+            // _logger.LogError($"Group not found [{groupName}]");
+            return null;
         }
 
         var jobKey = jobKeys
@@ -141,8 +181,8 @@ public class QuartzJobService : IQuartzJobService
 
         if (jobKey == null)
         {
-            _logger.LogError($"JobKey not found [{key}]");
-            return false;
+            // _logger.LogError($"JobKey not found [{key}]");
+            return null;
         }
 
         //
@@ -151,21 +191,33 @@ public class QuartzJobService : IQuartzJobService
 
         if (trigger == null)
         {
-            _logger.LogError($"Trigger not found [{key}]");
+            // _logger.LogError($"Trigger not found [{key}]");
+            return null;
+        }
+
+        return trigger;
+    }
+
+    /// <summary>
+    /// 验证 Cron 表达式是否有效
+    /// </summary>
+    /// <param name="cronExpression"></param>
+    /// <returns></returns>
+    public bool IsValidExpression(string cronExpression)
+    {
+        try
+        {
+            var trigger = new CronTriggerImpl();
+            trigger.CronExpressionString = cronExpression;
+            var date = trigger.ComputeFirstFireTimeUtc(null);
+            return date != null;
+        }
+        catch //(Exception e)
+        {
             return false;
         }
 
-        //
-        await scheduler.PauseTrigger(trigger.Key);
-        await scheduler.UnscheduleJob(trigger.Key);// 移除触发器
-        await scheduler.DeleteJob(trigger.JobKey);
-
-        return await Task.FromResult(true);
     }
-
-
-
-
 
 
 }

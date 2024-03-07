@@ -138,6 +138,28 @@
             Api 消息返回类
             </summary>
         </member>
+        <member name="T:HZY.Core.ApplicationServices.ApplicationService">
+            <summary>
+            服务父类
+            </summary>
+        </member>
+        <member name="T:HZY.Core.ApplicationServices.ApplicationService`1">
+            <summary>
+            服务父类
+            </summary>
+            <typeparam name="TRepository">仓储</typeparam>
+        </member>
+        <member name="F:HZY.Core.ApplicationServices.ApplicationService`1._defaultRepository">
+            <summary>
+            默认仓储
+            </summary>
+        </member>
+        <member name="M:HZY.Core.ApplicationServices.ApplicationService`1.#ctor(`0)">
+            <summary>
+            服务父类
+            </summary>
+            <param name="defaultRepository"></param>
+        </member>
         <member name="T:HZY.Core.CoreStartup">
             <summary>
             程序启动器
@@ -174,41 +196,6 @@
         <member name="M:HZY.Core.CrossOrigins.CrossOriginConfig.UseCrossOrigin(Microsoft.AspNetCore.Builder.WebApplication)">
             <summary>
             使用跨域
-            </summary>
-        </member>
-        <member name="T:HZY.Core.Enums.DefaultDatabaseType">
-            <summary>
-            默认数据库类型
-            </summary>
-        </member>
-        <member name="T:HZY.Core.Enums.NameRuleType">
-            <summary>
-            命名规则类型
-            </summary>
-        </member>
-        <member name="F:HZY.Core.Enums.NameRuleType.Default">
-            <summary>
-            默认类型  请使用驼峰命名法
-            </summary>
-        </member>
-        <member name="F:HZY.Core.Enums.NameRuleType.SnakeCase">
-            <summary>
-            蛇形命名法 
-            </summary>
-        </member>
-        <member name="F:HZY.Core.Enums.NameRuleType.UpperSnakeCase">
-            <summary>
-            全大写蛇形命名法
-            </summary>
-        </member>
-        <member name="F:HZY.Core.Enums.NameRuleType.Upper">
-            <summary>
-            全大写命名
-            </summary>
-        </member>
-        <member name="F:HZY.Core.Enums.NameRuleType.Lower">
-            <summary>
-            全小写命名
             </summary>
         </member>
         <member name="M:HZY.Core.Files.FileManager.GetFilePath(System.String)">
@@ -635,6 +622,22 @@
             <param name="sourceObj"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Core.Tools.ToJsonString``1(``0)">
+            <summary>
+            转 json string
+            </summary>
+            <param name="sourceObj"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Core.Tools.ToJsonObject``1(System.String)">
+            <summary>
+            转 json 对象
+            </summary>
+            <param name="jsonString"></param>
+            <typeparam name="T"></typeparam>
+            <returns></returns>
+        </member>
         <member name="M:HZY.Core.Tools.GetServerIpAddress">
             <summary>
             获取所有服务 ip 地址
@@ -702,53 +705,11 @@
             <param name="str"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Core.Tools.IsTimestampString(System.String)">
+        <member name="M:HZY.Core.Tools.IsDecimal(System.String)">
             <summary>
-            判断字符串是否为时间戳
+            判断是否为 decimal 类型
             </summary>
-            <param name="timestampString"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.Tools.ToUtcDateTime(System.Int64)">
-            <summary>
-            时间戳转换为本地时间
-            </summary>
-            <param name="timeStamp"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.Tools.ToLocalDateTime(System.Int64)">
-            <summary>
-            时间戳转换为 Utc 时间
-            </summary>
-            <param name="timeStamp"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.Tools.ToLocalDateTimeString(System.Int64)">
-            <summary>
-            时间戳转换为本地时间
-            </summary>
-            <param name="timeStamp"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.Tools.ToLocalTimestamp(System.DateTime)">
-            <summary>
-            转时间戳
-            </summary>
-            <param name="dateTime"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.Tools.ToUtcTimestamp(System.DateTime)">
-            <summary>
-            转时间戳
-            </summary>
-            <param name="dateTime"></param>
-            <returns></returns>
-        </member>
-        <member name="M:HZY.Core.Tools.IsDateTimeByString(System.String)">
-            <summary>
-            判断字符串是否为有效的 日期类型
-            </summary>
-            <param name="input"></param>
+            <param name="str"></param>
             <returns></returns>
         </member>
         <member name="T:HZY.Core.Zips.Zip">

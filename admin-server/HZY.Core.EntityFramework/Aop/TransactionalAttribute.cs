@@ -53,12 +53,12 @@ public class TransactionalAttribute : AopMoAttribute
             if (IsCommitDelay)
             {
                 // 延迟提交
-                var baseDbContext = GetService(dbContextType) as IBaseDbContext;
+                var baseDbContext = GetService(context, dbContextType) as IBaseDbContext;
                 baseDbContext?.UnitOfWork?.CommitDelayStart();
             }
             else
             {
-                var dbContext = GetService(dbContextType) as DbContext;
+                var dbContext = GetService(context, dbContextType) as DbContext;
                 dbContext?.Database.OpenConnection();
                 dbContext?.Database.BeginTransaction();
             }
@@ -67,17 +67,22 @@ public class TransactionalAttribute : AopMoAttribute
 
     public override void OnException(MethodContext context)
     {
-        //函数异常触发事件
-        foreach (var dbContextType in _dbContextTypes)
+        if (!IsCommitDelay)
         {
-            var dbContext = GetService(dbContextType) as DbContext;
-            if (dbContext?.Database.CurrentTransaction != null)
+            //函数异常触发事件
+            foreach (var dbContextType in _dbContextTypes)
             {
-                dbContext.Database.RollbackTransaction();
+                var dbContext = GetService(context, dbContextType) as DbContext;
+                if (dbContext?.Database.CurrentTransaction != null)
+                {
+                    dbContext.Database.RollbackTransaction();
+                }
             }
         }
 
-        throw context.Exception!;
+        // 获取日志对象
+        var logger = GetLogger<TransactionalAttribute>(context);
+        logger?.LogError(context.Exception, "事务异常");
     }
 
     public override void OnSuccess(MethodContext context)
@@ -87,12 +92,12 @@ public class TransactionalAttribute : AopMoAttribute
             if (IsCommitDelay)
             {
                 // 延迟提交
-                var baseDbContext = GetService(dbContextType) as IBaseDbContext;
+                var baseDbContext = GetService(context, dbContextType) as IBaseDbContext;
                 baseDbContext?.UnitOfWork?.CommitDelayEnd();
             }
             else
             {
-                var dbContext = GetService(dbContextType) as DbContext;
+                var dbContext = GetService(context, dbContextType) as DbContext;
                 dbContext?.Database.CommitTransaction();
             }
         }

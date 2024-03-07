@@ -5,8 +5,8 @@
 /// </summary>
 public interface IJobLoggerService : ITransientDependency
 {
-    void Write(QuartzJobTaskLog jobLoggerInfo);
+    void Write(QuartzJobLog jobLoggerInfo);
 
-    List<QuartzJobTaskLog> FindListById(Guid tasksId, int page, int size);
+    List<QuartzJobLog> FindListById(Guid tasksId, int page, int size, out int total);
 
 }

@@ -132,9 +132,7 @@ public class CacheEvictAttribute : BaseCacheAttribute
     private void RemoveMemoryKey(MethodContext aopContext)
     {
         var cacheKey = GetCacheKey(aopContext);
-        using var scope = m_ServiceProvider.Value?.CreateScope();
-
-        var cache = scope.ServiceProvider.GetRequiredService<IMemoryCache>();
+        var cache = this.GetService<IMemoryCache>(aopContext);
 
         // 是否要进行前缀或后缀匹配
         if (cacheKey.StartsWith('*'))
@@ -210,7 +208,7 @@ public class CacheEvictAttribute : BaseCacheAttribute
 
     private IConnectionMultiplexer GetMultiplexer(MethodContext aopContext)
     {
-        var redisService = m_ServiceProvider.Value?.GetRequiredService(RedisServiceType);
+        var redisService = this.GetService(aopContext, RedisServiceType);
         var propertyInfos = redisService.GetType().GetProperties(BindingFlags.Instance | BindingFlags.Public);
         var databasePropertyInfo = propertyInfos.FirstOrDefault(w => w.PropertyType == typeof(IConnectionMultiplexer));
         if (databasePropertyInfo == null)

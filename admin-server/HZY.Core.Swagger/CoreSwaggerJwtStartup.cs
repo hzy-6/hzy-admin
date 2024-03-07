@@ -36,7 +36,7 @@ public class CoreSwaggerJwtStartup : StartupModule<CoreSwaggerJwtStartup>
                 .Get<JwtTokenOptions>();
 
             #region Jwt token 配置
-            
+
             //添加Jwt验证设置,添加请求头信息
             options.AddSecurityRequirement(new OpenApiSecurityRequirement
             {

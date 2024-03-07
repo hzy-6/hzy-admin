@@ -16,5 +16,10 @@ public interface IBaseRedisService : IDisposable
     /// </summary>
     IConnectionMultiplexer Multiplexer { get; }
 
-
+    /// <summary>
+    /// 获取数据库
+    /// </summary>
+    /// <param name="db"></param>
+    /// <returns></returns>
+    IDatabase UseDatabase(int db = -1);
 }

@@ -5,29 +5,38 @@
 /// </summary>
 public class JobLoggerService : IJobLoggerService
 {
-    private readonly IRepository<QuartzJobTaskLog> _quartzJobTaskLogRepository;
+    private readonly IRepository<QuartzJobLog> _quartzJobTaskLogRepository;
 
-    public JobLoggerService(IRepository<QuartzJobTaskLog> quartzJobTaskLogRepository)
+    public JobLoggerService(IRepository<QuartzJobLog> quartzJobTaskLogRepository)
     {
         _quartzJobTaskLogRepository = quartzJobTaskLogRepository;
     }
 
-    public List<QuartzJobTaskLog> FindListById(Guid tasksId, int page, int size)
+    public List<QuartzJobLog> FindListById(Guid tasksId, int page, int size, out int total)
     {
         page = page < 1 ? 1 : page;
-        return _quartzJobTaskLogRepository.SelectNoTracking
+
+        var query = _quartzJobTaskLogRepository.SelectNoTracking
             .OrderByDescending(w => w.CreationTime)
-            .Where(w => w.JobTaskId == tasksId)
+            .Where(w => w.JobId == tasksId)
+            ;
+
+        total = query.Count();
+
+        return query
             .Skip((page - 1) * size)
             .Take(size)
             .ToList()
             ;
     }
 
-    public void Write(QuartzJobTaskLog jobLoggerInfo)
+    public void Write(QuartzJobLog jobLoggerInfo)
     {
         if (jobLoggerInfo == null) return;
 
+        // 删除1个月前的日志
+        _quartzJobTaskLogRepository.Delete(w => w.CreationTime < DateTime.Now.AddMonths(-1));
+        // 写入日志
         _quartzJobTaskLogRepository.Insert(jobLoggerInfo);
     }
 }

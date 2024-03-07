@@ -3,19 +3,22 @@
 	<Import Project="..\projects\project.targets" />
 
 	<ItemGroup>
-		<PackageReference Include="HZY.Framework.Core" Version="1.1.4.*" />
-		<PackageReference Include="HZY.Framework.DependencyInjection" Version="0.0.1.2" />
+		<PackageReference Include="HZY.Framework.Core" Version="1.1.4.46" />
+		<PackageReference Include="HZY.Framework.DynamicApiController" Version="1.0.3" />
+		<PackageReference Include="HZY.Framework.DependencyInjection" Version="0.0.1.21" />
 		<PackageReference Include="HZY.Framework.DependencyInjection.SourceGenerator" Version="0.0.0.4" />
-		<PackageReference Include="Flurl.Http" Version="4.0.0" />
-		<PackageReference Include="AutoMapper" Version="12.0.1" />
-		<PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="12.0.1" />
+		<PackageReference Include="Flurl.Http" Version="4.0.2" />
+		<PackageReference Include="AutoMapper" Version="13.0.1" />
+		<PackageReference Include="IdGen" Version="3.0.3" />
+		<PackageReference Include="IdGen.DependencyInjection" Version="3.0.0" />
 		<PackageReference Include="SharpZipLib" Version="1.4.2" />
 		<PackageReference Include="UAParser" Version="3.1.47" />
 		<PackageReference Include="NPOI" Version="2.6.2" />
-		<PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
-		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.0" />
+		<PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
+		<PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="8.0.2" />
 		<PackageReference Include="Yitter.IdGenerator" Version="1.0.14" />
-		<PackageReference Include="Zyx.MemoryMQ" Version="1.0.6" />
+		<PackageReference Include="Zyx.MemoryMQ" Version="1.0.7" />
+		<PackageReference Include="StackExchange.Redis" Version="2.7.27" />
 	</ItemGroup>
 
 </Project>

@@ -30,11 +30,9 @@ public class CodeGenerationService : ICodeGenerationService
     /// <param name="databaseTableService"></param>
     /// <param name="razorViewRender"></param>
     /// <param name="webHostEnvironment"></param>
-    /// <param name="appConfiguration"></param>
     public CodeGenerationService(IDatabaseTableService databaseTableService,
         IRazorViewRender razorViewRender,
-        IWebHostEnvironment webHostEnvironment,
-        AppConfiguration appConfiguration)
+        IWebHostEnvironment webHostEnvironment)
     {
         _databaseTableService = databaseTableService;
         _razorViewRender = razorViewRender;

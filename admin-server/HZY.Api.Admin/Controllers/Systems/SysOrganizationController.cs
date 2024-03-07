@@ -1,6 +1,4 @@
-﻿using HZY.Framework.Core.Aop.Attributes;
-
-namespace HZY.Api.Admin.Controllers.Systems;
+﻿namespace HZY.Api.Admin.Controllers.Systems;
 
 /// <summary>
 /// 组织机构控制器

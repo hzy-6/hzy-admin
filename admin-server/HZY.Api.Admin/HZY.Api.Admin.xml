@@ -134,7 +134,7 @@
             会员服务
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Bases.MemberService.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Base.Member})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Bases.MemberService.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Base.Member})">
             <summary>
             获取列表数据
             </summary>
@@ -162,7 +162,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Bases.MemberService.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Base.Member})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Bases.MemberService.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Base.Member})">
             <summary>
             导出Excel
             </summary>
@@ -173,20 +173,6 @@
             <summary>
             Job 运行 日志
             </summary>
-        </member>
-        <member name="T:HZY.Api.Admin.ApplicationServices.Core.Quartz.Impl.ApiRequestService">
-            <summary>
-            WebApi 请求服务
-            </summary>
-        </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.Impl.ApiRequestService.RequestAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJobTaskRequsetModeEnum,System.String,System.String)">
-            <summary>
-            请求数据
-            </summary>
-            <param name="requsetMode"></param>
-            <param name="apiUrl"></param>
-            <param name="headerKeyValue"></param>
-            <returns></returns>
         </member>
         <member name="T:HZY.Api.Admin.ApplicationServices.Core.Quartz.Impl.JobLoggerService">
             <summary>
@@ -205,14 +191,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.Impl.TaskService.RunByIdAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJobTask)">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.Impl.TaskService.RunByIdAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJob)">
             <summary>
             根据任务id 运行任务调度
             </summary>
             <param name="quartzJobTask"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.Impl.TaskService.CloseByIdAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJobTask)">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.Impl.TaskService.CloseByIdAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJob)">
             <summary>
             根据任务id 关闭任务调度
             </summary>
@@ -227,11 +213,10 @@
             <param name="dateTime"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.Impl.TaskService.IsValidExpression(System.String)">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.Impl.TaskService.GetJobList">
             <summary>
-            验证 Cron 表达式是否有效
+            获取job列表
             </summary>
-            <param name="cronExpression"></param>
             <returns></returns>
         </member>
         <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.Impl.TaskService.RecoveryTaskAsync">
@@ -251,7 +236,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.ITaskService.SaveAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJobTask)">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.ITaskService.SaveAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJob)">
             <summary>
             保存数据
             </summary>
@@ -271,14 +256,14 @@
             <param name="id"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.ITaskService.RunByIdAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJobTask)">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.ITaskService.RunByIdAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJob)">
             <summary>
             根据任务id 运行任务调度
             </summary>
             <param name="quartzJobTask"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.ITaskService.CloseByIdAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJobTask)">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.ITaskService.CloseByIdAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJob)">
             <summary>
             根据任务id 关闭任务调度
             </summary>
@@ -304,15 +289,24 @@
             本地任务
             </summary>
         </member>
+        <member name="T:HZY.Api.Admin.ApplicationServices.Core.Quartz.Jobs.LocalJobAsync">
+            <summary>
+            本地任务
+            </summary>
+        </member>
         <member name="T:HZY.Api.Admin.ApplicationServices.Core.Quartz.Jobs.WebApiJob">
             <summary>
             Resultful 风格 Api Job
             </summary>
         </member>
-        <member name="T:HZY.Api.Admin.ApplicationServices.Core.Quartz.Jobs.WebApiJobFactory">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Core.Quartz.Jobs.WebApiJobAsync.RequestAsync(HZY.Core.Quartz.Models.QuartzJobRequestModeEnum,System.String,System.String)">
             <summary>
-            IJob 对象无法构造注入 需要此类实现 返回 注入后得 Job 实例
+            请求数据
             </summary>
+            <param name="requsetMode"></param>
+            <param name="apiUrl"></param>
+            <param name="headerKeyValue"></param>
+            <returns></returns>
         </member>
         <member name="T:HZY.Api.Admin.ApplicationServices.Core.Quartz.QuartzConfig">
             <summary>
@@ -465,14 +459,13 @@
             代码生成服务
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.DevelopmentTools.LowCode.Impl.CodeGenerationService.#ctor(HZY.Shared.ApplicationServices.Systems.IDatabaseTableService,HZY.Core.Razor.Services.IRazorViewRender,Microsoft.AspNetCore.Hosting.IWebHostEnvironment,HZY.Api.Admin.Models.Configs.AppConfiguration)">
+        <member name="M:HZY.Api.Admin.ApplicationServices.DevelopmentTools.LowCode.Impl.CodeGenerationService.#ctor(HZY.Shared.Admin.ApplicationServices.IDatabaseTableService,HZY.Core.Razor.Services.IRazorViewRender,Microsoft.AspNetCore.Hosting.IWebHostEnvironment)">
             <summary>
             
             </summary>
             <param name="databaseTableService"></param>
             <param name="razorViewRender"></param>
             <param name="webHostEnvironment"></param>
-            <param name="appConfiguration"></param>
         </member>
         <member name="M:HZY.Api.Admin.ApplicationServices.DevelopmentTools.LowCode.Impl.CodeGenerationService.GetGenContextDtos(System.Int32,System.Int32,HZY.Api.Admin.Models.Dtos.DevelopmentTool.GenFormDto)">
             <summary>
@@ -634,11 +627,10 @@
             数据库表服务
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.DevelopmentTools.LowCode.Impl.DatabaseTableService.#ctor(IFreeSql,Microsoft.Extensions.Caching.Memory.IMemoryCache,HZY.Framework.Repository.EntityFramework.IRepository{HZY.Repository.Admin.Entities.LowCode.LowCodeTable},HZY.Framework.Repository.EntityFramework.IRepository{HZY.Repository.Admin.Entities.LowCode.LowCodeTableInfo})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.DevelopmentTools.LowCode.Impl.DatabaseTableService.#ctor(Microsoft.Extensions.Caching.Memory.IMemoryCache,HZY.Framework.Repository.EntityFramework.IRepository{HZY.Repository.Admin.Entities.LowCode.LowCodeTable},HZY.Framework.Repository.EntityFramework.IRepository{HZY.Repository.Admin.Entities.LowCode.LowCodeTableInfo})">
             <summary>
             
             </summary>
-            <param name="freeSql"></param>
             <param name="memoryCache"></param>
             <param name="lowCodeTableRepository"></param>
             <param name="lowCodeTableInfoRepository"></param>
@@ -678,7 +670,7 @@
             服务 Low_Code_Table_InfoService
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.DevelopmentTools.LowCode.Impl.LowCodeTableInfoService.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.LowCode.LowCodeTableInfo})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.DevelopmentTools.LowCode.Impl.LowCodeTableInfoService.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.LowCode.LowCodeTableInfo})">
             <summary>
             获取列表数据
             </summary>
@@ -712,7 +704,7 @@
             服务 Low_Code_TableService
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.DevelopmentTools.LowCode.Impl.LowCodeTableService.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.LowCode.LowCodeTable})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.DevelopmentTools.LowCode.Impl.LowCodeTableService.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.LowCode.LowCodeTable})">
             <summary>
             获取列表数据
             </summary>
@@ -835,7 +827,7 @@
             服务 SysDataAuthorityCustomService
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysDataAuthorityCustomService.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthorityCustom})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysDataAuthorityCustomService.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthorityCustom})">
             <summary>
             获取列表数据
             </summary>
@@ -863,7 +855,7 @@
             <param name="form">form</param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysDataAuthorityCustomService.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthorityCustom})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysDataAuthorityCustomService.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthorityCustom})">
             <summary>
             导出Excel
             </summary>
@@ -875,7 +867,7 @@
             服务 SysDataAuthorityService
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysDataAuthorityService.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthority})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysDataAuthorityService.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthority})">
             <summary>
             获取列表数据
             </summary>
@@ -903,7 +895,7 @@
             <param name="form">form</param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysDataAuthorityService.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthority})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysDataAuthorityService.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthority})">
             <summary>
             导出Excel
             </summary>
@@ -974,7 +966,7 @@
             功能服务
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysFunctionService.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysFunction})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysFunctionService.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysFunction})">
             <summary>
             pagingSearchInput
             </summary>
@@ -1002,7 +994,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysFunctionService.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysFunction})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysFunctionService.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysFunction})">
             <summary>
             导出Excel
             </summary>
@@ -1014,7 +1006,7 @@
             菜单服务
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysMenuService.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysMenu})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysMenuService.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysMenu})">
             <summary>
             获取列表数据
             </summary>
@@ -1042,7 +1034,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysMenuService.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysMenu})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysMenuService.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysMenu})">
             <summary>
             导出Excel
             </summary>
@@ -1086,7 +1078,7 @@
             操作日服务
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysOperationLogService.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Api.Admin.Models.Dtos.Systems.SysOperationLogSearchDto})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysOperationLogService.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Api.Admin.Models.Dtos.Systems.SysOperationLogSearchDto})">
             <summary>
             获取列表数据
             </summary>
@@ -1104,6 +1096,12 @@
             查询表单数据
             </summary>
             <param name="id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysOperationLogService.ClearLogAsync">
+            <summary>
+            定时清理日志 保留一个月
+            </summary>
             <returns></returns>
         </member>
         <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysOrganizationService.FindListAsync(HZY.Repository.Admin.Entities.Systems.SysOrganization)">
@@ -1135,7 +1133,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysPostService.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysPost})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysPostService.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysPost})">
             <summary>
             pagingSearchInput
             </summary>
@@ -1163,7 +1161,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysPostService.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysPost})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysPostService.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysPost})">
             <summary>
             导出Excel
             </summary>
@@ -1194,7 +1192,7 @@
             角色服务
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysRoleService.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysRole})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysRoleService.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysRole})">
             <summary>
             获取列表数据
             </summary>
@@ -1222,7 +1220,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysRoleService.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysRole})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysRoleService.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysRole})">
             <summary>
             导出Excel
             </summary>
@@ -1234,7 +1232,7 @@
             系统账号服务
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysUserService.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysUser})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysUserService.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysUser})">
             <summary>
             获取列表数据
             </summary>
@@ -1262,7 +1260,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysUserService.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysUser})">
+        <member name="M:HZY.Api.Admin.ApplicationServices.Systems.SysUserService.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysUser})">
             <summary>
             导出Excel
             </summary>
@@ -1312,7 +1310,7 @@
             会员控制器
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Bases.MemberController.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Base.Member})">
+        <member name="M:HZY.Api.Admin.Controllers.Bases.MemberController.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Base.Member})">
             <summary>
             获取列表
             </summary>
@@ -1347,7 +1345,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Bases.MemberController.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Base.Member})">
+        <member name="M:HZY.Api.Admin.Controllers.Bases.MemberController.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Base.Member})">
             <summary>
             导出Excel
             </summary>
@@ -1413,7 +1411,7 @@
             </summary>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.DevelopmentTools.LowCode.LowCodeTableController.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.LowCode.LowCodeTable})">
+        <member name="M:HZY.Api.Admin.Controllers.DevelopmentTools.LowCode.LowCodeTableController.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.LowCode.LowCodeTable})">
             <summary>
             获取列表
             </summary>
@@ -1461,7 +1459,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.DevelopmentTools.LowCode.LowCodeTableInfoController.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.LowCode.LowCodeTableInfo})">
+        <member name="M:HZY.Api.Admin.Controllers.DevelopmentTools.LowCode.LowCodeTableInfoController.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.LowCode.LowCodeTableInfo})">
             <summary>
             获取列表
             </summary>
@@ -1523,7 +1521,7 @@
             <param name="filter"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.DevelopmentTools.QuartzTasksController.SaveFormAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJobTask)">
+        <member name="M:HZY.Api.Admin.Controllers.DevelopmentTools.QuartzTasksController.SaveFormAsync(HZY.Repository.Admin.Entities.Quartz.QuartzJob)">
             <summary>
             保存数据
             </summary>
@@ -1567,12 +1565,18 @@
             <param name="size"></param>
             <returns></returns>
         </member>
+        <member name="M:HZY.Api.Admin.Controllers.DevelopmentTools.QuartzTasksController.ScanTaskAsync">
+            <summary>
+            扫描本地任务
+            </summary>
+            <returns></returns>
+        </member>
         <member name="T:HZY.Api.Admin.Controllers.Indentity.AccountController">
             <summary>
             认证服务
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Indentity.AccountController.#ctor(HZY.Core.Identity.Services.JwtTokenService,Microsoft.Extensions.Configuration.IConfiguration,HZY.Shared.ApplicationServices.Systems.IAccountService)">
+        <member name="M:HZY.Api.Admin.Controllers.Indentity.AccountController.#ctor(HZY.Core.Identity.Services.JwtTokenService,Microsoft.Extensions.Configuration.IConfiguration,HZY.Shared.Admin.ApplicationServices.IAccountService)">
             <summary>
             
             </summary>
@@ -1622,7 +1626,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysDataAuthorityController.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthority})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysDataAuthorityController.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthority})">
             <summary>
             获取列表
             </summary>
@@ -1657,7 +1661,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysDataAuthorityController.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthority})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysDataAuthorityController.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthority})">
             <summary>
             导出Excel
             </summary>
@@ -1671,7 +1675,7 @@
             <param name="roleId"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysDataAuthorityCustomController.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthorityCustom})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysDataAuthorityCustomController.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthorityCustom})">
             <summary>
             获取列表
             </summary>
@@ -1706,7 +1710,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysDataAuthorityCustomController.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthorityCustom})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysDataAuthorityCustomController.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysDataAuthorityCustom})">
             <summary>
             导出Excel
             </summary>
@@ -1771,7 +1775,7 @@
             功能控制器
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysFunctionController.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysFunction})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysFunctionController.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysFunction})">
             <summary>
             获取列表
             </summary>
@@ -1806,7 +1810,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysFunctionController.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysFunction})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysFunctionController.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysFunction})">
             <summary>
             导出Excel
             </summary>
@@ -1818,7 +1822,7 @@
             菜单控制器
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysMenuController.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysMenu})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysMenuController.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysMenu})">
             <summary>
             获取列表
             </summary>
@@ -1853,7 +1857,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysMenuController.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysMenu})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysMenuController.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysMenu})">
             <summary>
             导出Excel
             </summary>
@@ -1885,7 +1889,7 @@
             操作日志控制器
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysOperationLogController.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Api.Admin.Models.Dtos.Systems.SysOperationLogSearchDto})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysOperationLogController.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Api.Admin.Models.Dtos.Systems.SysOperationLogSearchDto})">
             <summary>
             获取表单数据
             </summary>
@@ -1957,7 +1961,7 @@
             岗位控制器
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysPostController.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysPost})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysPostController.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysPost})">
             <summary>
             获取列表
             </summary>
@@ -1992,7 +1996,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysPostController.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysPost})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysPostController.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysPost})">
             <summary>
             导出Excel
             </summary>
@@ -2004,7 +2008,7 @@
             角色控制器
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysRoleController.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysRole})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysRoleController.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysRole})">
             <summary>
             获取列表
             </summary>
@@ -2039,7 +2043,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysRoleController.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysRole})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysRoleController.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysRole})">
             <summary>
             导出Excel
             </summary>
@@ -2051,7 +2055,7 @@
             角色菜单功能控制器
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysRoleMenuFunctionController.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysRole})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysRoleMenuFunctionController.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysRole})">
             <summary>
             获取列表
             </summary>
@@ -2076,7 +2080,7 @@
             系统账号管理
             </summary>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysUserController.FindListAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysUser})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysUserController.FindListAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysUser})">
             <summary>
             获取列表
             </summary>
@@ -2111,7 +2115,7 @@
             <param name="form"></param>
             <returns></returns>
         </member>
-        <member name="M:HZY.Api.Admin.Controllers.Systems.SysUserController.ExportExcelAsync(HZY.Shared.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysUser})">
+        <member name="M:HZY.Api.Admin.Controllers.Systems.SysUserController.ExportExcelAsync(HZY.Shared.Admin.Models.PagingViews.PagingSearchInput{HZY.Repository.Admin.Entities.Systems.SysUser})">
             <summary>
             导出Excel
             </summary>
@@ -2291,43 +2295,6 @@
         <member name="T:HZY.Api.Admin.Models.Enums.ApiVersions">
             <summary>
             版本
-            </summary>
-        </member>
-        <member name="T:HZY.Api.Admin.Repository.Configs.FreeSqlConfig">
-            <summary>
-            FreeSql 模块配置
-            </summary>
-        </member>
-        <member name="F:HZY.Api.Admin.Repository.Configs.FreeSqlConfig.AdminFreeSql">
-            <summary>
-            Admin IFreeSql
-            </summary>
-        </member>
-        <member name="M:HZY.Api.Admin.Repository.Configs.FreeSqlConfig.AddFreeSqlByAdmin(Microsoft.AspNetCore.Builder.WebApplicationBuilder,HZY.Core.Enums.DefaultDatabaseType)">
-            <summary>
-            注册 仓储
-            </summary>
-            <param name="webApplicationBuilder"></param>
-            <param name="defaultDatabaseType"></param>
-        </member>
-        <member name="T:HZY.Api.Admin.Repository.Models.AdminRepositoryOptions">
-            <summary>
-            admin 仓储配置
-            </summary>
-        </member>
-        <member name="P:HZY.Api.Admin.Repository.Models.AdminRepositoryOptions.DefaultDatabaseType">
-            <summary>
-            数据库类型
-            </summary>
-        </member>
-        <member name="P:HZY.Api.Admin.Repository.Models.AdminRepositoryOptions.IsMonitorEFCore">
-            <summary>
-            是否监控 efcore
-            </summary>
-        </member>
-        <member name="T:HZY.Api.Admin.Repository.RepositoryFreeSqlAdminStartup">
-            <summary>
-            程序启动器
             </summary>
         </member>
         <member name="M:AspNetCoreGeneratedDocument.wwwroot_code_generation_template_tempModel.GetTypeNew(HZY.Repository.Admin.Entities.LowCode.LowCodeTableInfo)">

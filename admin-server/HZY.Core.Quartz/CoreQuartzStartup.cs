@@ -26,17 +26,36 @@ public class CoreQuartzStartup : StartupModule<CoreQuartzStartup>
     {
         var _quartzJobService = webApplication.Services.GetService<IQuartzJobService>();
 
-        //
-        foreach (var item in App.JobTaskInfos.Where(w => w.ScheduledAttribute.InMemory))
+        if (_quartzJobService is null) return;
+
+        // 从内存中获取任务列表
+        var memoryJobList = App.JobTaskInfos.Where(w => w.ScheduledAttribute.JobTaskType == QuartzJobTaskType.Memory);
+        foreach (var item in memoryJobList)
         {
-            _quartzJobService.RunAsync<QuartzJobTaskInfo, MemoryJob>(new QuartzJobTaskInfo()
+            _quartzJobService.RunAsync<QuartzJobEntity, MemoryJob>(new QuartzJobEntity()
             {
                 Cron = item.ScheduledAttribute.Cron,
                 GroupName = item.ScheduledAttribute.GroupName ?? "default",
                 Name = item.ScheduledAttribute.Name ?? item.Key,
                 Remark = item.ScheduledAttribute.Remark,
                 // key 如果放入了 HZY.Api.CalcCenter.ApplicationServices.ServiceBus.Publishs.AppPublish>TestPublishAuto 表示执行函数
-                Key = item.Key
+                JobPoint = item.Key
+            }).Wait()
+           ;
+        }
+
+        // 异步任务
+        var memoryJobAsyncList = App.JobTaskInfos.Where(w => w.ScheduledAttribute.JobTaskType == QuartzJobTaskType.MemoryAsync);
+        foreach (var item in memoryJobAsyncList)
+        {
+            _quartzJobService.RunAsync<QuartzJobEntity, MemoryJobAsync>(new QuartzJobEntity()
+            {
+                Cron = item.ScheduledAttribute.Cron,
+                GroupName = item.ScheduledAttribute.GroupName ?? "default",
+                Name = item.ScheduledAttribute.Name ?? item.Key,
+                Remark = item.ScheduledAttribute.Remark,
+                // key 如果放入了 HZY.Api.CalcCenter.ApplicationServices.ServiceBus.Publishs.AppPublish>TestPublishAuto 表示执行函数
+                JobPoint = item.Key
             }).Wait()
            ;
         }

@@ -54,7 +54,7 @@
     {
         if (appTableInfo.CsType.ToLower() == "string")
         {
-            return "String?";
+            return "string?";
         }
 
         return appTableInfo.IsNullable ? $"{appTableInfo.CsType}?" : appTableInfo.CsType;

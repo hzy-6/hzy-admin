@@ -862,6 +862,35 @@ public static class Tools
         return JsonConvert.DeserializeObject<T>(JsonConvert.SerializeObject(sourceObj));
     }
 
+    /// <summary>
+    /// 转 json string
+    /// </summary>
+    /// <param name="sourceObj"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static string? ToJsonString<T>(this T? sourceObj)
+    {
+        if (sourceObj is null) return default;
+
+        var settings = new JsonSerializerSettings
+        {
+            ContractResolver = new CamelCasePropertyNamesContractResolver()
+        };
+        return JsonConvert.SerializeObject(sourceObj, settings);
+    }
+
+    /// <summary>
+    /// 转 json 对象
+    /// </summary>
+    /// <param name="jsonString"></param>
+    /// <typeparam name="T"></typeparam>
+    /// <returns></returns>
+    public static T? ToJsonObject<T>(this string jsonString)
+    {
+        if (string.IsNullOrWhiteSpace(jsonString)) return default;
+
+        return JsonConvert.DeserializeObject<T>(jsonString);
+    }
 
     /// <summary>
     /// 获取所有服务 ip 地址
@@ -986,6 +1015,14 @@ public static class Tools
     /// <returns></returns>
     public static long GetNewId()
     {
+        using var scope = App.CreateScope();
+        var idGenerator = scope?.ServiceProvider.GetService<IdGenerator>();
+
+        //var generator = new IdGenerator(0);
+        //var id = generator.CreateId();
+        var id = idGenerator?.CreateId() ?? 0;
+        return id;
+
         // 以上过程只需全局一次，且应在生成ID之前完成。
 
         // 初始化后，在任何需要生成ID的地方，调用以下方法：
@@ -1009,7 +1046,7 @@ public static class Tools
     /// <returns></returns>
     public static bool IsDouble(string str)
     {
-        if (IsTimestampString(str))
+        if (DateTimeUtil.IsTimestampString(str))
         {
             return false;
         }
@@ -1018,111 +1055,18 @@ public static class Tools
     }
 
     /// <summary>
-    /// 判断字符串是否为时间戳
+    /// 判断是否为 decimal 类型
     /// </summary>
-    /// <param name="timestampString"></param>
+    /// <param name="str"></param>
     /// <returns></returns>
-    public static bool IsTimestampString(string timestampString)
+    public static bool IsDecimal(string str)
     {
-        return !string.IsNullOrWhiteSpace(timestampString) &&
-               int.TryParse(timestampString, out _) &&
-               timestampString.Length == 10;
-    }
-
-    /// <summary>
-    /// 时间戳转换为本地时间
-    /// </summary>
-    /// <param name="timeStamp"></param>
-    /// <returns></returns>
-    public static DateTime ToUtcDateTime(this long timeStamp)
-    {
-        return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)
-            .AddSeconds(timeStamp)
-            .ToLocalTime();
-    }
-
-    /// <summary>
-    /// 时间戳转换为 Utc 时间
-    /// </summary>
-    /// <param name="timeStamp"></param>
-    /// <returns></returns>
-    public static DateTime ToLocalDateTime(this long timeStamp)
-    {
-        return new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local)
-            .AddSeconds(timeStamp)
-            .ToLocalTime();
-    }
-
-    /// <summary>
-    /// 时间戳转换为本地时间
-    /// </summary>
-    /// <param name="timeStamp"></param>
-    /// <returns></returns>
-    public static string ToLocalDateTimeString(this long timeStamp)
-    {
-        var time = ToLocalDateTime(timeStamp);
-
-        if (time == DateTime.MinValue)
-        {
-            return string.Empty;
-        }
-
-        return time.ToString("yyyy-MM-dd HH:mm:ss");
-    }
-
-    /// <summary>
-    /// 转时间戳
-    /// </summary>
-    /// <param name="dateTime"></param>
-    /// <returns></returns>
-    public static long ToLocalTimestamp(DateTime dateTime)
-    {
-        // 将日期时间转换为时间戳（Unix时间戳）
-        return (long)(dateTime - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Local)).TotalSeconds;
-    }
-
-    /// <summary>
-    /// 转时间戳
-    /// </summary>
-    /// <param name="dateTime"></param>
-    /// <returns></returns>
-    public static long ToUtcTimestamp(DateTime dateTime)
-    {
-        // 将日期时间转换为时间戳（Unix时间戳）
-        return (long)(dateTime - new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds;
-    }
-
-    /// <summary>
-    /// 判断字符串是否为有效的 日期类型
-    /// </summary>
-    /// <param name="input"></param>
-    /// <returns></returns>
-    public static bool IsDateTimeByString(string? input)
-    {
-        if (string.IsNullOrWhiteSpace(input))
+        if (DateTimeUtil.IsTimestampString(str))
         {
             return false;
         }
-
-        if (double.TryParse(input, out var val))
-        {
-            return false;
-        }
-
-        if (val > 0)
-        {
-            return false;
-        }
-
-        if (input.Count(s => s == '-') != 2 ||
-            input.Count(s => s == '/') != 2)
-            return false;
-
-        if (DateTime.TryParse(input, out DateTime date))
-        {
-            return date > DateTime.MinValue && date < DateTime.MaxValue;
-        }
-
-        return false;
+        
+        return decimal.TryParse(str, out _);
     }
+
 }

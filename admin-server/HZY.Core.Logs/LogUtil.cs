@@ -15,20 +15,29 @@ public static class LogUtil
     /// <returns></returns>
     public static WebApplicationBuilder AddLogUtil(this WebApplicationBuilder builder)
     {
-        var fileMaxSize = 1 * 1024 * 1024 * 10;
+        var fileMaxSize = 1 * 1024 * 1024 * 8;
 
         var logger = new LoggerConfiguration()
             .Enrich.With(new DateTimeNowEnricher())
-            .MinimumLevel.Debug()//最小记录级别
-            .Enrich.FromLogContext()//记录相关上下文信息 
-            .MinimumLevel.Override(nameof(Microsoft), LogEventLevel.Debug)//对其他日志进行重写,除此之外,目前框架只有微软自带的日志组件
-            .WriteTo.File(LogFilePath("All"), LogEventLevel.Debug, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true, fileSizeLimitBytes: fileMaxSize)
+            .Enrich.FromLogContext()//记录相关上下文信息
             ;
 
-        if (builder.Environment.IsDevelopment())
+        logger.WriteTo.Console();
+
+        //if (builder.Environment.IsDevelopment())
         {
-            logger.WriteTo.Console();
+            logger.WriteTo
+                .File(LogFilePath("All"), LogEventLevel.Debug, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true, fileSizeLimitBytes: fileMaxSize);
+            logger.MinimumLevel.Debug();//最小记录级别
+            logger.MinimumLevel.Override(nameof(Microsoft), LogEventLevel.Debug);//对其他日志进行重写,除此之外,目前框架只有微软自带的日志组件
         }
+        //else
+        //{
+        //    logger.WriteTo
+        //        .File(LogFilePath("All"), LogEventLevel.Warning, rollingInterval: RollingInterval.Day, rollOnFileSizeLimit: true, fileSizeLimitBytes: fileMaxSize);
+        //    logger.MinimumLevel.Warning();//最小记录级别
+        //    logger.MinimumLevel.Override(nameof(Microsoft), LogEventLevel.Warning);//对其他日志进行重写,除此之外,目前框架只有微软自带的日志组件
+        //}
 
         Serilog.Log.Logger = logger
             .WriteTo.Logger(lg =>

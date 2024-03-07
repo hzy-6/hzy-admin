@@ -54,7 +54,7 @@ public class CacheableAttribute : BaseCacheAttribute
     private void GetMemoryCache(MethodContext context)
     {
         var key = GetCacheKey(context);
-        var memoryCache = m_ServiceProvider.Value?.GetRequiredService<IMemoryCache>();
+        var memoryCache = this.GetService<IMemoryCache>(context);
         context.ReplaceReturnValue(this, memoryCache.Get(key));
     }
 
@@ -68,29 +68,7 @@ public class CacheableAttribute : BaseCacheAttribute
         var redisCache = GetDatabase(context);
         var value = redisCache.StringGet(key);
 
-        var val = string.IsNullOrWhiteSpace(value) ? null : JsonConvert.DeserializeObject(value);
-
-        if (val == null) return;
-
-        context.ReplaceReturnValue(this, val);
-    }
-
-    /// <summary>
-    /// 获取 RedisCache 缓存
-    /// </summary>
-    /// <param name="context"></param>
-    private void GetRedisCache<TResult>(MethodContext context)
-    {
-        var key = GetCacheKey(context);
-        var redisCache = GetDatabase(context);
-        var value = redisCache.StringGet(key);
-
-        if (string.IsNullOrWhiteSpace(value))
-        {
-            return;
-        }
-
-        var val = JsonConvert.DeserializeObject<TResult>(value);
+        var val = string.IsNullOrWhiteSpace(value) ? null : JsonConvert.DeserializeObject(value, context.RealReturnType);
 
         if (val == null) return;
 
@@ -120,7 +98,7 @@ public class CacheableAttribute : BaseCacheAttribute
     /// <param name="result"></param>
     private void CreateMemoryCache(MethodContext context, object result)
     {
-        var memoryCache = m_ServiceProvider.Value?.GetRequiredService<IMemoryCache>();
+        var memoryCache = this.GetService<IMemoryCache>(context);
         var key = GetCacheKey(context);
 
         if (CacheDuration <= 0)

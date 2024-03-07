@@ -14,9 +14,6 @@ public class SharedStartup : StartupModule<SharedStartup>
         var services = webApplicationBuilder.Services;
         //var configuration = webApplicationBuilder.Configuration;
 
-        // 添加中间件
-        services.AddScoped<TakeUpTimeMiddleware>();
-
         // 本地消息队列
         services.AddMemoryMQ();
 
@@ -49,9 +46,6 @@ public class SharedStartup : StartupModule<SharedStartup>
     /// <param name="webApplication"></param>
     public override void Configure(WebApplication webApplication)
     {
-        // 使用 Api 耗时计算中间件
-        webApplication.UseMiddleware<TakeUpTimeMiddleware>();
-
         // 消息队列启动
         webApplication.UseMemoryMQ();
 

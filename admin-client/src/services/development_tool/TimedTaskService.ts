@@ -44,6 +44,7 @@ export default class TimedTaskService {
    * @returns
    */
   static saveForm(id: string | undefined, formData: any) {
+    console.log(id);
     return Http.post(`${this.urlPrefix}/saveForm`, formData);
   }
 
@@ -74,5 +75,12 @@ export default class TimedTaskService {
    */
   static getJobLoggers(id: string, page: number, size = 10) {
     return Http.get(`${this.urlPrefix}/getJobLoggers/${id}/${page}/${size}`);
+  }
+
+  /**
+   * 扫描本地任务
+   */
+  static scanTask() {
+    return Http.get(`${this.urlPrefix}/scanTask`);
   }
 }

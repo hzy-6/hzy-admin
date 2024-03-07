@@ -1,19 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\projects\project.targets"/>
-	
-	<PropertyGroup>
-		<!--AOP 肉夹馍 配置-->
-		<WeaverConfiguration>
-			<Weavers>
-				<Rougamo />
-			</Weavers>
-		</WeaverConfiguration>
-	</PropertyGroup>
-
-	<ItemGroup>
-		<PackageReference Include="StackExchange.Redis" Version="2.*" />
-	</ItemGroup>
+	<Import Project="..\projects\project.targets" />
 
 	<ItemGroup>
 		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />

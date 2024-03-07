@@ -7,12 +7,12 @@
 public class QuartzTasksController : AdminControllerBase<ITaskService>
 {
     private readonly IJobLoggerService _jobLoggerService;
-    private readonly IRepository<QuartzJobTask> _quartzJobTaskRepository;
+    private readonly IRepository<QuartzJob> _quartzJobRepository;
 
-    public QuartzTasksController(ITaskService defaultService, IJobLoggerService jobLoggerService, IRepository<QuartzJobTask> quartzJobTaskRepository) : base(defaultService)
+    public QuartzTasksController(ITaskService defaultService, IJobLoggerService jobLoggerService, IRepository<QuartzJob> quartzJobRepository) : base(defaultService)
     {
         _jobLoggerService = jobLoggerService;
-        _quartzJobTaskRepository = quartzJobTaskRepository;
+        _quartzJobRepository = quartzJobRepository;
     }
 
     /// <summary>
@@ -20,47 +20,42 @@ public class QuartzTasksController : AdminControllerBase<ITaskService>
     /// </summary>
     /// <param name="filter"></param>
     /// <returns></returns>
-    [ActionDescriptor(DisplayName = "查看列表")]
-    [HttpPost("{filter?}")]
-    public async Task<List<QuartzJobTask>> FindListAsync([FromRoute] string filter) => (await _defaultService.FindListAsync(filter))?.ToList();
+    [HttpPost("/{filter?}")]
+    public Task<List<QuartzJob>> FindListAsync([FromRoute] string? filter) => _defaultService.FindListAsync(filter);
 
     /// <summary>
     /// 保存数据
     /// </summary>
     /// <param name="form"></param>
     /// <returns></returns>
-    [ActionDescriptor(DisplayName = "保存/编辑表单")]
     [HttpPost]
-    public async Task<QuartzJobTask> SaveFormAsync([FromBody] QuartzJobTask form) => await _defaultService.SaveAsync(form);
+    public Task<QuartzJob> SaveFormAsync([FromBody] QuartzJob form) => _defaultService.SaveAsync(form);
 
     /// <summary>
     /// 删除数据
     /// </summary>
     /// <param name="ids"></param>
     /// <returns></returns>
-    [ActionDescriptor(DisplayName = "删除数据")]
     [HttpPost]
-    public async Task<bool> DeleteListAsync([FromBody] List<Guid> ids) => await _defaultService.DeleteAsync(ids);
+    public Task<bool> DeleteListAsync([FromBody] List<Guid> ids) => _defaultService.DeleteAsync(ids);
 
     /// <summary>
     /// 根据Id 查询表单数据
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    [ActionDescriptor(DisplayName = "查看表单")]
     [HttpGet("{id?}")]
-    public async Task<QuartzJobTask> FindFormAsync([FromRoute] Guid id) => await _defaultService.FindByIdAsync(id);
+    public Task<QuartzJob> FindFormAsync([FromRoute] Guid id) => _defaultService.FindByIdAsync(id);
 
     /// <summary>
     /// 根据任务id 运行任务调度
     /// </summary>
     /// <param name="ids"></param>
     /// <returns></returns>
-    [ActionDescriptor(DisplayName = "运行任务")]
     [HttpPost]
     public async Task<bool> RunAsync([FromBody] List<Guid> ids)
     {
-        var quartzJobTasks = await _quartzJobTaskRepository.SelectNoTracking.Where(w => ids.Contains(w.Id)).ToListAsync();
+        var quartzJobTasks = await _quartzJobRepository.SelectNoTracking.Where(w => ids.Contains(w.Id)).ToListAsync();
 
         foreach (var item in quartzJobTasks)
         {
@@ -74,11 +69,10 @@ public class QuartzTasksController : AdminControllerBase<ITaskService>
     /// </summary>
     /// <param name="ids"></param>
     /// <returns></returns>
-    [ActionDescriptor(DisplayName = "关闭任务")]
     [HttpPost]
     public async Task<bool> CloseAsync([FromBody] List<Guid> ids)
     {
-        var quartzJobTasks = await _quartzJobTaskRepository.SelectNoTracking.Where(w => ids.Contains(w.Id)).ToListAsync();
+        var quartzJobTasks = await _quartzJobRepository.SelectNoTracking.Where(w => ids.Contains(w.Id)).ToListAsync();
 
         foreach (var item in quartzJobTasks)
         {
@@ -94,16 +88,29 @@ public class QuartzTasksController : AdminControllerBase<ITaskService>
     /// <param name="page"></param>
     /// <param name="size"></param>
     /// <returns></returns>
-    [ActionDescriptor(DisplayName = "查看运行日志")]
     [HttpGet("{taskId}/{page}/{size}")]
-    public List<QuartzJobTaskLog> GetJobLoggers([FromRoute] Guid taskId, [FromRoute] int page, [FromRoute] int size)
+    public object GetJobLoggers([FromRoute] Guid taskId, [FromRoute] int page, [FromRoute] int size)
     {
-        return _jobLoggerService.FindListById(taskId, page, size)
+        var list = _jobLoggerService.FindListById(taskId, page, size, out var total)
             .OrderByDescending(w => w.CreationTime)
             .ToList()
             ;
+
+        return new
+        {
+            list,
+            total
+        };
     }
 
-
+    /// <summary>
+    /// 扫描本地任务
+    /// </summary>
+    /// <returns></returns>
+    [HttpGet]
+    public Task<bool> ScanTaskAsync()
+    {
+        return _defaultService.RecoveryTaskAsync();
+    }
 
 }

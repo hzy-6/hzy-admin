@@ -81,4 +81,20 @@ public class SysOperationLogService : ApplicationService<IRepository<SysOperatio
         res[nameof(use)] = use;
         return res;
     }
+
+    /// <summary>
+    /// 定时清理日志 保留一个月
+    /// </summary>
+    /// <returns></returns>
+    [Scheduled("59 59 23 ? * *", Remark = "每天晚上 23：59：59 执行")]
+    public async Task<bool> ClearLogAsync()
+    {
+        var now = DateTime.Now;
+        await _defaultRepository.DeleteBulkAsync(w => w.CreationTime < now.AddMonths(-1));
+
+        return true;
+    }
+
+
+
 }

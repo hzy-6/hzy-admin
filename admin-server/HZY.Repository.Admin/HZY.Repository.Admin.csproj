@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\projects\project.targets"/>
+	<Import Project="..\projects\project.targets" />
 
 	<ItemGroup>
+		<ProjectReference Include="..\HZY.Core.Logs\HZY.Core.Logs.csproj" />
 		<ProjectReference Include="..\HZY.Core.Quartz\HZY.Core.Quartz.csproj" />
 		<ProjectReference Include="..\HZY.Core.EntityFramework\HZY.Core.EntityFramework.csproj" />
 		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />

@@ -3,15 +3,6 @@
 	<Import Project="..\projects\project.targets" />
 
 	<PropertyGroup>
-		<!--尝试设置您的 .csproj？在某些情况下，服务器 GC 可能懒得回收内存。ServerGarbageCollection false-->
-		<ServerGarbageCollection>false</ServerGarbageCollection>
-		<ConcurrentGarbageCollection>true</ConcurrentGarbageCollection>
-		<!--肉夹馍 AOP 配置-->
-		<WeaverConfiguration>
-			<Weavers>
-				<Rougamo />
-			</Weavers>
-		</WeaverConfiguration>
 		<!--aot-->
 		<!--<PublishAot>true</PublishAot>-->
 		<!--如果我们不需要全球化代码和数据，需要特定的代码和数据，并且使用不变模式-->
@@ -20,11 +11,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Rougamo.Fody" Version="2.*" IncludeAssets="all" PrivateAssets="contentfiles;analyzers" />
-	</ItemGroup>
-
-	<ItemGroup>
-		<ProjectReference Include="..\HZY.Core.FreeSql\HZY.Core.FreeSql.csproj" />
 		<ProjectReference Include="..\HZY.Core.Identity\HZY.Core.Identity.csproj" />
 		<ProjectReference Include="..\HZY.Core.Quartz\HZY.Core.Quartz.csproj" />
 		<ProjectReference Include="..\HZY.Core.Razor\HZY.Core.Razor.csproj" />
@@ -32,6 +18,7 @@
 		<ProjectReference Include="..\HZY.Core.Swagger\HZY.Core.Swagger.csproj" />
 		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />
 		<ProjectReference Include="..\HZY.Repository.Admin\HZY.Repository.Admin.csproj" />
+		<ProjectReference Include="..\HZY.Shared.Admin\HZY.Shared.Admin.csproj" />
 		<ProjectReference Include="..\HZY.Shared\HZY.Shared.csproj" />
 	</ItemGroup>
 
@@ -59,7 +46,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.0">
+		<PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.2">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
 		</PackageReference>

@@ -3,12 +3,12 @@
 	<Import Project="..\projects\project.targets" />
 
 	<ItemGroup>
-		<PackageReference Include="DotNetCore.CAP" Version="8.0.0" />
-		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="8.0.0" />
-		<PackageReference Include="DotNetCore.CAP.MySql" Version="8.0.0" />
-		<PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="8.0.0" />
-		<PackageReference Include="DotNetCore.CAP.RedisStreams" Version="8.0.0" />
-		<PackageReference Include="Savorboard.CAP.InMemoryMessageQueue" Version="7.0.0" />
+		<PackageReference Include="DotNetCore.CAP" Version="8.0.1" />
+		<PackageReference Include="DotNetCore.CAP.Dashboard" Version="8.0.1" />
+		<PackageReference Include="DotNetCore.CAP.MySql" Version="8.0.1" />
+		<PackageReference Include="DotNetCore.CAP.RabbitMQ" Version="8.0.1" />
+		<PackageReference Include="DotNetCore.CAP.RedisStreams" Version="8.0.1" />
+		<PackageReference Include="Savorboard.CAP.InMemoryMessageQueue" Version="8.0.0" />
 	</ItemGroup>
 
 	<ItemGroup>

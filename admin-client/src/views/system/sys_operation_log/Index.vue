@@ -1,7 +1,7 @@
 <script lang="ts" setup>
-import {reactive, ref, onMounted} from "vue";
-import {FormInstance} from "ant-design-vue";
-import {useAuthority} from "@/utils/Authority";
+import { reactive, ref, onMounted } from "vue";
+import { FormInstance } from "ant-design-vue";
+import { useAuthority } from "@/utils/Authority";
 import AppIcon from "@/core/components/AppIcon.vue";
 import Info from "./Info.vue";
 import Tools from "@/core/utils/Tools";
@@ -9,7 +9,7 @@ import PageContainer from "@/core/components/PageContainer.vue";
 import TableCurd from "@/core/components/curd/TableCurd.vue";
 import SysOperationLogService from "@/services/system/SysOperationLogService";
 
-defineOptions({name: "system_function"});
+defineOptions({ name: "system_function" });
 
 const state = reactive({
   search: {
@@ -98,9 +98,9 @@ async function deleteList(id?: string) {
 <template>
   <PageContainer>
     <TableCurd
-        ref="refTableCurd"
-        v-model:config="state"
-        @change="
+      ref="refTableCurd"
+      v-model:config="state"
+      @change="
         (changeTable) => {
           state.page = changeTable.pagination.current ?? 1;
           state.size = changeTable.pagination.pageSize ?? state.size;
@@ -108,14 +108,14 @@ async function deleteList(id?: string) {
           findList();
         }
       "
-        @show-size-change="
+      @show-size-change="
         ({ current, size }) => {
           state.page = current == 0 ? 1 : current;
           state.size = size;
           findList();
         }
       "
-        :column-setting="false"
+      :column-setting="false"
     >
       <!-- search -->
       <template #search>
@@ -123,27 +123,27 @@ async function deleteList(id?: string) {
           <a-row :gutter="[16, 0]">
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item name="api" label="接口地址">
-                <a-input v-model:value="state.search.vm.api" placeholder="接口地址"/>
+                <a-input v-model:value="state.search.vm.api" placeholder="接口地址" />
               </a-form-item>
             </a-col>
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item name="browser" label="浏览器">
-                <a-input v-model:value="state.search.vm.browser" placeholder="浏览器"/>
+                <a-input v-model:value="state.search.vm.browser" placeholder="浏览器" />
               </a-form-item>
             </a-col>
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item name="ip" label="ip地址">
-                <a-input v-model:value="state.search.vm.ip" placeholder="ip地址"/>
+                <a-input v-model:value="state.search.vm.ip" placeholder="ip地址" />
               </a-form-item>
             </a-col>
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item name="os" label="操作系统">
-                <a-input v-model:value="state.search.vm.os" placeholder="操作系统"/>
+                <a-input v-model:value="state.search.vm.os" placeholder="操作系统" />
               </a-form-item>
             </a-col>
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6">
               <a-form-item name="rangeTime" label="日期区间">
-                <a-range-picker v-model:value="state.search.vm.rangeTime" class="w100"/>
+                <a-range-picker v-model:value="state.search.vm.rangeTime" class="w100" />
               </a-form-item>
             </a-col>
 
@@ -151,7 +151,7 @@ async function deleteList(id?: string) {
             <a-col :xs="24" :sm="12" :md="8" :lg="6" :xl="6" class="text-right">
               <a-space :size="8">
                 <a-button
-                    @click="
+                  @click="
                     state.page = 1;
                     refSearchForm?.resetFields();
                     findList();
@@ -160,8 +160,8 @@ async function deleteList(id?: string) {
                   重置
                 </a-button>
                 <a-button
-                    type="primary"
-                    @click="
+                  type="primary"
+                  @click="
                     state.page = 1;
                     findList();
                   "
@@ -176,23 +176,19 @@ async function deleteList(id?: string) {
       <!-- toolbar-left -->
       <template #toolbar-left>
         <a-button @click="state.search.state = !state.search.state" v-if="power.search">
-          <div v-if="state.search.state">
-            <AppIcon name="UpOutlined"/>&nbsp;&nbsp;收起
-          </div>
-          <div v-else>
-            <AppIcon name="DownOutlined"/>&nbsp;&nbsp;展开
-          </div>
+          <div v-if="state.search.state"><AppIcon name="UpOutlined" />&nbsp;&nbsp;收起</div>
+          <div v-else><AppIcon name="DownOutlined" />&nbsp;&nbsp;展开</div>
         </a-button>
         <a-button type="primary" @click="() => refInfo?.open()" v-if="power.insert">
           <template #icon>
-            <AppIcon name="PlusOutlined"/>
+            <AppIcon name="PlusOutlined" />
           </template>
           新建
         </a-button>
         <a-popconfirm title="您确定要删除?" @confirm="deleteList()" okText="确定" cancelText="取消" v-if="power.delete">
           <a-button type="primary" danger>
             <template #icon>
-              <AppIcon name="DeleteOutlined"/>
+              <AppIcon name="DeleteOutlined" />
             </template>
             批量删除
           </a-button>
@@ -211,10 +207,10 @@ async function deleteList(id?: string) {
       </template>
       <!-- table-col -->
       <template #table-col>
-        <a-table-column title="接口地址" data-index="api" :width="250" :ellipsis="true"/>
-        <a-table-column title="操作系统" data-index="os"/>
-        <a-table-column title="浏览器" data-index="browser"/>
-        <a-table-column title="ip地址" data-index="ip"/>
+        <a-table-column title="接口地址" data-index="api" :width="250" :ellipsis="true" fixed="left" />
+        <a-table-column title="操作系统" data-index="os" :width="100" />
+        <a-table-column title="浏览器" data-index="browser" :width="100" />
+        <a-table-column title="ip地址" data-index="ip" :width="120" />
         <a-table-column title="接口描述" :width="200">
           <template #default="{ record }">
             {{ record.controllerDisplayName }}
@@ -222,23 +218,22 @@ async function deleteList(id?: string) {
             {{ record.actionDisplayName }}
           </template>
         </a-table-column>
-        <a-table-column title="接口耗时" data-index="takeUpTime">
+        <a-table-column title="接口耗时" data-index="takeUpTime" :width="100">
           <template #default="{ record }">
-            <a-tag v-if="record.takeUpTime >= 1000" color="orange">{{ record.takeUpTime }}(毫秒)</a-tag>
-            <a-tag v-else-if="record.takeUpTime >= 2000" color="red">{{ record.takeUpTime }}(毫秒)</a-tag>
-            <a-tag v-else color="#87d068">{{ record.takeUpTime }}(毫秒)</a-tag>
+            <div class="cell" v-if="record.takeUpTime >= 1000" style="background: orange">{{ record.takeUpTime }}(毫秒)</div>
+            <div class="cell" v-else-if="record.takeUpTime >= 2000" style="background: red">{{ record.takeUpTime }}(毫秒)</div>
+            <div class="cell" v-else style="background: #87d068">{{ record.takeUpTime }}(毫秒)</div>
           </template>
         </a-table-column>
-        <a-table-column title="操作人姓名" data-index="userName"/>
-        <a-table-column title="操作人账号" data-index="loginName"/>
-        <a-table-column title="创建时间" data-index="creationTime" :width="150"/>
+        <a-table-column title="操作人姓名" data-index="userName" :width="100" />
+        <a-table-column title="操作人账号" data-index="loginName" :width="100" />
+        <a-table-column title="创建时间" data-index="creationTime" :width="150" />
         <!-- 操作 -->
-        <a-table-column title="操作" data-index="id">
+        <a-table-column title="操作" data-index="id" :width="100">
           <template #default="{ record }">
             <a href="javascript:;" @click="() => refInfo?.open(record.id)">详情</a>
-            <a-divider type="vertical"/>
-            <a-popconfirm title="您确定要删除?" @confirm="deleteList(record.id)" okText="确定" cancelText="取消"
-                          v-if="power.delete">
+            <a-divider type="vertical" />
+            <a-popconfirm title="您确定要删除?" @confirm="deleteList(record.id)" okText="确定" cancelText="取消" v-if="power.delete">
               <a class="text-danger">删除</a>
             </a-popconfirm>
           </template>
@@ -246,6 +241,20 @@ async function deleteList(id?: string) {
       </template>
     </TableCurd>
     <!-- Info -->
-    <Info ref="refInfo" :onSuccess="() => findList()"/>
+    <Info ref="refInfo" :onSuccess="() => findList()" />
   </PageContainer>
 </template>
+
+<style lang="less" scoped>
+.cell {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>

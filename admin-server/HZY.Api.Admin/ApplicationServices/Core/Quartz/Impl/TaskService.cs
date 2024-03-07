@@ -5,11 +5,11 @@
 /// </summary>
 public class TaskService : ITaskService
 {
-    private readonly IRepository<QuartzJobTask> _quartzJobTaskRepository;
+    private readonly IRepository<QuartzJob> _quartzJobTaskRepository;
     private readonly IQuartzJobService _quartzJobService;
     private readonly ILogger<TaskService> _logger;
 
-    public TaskService(IRepository<QuartzJobTask> quartzJobTaskRepository,
+    public TaskService(IRepository<QuartzJob> quartzJobTaskRepository,
         IQuartzJobService quartzJobService,
         ILogger<TaskService> logger)
     {
@@ -18,7 +18,7 @@ public class TaskService : ITaskService
         _logger = logger;
     }
 
-    public async Task<IEnumerable<QuartzJobTask>> FindListAsync(string filter = null)
+    public async Task<List<QuartzJob>> FindListAsync(string? filter = null)
     {
         var query = _quartzJobTaskRepository.SelectNoTracking
             .OrderByDescending(w => w.Type)
@@ -28,23 +28,43 @@ public class TaskService : ITaskService
             .ThenBy(w => w.CreationTime)
             ;
 
+        var result = new List<QuartzJob>();
+
         if (!string.IsNullOrWhiteSpace(filter))
         {
             filter = filter.ToLower();
-            return query
-                 .Where(w => w.Name.ToLower().Contains(filter) || w.GroupName.ToLower().Contains(filter) || w.JobPoint.ToLower().Contains(filter) || (!string.IsNullOrWhiteSpace(w.Remark) ? w.Remark.ToLower().Contains(filter) : false))
+            result = await query
+                 .Where(w =>
+                 w.Name!.ToLower().Contains(filter) ||
+                 w.GroupName!.ToLower().Contains(filter) ||
+                 w.JobPoint!.ToLower().Contains(filter) ||
+                 (!string.IsNullOrWhiteSpace(w.Remark) ? w.Remark.ToLower().Contains(filter) : false))
+                 .ToListAsync()
                  ;
         }
 
-        return await query.ToListAsync() ?? new List<QuartzJobTask>();
+        result = await query.ToListAsync() ?? new List<QuartzJob>();
+
+        // 运行状态判断
+        foreach (var item in result)
+        {
+            var trigger = await _quartzJobService.GetTrigger(item.Name!, item.GroupName!);
+            item.State = trigger is not null;
+        }
+
+        return result;
     }
 
-    public async Task<QuartzJobTask> SaveAsync(QuartzJobTask form)
+    public async Task<QuartzJob> SaveAsync(QuartzJob form)
     {
-        if (!IsValidExpression(form.Cron))
+        if (string.IsNullOrWhiteSpace(form.Cron))
         {
-            //throw new MessageBox("任务 Cron 时间规则不正确!");
-            MessageBox.Show("Task Cron time rule is incorrect!");
+            throw new MessageBox("Cron 不能为空!");
+        }
+
+        if (!_quartzJobService.IsValidExpression(form.Cron))
+        {
+            throw new MessageBox("任务 Cron 时间规则不正确!");
 
         }
 
@@ -53,28 +73,26 @@ public class TaskService : ITaskService
 
         if (jobTask == null)
         {
-            if (await _quartzJobTaskRepository.AnyAsync(w => w.Name == form.Name))
+            if (await _quartzJobTaskRepository.AnyAsync(w => w.Name == form.Name && w.GroupName == form.GroupName))
             {
-                //throw new MessageBox($"任务名称{form.Name} , 已存在！");
-                MessageBox.Show($"Duplicate task name! [{form.Name}]");
+                throw new MessageBox($"任务名称{form.Name} , 已存在！");
             }
 
             await _quartzJobTaskRepository.InsertAsync(form);
         }
         else
         {
-            if (await _quartzJobTaskRepository.AnyAsync(w => w.Name == form.Name && w.Id != jobTask.Id))
+            if (await _quartzJobTaskRepository.AnyAsync(w => w.Name == form.Name && w.GroupName == form.GroupName && w.Id != jobTask.Id))
             {
-                //throw new MessageBox($"任务名称{form.Name} , 已存在！");
-                MessageBox.Show($"Duplicate task name! [{form.Name}]");
+                throw new MessageBox($"任务名称{form.Name} , 已存在！");
             }
 
-            isRun = jobTask.State == QuartzJobTaskStateEnum.运行中 && form.State == QuartzJobTaskStateEnum.运行中;
+            isRun = jobTask.State && form.State;
 
             if (isRun)
             {
                 await CloseByIdAsync(jobTask);
-                form.State = QuartzJobTaskStateEnum.未运行;
+                form.State = false;
             }
 
             await _quartzJobTaskRepository.UpdateByIdAsync(form);
@@ -94,7 +112,7 @@ public class TaskService : ITaskService
 
         foreach (var jobTask in jobTasks)
         {
-            if (jobTask.State == QuartzJobTaskStateEnum.运行中)
+            if (jobTask.State)
             {
                 await CloseByIdAsync(jobTask);
             }
@@ -110,9 +128,9 @@ public class TaskService : ITaskService
     /// </summary>
     /// <param name="id"></param>
     /// <returns></returns>
-    public async Task<QuartzJobTask> FindByIdAsync(Guid id)
+    public async Task<QuartzJob> FindByIdAsync(Guid id)
     {
-        return await _quartzJobTaskRepository.FindByIdAsync(id) ?? new QuartzJobTask();
+        return await _quartzJobTaskRepository.FindByIdAsync(id) ?? new QuartzJob();
     }
 
     /// <summary>
@@ -120,30 +138,40 @@ public class TaskService : ITaskService
     /// </summary>
     /// <param name="quartzJobTask"></param>
     /// <returns></returns>
-    public async Task<bool> RunByIdAsync(QuartzJobTask quartzJobTask)
+    public async Task<bool> RunByIdAsync(QuartzJob quartzJobTask)
     {
         if (quartzJobTask.Id == Guid.Empty) return true;
 
-        if (quartzJobTask.State == QuartzJobTaskStateEnum.运行中)
+        if (quartzJobTask.State)
         {
             return true;
         }
 
         var result = false;
 
-        if (quartzJobTask.Type == QuartzJobTaskTypeEnum.WebApi)
+        if (quartzJobTask.Type == QuartzJobTaskType.Http)
         {
-            result = await _quartzJobService.RunAsync<QuartzJobTask, WebApiJob>(quartzJobTask);
+            result = await _quartzJobService.RunAsync<IQuartzJobInfoEntity, WebApiJob>(quartzJobTask);
         }
 
-        if (quartzJobTask.Type == QuartzJobTaskTypeEnum.Local)
+        if (quartzJobTask.Type == QuartzJobTaskType.HttpAsync)
         {
-            result = await _quartzJobService.RunAsync<QuartzJobTask, LocalJob>(quartzJobTask);
+            result = await _quartzJobService.RunAsync<IQuartzJobInfoEntity, WebApiJobAsync>(quartzJobTask);
+        }
+
+        if (quartzJobTask.Type == QuartzJobTaskType.Local)
+        {
+            result = await _quartzJobService.RunAsync<IQuartzJobInfoEntity, LocalJob>(quartzJobTask);
+        }
+
+        if (quartzJobTask.Type == QuartzJobTaskType.LocalAsync)
+        {
+            result = await _quartzJobService.RunAsync<IQuartzJobInfoEntity, LocalJobAsync>(quartzJobTask);
         }
 
         if (result)
         {
-            quartzJobTask.State = QuartzJobTaskStateEnum.运行中;
+            quartzJobTask.State = true;
         }
 
         await _quartzJobTaskRepository.UpdateByIdAsync(quartzJobTask);
@@ -156,9 +184,9 @@ public class TaskService : ITaskService
     /// </summary>
     /// <param name="quartzJobTask"></param>
     /// <returns></returns>
-    public async Task<bool> CloseByIdAsync(QuartzJobTask quartzJobTask)
+    public async Task<bool> CloseByIdAsync(QuartzJob quartzJobTask)
     {
-        if (quartzJobTask.State == QuartzJobTaskStateEnum.未运行)
+        if (!quartzJobTask.State)
         {
             return true;
         }
@@ -167,29 +195,15 @@ public class TaskService : ITaskService
 
         try
         {
-            if (quartzJobTask.Type == QuartzJobTaskTypeEnum.WebApi)
-            {
-                result = await _quartzJobService.CloseAsync(quartzJobTask.Name!, quartzJobTask.GroupName!);
-            }
-
-            if (quartzJobTask.Type == QuartzJobTaskTypeEnum.Local)
-            {
-                result = await _quartzJobService.CloseAsync(quartzJobTask.Name!, quartzJobTask.GroupName!);
-            }
+            result = await _quartzJobService.CloseAsync(quartzJobTask.Name!, quartzJobTask.GroupName!);
         }
         catch (Exception ex)
         {
-            //tasks.State = QuartzJobTaskStateEnum.未运行;
-            //await _taskService.SaveAsync(tasks);
             MessageBox.Show(ex.Message);
         }
         finally
         {
-            //if (result)
-            //{
-            //    data.State = QuartzJobTaskStateEnum.未运行;
-            //}
-            quartzJobTask.State = QuartzJobTaskStateEnum.未运行;
+            quartzJobTask.State = false;
         }
 
         await _quartzJobTaskRepository.UpdateByIdAsync(quartzJobTask);
@@ -206,9 +220,12 @@ public class TaskService : ITaskService
     public async Task<bool> UpdateExecuteTime(Guid tasksId, DateTime dateTime)
     {
         using var scope = App.CreateScope();
-        using var _quartzJobTaskRepository = scope.ServiceProvider.GetService<IRepository<QuartzJobTask>>();
+        using var quartzJobTaskRepository = scope?.ServiceProvider.GetService<IRepository<QuartzJob>>();
 
-        var jobTask = await _quartzJobTaskRepository.SelectNoTracking.Where(w => w.Id == tasksId)
+        if (quartzJobTaskRepository is null) return false;
+
+        var jobTask = await quartzJobTaskRepository.SelectNoTracking
+            .Where(w => w.Id == tasksId)
             .ExecuteUpdateAsync(w => w.SetProperty(t => t.ExecuteTime, t => dateTime))
             ;
 
@@ -216,25 +233,68 @@ public class TaskService : ITaskService
     }
 
     /// <summary>
-    /// 验证 Cron 表达式是否有效
+    /// 获取job列表
     /// </summary>
-    /// <param name="cronExpression"></param>
     /// <returns></returns>
-    private bool IsValidExpression(string cronExpression)
+    private async Task<List<QuartzJob>> GetJobList()
     {
-        try
+        var result = await FindListAsync() ?? new List<QuartzJob>();
+
+        #region WebApi 服务
+        //var jobPoint = $"http://localhost:{App.Urls.FirstOrDefault()}/api/job/JobTest/Test";
+        //if (!result.Any(w => w.JobPoint == jobPoint))
+        //{
+        //    //初始化模拟数据
+        //    //  /QuartzTasks/Test
+        //    result.Add(new CalcQuartzJob
+        //    {
+        //        Id = Guid.NewGuid(),
+        //        JobPoint = jobPoint,
+        //        GroupName = "TEST",
+        //        Name = "default test webapi",
+        //        Cron = "0/10 * * * * ?",
+        //        State = true,
+        //        Type = QuartzJobTaskType.Http,
+        //        Remark = "use test",
+        //        RequestMode = QuartzJobRequestModeEnum.Get,
+        //    });
+        //}
+
+        #endregion
+
+        #region 本地任务
+
+        //识别出本地任务加入数据库任务库
+        var taskInfos = App.JobTaskInfos
+                .Where(w => w.ScheduledAttribute.JobTaskType is not QuartzJobTaskType.Memory)
+                .Where(w => w.ScheduledAttribute.JobTaskType is not QuartzJobTaskType.MemoryAsync)
+                .ToList();
+
+        foreach (var item in taskInfos)
         {
-            var trigger = new CronTriggerImpl();
-            trigger.CronExpressionString = cronExpression;
-            var date = trigger.ComputeFirstFireTimeUtc(null);
-            return date != null;
-        }
-        catch //(Exception e)
-        {
-            return false;
+            if (result.Any(w => w.JobPoint == item.Key)) continue;
+
+            var className = item.ClassType.Name;
+            var functionName = item.MethodInfo.Name;
+
+            var quartzJobTask = new QuartzJob();
+            quartzJobTask.Key = item.Key;
+            quartzJobTask.JobPoint = item.Key;
+            quartzJobTask.GroupName = item.ScheduledAttribute.GroupName;
+            quartzJobTask.Name = item.ScheduledAttribute.Name ?? className + "." + functionName;
+            quartzJobTask.Cron = item.ScheduledAttribute.Cron;
+            quartzJobTask.State = await _quartzJobService.GetTrigger(quartzJobTask.Name, quartzJobTask.GroupName!) is not null;
+            quartzJobTask.Type = item.ScheduledAttribute.JobTaskType;
+            quartzJobTask.Remark = item.ScheduledAttribute.Remark;
+
+            result.Add(quartzJobTask);
         }
 
+        #endregion
+
+        return result;
     }
+
 
     /// <summary>
     /// 对任务数据 状态 重置 恢复运行状态
@@ -244,67 +304,33 @@ public class TaskService : ITaskService
     {
         try
         {
-            var result = (await FindListAsync())?.ToList() ?? new List<QuartzJobTask>();
+            var jobList = await GetJobList();
+            if (jobList is null) return false;
 
-            #region WebApi 服务
-
-            if (result == null || result.Count == 0)
+            foreach (var item in jobList)
             {
-                //初始化模拟数据
-                //  /QuartzTasks/Test
-                result.Add(new QuartzJobTask
-                {
-                    Id = Guid.NewGuid(),
-                    JobPoint = $"http://localhost:{App.Urls.FirstOrDefault()}/api/job/JobTest/Test",
-                    GroupName = "TEST",
-                    Name = "default test webapi",
-                    Cron = "0/10 * * * * ?",
-                    State = QuartzJobTaskStateEnum.运行中,
-                    Type = QuartzJobTaskTypeEnum.WebApi,
-                    Remark = "use test",
-                    RequsetMode = QuartzJobTaskRequsetModeEnum.Get,
-                });
-            }
+                item.State = false;
+                item.ExecuteTime = null;
 
-            #endregion
-
-            #region 本地任务
-
-            //识别出本地任务加入数据库任务库
-            foreach (var item in App.JobTaskInfos)
-            {
-                if (result.Any(w => w.JobPoint == item.Key)) continue;
-
-                var quartzJobTask = new QuartzJobTask();
-                quartzJobTask.JobPoint = item.Key;
-                quartzJobTask.GroupName = item.ClassType.Name;
-                quartzJobTask.Name = item.ScheduledAttribute.Name ?? item.Key.Split('>')[1];
-                quartzJobTask.Cron = item.ScheduledAttribute.Cron;
-                quartzJobTask.State = QuartzJobTaskStateEnum.运行中;
-                quartzJobTask.Type = QuartzJobTaskTypeEnum.Local;
-                quartzJobTask.Remark = item.ScheduledAttribute.Remark;
-
-                result.Add(quartzJobTask);
-            }
-
-            #endregion
-
-            foreach (var item in result.Where(w => w.State == QuartzJobTaskStateEnum.运行中))
-            {
                 try
                 {
-                    item.State = QuartzJobTaskStateEnum.未运行;
-                    item.ExecuteTime = null;
                     await SaveAsync(item);
+                }
+                catch (Exception ex)
+                {
+                    // ignored
+                }
+
+                try
+                {
                     //自动恢复任务机制
                     await RunByIdAsync(item);
                 }
-                catch (Exception)
+                catch (Exception ex)
                 {
-
+                    // ignored
                 }
             }
-
         }
         catch (Exception ex)
         {
@@ -316,6 +342,5 @@ public class TaskService : ITaskService
 
         return true;
     }
-
 
 }

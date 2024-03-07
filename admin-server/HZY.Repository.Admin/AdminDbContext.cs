@@ -11,7 +11,7 @@ public class AdminDbContext : DbContext, IBaseDbContext
     /// </summary>
     public IUnitOfWork UnitOfWork { get; }
 
-    public AdminDbContext(DbContextOptions dbContextOptions) : base(dbContextOptions)
+    public AdminDbContext(DbContextOptions<AdminDbContext> dbContextOptions) : base(dbContextOptions)
     {
         UnitOfWork = new UnitOfWorkImpl<AdminDbContext>(this);
     }

@@ -8,6 +8,7 @@ import PageContainer from "@/core/components/PageContainer.vue";
 import TableCurd from "@/core/components/curd/TableCurd.vue";
 import LowCodeTableService from "@/services/development_tool/low_code/LowCodeTableService";
 import CodeGenerationService from "@/services/development_tool/low_code/CodeGenerationService";
+import TableEditor from "@/views/development_tool/low_code/db_editor/TableEditor.vue";
 
 defineOptions({ name: "LowCode" });
 
@@ -35,6 +36,8 @@ const refTableCurd = ref<InstanceType<typeof TableCurd>>();
 const refInfo = ref<InstanceType<typeof Info>>();
 //检索表单
 const refSearchForm = ref<FormInstance>();
+// 表编辑器
+const refTableEditor = ref<InstanceType<typeof TableEditor>>();
 
 /**
  * 初始化
@@ -98,6 +101,13 @@ function change() {
     Tools.message.success("数据变更成功!");
     findList();
   });
+}
+
+/**
+ * 打开表编辑器
+ */
+function openTableEditor() {
+  refTableEditor.value?.open();
 }
 </script>
 
@@ -205,6 +215,14 @@ function change() {
             批量删除
           </a-button>
         </a-popconfirm>
+
+        <!-- 在线建表 -->
+        <a-button type="primary" @click="openTableEditor">
+          <template #icon>
+            <AppIcon name="AppstoreAddOutlined" />
+          </template>
+          在线建表
+        </a-button>
       </template>
       <!-- toolbar-right -->
       <template #toolbar-right> </template>
@@ -236,5 +254,7 @@ function change() {
     </TableCurd>
     <!-- Info -->
     <Info ref="refInfo" :onSuccess="() => findList()" />
+    <!-- 表编辑器 -->
+    <TableEditor ref="refTableEditor" />
   </PageContainer>
 </template>

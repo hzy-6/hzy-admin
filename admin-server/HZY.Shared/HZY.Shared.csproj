@@ -1,11 +1,10 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
-	<Import Project="..\projects\project.targets"/>
+	<Import Project="..\projects\project.targets" />
 
 	<ItemGroup>
-		<ProjectReference Include="..\HZY.Core.FreeSql\HZY.Core.FreeSql.csproj" />
+		<ProjectReference Include="..\HZY.Core.Identity\HZY.Core.Identity.csproj" />
 		<ProjectReference Include="..\HZY.Core.Logs\HZY.Core.Logs.csproj" />
-		<ProjectReference Include="..\HZY.Repository.Admin\HZY.Repository.Admin.csproj" />
 		<ProjectReference Include="..\HZY.Core\HZY.Core.csproj" />
 	</ItemGroup>
 

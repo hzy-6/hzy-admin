@@ -29,6 +29,9 @@
 
 ![输入图片说明](gitee/images/project_1.jpg)
 
+### 属性注入
+![输入图片说明](gitee/images/attr_inj.png)
+
 ### ✨  部分截图
 
 ![输入图片说明](gitee/images/winform.png)

@@ -150,6 +150,7 @@ function onExpandedAll() {
             @expand="(expandedKeys:any[]) => (state.expandedAll = expandedKeys.length == state.tree.allExpandedKeys.length)"
             checkable
             :tree-data="state.tree.data"
+            :fieldNames="{ children: 'children', title: 'name', key: 'id' }"
           >
             <!-- <template #title="{ title, key }">
               <span v-if="key === '0-0-1-0'" style="color: #1890ff">{{ title }}</span>

@@ -8,7 +8,6 @@ public class DatabaseTableService : IDatabaseTableService
     private readonly string TableInfoKey = "TableInfo:GenDbTableDto";
     private readonly int CacheTime = 12;
 
-    private readonly IFreeSql _freeSql;
     private readonly IMemoryCache _memoryCache;
     private readonly IRepository<LowCodeTable> _lowCodeTableRepository;
     private readonly IRepository<LowCodeTableInfo> _lowCodeTableInfoRepository;
@@ -16,16 +15,14 @@ public class DatabaseTableService : IDatabaseTableService
     /// <summary>
     /// 
     /// </summary>
-    /// <param name="freeSql"></param>
     /// <param name="memoryCache"></param>
     /// <param name="lowCodeTableRepository"></param>
     /// <param name="lowCodeTableInfoRepository"></param>
-    public DatabaseTableService(IFreeSql freeSql,
+    public DatabaseTableService(
         IMemoryCache memoryCache,
         IRepository<LowCodeTable> lowCodeTableRepository,
         IRepository<LowCodeTableInfo> lowCodeTableInfoRepository)
     {
-        _freeSql = freeSql;
         _memoryCache = memoryCache;
         _lowCodeTableRepository = lowCodeTableRepository;
         _lowCodeTableInfoRepository = lowCodeTableInfoRepository;
@@ -35,7 +32,7 @@ public class DatabaseTableService : IDatabaseTableService
     /// 获取所有的表 包含表下面的列
     /// </summary>
     /// <returns></returns>
-    public virtual List<DbTableInfo> GetAllTableInfos() => _freeSql.DbFirst.GetTablesByDatabase();
+    public virtual List<DbTableInfo> GetAllTableInfos() => _lowCodeTableRepository.UnitOfWork.FreeSqlOrm.DbFirst.GetTablesByDatabase();
 
     /// <summary>
     /// 获取所有的表 包含表下面的列

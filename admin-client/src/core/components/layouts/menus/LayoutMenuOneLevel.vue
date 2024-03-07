@@ -1,11 +1,12 @@
 <script lang="ts" setup>
-import {onMounted, reactive, computed, watch} from "vue";
+import { onMounted, reactive, computed, watch } from "vue";
 import AppIcon from "@/core/components/AppIcon.vue";
 import router from "@/core/router";
-import MenuStore, {EMenuMode} from "@/core/store/layouts/MenuStore";
+import MenuStore, { EMenuMode } from "@/core/store/layouts/MenuStore";
 import AppStore from "@/core/store/AppStore";
 import ThemeStore from "@/core/store/layouts/ThemeStore";
 import logo from "@/assets/hzy.jpg";
+import { translate } from "@/locale/Main.js";
 
 const menuStore = MenuStore();
 const appStore = AppStore();
@@ -18,10 +19,10 @@ const state = reactive({
 });
 
 watch(
-    () => router.currentRoute.value,
-    (value) => {
-      methods.initTopMenu();
-    }
+  () => router.currentRoute.value,
+  (value) => {
+    methods.initTopMenu();
+  }
 );
 
 const methods: any = {
@@ -65,19 +66,18 @@ onMounted(() => {
   <!-- 左侧模式 -->
   <div class="hzy-left-nav" v-if="menuStore.state.menuMode == EMenuMode.left">
     <div class="hzy-logo">
-      <img :src="logo" width="80" alt="logo"/>
+      <img :src="logo" width="80" alt="logo" />
     </div>
     <ul>
       <template v-for="item in appStore.state.oneLevels">
         <a-tooltip placement="right">
           <template #title>
-            {{ $t(`menu.${item.id}`) }}
+            {{ translate(`menu.${item.id}`, item.name) }}
           </template>
-          <li :key="methods.getJumpUrl(item)" :class="{ active: methods.getJumpUrl(item) == state.selectedKey }"
-              @click="methods.onMenuSelected(methods.getJumpUrl(item))">
-            <AppIcon :name="item.icon" :size="22"/>
+          <li :key="methods.getJumpUrl(item)" :class="{ active: methods.getJumpUrl(item) == state.selectedKey }" @click="methods.onMenuSelected(methods.getJumpUrl(item))">
+            <AppIcon :name="item.icon" :size="22" />
             <div class="mt-8">
-              {{ $t(`menu.${item.id}`) }}
+              {{ translate(`menu.${item.id}`, item.name) }}
             </div>
           </li>
         </a-tooltip>
@@ -87,14 +87,14 @@ onMounted(() => {
   <!-- 顶部模式 -->
   <ul class="hzy-one-nav" v-if="menuStore.state.menuMode == EMenuMode.top">
     <li
-        v-for="item in appStore.state.oneLevels"
-        :key="methods.getJumpUrl(item)"
-        :class="{ active: methods.getJumpUrl(item) == state.selectedKey }"
-        @click="methods.onMenuSelected(methods.getJumpUrl(item))"
+      v-for="item in appStore.state.oneLevels"
+      :key="methods.getJumpUrl(item)"
+      :class="{ active: methods.getJumpUrl(item) == state.selectedKey }"
+      @click="methods.onMenuSelected(methods.getJumpUrl(item))"
     >
       <div class="menu-item">
-        <AppIcon :name="item.icon" :size="16" v-if="item.icon"/>
-        <div class="ml-5">{{ $t(`menu.${item.id}`) }}</div>
+        <AppIcon :name="item.icon" :size="16" v-if="item.icon" />
+        <div class="ml-5">{{ translate(`menu.${item.id}`, item.name) }}</div>
       </div>
     </li>
   </ul>
@@ -140,7 +140,6 @@ onMounted(() => {
   * {
     color: #e5e7eb !important;
   }
-
 }
 
 .hzy-one-nav {
