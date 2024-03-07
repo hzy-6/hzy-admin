@@ -167,6 +167,36 @@
             请求方式
             </summary>
         </member>
+        <member name="T:HZY.Core.Quartz.Models.QuartzJobTaskInfo">
+            <summary>
+            定时任务信息
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.Key">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.Name">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.GroupName">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.Cron">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="P:HZY.Core.Quartz.Models.QuartzJobTaskInfo.Remark">
+            <summary>
+            
+            </summary>
+        </member>
         <member name="T:HZY.Core.Quartz.Services.IJobTaskInfo">
             <summary>
             作业任务信息
